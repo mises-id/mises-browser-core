@@ -39,6 +39,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.RequestManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -159,6 +160,9 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean mIsRefreshingNewsFlow;
     private MoreStatus mMoreStatus;
 
+    private LinearLayoutManager mLayoutManager;
+    private RecyclerView mRecyclerView;
+
     public MisesNtpAdapter(Activity activity, OnMisesNtpListener onMisesNtpListener,
             RequestManager glide, 
             View mvTilesContainerLayout, 
@@ -202,7 +206,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mNewsFlowService = new NewsFlowService();
         mIsRefreshingNewsFlow = false;
-        mMoreStatus = MoreStatus.HaveMore;
+        mMoreStatus = MoreStatus.Idle;
 
         if (mActivity instanceof TabCreatorManager) {
             TabCreatorManager tabCreatorManager = (TabCreatorManager)mActivity;
@@ -232,11 +236,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             public final void onResult(NewsFlowService.RefreshResponse resp) {
                                 stopRefreshAnimation();
                                 if (!resp.ok) {
-                                    markMoreStatus(MoreStatus.LoadFailed);
+                                    markMoreStatus(MoreStatus.ToBeLoaded);
                                     return;
                                 }
                                 if (!resp.haveMore) {
                                     markMoreStatus(MoreStatus.HaveNoMore);
+                                } else {
+                                    markMoreStatus(MoreStatus.Idle);
                                 }
                                 handleNewsUpdate(resp.actions);
                             }
@@ -422,8 +428,21 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private void updateAllPublishedAtInVisibleNewsFlowItem() {
+    private void refreshAllPublishedAtInVisibleNewsFlowItem() {
         // RecyclerView.LayoutManager layoutManager = 
+        if (mLayoutManager == null) {
+            return;
+        }
+
+        int first = mLayoutManager.findFirstVisibleItemPosition();
+        int last = mLayoutManager.findLastVisibleItemPosition();
+        for (int i = first; i <= last; i ++) {
+            RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
+            if (viewHolder instanceof NewsFlowItemViewHolder) {
+                NewsFlowItemViewHolder vh = (NewsFlowItemViewHolder) viewHolder;
+                vh.refreshPublishedAt();
+            }
+        }
     }
 
     @Override
@@ -504,7 +523,13 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         Log.v(TAG, "onAttachedToRecyclerView");
 
-        markMoreStatus(MoreStatus.HaveMore);
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            mLayoutManager = (LinearLayoutManager)layoutManager;
+        }
+        mRecyclerView = recyclerView;
+
+        markMoreStatus(MoreStatus.Idle);
         mNewsFlowService.initialize(new Callback<NewsFlowService.RefreshResponse>() {
             @Override
             public final void onResult(NewsFlowService.RefreshResponse resp) {
@@ -548,13 +573,19 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         /*if (startOfBehindNews >= 0) {
             notifyItemRangeChanged(startOfBehindNews, mNewsFlowService.numOfNews() - startOfBehindNews);
         }*/
-        // 需要更新所有信息的更新时间
-        notifyDataSetChanged();
+        // 更新所有新闻Item的发布时间
+        refreshAllPublishedAtInVisibleNewsFlowItem();
     }
 
     public void onDetached() {
         Log.d(TAG, "onDetached");
         removeNativeAdListener();
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        mLayoutManager = null;
+        mRecyclerView = null;
     }
 
     public void onDestroy() {
@@ -913,6 +944,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ImageView mivImage;
         TextView mtvSource;
         TextView mtvPublishedAt;
+        Date mDatePublishedAt;
 
         public NewsFlowItemViewHolder(View itemView, Context ctx) {
             super(itemView);
@@ -924,7 +956,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mtvPublishedAt = (TextView) itemView.findViewById(R.id.tv_published_at);
         }
 
-        private String dateOffsetNowDesc(Date date) {
+        static private String dateOffsetNowDesc(Date date) {
             long offset = (new Date().getTime() - date.getTime()) / 1000;
             if (offset == 0) {
                 return "now";
@@ -954,6 +986,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mtvSource.setText(news.source);
             mtvPublishedAt.setText(
                 String.format("%s", dateOffsetNowDesc(news.publishedAt)));
+            mDatePublishedAt = news.publishedAt;
             mivImage.setVisibility(View.GONE);
             Log.d(TAG, String.format("setNews: thumbnail=%s", news.thumbnail));
             RequestOptions options = new RequestOptions().transform(new CenterCrop(), new RoundedCorners(dpToPx(mContext, 10)));
@@ -991,6 +1024,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 .apply(options)
                 .into(mivImage);
         }
+
+        public void refreshPublishedAt() {
+            mtvPublishedAt.setText(String.format("%s", dateOffsetNowDesc(mDatePublishedAt)));
+        }
     }
 
     public static class LoadMoreViewHolder extends RecyclerView.ViewHolder {
@@ -1024,38 +1061,31 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         btnRefresh.setEnabled(true);
     }
 
-    private void startLoadMoreAnimation() {
-        Log.d(TAG, "start load more animation");
-        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
-    }
-
-    private void stopLoadMoreAnimation() {
-        Log.d(TAG, "stop load more animation");
-        ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.clearAnimation();
-    }
-
     enum MoreStatus {
-        HaveMore,
-        HaveNoMore,
-        LoadFailed,
+        Idle, // 空闲，隐藏nomore文字、reload按钮和loading图标
+        Loading, // 加载中，显示loading图标及旋转动画，隐藏nomore文字、reload按钮
+        HaveNoMore, // 没有更多新闻可加载，显示nomore文字，隐藏reload按钮和loading图标
+        ToBeLoaded, // 待加载，显示reload按钮，隐藏nomore文字、loading图标
     }
-    // Loading
-    // 
 
     private void markMoreStatus(MoreStatus moreStatus) {
         Log.d(TAG, "markMoreStatus="+moreStatus);
         mMoreStatus = moreStatus;
 
         ImageView ivLoading = mLoadMoreLayout.findViewById(R.id.iv_loading);
-        ivLoading.setVisibility(mMoreStatus == MoreStatus.HaveMore ? View.VISIBLE : View.GONE);
+        if (mMoreStatus == MoreStatus.Loading) {
+            ivLoading.setVisibility(View.VISIBLE);
+            ivLoading.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
+        } else {
+            ivLoading.setVisibility(View.GONE);
+            ivLoading.clearAnimation();
+        }
 
         TextView tvNoMore = mLoadMoreLayout.findViewById(R.id.tv_no_more);
         tvNoMore.setVisibility(mMoreStatus == MoreStatus.HaveNoMore ? View.VISIBLE : View.GONE);
 
         Button btnLoadMore = mLoadMoreLayout.findViewById(R.id.btn_load_more);
-        btnLoadMore.setVisibility(mMoreStatus == MoreStatus.LoadFailed ? View.VISIBLE : View.GONE);
+        btnLoadMore.setVisibility(mMoreStatus == MoreStatus.ToBeLoaded ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -1074,17 +1104,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return;
         }
         Log.v(TAG, "start load more news");
-        markMoreStatus(MoreStatus.HaveMore);
-        startLoadMoreAnimation();
+        markMoreStatus(MoreStatus.Loading);
         mNewsFlowService.fetchMoreAsync(
             new Callback<NewsFlowService.RefreshResponse>() {
                 @Override
                 public final void onResult(NewsFlowService.RefreshResponse resp) {
                     Log.v(TAG, "onResult load more news");
-                    stopLoadMoreAnimation();
                     if (!resp.ok) {
                         Log.v(TAG, "fetchMoreAsync return failed");
-                        markMoreStatus(MoreStatus.LoadFailed);
+                        markMoreStatus(MoreStatus.ToBeLoaded);
                         return;
                     }
                     if (!resp.haveMore) {
@@ -1092,7 +1120,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         markMoreStatus(MoreStatus.HaveNoMore);
                     } else {
                         Log.v(TAG, "fetchMoreAsync return have more");
-                        markMoreStatus(MoreStatus.HaveMore);
+                        markMoreStatus(MoreStatus.Idle);
                     }
                     handleNewsUpdate(resp.actions);
                 }
