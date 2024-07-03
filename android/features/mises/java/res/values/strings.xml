@@ -15,8 +15,9 @@
     <string name="lbl_my_rewards">Reward Points</string>
     <string name="lbl_my_rewards_format">My Reward: %1$s pts</string>
     <string name="lbl_my_rewards_actions"><a href='mine_more'>Mine more</a> | <a href='redeem_for_mb'>Redeem for MB</a></string>
-    <string name="lbl_my_data">My Data</string>
+    <string name="lbl_my_data">My Profile</string>
     <string name="lbl_mises_discover">Mises Discover</string>
+    <string name="lbl_swap">Swap</string>
     <string name="lbl_wallet">Wallet</string>
     <string name="lbl_portal">Home Page</string>
     <string name="lbl_nft">NFT</string>

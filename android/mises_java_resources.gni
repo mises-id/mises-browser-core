@@ -366,6 +366,12 @@ mises_extra_java_resources = [
   "java/res/mipmap-xxhdpi/ic_rewards.png",
   "java/res/mipmap-xxxhdpi/ic_rewards.png",
 
+  "java/res/mipmap-hdpi/ic_swap.png",
+  "java/res/mipmap-mdpi/ic_swap.png",
+  "java/res/mipmap-xhdpi/ic_swap.png",
+  "java/res/mipmap-xxhdpi/ic_swap.png",
+  "java/res/mipmap-xxxhdpi/ic_swap.png",
+
   
 
 ]

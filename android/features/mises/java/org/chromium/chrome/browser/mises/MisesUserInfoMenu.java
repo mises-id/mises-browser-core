@@ -185,6 +185,7 @@ public class MisesUserInfoMenu extends PopupWindow implements  MisesController.M
         view.findViewById(R.id.tv_my_rewards).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_mises_discover).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_wallet).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.tv_swap).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_login).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_create_mises).setOnClickListener(itemsOnClick);
         view.findViewById(R.id.tv_website).setOnClickListener(itemsOnClick);
