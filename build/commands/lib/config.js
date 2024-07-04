@@ -496,7 +496,7 @@ Config.prototype.buildArgs = function () {
     args.safe_browsing_mode = 2
 
     // Feed is not used in Mises
-    args.enable_feed_v2 = false
+    args.enable_feed_v2 = true
 
     // TODO(fixme)
     args.enable_tor = false

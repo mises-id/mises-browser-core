@@ -1,0 +1,68 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/suggestions/tile/MostVisitedTilesMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/suggestions/tile/MostVisitedTilesMediator.java
+index 86ad395404e0bbed5f079a05579cee3d6b1954e2..b1c3f020f5026f4102689f420ef8e3af892388a2 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/suggestions/tile/MostVisitedTilesMediator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/suggestions/tile/MostVisitedTilesMediator.java
+@@ -94,8 +94,8 @@ public class MostVisitedTilesMediator implements TileGroup.Observer, TemplateUrl
+ 
+         mTileViewLandscapePadding =
+                 mResources.getDimensionPixelSize(R.dimen.tile_view_padding_landscape);
+-        mTileViewPortraitEdgePadding =
+-                mResources.getDimensionPixelSize(R.dimen.tile_view_padding_edge_portrait);
++        mTileViewPortraitEdgePadding = 0;
++                // mResources.getDimensionPixelSize(R.dimen.tile_view_padding_edge_portrait);
+         mTileCarouselLayoutLateralMarginSumForPolish =
+                 mResources.getDimensionPixelSize(R.dimen.mvt_container_lateral_margin_polish) * 2;
+ 
+@@ -246,10 +246,12 @@ public class MostVisitedTilesMediator implements TileGroup.Observer, TemplateUrl
+         if (!mIsScrollableMVTEnabled
+                 || mResources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                 || mTileViewPortraitIntervalPadding != 0) {
++            Log.v(TAG, "maybeSetPortraitIntervalPaddingsForCarousel:0");
+             return;
+         }
+         if (mIsTablet) {
+             mTileViewPortraitIntervalPadding = mTileViewPortraitEdgePadding;
++            Log.v(TAG, "maybeSetPortraitIntervalPaddingsForCarousel:1 mTileViewPortraitIntervalPadding="+mTileViewPortraitIntervalPadding);
+         } else {
+             boolean isSmallDevice = mUiConfig.getCurrentDisplayStyle().isSmall();
+             int screenWidth = mResources.getDisplayMetrics().widthPixels;
+@@ -264,6 +266,7 @@ public class MostVisitedTilesMediator implements TileGroup.Observer, TemplateUrl
+             mTileViewPortraitIntervalPadding = Integer.max(
+                     -mResources.getDimensionPixelOffset(R.dimen.tile_view_padding),
+                     (int) ((screenWidth - mTileViewPortraitEdgePadding - tileViewWidth * 4.5) / 4));
++            Log.v(TAG, "maybeSetPortraitIntervalPaddingsForCarousel:2 mTileViewPortraitIntervalPadding="+mTileViewPortraitIntervalPadding);
+         }
+     }
+ 
+@@ -272,7 +275,10 @@ public class MostVisitedTilesMediator implements TileGroup.Observer, TemplateUrl
+         // {@link MostVisitedTilesGridLayout}
+         if (!mIsScrollableMVTEnabled || mMvTilesLayout.getChildCount() < 1) return;
+ 
++        Log.v(TAG, "updateTilesViewForCarouselLayout");
++
+         if (mIsNtpAsHomeSurfaceOnTablet && !mIsSurfacePolishEnabled) {
++            Log.v(TAG, "updateTilesViewForCarouselLayout:0");
+             mModel.set(HORIZONTAL_EDGE_PADDINGS, 0);
+             mModel.set(UPDATE_INTERVAL_PADDINGS_TABLET,
+                     mResources.getConfiguration().orientation
+@@ -281,17 +287,20 @@ public class MostVisitedTilesMediator implements TileGroup.Observer, TemplateUrl
+         }
+ 
+         if (mIsNtpAsHomeSurfaceOnTablet && mIsSurfacePolishEnabled) {
++            Log.v(TAG, "updateTilesViewForCarouselLayout:1");
+             mModel.set(HORIZONTAL_EDGE_PADDINGS, mTileViewEdgePaddingForTabletPolish);
+             mModel.set(HORIZONTAL_INTERVAL_PADDINGS, mTileViewIntervalPaddingForTabletPolish);
+             return;
+         }
+ 
+         if (mResources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
++            Log.v(TAG, "updateTilesViewForCarouselLayout:2");
+             mModel.set(HORIZONTAL_EDGE_PADDINGS, mTileViewLandscapePadding);
+             mModel.set(HORIZONTAL_INTERVAL_PADDINGS, mTileViewLandscapePadding);
+             return;
+         }
+ 
++        Log.v(TAG, "updateTilesViewForCarouselLayout:3 mTileViewPortraitEdgePadding="+mTileViewPortraitEdgePadding+" mTileViewPortraitIntervalPadding="+mTileViewPortraitIntervalPadding);
+         mModel.set(HORIZONTAL_EDGE_PADDINGS, mTileViewPortraitEdgePadding);
+         mModel.set(HORIZONTAL_INTERVAL_PADDINGS, mTileViewPortraitIntervalPadding);
+     }

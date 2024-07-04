@@ -41,6 +41,7 @@ import org.chromium.components.browser_ui.settings.SettingsLauncher;
 import org.chromium.components.search_engines.TemplateUrlService;
 import org.chromium.ui.base.WindowAndroid;
 import org.chromium.base.MisesSysUtils;
+import org.chromium.chrome.browser.feed.MisesFeedSurfaceCoordinator;
 
 public class MisesNewTabPage extends NewTabPage {
     private static final String TAG = "MisesNewTabPage";
@@ -98,10 +99,10 @@ public class MisesNewTabPage extends NewTabPage {
 
         
         assert mNewTabPageLayout instanceof MisesNewTabPageLayout;
-        if (mNewTabPageLayout instanceof MisesNewTabPageLayout) {
+        /*if (mNewTabPageLayout instanceof MisesNewTabPageLayout) {
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTab(tab);
             ((MisesNewTabPageLayout) mNewTabPageLayout).setTabProvider(activityTabProvider);
-        }
+        }*/
         MisesSysUtils.logEvent("ntp_open", "step", "open_native");
     }
 
@@ -116,7 +117,7 @@ public class MisesNewTabPage extends NewTabPage {
         mNewTabPageLayout = (NewTabPageLayout) inflater.inflate(R.layout.new_tab_page_layout, null);
 
         assert !FeedFeatures.isFeedEnabled();
-        FeedSurfaceCoordinator feedSurfaceCoordinator = new FeedSurfaceCoordinator(
+        FeedSurfaceCoordinator feedSurfaceCoordinator = new MisesFeedSurfaceCoordinator(
                         activity,
                         snackbarManager,
                         windowAndroid,
@@ -149,7 +150,7 @@ public class MisesNewTabPage extends NewTabPage {
 
     public void updateSearchProviderHasLogo() {
         // Search provider logo is not used in Mises's NTP.
-        mSearchProviderHasLogo = false;
+        mSearchProviderHasLogo = true;
         Log.d(TAG, "updateSearchProviderHasLogo");
     }
     

@@ -44,6 +44,7 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     private List<SiteSuggestion> mMisesServiceCache;
     private List<SiteSuggestion> mWeb3SiteCache;
     private List<SiteSuggestion> mWeb3ExtensionCache;
+    private List<SiteSuggestion> mShortcutCache;
     public TileGroupDelegateWrapper(TileGroup.Delegate wrapped) {
         Log.d(TAG, "New");
         mWrapped = wrapped;
@@ -156,6 +157,9 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
         if (mObservers.size() >= 4 &&  mWeb3ExtensionCache != null) {
             mObservers.get(3).onSiteSuggestionsAvailable(mWeb3ExtensionCache);
         }
+        if (mObservers.size() >= 5 &&  mShortcutCache != null) {
+            mObservers.get(4).onSiteSuggestionsAvailable(mShortcutCache);
+        }
     }
 
     private void loadWeb3SitesCache() {
@@ -198,7 +202,8 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 mMisesServiceCache = sites;
             }
             {
-                final JSONArray recommended_sites = jsonMessage.getJSONArray("recommended_sites");
+                // final JSONArray recommended_sites = jsonMessage.getJSONArray("recommended_sites");
+                final JSONArray recommended_sites = jsonMessage.getJSONArray("shortcuts");
                 ArrayList<SiteSuggestion> sites = new ArrayList<>();
                 for( int i = 0 ;i < recommended_sites.length(); i ++ ) {
                     final JSONObject site = recommended_sites.getJSONObject(i);
@@ -241,8 +246,23 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
                 }
                 mWeb3ExtensionCache = extensions;
             }
-
-
+            {
+                final JSONArray jsonShortcuts = jsonMessage.getJSONArray("shortcuts");
+                ArrayList<SiteSuggestion> shortcuts = new ArrayList<>();
+                for( int i = 0 ;i < jsonShortcuts.length(); i ++ ) {
+                    final JSONObject jsonShortcut = jsonShortcuts.getJSONObject(i);
+                    final MisesSiteSuggestion suggestion = new MisesSiteSuggestion(
+                        jsonShortcut.getString("title"), 
+                        new GURL(jsonShortcut.getString("url")), 
+                        TileTitleSource.TITLE_TAG,
+                        TileSource.TOP_SITES, 
+                        TileSectionType.PERSONALIZED
+                    );
+                    suggestion.setIconUrl(new GURL(jsonShortcut.getString("logo")));
+                    shortcuts.add(suggestion);
+                }
+                mShortcutCache = shortcuts;
+            }
             
         } catch (JSONException e) {
             Log.e(TAG, "load web3_sites from json error");

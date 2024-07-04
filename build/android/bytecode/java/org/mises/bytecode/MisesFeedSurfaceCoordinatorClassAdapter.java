@@ -16,10 +16,10 @@ public class MisesFeedSurfaceCoordinatorClassAdapter extends MisesClassVisitor {
     public MisesFeedSurfaceCoordinatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // deleteField(sMisesFeedSurfaceCoordinatorClassName, "mNtpHeader");
-        // makeProtectedField(sFeedSurfaceCoordinatorClassName, "mNtpHeader");
+        deleteField(sMisesFeedSurfaceCoordinatorClassName, "mNtpHeader");
+        makeProtectedField(sFeedSurfaceCoordinatorClassName, "mNtpHeader");
 
-        // deleteField(sMisesFeedSurfaceCoordinatorClassName, "mRootView");
-        // makeProtectedField(sFeedSurfaceCoordinatorClassName, "mRootView");
+        deleteField(sMisesFeedSurfaceCoordinatorClassName, "mRootView");
+        makeProtectedField(sFeedSurfaceCoordinatorClassName, "mRootView");
     }
 }

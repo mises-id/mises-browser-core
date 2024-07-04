@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,7 +49,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.chromium.base.Callback;
 import org.chromium.base.Log;
+import org.chromium.base.MathUtils;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.ThreadUtils;
 import org.chromium.base.supplier.Supplier;
@@ -82,7 +85,6 @@ import org.chromium.mojo.bindings.ConnectionErrorHandler;
 import org.chromium.mojo.system.MojoException;
 import org.chromium.ui.base.DeviceFormFactor;
 import org.chromium.ui.base.WindowAndroid;
-
 import org.chromium.chrome.browser.feed.FeedSurfaceScrollDelegate;
 
 
@@ -94,6 +96,8 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import androidx.core.widget.NestedScrollView;
+
 
 public class MisesNewTabPageLayout
         extends NewTabPageLayout implements ConnectionErrorHandler, OnMisesNtpListener {
@@ -121,6 +125,7 @@ public class MisesNewTabPageLayout
 
     private MisesNtpAdapter mNtpAdapter;
 
+    private NestedScrollView mNestedScrollView;
     private RecyclerView mRecyclerView;
 
     private String mCreativeInstanceId;
@@ -129,7 +134,7 @@ public class MisesNewTabPageLayout
     private boolean mComesFromNewTab;
     private boolean mIsTopSitesEnabled;
 
-    private Supplier<Tab> mTabProvider;
+    // private Supplier<Tab> mTabProvider;
 
     private ViewGroup mMisesServiceTilesContainerLayout;
     private MostVisitedTilesCoordinator mMisesServiceTilesCoordinator;
@@ -140,20 +145,30 @@ public class MisesNewTabPageLayout
     private ViewGroup mWeb3ExtensionTilesContainerLayout;
     private MostVisitedTilesCoordinator mWeb3ExtensionTilesCoordinator;
 
+    private ViewGroup mShortcutTilesContainerLayout;
+    private MostVisitedTilesCoordinator mShortcutTilesCoordinator;
+
+    private ViewGroup mNewsFlowListControlPanelLayout;
+
+    private ViewGroup mLoadMoreLayout;
+
     private ViewGroup mNativeAdLayout;
     private ViewGroup mMisesSearchLayout;
 
     private TileGroupDelegateWrapper mTileGroupDelegateWrapper;
     private NewTabPageManager mManager;
 
-
     private static final int SHOW_BRAVE_RATE_ENTRY_AT = 10; // 10th row
+    private int scrollOffset;
+
+    private boolean mIsRefreshingNewsFlow;
 
     public MisesNewTabPageLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
         mProfile = Profile.getLastUsedRegularProfile();
+        mIsRefreshingNewsFlow = false;
     }
 
     @Override
@@ -168,7 +183,34 @@ public class MisesNewTabPageLayout
         // This function is kept empty to avoid placeholder implementation
     }
 
+    @Override
+    protected void updateSearchBoxOnScroll() {
+        Log.v(TAG, "updateSearchBoxOnScroll");
+        super.updateSearchBoxOnScroll();
 
+    }
+    @Override
+    float getToolbarTransitionPercentage() {
+        Log.v(TAG, "getToolbarTransitionPercentage");
+        return MathUtils.clamp(
+                ((float)(scrollOffset - 168) / 100),
+                0f,
+                1f);
+    }
+
+    @Override
+    void getSearchBoxBounds(Rect bounds, Point translation, View parentView) {
+        super.getSearchBoxBounds(bounds, translation, parentView);
+        // enforce  translation to zero, this fix tool button not showing in ntp
+        translation.x = 0;
+        translation.y = 0;
+    }
+
+    @Override
+    public void setSearchBoxAlpha(float alpha) {
+        Log.v(TAG, "setSearchBoxAlpha:" + alpha);
+        //mMisesSearchLayout.setAlpha(alpha);
+    }
     @Override
     public void checkForBraveStats() {
 
@@ -182,7 +224,10 @@ public class MisesNewTabPageLayout
     }
 
     protected void insertSiteSectionView() {
+
+
         mMainLayout = findViewById(R.id.ntp_content);
+
 
         mMvTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                           .inflate(R.layout.mv_tiles_container, mMainLayout, false);
@@ -194,6 +239,7 @@ public class MisesNewTabPageLayout
                 mMvTilesContainerLayout.addOnLayoutChangeListener(
                         (View view, int left, int top, int right, int bottom, int oldLeft,
                                 int oldTop, int oldRight, int oldBottom) -> {
+                            Log.v(TAG, "mMvTilesContainerLayout OnLayoutChange");
                             int oldHeight = oldBottom - oldTop;
                             int newHeight = bottom - top;
 
@@ -208,27 +254,36 @@ public class MisesNewTabPageLayout
         };
         mMvTilesContainerLayout.post(runable);
 
-
         mMisesServiceTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mMisesServiceTilesContainerLayout.setVisibility(View.VISIBLE);
-        mMisesServiceTilesContainerLayout.post(runable);
 
         mWeb3SiteTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
-        mWeb3SiteTilesContainerLayout.setVisibility(View.VISIBLE);
-        mWeb3SiteTilesContainerLayout.post(runable);        
+        mWeb3SiteTilesContainerLayout.setVisibility(View.VISIBLE);     
         
         mWeb3ExtensionTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
         mWeb3ExtensionTilesContainerLayout.post(runable);
+        
+        mShortcutTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
+        mShortcutTilesContainerLayout.setVisibility(View.VISIBLE);
+        mShortcutTilesContainerLayout.post(runable);
+
+        mNewsFlowListControlPanelLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+            .inflate(R.layout.mises_news_flow_list_control_panel, mMainLayout, false);
+        mNewsFlowListControlPanelLayout.setVisibility(View.VISIBLE);
+
+        mLoadMoreLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
+                                        .inflate(R.layout.new_tab_page_load_more, mMainLayout, false);
+        mLoadMoreLayout.setVisibility(View.VISIBLE);
 
         mNativeAdLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_carousel_container, mMainLayout, false);
         mNativeAdLayout.setVisibility(View.VISIBLE);
 
-        
         mMisesSearchLayout= (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_search_box_layout, mMainLayout, false);
         mMisesSearchLayout.setVisibility(View.VISIBLE);
@@ -246,13 +301,30 @@ public class MisesNewTabPageLayout
         if (mRecyclerView == null) {
             setNtpViews();
         }
+        if (mRecyclerView != null) {
+            Log.d(TAG, "mRecyclerView.addOnScrollListener" );
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    Log.v(TAG, "mRecyclerView onScrollStateChanged: newState=" + newState);
+                    
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    scrollOffset = recyclerView.computeVerticalScrollOffset();
+                    Log.v(TAG, "mRecyclerView onScrolled: scrollOffset=" + scrollOffset + ",dy="+ dy);
+                    updateSearchBoxOnScroll();
+                }
+            });
+        }
         
         if (mNtpAdapter != null) {
             mNtpAdapter.onAttached();
         }
-       
     }
-
 
     public class LinearLayoutManagerWrapper extends LinearLayoutManager {
         private static final String TAG = "LLManagerWrapper";
@@ -284,11 +356,11 @@ public class MisesNewTabPageLayout
         }
     }
 
-
     @SuppressLint("ClickableViewAccessibility")
     private void setNtpViews() {
 
         mRecyclerView = findViewById(R.id.recyclerview);
+       // mNestedScrollView = findViewById(R.id.nestedScrollView);
         LinearLayoutManagerWrapper linearLayoutManager =
                 new LinearLayoutManagerWrapper(mActivity, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -299,7 +371,6 @@ public class MisesNewTabPageLayout
             }
         });
     }
-
 
     private boolean shouldDisplayTopSites() {
         return true;
@@ -314,6 +385,9 @@ public class MisesNewTabPageLayout
                     mActivity, this, Glide.with(mActivity),
                     mMvTilesContainerLayout, mMisesServiceTilesContainerLayout, 
                     mWeb3SiteTilesContainerLayout, mWeb3ExtensionTilesContainerLayout,
+                    mShortcutTilesContainerLayout,
+                    mNewsFlowListControlPanelLayout,
+                    mLoadMoreLayout,
                     mNativeAdLayout, mMisesSearchLayout,
                     mRecyclerView.getHeight(), mIsTopSitesEnabled
                 );
@@ -336,7 +410,6 @@ public class MisesNewTabPageLayout
         if (mNtpAdapter == null) return;
 
         keepPosition();
-        
     }
 
     private void keepPosition() {
@@ -368,7 +441,7 @@ public class MisesNewTabPageLayout
                 mImageDrawable.getBitmap().recycle();
             }
         }
-
+        Log.d(TAG, "mRecyclerView.clearOnScrollListeners" );
         mRecyclerView.clearOnScrollListeners();
 
         if (mNtpAdapter != null) {
@@ -458,6 +531,8 @@ public class MisesNewTabPageLayout
                 touchEnabledDelegate, windowAndroid, manager);        
         initializeWeb3ExtensionTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
                 touchEnabledDelegate, windowAndroid, manager);
+        initializeShortcutTilesCoordinator(lifecycleDispatcher, mTileGroupDelegateWrapper,
+            touchEnabledDelegate, windowAndroid, manager);
         
         mTileGroupDelegateWrapper.setReady();
 
@@ -480,6 +555,9 @@ public class MisesNewTabPageLayout
         if (mWeb3ExtensionTilesCoordinator != null) {
             mWeb3ExtensionTilesCoordinator.onSwitchToForeground();
         }
+        if (mShortcutTilesCoordinator != null) {
+            mShortcutTilesCoordinator.onSwitchToForeground();
+        }
     }
     private void onDestroy() {
         Log.v(TAG, "onDestroy");
@@ -500,13 +578,17 @@ public class MisesNewTabPageLayout
             mWeb3ExtensionTilesCoordinator.destroyMvtiles();
             mWeb3ExtensionTilesCoordinator = null;
         }
+        if (mShortcutTilesCoordinator != null) {
+            mShortcutTilesCoordinator.destroyMvtiles();
+            mShortcutTilesCoordinator = null;
+        }
 
         if (mNtpAdapter != null) {
             mNtpAdapter.onDestroy();
         }
     }
 
-    public void setTabProvider(Supplier<Tab> tabProvider) {
+    /*public void setTabProvider(Supplier<Tab> tabProvider) {
         mTabProvider = tabProvider;
     }
 
@@ -521,7 +603,7 @@ public class MisesNewTabPageLayout
 
     private TabImpl getTabImpl() {
         return (TabImpl) getTab();
-    }
+    }*/
 
     @Override
     public void onConnectionError(MojoException e) {
@@ -571,10 +653,16 @@ public class MisesNewTabPageLayout
 
         int maxRows = 3;
 
-        mWeb3SiteTilesCoordinator = new MostVisitedTilesCoordinator(mActivity,
-                activityLifecycleDispatcher, mWeb3SiteTilesContainerLayout, windowAndroid,
-                /*shouldShowSkeletonUIPreNative=*/false, /*isScrollableMvtEnabled*/false, maxRows,
-                () -> {}, () -> {});
+        mWeb3SiteTilesCoordinator = new MostVisitedTilesCoordinator(
+            mActivity,
+            activityLifecycleDispatcher,
+            mWeb3SiteTilesContainerLayout,
+            windowAndroid,
+            false,
+            false,
+            maxRows,
+            () -> {},
+            () -> {});
 
         mWeb3SiteTilesCoordinator.initWithNative(
                 manager, tileGroupDelegate, touchEnabledDelegate);
@@ -597,4 +685,26 @@ public class MisesNewTabPageLayout
                 manager, tileGroupDelegate, touchEnabledDelegate);
     }
 
+    private void initializeShortcutTilesCoordinator(
+            ActivityLifecycleDispatcher activityLifecycleDispatcher,
+            TileGroup.Delegate tileGroupDelegate, TouchEnabledDelegate touchEnabledDelegate,
+            WindowAndroid windowAndroid, NewTabPageManager manager) {
+        assert mShortcutTilesContainerLayout != null;
+
+        int maxRows = 3;
+
+        mShortcutTilesCoordinator = new MostVisitedTilesCoordinator(
+            mActivity,
+            activityLifecycleDispatcher,
+            mShortcutTilesContainerLayout,
+            windowAndroid,
+            false,
+            true,
+            maxRows,
+            () -> {},
+            () -> {});
+
+        mShortcutTilesCoordinator.initWithNative(
+            manager, tileGroupDelegate, touchEnabledDelegate);
+    }
 }

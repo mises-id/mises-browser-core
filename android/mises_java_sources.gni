@@ -1,4 +1,6 @@
 import("//mises/components/permissions/android/java_sources.gni")
+import("//mises/android/feed/mises_feed_java_sources.gni")
+
 
 kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/PersonalizeResults.java",
@@ -33,6 +35,8 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNewTabPage.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNewTabPageLayout.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/MisesNtpAdapter.java",
+  "//mises/android/java/org/chromium/chrome/browser/ntp/NewsFlowService.java",
+  "//mises/android/java/org/chromium/chrome/browser/ntp/News.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/CarouselAdapter.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/TileGroupDelegateWrapper.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/OnMisesNtpListener.java",
@@ -59,6 +63,8 @@ mises_java_sources += [
   "//mises/android/java/org/chromium/chrome/browser/searchwidget/SearchWidgetProviderActivity.java",
 
 ]
+
+mises_java_sources += mises_feed_java_sources
 
 mises_browser_ui_android_appmenu_internal_sources = [
 ]

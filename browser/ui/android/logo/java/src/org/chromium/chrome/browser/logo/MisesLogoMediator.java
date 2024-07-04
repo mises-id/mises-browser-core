@@ -17,6 +17,7 @@ public class MisesLogoMediator extends LogoMediator {
     // To delete in bytecode, members from parent class will be used instead.
     private PropertyModel mLogoModel;
     private boolean mShouldShowLogo;
+    private LogoCoordinator.VisibilityObserver mVisibilityObserver;
 
     public MisesLogoMediator(Context context, Callback<LoadUrlParams> logoClickedCallback,
             PropertyModel logoModel, boolean shouldFetchDoodle,
@@ -33,6 +34,10 @@ public class MisesLogoMediator extends LogoMediator {
         // We don't want any logo to be shown regardless of the search engine chosen.
         mShouldShowLogo = false;
         mLogoModel.set(LogoProperties.VISIBILITY, mShouldShowLogo);
+        if (mVisibilityObserver != null) {
+            mVisibilityObserver.onLogoVisibilityChanged();
+        }
+        
     }
 }
 
