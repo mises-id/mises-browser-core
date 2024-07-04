@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 404ff70b970ed28221ace433cd36c62c5eb9fa10..d227e7f8fa6d171fb636a072b907c3afc62edddd 100644
+index 404ff70b970ed28221ace433cd36c62c5eb9fa10..3fe0cdbbe3c782d07db7f43b9e501d25c98bf2c5 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -101,13 +101,54 @@ import java.util.ArrayList;
@@ -364,7 +364,7 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..d227e7f8fa6d171fb636a072b907c3af
          int shadowVisibility = shouldDrawShadow ? View.VISIBLE : View.INVISIBLE;
  
          if (mToolbarShadow != null && mToolbarShadow.getVisibility() != shadowVisibility) {
-@@ -3110,4 +3234,262 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -3110,4 +3231,266 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }
@@ -588,6 +588,10 @@ index 404ff70b970ed28221ace433cd36c62c5eb9fa10..d227e7f8fa6d171fb636a072b907c3af
 +                    } else if (v.getId() == R.id.tv_wallet) {
 +                        if (tabCreator != null) {
 +                            tabCreator.openSinglePage(MisesController.MISES_WALLET_BASE_URL);
++                        }
++                    } else if (v.getId() == R.id.tv_swap) {
++                        if (tabCreator != null) {
++                            tabCreator.openSinglePage(MisesController.MISES_SWAP_BASE_URL);
 +                        }
 +                    } else if (v.getId() == R.id.tv_portal) {
 +                        openHomepage();

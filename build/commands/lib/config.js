@@ -178,6 +178,7 @@ const Config = function () {
   this.extraNinjaOpts = []
   this.misesSafetyNetApiKey = getNPMConfig(['mises_safetynet_api_key']) || ''
   this.misesAndroidDeveloperOptionsCode = getNPMConfig(['mises_android_developer_options_code']) || ''
+  this.misesAndroidForceCrashReport = getNPMConfig(['mises_android_force_crash_report']) || false
   this.misesAndroidKeystorePath = getNPMConfig(['mises_android_keystore_path'])
   this.misesAndroidKeystoreName = getNPMConfig(['mises_android_keystore_name'])
   this.misesAndroidKeystorePassword = getNPMConfig(['mises_android_keystore_password'])
@@ -490,6 +491,7 @@ Config.prototype.buildArgs = function () {
       args.android_override_version_code = this.androidOverrideVersionCode
     }
     args.mises_android_developer_options_code = this.misesAndroidDeveloperOptionsCode
+    args.mises_android_force_crash_report = this.misesAndroidForceCrashReport
     args.mises_safetynet_api_key = this.misesSafetyNetApiKey
     args.safe_browsing_mode = 2
 

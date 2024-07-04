@@ -1,0 +1,22 @@
+diff --git a/content/browser/webui/web_ui_impl.cc b/content/browser/webui/web_ui_impl.cc
+index 15559900c52f7c697593720b6842826ec760d33b..70ff5c61543dffa1647de2a8ee219b99d41a0e76 100644
+--- a/content/browser/webui/web_ui_impl.cc
++++ b/content/browser/webui/web_ui_impl.cc
+@@ -139,7 +139,7 @@ void WebUIImpl::SetRenderFrameHost(RenderFrameHost* render_frame_host) {
+ }
+ 
+ void WebUIImpl::WebUIRenderFrameCreated(RenderFrameHost* render_frame_host) {
+-  controller_->WebUIRenderFrameCreated(render_frame_host);
++  if (GetController()) controller_->WebUIRenderFrameCreated(render_frame_host);
+ }
+ 
+ void WebUIImpl::RenderFrameReused(RenderFrameHost* render_frame_host) {
+@@ -258,7 +258,7 @@ void WebUIImpl::RegisterMessageCallback(base::StringPiece message,
+ void WebUIImpl::ProcessWebUIMessage(const GURL& source_url,
+                                     const std::string& message,
+                                     base::Value::List args) {
+-  if (controller_->OverrideHandleWebUIMessage(source_url, message, args))
++  if (GetController() && controller_->OverrideHandleWebUIMessage(source_url, message, args))
+     return;
+ 
+   auto callback_pair = message_callbacks_.find(message);
