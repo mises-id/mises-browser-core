@@ -250,7 +250,7 @@ public class NewsFlowService {
             // .scheme("http")
             // .encodedAuthority("192.168.124.5:8080")
             .scheme("https")
-            .encodedAuthority("api.mises.site")
+            .encodedAuthority("api.alb.mises.site")
             .appendPath("api")
             .appendPath("v1")
             .appendPath("news");
