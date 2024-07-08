@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,18 +35,20 @@ public class NewsFlowService {
     private static final byte[] mCacheKey = "news-flow-cache".getBytes(StandardCharsets.UTF_8);
     private static final int MaxNumOfNewsInCache = 100;
 
+    private static final byte[] mRefreshTimeKey = "refresh_time".getBytes(StandardCharsets.UTF_8);
+
     private final FeedPersistentKeyValueCache mPersistentKeyValueCache =
             new FeedPersistentKeyValueCache();
     
     private List<News> mNewsArray;
-    // private int mNextPageIndex;
-
     private Set<String> mNewsIds;
+
+    private Date mLatestRefreshTime;
 
     public NewsFlowService() {
         mNewsArray = new ArrayList<>();
-        // mNextPageIndex = 0;
         mNewsIds = new HashSet<>();
+        mLatestRefreshTime = null;
     }
 
     private String idOfLastNews() {
@@ -56,17 +59,13 @@ public class NewsFlowService {
         return mNewsArray.get(mNewsArray.size() - 1).id;
     }
 
-    public void initialize(Callback<RefreshResponse> completionHandler) {
-        loadNewsArrayFromCache(completionHandler);
-    }
-
-    private void loadNewsArrayFromCache(Callback<RefreshResponse> completionHandler) {
+    public void loadFromCache(Callback<RefreshResponse> completionHandler) {
         // 从缓存中读取
-        Log.v(TAG, "loadNewsArrayFromCache");
+        Log.v(TAG, "loadFromCache");
         mPersistentKeyValueCache.lookup(mCacheKey, new PersistentKeyValueCache.ValueConsumer() {
             @Override
             public void run(@Nullable byte[] value) {
-                Log.v(TAG, "loadNewsArrayFromCache value="+Arrays.toString(value));
+                Log.v(TAG, "loadFromCache value="+Arrays.toString(value));
                 if (value == null) {
                     return;
                 }
@@ -77,8 +76,53 @@ public class NewsFlowService {
                 }
 
                 replaceNewsArray(jsonArray);
-                completionHandler.onResult(new RefreshResponse(true).reloadAll());
+                completionHandler.onResult(
+                    new RefreshResponse(
+                        true,
+                        new UpdateAction(
+                            UpdateMode.RELOAD_ALL, null
+                        )
+                    )
+                );
             }
+        });
+
+        loadLatestRefreshTime();
+    }
+
+    private byte[] timeToBytes(Date time) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(time.getTime());
+        return buffer.array();
+    }
+
+    public Date bytesToTime(byte[] bytes) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.put(bytes);
+        buffer.flip(); //need flip
+        return new Date(buffer.getLong());
+    }
+
+    public Date latestRefreshTime() {
+        return this.mLatestRefreshTime;
+    }
+
+    private void loadLatestRefreshTime() {
+        mPersistentKeyValueCache.lookup(mRefreshTimeKey, new PersistentKeyValueCache.ValueConsumer() {
+            @Override
+            public void run(@Nullable byte[] value) {
+                if (value != null) {
+                    mLatestRefreshTime = bytesToTime(value);
+                }
+            }
+        });
+    }
+
+    private void saveLatestRefreshTime() {
+        Date now = new Date();
+        byte[] bytes = timeToBytes(now);
+        mPersistentKeyValueCache.put(mRefreshTimeKey, bytes, () -> {
+            mLatestRefreshTime = now;
         });
     }
 
@@ -132,37 +176,12 @@ public class NewsFlowService {
         boolean ok;
         // haveMore表示是否有更多数据
         boolean haveMore;
-        public List<UpdateAction> actions;
+        UpdateAction action;
 
-        public RefreshResponse(Boolean haveMore) {
+        public RefreshResponse(Boolean haveMore, UpdateAction action) {
             this.ok = true;
             this.haveMore = haveMore;
-            this.actions = new ArrayList<>();
-        }
-
-        public RefreshResponse insert(Range range) {
-            this.actions.add(new UpdateAction(UpdateMode.INSERTED, range));
-            return this;
-        }
-
-        public RefreshResponse remove(Range range) {
-            this.actions.add(new UpdateAction(UpdateMode.REMOVED, range));
-            return this;
-        }
-
-        public RefreshResponse change(Range range) {
-            this.actions.add(new UpdateAction(UpdateMode.CHANGED, range));
-            return this;
-        }
-
-        public RefreshResponse reloadAll() {
-            this.actions.add(new UpdateAction(UpdateMode.RELOAD_ALL, null));
-            return this;
-        }
-
-        public RefreshResponse withActions(List<UpdateAction> actions) {
-            this.actions.addAll(actions);
-            return this;
+            this.action = action;
         }
 
         public RefreshResponse() {
@@ -186,7 +205,6 @@ public class NewsFlowService {
         REMOVED,
         CHANGED,
         RELOAD_ALL,
-        /* MOVED(3), */
     }
 
     public static class FetchNewsResp {
@@ -210,7 +228,6 @@ public class NewsFlowService {
     public void fetchMoreAsync(Callback<RefreshResponse> completionHandler) {
         Log.d(TAG, "fetchMore: idOfLastNews=%s", idOfLastNews());
         fetchNewsInPageAsync(
-            // mNextPageIndex,
             idOfLastNews(),
             new Callback<FetchNewsResp>() {
                 @Override
@@ -218,7 +235,14 @@ public class NewsFlowService {
                     if (resp.ok) {
                         Range range = appendNewsArrayToTail(resp.newsArray);
                         saveNewsArray2Cache();
-                        completionHandler.onResult(new RefreshResponse(resp.haveMore).insert(range));
+                        completionHandler.onResult(
+                            new RefreshResponse(
+                                resp.haveMore,
+                                new UpdateAction(
+                                    UpdateMode.INSERTED, range
+                                )
+                            )
+                        );
                     } else {
                         completionHandler.onResult(new RefreshResponse());
                     }
@@ -234,9 +258,10 @@ public class NewsFlowService {
                 @Override
                 public final void onResult(FetchNewsResp resp) {
                     if (resp.ok) {
-                        List<UpdateAction> actions = insertNewsArrayAtHead(resp.newsArray);
+                        UpdateAction action = insertNewsArrayAtHead(resp.newsArray);
                         saveNewsArray2Cache();
-                        completionHandler.onResult(new RefreshResponse(resp.haveMore).withActions(actions));
+                        saveLatestRefreshTime();
+                        completionHandler.onResult(new RefreshResponse(resp.haveMore, action));
                     } else {
                         completionHandler.onResult(new RefreshResponse());
                     }
@@ -366,34 +391,9 @@ public class NewsFlowService {
         mNewsArray.addAll(newsArray);
     }
 
-    /*private Range appendNewsArray(final JSONArray newsJSONArray) {
-        List<News> newsArray = convertJSONNewsArray(newsJSONArray);
-        for (News news : newsArray) {
-            if (mNewsIds.contains(news.id)) {
-                continue;
-            }
-            mNewsIds.add(news.id);
-            mNewsArray.add(news);
-        }
-        Collections.sort(mNewsArray, new Comparator<News>() {
-            @Override
-            public int compare(News lhs, News rhs) {
-                if (lhs.publishedAt.before(rhs.publishedAt)) {
-                    return -1;
-                } else if (lhs.publishedAt.after(rhs.publishedAt)) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        });
-        return new Range(0, newsArray.size());
-    }*/
-
     // 在头部添加新闻数组
     // 如果插入的新闻数组跟现存的新闻数组没有重复部分，则只留下新插入的新闻数组
-    private List<UpdateAction> insertNewsArrayAtHead(final JSONArray newsJSONArray) {
-        List<UpdateAction> actions = new ArrayList<>();
+    private UpdateAction insertNewsArrayAtHead(final JSONArray newsJSONArray) {
         // 在头部添加
         List<News> newsArray = convertJSONNewsArray(newsJSONArray);
         Set<String> newNewsIdSet = new HashSet<>();
@@ -409,21 +409,20 @@ public class NewsFlowService {
         }
 
         if (newNewsArray.isEmpty()) {
-            return actions;
+            return null;
         }
 
         if (!isOverlap) {
-            actions.add(new UpdateAction(UpdateMode.REMOVED, new Range(0, mNewsArray.size())));
+            // actions.add(new UpdateAction(UpdateMode.REMOVED, new Range(0, mNewsArray.size())));
             mNewsIds = newNewsIdSet;
             mNewsArray = newNewsArray;
-            actions.add(new UpdateAction(UpdateMode.INSERTED, new Range(0, mNewsArray.size())));
-            return actions;
+            // actions.add(new UpdateAction(UpdateMode.INSERTED, new Range(0, mNewsArray.size())));
+            return new UpdateAction(UpdateMode.RELOAD_ALL, null);
         }
 
         mNewsIds.addAll(newNewsIdSet);
         mNewsArray.addAll(0, newNewsArray);
-        actions.add(new UpdateAction(UpdateMode.INSERTED, new Range(0, newNewsArray.size())));
-        return actions;
+        return new UpdateAction(UpdateMode.INSERTED, new Range(0, newNewsArray.size()));
     }
 
     private byte[] convertJSONArray2Bytes(JSONArray jsonArray) {
