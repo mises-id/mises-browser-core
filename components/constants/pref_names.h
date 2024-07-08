@@ -96,7 +96,7 @@ extern const char kDontAskForCrashReporting[];
 extern const char kEnableMediaRouterOnRestart[];
 
 
-extern const char kPreinstallMetamaskEnabled[];
+extern const char kIgnoredPreinstallExtensionIds[];
 extern const char kMisesWalletDidMigrated[];
 extern const char kMisesWalletAuthCache[];
 

@@ -801,6 +801,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mContext = itemView.getContext();
 
             searchView = itemView.findViewById(R.id.mises_search_box_text);
+            searchView.setLongClickable(false);
         }
     }
 
