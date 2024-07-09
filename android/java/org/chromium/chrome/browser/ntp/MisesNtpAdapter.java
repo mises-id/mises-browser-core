@@ -494,12 +494,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
             Date now = new Date();
-            if (latestRefreshTime == null
-                || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
-                /*this.mRecyclerView.post(() -> {
+            if (latestRefreshTime == null) {
+                Log.d(TAG, "latestRefreshTime is null");
+            } else {
+                Log.d(TAG, "latestRefreshTime offset="+((now.getTime() - latestRefreshTime.getTime()) / 1000));
+            }
+            if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
+                this.mHandler.post(() -> {
                     refreshNews();
-                });*/
-                refreshNews();
+                });
             }
         });
     }
@@ -520,12 +523,15 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
             Date now = new Date();
-            if (latestRefreshTime == null
-                || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
-                /*this.mRecyclerView.post(() -> {
+            if (latestRefreshTime == null) {
+                Log.d(TAG, "latestRefreshTime is null");
+            } else {
+                Log.d(TAG, "latestRefreshTime offset="+((now.getTime() - latestRefreshTime.getTime()) / 1000));
+            }
+            if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
+                this.mHandler.post(() -> {
                     refreshNews();
-                });*/
-                refreshNews();
+                });
             }
         });
     }

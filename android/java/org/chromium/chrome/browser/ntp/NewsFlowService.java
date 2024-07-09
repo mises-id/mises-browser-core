@@ -62,32 +62,32 @@ public class NewsFlowService {
     public void loadFromCache(Callback<RefreshResponse> completionHandler) {
         // 从缓存中读取
         Log.v(TAG, "loadFromCache");
-        mPersistentKeyValueCache.lookup(mCacheKey, new PersistentKeyValueCache.ValueConsumer() {
-            @Override
-            public void run(@Nullable byte[] value) {
-                Log.v(TAG, "loadFromCache value="+Arrays.toString(value));
-                if (value == null) {
-                    return;
-                }
+        loadLatestRefreshTime(() -> {
+            mPersistentKeyValueCache.lookup(mCacheKey, new PersistentKeyValueCache.ValueConsumer() {
+                @Override
+                public void run(@Nullable byte[] value) {
+                    Log.v(TAG, "loadFromCache value="+Arrays.toString(value));
+                    if (value == null) {
+                        return;
+                    }
 
-                JSONArray jsonArray = convertBytes2JSONArray(value);
-                if (jsonArray.length() == 0) {
-                    return;
-                }
+                    JSONArray jsonArray = convertBytes2JSONArray(value);
+                    if (jsonArray.length() == 0) {
+                        return;
+                    }
 
-                replaceNewsArray(jsonArray);
-                completionHandler.onResult(
-                    new RefreshResponse(
-                        true,
-                        new UpdateAction(
-                            UpdateMode.RELOAD_ALL, null
+                    replaceNewsArray(jsonArray);
+                    completionHandler.onResult(
+                        new RefreshResponse(
+                            true,
+                            new UpdateAction(
+                                UpdateMode.RELOAD_ALL, null
+                            )
                         )
-                    )
-                );
-            }
+                    );
+                }
+            });
         });
-
-        loadLatestRefreshTime();
     }
 
     private byte[] timeToBytes(Date time) {
@@ -107,13 +107,15 @@ public class NewsFlowService {
         return this.mLatestRefreshTime;
     }
 
-    private void loadLatestRefreshTime() {
+    private void loadLatestRefreshTime(Runnable next) {
         mPersistentKeyValueCache.lookup(mRefreshTimeKey, new PersistentKeyValueCache.ValueConsumer() {
             @Override
             public void run(@Nullable byte[] value) {
                 if (value != null) {
                     mLatestRefreshTime = bytesToTime(value);
                 }
+
+                next.run();
             }
         });
     }
@@ -331,9 +333,9 @@ public class NewsFlowService {
                 final Date publishedAt = DateFormat.parse(publishedAtStr);
                 News news = new News(id, title, link, thumbnail, source, publishedAt);
                 newsArray.add(news);
-                Log.d(TAG, String.format("fetch new news: id=%s title=%s", id, title));
+                Log.d(TAG, String.format("convert json news: id=%s title=%s", id, title));
             } catch (JSONException e) {
-                Log.e(TAG, "load news from json error");
+                Log.e(TAG, "convert news from json error");
             } catch (ParseException e) {
                 Log.e(TAG, "parse date error");
             }
