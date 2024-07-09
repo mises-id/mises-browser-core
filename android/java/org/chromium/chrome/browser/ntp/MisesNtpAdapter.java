@@ -516,7 +516,18 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         // recyclerView刚初始化完成，从缓存中加载数据
         // recyclerView第一次被创建时触发这个操作
-        loadNewsFromCache(null);
+        loadNewsFromCache(() -> {
+            // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
+            Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
+            Date now = new Date();
+            if (latestRefreshTime == null
+                || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
+                /*this.mRecyclerView.post(() -> {
+                    refreshNews();
+                });*/
+                refreshNews();
+            }
+        });
     }
 
     private void loadNewsFromCache(Runnable completionHandler) {
