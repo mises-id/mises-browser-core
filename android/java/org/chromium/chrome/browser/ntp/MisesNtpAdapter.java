@@ -227,28 +227,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                // 没有在刷新，才可以触发刷新操作
-                if (!mIsRefreshingNewsFlow) {
-                    startRefreshAnimation();
-                    mNewsFlowService.refreshAsync(
-                        new Callback<NewsFlowService.RefreshResponse>() {
-                            @Override
-                            public final void onResult(NewsFlowService.RefreshResponse resp) {
-                                stopRefreshAnimation();
-                                if (!resp.ok) {
-                                    markMoreStatus(MoreStatus.ToBeLoaded);
-                                    return;
-                                }
-                                if (!resp.haveMore) {
-                                    markMoreStatus(MoreStatus.HaveNoMore);
-                                } else {
-                                    markMoreStatus(MoreStatus.Idle);
-                                }
-                                handleNewsUpdate(resp.actions);
-                            }
-                        }
-                    );
-                }
+                refreshNews();
             }
         });
 
@@ -505,22 +484,32 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void onAttached() {
-        Log.d(TAG, "onAttached");
+        Log.d(TAG, "onAttached: view="+this.mRecyclerView);
         loadNativeAd();
 
-        // 获取新闻
-        /*startRefreshAnimation();
-        mNewsFlowService.fetchMoreAsync(new Callback<NewsFlowService.UpdateAction>() {
-            @Override
-            public final void onResult(NewsFlowService.UpdateAction action) {
-                handleNewsUpdate(action);
+        // recyclerView添加到屏幕，从缓存中加载数据
+        // tab页切换到前台时触发这个操作
+        // 加载好缓存之后触发刷新操作
+        loadNewsFromCache(() -> {
+            // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
+            Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
+            Date now = new Date();
+            if (latestRefreshTime == null) {
+                Log.d(TAG, "latestRefreshTime is null");
+            } else {
+                Log.d(TAG, "latestRefreshTime offset="+((now.getTime() - latestRefreshTime.getTime()) / 1000));
             }
-        });*/
+            if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
+                this.mHandler.post(() -> {
+                    refreshNews();
+                });
+            }
+        });
     }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        Log.v(TAG, "onAttachedToRecyclerView");
+        Log.v(TAG, "onAttachedToRecyclerView: view="+recyclerView);
 
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager) {
@@ -528,61 +517,74 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         mRecyclerView = recyclerView;
 
-        markMoreStatus(MoreStatus.Idle);
-        mNewsFlowService.initialize(new Callback<NewsFlowService.RefreshResponse>() {
-            @Override
-            public final void onResult(NewsFlowService.RefreshResponse resp) {
-                handleNewsUpdate(resp.actions);
+        // recyclerView刚初始化完成，从缓存中加载数据
+        // recyclerView第一次被创建时触发这个操作
+        loadNewsFromCache(() -> {
+            // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
+            Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
+            Date now = new Date();
+            if (latestRefreshTime == null) {
+                Log.d(TAG, "latestRefreshTime is null");
+            } else {
+                Log.d(TAG, "latestRefreshTime offset="+((now.getTime() - latestRefreshTime.getTime()) / 1000));
+            }
+            if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
+                this.mHandler.post(() -> {
+                    refreshNews();
+                });
             }
         });
     }
 
-    private void handleNewsUpdate(List<NewsFlowService.UpdateAction> actions) {
-        int startOfBehindNews = -1;
-        int start;
-        for (NewsFlowService.UpdateAction action : actions) {
-            switch (action.mode) {
-                case INSERTED:
-                    start = mTopItemViewTypes.size() + action.range.start;
-                    notifyItemRangeInserted(start, action.range.size);
-                    if (startOfBehindNews == -1) {
-                        startOfBehindNews = start + action.range.size;
-                    } else {
-                        startOfBehindNews = Math.min(startOfBehindNews, start + action.range.size);
-                    }
-                    break;
-                case REMOVED:
-                    start = mTopItemViewTypes.size() + action.range.start;
-                    notifyItemRangeRemoved(start, action.range.size);
-                    if (startOfBehindNews == -1) {
-                        startOfBehindNews = start;
-                    } else {
-                        startOfBehindNews = Math.min(startOfBehindNews, start);
-                    }
-                    break;
-                case CHANGED:
-                    start = mTopItemViewTypes.size() + action.range.start;
-                    notifyItemRangeChanged(start, action.range.size);
-                    break;
-                default:
-                    notifyDataSetChanged();
-                    return;
+    private void loadNewsFromCache(Runnable completionHandler) {
+        // markMoreStatus(MoreStatus.Idle);
+        mNewsFlowService.loadFromCache(new Callback<NewsFlowService.RefreshResponse>() {
+            @Override
+            public final void onResult(NewsFlowService.RefreshResponse resp) {
+                handleNewsUpdate(resp.action);
+                if (completionHandler != null) {
+                    completionHandler.run();
+                }
             }
+        });
+    }
+
+    public void onSwitchToForeground() {
+        Log.v(TAG, "onSwitchToForeground");
+
+    }
+
+    private void handleNewsUpdate(NewsFlowService.UpdateAction action) {
+        int start;
+        switch (action.mode) {
+            case INSERTED:
+                start = mTopItemViewTypes.size() + action.range.start;
+                notifyItemRangeInserted(start, action.range.size);
+                break;
+            case REMOVED:
+                start = mTopItemViewTypes.size() + action.range.start;
+                notifyItemRangeRemoved(start, action.range.size);
+                break;
+            case CHANGED:
+                start = mTopItemViewTypes.size() + action.range.start;
+                notifyItemRangeChanged(start, action.range.size);
+                break;
+            default: // RELOAD_ALL
+                notifyDataSetChanged();
+                return;
         }
-        /*if (startOfBehindNews >= 0) {
-            notifyItemRangeChanged(startOfBehindNews, mNewsFlowService.numOfNews() - startOfBehindNews);
-        }*/
-        // 更新所有新闻Item的发布时间
+        // 更新所有可见新闻Item的发布时间
         refreshAllPublishedAtInVisibleNewsFlowItems();
     }
 
     public void onDetached() {
-        Log.d(TAG, "onDetached");
+        Log.d(TAG, "onDetached: view="+mRecyclerView);
         removeNativeAdListener();
     }
 
     @Override
     public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        Log.d(TAG, "onDetachedFromRecyclerView: view="+recyclerView);
         mLayoutManager = null;
         mRecyclerView = null;
     }
@@ -787,7 +789,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             
 
             mAdapter.notifyDataSetChanged();
-            
+            Log.v(TAG, "CarouselAdViewHolder update finished");
         }
     }
 
@@ -1048,7 +1050,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Log.d(TAG, "start refresh animation");
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
         btnRefresh.startAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.rotate_anim));
-        mIsRefreshingNewsFlow = true;
         btnRefresh.setEnabled(false);
     }
 
@@ -1056,7 +1057,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Log.d(TAG, "stop refresh animation");
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
         btnRefresh.clearAnimation();
-        mIsRefreshingNewsFlow = false;
         btnRefresh.setEnabled(true);
     }
 
@@ -1097,9 +1097,40 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    private void refreshNews() {
+        // 没有在刷新，才可以触发刷新操作
+        if (mIsRefreshingNewsFlow) {
+            return;
+        }
+
+        mIsRefreshingNewsFlow = true;
+        startRefreshAnimation();
+        mNewsFlowService.refreshAsync(
+            new Callback<NewsFlowService.RefreshResponse>() {
+                @Override
+                public final void onResult(NewsFlowService.RefreshResponse resp) {
+                    stopRefreshAnimation();
+                    mIsRefreshingNewsFlow = false;
+                    if (!resp.ok) {
+                        markMoreStatus(MoreStatus.ToBeLoaded);
+                        return;
+                    }
+                    if (!resp.haveMore) {
+                        markMoreStatus(MoreStatus.HaveNoMore);
+                    } else {
+                        markMoreStatus(MoreStatus.Idle);
+                    }
+                    if (resp.action != null) {
+                        handleNewsUpdate(resp.action);
+                    }
+                }
+            }
+        );
+    }
+
     private void loadMoreNews() {
         Log.v(TAG, "loadMoreNews: MoreStatus="+mMoreStatus);
-        if (mMoreStatus == MoreStatus.HaveNoMore) {
+        if (mMoreStatus == MoreStatus.HaveNoMore || mMoreStatus == MoreStatus.Loading) {
             return;
         }
         Log.v(TAG, "start load more news");
@@ -1121,7 +1152,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         Log.v(TAG, "fetchMoreAsync return have more");
                         markMoreStatus(MoreStatus.Idle);
                     }
-                    handleNewsUpdate(resp.actions);
+                    handleNewsUpdate(resp.action);
                 }
             }
         );
