@@ -10,6 +10,7 @@
 #include "base/functional/bind.h"
 #include "base/command_line.h"
 #include "base/feature_list.h"
+#include "base/strings/string_split.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/extensions/extension_service.h"
 #include "chrome/browser/profiles/profile.h"
@@ -46,6 +47,7 @@
 #include "components/messages/android/message_wrapper.h"
 #include "chrome/browser/android/android_theme_resources.h"
 #include "chrome/browser/android/resource_mapper.h"
+#include "mises/browser/android/preferences/features.h"
 #endif
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
@@ -223,7 +225,7 @@ std::unique_ptr<message_center::Notification> CreateMessageCenterNotification(
 
 #endif
 
-const static int kPreinstallMaxTry = 2;
+const static int kPreinstallMaxError = 3;
 
 
 }  // namespace
@@ -399,6 +401,34 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 
 
 }
+
+bool MisesComponentLoader::IsPreinstallExtension(const std::string& extension_id) {
+  std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
+  return base::Contains(preinstalls, extension_id);;
+}
+
+bool  MisesComponentLoader::IsIgnoredPreinstallExtension(const std::string& extension_id) {
+  if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
+    std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
+    std::vector<std::string> ignored = base::SplitString(
+      ignored_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+    return base::Contains(ignored, extension_id);
+  }
+  return false;
+}
+void  MisesComponentLoader::AddIgnoredPreinstallExtension(const std::string& extension_id) {
+  if (IsIgnoredPreinstallExtension(extension_id)) {
+    return;
+  }
+  //disable preinstall it
+  if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
+    std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
+    profile_prefs_->SetString(kIgnoredPreinstallExtensionIds, ignored_str + "," + extension_id);
+    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "ignor", "id", extension_id);
+  }
+  return ;
+}
+
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) {
@@ -410,11 +440,8 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
   }
-  if(extension && extension->id() == metamask_extension_id) {
-    //disable preinstall metamask
-    if (profile_prefs_->FindPreference(kPreinstallMetamaskEnabled)) {
-      profile_prefs_->SetBoolean(kPreinstallMetamaskEnabled, false);
-    }
+  if(extension && IsPreinstallExtension(extension->id())) {
+    AddIgnoredPreinstallExtension(extension->id());
   }
 
 
@@ -429,16 +456,17 @@ void MisesComponentLoader::OnWebstoreInstallResult(
   LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
   if (result != extensions::webstore_install::Result::SUCCESS &&
       result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
-    if (metamask_preinstall_try_counter_ < kPreinstallMaxTry) {
+    preinstall_error_counter_ ++;
+    if (preinstall_error_counter_ < kPreinstallMaxError) {
 #if BUILDFLAG(IS_ANDROID)
         base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "retry", "id", extension_id);
 #endif
         base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
           FROM_HERE,
           base::BindOnce(
-            &MisesComponentLoader::PreInstallMetamaskFromWebStore,
-            weak_ptr_factory_.GetWeakPtr()),
-          base::Seconds(2 * metamask_preinstall_try_counter_ + 1 ));
+            &MisesComponentLoader::PreInstallExtensionFromWebStore,
+            weak_ptr_factory_.GetWeakPtr(), extension_id),
+          base::Seconds(2 * preinstall_error_counter_ + 1 ));
 
     } else {
 #if BUILDFLAG(IS_ANDROID)
@@ -549,55 +577,54 @@ void MisesComponentLoader::DismissMessageInternal(
 }
 #endif
 
-void MisesComponentLoader::PreInstallMetamaskFromWebStore() {
-  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallMetamaskFromWebStore";
+void MisesComponentLoader::PreInstallExtensionFromWebStore(const std::string& extension_id) {
+  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionFromWebStore:" + extension_id;
 #if BUILDFLAG(IS_ANDROID)
   // if (!message_) {
   //   ShowPreInstallMessage(false);
   // }
 #endif
-  metamask_preinstall_try_counter_ ++;
-
+  
   
 
 
   scoped_refptr<WebstoreInstallerForImporting> installer =
       new WebstoreInstallerForImporting(
-          metamask_extension_id, profile_,
+          extension_id, profile_,
           base::BindOnce(
               &MisesComponentLoader::OnWebstoreInstallResult,
-              weak_ptr_factory_.GetWeakPtr(), metamask_extension_id));
+              weak_ptr_factory_.GetWeakPtr(), extension_id));
   installer->BeginInstall();
 }
 
-void MisesComponentLoader::AddMetamaskExtensionOnStartup() {
-  LOG(INFO) << "[Mises] MisesComponentLoader::AddMetamaskExtensionOnStartup";
+void MisesComponentLoader::PreInstallExtensionOnStartup() {
+  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup";
 
   ExtensionRegistry::Get(profile_)->AddObserver(this);
 
   extensions::ExtensionRegistry* registry =
       extensions::ExtensionRegistry::Get(profile_);
-  const Extension* metamask_extension = registry->GetInstalledExtension(metamask_extension_id);
-  if (!metamask_extension) {
-      if (!profile_prefs_->FindPreference(kPreinstallMetamaskEnabled) || 
-        profile_prefs_->GetBoolean(kPreinstallMetamaskEnabled)) {
-#if BUILDFLAG(IS_ANDROID)
-        base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", metamask_extension_id);
-#endif
-        base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-          FROM_HERE,
-          base::BindOnce(
-            &MisesComponentLoader::PreInstallMetamaskFromWebStore,
-            weak_ptr_factory_.GetWeakPtr()),
-        base::Seconds(1));
+  
+  std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
+  for (size_t i = 0; i < preinstalls.size(); i++) {
+    std::string extension_id = preinstalls[i];
+    if (!IsIgnoredPreinstallExtension(extension_id)) {
 
-        // base::FilePath metamask_extension_path(FILE_PATH_LITERAL(""));
-        // metamask_extension_path =
-        //     metamask_extension_path.Append(FILE_PATH_LITERAL("metamask"));
-        // Add(IDR_METAMASK_MANIFEST_JSON, metamask_extension_path);
-
-       
+      const Extension* extension = registry->GetInstalledExtension(extension_id);
+      if (!extension) {
+    #if BUILDFLAG(IS_ANDROID)
+            base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", extension_id);
+    #endif
+            base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+              FROM_HERE,
+              base::BindOnce(
+                &MisesComponentLoader::PreInstallExtensionFromWebStore,
+                weak_ptr_factory_.GetWeakPtr(), extension_id),
+            base::Seconds(1));
       }
+    } else {
+      LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup, ignor:" + preinstalls[i];
+    }
   }
 
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);

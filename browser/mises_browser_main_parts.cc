@@ -52,6 +52,6 @@ void MisesBrowserMainParts::PostProfileInit(Profile* profile,
   if (service) {
     extensions::ComponentLoader* loader = service->component_loader();
     static_cast<extensions::MisesComponentLoader*>(loader)
-        ->AddMetamaskExtensionOnStartup();
+        ->PreInstallExtensionOnStartup();
   }
 }

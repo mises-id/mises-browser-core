@@ -51,7 +51,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   // hangouts is set.  If the buildflag is not set, it won't add though.
   void ForceAddHangoutServicesExtension();
 
-  void AddMetamaskExtensionOnStartup();
+  void PreInstallExtensionOnStartup();
 
  private:
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
@@ -68,7 +68,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) override;
-  void PreInstallMetamaskFromWebStore();
+  void PreInstallExtensionFromWebStore(const std::string& extension_id);
   void OnWebstoreInstallResult(
     const std::string& pref_name,
     bool success,
@@ -83,6 +83,10 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void DismissMessageInternal(messages::DismissReason dismiss_reason);
 #endif
 
+ bool IsPreinstallExtension(const std::string& extension_id);
+ bool IsIgnoredPreinstallExtension(const std::string& extension_id);
+ void AddIgnoredPreinstallExtension(const std::string& extension_id);
+
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
   std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>
@@ -90,7 +94,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   base::Value metamaskValue;
   bool metamask_ready_ = false;
   bool mises_ready_ = false;
-  int metamask_preinstall_try_counter_ = 0;
+  int preinstall_error_counter_ = 0;
 #if BUILDFLAG(IS_ANDROID)
   std::unique_ptr<messages::MessageWrapper> message_;
 #endif

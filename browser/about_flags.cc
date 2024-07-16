@@ -47,8 +47,20 @@
           preferences::features::kMisesBackgroundVideoPlayback),               \
   })
 
+
+#define MISES_PREINSTALL_EXTENSION_ANDROID                                \
+  EXPAND_FEATURE_ENTRIES({                                                \
+      "mises-preinstall-extension",                                       \
+      "Preinstall extension",                                             \
+      "Enables extension preinstall",                                     \
+      kOsAndroid,                                                         \
+      FEATURE_VALUE_TYPE(                                                 \
+          preferences::features::kMisesPreinstallExtension),              \
+  })
+
 #else
 #define MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID
+#define MISES_PREINSTALL_EXTENSION_ANDROID
 
 #endif  // BUILDFLAG(IS_ANDROID)
 
@@ -108,16 +120,17 @@
       })                                                                       \
   MISES_IPFS_FEATURE_ENTRIES                                                   \
   MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID                                      \
+  MISES_PREINSTALL_EXTENSION_ANDROID                                           \
   MISES_SEARCH                                                                 \
   LAST_MISES_FEATURE_ENTRIES_ITEM  // Keep it as the last item.
 
 namespace flags_ui {
 namespace {
-  // Unused function to reference Brave feature entries for clang checks.
-[[maybe_unused]] void UseBraveAboutFlags() {
+  // Unused function to reference Mises feature entries for clang checks.
+[[maybe_unused]] void UseMisesAboutFlags() {
   // These vars are declared in anonymous namespace in
   // //chrome/browser/about_flags.cc. We declare them here manually to
-  // instantiate BRAVE_ABOUT_FLAGS_FEATURE_ENTRIES without errors.
+  // instantiate MISES_ABOUT_FLAGS_FEATURE_ENTRIES without errors.
   constexpr int kOsAll = 0;
   constexpr int kOsDesktop = 0;
 

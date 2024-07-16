@@ -76,7 +76,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   // Brave Wallet
   brave_wallet::RegisterProfilePrefs(registry);
 
-  registry->RegisterBooleanPref(kPreinstallMetamaskEnabled, true);
+  registry->RegisterStringPref(kIgnoredPreinstallExtensionIds, std::string());
   registry->RegisterBooleanPref(kMisesWalletDidMigrated, false);
   registry->RegisterStringPref(
       kMisesWalletAuthCache, std::string());

@@ -9,10 +9,11 @@
 #include "net/base/features.h"
 #include "third_party/blink/public/common/features.h"
 
-#define kForceWebContentsDarkMode kForceWebContentsDarkMode,            \
-    &preferences::features::kMisesBackgroundVideoPlayback,              \
-    &search_engines::features::kMisesSearch,                               \
-    &net::features::kMisesHttpsByDefault,        \
+#define kForceWebContentsDarkMode kForceWebContentsDarkMode,           \
+    &preferences::features::kMisesBackgroundVideoPlayback,             \
+    &preferences::features::kMisesPreinstallExtension,                 \
+    &search_engines::features::kMisesSearch,                           \
+    &net::features::kMisesHttpsByDefault,                              \
     &net::features::kMisesForgetFirstPartyStorage                                      
 
 #include "src/chrome/browser/flags/android/chrome_feature_list.cc"

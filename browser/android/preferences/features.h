@@ -13,6 +13,10 @@ namespace features {
   
 BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
 
+BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
+
+std::vector<std::string> GetMisesPreinstallExtensionIds();
+
 }  // namespace features
 }  // namespace preferences
 
