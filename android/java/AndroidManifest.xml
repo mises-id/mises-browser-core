@@ -31,7 +31,7 @@
 
 <meta-data
     android:name="com.google.android.play.billingclient.version"
-    android:value="5.2.1" />
+    android:value="7.0.0" />
 
 
 <meta-data
