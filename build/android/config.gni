@@ -24,7 +24,7 @@ mises_chrome_java_deps = [
   #"//mises/components/browser_ui/site_settings/android:java",
   "//mises/components/variations/android:java",
   "//mises/third_party/android_deps:com_airbnb_android_java",
-  "//mises/third_party/android_deps:com_android_billingclient_java",
+  #"//mises/third_party/android_deps:com_android_billingclient_java",
   "//mises/third_party/android_deps:com_android_installreferrer_java",
   "//mises/third_party/android_deps:com_github_bumptech_glide_java",
   "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
