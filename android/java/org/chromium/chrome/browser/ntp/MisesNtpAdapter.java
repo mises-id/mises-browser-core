@@ -158,6 +158,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private NewsFlowService mNewsFlowService;
     private boolean mIsRefreshingNewsFlow;
+    private boolean mIsInitializingNewsCache;
     private MoreStatus mMoreStatus;
 
     private LinearLayoutManager mLayoutManager;
@@ -206,6 +207,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mNewsFlowService = new NewsFlowService();
         mIsRefreshingNewsFlow = false;
+        mIsInitializingNewsCache = false;
         mMoreStatus = MoreStatus.Idle;
 
         if (mActivity instanceof TabCreatorManager) {
@@ -490,6 +492,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         // recyclerView添加到屏幕，从缓存中加载数据
         // tab页切换到前台时触发这个操作
         // 加载好缓存之后触发刷新操作
+        mIsInitializingNewsCache = true;
         loadNewsFromCache(() -> {
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
@@ -504,6 +507,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     refreshNews();
                 });
             }
+            mIsInitializingNewsCache = false;
         });
     }
 
@@ -519,6 +523,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         // recyclerView刚初始化完成，从缓存中加载数据
         // recyclerView第一次被创建时触发这个操作
+        mIsInitializingNewsCache = true;
         loadNewsFromCache(() -> {
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
@@ -533,6 +538,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     refreshNews();
                 });
             }
+            mIsInitializingNewsCache = false;
         });
     }
 
@@ -1130,6 +1136,10 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void loadMoreNews() {
+        // 如果正在初始化缓存，则不允许加载更多
+        if (mIsInitializingNewsCache) {
+            return;
+        }
         Log.v(TAG, "loadMoreNews: MoreStatus="+mMoreStatus);
         if (mMoreStatus == MoreStatus.HaveNoMore || mMoreStatus == MoreStatus.Loading) {
             return;
