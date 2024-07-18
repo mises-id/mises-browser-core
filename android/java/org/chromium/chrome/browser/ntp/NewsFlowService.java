@@ -68,11 +68,27 @@ public class NewsFlowService {
                 public void run(@Nullable byte[] value) {
                     Log.v(TAG, "loadFromCache value="+Arrays.toString(value));
                     if (value == null) {
+                        completionHandler.onResult(
+                            new RefreshResponse(
+                                true,
+                                new UpdateAction(
+                                    UpdateMode.NOP, null
+                                )
+                            )
+                        );
                         return;
                     }
 
                     JSONArray jsonArray = convertBytes2JSONArray(value);
                     if (jsonArray.length() == 0) {
+                        completionHandler.onResult(
+                            new RefreshResponse(
+                                true,
+                                new UpdateAction(
+                                    UpdateMode.NOP, null
+                                )
+                            )
+                        );
                         return;
                     }
 
@@ -207,6 +223,7 @@ public class NewsFlowService {
         REMOVED,
         CHANGED,
         RELOAD_ALL,
+        NOP,
     }
 
     public static class FetchNewsResp {
@@ -245,12 +262,12 @@ public class NewsFlowService {
                 public final void onResult(FetchNewsResp resp) {
                     if (resp.ok) {
                         String idOfLastNewsAfterFetch = idOfLastNews();
-                        if (compareNullableString(idOfLastNewsBeforeFetch, idOfLastNewsAfterFetch)) {
+                        if (!compareNullableString(idOfLastNewsBeforeFetch, idOfLastNewsAfterFetch)) {
                             completionHandler.onResult(
                                 new RefreshResponse(
                                     true,
                                     new UpdateAction(
-                                        UpdateMode.INSERTED, new Range(0, 0)
+                                        UpdateMode.NOP, null
                                     )
                                 )
                             );

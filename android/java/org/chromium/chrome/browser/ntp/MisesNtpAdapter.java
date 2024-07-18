@@ -563,6 +563,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void handleNewsUpdate(NewsFlowService.UpdateAction action) {
         int start;
         switch (action.mode) {
+            case NOP:
+                break;
             case INSERTED:
                 start = mTopItemViewTypes.size() + action.range.start;
                 notifyItemRangeInserted(start, action.range.size);
@@ -1043,13 +1045,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private Button btnLoadMore;
         LoadMoreViewHolder(View itemView, Context ctx) {
             super(itemView);
-            ivLoading = (ImageView)itemView.findViewById(R.id.iv_loading);
-            ivLoading.setVisibility(View.VISIBLE);
-            btnLoadMore = (Button)itemView.findViewById(R.id.btn_load_more);
-            btnLoadMore.setVisibility(View.GONE);
-
-            ivLoading.startAnimation(
-                AnimationUtils.loadAnimation(ctx, R.anim.rotate_anim));
         }
     }
 
@@ -1107,6 +1102,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void refreshNews() {
         // 没有在刷新，才可以触发刷新操作
         if (mIsRefreshingNewsFlow) {
+            Log.v(TAG, "already refreshing, no more refreshing");
             return;
         }
 
@@ -1116,6 +1112,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             new Callback<NewsFlowService.RefreshResponse>() {
                 @Override
                 public final void onResult(NewsFlowService.RefreshResponse resp) {
+                    Log.v(TAG, "refreshAsync return ok=%b haveMore=%b", resp.ok, resp.haveMore);
                     stopRefreshAnimation();
                     mIsRefreshingNewsFlow = false;
                     if (!resp.ok) {
@@ -1138,6 +1135,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void loadMoreNews() {
         // 如果正在初始化缓存，则不允许加载更多
         if (mIsInitializingNewsCache) {
+            Log.v(TAG, "is initializing news cache, not loading more");
             return;
         }
         Log.v(TAG, "loadMoreNews: MoreStatus="+mMoreStatus);
