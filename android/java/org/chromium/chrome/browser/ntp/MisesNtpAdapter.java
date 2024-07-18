@@ -229,6 +229,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                Log.v(TAG, "click refresh btn, do refreshNews");
                 refreshNews();
             }
         });
@@ -237,6 +238,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         btnLoadMore.setOnClickListener(new View.OnClickListener() {
 
             @Override public void onClick(View v) {
+                Log.v(TAG, "click load more btn, do loadMoreNews");
                 loadMoreNews();
             }
         });
@@ -312,7 +314,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.v(TAG, "onBindViewHolder");
+        // Log.v(TAG, "onBindViewHolder");
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         int margin = dpToPx(mActivity, 10);
@@ -504,6 +506,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
                 this.mHandler.post(() -> {
+                    Log.v(TAG, "refreshNews after loadNewsFromCache in onAttached");
                     refreshNews();
                 });
             }
@@ -535,6 +538,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
                 this.mHandler.post(() -> {
+                    Log.v(TAG, "refreshNews after loadNewsFromCache in onAttachedToRecyclerView");
                     refreshNews();
                 });
             }
@@ -1094,7 +1098,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         super.onViewAttachedToWindow(holder);
 
         if (holder instanceof LoadMoreViewHolder) {
-            Log.v(TAG, "LoadMoreViewHolder attached to window");
+            Log.v(TAG, "LoadMoreViewHolder attached to window, do loadMoreNews");
             loadMoreNews();
         }
     }
