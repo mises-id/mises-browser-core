@@ -68,11 +68,27 @@ public class NewsFlowService {
                 public void run(@Nullable byte[] value) {
                     Log.v(TAG, "loadFromCache value="+Arrays.toString(value));
                     if (value == null) {
+                        completionHandler.onResult(
+                            new RefreshResponse(
+                                true,
+                                new UpdateAction(
+                                    UpdateMode.NOP, null
+                                )
+                            )
+                        );
                         return;
                     }
 
                     JSONArray jsonArray = convertBytes2JSONArray(value);
                     if (jsonArray.length() == 0) {
+                        completionHandler.onResult(
+                            new RefreshResponse(
+                                true,
+                                new UpdateAction(
+                                    UpdateMode.NOP, null
+                                )
+                            )
+                        );
                         return;
                     }
 
@@ -207,6 +223,7 @@ public class NewsFlowService {
         REMOVED,
         CHANGED,
         RELOAD_ALL,
+        NOP,
     }
 
     public static class FetchNewsResp {
@@ -227,14 +244,36 @@ public class NewsFlowService {
         }
     }
 
+    private static boolean compareNullableString(String lhs, String rhs) {
+        if (lhs != null && rhs != null) {
+            return lhs.equals(rhs);
+        }
+        return (lhs == null && rhs == null);
+    }
+
+    // 为了确保并发安全，请求返回时需检查idOfLastNews是否变更，如果变更则不添加返回的新数据
     public void fetchMoreAsync(Callback<RefreshResponse> completionHandler) {
-        Log.d(TAG, "fetchMore: idOfLastNews=%s", idOfLastNews());
+        String idOfLastNewsBeforeFetch = idOfLastNews();
+        Log.d(TAG, "fetchMore: idOfLastNews=%s", idOfLastNewsBeforeFetch);
         fetchNewsInPageAsync(
-            idOfLastNews(),
+            idOfLastNewsBeforeFetch,
             new Callback<FetchNewsResp>() {
                 @Override
                 public final void onResult(FetchNewsResp resp) {
                     if (resp.ok) {
+                        String idOfLastNewsAfterFetch = idOfLastNews();
+                        if (!compareNullableString(idOfLastNewsBeforeFetch, idOfLastNewsAfterFetch)) {
+                            completionHandler.onResult(
+                                new RefreshResponse(
+                                    true,
+                                    new UpdateAction(
+                                        UpdateMode.NOP, null
+                                    )
+                                )
+                            );
+                            return;
+                        }
+
                         Range range = appendNewsArrayToTail(resp.newsArray);
                         saveNewsArray2Cache();
                         completionHandler.onResult(

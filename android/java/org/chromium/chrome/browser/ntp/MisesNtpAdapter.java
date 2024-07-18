@@ -158,6 +158,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private NewsFlowService mNewsFlowService;
     private boolean mIsRefreshingNewsFlow;
+    private boolean mIsInitializingNewsCache;
     private MoreStatus mMoreStatus;
 
     private LinearLayoutManager mLayoutManager;
@@ -206,6 +207,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         mNewsFlowService = new NewsFlowService();
         mIsRefreshingNewsFlow = false;
+        mIsInitializingNewsCache = false;
         mMoreStatus = MoreStatus.Idle;
 
         if (mActivity instanceof TabCreatorManager) {
@@ -227,6 +229,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         androidx.appcompat.widget.AppCompatImageButton btnRefresh = mNewsFlowListControlPanelLayout.findViewById(R.id.btn_refresh);
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                Log.v(TAG, "click refresh btn, do refreshNews");
                 refreshNews();
             }
         });
@@ -235,6 +238,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         btnLoadMore.setOnClickListener(new View.OnClickListener() {
 
             @Override public void onClick(View v) {
+                Log.v(TAG, "click load more btn, do loadMoreNews");
                 loadMoreNews();
             }
         });
@@ -310,7 +314,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.v(TAG, "onBindViewHolder");
+        // Log.v(TAG, "onBindViewHolder");
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         int margin = dpToPx(mActivity, 10);
@@ -490,6 +494,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         // recyclerView添加到屏幕，从缓存中加载数据
         // tab页切换到前台时触发这个操作
         // 加载好缓存之后触发刷新操作
+        mIsInitializingNewsCache = true;
         loadNewsFromCache(() -> {
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
@@ -501,9 +506,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
                 this.mHandler.post(() -> {
+                    Log.v(TAG, "refreshNews after loadNewsFromCache in onAttached");
                     refreshNews();
                 });
             }
+            mIsInitializingNewsCache = false;
         });
     }
 
@@ -519,6 +526,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         // recyclerView刚初始化完成，从缓存中加载数据
         // recyclerView第一次被创建时触发这个操作
+        mIsInitializingNewsCache = true;
         loadNewsFromCache(() -> {
             // 判断上次更新已过去多久，如果大于1分钟，则触发刷新操作
             Date latestRefreshTime = mNewsFlowService.latestRefreshTime();
@@ -530,9 +538,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             if (latestRefreshTime == null || (now.getTime() - latestRefreshTime.getTime()) / 1000 > 60 * 1) {
                 this.mHandler.post(() -> {
+                    Log.v(TAG, "refreshNews after loadNewsFromCache in onAttachedToRecyclerView");
                     refreshNews();
                 });
             }
+            mIsInitializingNewsCache = false;
         });
     }
 
@@ -557,6 +567,8 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void handleNewsUpdate(NewsFlowService.UpdateAction action) {
         int start;
         switch (action.mode) {
+            case NOP:
+                break;
             case INSERTED:
                 start = mTopItemViewTypes.size() + action.range.start;
                 notifyItemRangeInserted(start, action.range.size);
@@ -1037,13 +1049,6 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private Button btnLoadMore;
         LoadMoreViewHolder(View itemView, Context ctx) {
             super(itemView);
-            ivLoading = (ImageView)itemView.findViewById(R.id.iv_loading);
-            ivLoading.setVisibility(View.VISIBLE);
-            btnLoadMore = (Button)itemView.findViewById(R.id.btn_load_more);
-            btnLoadMore.setVisibility(View.GONE);
-
-            ivLoading.startAnimation(
-                AnimationUtils.loadAnimation(ctx, R.anim.rotate_anim));
         }
     }
 
@@ -1093,7 +1098,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         super.onViewAttachedToWindow(holder);
 
         if (holder instanceof LoadMoreViewHolder) {
-            Log.v(TAG, "LoadMoreViewHolder attached to window");
+            Log.v(TAG, "LoadMoreViewHolder attached to window, do loadMoreNews");
             loadMoreNews();
         }
     }
@@ -1101,6 +1106,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void refreshNews() {
         // 没有在刷新，才可以触发刷新操作
         if (mIsRefreshingNewsFlow) {
+            Log.v(TAG, "already refreshing, no more refreshing");
             return;
         }
 
@@ -1110,6 +1116,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             new Callback<NewsFlowService.RefreshResponse>() {
                 @Override
                 public final void onResult(NewsFlowService.RefreshResponse resp) {
+                    Log.v(TAG, "refreshAsync return ok=%b haveMore=%b", resp.ok, resp.haveMore);
                     stopRefreshAnimation();
                     mIsRefreshingNewsFlow = false;
                     if (!resp.ok) {
@@ -1130,6 +1137,11 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void loadMoreNews() {
+        // 如果正在初始化缓存，则不允许加载更多
+        if (mIsInitializingNewsCache) {
+            Log.v(TAG, "is initializing news cache, not loading more");
+            return;
+        }
         Log.v(TAG, "loadMoreNews: MoreStatus="+mMoreStatus);
         if (mMoreStatus == MoreStatus.HaveNoMore || mMoreStatus == MoreStatus.Loading) {
             return;
