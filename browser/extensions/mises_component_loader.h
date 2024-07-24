@@ -47,9 +47,6 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
     const std::string& manifest);
   void AddExtension(const std::string& id,
       const std::string& name, const std::string& public_key);
-  // ForceAddHangoutServicesExtension ignores whether or not a preference for
-  // hangouts is set.  If the buildflag is not set, it won't add though.
-  void ForceAddHangoutServicesExtension();
 
   void PreInstallExtensionOnStartup();
 
