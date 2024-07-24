@@ -33,8 +33,7 @@
                 android:layout_marginRight="30dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#111111"
-                android:textSize="16sp"
+                android:textAppearance="@style/TextAppearance.TextLarge.Primary.Baseline"
                 android:textStyle="bold"
                 android:text="Latest" />
         </RadioGroup>

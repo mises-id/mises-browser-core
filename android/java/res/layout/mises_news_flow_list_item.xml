@@ -25,9 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textColor="#111111"
-            android:textSize="15sp" >
-        </TextView>
+            android:textAppearance="@style/TextAppearance.TextLarge.Primary.Baseline" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,14 +35,12 @@
                 android:id="@+id/tv_source"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#777777"
-                android:textSize="12sp" />
+                android:textAppearance="@style/TextAppearance.TextSmall.Secondary.Baseline" />
                 <!-- android:layout_marginRight="8dp" -->
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#777777"
+                android:textAppearance="@style/TextAppearance.TextSmall.Secondary.Baseline"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:text="·" />
@@ -52,8 +48,7 @@
                 android:id="@+id/tv_published_at"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="#777777"
-                android:textSize="12sp" />
+                android:textAppearance="@style/TextAppearance.TextSmall.Secondary.Baseline" />
         </LinearLayout>
     </LinearLayout>
     <ImageView

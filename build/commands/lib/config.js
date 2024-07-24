@@ -167,7 +167,7 @@ const Config = function () {
   this.misesStatsApiKey = getNPMConfig(['mises_stats_api_key']) || ''
   this.misesStatsUpdaterUrl = getNPMConfig(['mises_stats_updater_url']) || ''
   this.ignore_compile_failure = false
-  this.enable_hangout_services_extension = true
+  this.enable_hangout_services_extension = false
   this.enable_pseudolocales = false
   this.sign_widevine_cert = process.env.SIGN_WIDEVINE_CERT || ''
   this.sign_widevine_key = process.env.SIGN_WIDEVINE_KEY || ''
@@ -521,7 +521,7 @@ Config.prototype.buildArgs = function () {
     // These do not exist on android
     // TODO - recheck
     delete args.enable_nacl
-    delete args.enable_hangout_services_extension
+    //delete args.enable_hangout_services_extension
     // Ideally we'd not pass this on Linux CI and then
     // not have a default value for this. But we'll
     // eventually want it on Android, so keeping CI
