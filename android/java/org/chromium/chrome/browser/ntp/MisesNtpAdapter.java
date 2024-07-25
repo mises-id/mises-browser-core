@@ -230,6 +230,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Log.v(TAG, "click refresh btn, do refreshNews");
+                MisesSysUtils.logEvent("ntp_news_flow", "step", "click_refresh");
                 refreshNews();
             }
         });
@@ -239,6 +240,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             @Override public void onClick(View v) {
                 Log.v(TAG, "click load more btn, do loadMoreNews");
+                MisesSysUtils.logEvent("ntp_news_flow", "step", "click_loadmore");
                 loadMoreNews();
             }
         });
@@ -390,6 +392,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             vh.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Log.d(TAG, String.format("click news: link=%s", news.link));
+                    MisesSysUtils.logEvent("ntp_news_flow_open", "url", news.link);
                     if (mTabCreator != null) {
                         mTabCreator.launchUrl(news.link, TabLaunchType.FROM_LINK);
                     }
