@@ -127,5 +127,34 @@ Browser* FindBrowserForWindowAndroid(Profile* profile, int window_id) {
 
   return nullptr;
 }
+
+void OpenSingleExtensionTab(   
+    const Extension* extension,
+    const GURL &url,
+    const SessionID::id_type session_window_id) {
+  if (!TabModelList::models().empty()){
+      TabModel* tab_model = TabModelList::models()[0];
+      if (tab_model) {
+        bool found = false;
+        for (int i = 0; i < tab_model->GetTabCount(); ++i) {
+          TabAndroid *tab_android = tab_model->GetTabAt(i);
+          if (tab_android) {
+            GURL tab_url = tab_android->GetURL();
+            if (tab_url == url) {
+              tab_model->SetActiveIndex(i);
+              found = true;
+            }
+
+          }
+          
+        }
+        if (!found) {
+          tab_model->CreateNewTabForExtension(extension->id(), url, session_window_id);
+        }
+        
+      }
+        
+  }
+}
 #endif
 }  // namespace extensions
