@@ -2,10 +2,18 @@
 #define MISES_BROWSER_EXTENSIONS_EXTENSION_TAB_UTIL_H_
 
 #include "src/chrome/browser/extensions/extension_tab_util.h"
+#include "components/sessions/core/session_id.h"
 
 namespace extensions{
 
+void OpenSingleExtensionTab(   
+    const Extension* extension,
+    const GURL &url,
+    const SessionID::id_type session_window_id);
+
 #if BUILDFLAG(IS_ANDROID) 
+
+
 void CreateTabObjectAndroid(   
     api::tabs::Tab* tab_object,
     content::WebContents* contents,

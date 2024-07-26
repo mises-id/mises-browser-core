@@ -106,6 +106,8 @@
 
 #include "chrome/browser/ui/android/tab_model/tab_model.h"
 #include "chrome/browser/ui/android/tab_model/tab_model_list.h"
+#include "chrome/browser/extensions/api/side_panel/side_panel_service.h"
+#include "chrome/common/extensions/api/side_panel.h"
 
 using base::android::ConvertUTF8ToJavaString;
 using base::android::ScopedJavaLocalRef;
@@ -165,6 +167,12 @@ constexpr base::TimeDelta kCloseDelay = base::Milliseconds(200);
  
    return extension_action_->GetDefaultIconImage();
  }
+
+  bool IsSidePanelEnabled(const extensions::api::side_panel::PanelOptions& options) {
+    return options.enabled.has_value() && *options.enabled &&
+          options.path.has_value();
+  }
+
 
 }  // namespace
 
@@ -504,13 +512,24 @@ void AppMenuBridge::CallExtension(
             ->GrantIfRequested(extension_ptr);
         tabid = sessions::SessionTabHelper::IdForTab(web_contents).id();
       }
-      GURL popup = extension_action_->GetPopupUrl(tabid);
-      if (popup != "") {  
-        if (!TabModelList::models().empty()){
-            TabModel* tab_model = TabModelList::models()[0];
-            if (tab_model)
-              tab_model->CreateNewTabForExtension(extension_to_call, popup, 0);
+
+      extensions::SidePanelService* service = extensions::SidePanelService::Get(profile_);
+      if (service && service->HasSidePanelActionForTab(*extension_ptr, tabid)) {
+        LOG(INFO) << "[EXTENSIONS] Open SidePanel for " << extension_to_call;
+        auto options = service->GetOptions(*extension_ptr, /*tab_id=*/ extensions::ExtensionTabUtil::GetTabId(web_contents));
+        if (IsSidePanelEnabled(options)) {
+          GURL side_panel_url = extension_ptr->GetResourceURL(*options.path);
+          if (side_panel_url != "") {
+            extensions::OpenSingleExtensionTab(extension_ptr, side_panel_url, 0);
+          }
         }
+        return;
+
+      }
+
+      GURL popup = extension_action_->GetPopupUrl(tabid);
+      if (popup != "") {
+        extensions::OpenSingleExtensionTab(extension_ptr, popup, 0);
       } else {
         action_api->DispatchExtensionActionClicked(*extension_action_, web_contents, extension_ptr);
         LOG(INFO) << "[EXTENSIONS] Dispatched JS extension_action_ for " << extension_to_call;
