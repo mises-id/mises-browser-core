@@ -53,6 +53,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
  private:
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
   void ContinueMiseswalletMigration(const base::Value key_store);
+  void AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage);
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
   void OnExtensionLoaded(content::BrowserContext* browser_context,
@@ -83,6 +84,10 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
  bool IsPreinstallExtension(const std::string& extension_id);
  bool IsIgnoredPreinstallExtension(const std::string& extension_id);
  void AddIgnoredPreinstallExtension(const std::string& extension_id);
+
+ void OnNotificationHandled(int action);
+
+ void StartPreInstall(const std::vector<std::string>&  ids);
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
