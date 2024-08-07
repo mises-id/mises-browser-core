@@ -112,10 +112,10 @@
 -keep class com.crosspromotion.sdk.**{*;}
 
 -keepattributes *Annotation*   
--keep class com.mbridge.** {*; }  
--keep interface com.mbridge.** {*; }  
--dontwarn com.mbridge.**   
--keep class **.R$* { public static final int mbridge*; }
+#-keep class com.mbridge.** {*; }  
+#-keep interface com.mbridge.** {*; }  
+#-dontwarn com.mbridge.**   
+#-keep class **.R$* { public static final int mbridge*; }
 
 -keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 
