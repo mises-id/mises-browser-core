@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:chrome="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="335dp"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/mises_share_bg">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textColor="#f03e3e"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:gravity="start|top"
+            android:singleLine="false"
+            android:lineSpacingExtra="6dp"
+            android:maxLength="300"/>
+
+        <Button
+		    chrome:backgroundTint="@null"
+		    android:id="@+id/btn_continue"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_share_confirm_bg"
+            android:text="@string/web3_temple_tos_continue"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+        <Button
+	        chrome:backgroundTint="@null"
+            android:id="@+id/btn_block"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/mises_share_cancel_bg"
+            android:text="@string/web3_temple_tos_cancel"
+            android:textAllCaps="false"
+            android:textColor="#ff666666"
+            android:layout_marginBottom="5dp"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+</FrameLayout>

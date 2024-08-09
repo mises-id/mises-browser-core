@@ -47,7 +47,7 @@ public class MisesController {
     public interface MisesControllerObserver {
 	    void OnMisesUserInfoChanged();
         void OnExtensionDNRActionCountChanged(final String base64Image);
-        void OnWeb3SafePhishingDetected(final String address);
+        void OnShowNotifyDialog(int dialogType, final String param);
     }
 
     ArrayList<MisesControllerObserver> observers_ = new ArrayList<>();
@@ -112,10 +112,10 @@ public class MisesController {
     }
 
     @CalledByNative
-    public static void NotifyPhishingDetected(final String address) {
+    public static void ShowNotifyDialog(int dialogType, final String param) {
         MisesController instance = getInstance();
         for (MisesControllerObserver observer : instance.observers_) {
-            observer.OnWeb3SafePhishingDetected(address);
+            observer.OnShowNotifyDialog(dialogType, param);
         }
     }
 
@@ -348,12 +348,12 @@ public class MisesController {
 	    mLastShareIcon = "";
     }
 
-    public void callbackPhishingDetected(final String address, int action) {
-        MisesControllerJni.get().callbackPhishingDetected(address, action);
+    public void callbackNotifyDialog(final String callback_id, int action) {
+        MisesControllerJni.get().callbackNotifyDialog(callback_id, action);
     }
 
     @NativeMethods
     interface Natives {
-        void callbackPhishingDetected(final String address, int action);
+        void callbackNotifyDialog(final String callback_id, int action);
     }
 }

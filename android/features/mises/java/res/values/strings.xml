@@ -40,4 +40,8 @@
     <string name="web3_safe_btn_continue">Continue</string>
     <string name="web3_safe_blockem_start">Powered by</string>
     <string name="web3_safe_blockem_end">More protections >></string>
+
+
+    <string name="web3_temple_tos_cancel">Cancel</string>
+    <string name="web3_temple_tos_continue">Accept and Continue</string>
 </resources>

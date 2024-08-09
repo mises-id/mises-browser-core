@@ -26,6 +26,11 @@ BASE_FEATURE(kMisesPreinstallExtension,
 const base::FeatureParam<std::string> kMisesPreinstallExtensionList{
     &kMisesPreinstallExtension, "ExtensionList", ""};
 
+const base::FeatureParam<std::string> kMisesPreinstallExtensionListWithTOS{
+    &kMisesPreinstallExtension, "ExtensionListWithTOS", ""};
+const base::FeatureParam<std::string> kMisesPreinstallExtensionTOS{
+    &kMisesPreinstallExtension, "TOS", ""};
+
 std::vector<std::string> GetMisesPreinstallExtensionIds() {
    if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
     return std::vector<std::string>();
@@ -34,5 +39,23 @@ std::vector<std::string> GetMisesPreinstallExtensionIds() {
    return base::SplitString(
       list_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
 }
+
+std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds() {
+   if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
+    return std::vector<std::string>();
+
+   std::string list_str = kMisesPreinstallExtensionListWithTOS.Get();
+   return base::SplitString(
+      list_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+}
+
+std::string GetMisesPreinstallExtensionTOS() {
+   if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
+    return std::string();
+
+   return kMisesPreinstallExtensionTOS.Get();
+}
+
+
 }  // namespace features
 }  // namespace preferences

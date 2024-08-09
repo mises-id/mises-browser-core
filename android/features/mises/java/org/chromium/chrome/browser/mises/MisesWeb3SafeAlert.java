@@ -111,7 +111,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
 	    mTabCreatorManager = tabMgr;
     }
 
-    public static MisesWeb3SafeAlert newInstance(TabCreatorManager tabMgr, String phishingUrl,  String json) {
+    public static MisesWeb3SafeAlert newInstance(TabCreatorManager tabMgr,  String json) {
         MisesWeb3SafeAlert f = new MisesWeb3SafeAlert(tabMgr);
 
         // Supply num input as an argument.
@@ -121,7 +121,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
         String notifyLevel = "danger";
         String notifyTag = "potentially_behavior";
         String address = json;
-        String domain = phishingUrl;
+        String domain = "";
         try{
           JSONObject jsonMessage = new JSONObject(json);
           if (jsonMessage.has("notify_type")) {
@@ -243,7 +243,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
               if (ignore) {
                 userAction = userActionIgnore;
               }
-              MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
+              MisesController.getInstance().callbackNotifyDialog(callback_id, userAction);
               dismiss();
               Bundle params = new Bundle();
               if (ignore) {
@@ -263,7 +263,7 @@ public class MisesWeb3SafeAlert extends DialogFragment {
                 if (ignore) {
                   userAction = userActionIgnore;
                 }
-                MisesController.getInstance().callbackPhishingDetected(callback_id, userAction);
+                MisesController.getInstance().callbackNotifyDialog(callback_id, userAction);
                 dismiss();
                 //suggested url
                 if (isSuggestedURL){

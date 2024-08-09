@@ -32,19 +32,19 @@ std::string MisesController::getMisesUserInfo() {
   return base::android::ConvertJavaStringToUTF8(env, j_mises_json);
 }
 
-void MisesController::notifyPhishingDetected(const std::string& address, NotifyPhishingDetectedCallback callback) {
+void MisesController::showNotifyDialog(
+  MisesControllerDialogType type, const std::string& param, NotifyDialogCallback callback) {
   JNIEnv* env = base::android::AttachCurrentThread();
-  NotifyPhishingDetectedCallbackVector& callbacks = callback_map_[address];
+  NotifyDialogCallbackVector& callbacks = callback_map_[param];
   callbacks.push_back(std::move(callback));
-  base::android::ScopedJavaLocalRef<jstring> j_address = base::android::ConvertUTF8ToJavaString(env, address);
-  base::android::Java_MisesController_NotifyPhishingDetected(env, j_address);
+  base::android::ScopedJavaLocalRef<jstring> j_param = base::android::ConvertUTF8ToJavaString(env, param);
+  base::android::Java_MisesController_ShowNotifyDialog(env, type, j_param);
 
 }
 
-void MisesController::callbackPhishingDetected(
-    const std::string& address, int action) {
-  NotifyPhishingDetectedCallbackVector callbacks;
-  auto iter = callback_map_.find(address);
+void MisesController::callbackNotifyDialog( const std::string& param, int action) {
+  NotifyDialogCallbackVector callbacks;
+  auto iter = callback_map_.find(param);
   if (iter != callback_map_.end()) {
     callbacks = std::move(iter->second);
     callback_map_.erase(iter);
@@ -102,21 +102,19 @@ void  MisesController::recordEvent(const std::string& json_string){
 } // namespace android
 
 
-
-
 }
 
 namespace base {
 
 namespace android {
 
-  void JNI_MisesController_CallbackPhishingDetected(JNIEnv* env,
-     const base::android::JavaParamRef<jstring>& address, jint action) {
+  void JNI_MisesController_CallbackNotifyDialog(JNIEnv* env,
+     const base::android::JavaParamRef<jstring>& callback_id, jint action) {
 
-    chrome::android::MisesController::GetInstance()->callbackPhishingDetected(
-      ConvertJavaStringToUTF8(env, address), action);
+    chrome::android::MisesController::GetInstance()->callbackNotifyDialog(
+      ConvertJavaStringToUTF8(env, callback_id), action);
 
-}
+  }
 
 }
 }

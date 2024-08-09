@@ -34,7 +34,9 @@ android_library("public_java") {
 
     "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
     "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
+    "java/org/chromium/chrome/browser/mises/MisesTosAlert.java",
     "java/org/chromium/chrome/browser/mises/MisesUserInfoMenu.java",
+    "java/org/chromium/chrome/browser/mises/TextViewLinkHandler.java",
 
     "//mises/android/java/org/chromium/base/MisesSysUtils.java",
     "//mises/android/java/org/chromium/base/MisesController.java",

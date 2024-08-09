@@ -15,6 +15,12 @@ struct DefaultSingletonTraits;
 namespace chrome {
 namespace android {
 
+
+enum MisesControllerDialogType {
+  kPhishingDetected,
+  kTOS,
+};
+
 class MisesController {
  public:
   // Returns a singleton instance of MisesController.
@@ -23,16 +29,15 @@ class MisesController {
   void setMisesUserInfo(const std::string& info);
   std::string getMisesUserInfo();
 
-  using NotifyPhishingDetectedCallback = base::OnceCallback<void(int)>;
-  using NotifyPhishingDetectedCallbackVector =
-    std::vector<NotifyPhishingDetectedCallback>;
-  void notifyPhishingDetected(const std::string& address, NotifyPhishingDetectedCallback callback);
-  void callbackPhishingDetected(const std::string& address, int action);
+  using NotifyDialogCallback = base::OnceCallback<void(int)>;
+  using NotifyDialogCallbackVector = std::vector<NotifyDialogCallback>;
+  void showNotifyDialog(MisesControllerDialogType type, const std::string& param, NotifyDialogCallback callback);
+  void callbackNotifyDialog(const std::string& param, int action);
   void recordEvent(const std::string& params);
  private:
   friend struct base::DefaultSingletonTraits<MisesController>;
 
-  std::map<std::string, NotifyPhishingDetectedCallbackVector> callback_map_;
+  std::map<std::string, NotifyDialogCallbackVector> callback_map_;
 
   MisesController();
   ~MisesController();

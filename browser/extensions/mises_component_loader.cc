@@ -48,6 +48,7 @@
 #include "chrome/browser/android/android_theme_resources.h"
 #include "chrome/browser/android/resource_mapper.h"
 #include "mises/browser/android/preferences/features.h"
+#include "mises/browser/android/mises/mises_controller.h"
 #endif
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
@@ -329,6 +330,7 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
     }
   }
 
+
 #if BUILDFLAG(IS_ANDROID)
   //refresh extension menu icon
   AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(nullptr);
@@ -337,6 +339,16 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
     AppMenuBridge::Factory::GetForProfile(profile_)->GetRunningExtensionsInternal(web_contents);
   }
 #endif
+
+}
+
+void MisesComponentLoader::AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage) {
+  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithTempleWalletStorage";
+  
+  if (storage->GetBytesInUse("MISES_ACCEPT_TOS") == 0){
+    storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "MISES_ACCEPT_TOS", base::Value(true));
+  }
+  
 
 }
 
@@ -381,6 +393,14 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
     base::android::MisesSysUtils::LogEventFromJni(is_update?"update_extension":"install_extension", "id", extension->id());
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
+
+    if (extension->id() == temple_extension_id) {
+      StorageFrontend* frontend = StorageFrontend::Get(profile_);
+      frontend->RunWithStorage(
+        extension, settings_namespace::LOCAL,
+        base::BindOnce(&MisesComponentLoader::AsyncRunWithTempleWalletStorage, base::Unretained(this))
+      );
+    }
   }
 
   if(extension && extension->location() == ManifestLocation::kComponent) {
@@ -404,7 +424,8 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 
 bool MisesComponentLoader::IsPreinstallExtension(const std::string& extension_id) {
   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
-  return base::Contains(preinstalls, extension_id);;
+  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+  return base::Contains(preinstalls, extension_id) ||  base::Contains(tos_preinstalls, extension_id);
 }
 
 bool  MisesComponentLoader::IsIgnoredPreinstallExtension(const std::string& extension_id) {
@@ -606,8 +627,47 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
       extensions::ExtensionRegistry::Get(profile_);
   
   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
-  for (size_t i = 0; i < preinstalls.size(); i++) {
-    std::string extension_id = preinstalls[i];
+  StartPreInstall(preinstalls);
+
+  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+  std::string tos = preferences::features::GetMisesPreinstallExtensionTOS();
+  bool need_display_tos = false;
+  for (size_t i = 0; i < tos_preinstalls.size(); i++) {
+    std::string extension_id = tos_preinstalls[i];
+    if (!IsIgnoredPreinstallExtension(extension_id)) {
+      const Extension* extension = registry->GetInstalledExtension(extension_id);
+      if (!extension) {
+        need_display_tos = !tos.empty();
+      }
+    }
+  }
+  if (need_display_tos) {
+      LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup show TOS";
+      chrome::android::MisesController::GetInstance()->showNotifyDialog(
+        chrome::android::MisesControllerDialogType::kTOS,
+        tos, base::BindOnce(
+          &MisesComponentLoader::OnNotificationHandled, weak_ptr_factory_.GetWeakPtr()
+        )
+      );
+  }
+
+  const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
+  if (!mises_extension) {
+    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
+    miseswallet_extension_path =
+        miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
+    Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+  }
+
+
+}
+
+void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids) {
+   extensions::ExtensionRegistry* registry =
+      extensions::ExtensionRegistry::Get(profile_);
+  for (size_t i = 0; i < ids.size(); i++) {
+    std::string extension_id = ids[i];
+    LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall:" + extension_id;
     if (!IsIgnoredPreinstallExtension(extension_id)) {
 
       const Extension* extension = registry->GetInstalledExtension(extension_id);
@@ -623,19 +683,21 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
             base::Seconds(1));
       }
     } else {
-      LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup, ignor:" + preinstalls[i];
+      LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall, ignor:" + extension_id;
     }
   }
-
-  const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
-  if (!mises_extension) {
-    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
-    miseswallet_extension_path =
-        miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
-    Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+}
+ void MisesComponentLoader::OnNotificationHandled(int action) {
+  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+  if (action == 0) {
+    StartPreInstall(tos_preinstalls);
+  } else {
+      for (size_t i = 0; i < tos_preinstalls.size(); i++) {
+        std::string extension_id = tos_preinstalls[i];
+        AddIgnoredPreinstallExtension(extension_id);
+      }
   }
 
-
-}
+ }
 
 }  // namespace extensions
