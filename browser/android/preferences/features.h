@@ -16,6 +16,8 @@ BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
 BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
 
 std::vector<std::string> GetMisesPreinstallExtensionIds();
+std::string GetMisesPreinstallExtensionTOS();
+std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds();
 
 }  // namespace features
 }  // namespace preferences

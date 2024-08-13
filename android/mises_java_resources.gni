@@ -349,6 +349,8 @@ mises_extra_java_resources = [
   "java/res/layout/mises_alert_dialog.xml",
   "java/res/layout/mises_share_dialog.xml",
   "java/res/layout/mises_web3_safe_alert.xml",
+  "java/res/layout/mises_tos_dialog.xml",
+  
   "java/res/layout/mises_user_info_menu.xml",
 
   "java/res/drawable/reward_border.xml",

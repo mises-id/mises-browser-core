@@ -132,7 +132,8 @@ ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Ru
       api::mises_private::NotifyPhishingDetected::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate notify phishing address :" << params->address;
-  chrome::android::MisesController::GetInstance()->notifyPhishingDetected(
+  chrome::android::MisesController::GetInstance()->showNotifyDialog(
+    chrome::android::MisesControllerDialogType::kPhishingDetected,
     params->address, base::BindOnce(
       &MisesPrivateNotifyPhishingDetectedFunction::OnNotificationHandled, base::RetainedRef(this)
     )
