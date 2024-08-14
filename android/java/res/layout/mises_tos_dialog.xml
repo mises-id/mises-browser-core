@@ -9,10 +9,12 @@
 
     <LinearLayout
         android:id="@+id/pop_layout"
-        android:layout_width="335dp"
-        android:layout_height="520dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:paddingTop="30dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -34,13 +36,17 @@
         <TextView
             android:id="@+id/detail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="17sp"
             android:gravity="start|top"
             android:singleLine="false"
             android:lineSpacingExtra="6dp"
             android:maxLength="300"/>
+
+        <View
+            android:layout_height="25dp"
+            android:layout_width="match_parent" />
 
         <Button
 		    chrome:backgroundTint="@null"
