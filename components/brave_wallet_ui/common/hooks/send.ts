@@ -9,6 +9,7 @@ import {
   BraveWallet,
   GetEthAddrReturnInfo,
   GetUnstoppableDomainsWalletAddrReturnInfo,
+  GetOneIDWalletAddrReturnInfo,
   GetChecksumEthAddressReturnInfo,
   IsBase58EncodedSolanaPubkeyReturnInfo,
   AmountValidationErrorType,
@@ -34,7 +35,8 @@ import { useGetSelectedChainQuery } from '../slices/api.slice'
 import {
   supportedENSExtensions,
   supportedSNSExtensions,
-  supportedUDExtensions
+  supportedUDExtensions,
+  supportedOneIDExtensions
 } from '../constants/domain-extensions'
 
 // ToDo: Remove isSendTab prop once we fully migrate to Send Tab
@@ -55,6 +57,7 @@ export default function useSend (isSendTab?: boolean) {
     findENSAddress,
     findSNSAddress,
     findUnstoppableDomainAddress,
+    findOneIDAddress,
     getChecksumEthAddress,
     isBase58EncodedSolanaPubkey
   } = useLib()
@@ -121,6 +124,14 @@ export default function useSend (isSendTab?: boolean) {
     }).catch(e => console.log(e))
   }, [findUnstoppableDomainAddress, handleDomainLookupResponse, selectedSendAsset, selectedAccount?.coin])
 
+  const handleOneIDAddressLookUp = React.useCallback((addressOrUrl: string) => {
+    setSearchingForDomain(true)
+    setToAddress('')
+    findOneIDAddress(addressOrUrl, selectedSendAsset ?? null).then((value: GetOneIDWalletAddrReturnInfo) => {
+      handleDomainLookupResponse(value.address, value.error, false)
+    }).catch(e => console.log(e))
+  }, [findOneIDAddress, handleDomainLookupResponse, selectedSendAsset, selectedAccount?.coin])
+
   const processEthereumAddress = React.useCallback((addressOrUrl: string) => {
     const valueToLowerCase = addressOrUrl.toLowerCase()
 
@@ -141,6 +152,11 @@ export default function useSend (isSendTab?: boolean) {
     // If success true, will set toAddress else will return error message.
     if (endsWithAny(supportedUDExtensions, valueToLowerCase)) {
       handleUDAddressLookUp(addressOrUrl)
+      return
+    }
+
+    if (endsWithAny(supportedOneIDExtensions, valueToLowerCase)) {
+      handleOneIDAddressLookUp(addressOrUrl)
       return
     }
 
@@ -200,7 +216,7 @@ export default function useSend (isSendTab?: boolean) {
     // Fallback error state
     setAddressWarning('')
     setAddressError(getLocale('braveWalletInvalidRecipientAddress'))
-  }, [selectedAccount?.address, handleUDAddressLookUp, handleDomainLookupResponse, setShowEnsOffchainWarning])
+  }, [selectedAccount?.address, handleUDAddressLookUp, handleOneIDAddressLookUp, handleDomainLookupResponse, setShowEnsOffchainWarning])
 
   const processFilecoinAddress = React.useCallback((addressOrUrl: string) => {
     const valueToLowerCase = addressOrUrl.toLowerCase()
@@ -209,6 +225,11 @@ export default function useSend (isSendTab?: boolean) {
     // If success true, will set toAddress else will return error message.
     if (endsWithAny(supportedUDExtensions, valueToLowerCase)) {
       handleUDAddressLookUp(addressOrUrl)
+      return
+    }
+
+    if (endsWithAny(supportedOneIDExtensions, valueToLowerCase)) {
+      handleOneIDAddressLookUp(addressOrUrl)
       return
     }
 
@@ -237,7 +258,7 @@ export default function useSend (isSendTab?: boolean) {
     // Reset error and warning state back to normal
     setAddressWarning('')
     setAddressError('')
-  }, [selectedAccount?.address, handleUDAddressLookUp])
+  }, [selectedAccount?.address, handleUDAddressLookUp, handleOneIDAddressLookUp])
 
   const processSolanaAddress = React.useCallback((addressOrUrl: string) => {
     const valueToLowerCase = addressOrUrl.toLowerCase()
@@ -246,6 +267,11 @@ export default function useSend (isSendTab?: boolean) {
     // If success true, will set toAddress else will return error message.
     if (endsWithAny(supportedUDExtensions, valueToLowerCase)) {
       handleUDAddressLookUp(addressOrUrl)
+      return
+    }
+
+    if (endsWithAny(supportedOneIDExtensions, valueToLowerCase)) {
+      handleOneIDAddressLookUp(addressOrUrl)
       return
     }
 
@@ -301,7 +327,7 @@ export default function useSend (isSendTab?: boolean) {
       setAddressWarning('')
       setAddressError('')
     })
-  }, [selectedAccount?.address, fullTokenList, handleUDAddressLookUp, handleDomainLookupResponse])
+  }, [selectedAccount?.address, fullTokenList, handleUDAddressLookUp, handleOneIDAddressLookUp, handleDomainLookupResponse])
 
   const processAddressOrUrl = React.useCallback((addressOrUrl: string) => {
     if (selectedAccount?.coin === BraveWallet.CoinType.ETH) {
