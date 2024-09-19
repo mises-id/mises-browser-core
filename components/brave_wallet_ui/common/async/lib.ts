@@ -198,6 +198,19 @@ export async function findUnstoppableDomainAddress (address: string, token: Brav
   return apiProxy.jsonRpcService.unstoppableDomainsGetWalletAddr(address, token)
 }
 
+export async function findOneIDAddress (address: string, token: BraveWallet.BlockchainToken | null) {
+  const res = await (chrome as any).misesPrivate.fetchJson("https://oneid.mises.site/resolve?address=" + address) // ETH
+  if(res) {
+    const data = JSON.parse(res);
+    if (data.address.length > 0) {
+      return {address:data.address, error: BraveWallet.ProviderError.kSuccess};
+    }
+    return data
+  }
+
+  return {address:"", error: { code: -1, message: "oneid api error"}};
+}
+
 export async function getBlockchainTokenInfo (contractAddress: string): Promise<GetBlockchainTokenInfoReturnInfo> {
   const apiProxy = getAPIProxy()
   return (await apiProxy.assetRatioService.getTokenInfo(contractAddress))

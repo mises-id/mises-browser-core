@@ -589,6 +589,11 @@ export type GetEthAddrReturnInfo = BraveWallet.JsonRpcService_EnsGetEthAddr_Resp
 export type GetSolAddrReturnInfo = BraveWallet.JsonRpcService_SnsGetSolAddr_ResponseParams
 export type GetUnstoppableDomainsWalletAddrReturnInfo = BraveWallet.JsonRpcService_UnstoppableDomainsGetWalletAddr_ResponseParams
 
+export interface GetOneIDWalletAddrReturnInfo  {
+  address: string,
+  error: BraveWallet.ProviderError
+}
+
 export interface GetBlockchainTokenInfoReturnInfo {
   token: BraveWallet.BlockchainToken | null
 }
