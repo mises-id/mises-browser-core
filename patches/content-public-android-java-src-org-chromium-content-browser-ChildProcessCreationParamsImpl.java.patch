@@ -1,8 +1,8 @@
 diff --git a/content/public/android/java/src/org/chromium/content/browser/ChildProcessCreationParamsImpl.java b/content/public/android/java/src/org/chromium/content/browser/ChildProcessCreationParamsImpl.java
-index 46804b0711a24104d012c641826087d6721149a0..e6fdcd303d7efdeda0f3e19677dbc4c46b77a0ed 100644
+index 7a9bd887b7ea560697a9dc6416a4400c7fc2d068..a97b6bb475ccd69a4d8b80f3c30cd78a49c9ff27 100644
 --- a/content/public/android/java/src/org/chromium/content/browser/ChildProcessCreationParamsImpl.java
 +++ b/content/public/android/java/src/org/chromium/content/browser/ChildProcessCreationParamsImpl.java
-@@ -18,7 +18,7 @@ public class ChildProcessCreationParamsImpl {
+@@ -16,7 +16,7 @@ public class ChildProcessCreationParamsImpl {
      private static final String PRIVILEGED_SERVICES_NAME =
              "org.chromium.content.app.PrivilegedProcessService";
      private static final String SANDBOXED_SERVICES_NAME =

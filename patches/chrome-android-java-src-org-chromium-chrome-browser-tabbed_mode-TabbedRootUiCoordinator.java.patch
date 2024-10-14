@@ -1,17 +1,17 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-index 8de071f8a47673e5857fdc9c9d6197c99917171e..f5e29648235fad26a523f214255e92d2eea3a30f 100644
+index 751c747f216a2810bec94483a61f1e1241cde201..fa67cbc80b16637d236b7758bc63b0c9eaf91d13 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-@@ -131,6 +131,8 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
+@@ -152,6 +152,8 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
  import java.util.function.BooleanSupplier;
  import java.util.function.Function;
  
 +import org.chromium.base.ContextUtils;
 +
- /**
-  * A {@link RootUiCoordinator} variant that controls tabbed-mode specific UI.
-  */
-@@ -604,6 +606,9 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+ /** A {@link RootUiCoordinator} variant that controls tabbed-mode specific UI. */
+ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+     private static boolean sDisableTopControlsAnimationForTesting;
+@@ -772,6 +774,9 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
  
          initStatusIndicatorCoordinator(layoutManager);
          mLayoutManager = layoutManager;
@@ -21,26 +21,22 @@ index 8de071f8a47673e5857fdc9c9d6197c99917171e..f5e29648235fad26a523f214255e92d2
      }
  
      @Override
-@@ -823,9 +828,11 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
-     private void updateTopControlsHeight(boolean animate) {
-         final BrowserControlsSizer browserControlsSizer = mBrowserControlsManager;
-         final int resourceId = mControlContainerHeightResource;
--        final int topControlsNewHeight =
-+        int topControlsNewHeight =
-                 mActivity.getResources().getDimensionPixelSize(resourceId) + mStatusIndicatorHeight;
--
+@@ -1030,6 +1035,9 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+             ChromePureJavaExceptionReporter.reportJavaException(new Throwable(msg));
+         }
+ 
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
 +            topControlsNewHeight = mStatusIndicatorHeight;
 +        }
          browserControlsSizer.setAnimateBrowserControlsHeightChanges(animate);
          browserControlsSizer.setTopControlsHeight(topControlsNewHeight, mStatusIndicatorHeight);
          if (animate) browserControlsSizer.setAnimateBrowserControlsHeightChanges(false);
-@@ -844,6 +851,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
+@@ -1056,6 +1064,8 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator {
      }
  
      private void initStatusIndicatorCoordinator(LayoutManagerImpl layoutManager) {
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false))
 +            return;
-         // TODO(crbug.com/1035584): Disable on tablets for now as we need to do one or two extra
+         // TODO(crbug.com/40112282): Disable on tablets for now as we need to do one or two extra
          // things for tablets.
          if (DeviceFormFactor.isNonMultiDisplayContextOnTablet(mActivity)) {

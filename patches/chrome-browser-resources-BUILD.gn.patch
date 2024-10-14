@@ -1,17 +1,17 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bcf42e75bc 100644
+index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074a3d59f2b 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
-@@ -19,7 +19,7 @@ assert(!is_ios, "Chromium/iOS shouldn't use anything in //chrome")
- group("resources") {
-   public_deps = [ "segmentation_internals:resources" ]
+@@ -21,7 +21,7 @@ group("resources") {
+     "segmentation_internals:resources",
+   ]
  
 -  if (!is_android) {
 +  if (true || !is_android) {
      public_deps += [
        ":app_icon_resources",
        ":component_extension_resources",
-@@ -109,6 +109,11 @@ group("resources") {
+@@ -125,12 +125,17 @@ group("resources") {
        "app_settings:resources",
      ]
    }
@@ -23,7 +23,14 @@ index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bc
  
    if (is_linux || is_chromeos) {
      public_deps += [ "webui_js_error:resources" ]
-@@ -169,7 +174,7 @@ if (is_chromeos_ash && enable_js_type_check) {
+   }
+ 
+-  if (!is_android && !is_chromeos_ash) {
++  if (is_android || !is_android && !is_chromeos_ash) {
+     public_deps += [
+       "inline_login:resources",
+       "intro:resources",
+@@ -177,7 +182,7 @@ if (is_chromeos_ash && enable_js_type_check) {
    }
  }
  
@@ -32,7 +39,7 @@ index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bc
    grit("component_extension_resources") {
      source = "component_extension_resources.grd"
  
-@@ -265,7 +270,8 @@ group("dev_ui_resources") {
+@@ -294,7 +299,8 @@ group("dev_ui_resources") {
        "//chrome/browser/resources/feed_internals:resources",
        "//chrome/browser/resources/webapks:resources",
      ]
@@ -42,7 +49,7 @@ index 93a738e26e5ed5cd3699f0a3531948589a632997..cf02fe99bf5db8d5513147a9e52d04bc
      public_deps += [
        "media_router/internals:resources",
        "on_device_internals:resources",
-@@ -320,7 +326,8 @@ repack("dev_ui_paks") {
+@@ -352,7 +358,8 @@ repack("dev_ui_paks") {
        "$root_gen_dir/chrome/feed_internals_resources.pak",
        "$root_gen_dir/chrome/webapks_resources.pak",
      ]

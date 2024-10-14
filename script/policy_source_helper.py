@@ -8,6 +8,76 @@
 
 CHROMIUM_POLICY_KEY = 'SOFTWARE\\\\Policies\\\\MisesSoftware\\\\Mises'
 
+android_fix = [
+"CloudExtensionRequestEnabled",
+"BlockExternalExtensions",
+"ChromeAppsWebViewPermissiveBehaviorAllowed",
+"ExtensionAllowInsecureUpdates",
+"ExtensionAllowedTypes",
+"ExtensionExtendedBackgroundLifetimeForPortConnectionsToUrls",
+"ExtensionInstallAllowlist",
+"ExtensionInstallBlocklist",
+"ExtensionInstallForcelist",
+"ExtensionInstallSources",
+"ExtensionManifestV2Availability",
+"ExtensionSettings",
+"ExtensionUnpublishedAvailability",
+"AllowDeletingBrowserHistory",
+"AllowFileSelectionDialogs",
+"AutoLaunchProtocolsFromOrigins",
+"AutoOpenFileTypes",
+"BrowserGuestModeEnabled",
+"BrowserThemeColor",
+"DefaultDownloadDirectory",
+"DeveloperToolsAvailability",
+"DeveloperToolsDisabled",
+"DiskCacheDir",
+"DownloadDirectory",
+"FullscreenAllowed",
+"HeadlessMode",
+"ManagedAccountsSigninRestriction",
+"NTPCustomBackgroundEnabled",
+"WebAppSettings",
+"Startup-RestoreOnStartup",
+]
+ios_fix = [
+    "FullscreenAllowed",
+    "IsolatedAppsDeveloperModeAllowed",
+    "DefaultMidiSetting",
+    "MidiAllowedForUrls",
+    "MidiBlockedForUrls",
+    "CloudProfileReportingEnabled",
+
+]
+
+def NeedFixForIOS(policy):
+    if policy["name"] in ios_fix:
+        return True
+    if 'supported_on' not in policy:
+        return False
+    supported_ons = policy['supported_on']
+    for supported_on in supported_ons:
+        if supported_on.startswith("ios"):
+            return False
+    for supported_on in supported_ons:
+        if supported_on.startswith("chrome.*:"):
+            return True
+    for supported_on in supported_ons:
+        if supported_on.startswith("chrome.mac:"):
+            return True
+    return False
+
+def FixPolicies(policies):
+    for policy in policies:
+        if policy["name"] in android_fix:
+            print('fixing policy for android %s' % policy["name"])
+            policy['supported_on'].append("android:112-")
+        if NeedFixForIOS(policy):
+            print('fixing policy for ios %s' % policy["name"])
+            if 'supported_on' not in policy:
+                policy['supported_on'] = []
+            policy['supported_on'].append("ios:120-")
+    return policies
 
 def AddMisesPolicies(template_file_contents):
     highest_id = template_file_contents['highest_id_currently_used']
@@ -36,8 +106,8 @@ def AddMisesPolicies(template_file_contents):
             'name': 'IPFSEnabled',
             'type': 'main',
             'schema': {'type': 'boolean'},
-            'supported_on': ['chrome.*:87-'],
-            'future_on': ['android'],
+            'supported_on': ['chrome.*:87-', 'android:112-', 'ios:120-'],
+            'future_on': [],
             'features': {
                 'dynamic_refresh': False,
                 'per_profile': True,
@@ -52,6 +122,8 @@ def AddMisesPolicies(template_file_contents):
                      '''feature can be enabled.'''),
         }
     ]
+    old_policies = template_file_contents['policy_definitions']
+    template_file_contents['policy_definitions'] = FixPolicies(old_policies)
 
     # Our new polices are added with highest id
     next_id = highest_id + 1

@@ -53,7 +53,7 @@ def check_root():
 
 
 def setup_python_libs():
-    for lib in ('requests', 'boto'):
+    for lib in ('boto',):
         with scoped_cwd(os.path.join(VENDOR_DIR, lib)):
             execute_stdout([sys.executable, 'setup.py', 'build'])
 

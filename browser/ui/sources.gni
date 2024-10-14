@@ -2,6 +2,7 @@ mises_browser_ui_sources = []
 mises_browser_ui_exception_sources = []
 mises_browser_ui_deps = []
 mises_browser_ui_exception_deps = []
+mises_browser_ui_exception_allow_circular_includes_from = []
 if (is_android) {
   mises_browser_ui_sources += [
       "//mises/chromium_src/chrome/browser/ui/window_sizer/window_sizer_android.cc",
@@ -103,8 +104,6 @@ if (is_android) {
       "views/autofill/payments/promo_code_label_button.h",
       "views/autofill/payments/save_card_bubble_views.cc",
       "views/autofill/payments/save_card_bubble_views.h",
-      "views/autofill/payments/save_card_failure_bubble_views.cc",
-      "views/autofill/payments/save_card_failure_bubble_views.h",
       "views/autofill/payments/save_card_manage_cards_bubble_views.cc",
       "views/autofill/payments/save_card_manage_cards_bubble_views.h",
       "views/autofill/payments/save_card_offer_bubble_views.cc",
@@ -144,8 +143,6 @@ if (is_android) {
       "webui/settings/settings_ui.cc",
 
       
-
-      "views/apps/app_dialog/app_uninstall_dialog_view.cc",
       "views/infobars/confirm_infobar.cc",
       "views/infobars/confirm_infobar.h",
       "views/page_info/safety_tip_page_info_bubble_view.cc",
@@ -227,8 +224,6 @@ if (is_android) {
 
       "views/bookmarks/bookmark_editor_view.cc",
       "views/commerce/price_tracking_icon_view.cc",
-      "views/performance_controls/high_efficiency_chip_view.cc",
-      "views/performance_controls/high_efficiency_bubble_view.cc",
       "views/media_router/cast_dialog_coordinator.cc",
 
       "views/side_search/side_search_icon_view.cc",
@@ -239,7 +234,7 @@ if (is_android) {
       "tabs/tab_model.h",
 
       "views/frame/picture_in_picture_browser_frame_view.cc",
-      "plus_addresses/plus_address_creation_controller_desktop.cc",
+      "views/plus_addresses/plus_address_creation_controller_desktop.cc",
       "views/login_handler_views.cc",
 
   ]
@@ -248,6 +243,29 @@ if (is_android) {
   ]
   mises_browser_ui_exception_deps += [
     "//components/live_caption",
+    "//chrome/browser/ui/toasts",
+    "//chrome/browser/ui/webui/util",
+    "//chrome/browser/ui/views/bubble",
+    "//chrome/browser/companion/visual_query",
+    "//chrome/browser/companion/core",
+    "//chrome/browser/ui/webui/searchbox",
+     "//chrome/browser/apps/app_service/app_icon:util",
+     "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
+     "//chrome/browser/ui/permission_bubble",
+     "//chrome/browser/lens/region_search",
+     "//chrome/browser/ui/exclusive_access",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
+
+      "//chrome/browser/screen_ai:screen_ai_install_state",
+      "//chrome/browser/screen_ai:screen_ai_service_router_factory",
+      "//components/search_engines:generate_search_engine_icons",
+      "//chrome/browser/headless:command_processor",
+  ]
+  mises_browser_ui_exception_allow_circular_includes_from += [
+    "//chrome/browser/ui/views/bubble",
+    "//chrome/browser/ui/webui/searchbox",
+    "//chrome/browser/lens/region_search",
+    "//chrome/browser/ui/exclusive_access",
+
   ]
 }

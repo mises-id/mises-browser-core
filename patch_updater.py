@@ -18,6 +18,7 @@ class Applier():
         self.dryrun = dryrun
         #res = glob.glob("patches/err/*.patch", recursive=True)
         res = glob.glob("patches/err/grd_patches/*.patch", recursive=True)
+        res = sorted(res, key=str.lower)
 
         for path in res:
             self.files.append(path)

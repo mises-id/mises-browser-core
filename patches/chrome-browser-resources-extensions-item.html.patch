@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/item.html b/chrome/browser/resources/extensions/item.html
-index 73fb2ba81753f52fd9de15ccd62c526192f12af1..7b8056a6509f2e4db2b28993d722c95406026236 100644
+index 5d41296baa75cc3d125f2568c7212bb3c1a1c3cc..43e7f1490017fde77470f5483b4620aef1c29dc5 100644
 --- a/chrome/browser/resources/extensions/item.html
 +++ b/chrome/browser/resources/extensions/item.html
 @@ -46,6 +46,8 @@
@@ -22,12 +22,12 @@ index 73fb2ba81753f52fd9de15ccd62c526192f12af1..7b8056a6509f2e4db2b28993d722c954
  </style>
  <!-- Invisible instead of hidden because VoiceOver refuses to read text of
    element that's hidden when referenced by an aria label.  Unfortunately,
-@@ -339,7 +345,7 @@
+@@ -350,7 +356,7 @@
          icon-aria-label="$i18n{parentDisabledPermissions}">
      </cr-tooltip-icon>
-     <paper-tooltip id="enable-toggle-tooltip" for="enableToggle" position="left"
+     <cr-tooltip id="enable-toggle-tooltip" for="enableToggle" position="left"
 -        aria-hidden="true" animation-delay="0" fit-to-visible-bounds>
 +        aria-hidden="true" animation-delay="0" fit-to-visible-bounds hidden>
        [[getEnableToggleTooltipText_(data.*)]]
-     </paper-tooltip>
+     </cr-tooltip>
      <cr-toggle id="enableToggle"

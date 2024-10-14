@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/image_editor/screenshot_flow.cc b/chrome/browser/image_editor/screenshot_flow.cc
-index 307688508ee7f494d4b12b525bfe6986fa2b7404..cfa4483b96f832c7002098049ebc0a50e4f73330 100644
+index b0aeb45900af93133e535240782da7e9d1605a3f..96d0aafa01c68c125de31e9cabd2e4b555f37fa5 100644
 --- a/chrome/browser/image_editor/screenshot_flow.cc
 +++ b/chrome/browser/image_editor/screenshot_flow.cc
 @@ -91,15 +91,19 @@ void ScreenshotFlow::CreateAndAddUIOverlay() {
@@ -44,24 +44,23 @@ index 307688508ee7f494d4b12b525bfe6986fa2b7404..cfa4483b96f832c7002098049ebc0a50
    screen_capture_layer_->set_delegate(nullptr);
    screen_capture_layer_.reset();
  
-@@ -169,7 +175,7 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
+@@ -169,13 +175,14 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
      RunScreenshotCompleteCallback(result_code, gfx::Rect(), gfx::Image());
      return;
    }
 -
 +#if !BUILDFLAG(IS_ANDROID)
    gfx::Rect bounds = web_contents_->GetViewBounds();
- #if BUILDFLAG(IS_MAC)
-   const gfx::NativeView& native_view = web_contents_->GetContentNativeView();
-@@ -187,6 +193,7 @@ void ScreenshotFlow::CaptureAndRunScreenshotCompleteCallback(
-   ui::GrabWindowSnapshotAsync(native_window, region,
-                               std::move(screenshot_callback));
- #endif
+   ui::GrabSnapshotImageCallback screenshot_callback =
+       base::BindOnce(&ScreenshotFlow::RunScreenshotCompleteCallback, weak_this_,
+                      result_code, bounds);
+   ui::GrabViewSnapshot(web_contents_->GetNativeView(), region,
+                        std::move(screenshot_callback));
 +#endif
  }
  
  void ScreenshotFlow::CancelCapture() {
-@@ -319,6 +326,7 @@ bool ScreenshotFlow::IsUIOverlayShown() {
+@@ -309,6 +316,7 @@ bool ScreenshotFlow::IsUIOverlayShown() {
  }
  
  void ScreenshotFlow::ResetUIOverlayBounds() {
@@ -69,7 +68,7 @@ index 307688508ee7f494d4b12b525bfe6986fa2b7404..cfa4483b96f832c7002098049ebc0a50
  #if BUILDFLAG(IS_MAC)
    gfx::Rect bounds = web_contents_->GetViewBounds();
    const gfx::NativeView web_contents_view =
-@@ -334,6 +342,7 @@ void ScreenshotFlow::ResetUIOverlayBounds() {
+@@ -324,6 +332,7 @@ void ScreenshotFlow::ResetUIOverlayBounds() {
    const gfx::Rect bounds = native_window->bounds();
  #endif
    screen_capture_layer_->SetBounds(bounds);

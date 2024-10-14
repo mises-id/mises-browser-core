@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/most_visited/BUILD.gn b/ui/webui/resources/cr_components/most_visited/BUILD.gn
-index 5576038a93b5095ff2cb8350e21605aa7581e8ec..6746543b97cb8e31b27b248c1dad8bfe9859de53 100644
+index 5254ab24238c1caaefa4612978ec3a683c675147..fad0dbca0e3d74caf56e5510a30a4e7a375824e6 100644
 --- a/ui/webui/resources/cr_components/most_visited/BUILD.gn
 +++ b/ui/webui/resources/cr_components/most_visited/BUILD.gn
 @@ -5,7 +5,7 @@

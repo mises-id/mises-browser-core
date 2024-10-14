@@ -1,15 +1,13 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-index 728151300ef075cf94f20f210c928671275349e1..8c9586b7b134820c209b767c2b8754f38a35e912 100644
+index c13027d1f5e64d32d0b7eea88fb5574289351dc9..2a528838bc7007d03441131f092c6bfa8f5fd9a5 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/status/StatusMediator.java
-@@ -565,8 +565,8 @@ public class StatusMediator
+@@ -541,6 +541,8 @@ public class StatusMediator
              return true;
          }
  
--        return (mUrlHasFocus || mUrlFocusPercent > 0)
--                && isNTPOrStartSurfaceVisible()
-+        boolean mises_enforced = false;
-+        return mises_enforced && (mUrlHasFocus || mUrlFocusPercent > 0) && isNTPOrStartSurfaceVisible()
++        boolean mises_enforced = true;
++        if (mises_enforced) return false;
+         return (mUrlHasFocus || mUrlFocusPercent > 0)
+                 && isNtpVisible()
                  && mProfileSupplier.hasValue();
-     }
- 

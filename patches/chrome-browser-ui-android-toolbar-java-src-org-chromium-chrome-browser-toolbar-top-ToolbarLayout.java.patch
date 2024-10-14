@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
-index e1b6d4913c7c6b23942363c2f47d9caf65798f07..d57b06309072d1c81e34545fbdfb8bb35a857d71 100644
+index 7b2d972a236b74de8b56a59f4025105008074d6d..7d2637de578433e8f8bdaf54f80ab34d3f143851 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
-@@ -67,13 +67,31 @@ import org.chromium.url.GURL;
+@@ -70,13 +70,31 @@ import org.chromium.url.GURL;
  
  import java.util.function.BooleanSupplier;
  
@@ -29,15 +29,15 @@ index e1b6d4913c7c6b23942363c2f47d9caf65798f07..d57b06309072d1c81e34545fbdfb8bb3
   * interaction that are not from Views inside Toolbar hierarchy all interactions should be done
   * through {@link Toolbar} rather than using this class directly.
   */
- public abstract class ToolbarLayout
--        extends FrameLayout implements Destroyable, TintObserver, ThemeColorObserver {
-+        extends FrameLayout implements Destroyable, TintObserver, ThemeColorObserver, MisesController.MisesControllerObserver {
-     private Callback<Runnable> mInvalidator;
+ public abstract class ToolbarLayout extends FrameLayout
+-        implements Destroyable, TintObserver, ThemeColorObserver {
++        implements Destroyable, TintObserver, ThemeColorObserver, MisesController.MisesControllerObserver {
      private @Nullable ToolbarColorObserver mToolbarColorObserver;
  
-@@ -106,6 +124,11 @@ public abstract class ToolbarLayout
- 
-     protected final DestroyChecker mDestroyChecker;
+     protected final ObserverList<UrlExpansionObserver> mUrlExpansionObservers =
+@@ -148,6 +166,11 @@ public abstract class ToolbarLayout extends FrameLayout
+                 });
+     }
  
 +    @Nullable
 +    protected ChromeImageButton mMisesExtensionButton;
@@ -45,9 +45,9 @@ index e1b6d4913c7c6b23942363c2f47d9caf65798f07..d57b06309072d1c81e34545fbdfb8bb3
 +    protected Drawable mExtensionButtonDrawableOveride;
 +
      /**
-      * Basic constructor for {@link ToolbarLayout}.
-      */
-@@ -189,6 +212,7 @@ public abstract class ToolbarLayout
+      * Initialize the external dependencies required for view interaction.
+      *
+@@ -219,6 +242,7 @@ public abstract class ToolbarLayout extends FrameLayout
          if (mToolbarColorObserver != null) {
              mToolbarColorObserver = null;
          }
@@ -55,19 +55,19 @@ index e1b6d4913c7c6b23942363c2f47d9caf65798f07..d57b06309072d1c81e34545fbdfb8bb3
      }
  
      /**
-@@ -347,6 +371,8 @@ public abstract class ToolbarLayout
-                 return false;
-             }
-         };
-+
-+        MisesController.getInstance().AddObserver(this);
-     }
+@@ -345,6 +369,8 @@ public abstract class ToolbarLayout extends FrameLayout
+     protected void onFinishInflate() {
+         super.onFinishInflate();
  
-     @Override
-@@ -913,4 +939,74 @@ public abstract class ToolbarLayout
-      * {@link LayoutStateProvider.LayoutStateObserver#onFinishedShowing(int)}.
-      */
-     public void onTransitionEnd() {}
++        MisesController.getInstance().AddObserver(this);
++
+         // Initialize the provider to an empty version to avoid null checking everywhere.
+         mToolbarDataProvider =
+                 new ToolbarDataProvider() {
+@@ -978,4 +1004,74 @@ public abstract class ToolbarLayout extends FrameLayout
+             BrowserUiUtils.recordModuleClickHistogram(ModuleTypeOnStartAndNtp.HOME_BUTTON);
+         }
+     }
 +
 +    protected static Bitmap decodeBitmapFromString(String encodedString) {
 +        if (TextUtils.isEmpty(encodedString)) {

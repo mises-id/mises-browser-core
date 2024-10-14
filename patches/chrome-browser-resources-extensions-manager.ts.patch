@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/extensions/manager.ts b/chrome/browser/resources/extensions/manager.ts
-index a8ae24bb7fb91d82ea032a0ac6aea4c5736c3058..82bd1df05bdcd0903ce0e174a614b708c01d75f6 100644
+index 512c3d753d43be775f65cd453c94f009799ad30f..cdb6348093e4f131d30b04ed20bcb325541e2fc7 100644
 --- a/chrome/browser/resources/extensions/manager.ts
 +++ b/chrome/browser/resources/extensions/manager.ts
-@@ -28,6 +28,8 @@ import './toolbar.js';
- import './kiosk_dialog.js';
- 
- // </if>
+@@ -24,6 +24,8 @@ import './sidebar.js';
+ import './site_permissions/site_permissions.js';
+ import './site_permissions/site_permissions_by_site.js';
+ import './toolbar.js';
 +import './mises_open_web_store_footer.js'
 +import './mises_default_extension_setting.js';
  
  import {CrContainerShadowMixin} from 'chrome://resources/cr_elements/cr_container_shadow_mixin.js';
- import {CrViewManagerElement} from 'chrome://resources/cr_elements/cr_view_manager/cr_view_manager.js';
+ import type {CrViewManagerElement} from 'chrome://resources/cr_elements/cr_view_manager/cr_view_manager.js';

@@ -1,5 +1,5 @@
 diff --git a/device/fido/fido_device_discovery.cc b/device/fido/fido_device_discovery.cc
-index d3d30dcfbb0e0d7c2418f00937896c435dc0b108..0bd04ea22783e1fc9fa4d5b25ab49c307f58aa25 100644
+index e5b4007bca6df8422f35ed96652d39490ba2d1d8..608f3b1bf1f2d27423c6650b29ec7deec35a9e18 100644
 --- a/device/fido/fido_device_discovery.cc
 +++ b/device/fido/fido_device_discovery.cc
 @@ -81,8 +81,12 @@ FidoDeviceAuthenticator* FidoDeviceDiscovery::GetAuthenticatorForTesting(

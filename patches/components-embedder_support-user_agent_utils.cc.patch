@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/user_agent_utils.cc b/components/embedder_support/user_agent_utils.cc
-index c957a691efcac5c4574fae032a876d97ad60fafc..c6a9f5c21aea2ab2932ffadb87cc2616b2398485 100644
+index 0d9ed98759c4bc39ae06b1c554079b6e12d3463d..1ce60fb3f67cbbf4fa3e6d0d4e88839dc89e591f 100644
 --- a/components/embedder_support/user_agent_utils.cc
 +++ b/components/embedder_support/user_agent_utils.cc
 @@ -190,6 +190,7 @@ const blink::UserAgentBrandList GetUserAgentBrandList(
@@ -7,6 +7,15 @@ index c957a691efcac5c4574fae032a876d97ad60fafc..c6a9f5c21aea2ab2932ffadb87cc2616
    brand = version_info::GetProductName();
  #endif
 +  MISES_GET_USER_AGENT_BRAND_LIST
-   absl::optional<std::string> maybe_brand_override =
+   std::optional<std::string> maybe_brand_override =
        base::GetFieldTrialParamValueByFeature(features::kGreaseUACH,
                                               "brand_override");
+@@ -203,7 +204,7 @@ const blink::UserAgentBrandList GetUserAgentBrandList(
+ 
+   std::string brand_version =
+       output_version_type == blink::UserAgentBrandVersionType::kFullVersion
+-          ? full_version
++          ? MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE
+           : major_version;
+ 
+   return GenerateBrandVersionList(major_version_number, brand, brand_version,

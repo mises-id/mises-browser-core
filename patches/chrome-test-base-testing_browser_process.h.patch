@@ -1,8 +1,8 @@
 diff --git a/chrome/test/base/testing_browser_process.h b/chrome/test/base/testing_browser_process.h
-index 445052fd977614369329581cf24f52223454c171..19807e13855998081a5265b341ea521bb7a47370 100644
+index 8ef74cba6456d1e97fa2bf1e406cacf217e0fc1c..a208364395cbacdb7275101d87db31f29d573cea 100644
 --- a/chrome/test/base/testing_browser_process.h
 +++ b/chrome/test/base/testing_browser_process.h
-@@ -27,7 +27,7 @@
+@@ -28,7 +28,7 @@
  #include "media/media_buildflags.h"
  #include "printing/buildflags/buildflags.h"
  
@@ -11,8 +11,8 @@ index 445052fd977614369329581cf24f52223454c171..19807e13855998081a5265b341ea521b
  #include "chrome/browser/upgrade_detector/build_state.h"
  #endif
  
-@@ -121,7 +121,7 @@ class TestingBrowserProcess : public BrowserProcess {
-   extensions::EventRouterForwarder* extension_event_router_forwarder() override;
+@@ -125,7 +125,7 @@ class TestingBrowserProcess : public BrowserProcess {
+ 
    NotificationUIManager* notification_ui_manager() override;
    NotificationPlatformBridge* notification_platform_bridge() override;
 -#if !BUILDFLAG(IS_ANDROID)
@@ -20,7 +20,7 @@ index 445052fd977614369329581cf24f52223454c171..19807e13855998081a5265b341ea521b
    IntranetRedirectDetector* intranet_redirect_detector() override;
  #endif
    void CreateDevToolsProtocolHandler() override;
-@@ -150,13 +150,13 @@ class TestingBrowserProcess : public BrowserProcess {
+@@ -154,13 +154,13 @@ class TestingBrowserProcess : public BrowserProcess {
  
    network_time::NetworkTimeTracker* network_time_tracker() override;
  
@@ -36,7 +36,7 @@ index 445052fd977614369329581cf24f52223454c171..19807e13855998081a5265b341ea521b
    SerialPolicyAllowedPorts* serial_policy_allowed_ports() override;
    HidSystemTrayIcon* hid_system_tray_icon() override;
    UsbSystemTrayIcon* usb_system_tray_icon() override;
-@@ -259,7 +259,7 @@ class TestingBrowserProcess : public BrowserProcess {
+@@ -275,7 +275,7 @@ class TestingBrowserProcess : public BrowserProcess {
    std::unique_ptr<resource_coordinator::ResourceCoordinatorParts>
        resource_coordinator_parts_;
  

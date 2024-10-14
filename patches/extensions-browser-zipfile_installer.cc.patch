@@ -1,8 +1,8 @@
 diff --git a/extensions/browser/zipfile_installer.cc b/extensions/browser/zipfile_installer.cc
-index 3d88f824ae7dacc38b56f1dcb0db0707d9719c5e..0a38fb5984c134bdc3b29fbf2b70b1b488e2aaa1 100644
+index 8783c13d1b6b16669b6893a82bcb57b698d54e28..4650ff2ad6b47de512f5730ebca5b75f9c51faec 100644
 --- a/extensions/browser/zipfile_installer.cc
 +++ b/extensions/browser/zipfile_installer.cc
-@@ -28,6 +28,7 @@
+@@ -29,6 +29,7 @@
  namespace extensions {
  
  namespace {
@@ -10,7 +10,7 @@ index 3d88f824ae7dacc38b56f1dcb0db0707d9719c5e..0a38fb5984c134bdc3b29fbf2b70b1b4
  
  constexpr char kExtensionHandlerTempDirError[] =
      "Could not create temporary directory for zipped extension.";
-@@ -198,10 +199,12 @@ void ZipFileInstaller::ManifestUnzipped(const base::FilePath& unzip_dir,
+@@ -200,10 +201,12 @@ void ZipFileInstaller::ManifestUnzipped(const base::FilePath& unzip_dir,
          : ReportFailure(kExtensionHandlerFileUnzipError);
      return;
    }
@@ -24,7 +24,7 @@ index 3d88f824ae7dacc38b56f1dcb0db0707d9719c5e..0a38fb5984c134bdc3b29fbf2b70b1b4
        base::BindOnce(&ZipFileInstaller::ManifestRead, this, unzip_dir));
  }
  
-@@ -275,7 +278,9 @@ void ZipFileInstaller::UnzipDone(const base::FilePath& unzip_dir,
+@@ -276,7 +279,9 @@ void ZipFileInstaller::UnzipDone(const base::FilePath& unzip_dir,
      return;
    }
  
@@ -35,7 +35,7 @@ index 3d88f824ae7dacc38b56f1dcb0db0707d9719c5e..0a38fb5984c134bdc3b29fbf2b70b1b4
  }
  
  void ZipFileInstaller::ReportFailure(const std::string& error) {
-@@ -302,6 +307,12 @@ bool ZipFileInstaller::ShouldExtractFile(bool is_theme,
+@@ -304,6 +309,12 @@ bool ZipFileInstaller::ShouldExtractFile(bool is_theme,
  // static
  bool ZipFileInstaller::IsManifestFile(const base::FilePath& file_path) {
    CHECK(!file_path.IsAbsolute());

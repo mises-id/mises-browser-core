@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
-index 2fc5e329197ca120193bfebd6da512c5d0da82d6..f9d2d0256e7e8f8168e25cc27b0b5129cb2c325f 100644
+index 10eb99b99825a529aac7d7e6149cebc57e67f0f7..f2a069359822a2143993a5c7b1d6bb7fb778cea5 100644
 --- a/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
 +++ b/chrome/browser/tab_group/java/src/org/chromium/chrome/browser/tasks/tab_groups/TabGroupModelFilter.java
-@@ -820,6 +820,11 @@ public class TabGroupModelFilter extends TabModelFilter {
+@@ -1018,6 +1018,11 @@ public class TabGroupModelFilter extends TabModelFilter {
          return mAbsentSelectedTab == null;
      }
  

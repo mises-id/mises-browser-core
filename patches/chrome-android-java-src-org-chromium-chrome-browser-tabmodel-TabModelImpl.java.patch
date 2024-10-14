@@ -1,20 +1,25 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index ea4afd0e46918faa4e41e529ebbccd4fdd9ba26a..181d8be9483a32cc0784dfb4a3d01addc0555a65 100644
+index 9ea8672af6f78c5d410c514ee7893fc368ca67a8..f4b32c33cd8968d393a5c1b8fa31a043089004c7 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-@@ -779,9 +779,9 @@ public class TabModelImpl extends TabModelJniBridge {
-      */
+@@ -848,14 +848,14 @@ public class TabModelImpl extends TabModelJniBridge {
+     /** Used to restore tabs from native. */
      @Override
      protected boolean createTabWithWebContents(
--            Tab parent, Profile profile, WebContents webContents) {
-+            Tab parent, Profile profile, WebContents webContents, @TabLaunchType int type) {
+-            Tab parent, Profile profile, WebContents webContents, boolean select) {
++            Tab parent, Profile profile, WebContents webContents, boolean select, @TabLaunchType int type) {
          return getTabCreator(profile.isOffTheRecord())
--                .createTabWithWebContents(parent, webContents, TabLaunchType.FROM_RECENT_TABS);
-+                .createTabWithWebContents(parent, webContents, type);
+                 .createTabWithWebContents(
+                         parent,
+                         webContents,
+                         select
+                                 ? TabLaunchType.FROM_RECENT_TABS_FOREGROUND
+-                                : TabLaunchType.FROM_RECENT_TABS);
++                                : type);
      }
  
      @Override
-@@ -828,6 +828,24 @@ public class TabModelImpl extends TabModelJniBridge {
+@@ -907,6 +907,24 @@ public class TabModelImpl extends TabModelJniBridge {
          return mIndex;
      }
  

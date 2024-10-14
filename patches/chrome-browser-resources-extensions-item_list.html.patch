@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/extensions/item_list.html b/chrome/browser/resources/extensions/item_list.html
-index fb27d6f9b685ff137088bfba9333a42a1e3b0d6f..5cfdf461df47143eb9baaf36727142a11fd30d2b 100644
+index 4437b5ec9e6d02daca5d63c09e7b73f80e89f246..b9dad8c9a389baaffd2938625c0d0a73fb106280 100644
 --- a/chrome/browser/resources/extensions/item_list.html
 +++ b/chrome/browser/resources/extensions/item_list.html
 @@ -10,7 +10,7 @@
@@ -11,7 +11,7 @@ index fb27d6f9b685ff137088bfba9333a42a1e3b0d6f..5cfdf461df47143eb9baaf36727142a1
      padding: 24px 60px 64px;
    }
  
-@@ -43,7 +43,7 @@
+@@ -38,7 +38,7 @@
      display: grid;
      grid-column-gap: var(--grid-gutter);
      grid-row-gap: var(--grid-gutter);
@@ -20,7 +20,7 @@ index fb27d6f9b685ff137088bfba9333a42a1e3b0d6f..5cfdf461df47143eb9baaf36727142a1
      justify-content: center;
      margin: auto;
      max-width: calc(var(--extensions-card-width) * var(--max-columns) +
-@@ -110,7 +110,8 @@
+@@ -119,7 +119,8 @@
          hidden$="[[!shouldShowEmptyItemsMessage_(
              apps.length, extensions.length)]]">
        <span on-click="onNoExtensionsClick_">

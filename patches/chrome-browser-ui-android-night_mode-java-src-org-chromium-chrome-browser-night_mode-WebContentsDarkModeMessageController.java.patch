@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
-index df8e8db6bc4be3695126631279eb27ebc701bab2..5914835ac368b79bcb20ce236476e9343dcbf5f1 100644
+index b6fc5f23ddc6f23eebd8324a25965bf8c8a81602..cbbeec0c012b9d2c55c1a8e5f2b2eb42df2977a2 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeMessageController.java
-@@ -62,6 +62,8 @@ public class WebContentsDarkModeMessageController {
+@@ -60,6 +60,8 @@ public class WebContentsDarkModeMessageController {
       * @return Whether or not the user education message should be shown.
       */
      private static boolean shouldSendMessage(Profile profile, Context context) {

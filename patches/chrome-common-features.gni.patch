@@ -1,9 +1,9 @@
 diff --git a/chrome/common/features.gni b/chrome/common/features.gni
-index 74b29b9907c6ad7f2b28f806398aea5ad3e980ab..6648cb843496b5e35bd2cb533b1cad095c629562 100644
+index a584f49ecfb1b1a80df6cef083a49ecadf84751f..9efdf1978bfed8fa6b5b1d4d45b130793e94689d 100644
 --- a/chrome/common/features.gni
 +++ b/chrome/common/features.gni
-@@ -42,8 +42,8 @@ declare_args() {
-   chrome_root_store_policy_supported = is_android
+@@ -41,8 +41,8 @@ declare_args() {
+       is_win || is_mac || is_linux || is_chromeos
  
    # Enables support for background apps.
 -  enable_background_contents = !is_android
@@ -13,8 +13,8 @@ index 74b29b9907c6ad7f2b28f806398aea5ad3e980ab..6648cb843496b5e35bd2cb533b1cad09
  
    # Enables usage of notifications via Chrome's MessageCenter.
    enable_chrome_notifications = is_mac || is_win || is_linux || is_fuchsia
-@@ -73,7 +73,7 @@ declare_args() {
-   enable_wayland_server = is_chromeos_ash
+@@ -58,7 +58,7 @@ declare_args() {
+   enable_session_service = !is_android
  
    # Enables the webui certificate viewer dialog.
 -  enable_webui_certificate_viewer = toolkit_views

@@ -1,8 +1,8 @@
 diff --git a/build/util/lastchange.py b/build/util/lastchange.py
-index 98a6360b46872dbadb53aa5c832419c6f804fce5..e06ecb7196ed26235cc3226876521a083b286627 100755
+index 4dd828e310e7f76662b89cc1f54501cf90d7494d..a734c58321d3671e79bc5b5c1d1c834a515ccbbb 100755
 --- a/build/util/lastchange.py
 +++ b/build/util/lastchange.py
-@@ -123,14 +123,14 @@ def FetchGitRevision(directory, commit_filter, start_commit="HEAD"):
+@@ -133,14 +133,14 @@ def FetchGitRevision(directory, commit_filter, start_commit="HEAD"):
    """
    hash_ = ''
  

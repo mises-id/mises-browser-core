@@ -1,18 +1,37 @@
 diff --git a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-index c766ea32b6400b53b972067d282ad6802d182375..ba4c9ee1ba96a721d617e565332f7a6a16351e8e 100644
+index 2d24ce9acf54b957c6805026f73af961b9362e21..ccd438a18e087722b80a179e486d8317d5e0a9a2 100644
 --- a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
 +++ b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-@@ -80,9 +80,12 @@ public class DirectWritingSettingsHelper {
-                 // On some devices, the DirectWritingServiceCallback constructor is not available
-                 // so this throws a NoSuchMethodException.
-                 dwCallbackClass.getConstructor().isAccessible();
+@@ -25,6 +25,7 @@ public class DirectWritingSettingsHelper {
+     public static boolean isEnabled(Context context) {
+         // Samsung keyboard supports handwriting in Chrome and Webview from Android S onwards.
+         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return false;
++        if (!isDirectWritingServiceCallbackAvailable()) return false;
+         return isHoneyboardDefault(context) && isFeatureEnabled(context);
+     }
+ 
+@@ -64,4 +65,24 @@ public class DirectWritingSettingsHelper {
+         }
+         return false;
+     }
++    private static @Nullable Boolean sDirectWritingServiceCallbackAvailable;
++    private static boolean isDirectWritingServiceCallbackAvailable() {
++        if (sDirectWritingServiceCallbackAvailable == null) {
++            try {
++                Class dwCallbackClass =
++                        Class.forName(
++                                "org.chromium.components.stylus_handwriting.DirectWritingServiceCallback");
++                // On some devices, the DirectWritingServiceCallback constructor is not available
++                // so this throws a NoSuchMethodException.
++                dwCallbackClass.getConstructor().isAccessible();
 +                Class dwCallbackStubClass = Class.forName(
 +                        "android.widget.directwriting.IDirectWritingServiceCallback.Stub");
 +                dwCallbackStubClass.getConstructor().isAccessible();
-                 sDirectWritingServiceCallbackAvailable = true;
-                 logDWServiceCallbackFailed(false);
--            } catch (ClassNotFoundException | NoSuchMethodException e) {
-+            } catch (ClassNotFoundException | NoSuchMethodException | NoSuchMethodError e) {
-                 logDWServiceCallbackFailed(true);
-                 sDirectWritingServiceCallbackAvailable = false;
-             }
++                sDirectWritingServiceCallbackAvailable = true;
++            } catch (ClassNotFoundException | NoSuchMethodException e | NoSuchMethodError e) {
++                sDirectWritingServiceCallbackAvailable = false;
++            }
++        }
++        return sDirectWritingServiceCallbackAvailable;
++    }
+ }

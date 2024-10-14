@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/browser_process_impl.h b/chrome/browser/browser_process_impl.h
-index 906ec958256efb5645bd7e2ff18d630482fbf810..d8bc7cbf52c77490308539b907ce960147ea2b57 100644
+index c73845ee5a52ef723283ad914ab049b992caf51e..2902e1fe50b8131adf9f0305b8c87bc6d08f8fd1 100644
 --- a/chrome/browser/browser_process_impl.h
 +++ b/chrome/browser/browser_process_impl.h
-@@ -36,7 +36,7 @@
+@@ -38,7 +38,7 @@
  #include "services/network/public/cpp/network_quality_tracker.h"
  #include "services/network/public/mojom/network_service.mojom-forward.h"
  
@@ -11,7 +11,7 @@ index 906ec958256efb5645bd7e2ff18d630482fbf810..d8bc7cbf52c77490308539b907ce9601
  #include "chrome/browser/upgrade_detector/build_state.h"
  #endif
  
-@@ -182,7 +182,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -186,7 +186,7 @@ class BrowserProcessImpl : public BrowserProcess,
    printing::PrintPreviewDialogController* print_preview_dialog_controller()
        override;
    printing::BackgroundPrintingManager* background_printing_manager() override;
@@ -20,7 +20,7 @@ index 906ec958256efb5645bd7e2ff18d630482fbf810..d8bc7cbf52c77490308539b907ce9601
    IntranetRedirectDetector* intranet_redirect_detector() override;
  #endif
    const std::string& GetApplicationLocale() override;
-@@ -211,14 +211,14 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -217,14 +217,14 @@ class BrowserProcessImpl : public BrowserProcess,
    MediaFileSystemRegistry* media_file_system_registry() override;
    WebRtcLogUploader* webrtc_log_uploader() override;
    network_time::NetworkTimeTracker* network_time_tracker() override;
@@ -37,7 +37,7 @@ index 906ec958256efb5645bd7e2ff18d630482fbf810..d8bc7cbf52c77490308539b907ce9601
    SerialPolicyAllowedPorts* serial_policy_allowed_ports() override;
    HidSystemTrayIcon* hid_system_tray_icon() override;
    UsbSystemTrayIcon* usb_system_tray_icon() override;
-@@ -334,7 +334,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -347,7 +347,7 @@ class BrowserProcessImpl : public BrowserProcess,
    std::unique_ptr<NotificationUIManager> notification_ui_manager_;
  #endif
  
@@ -46,7 +46,7 @@ index 906ec958256efb5645bd7e2ff18d630482fbf810..d8bc7cbf52c77490308539b907ce9601
    std::unique_ptr<IntranetRedirectDetector> intranet_redirect_detector_;
  #endif
  
-@@ -445,7 +445,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -453,7 +453,7 @@ class BrowserProcessImpl : public BrowserProcess,
    std::unique_ptr<SecureOriginPrefsObserver> secure_origin_prefs_observer_;
    std::unique_ptr<SiteIsolationPrefsObserver> site_isolation_prefs_observer_;
  

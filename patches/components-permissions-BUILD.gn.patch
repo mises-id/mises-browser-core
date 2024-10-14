@@ -1,9 +1,9 @@
 diff --git a/components/permissions/BUILD.gn b/components/permissions/BUILD.gn
-index b56fa81eace5702f1a1765b3f65cab9838d72a6b..e6e2fbb3fe64c52699a971ad18ff32c5a85d0712 100644
+index 69c6cfce9fe7b6459f55b20ec4883246204d1069..6ae7197178e24ceb9ed697f6156b79ee24d37c52 100644
 --- a/components/permissions/BUILD.gn
 +++ b/components/permissions/BUILD.gn
-@@ -142,6 +142,7 @@ source_set("permissions") {
-   if (!is_android && !is_ios) {
+@@ -163,6 +163,7 @@ source_set("permissions") {
+   if (!is_android) {
      deps += [ "//components/guest_view/browser" ]
    }
 +  import("//mises/components/permissions/sources.gni") sources += mises_components_permissions_sources deps += mises_components_permissions_deps

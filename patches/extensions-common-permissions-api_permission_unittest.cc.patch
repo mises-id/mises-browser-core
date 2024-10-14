@@ -1,5 +1,5 @@
 diff --git a/extensions/common/permissions/api_permission_unittest.cc b/extensions/common/permissions/api_permission_unittest.cc
-index 4e867cb9aaefe442b0c8f041a7a1c84eba4b51a3..f1755405067e4db6705123c1b04fb61a0c49d114 100644
+index 747afdfa27710a55f36d08bf7e9dca94719aa842..01c5361d5941c968939fd7ff41f51674d1bd2ff6 100644
 --- a/extensions/common/permissions/api_permission_unittest.cc
 +++ b/extensions/common/permissions/api_permission_unittest.cc
 @@ -29,7 +29,7 @@ TEST(ExtensionAPIPermissionTest, CheckEnums) {

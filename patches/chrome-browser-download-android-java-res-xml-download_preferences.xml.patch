@@ -1,11 +1,11 @@
 diff --git a/chrome/browser/download/android/java/res/xml/download_preferences.xml b/chrome/browser/download/android/java/res/xml/download_preferences.xml
-index 9f964afd5f5985f77fed31e0cea0f94c83e0786a..10e63683d59c2661567e2e099ccd669d38316479 100644
+index 6d14eb7186d837de22657ebcd8e0581c76749e6d..bb1557a2d34a6a12f80de9950edede5ceecb7409 100644
 --- a/chrome/browser/download/android/java/res/xml/download_preferences.xml
 +++ b/chrome/browser/download/android/java/res/xml/download_preferences.xml
-@@ -17,4 +17,10 @@ found in the LICENSE file.
-         android:title="@string/download_location_prompt_enabled_title"
-         android:summaryOn="@string/text_on"
-         android:summaryOff="@string/text_off" />
+@@ -22,4 +22,10 @@ found in the LICENSE file.
+         android:key="auto_open_pdf_enabled"
+         android:title="@string/auto_open_pdf_enabled_title"
+         android:summaryOff="@string/text_off"/>
 +
 +    <org.chromium.components.browser_ui.settings.ChromeBaseCheckBoxPreference
 +        android:key="enable_external_download_manager"

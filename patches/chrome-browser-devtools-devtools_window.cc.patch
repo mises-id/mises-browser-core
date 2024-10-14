@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/devtools/devtools_window.cc b/chrome/browser/devtools/devtools_window.cc
-index 169b2041595feb6b1d90bf452a7d6aede93a8391..4cef270e6d11fff617e044632848012c5e1b8a38 100644
+index 9b388234f3dfe9d17bbd3ca85bee270c4601fce7..2c67f4fb4ffe1f08a81e6223d14c22e45388ff35 100644
 --- a/chrome/browser/devtools/devtools_window.cc
 +++ b/chrome/browser/devtools/devtools_window.cc
-@@ -1754,10 +1754,15 @@ void DevToolsWindow::CreateDevToolsBrowser() {
+@@ -1855,10 +1855,15 @@ void DevToolsWindow::CreateDevToolsBrowser() {
    }
    browser_ =
        Browser::Create(Browser::CreateParams::CreateForDevTools(profile_));

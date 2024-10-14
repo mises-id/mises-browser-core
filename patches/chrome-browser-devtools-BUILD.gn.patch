@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/devtools/BUILD.gn b/chrome/browser/devtools/BUILD.gn
-index 71e6ebd092df956cf41694777959e4d56290cca6..cc505bcf82b86efb948bbd3d32b169a5240f1876 100644
+index c8567fd68275a4f636774db0d081a7e5f74d4587..d2d041ba789d37652cc324194bda58a969d8bf8b 100644
 --- a/chrome/browser/devtools/BUILD.gn
 +++ b/chrome/browser/devtools/BUILD.gn
-@@ -7,13 +7,13 @@ import("//chrome/browser/devtools/buildflags.gni")
+@@ -6,13 +6,13 @@ import("//build/config/chromeos/ui_mode.gni")
  import("//extensions/buildflags/buildflags.gni")
  import("//printing/buildflags/buildflags.gni")
  
@@ -18,7 +18,7 @@ index 71e6ebd092df956cf41694777959e4d56290cca6..cc505bcf82b86efb948bbd3d32b169a5
    _inspector_protocol = "//third_party/inspector_protocol"
    import("$_inspector_protocol/inspector_protocol.gni")
  
-@@ -130,7 +130,7 @@ static_library("devtools") {
+@@ -137,7 +137,7 @@ static_library("devtools") {
      "//ui/events:dom_keycode_converter",
    ]
  
@@ -27,7 +27,7 @@ index 71e6ebd092df956cf41694777959e4d56290cca6..cc505bcf82b86efb948bbd3d32b169a5
      deps += [
        "//build:chromeos_buildflags",
        "//chrome:extra_resources",
-@@ -260,7 +260,7 @@ static_library("devtools") {
+@@ -276,7 +276,7 @@ static_library("devtools") {
    } else {
      sources += [ "devtools_dock_tile.cc" ]
    }

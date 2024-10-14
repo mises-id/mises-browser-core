@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
-index 4ca95c0b53d796811b3c19f6eb55e4cd4620d4df..db13a72c76e5b376f1f0b8bdc4f30746b5be0837 100644
+index af005d5f955c0930a4b64e449e08b1a4c6cd4a75..93f2a9029766cc9df5052c4da655021a1b48b12b 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/crash/ChromeMinidumpUploaderDelegate.java
 @@ -12,6 +12,8 @@ import org.chromium.components.minidump_uploader.MinidumpUploaderDelegate;
@@ -10,18 +10,18 @@ index 4ca95c0b53d796811b3c19f6eb55e4cd4620d4df..db13a72c76e5b376f1f0b8bdc4f30746
 +
  import java.io.File;
  
- /**
-@@ -60,7 +62,8 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
+ /** Chrome-specific implementations for minidump uploading logic. */
+@@ -54,7 +56,8 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
          return new CrashReportingPermissionManager() {
              @Override
-             public boolean isClientInMetricsSample() {
--                return mPermissions.getBoolean(IS_CLIENT_IN_METRICS_SAMPLE, true);
+             public boolean isClientInSampleForCrashes() {
+-                return mPermissions.getBoolean(IS_CLIENT_IN_SAMPLE_FOR_CRASHES, true);
 +                boolean mises_enforced = MisesConfig.FORCE_CRASH_REPORT;
-+                return mises_enforced || mPermissions.getBoolean(IS_CLIENT_IN_METRICS_SAMPLE, true);
++                return mises_enforced || mPermissions.getBoolean(IS_CLIENT_IN_SAMPLE_FOR_CRASHES, true);
              }
  
              @Override
-@@ -70,13 +73,15 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
+@@ -64,13 +67,15 @@ public class ChromeMinidumpUploaderDelegate implements MinidumpUploaderDelegate
  
              @Override
              public boolean isUsageAndCrashReportingPermittedByPolicy() {

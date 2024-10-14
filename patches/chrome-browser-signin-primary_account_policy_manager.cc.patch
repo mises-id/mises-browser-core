@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/signin/primary_account_policy_manager.cc b/chrome/browser/signin/primary_account_policy_manager.cc
-index 64370293de9d246d6edd81d2437e1d160775eece..8c435d3ad0e6652260bd6bc52607537176384a6b 100644
+index 55da6e622e52c84a9c96cf513ac25822d55bbfe2..f20ace01d9d5e76c676e76421696ae5b7fcc1218 100644
 --- a/chrome/browser/signin/primary_account_policy_manager.cc
 +++ b/chrome/browser/signin/primary_account_policy_manager.cc
-@@ -304,7 +304,7 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(
+@@ -303,7 +303,7 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(
    delete_profile_dialog_manager_.reset();
  
    DCHECK(profiles::IsMultipleProfilesEnabled());
@@ -11,7 +11,7 @@ index 64370293de9d246d6edd81d2437e1d160775eece..8c435d3ad0e6652260bd6bc526075371
    g_browser_process->profile_manager()
        ->GetDeleteProfileHelper()
        .MaybeScheduleProfileForDeletion(
-@@ -313,5 +313,6 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(
+@@ -312,5 +312,6 @@ void PrimaryAccountPolicyManager::OnUserConfirmedProfileDeletion(
                ? base::DoNothing()
                : base::BindOnce(&webui::OpenNewWindowForProfile),
            ProfileMetrics::DELETE_PROFILE_PRIMARY_ACCOUNT_NOT_ALLOWED);

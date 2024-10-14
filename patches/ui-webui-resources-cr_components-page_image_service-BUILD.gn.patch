@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/page_image_service/BUILD.gn b/ui/webui/resources/cr_components/page_image_service/BUILD.gn
-index 4f56c29210f71e68ead84bf3453fed97ace12841..b98e9b3a983cffc4781597fa68392edd9af11081 100644
+index 931719eb54c916411f8fcff941b2e7874a66e36a..2e74ccbc168b0d21231697f6a56215a12153182f 100644
 --- a/ui/webui/resources/cr_components/page_image_service/BUILD.gn
 +++ b/ui/webui/resources/cr_components/page_image_service/BUILD.gn
 @@ -4,7 +4,7 @@

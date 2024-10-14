@@ -1,11 +1,11 @@
 diff --git a/chrome/browser/content_settings/host_content_settings_map_factory.cc b/chrome/browser/content_settings/host_content_settings_map_factory.cc
-index 6f842a7535a56f8cad03851a1d389987d4950567..c6a300eebd417acc4bfd5b13e7508df5b3bc21d0 100644
+index 0ddee737e4d8d8571f347f0ceb013e3f19e23d57..8bdfb147210597f2d82fd11194130d3b10c713b6 100644
 --- a/chrome/browser/content_settings/host_content_settings_map_factory.cc
 +++ b/chrome/browser/content_settings/host_content_settings_map_factory.cc
-@@ -67,7 +67,7 @@ HostContentSettingsMapFactory::HostContentSettingsMapFactory()
- #else
-   DependsOn(OneTimePermissionsTrackerFactory::GetInstance());
+@@ -62,7 +62,7 @@ HostContentSettingsMapFactory::HostContentSettingsMapFactory()
+   DependsOn(TemplateURLServiceFactory::GetInstance());
  #endif
+   DependsOn(OneTimePermissionsTrackerFactory::GetInstance());
 -#if BUILDFLAG(ENABLE_EXTENSIONS)
 +#if BUILDFLAG(ENABLE_EXTENSIONS) && !BUILDFLAG(IS_ANDROID)
    DependsOn(extensions::ContentSettingsService::GetFactoryInstance());

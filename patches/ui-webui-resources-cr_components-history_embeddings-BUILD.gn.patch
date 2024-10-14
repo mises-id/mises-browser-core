@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/history_embeddings/BUILD.gn b/ui/webui/resources/cr_components/history_embeddings/BUILD.gn
+index 937a1cce4c25ebf563155a932896de4d01fd4502..7949d013d72beab85f7210e3e619aa161901a864 100644
+--- a/ui/webui/resources/cr_components/history_embeddings/BUILD.gn
++++ b/ui/webui/resources/cr_components/history_embeddings/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "history_embeddings.mojom" ]

@@ -1,0 +1,13 @@
+diff --git a/ui/web_dialogs/BUILD.gn b/ui/web_dialogs/BUILD.gn
+index 53620cb10e1ab850cfc8b16a2802d0a4c0766562..b43a1f92c257da578a29cde21b0c997a68120bb4 100644
+--- a/ui/web_dialogs/BUILD.gn
++++ b/ui/web_dialogs/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android)
++# assert(!is_android)
+ 
+ component("web_dialogs") {
+   sources = [

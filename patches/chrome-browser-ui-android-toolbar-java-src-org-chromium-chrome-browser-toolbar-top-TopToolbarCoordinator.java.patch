@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-index e3b357fbd68e86f8a17a3f533878a242df514aa0..3f7f6ee210784f537fc7c958e1025f1fefadcefd 100644
+index a89ebac1b063b0512cd82fb8c6fdca3a729a6e58..486e97d9bc90f0da159c42553f92990e07994152 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
-@@ -86,8 +86,8 @@ public class TopToolbarCoordinator implements Toolbar {
-         void onToolbarAlphaInOverviewChanged(float fraction);
+@@ -87,8 +87,8 @@ public class TopToolbarCoordinator implements Toolbar {
+         void onOverviewAlphaChanged(float fraction);
      }
  
 -    public static final int TAB_SWITCHER_MODE_NORMAL_ANIMATION_DURATION_MS = 200;
@@ -12,45 +12,4 @@ index e3b357fbd68e86f8a17a3f533878a242df514aa0..3f7f6ee210784f537fc7c958e1025f1f
 +    public static final int TAB_SWITCHER_MODE_GTS_ANIMATION_DURATION_MS = 250;
  
      private final ToolbarLayout mToolbarLayout;
- 
-@@ -285,7 +285,7 @@ public class TopToolbarCoordinator implements Toolbar {
-             mStartSurfaceToolbarCoordinator.setTabSwitcherListener(tabSwitcherClickHandler);
-             mStartSurfaceToolbarCoordinator.setOnTabSwitcherLongClickHandler(
-                     StartSurfaceTabSwitcherActionMenuCoordinator.createOnLongClickListener(
--                            tabSwitcherLongClickCallback));
-+                            tabSwitcherLongClickCallback, newTabClickHandler));
-             mStartSurfaceToolbarCoordinator.initLogoWithNative();
-         }
- 
-@@ -294,7 +294,7 @@ public class TopToolbarCoordinator implements Toolbar {
-         mToolbarLayout.setOnTabSwitcherClickHandler(tabSwitcherClickHandler);
-         mToolbarLayout.setOnTabSwitcherLongClickHandler(
-                 TabSwitcherActionMenuCoordinator.createOnLongClickListener(
--                        tabSwitcherLongClickCallback));
-+                        tabSwitcherLongClickCallback, newTabClickHandler));
-         mToolbarLayout.setBookmarkClickHandler(bookmarkClickHandler);
-         mToolbarLayout.setCustomTabCloseClickHandler(customTabsBackClickHandler);
-         mToolbarLayout.setLayoutUpdater(layoutUpdater);
-@@ -307,7 +307,7 @@ public class TopToolbarCoordinator implements Toolbar {
-             mOverlayCoordinator = new TopToolbarOverlayCoordinator(mToolbarLayout.getContext(),
-                     layoutManager, mControlContainer::getProgressBarDrawingInfo, tabSupplier,
-                     browserControlsStateProvider, mResourceManagerSupplier, topUiThemeColorProvider,
--                    LayoutType.BROWSING | LayoutType.SIMPLE_ANIMATION | LayoutType.TAB_SWITCHER,
-+		    LayoutType.BROWSING | LayoutType.SIMPLE_ANIMATION | LayoutType.TAB_SWITCHER,
-                     false);
-             layoutManager.addSceneOverlay(mOverlayCoordinator);
-             mToolbarLayout.setOverlayCoordinator(mOverlayCoordinator);
-@@ -470,7 +470,12 @@ public class TopToolbarCoordinator implements Toolbar {
-         mToolbarLayout.updateForwardButtonVisibility(canGoForward);
-     }
- 
--    @Override
-+    /**
-+     * Gives inheriting classes the chance to update the visibility of the
-+     * reload button.
-+     * @param isReloading Whether or not the current tab is loading.
-+     */
-+    @Override 
-     public void updateReloadButtonVisibility(boolean isReloading) {
-         mToolbarLayout.updateReloadButtonVisibility(isReloading);
-     }
+     private final ObservableSupplierImpl<Tracker> mTrackerSupplier;

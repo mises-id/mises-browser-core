@@ -1,18 +1,18 @@
 diff --git a/chrome/browser/extensions/api/side_panel/side_panel_service.cc b/chrome/browser/extensions/api/side_panel/side_panel_service.cc
-index f9f0449c9cbe3e29c0cd357aa5b2d5f689b35396..d931e474161d915304a1f1e7ab5c854662b7d0db 100644
+index eb87bf29ab343f3f13919e405a3aa77fa12bb782..3ce9e0b6183aaf1d0fe5d5d36428d065a01391fe 100644
 --- a/chrome/browser/extensions/api/side_panel/side_panel_service.cc
 +++ b/chrome/browser/extensions/api/side_panel/side_panel_service.cc
 @@ -19,6 +19,7 @@
+ #include "extensions/browser/extension_prefs.h"
  #include "extensions/browser/pref_types.h"
  #include "extensions/common/extension_features.h"
- #include "third_party/abseil-cpp/absl/types/optional.h"
 +#include "build/build_config.h"
  
  namespace extensions {
  
-@@ -235,6 +236,13 @@ base::expected<bool, std::string> SidePanelService::OpenSidePanelForTab(
+@@ -248,6 +249,13 @@ base::expected<bool, std::string> SidePanelService::OpenSidePanelForTab(
      int tab_id,
-     absl::optional<int> window_id,
+     std::optional<int> window_id,
      bool include_incognito_information) {
 +#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
 +  bool mises_enforced = true;

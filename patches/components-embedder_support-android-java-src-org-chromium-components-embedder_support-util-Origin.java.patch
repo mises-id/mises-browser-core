@@ -1,5 +1,5 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
-index 5f278ecbc999b30a5fec21bc7cab9ba09ef4884d..909af99cf9ec92917ad1ecb32f533aa60f5fd7a2 100644
+index 086c77954599ccbf5fc4137d3d887d2eced312de..5fb64c7dae42e4d5e92740775d7a38be64d349ac 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/Origin.java
 @@ -50,7 +50,7 @@ public class Origin {

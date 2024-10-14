@@ -1,8 +1,8 @@
 diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..705190097ce150072a508c377d36cfbd1f28e7d7 100644
+index 8c6f3d5e2693851911631d2c2e34605dfb8acf09..f223767c3c2ff67d3a42d83966acaa32d61d92d8 100644
 --- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 +++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-@@ -1639,6 +1639,11 @@ public class ExternalNavigationHandler {
+@@ -1629,6 +1629,11 @@ public class ExternalNavigationHandler {
              return OverrideUrlLoadingResult.forNoOverride();
          }
  
@@ -14,7 +14,7 @@ index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..705190097ce150072a508c377d36cfbd
          if (isYoutubePairingCode(params.getUrl())) return OverrideUrlLoadingResult.forNoOverride();
  
          if (shouldStayInIncognito(params, isExternalProtocol)) {
-@@ -1692,6 +1697,11 @@ public class ExternalNavigationHandler {
+@@ -1687,6 +1692,11 @@ public class ExternalNavigationHandler {
  
          ResolveActivitySupplier resolveActivity = new ResolveActivitySupplier(targetIntent);
          if (isNavigationToSelf(params, resolvingInfos, resolveActivity, isExternalProtocol)) {

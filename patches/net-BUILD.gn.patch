@@ -1,10 +1,10 @@
 diff --git a/net/BUILD.gn b/net/BUILD.gn
-index e745a74d0446ea55c9e22cd7628ae0d6ac8a3982..d3a3ad395f7282ace86e22b4927caf2ed9c66d7d 100644
+index ca877b38dc730ed77bb211f0b1fb0a857c03a23c..5caad4a9ab44200cdb6249bfafb255d676c6121a 100644
 --- a/net/BUILD.gn
 +++ b/net/BUILD.gn
-@@ -1160,6 +1160,7 @@ component("net") {
-       "reporting/reporting_uploader.h",
+@@ -1174,6 +1174,7 @@ component("net") {
      ]
+     deps += [ "//components/unexportable_keys:unexportable_keys" ]
    }
 +  sources += mises_net_sources
  

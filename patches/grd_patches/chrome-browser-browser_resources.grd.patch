@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_resources.grd b/chrome/browser/browser_resources.grd
-index 5d67549e29422c35f79a636a3476fe90ac3e3b87..d942396ad56779768bf46edcdc4105c1200d2349 100644
+index 5d2347fa11727740a217c151be295504f5b72a2c..75fe8d62f59a09dbce8b058ad8f7612412fc7a6d 100644
 --- a/chrome/browser/browser_resources.grd
 +++ b/chrome/browser/browser_resources.grd
 @@ -8,7 +8,7 @@
@@ -10,9 +10,9 @@ index 5d67549e29422c35f79a636a3476fe90ac3e3b87..d942396ad56779768bf46edcdc4105c1
 +      <if expr="not is_android or is_android">
          <!-- Incognito and Guest mode, new tab page WebUI. -->
          <structure name="IDR_INCOGNITO_TAB_HTML" file="resources\new_tab_page_incognito_guest\incognito_tab.html" flattenhtml="true" type="chrome_html" />
-         <structure name="IDR_REVAMPED_INCOGNITO_TAB_HTML" file="resources\new_tab_page_incognito_guest\revamped_incognito_tab.html" flattenhtml="true" type="chrome_html" />
-@@ -240,7 +240,7 @@
-         <include name="IDR_PREF_HASH_SEED_BIN" file="resources\settings_internal\pref_hash_seed.bin" type="BINDATA" />
+         <structure name="IDR_INCOGNITO_TAB_THEME_CSS" file="resources\new_tab_page_incognito_guest\incognito_tab_theme.css" flattenhtml="true" type="chrome_html" />
+@@ -244,7 +244,7 @@
+         <include name="IDR_PREF_HASH_SEED_BIN" file="resources\settings\internal\pref_hash_seed.bin" type="BINDATA" />
          <include name="IDR_ADDITIONAL_MODULE_IDS" file="${additional_modules_list_file}" use_base_dir="false" type="BINDATA" />
        </if>
 -      <if expr="not is_android">

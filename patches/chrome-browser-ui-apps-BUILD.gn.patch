@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/apps/BUILD.gn b/chrome/browser/ui/apps/BUILD.gn
+index 849d6d370c3eda551a18b636d1cccbcc3305652c..3c5aaab4f62dcb8b44e957aa63ce9cd275efad7b 100644
+--- a/chrome/browser/ui/apps/BUILD.gn
++++ b/chrome/browser/ui/apps/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//build/config/chromeos/ui_mode.gni")
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ source_set("apps") {
+   sources = [

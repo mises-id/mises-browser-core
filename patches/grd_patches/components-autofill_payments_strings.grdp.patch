@@ -1,17 +1,17 @@
 diff --git a/components/autofill_payments_strings.grdp b/components/autofill_payments_strings.grdp
-index ee41ea5c0983d51dc83790be9eedfcd215adaa1a..22e21478ffa51163b7097ead7c768f5ed9ba4c5c 100644
+index f649bfe3318788d0da46b6209424bbed0f26e31a..59354576d6104340c2e0d4959d99b43f01dd95b1 100644
 --- a/components/autofill_payments_strings.grdp
 +++ b/components/autofill_payments_strings.grdp
-@@ -74,7 +74,7 @@
-     </if>
-   </if>
+@@ -59,7 +59,7 @@
+     Google Pay logo
+   </message>
  
 -  <if expr="not is_android">
 +  <if expr="not is_android or is_android">
      <message name="IDS_AUTOFILL_FIELD_LABEL_PHONE" desc="The label of the Phone entry in a settings-like UI to enter a phone number.">
        Phone
      </message>
-@@ -84,20 +84,16 @@
+@@ -69,20 +69,16 @@
    </if>
  
    <!-- Autofill save credit card bubble or infobar prompt -->
@@ -33,7 +33,7 @@ index ee41ea5c0983d51dc83790be9eedfcd215adaa1a..22e21478ffa51163b7097ead7c768f5e
    </if>
    <if expr="is_android">
      <message name="IDS_AUTOFILL_SAVE_CARD_PROMPT_CONFIRM" desc="Text to show for the Autofill upload save credit card prompt accept button when more information (e.g., CVC) was needed in order to save the card and was entered." formatter_data="android_java">
-@@ -550,7 +546,7 @@
+@@ -587,7 +583,7 @@
  
    <!-- WebAuthn fingerprint opt-in dialog -->
    <!-- Desktop only -->
@@ -42,7 +42,7 @@ index ee41ea5c0983d51dc83790be9eedfcd215adaa1a..22e21478ffa51163b7097ead7c768f5e
      <if expr="is_macosx">
        <message name="IDS_AUTOFILL_WEBAUTHN_OPT_IN_DIALOG_TITLE" desc="Headline asking the user if they want to use their device's platform authenticator to confirm their cards in the future instead of CVC.">
          Use device unlock instead of CVC?
-@@ -606,7 +602,7 @@
+@@ -643,7 +639,7 @@
  
    <!-- Webauthn verify pending dialog -->
    <!-- Desktop only -->
@@ -51,7 +51,7 @@ index ee41ea5c0983d51dc83790be9eedfcd215adaa1a..22e21478ffa51163b7097ead7c768f5e
      <message name="IDS_AUTOFILL_WEBAUTHN_VERIFY_PENDING_DIALOG_TITLE" desc="Headline of the dialog shown when user has opted in to use platform biometric authenticator and has selected one card to fill the form. This shows the verification of the selected card is in progress.">
          Verifying your identity...
      </message>
-@@ -880,7 +876,7 @@
+@@ -1002,7 +998,7 @@
    <message name="IDS_AUTOFILL_PROMO_CODE_SUGGESTIONS_FOOTER_TEXT" desc="Label for the footer text of the autofill suggestions popup when a user clicks on a promo code field. It redirects the user to the offer webview page for more details on the promo code offers suggested. An example of details the user can see is the terms and conditions of the promo code offers that are shown in the autofill suggestions popup.">
      See promo code details
    </message>
@@ -60,7 +60,7 @@ index ee41ea5c0983d51dc83790be9eedfcd215adaa1a..22e21478ffa51163b7097ead7c768f5e
      <message name="IDS_AUTOFILL_OFFERS_REMINDER_ICON_TOOLTIP_TEXT" desc="The tooltip text for the offer icon in the location bar.">
        Offer available
      </message>
-@@ -904,7 +900,7 @@
+@@ -1020,7 +1016,7 @@
        Details
      </message>
    </if>

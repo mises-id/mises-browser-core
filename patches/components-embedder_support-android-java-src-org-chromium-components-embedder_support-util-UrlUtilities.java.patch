@@ -1,54 +1,13 @@
 diff --git a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-index acf05ff8fcdb9bc47e5de922e223b1faaa0c3f09..3d4604f5ae645cc9efc9c9361f0cde37744433d3 100644
+index 91b83c79ce98899ec7eb8901428276bc98391392..7dd9287325383ef768a84c5b7d42d9cf8041d508 100644
 --- a/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
 +++ b/components/embedder_support/android/java/src/org/chromium/components/embedder_support/util/UrlUtilities.java
-@@ -53,7 +53,7 @@ public class UrlUtilities {
-      */
-     private static final HashSet<String> INTERNAL_SCHEMES =
-             CollectionUtil.newHashSet(UrlConstants.CHROME_SCHEME, UrlConstants.CHROME_NATIVE_SCHEME,
+@@ -65,7 +65,7 @@ public class UrlUtilities {
+             CollectionUtil.newHashSet(
+                     UrlConstants.CHROME_SCHEME,
+                     UrlConstants.CHROME_NATIVE_SCHEME,
 -                    ContentUrlConstants.ABOUT_SCHEME);
-+                    ContentUrlConstants.ABOUT_SCHEME, "chrome-search", "mises", "mises-search", "devtools", "chrome-extension");
++                    ContentUrlConstants.ABOUT_SCHEME, "mises", "devtools", "chrome-extension");
  
      private static final String TEL_SCHEME = "tel";
  
-@@ -104,6 +104,12 @@ public class UrlUtilities {
-      * @return Whether the URL's scheme is for a internal chrome page.
-      */
-     public static boolean isInternalScheme(@NonNull GURL gurl) {
-+        if ("local-ntp".equals(gurl.getHost()))
-+          return true;
-+        if (gurl.getSpec().startsWith("chrome-search://"))
-+          return true;
-+        if (gurl.getSpec().startsWith("mises-search://"))
-+          return true;
-         return INTERNAL_SCHEMES.contains(gurl.getScheme());
-     }
- 
-@@ -264,6 +270,12 @@ public class UrlUtilities {
-      */
-     public static boolean isNTPUrl(GURL gurl) {
-         if (!gurl.isValid() || !isInternalScheme(gurl)) return false;
-+        // if ("local-ntp".equals(gurl.getHost()))
-+        //   return true;
-+        if (gurl.getSpec().startsWith("chrome-search://") && "local-ntp".equals(gurl.getHost()))
-+          return true;
-+        if (gurl.getSpec().startsWith("mises-search://") && "local-ntp".equals(gurl.getHost()))
-+          return true;
-         return UrlConstants.NTP_HOST.equals(gurl.getHost());
-     }
- 
-@@ -302,7 +314,13 @@ public class UrlUtilities {
-         if (LibraryLoader.getInstance().isInitialized()) return isNTPUrl(url);
-         return TextUtils.equals(url, UrlConstants.NTP_URL)
-                 || TextUtils.equals(url, UrlConstants.NTP_NON_NATIVE_URL)
--                || TextUtils.equals(url, UrlConstants.NTP_ABOUT_URL);
-+                || TextUtils.equals(url, UrlConstants.NTP_ABOUT_URL)
-+                || TextUtils.equals(url, "chrome-search://local-ntp/local-ntp.html")
-+                || TextUtils.equals(url, "chrome-search://local-ntp/incognito-ntp.html")
-+                || TextUtils.equals(url, "chrome-search://local-ntp/new-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/local-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/incognito-ntp.html")
-+                || TextUtils.equals(url, "mises-search://local-ntp/new-ntp.html");
-     }
- 
-     public static String extractPublisherFromPublisherUrl(GURL publisherUrl) {

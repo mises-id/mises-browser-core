@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-index db04a12181981e6c0ea772bb2a710a45cf9b1620..39aed84aebd9a525275f0d0ae6917a455ec5fd55 100644
+index f1e53ee2185d68d7c022d634447bebe8c3b92a1d..bcf86c7479534f4a73219aa1e550902499003af7 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkBridge.java
-@@ -38,11 +38,22 @@ import org.chromium.url.GURL;
+@@ -33,11 +33,22 @@ import org.chromium.url.GURL;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -26,7 +26,7 @@ index db04a12181981e6c0ea772bb2a710a45cf9b1620..39aed84aebd9a525275f0d0ae6917a45
      private final ObserverList<BookmarkModelObserver> mObservers = new ObserverList<>();
  
      private long mNativeBookmarkBridge;
-@@ -171,6 +182,48 @@ class BookmarkBridge {
+@@ -148,6 +159,48 @@ class BookmarkBridge {
          return mIsNativeBookmarkModelLoaded;
      }
  
@@ -75,10 +75,10 @@ index db04a12181981e6c0ea772bb2a710a45cf9b1620..39aed84aebd9a525275f0d0ae6917a45
      /**
       * Schedules a runnable to run after the bookmark model is loaded. If the model is already
       * loaded, executes the runnable immediately. If not, also kick off partner bookmark reading.
-@@ -1098,5 +1151,8 @@ class BookmarkBridge {
-         boolean isBookmarked(long nativeBookmarkBridge, GURL url);
+@@ -1186,5 +1239,8 @@ class BookmarkBridge {
+         void reorderChildren(long nativeBookmarkBridge, BookmarkId parent, long[] orderedNodes);
  
-         int getUnreadCount(long nativeBookmarkBridge);
+         boolean isBookmarked(long nativeBookmarkBridge, @JniType("GURL") GURL url);
 +
 +	    void importBookmarks(long nativeBookmarkBridge, WindowAndroid window);
 +	    void exportBookmarks(long nativeBookmarkBridge, WindowAndroid window);

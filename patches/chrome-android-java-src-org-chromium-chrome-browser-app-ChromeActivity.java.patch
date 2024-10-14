@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce258e34805 100644
+index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0bbd8f093 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
+@@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
  import androidx.annotation.RequiresApi;
  import androidx.annotation.VisibleForTesting;
  
@@ -19,7 +19,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
  import org.chromium.chrome.browser.dom_distiller.DomDistillerUIUtils;
  import org.chromium.chrome.browser.download.DownloadManagerService;
  import org.chromium.chrome.browser.download.DownloadUtils;
-@@ -139,7 +142,6 @@ import org.chromium.chrome.browser.page_info.ChromePageInfo;
+@@ -140,7 +143,6 @@ import org.chromium.chrome.browser.page_info.ChromePageInfo;
  import org.chromium.chrome.browser.page_info.ChromePageInfoHighlight;
  import org.chromium.chrome.browser.partnercustomizations.PartnerBrowserCustomizations;
  import org.chromium.chrome.browser.preferences.ChromePreferenceKeys;
@@ -27,9 +27,9 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
  import org.chromium.chrome.browser.preferences.Pref;
  import org.chromium.chrome.browser.printing.TabPrinter;
  import org.chromium.chrome.browser.profiles.Profile;
-@@ -249,6 +251,39 @@ import java.util.ArrayList;
+@@ -253,6 +255,39 @@ import org.chromium.webapk.lib.client.WebApkNavigationClient;
+ import java.util.ArrayList;
  import java.util.List;
- import java.util.function.Consumer;
  
 +import org.chromium.base.ContextUtils;
 +import org.chromium.chrome.browser.ApplicationLifetime;
@@ -65,18 +65,18 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
 +import org.chromium.chrome.browser.metrics.UmaSessionStats;
 +
  /**
-  * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder}
-  * and associated classes.
-@@ -347,6 +382,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
-     @Nullable
-     private Bundle mMenuItemData;
+  * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder} and
+  * associated classes.
+@@ -376,6 +411,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+     /** Listen to display change and start tab-reparenting if necessary. */
+     private DisplayAndroidObserver mDisplayAndroidObserver;
  
 +    private String mMenuTitleCondensed;
 +
      /**
-      * The current configuration, used to for diffing when the configuration is changed.
-      */
-@@ -506,6 +543,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+      * The RootUiCoordinator associated with the activity. This variable is held to facilitate
+      * testing.
+@@ -534,6 +571,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          // not go through ChromeLauncherActivity that would have normally triggered this.
          mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
  
@@ -85,56 +85,45 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
          CommandLine commandLine = CommandLine.getInstance();
          if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
              TypedValue threshold = new TypedValue();
-@@ -762,14 +801,23 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
-             // of our control, so we have to disable StrictMode to work. See
-             // https://crbug.com/639352.
-             try (StrictModeContext ignored = StrictModeContext.allowDiskWrites()) {
-+                SharedPreferencesManager prefs = ChromeSharedPreferences.getInstance();
-+                prefs.writeBooleanUnchecked("is_tablet", DeviceFormFactor.isTablet());
-                 TraceEvent.begin("setContentView(R.layout.main)");
-                 setContentView(R.layout.main);
-+               
-                 TraceEvent.end("setContentView(R.layout.main)");
-                 if (getControlContainerLayoutId() != ActivityUtils.NO_RESOURCE_ID) {
-                     ViewStub toolbarContainerStub =
-                             ((ViewStub) findViewById(R.id.control_container_stub));
+@@ -849,6 +888,12 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+                 ViewStub toolbarContainerStub = findViewById(R.id.control_container_stub);
  
-                     toolbarContainerStub.setLayoutResource(getControlContainerLayoutId());
+                 toolbarContainerStub.setLayoutResource(getControlContainerLayoutId());
 +                    if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
 +                        CoordinatorLayoutForPointer.LayoutParams params = new CoordinatorLayoutForPointer.LayoutParams(
 +                        CoordinatorLayoutForPointer.LayoutParams.MATCH_PARENT, CoordinatorLayoutForPointer.LayoutParams.WRAP_CONTENT);
 +                        params.gravity = Gravity.START | Gravity.BOTTOM;
 +                        toolbarContainerStub.setLayoutParams(params);	      
 +                    }
-                     TraceEvent.begin("toolbarContainerStub.inflate");
-                     toolbarContainerStub.inflate();
-                     TraceEvent.end("toolbarContainerStub.inflate");
-@@ -856,12 +904,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
-             @Override
-             public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
-                 postDeferredStartupIfNeeded();
-+                mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
-             }
+                 TraceEvent.begin("toolbarContainerStub.inflate");
+                 toolbarContainerStub.inflate();
+                 TraceEvent.end("toolbarContainerStub.inflate");
+@@ -926,12 +971,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+                     @Override
+                     public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
+                         postDeferredStartupIfNeeded();
++                        mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
+                     }
  
-             @Override
-             public void onPageLoadFinished(Tab tab, GURL url) {
-                 postDeferredStartupIfNeeded();
-                 OfflinePageUtils.showOfflineSnackbarIfNecessary(tab);
-+                mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
-+            }
+                     @Override
+                     public void onPageLoadFinished(Tab tab, GURL url) {
+                         postDeferredStartupIfNeeded();
+                         OfflinePageUtils.showOfflineSnackbarIfNecessary(tab);
++                        mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
++                    }
 +
-+            @Override
-+            public void onUrlUpdated(Tab tab){
-+	      if (tab != null && !tab.isNativePage()) {
-+                Log.i(TAG,"#onUrlUpdated: " + tab.getUrl().getPossiblyInvalidSpec());
-+	        FixDevToolsWindow.Execute(tab);
-+                PersonalizeResults.Execute(tab);
-+	      }
-+              mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
-             }
++                    @Override
++                    public void onUrlUpdated(Tab tab){
++	                     if (tab != null && !tab.isNativePage()) {
++                            Log.i(TAG,"#onUrlUpdated: " + tab.getUrl().getPossiblyInvalidSpec());
++	                         FixDevToolsWindow.Execute(tab);
++                            PersonalizeResults.Execute(tab);
++	                     }
++                        mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
+                     }
  
-             @Override
-@@ -1184,6 +1244,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+                     @Override
+@@ -1227,6 +1284,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          }
  
          getManualFillingComponent().onResume();
@@ -142,9 +131,9 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
          checkForDeviceLockOnAutomotive();
      }
  
-@@ -1757,6 +1818,22 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
-             }
-         };
+@@ -1910,6 +1968,22 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+                     }
+                 };
          display.addObserver(mDisplayAndroidObserver);
 +
 +
@@ -164,8 +153,8 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
 +        }
      }
  
-     private boolean maybeOnScreenSizeChange() {
-@@ -1774,6 +1851,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+     private void initializeManualFillingComponent(ProfileProvider profileProvider) {
+@@ -1943,6 +2017,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          return mNativeInitialized;
      }
  
@@ -230,8 +219,8 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
 +
      @Override
      public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
-         mMenuItemData = menuItemData;
-@@ -2390,10 +2526,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         if (mManualFillingComponentSupplier.hasValue()) {
+@@ -2551,10 +2684,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  mMenuActionHandlers) {
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
@@ -269,9 +258,9 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
 +        }
 +
          if (id == R.id.preferences_id) {
-             SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
+             SettingsLauncher settingsLauncher = SettingsLauncherFactory.createSettingsLauncher();
              settingsLauncher.launchSettingsActivity(this);
-@@ -2505,9 +2669,113 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2682,9 +2843,113 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
  
          if (id == R.id.translate_id) {
              RecordUserAction.record("MobileMenuTranslate");
@@ -385,7 +374,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
              return true;
          }
  
-@@ -2557,6 +2825,43 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2741,6 +3006,43 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -429,7 +418,7 @@ index f6c6ee64ddf7e2ea2fde5095d9cfbea0b9c5eda4..5193d60a40fbef74f863af7805463ce2
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2591,6 +2896,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2774,6 +3076,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  

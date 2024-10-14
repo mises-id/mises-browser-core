@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/apps/app_service/BUILD.gn b/chrome/browser/apps/app_service/BUILD.gn
-index 6c90b00afcc6ff6464ae9620efbe477b8264ebb6..5378fe70da6ce892ae4cedcd9ba0bcd244e26277 100644
+index 40b02cbffd0d3ed922efe95e56ddb3a74128520d..d6761cd28b6ea59b662bc5126e8ef30991710484 100644
 --- a/chrome/browser/apps/app_service/BUILD.gn
 +++ b/chrome/browser/apps/app_service/BUILD.gn
-@@ -4,7 +4,7 @@
- 
+@@ -5,7 +5,7 @@
  import("//build/config/chromeos/ui_mode.gni")
+ import("//extensions/buildflags/buildflags.gni")
  
 -assert(!is_android)
 +#assert(!is_android)

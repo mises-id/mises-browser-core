@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
-index df675a9510396644bcc205c2c467b775b693c47d..e0ed758a679f24a6e73d0a7aa0f6c1c5864c8fc4 100644
+index 7000df22af600c401854815636eb1626ee2d82ee..170e1644a2c68910384bc319e3fbf3ef886325e2 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/content/CustomTabActivityNavigationController.java
-@@ -349,7 +349,11 @@ public class CustomTabActivityNavigationController
+@@ -407,7 +407,11 @@ public class CustomTabActivityNavigationController
              if (mIntentDataProvider.isInfoPage()) {
                  IntentHandler.startChromeLauncherActivityForTrustedIntent(intent);
              } else {

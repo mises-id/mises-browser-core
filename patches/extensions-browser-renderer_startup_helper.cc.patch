@@ -1,5 +1,5 @@
 diff --git a/extensions/browser/renderer_startup_helper.cc b/extensions/browser/renderer_startup_helper.cc
-index bafd0ab1168cfa2ebea7072e80535a3d7a948f22..630b7f50226b60f761af9fd0b10559843559e757 100644
+index a09b3b75054b5b4e9f1e8862482e0ccc0915a50a..c7cc0ccc917e4db16050f1a4a1331eae982cc440 100644
 --- a/extensions/browser/renderer_startup_helper.cc
 +++ b/extensions/browser/renderer_startup_helper.cc
 @@ -157,6 +157,11 @@ void RendererStartupHelper::InitializeProcess(

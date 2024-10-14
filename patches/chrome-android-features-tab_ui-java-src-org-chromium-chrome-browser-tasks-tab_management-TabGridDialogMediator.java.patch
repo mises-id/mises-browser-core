@@ -1,28 +1,25 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-index 53e09ea6b313736ecbffa45eaa0451b04365b2bf..8db5be3785e8a336539c7799a488ecbaa545039a 100644
+index 49d1bc44e45ee082f6a161396420878a7c22a6b7..d36bc30c4c2d727824c27449ad9f5b4e4606d48b 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogMediator.java
-@@ -49,6 +49,8 @@ import java.util.ArrayList;
- import java.util.List;
+@@ -79,6 +79,8 @@ import java.util.List;
  import java.util.Locale;
+ import java.util.Objects;
  
 +import org.chromium.chrome.browser.homepage.HomepageManager;
 +
  /**
-  * A mediator for the TabGridDialog component, responsible for communicating
-  * with the components' coordinator as well as managing the business logic
-@@ -556,8 +558,12 @@ public class TabGridDialogMediator
-             }
+  * A mediator for the TabGridDialog component, responsible for communicating with the components'
+  * coordinator as well as managing the business logic for dialog show/hide.
+@@ -829,6 +831,11 @@ public class TabGridDialogMediator
  
              if (currentTab == null) {
--                mTabCreatorManager.getTabCreator(mTabModelSelector.isIncognitoSelected())
--                        .launchNTP();
-+                if (mTabModelSelector.isIncognitoSelected())
-+                    mTabCreatorManager.getTabCreator(mTabModelSelector.isIncognitoSelected())
-+                            .launchNTP();
+                 mTabCreatorManager.getTabCreator(filter.isIncognito()).launchNtp();
++                if (filter.isIncognito())
++                    mTabCreatorManager.getTabCreator(filter.isIncognito()).launchNTP();
 +                else
-+                    mTabCreatorManager.getTabCreator(mTabModelSelector.isIncognitoSelected())
++                    mTabCreatorManager.getTabCreator(filter.isIncognito())
 +                            .launchUrl(HomepageManager.getInstance().getHomepageGurlIgnoringEnabledState().getSpec(), TabLaunchType.FROM_CHROME_UI);
                  return;
              }
-             List<Tab> relatedTabs = getRelatedTabs(currentTab.getId());
+ 

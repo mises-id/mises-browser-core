@@ -33,6 +33,12 @@
     return RequestTypeForUma::PERMISSION_VR;
   
 
+#define MISES_GET_UMA_VALUE_FOR_REQUESTS                              \
+  if (request_type >= RequestType::kWidevine &&                       \
+      request_type <= RequestType::kMisesSolana) { \
+    return GetUmaValueForRequestType(request_type);                   \
+  }
+
 #include "src/components/permissions/permission_uma_util.cc"
 
 
@@ -45,8 +51,15 @@
   case RequestType::kMisesSolana:                 \
     return RequestTypeForUma::PERMISSION_VR;
 
+#define MISES_GET_UMA_VALUE_FOR_REQUESTS                              \
+  if (request_type >= RequestType::kWidevine &&                       \
+      request_type <= RequestType::kMisesSolana) { \
+    return GetUmaValueForRequestType(request_type);                   \
+  }
+  
 #include "src/components/permissions/permission_uma_util.cc"
 
 #endif
 
+#undef MISES_GET_UMA_VALUE_FOR_REQUESTS
 #undef MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE

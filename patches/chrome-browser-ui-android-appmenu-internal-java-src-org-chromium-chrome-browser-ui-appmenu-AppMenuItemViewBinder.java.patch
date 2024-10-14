@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
-index 4ea61c86b97ad19432c1642d5a130a479b396331..6b854025af26633e844c75abebe3986d97cf4780 100644
+index f5502764679a6df75583f54fc55e840294b6729a..773f793ff87737f9822e33518eb9c60ebad43d07 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
-@@ -27,6 +27,10 @@ import org.chromium.ui.modelutil.PropertyModel;
+@@ -29,6 +29,10 @@ import org.chromium.ui.modelutil.PropertyModel;
  import org.chromium.ui.widget.ChromeImageButton;
  import org.chromium.ui.widget.ChromeImageView;
  
@@ -10,10 +10,10 @@ index 4ea61c86b97ad19432c1642d5a130a479b396331..6b854025af26633e844c75abebe3986d
 +import android.graphics.PorterDuff;
 +import android.widget.ImageView;
 +
- /**
-  * The binder to bind the app menu  {@link PropertyModel} with the view.
-  */
-@@ -62,15 +66,33 @@ class AppMenuItemViewBinder {
+ /** The binder to bind the app menu {@link PropertyModel} with the view. */
+ class AppMenuItemViewBinder {
+     /** IDs of all of the buttons in icon_row_menu_item.xml. */
+@@ -88,6 +92,21 @@ class AppMenuItemViewBinder {
              imageView.setImageDrawable(icon);
              imageView.setVisibility(icon == null ? View.GONE : View.VISIBLE);
  
@@ -25,26 +25,13 @@ index 4ea61c86b97ad19432c1642d5a130a479b396331..6b854025af26633e844c75abebe3986d
 +                imageView.setColorFilter(null);
 +            }
 +
-             // tint the icon
-             @ColorRes
-             int colorResId = model.get(AppMenuItemProperties.ICON_COLOR_RES);
--            if (colorResId == 0) {
-+	    if (colorResId < 0) {
-+              ImageViewCompat.setImageTintList(imageView, null);
-+	    }
-+	    else {
-+	    if (colorResId == 0) {
-                 // If there is no color assigned to the icon, use the default color.
-                 colorResId = R.color.default_icon_color_secondary_tint_list;
-             }
-+
-+            if (titleCondensed != null && titleCondensed.toString().contains("Extension (inactive): ")) {
-+                colorResId = R.color.default_text_color_disabled_list;
++	           if (colorResId < 0) {
++               tintList = null;
++	           }
++	           else {
++              if (titleCondensed != null && titleCondensed.toString().contains("Extension (inactive): ")) {
++                  tintList = AppCompatResources.getColorStateList(imageView.getContext(), R.color.default_text_color_disabled_list);
 +            }
-+
-             ImageViewCompat.setImageTintList(imageView,
-                     AppCompatResources.getColorStateList(imageView.getContext(), colorResId));
-+	    }
+             // tint the icon
+             ImageViewCompat.setImageTintList(imageView, tintList);
          } else if (key == AppMenuItemProperties.CLICK_HANDLER) {
-             view.setOnClickListener(
-                     v -> model.get(AppMenuItemProperties.CLICK_HANDLER).onItemClick(model));

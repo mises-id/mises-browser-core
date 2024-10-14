@@ -1,8 +1,8 @@
 diff --git a/components/site_settings_strings.grdp b/components/site_settings_strings.grdp
-index e690c5b83945adb48567de7e0b2a587be3d8c2a5..1e3babfe253e3ee010736e3780caba33973a5f69 100644
+index 2d5c015f74137d0d05e55de09855a6296f8a30c6..d5366a2e56600cd04c9da121f7446c967b6a504f 100644
 --- a/components/site_settings_strings.grdp
 +++ b/components/site_settings_strings.grdp
-@@ -174,7 +174,7 @@
+@@ -192,7 +192,7 @@
    </message>
  
    <!-- Site Settings desktop-only -->

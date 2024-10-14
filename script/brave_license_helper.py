@@ -107,7 +107,7 @@ def AddBraveCredits(prune_paths, special_cases, prune_dirs, additional_paths):
             "Name": "RapidJSON",
             "URL": "https://github.com/Tencent/rapidjson",
             "License": "MIT",
-            "License File": "/brave/third_party/rapidjson/src/license.txt",
+            "License File": "/mises/third_party/rapidjson/src/license.txt",
         },
         os.path.join('brave', 'vendor', 'omaha', 'third_party', 'zlib'): {
             "Name": "zlib",
@@ -137,7 +137,7 @@ def AddBraveCredits(prune_paths, special_cases, prune_dirs, additional_paths):
     prune_list = list(prune_dirs)
     prune_list += [
         'chromium_src',  # Brave's overrides, covered by main notice.
-        'node_modules',  # See brave/third_party/npm-* instead.
+        'node_modules',  # See mises/third_party/npm-* instead.
         '.vscode',       # Automatically added by Visual Studio.
     ]
     prune_dirs = tuple(prune_list)

@@ -1,9 +1,9 @@
 diff --git a/components/history_strings.grdp b/components/history_strings.grdp
-index 2d9c3b3d94e869686be6c89b613ab50650fd947e..63138afef3822387328f0234a8100cafa1fe809f 100644
+index c600f241545426c3308630afd8702ec3039b829f..247ba3826146a9c309965c1e9c36a3b10d79673b 100644
 --- a/components/history_strings.grdp
 +++ b/components/history_strings.grdp
 @@ -63,7 +63,7 @@
-       Clear Browsing Data...
+       Delete Browsing Data...
      </message>
    </if>
 -  <if expr="not is_android">

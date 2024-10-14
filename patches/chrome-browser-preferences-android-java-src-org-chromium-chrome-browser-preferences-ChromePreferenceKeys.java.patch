@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
-index ec9ef22dd01d8108536573edea3036c636e6a261..d0374fef9585034f2eb609a074623736f8525965 100644
+index ac7048fc0e03b2b381f0178fa660f2c547df0391..877d993f4209164cf7061754e02d2d4500eb6e02 100644
 --- a/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
 +++ b/chrome/browser/preferences/android/java/src/org/chromium/chrome/browser/preferences/ChromePreferenceKeys.java
-@@ -970,6 +970,11 @@ public final class ChromePreferenceKeys {
+@@ -904,6 +904,11 @@ public final class ChromePreferenceKeys {
      public static final String BLUETOOTH_NOTIFICATION_IDS = "Chrome.Bluetooth.NotificationIds";
      public static final String USB_NOTIFICATION_IDS = "Chrome.USB.NotificationIds";
  

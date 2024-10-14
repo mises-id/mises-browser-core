@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
-index f59f62fdf971b060d7919dd47d0edc858a8849a1..517da874e1e4b5e66b7faa5ab9e905387e4b53ea 100644
+index fe807929ef2ab743d2cfea50bee4bed10054663c..6972133eaba7a479537fc484b10effd4ef722a8d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/about_settings/AboutChromeSettings.java
-@@ -66,7 +66,8 @@ public class AboutChromeSettings
+@@ -64,7 +64,8 @@ public class AboutChromeSettings extends PreferenceFragmentCompat
       * versions are more useful.
       */
      public static String getApplicationVersion(Context context, String version) {
@@ -12,10 +12,10 @@ index f59f62fdf971b060d7919dd47d0edc858a8849a1..517da874e1e4b5e66b7faa5ab9e90538
              return version;
          }
  
-@@ -79,7 +80,7 @@ public class AboutChromeSettings
-         }
-         CharSequence updateTimeString = DateUtils.getRelativeTimeSpanString(
-                 info.lastUpdateTime, System.currentTimeMillis(), 0);
+@@ -78,7 +79,7 @@ public class AboutChromeSettings extends PreferenceFragmentCompat
+         CharSequence updateTimeString =
+                 DateUtils.getRelativeTimeSpanString(
+                         info.lastUpdateTime, System.currentTimeMillis(), 0);
 -        return context.getString(R.string.version_with_update_time, version, updateTimeString);
 +        return context.getString(R.string.version_with_update_time, info.versionName, updateTimeString);
      }

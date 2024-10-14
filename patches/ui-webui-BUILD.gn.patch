@@ -1,8 +1,8 @@
 diff --git a/ui/webui/BUILD.gn b/ui/webui/BUILD.gn
-index 4c04da1223aee40d82d394bda2cfac8dc971a7b5..08f5b46cb3bff2ea0939e9d1b444d3558f06a03f 100644
+index 62cf4ae3ca301d0a62f1d42d74922ba263e2e6bc..d2b9b393cc8c00ed9d76c0c72002329cd55249f1 100644
 --- a/ui/webui/BUILD.gn
 +++ b/ui/webui/BUILD.gn
-@@ -32,7 +32,7 @@ static_library("webui") {
+@@ -28,7 +28,7 @@ static_library("webui") {
      "//ui/webui/resources/js/metrics_reporter:mojo_bindings",
    ]
  

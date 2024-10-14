@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/public/common/web_preferences/web_preferences_mojom_traits.h b/third_party/blink/public/common/web_preferences/web_preferences_mojom_traits.h
-index c5cf0543740b47c12b0cd211a64152d8abee1d21..a5f332a8f21749ecd3a4d0b853007e81e140fd72 100644
+index cc2d2e176476332546b76d33adedbbf760c6e9f6..894ee62160fe81cf32fb648300ff6e3fc8b2d5c1 100644
 --- a/third_party/blink/public/common/web_preferences/web_preferences_mojom_traits.h
 +++ b/third_party/blink/public/common/web_preferences/web_preferences_mojom_traits.h
-@@ -667,6 +667,11 @@ struct BLINK_COMMON_EXPORT StructTraits<blink::mojom::WebPreferencesDataView,
+@@ -662,6 +662,11 @@ struct BLINK_COMMON_EXPORT StructTraits<blink::mojom::WebPreferencesDataView,
      return r.force_dark_mode_enabled;
    }
  

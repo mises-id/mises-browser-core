@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/discards/BUILD.gn b/chrome/browser/resources/discards/BUILD.gn
-index edb251c29d737a6e00e05239a4b77b1214d93814..5f914d1fe1fe36372fb87f180a9861833cc64545 100644
+index 7cd940a845e2bd032fc4981d48b83387891846ed..c3ed513c79c9453dad48f9ae9b9c96473907d158 100644
 --- a/chrome/browser/resources/discards/BUILD.gn
 +++ b/chrome/browser/resources/discards/BUILD.gn
 @@ -5,7 +5,7 @@

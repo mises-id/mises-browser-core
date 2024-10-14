@@ -1,8 +1,8 @@
 diff --git a/content/browser/renderer_host/render_frame_host_impl.h b/content/browser/renderer_host/render_frame_host_impl.h
-index 63b1e93e5de362f580c7e9db80bd50e08765f8a4..c95db18dc0a42742a545904e27a3350b67e24e7d 100644
+index 0bf18155013c0b44b45eb7038e047d14dda90769..37a8f6d13fddb38cf7b43815edd88bfee44263f0 100644
 --- a/content/browser/renderer_host/render_frame_host_impl.h
 +++ b/content/browser/renderer_host/render_frame_host_impl.h
-@@ -1979,9 +1979,10 @@ class CONTENT_EXPORT RenderFrameHostImpl
+@@ -1976,9 +1976,10 @@ class CONTENT_EXPORT RenderFrameHostImpl
    void GetFileSystemAccessManager(
        mojo::PendingReceiver<blink::mojom::FileSystemAccessManager> receiver);
  

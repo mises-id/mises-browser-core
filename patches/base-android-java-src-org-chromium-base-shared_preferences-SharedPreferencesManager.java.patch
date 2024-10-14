@@ -1,8 +1,8 @@
 diff --git a/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java b/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
-index d5bd240706bd6c02d278557b3145a0f90eb70896..43a943a912860f30cd5d71831664b4376e68fd07 100644
+index ea4756405e16064a8150039dbe4ca47e83f91466..dc674f4cac7ebffc37364ba5a2aba90f9fb60128 100644
 --- a/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
 +++ b/base/android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java
-@@ -158,7 +158,7 @@ public class SharedPreferencesManager {
+@@ -258,7 +258,7 @@ public class SharedPreferencesManager {
          writeIntUnchecked(key, value);
      }
  
@@ -11,7 +11,7 @@ index d5bd240706bd6c02d278557b3145a0f90eb70896..43a943a912860f30cd5d71831664b437
          SharedPreferences.Editor ed = ContextUtils.getAppSharedPreferences().edit();
          ed.putInt(key, value);
          ed.apply();
-@@ -538,4 +538,33 @@ public class SharedPreferencesManager {
+@@ -632,4 +632,33 @@ public class SharedPreferencesManager {
          }
          return allPrefsWithPrefix;
      }

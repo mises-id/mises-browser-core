@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-index d336415b3ec62ec50dfe454ec962c8ca1e949c1a..fe391d0ab0de0b1ae81fc899448e2360758b3b08 100644
+index 5287942681817e8d05147eadc92366824d6c1b9a..fdd0f8c176356e3e9e19ffe4ed0628e4d949e57f 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-@@ -200,6 +200,12 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -233,6 +233,12 @@ public class MainSettings extends ChromeBaseSettingsFragment
          setManagedPreferenceDelegateForPreference(PREF_PASSWORDS);
          setManagedPreferenceDelegateForPreference(PREF_SEARCH_ENGINE);
  
@@ -15,20 +15,20 @@ index d336415b3ec62ec50dfe454ec962c8ca1e949c1a..fe391d0ab0de0b1ae81fc899448e2360
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              // If we are on Android O+ the Notifications preference should lead to the Android
              // Settings notifications page.
-@@ -210,6 +216,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -244,6 +250,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
              PackageManager pm = getActivity().getPackageManager();
              if (intent.resolveActivity(pm) != null) {
                  Preference notifications = findPreference(PREF_NOTIFICATIONS);
 +                if (notifications != null)
-                 notifications.setOnPreferenceClickListener(preference -> {
-                     startActivity(intent);
-                     // We handle the click so the default action isn't triggered.
-@@ -234,7 +241,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
-         new AdaptiveToolbarStatePredictor(null).recomputeUiState(uiState -> {
-             // We don't show the toolbar shortcut settings page if disabled from finch.
-             if (uiState.canShowUi) return;
--            getPreferenceScreen().removePreference(findPreference(PREF_TOOLBAR_SHORTCUT));
-+            removePreferenceIfPresent(PREF_TOOLBAR_SHORTCUT);
-         });
+                 notifications.setOnPreferenceClickListener(
+                         preference -> {
+                             startActivity(intent);
+@@ -273,7 +280,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
+                             // finch.
+                             if (uiState.canShowUi) return;
+                             getPreferenceScreen()
+-                                    .removePreference(findPreference(PREF_TOOLBAR_SHORTCUT));
++                                    .removePreferenceIfPresent(PREF_TOOLBAR_SHORTCUT);
+                         });
  
          if (BuildInfo.getInstance().isAutomotive) {

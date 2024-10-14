@@ -1021,7 +1021,6 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
       ['mises', 'chromium_src', 'python_modules'],
       ['mises', 'script'],
       ['tools', 'grit', 'grit', 'extern'],
-      ['mises', 'vendor', 'requests'],
       ['mises', 'third_party', 'cryptography'],
       ['mises', 'third_party', 'macholib'],
       ['build'],

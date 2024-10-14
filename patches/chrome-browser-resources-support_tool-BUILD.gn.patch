@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/support_tool/BUILD.gn b/chrome/browser/resources/support_tool/BUILD.gn
-index b0bc812040510b8c0e23a4937d85706638b3d2f6..2358ff4d677b0c526b595810e9086ecc655f00e9 100644
+index 2d27a5ee181e31f05eda79cc74a9f99002eb4e68..70c72b0503b1ede3ae976f5c270ea773fe2cad4e 100644
 --- a/chrome/browser/resources/support_tool/BUILD.gn
 +++ b/chrome/browser/resources/support_tool/BUILD.gn
 @@ -4,7 +4,7 @@

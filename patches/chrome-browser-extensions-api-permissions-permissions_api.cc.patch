@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/permissions/permissions_api.cc b/chrome/browser/extensions/api/permissions/permissions_api.cc
-index 86deb10d5b0168ffa56aedebc710d2e093a093ee..88b2c9bd119546115fd4601ab3899b2fcf9e5a32 100644
+index ab894f7e846b36287ab0fef8aa70cab4b6c3ecae..91237482e7101ef5ae5b0151b0903e5e33983ca8 100644
 --- a/chrome/browser/extensions/api/permissions/permissions_api.cc
 +++ b/chrome/browser/extensions/api/permissions/permissions_api.cc
-@@ -215,9 +215,11 @@ ExtensionFunction::ResponseAction PermissionsRequestFunction::Run() {
+@@ -310,9 +310,11 @@ ExtensionFunction::ResponseAction PermissionsRequestFunction::Run() {
  
    gfx::NativeWindow native_window =
        ChromeExtensionFunctionDetails(this).GetNativeWindowForUI();
@@ -12,5 +12,5 @@ index 86deb10d5b0168ffa56aedebc710d2e093a093ee..88b2c9bd119546115fd4601ab3899b2f
    }
 +#endif
  
-   absl::optional<api::permissions::Request::Params> params =
+   std::optional<api::permissions::Request::Params> params =
        api::permissions::Request::Params::Create(args());

@@ -1,8 +1,8 @@
 diff --git a/ui/webui/resources/images/BUILD.gn b/ui/webui/resources/images/BUILD.gn
-index 44bad8bc0910080860b0ddb750cbf03c09e15296..21d9febde3bc61a09d80c6b5b2692624f2402938 100644
+index 4f06ce4a6e7f9b997112aa39dae552bcbd6dcb3e..c3787caf48a6c4f266403e83278f9792ce61bc34 100644
 --- a/ui/webui/resources/images/BUILD.gn
 +++ b/ui/webui/resources/images/BUILD.gn
-@@ -45,7 +45,7 @@ generate_grd("build_grdp") {
+@@ -48,7 +48,7 @@ generate_grd("build_grdp") {
      "2x/select.png",
    ]
  

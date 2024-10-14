@@ -1,74 +1,28 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-index 66e47ed1f5b880aaffd3901ba036ea2264b9dc88..820c944a6649e1e2dd589371e39b5d2d33ac66ed 100644
+index 45e431d1f294ddd76bd75f0c52075a44713560e3..6e8f574d4a13ac0639ec2970bffc581d054b9ad5 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-@@ -33,6 +33,11 @@ import org.chromium.components.browser_ui.styles.SemanticColorUtils;
- import org.chromium.ui.UiUtils;
- import org.chromium.ui.util.ColorUtils;
+@@ -57,6 +57,11 @@ import org.chromium.ui.util.ColorUtils;
+ 
+ import java.util.Optional;
  
 +import org.chromium.base.ContextUtils;
 +import android.graphics.Color;
 +
 +import org.chromium.chrome.browser.night_mode.GlobalNightModeStateProviderHolder;
 +
- /**
-  * Controls the bottom system navigation bar color for the provided {@link Window}.
-  */
-@@ -167,6 +172,11 @@ class TabbedNavigationBarColorController {
-         forceDarkNavigation &= !UiUtils.isSystemUiThemingDisabled();
+ /** Controls the bottom system navigation bar color for the provided {@link Window}. */
+ @RequiresApi(Build.VERSION_CODES.O_MR1)
+ class TabbedNavigationBarColorController
+@@ -354,6 +359,11 @@ class TabbedNavigationBarColorController
          forceDarkNavigation |= mIsInFullscreen;
+         mForceDarkNavigationBarColor = forceDarkNavigation;
  
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode()))
 +            forceDarkNavigation = true;
 +
 +        if (mForceDarkNavigationBarColor == forceDarkNavigation) return;
 +
-         mForceDarkNavigationBarColor = forceDarkNavigation;
-         final @ColorInt int navigationBarColor =
-                 getNavigationBarColor(mForceDarkNavigationBarColor);
-@@ -187,6 +197,8 @@ class TabbedNavigationBarColorController {
-             mWindow.setNavigationBarDividerColor(
-                     getNavigationBarDividerColor(mForceDarkNavigationBarColor));
-         }
-+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode())))
-+            mWindow.setNavigationBarDividerColor(Color.parseColor("#FF000000"));
-     }
- 
-     /**
-@@ -195,12 +207,19 @@ class TabbedNavigationBarColorController {
-      */
-     public void setNavigationBarScrimFraction(float fraction) {
-         mNavigationBarScrimFraction = fraction;
-+        // https://forums.oneplus.com/threads/cannot-set-navigation-bar-color-to-pure-black-ff000000-via-values-xml.908719/
-+        // navigation bar cannot be set to pure black to protect the display
-+        if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode()))
-+        mWindow.setNavigationBarColor(Color.parseColor("#FF000000"));
-+        else
-         mWindow.setNavigationBarColor(
-                 applyCurrentScrimToColor(getNavigationBarColor(mForceDarkNavigationBarColor)));
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-             mWindow.setNavigationBarDividerColor(applyCurrentScrimToColor(
-                     getNavigationBarDividerColor(mForceDarkNavigationBarColor)));
-         }
-+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode())))
-+            mWindow.setNavigationBarDividerColor(Color.parseColor("#FF000000"));
- 
-         // Adjust the color of navigation bar icons based on color state of the navigation bar.
-         if (MathUtils.areFloatsEqual(1f, fraction)) {
-@@ -211,12 +230,16 @@ class TabbedNavigationBarColorController {
-     }
- 
-     private @ColorInt int getNavigationBarColor(boolean forceDarkNavigationBar) {
-+        if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode()))
-+            return Color.parseColor("#FF000000");
-         return forceDarkNavigationBar
-                 ? mContext.getColor(R.color.toolbar_background_primary_dark)
-                 : SemanticColorUtils.getBottomSystemNavColor(mWindow.getContext());
-     }
- 
-     private @ColorInt int getNavigationBarDividerColor(boolean forceDarkNavigationBar) {
-+        if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 2 || (ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == 0 && GlobalNightModeStateProviderHolder.getInstance().isInNightMode()))
-+            return Color.parseColor("#FF000000");
-         return forceDarkNavigationBar
-                 ? mContext.getColor(R.color.bottom_system_nav_divider_color_light)
-                 : SemanticColorUtils.getBottomSystemNavDividerColor(mWindow.getContext());
+         // 2. Calculate colors and store update states.
+         final @ColorInt int newNavigationBarColor = getNavigationBarColor(forceDarkNavigation);
+         final @ColorInt int dividerColor =

@@ -1,8 +1,8 @@
 diff --git a/components/media_router/common/BUILD.gn b/components/media_router/common/BUILD.gn
-index 2241640103bab3568415e976413313b28014a51b..c16af7946f54f98855eea9f82aac30b4abf12fdd 100644
+index 4a33857f6563c148d46c33aeaf757572f7ad5a86..24b3c5fcb9e1fd4b4fa4d817f3490476f83bfe2d 100644
 --- a/components/media_router/common/BUILD.gn
 +++ b/components/media_router/common/BUILD.gn
-@@ -40,7 +40,7 @@ static_library("common") {
+@@ -41,7 +41,7 @@ static_library("common") {
  
    configs += [ "//build/config/compiler:wexit_time_destructors" ]
  

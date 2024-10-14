@@ -1,8 +1,8 @@
 diff --git a/content/browser/webui/web_ui_impl.cc b/content/browser/webui/web_ui_impl.cc
-index 15559900c52f7c697593720b6842826ec760d33b..70ff5c61543dffa1647de2a8ee219b99d41a0e76 100644
+index 902b2d886e0d746ac1cf6bf8bd7c265aa055972f..986670aacba6cb714b0e7bac38933e9de40d3cf6 100644
 --- a/content/browser/webui/web_ui_impl.cc
 +++ b/content/browser/webui/web_ui_impl.cc
-@@ -139,7 +139,7 @@ void WebUIImpl::SetRenderFrameHost(RenderFrameHost* render_frame_host) {
+@@ -138,7 +138,7 @@ void WebUIImpl::SetRenderFrameHost(RenderFrameHost* render_frame_host) {
  }
  
  void WebUIImpl::WebUIRenderFrameCreated(RenderFrameHost* render_frame_host) {
@@ -10,8 +10,8 @@ index 15559900c52f7c697593720b6842826ec760d33b..70ff5c61543dffa1647de2a8ee219b99
 +  if (GetController()) controller_->WebUIRenderFrameCreated(render_frame_host);
  }
  
- void WebUIImpl::RenderFrameReused(RenderFrameHost* render_frame_host) {
-@@ -258,7 +258,7 @@ void WebUIImpl::RegisterMessageCallback(base::StringPiece message,
+ void WebUIImpl::RenderFrameHostUnloading() {
+@@ -242,7 +242,7 @@ void WebUIImpl::RegisterMessageCallback(std::string_view message,
  void WebUIImpl::ProcessWebUIMessage(const GURL& source_url,
                                      const std::string& message,
                                      base::Value::List args) {

@@ -1,13 +1,13 @@
 diff --git a/third_party/blink/renderer/platform/runtime_enabled_features.json5 b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-index 5f91aa499ae04a5a21135b7345747cdad694bd21..615c245a2ae4a2f7e07e86db72d4894cb9302733 100644
+index 72d0c25e9d70dc18a2684a0eabd65c8515e877d0..e27c5e5c3b4b9c30aff9f7cced9e284b1cbe0bb9 100644
 --- a/third_party/blink/renderer/platform/runtime_enabled_features.json5
 +++ b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-@@ -4336,7 +4336,7 @@
+@@ -4776,7 +4776,7 @@
      },
      {
        name: "WebHID",
 -      status: {"Android": "", "default": "stable"},
 +      status: "stable",
-       base_feature: "none",
      },
      {
+       // It is only enabled in extension environment for now.

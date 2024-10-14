@@ -1,19 +1,19 @@
 diff --git a/chrome/browser/ui/webui/settings/site_settings_helper.cc b/chrome/browser/ui/webui/settings/site_settings_helper.cc
-index c0cc4dbb11a40639c7ad700672ae195d573aafae..41baded8960b7365066f89c68904f4e268e0a862 100644
+index 020165980cbfc36e181afca7ae326cad27b2ac1a..d675ac8b2c8ef97e17a01fca621793068b91c389 100644
 --- a/chrome/browser/ui/webui/settings/site_settings_helper.cc
 +++ b/chrome/browser/ui/webui/settings/site_settings_helper.cc
-@@ -204,6 +204,7 @@ const ContentSettingsTypeNameEntry kContentSettingsTypeGroupNames[] = {
-     // for the integration with Safety Hub.
-     {ContentSettingsType::FILE_SYSTEM_ACCESS_EXTENDED_PERMISSION, nullptr},
-     {ContentSettingsType::TPCD_HEURISTICS_GRANTS, nullptr},
+@@ -237,6 +237,7 @@ const ContentSettingsTypeNameEntry kContentSettingsTypeGroupNames[] = {
+     {ContentSettingsType::TOP_LEVEL_TPCD_ORIGIN_TRIAL, nullptr},
+     {ContentSettingsType::DISPLAY_MEDIA_SYSTEM_AUDIO, nullptr},
+     {ContentSettingsType::STORAGE_ACCESS_HEADER_ORIGIN_TRIAL, nullptr},
 +    MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST
  };
  
- static_assert(std::size(kContentSettingsTypeGroupNames) ==
-@@ -469,6 +470,7 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
+ static_assert(
+@@ -481,6 +482,7 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
  }
  
- ContentSettingsType ContentSettingsTypeFromGroupName(base::StringPiece name) {
+ ContentSettingsType ContentSettingsTypeFromGroupName(std::string_view name) {
 +  MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_FROM_GROUP_NAME
    for (const auto& entry : kContentSettingsTypeGroupNames) {
      // Content setting types that aren't represented in the settings UI

@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
-index f224a9925990f9529b0463a87c6370ff3232d90b..d5ece0e62129df9c43beeb242bbeaea315a4004d 100644
+index fcfbfe79f0f80437f6b2e35abd61b3028e59c8e6..274c5bc69d6c85b0b7d8c39d0f4dd7b75df32ce8 100644
 --- a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
 +++ b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
-@@ -39,6 +39,9 @@ public class ThemeUtils {
+@@ -45,6 +45,9 @@ public class ThemeUtils {
       */
-     public static int getBackgroundColor(Tab tab) {
+     public static @ColorInt int getBackgroundColor(Tab tab) {
          if (tab.isNativePage()) return tab.getNativePage().getBackgroundColor();
 +        boolean isIncognito = tab != null && tab.isIncognito();
 +        boolean isLocalNTP = tab != null && tab.getUrl().getSpec().contains("/local-ntp/");

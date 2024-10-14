@@ -1,5 +1,5 @@
 diff --git a/chrome/app/bookmarks_strings.grdp b/chrome/app/bookmarks_strings.grdp
-index 17284d653794f0731fe5f12040ce7b603b80f032..e69ce124d92ee47dd2fb88fcc8a85635207ac310 100644
+index a6a1e7c58246f995eee6121db20f85060499df29..fe48141fc9e272fbc9f49e301a5fedf0bbbecd9b 100644
 --- a/chrome/app/bookmarks_strings.grdp
 +++ b/chrome/app/bookmarks_strings.grdp
 @@ -2,8 +2,8 @@
@@ -13,7 +13,7 @@ index 17284d653794f0731fe5f12040ce7b603b80f032..e69ce124d92ee47dd2fb88fcc8a85635
      <if expr="is_win">
        <message name="IDS_BOOKMARK_GROUP_FROM_IE" desc="The group name of bookmarks from Internet Explorer">
          Imported From IE
-@@ -118,7 +118,7 @@
+@@ -124,7 +124,7 @@
      <message name="IDS_BOOKMARK_BAR_NEW_FOLDER" desc="Menu title for adding a new folder">
        Add &amp;folder...
      </message>
@@ -22,7 +22,7 @@ index 17284d653794f0731fe5f12040ce7b603b80f032..e69ce124d92ee47dd2fb88fcc8a85635
        <message name="IDS_SHOW_BOOKMARK_BAR" desc="The toggle to show the bookmark bar">
          &amp;Show bookmarks bar
        </message>
-@@ -179,7 +179,7 @@
+@@ -185,7 +185,7 @@
      <message name="IDS_BOOKMARK_BAR_NEW_FOLDER" desc="In Title Case: Menu title for adding a new folder">
        Add &amp;Folder...
      </message>

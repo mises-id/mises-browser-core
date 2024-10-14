@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/web_applications/web_app_install_info.h b/chrome/browser/web_applications/web_app_install_info.h
-index 24106427fc485683aff86f43ec8d879e1dd2ed6a..50643dd7e3d2033d052d021abab3d5e8b519c9a8 100644
+index f7a5ebfdc226a71fcd854da3f935acd33fbc6bd8..91ffdd32034089b50574605be4ecd16d6ab8dbdf 100644
 --- a/chrome/browser/web_applications/web_app_install_info.h
 +++ b/chrome/browser/web_applications/web_app_install_info.h
-@@ -35,7 +35,7 @@
+@@ -39,7 +39,7 @@
  #include "url/gurl.h"
  
  static_assert(BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
--              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA));
-+              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_ANDROID));
+-              BUILDFLAG(IS_CHROMEOS));
++              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID));
  
  namespace web_app {
  

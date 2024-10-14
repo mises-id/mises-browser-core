@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/modaldialog/ChromeTabModalPresenter.java b/chrome/android/java/src/org/chromium/chrome/browser/modaldialog/ChromeTabModalPresenter.java
-index 48952ca1a8fe3a6ea8396ca648fa20bf42665ce4..413fd9a9ab8645fb8c29b07089825209d4d71c02 100644
+index a6cd8942f4ba6f486a4dea8968e1a170ad26236d..dc009985fe1d29426cfcb140cd8906c06529cc94 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/modaldialog/ChromeTabModalPresenter.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/modaldialog/ChromeTabModalPresenter.java
-@@ -35,6 +35,7 @@ import org.chromium.components.webxr.XrDelegateProvider;
+@@ -33,6 +33,7 @@ import org.chromium.components.webxr.XrDelegateProvider;
  import org.chromium.content_public.browser.WebContents;
  import org.chromium.ui.UiUtils;
  import org.chromium.ui.modelutil.PropertyModel;
@@ -10,7 +10,7 @@ index 48952ca1a8fe3a6ea8396ca648fa20bf42665ce4..413fd9a9ab8645fb8c29b07089825209
  
  /**
   * This presenter creates tab modality by blocking interaction with select UI elements while a
-@@ -280,6 +281,8 @@ public class ChromeTabModalPresenter
+@@ -285,6 +286,8 @@ public class ChromeTabModalPresenter extends TabModalPresenter
       */
      public static int getContainerTopMargin(
              Resources resources, BrowserControlsStateProvider provider) {

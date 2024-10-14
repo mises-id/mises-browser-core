@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/ui/web_applications/web_app_dialogs.h b/chrome/browser/ui/web_applications/web_app_dialogs.h
-index 8a7d9fb20d57e2372d6157d4474de9f118bc4351..c466b6b5b1ff0d25dac777a9f01a55cbfa8eccfa 100644
+index 0c28e3d91853202ca0e4f4daffec613d1e9f2b31..12f2e6e70c1e66d16699d724106a134dd4f9401a 100644
 --- a/chrome/browser/ui/web_applications/web_app_dialogs.h
 +++ b/chrome/browser/ui/web_applications/web_app_dialogs.h
-@@ -20,7 +20,7 @@
+@@ -22,7 +22,7 @@
  #include "ui/gfx/native_widget_types.h"
  
  static_assert(BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
--              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA));
-+              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_ANDROID));
+-              BUILDFLAG(IS_CHROMEOS));
++              BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID));
  
  class GURL;
  class Profile;

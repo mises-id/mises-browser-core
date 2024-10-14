@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/ui/web_applications/BUILD.gn b/chrome/browser/ui/web_applications/BUILD.gn
-index 016835c9b612f05317c6199a652e03abf24ede84..a1efb41c8da7aac5c46da31c9ea3b54ab0874731 100644
+index 269bc69a2fda90355db9e8f22e27934d75d9a453..256d16bf6da2b2ca1a8863901e9c4e6b9d918971 100644
 --- a/chrome/browser/ui/web_applications/BUILD.gn
 +++ b/chrome/browser/ui/web_applications/BUILD.gn
-@@ -114,6 +114,10 @@ source_set("browser_tests") {
-       "//components/metrics/structured:structured_events",
-     ]
+@@ -126,6 +126,10 @@ source_set("browser_tests") {
+   if (is_chromeos) {
+     deps += [ "//chromeos/constants" ]
    }
 +
 +  if (is_android) {
@@ -12,9 +12,9 @@ index 016835c9b612f05317c6199a652e03abf24ede84..a1efb41c8da7aac5c46da31c9ea3b54a
 +  }
  }
  
- # On Lacros, these browser tests require Ash to be running, as they rely on
-@@ -175,4 +179,7 @@ source_set("app_service_browser_tests") {
-       "//chromeos/lacros:test_support",
+ # On Lacros, these browser tests require Ash to be running, as they rely on web
+@@ -191,4 +195,7 @@ source_set("app_service_browser_tests") {
+       "//chromeos/startup",
      ]
    }
 +  if (is_android) {

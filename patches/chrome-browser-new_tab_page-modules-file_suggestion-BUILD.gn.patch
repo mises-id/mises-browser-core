@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/new_tab_page/modules/file_suggestion/BUILD.gn b/chrome/browser/new_tab_page/modules/file_suggestion/BUILD.gn
+index e5eda656923bc918f26a024c397e9cc78776aba4..6209a42ea548cda5240df1d909411c74e74a976d 100644
+--- a/chrome/browser/new_tab_page/modules/file_suggestion/BUILD.gn
++++ b/chrome/browser/new_tab_page/modules/file_suggestion/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "file_suggestion.mojom" ]

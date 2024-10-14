@@ -1,13 +1,13 @@
 diff --git a/chrome/renderer/extensions/api/app_hooks_delegate.cc b/chrome/renderer/extensions/api/app_hooks_delegate.cc
-index 994ad46258121b92a7c9305b9f41bf625b36b266..d75f38645e07544e204ac5d1d589dfc7453cc1bf 100644
+index 0a94364c6fd7e6ed195f7b5f68d1c418077cebe3..5eccf9bfb0585ffe7220860668221fb97403a894 100644
 --- a/chrome/renderer/extensions/api/app_hooks_delegate.cc
 +++ b/chrome/renderer/extensions/api/app_hooks_delegate.cc
-@@ -133,6 +133,8 @@ void AppHooksDelegate::InitializeTemplate(
-   object_template->SetAccessor(gin::StringToSymbol(isolate, "isInstalled"),
-                                &AppHooksDelegate::IsInstalledGetterCallback,
-                                nullptr, v8::External::New(isolate, this));
-+  object_template->SetAccessor(gin::StringToSymbol(isolate, "defaultEVMWalletID"), &GetDefaultEVMWalletID);
-+  object_template->SetAccessor(gin::StringToSymbol(isolate, "defaultEVMWalletKeyProperty"), &GetDefaultEVMWalletKeyProperty);
+@@ -144,6 +144,8 @@ void AppHooksDelegate::InitializeTemplate(
+       gin::StringToSymbol(isolate, "isInstalled"),
+       &AppHooksDelegate::IsInstalledGetterCallback, EmptySetterCallback,
+       v8::External::New(isolate, this));
++  object_template->SetNativeDataProperty(gin::StringToSymbol(isolate, "defaultEVMWalletID"), &GetDefaultEVMWalletID);
++  object_template->SetNativeDataProperty(gin::StringToSymbol(isolate, "defaultEVMWalletKeyProperty"), &GetDefaultEVMWalletKeyProperty);
  }
  
  v8::Local<v8::Value> AppHooksDelegate::GetDetails(

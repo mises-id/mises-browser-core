@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..74925e8bef9c422e95719b792c6acb2649fc78a5 100644
+index 59773d17657448a508a8cea31ca3a1f72f3c5abc..8e728452f6ec71f3b7e4c8002898b892eb65743b 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
-@@ -2730,6 +2730,7 @@ static_library("browser") {
+@@ -2513,6 +2513,7 @@ static_library("browser") {
        "signin/wait_for_network_callback_helper_chrome.h",
      ]
    }
@@ -10,7 +10,7 @@ index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..74925e8bef9c422e95719b792c6acb26
  
    if (is_android) {
      sources += [
-@@ -3676,7 +3677,8 @@ static_library("browser") {
+@@ -3457,7 +3458,8 @@ static_library("browser") {
        ]
        deps += [ "//chrome/android/modules/dev_ui/provider:native" ]
      }
@@ -19,45 +19,36 @@ index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..74925e8bef9c422e95719b792c6acb26
 +  if (true) {
      #!is_android
      sources += [
-       "accessibility/caption_bubble_context_browser.h",
-@@ -4734,7 +4736,7 @@ static_library("browser") {
-         "themes/theme_color_policy_handler.h",
-       ]
+       "accessibility/ax_main_node_annotator_controller.cc",
+@@ -4415,7 +4417,7 @@ static_library("browser") {
+         ]
+       }
      }
 -    if (!is_chromeos_ash) {
 +    if (is_android || !is_chromeos_ash) {
        sources += [
          "accessibility/soda_installer_impl.cc",
          "accessibility/soda_installer_impl.h",
-@@ -4821,7 +4823,7 @@ static_library("browser") {
+@@ -4474,7 +4476,7 @@ static_library("browser") {
+       ]
+     }
  
-     # On Windows, the hashes are embedded in //chrome:chrome_initial rather
-     # than here in :chrome_dll.
 -    if (!is_win) {
 +    if (!is_android && !is_win) {
-       deps += [ "//chrome:packed_resources_integrity" ]
-       sources += [ "certificate_viewer_stub.cc" ]
-     }
-@@ -4862,6 +4864,9 @@ static_library("browser") {
-         "feedback/system_logs/log_sources/chrome_root_store_log_source.h",
+       # On Windows, the hashes are embedded in //chrome:chrome_initial rather
+       # than here in :chrome_dll.
+       deps += [ "//chrome:packed_resources_integrity_header" ]
+@@ -4499,6 +4501,9 @@ static_library("browser") {
+         "component_updater/hyphenation_component_installer.h",
        ]
      }
 +    sources -= mises_chrome_browser_exception_sources
 +    deps -= mises_chrome_browser_exception_deps
 +    allow_circular_includes_from -= mises_chrome_browser_exception_allow_circular_includes_from
    }
-   if (is_chromeos_lacros) {
-     assert(enable_system_notifications)
-@@ -6806,7 +6811,7 @@ static_library("browser") {
-     ]
-   }
  
--  if (toolkit_views) {
-+  if (is_android || toolkit_views) {
-     sources += [
-       "bookmarks/bookmark_expanded_state_tracker.cc",
-       "bookmarks/bookmark_expanded_state_tracker.h",
-@@ -7690,7 +7695,7 @@ static_library("browser") {
+   if (is_chromeos_ash) {
+@@ -7958,7 +7963,7 @@ static_library("browser") {
      }
    }
  
@@ -66,9 +57,9 @@ index 44d3b5e543101ce7ff5fed778fc430532e7ae9fb..74925e8bef9c422e95719b792c6acb26
      sources += [
        "sessions/app_session_service.cc",
        "sessions/app_session_service.h",
-@@ -7973,7 +7978,7 @@ static_library("browser") {
-       "permissions/prediction_model_handler_provider_factory.cc",
-       "permissions/prediction_model_handler_provider_factory.h",
+@@ -8163,7 +8168,7 @@ static_library("browser") {
+       "navigation_predictor/preloading_model_handler.cc",
+       "navigation_predictor/preloading_model_handler.h",
      ]
 -    if (!is_android) {
 +    if (is_android || !is_android) {

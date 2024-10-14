@@ -1,12 +1,12 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
-index a1aec0c2a7f3b856e8d8ecee68129b513f991760..b170e5e49eaf41d55424b74e2aeb41701266b2ff 100644
+index 45c83398f43a801e0ad7454ba9203a9440583d48..98558f299e514d0b2c12da3a128d7567831497f5 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/RadioButtonGroupThemePreference.java
-@@ -98,6 +98,7 @@ public class RadioButtonGroupThemePreference
-      * Remove and insert the checkbox to the view, based on the current theme preference.
-      */
+@@ -97,6 +97,7 @@ public class RadioButtonGroupThemePreference extends Preference
+ 
+     /** Remove and insert the checkbox to the view, based on the current theme preference. */
      private void positionCheckbox() {
 +        if (false)
          if (ChromeFeatureList.isEnabled(
-                     ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
+                 ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
              if (mSetting == ThemeType.SYSTEM_DEFAULT || mSetting == ThemeType.DARK) {

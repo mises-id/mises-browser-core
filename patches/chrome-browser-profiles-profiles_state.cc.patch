@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/profiles/profiles_state.cc b/chrome/browser/profiles/profiles_state.cc
-index 0125f6c344f42b991a4c414cf47a66dc5072f010..c06f43b863509ec84d9bd8c0c4a37a8793ba485c 100644
+index e9827321c54c633682d977f87a3b3a036b514412..90fbac9ad8291dc0d430a08efc92a6621ac60c57 100644
 --- a/chrome/browser/profiles/profiles_state.cc
 +++ b/chrome/browser/profiles/profiles_state.cc
-@@ -33,7 +33,7 @@
+@@ -35,7 +35,7 @@
  #include "content/public/browser/browsing_data_remover.h"
  #include "ui/base/l10n/l10n_util.h"
  
@@ -11,8 +11,8 @@ index 0125f6c344f42b991a4c414cf47a66dc5072f010..c06f43b863509ec84d9bd8c0c4a37a87
  #include "chrome/browser/ui/browser.h"
  #endif
  
-@@ -106,7 +106,7 @@ void SetLastUsedProfile(const base::FilePath& profile_dir) {
-   local_state->SetFilePath(prefs::kProfileLastUsed, profile_dir);
+@@ -120,7 +120,7 @@ bool IsRegularUserProfile(Profile* profile) {
+   return selections.ApplyProfileSelection(profile);
  }
  
 -#if !BUILDFLAG(IS_ANDROID)

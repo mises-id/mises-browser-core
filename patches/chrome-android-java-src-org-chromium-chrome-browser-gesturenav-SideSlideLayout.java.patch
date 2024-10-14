@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
-index 2ef0d30c097cd290730001b822d558e0313130eb..a5afa2ab5defa61e2f0b8fe82de547d6c70ff2fe 100644
+index 52d5498585140beef378f1e3eb39aca26c719c45..43162c85b272e75f23deb95e44915a1535413876 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/SideSlideLayout.java
-@@ -57,7 +57,7 @@ public class SideSlideLayout extends ViewGroup {
+@@ -62,7 +62,7 @@ public class SideSlideLayout extends ViewGroup {
      private static final int ANIMATE_TO_START_DURATION_MS = 500;
  
      // Minimum number of pull updates necessary to trigger a side nav.

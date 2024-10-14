@@ -35,9 +35,6 @@
   <message name="IDS_GLOBAL_MEDIA_CONTROLS_CAPTION_SETTINGS" desc="Label for the link to the caption settings page.">
    Caption settings
   </message>
-  <message name="IDS_GLOBAL_MEDIA_CONTROLS_LIVE_TRANSLATE_SUBTITLE" desc="Subtitle for the live translate toggle control.">
-   Automatically translates captions
-  </message>
   <message name="IDS_GLOBAL_MEDIA_CONTROLS_LIVE_TRANSLATE_TARGET_LANGUAGE_ACCNAME" desc="Accessible name for the target language selection combobox.">
    Choose the language to translate the captions to
   </message>
@@ -63,6 +60,6 @@
    Report an issue with Mises Cast
   </message>
   <message name="IDS_MEDIA_TOOLBAR_CONTEXT_SHOW_OTHER_SESSIONS" desc="Title of a menu item which, on click, toggles (shows or hides) Cast sessions started by other devices on the same network.">
-   Show other Cast sessions
+   Show other cast sessions
   </message>
 </grit-part>

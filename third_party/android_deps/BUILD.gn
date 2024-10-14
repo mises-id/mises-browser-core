@@ -171,7 +171,6 @@ android_aar_prebuilt("google_play_services_ads_lite_java") {
   info_path = "libs/com_google_android_gms_play_services_ads_lite/com_google_android_gms_play_services_ads_lite.info"
 
   deps = [ 
-    "//third_party/androidx:androidx_work_work_runtime_java",
     "//third_party/androidx:androidx_privacysandbox_ads_ads_adservices_java_java",
     "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_ads_base_java",

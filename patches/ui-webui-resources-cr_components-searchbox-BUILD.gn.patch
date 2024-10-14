@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/searchbox/BUILD.gn b/ui/webui/resources/cr_components/searchbox/BUILD.gn
+index 4fc2abb4b18eecca0d71a92919fb7c61e7cad87b..3a82baa053436f8d3d3cd7d0d24196dca5b88a0b 100644
+--- a/ui/webui/resources/cr_components/searchbox/BUILD.gn
++++ b/ui/webui/resources/cr_components/searchbox/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "searchbox.mojom" ]

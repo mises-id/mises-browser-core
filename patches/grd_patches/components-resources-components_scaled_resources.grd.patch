@@ -1,8 +1,8 @@
 diff --git a/components/resources/components_scaled_resources.grd b/components/resources/components_scaled_resources.grd
-index ca8c6df41fc3963a4aadd4896659fb725a352cf8..c65a746edff9f35c9cc13203e913ff762e861cb4 100644
+index 939035cad76715757789f1a8878b073522d2d361..4f377061cbaef94a0ea352d753a1fe11415fed16 100644
 --- a/components/resources/components_scaled_resources.grd
 +++ b/components/resources/components_scaled_resources.grd
-@@ -23,7 +23,7 @@
+@@ -24,7 +24,7 @@
        </if>
  
        <!-- Generic resources -->

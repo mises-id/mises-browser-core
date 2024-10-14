@@ -1,8 +1,8 @@
 diff --git a/net/base/mime_util.cc b/net/base/mime_util.cc
-index d4ac4b84f8f033be4fb09ab5df3fc55a0728d0bf..8bf4f3fd1621c18e4d6ddf99f30cfa424327d263 100644
+index 9e8d5eebafa0803907002221bbaf98f72d953af0..71c18550041e246116504d6c3148294481b2a66d 100644
 --- a/net/base/mime_util.cc
 +++ b/net/base/mime_util.cc
-@@ -317,6 +317,10 @@ bool MimeUtil::GetMimeTypeFromFile(const base::FilePath& file_path,
+@@ -310,6 +310,10 @@ bool MimeUtil::GetMimeTypeFromFile(const base::FilePath& file_path,
    base::FilePath::StringType file_name_str = file_path.Extension();
    if (file_name_str.empty())
      return false;

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/device_dialog/usb_chooser_dialog_android.cc b/chrome/browser/ui/android/device_dialog/usb_chooser_dialog_android.cc
-index 8fcd29843b2043e16d024c3ba7b77f3467d32275..8b4aab50481a55e9db20fd46aa71addcf7276ed0 100644
+index 6946406d977f169667c76be801d32d54618ef788..c14b5f2ff8df8908f70730454625b6a5bbcfb13c 100644
 --- a/chrome/browser/ui/android/device_dialog/usb_chooser_dialog_android.cc
 +++ b/chrome/browser/ui/android/device_dialog/usb_chooser_dialog_android.cc
-@@ -69,8 +69,15 @@ UsbChooserDialogAndroid::CreateInternal(
+@@ -71,8 +71,15 @@ UsbChooserDialogAndroid::CreateInternal(
        content::WebContents::FromRenderFrameHost(render_frame_host);
  
    // Create (and show) the UsbChooser dialog.

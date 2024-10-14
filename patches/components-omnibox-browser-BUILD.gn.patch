@@ -1,8 +1,8 @@
 diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
-index b229a37f84859e793f482818b14c49392ec3fa7a..3809ac88c0af9b392d3c63f7084db69a7f6eaa36 100644
+index fa8f859e5204cbf3ce7f241613c5e9f9c978a2d3..f6319910f4b91540d91bacfbd0d97f6b8745de06 100644
 --- a/components/omnibox/browser/BUILD.gn
 +++ b/components/omnibox/browser/BUILD.gn
-@@ -364,6 +364,8 @@ static_library("browser") {
+@@ -373,6 +373,8 @@ static_library("browser") {
      "//ui/gfx",
    ]
  
@@ -11,7 +11,7 @@ index b229a37f84859e793f482818b14c49392ec3fa7a..3809ac88c0af9b392d3c63f7084db69a
    configs += [ "//build/config/compiler:wexit_time_destructors" ]
  
    if (is_android) {
-@@ -871,6 +873,7 @@ source_set("unit_tests") {
+@@ -920,6 +922,7 @@ source_set("unit_tests") {
      "//ui/gfx:test_support",
      "//url",
    ]

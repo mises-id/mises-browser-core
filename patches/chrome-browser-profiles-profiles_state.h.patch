@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/profiles/profiles_state.h b/chrome/browser/profiles/profiles_state.h
-index 4240d27bca80041fdb95d0c29d7b8fca7250696e..e5b2ce203cbf55ab305d6e3453f64c2a3931346a 100644
+index 2671f0c550b333bf47a89f74bd7872f50b66d5c8..778553b3ee6693d11bed9620521809c5e6b01c11 100644
 --- a/chrome/browser/profiles/profiles_state.h
 +++ b/chrome/browser/profiles/profiles_state.h
-@@ -48,7 +48,7 @@ void RegisterPrefs(PrefRegistrySimple* registry);
- // System Profile directory, which is an invalid last used profile.
- void SetLastUsedProfile(const base::FilePath& profile_dir);
+@@ -51,7 +51,7 @@ void SetLastUsedProfile(const base::FilePath& profile_dir);
+ // profiles should use `Profile::IsRegularProfile()` instead.
+ bool IsRegularUserProfile(Profile* profile);
  
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)

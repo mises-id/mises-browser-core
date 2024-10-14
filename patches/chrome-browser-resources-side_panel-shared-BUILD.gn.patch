@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/shared/BUILD.gn b/chrome/browser/resources/side_panel/shared/BUILD.gn
-index d09f43a0a3aa79abba8f6006c1becbfebf099991..e53a1bb69664b38049a6a1fafa093692128e378a 100644
+index 4fcb135189f379d3749ad8d999dbeb9e755fea7e..158d40be6db44836c4351852a864554c209b456b 100644
 --- a/chrome/browser/resources/side_panel/shared/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/shared/BUILD.gn
 @@ -4,7 +4,7 @@

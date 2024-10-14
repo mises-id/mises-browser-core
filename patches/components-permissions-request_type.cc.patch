@@ -1,20 +1,20 @@
 diff --git a/components/permissions/request_type.cc b/components/permissions/request_type.cc
-index 58b3074ec4a2369b76a1b6ec1cb29a20a774ef73..80173208f3263116205feb2aba3d0b770d1d904d 100644
+index b93642eb6bc41a988d1861ab240393336d14316e..c73350b2427474a6dac7e4cfc14a03b05bce705f 100644
 --- a/components/permissions/request_type.cc
 +++ b/components/permissions/request_type.cc
-@@ -66,6 +66,8 @@ int GetIconIdAndroid(RequestType type) {
-                  permissions::features::kPermissionStorageAccessAPI)
-                  ? IDR_ANDROID_STORAGE_ACCESS
-                  : IDR_ANDROID_INFOBAR_PERMISSION_COOKIE;
+@@ -63,6 +63,8 @@ int GetIconIdAndroid(RequestType type) {
+     case RequestType::kStorageAccess:
+     case RequestType::kTopLevelStorageAccess:
+       return IDR_ANDROID_STORAGE_ACCESS;
 +    default:
-+      NOTREACHED();
++      NOTREACHED_IN_MIGRATION();
    }
-   NOTREACHED();
+   NOTREACHED_IN_MIGRATION();
    return 0;
-@@ -415,6 +417,9 @@ const char* PermissionKeyForRequestType(permissions::RequestType request_type) {
-         return "window_management";
-       }
+@@ -451,6 +453,9 @@ const char* PermissionKeyForRequestType(permissions::RequestType request_type) {
  #endif
+     case permissions::RequestType::kIdentityProvider:
+       return "identity_provider";
 +    MISES_PERMISSION_KEY_FOR_REQUEST_TYPE
 +    default:
 +      NOTREACHED();

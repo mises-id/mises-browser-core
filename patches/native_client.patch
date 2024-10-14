@@ -1,0 +1,7 @@
+diff --git a/native_client b/native_client
+index ad617ab7dd5f23a67fcff244b3c3263ffcc7e66d..f9cb132c419b9e019853103e88c518026b9f5083 160000
+--- a/native_client
++++ b/native_client
+@@ -1 +1 @@
+-Subproject commit ad617ab7dd5f23a67fcff244b3c3263ffcc7e66d
++Subproject commit f9cb132c419b9e019853103e88c518026b9f5083

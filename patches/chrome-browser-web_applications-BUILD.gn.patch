@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/web_applications/BUILD.gn b/chrome/browser/web_applications/BUILD.gn
-index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613ba7aadff6 100644
+index caed81a2a79294a4b129720103bba54142956ce9..61368e1273558b40862b0a0fd6188c55a74ede25 100644
 --- a/chrome/browser/web_applications/BUILD.gn
 +++ b/chrome/browser/web_applications/BUILD.gn
-@@ -369,6 +369,8 @@ source_set("web_applications") {
+@@ -395,6 +395,8 @@ source_set("web_applications") {
      ]
    }
  
@@ -10,8 +10,8 @@ index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613b
 +
    if (is_mac) {
      sources += [
-       "app_shim_registry_mac.cc",
-@@ -973,6 +975,9 @@ source_set("web_applications_browser_tests") {
+       "os_integration/mac/app_shim_launch.h",
+@@ -1123,6 +1125,9 @@ source_set("web_applications_browser_tests") {
        "//chromeos/startup",
      ]
    }
@@ -21,9 +21,9 @@ index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613b
  }
  
  group("browser_tests") {
-@@ -1019,6 +1024,9 @@ source_set("app_service_browser_tests") {
-       "//chromeos/startup",
-     ]
+@@ -1174,6 +1179,9 @@ source_set("app_service_browser_tests") {
+   if (is_chromeos_ash) {
+     deps += [ "//chrome/browser/ui/ash/shelf" ]
    }
 +  if (is_android) {
 +    deps -= ["//chrome/test:test_support_ui"]
@@ -31,7 +31,7 @@ index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613b
  }
  
  source_set("interactive_ui_tests") {
-@@ -1044,6 +1052,9 @@ source_set("interactive_ui_tests") {
+@@ -1199,6 +1207,9 @@ source_set("interactive_ui_tests") {
      "//ui/base/idle:test_support",
      "//ui/events/devices:test_support",
    ]
@@ -39,5 +39,5 @@ index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613b
 +    deps -= ["//chrome/test:test_support_ui"]
 +  }
  
-   if (is_chromeos) {
-     sources += [ "preinstalled_web_app_window_experiment_browsertest.cc" ]
+   if (is_mac) {
+     deps += [ "//chrome/browser/apps/app_shim" ]

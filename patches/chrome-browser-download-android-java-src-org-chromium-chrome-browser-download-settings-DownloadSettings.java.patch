@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
-index fd4f1977f0257124275599398013e7e7c298e147..4c5973f20118d706c1e864afb6835153a05b1e8d 100644
+index 83a734c049f8832fc51d7272329a9cd56b06adb4..bacf95904c23f93eb6a10db11a822d8534bebd23 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
-@@ -18,6 +18,29 @@ import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
- import org.chromium.components.browser_ui.settings.ManagedPreferenceDelegate;
+@@ -21,6 +21,29 @@ import org.chromium.components.browser_ui.settings.ManagedPreferenceDelegate;
  import org.chromium.components.browser_ui.settings.SettingsUtils;
+ import org.chromium.components.user_prefs.UserPrefs;
  
 +import android.content.ComponentName;
 +import android.app.Activity;
@@ -29,30 +29,30 @@ index fd4f1977f0257124275599398013e7e7c298e147..4c5973f20118d706c1e864afb6835153
 +import android.text.TextUtils;
 +import org.chromium.components.browser_ui.settings.ChromeBaseCheckBoxPreference;
 +
- /**
-  * Fragment containing Download settings.
-  */
-@@ -30,6 +53,8 @@ public class DownloadSettings
-     private ChromeSwitchPreference mLocationPromptEnabledPref;
+ /** Fragment containing Download settings. */
+ public class DownloadSettings extends ChromeBaseSettingsFragment
+         implements Preference.OnPreferenceChangeListener {
+@@ -33,6 +56,8 @@ public class DownloadSettings extends ChromeBaseSettingsFragment
      private ManagedPreferenceDelegate mLocationPromptEnabledPrefDelegate;
+     private ChromeSwitchPreference mAutoOpenPdfEnabledPref;
  
 +    private ChromeBaseCheckBoxPreference mExternalDownloadManager;
 +
      @Override
      public void onCreatePreferences(@Nullable Bundle savedInstanceState, String s) {
          getActivity().setTitle(R.string.menu_downloads);
-@@ -46,6 +71,8 @@ public class DownloadSettings
-         };
-         mLocationPromptEnabledPref.setManagedPreferenceDelegate(mLocationPromptEnabledPrefDelegate);
+@@ -52,6 +77,8 @@ public class DownloadSettings extends ChromeBaseSettingsFragment
          mLocationChangePref = (DownloadLocationPreference) findPreference(PREF_LOCATION_CHANGE);
-+
-+        mExternalDownloadManager = (ChromeBaseCheckBoxPreference) findPreference("enable_external_download_manager");
-     }
+         mLocationChangePref.setDownloadLocationHelper(new DownloadLocationHelperImpl(getProfile()));
  
-     @Override
-@@ -81,6 +108,31 @@ public class DownloadSettings
-             mLocationPromptEnabledPref.setChecked(isLocationPromptEnabled);
-             mLocationPromptEnabledPref.setEnabled(true);
++        mExternalDownloadManager = (ChromeBaseCheckBoxPreference) findPreference("enable_external_download_manager");
++
+         mAutoOpenPdfEnabledPref =
+                 (ChromeSwitchPreference) findPreference(PREF_AUTO_OPEN_PDF_ENABLED);
+         mAutoOpenPdfEnabledPref.setOnPreferenceChangeListener(this);
+@@ -76,6 +103,31 @@ public class DownloadSettings extends ChromeBaseSettingsFragment
+         } else {
+             super.onDisplayPreferenceDialog(preference);
          }
 +
 +        if (mExternalDownloadManager != null) {
@@ -81,10 +81,10 @@ index fd4f1977f0257124275599398013e7e7c298e147..4c5973f20118d706c1e864afb6835153
 +            }
      }
  
-     // Preference.OnPreferenceChangeListener implementation.
-@@ -98,6 +150,36 @@ public class DownloadSettings
-                 DownloadDialogBridge.setPromptForDownloadAndroid(DownloadPromptStatus.DONT_SHOW);
-             }
+     @Override
+@@ -122,6 +174,36 @@ public class DownloadSettings extends ChromeBaseSettingsFragment
+         } else if (PREF_AUTO_OPEN_PDF_ENABLED.equals(preference.getKey())) {
+             UserPrefs.get(getProfile()).setBoolean(Pref.AUTO_OPEN_PDF_ENABLED, (boolean) newValue);
          }
 +        else if ("enable_external_download_manager".equals(preference.getKey())) {
 +            SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/settings/BUILD.gn b/chrome/browser/resources/settings/BUILD.gn
-index 22fdc428177889b68d4a5ccb15ba1cdd39d4302f..f9e8ba41ab10904ab0c117f2bc755bb555acaee8 100644
+index bdaea9d23f407d95abe9611dc5087fe984a384d6..921ef36ac904c1f20454724ce14677c1e31acb58 100644
 --- a/chrome/browser/resources/settings/BUILD.gn
 +++ b/chrome/browser/resources/settings/BUILD.gn
 @@ -8,7 +8,7 @@ import("//crypto/features.gni")
@@ -11,7 +11,7 @@ index 22fdc428177889b68d4a5ccb15ba1cdd39d4302f..f9e8ba41ab10904ab0c117f2bc755bb5
  
  build_webui("build") {
    grd_prefix = "settings"
-@@ -445,5 +445,6 @@ build_webui("build") {
+@@ -465,5 +465,6 @@ build_webui("build") {
          [ "/shared/settings|" + rebase_path(
                "$root_gen_dir/chrome/browser/resources/settings_shared/tsc",
                root_build_dir) ]

@@ -350,9 +350,18 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
       </message>
       <if expr="not chromeos_ash">
         <!-- Browser Window Title Format -->
-        <message name="IDS_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in tabs and popup windows">
-          <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises
-        </message>
+        <if expr="_is_chrome_for_testing_branded">
+          <then>
+            <message name="IDS_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in tabs and popup windows">
+              <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises for Testing
+            </message>
+          </then>
+          <else>
+            <message name="IDS_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in tabs and popup windows">
+              <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises
+            </message>
+          </else>
+        </if>
       </if>
       <if expr="chromeos_ash">
         <!-- Browser Window Title Format -->
@@ -360,13 +369,13 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
           Mises - <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph>
         </message>
       </if>
-      <if expr="not chromeos_ash and not is_macosx">
+      <if expr="not is_chromeos and not is_macosx">
         <!-- Captive Portal Browser Window Title Format -->
         <message name="IDS_CAPTIVE_PORTAL_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in captive portal popup windows">
           <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Network Sign-in - Mises
         </message>
       </if>
-      <if expr="chromeos_ash">
+      <if expr="is_chromeos">
         <!-- Captive Portal Browser Window Title Format -->
         <message name="IDS_CAPTIVE_PORTAL_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in captive portal popup windows">
           Mises - Network Sign-in - <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph>
@@ -380,9 +389,18 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
       </if>
       <!-- Accessible window title format - includes the channel, and the same
            on all browser platforms rather than different on ChromeOS. -->
-      <message name="IDS_ACCESSIBLE_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for the accessible name of a tabbed browser window">
-        <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises
-      </message>
+      <if expr="_is_chrome_for_testing_branded">
+        <then>
+          <message name="IDS_ACCESSIBLE_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for the accessible name of a tabbed browser window">
+            <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises for Testing
+          </message>
+        </then>
+        <else>
+          <message name="IDS_ACCESSIBLE_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for the accessible name of a tabbed browser window">
+            <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises
+          </message>
+        </else>
+      </if>
       <message name="IDS_ACCESSIBLE_BETA_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for the accessible name of a tabbed browser window for the beta channel version of the browser">
         <ph name="PAGE_TITLE">$1<ex>Mises</ex></ph> - Mises Beta
       </message>
@@ -434,11 +452,8 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
         </else>
       </if>
       <if expr="is_macosx">
-        <message name="IDS_MAC_10_13_OBSOLETE" desc="A message displayed on an at-launch infobar and About (Help) page warning the user that the OS version they are using will soon be or is already unsupported.">
-          To get future Mises updates, you'll need macOS 10.15 or later. This computer is using macOS 10.13.
-        </message>
-        <message name="IDS_MAC_10_14_OBSOLETE" desc="A message displayed on an at-launch infobar and About (Help) page warning the user that the OS version they are using will soon be or is already unsupported.">
-          To get future Mises updates, you'll need macOS 10.15 or later. This computer is using macOS 10.14.
+        <message name="IDS_MACOS_OBSOLETE" desc="A message displayed on an at-launch infobar and About (Help) page warning the user that the OS version they are using will soon be or is already unsupported.">
+          To get future Mises updates, you'll need macOS 11 or later. This computer is using macOS 10.15.
         </message>
       </if>
       <if expr="is_win">
@@ -543,6 +558,13 @@ If you want to use this account one-time only, you can use <ph name="GUEST_LINK_
 Permissions you've already given to websites and apps may apply to this account. You can manage your Mises sync chains in <ph name="SETTINGS_LINK_BEGIN">&lt;a id="osSettingsLink" href="$3<ex>https://google.com/</ex>"&gt;</ph>Settings<ph name="SETTINGS_LINK_END">&lt;/a&gt;</ph>.
         </message>
       </if>
+
+      <if expr="is_linux">
+        <message name="IDS_DESKTOP_SHORTCUT_COMMENT" desc="Description of the desktop shortcut file which will open a Mises tab at a given url.">
+          Open <ph name="URL">$1<ex>https://www.example-url.com/</ex></ph> in a new tab in Mises.
+        </message>
+      </if>
+
       <!-- Crash Recovery Dialog -->
       <message name="IDS_CRASH_RECOVERY_TITLE" desc="Title of dialog shown when the browser crashes." translateable="false">
         Mises
@@ -589,6 +611,9 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
         <message name="IDS_PASSWORDS_PAGE_EXPORT_AUTHENTICATION_PROMPT" desc="Text for the dialog box that prompts the user for their OS account password before exporting passwords to a file.">
           Mises wants to export your passwords. Type your Windows password to allow this.
+        </message>
+        <message name="IDS_PASSWORDS_PAGE_DELETE_ALL_DATA_AUTHENTICATION_PROMPT" desc="Text for the dialog box that prompts the user for their OS account password before deleting all data from Mises Password Manager.">
+          Mises wants to delete your Password Manager data. Type your Windows password to allow this.
         </message>
         <message name="IDS_PASSWORDS_PAGE_IMPORT_AUTHENTICATION_PROMPT" desc="Text for the dialog box that prompts the user for their OS account password before overriding passwords during Import.">
           Mises is trying to replace existing passwords. Type your Windows password to allow this.
@@ -648,40 +673,18 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_DEFAULT_BROWSER_INFOBAR_TEXT" desc="Text to show in an infobar when Mises is not the current default browser.">
         Mises isn't your default browser
       </message>
-      <if expr="is_win">
-        <!-- Try Mises Toast Dialog -->
-        <message name="IDS_TRY_TOAST_HEADING" desc="Top line of the try-chrome-again dialog">
-          There is a new version of Mises available.
-        </message>
-        <message name="IDS_TRY_TOAST_HEADING2" desc="Top line of the try-chrome-again dialog">
-          There's a new version of Mises available, and it's faster than ever.
-        </message>
-        <message name="IDS_TRY_TOAST_HEADING3" desc="Top line of the try-chrome-again dialog">
-          There's a new, safer version of Mises available.
-        </message>
-        <message name="IDS_TRY_TOAST_HEADING4" desc="Top line of the try-chrome-again dialog">
-          Mises has been updated, but you haven't used it for at least 30 days.
-        </message>
-        <message name="IDS_TRY_TOAST_HEADING_SKYPE" desc="Top line of the try-chrome-again dialog">
-          Mises lets you click a phone number on the web and call it with Skype!
-        </message>
-      </if>
-
+      <message name="IDS_DEFAULT_BROWSER_INFOBAR_REFRESH_TEXT" desc="Text to show in an infobar when Mises is not the current default browser.">
+        Mises isn't your default browser
+      </message>
       <!-- Download Bubble Items -->
-      <message name="IDS_DOWNLOAD_BUBBLE_DANGEROUS_FILE" desc="Message shown to the user to validate the download of a dangerous file.">
-        Mises blocked this file because this type of file is dangerous
-      </message>
-      <message name="IDS_DOWNLOAD_BUBBLE_MALICIOUS_URL_BLOCKED" desc="Message shown to the user to validate the download when the download url is classified to lead to malware by the safebrowsing database.">
-        Mises blocked this file because it is dangerous
-      </message>
       <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_UNKNOWN_SOURCE" desc="Summary of dangerous warning for a file (like an extension) from an unknown source.">
         Extensions, apps, and themes from unknown sources can harm your device. Mises recommends only installing them from the <ph name="IDS_EXTENSION_WEB_STORE_TITLE">$1<ex>Web Store</ex></ph>
       </message>
-      <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_MALWARE" desc="Subpage summary for malware warning for the user.">
-        Mises blocked this file because it has malware
-      </message>
       <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_WARNING_BLOCKED_LEARN_MORE_LINK" desc="Text for the link to the help page about why Mises blocks some downloaded files.">
         Learn why Mises blocks some downloads
+      </message>
+      <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_DEEP_SCANNING_PROMPT_LOCAL_DECRYPTION" desc="Subpage summary of warning for a file where we recommend providing the password for on-device decryption">
+        This file may be dangerous<ph name="LINE_BREAK">$1</ph>Mises can check this download for you if you provide the password. Info about the file gets sent to Google Safe Browsing, but the file content and password stay on your device.
       </message>
 
       <!-- Download Shelf Items -->
@@ -699,12 +702,6 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_PROMPT_MALICIOUS_DOWNLOAD_CONTENT" desc="Message shown to the user to validate the download when the download content is classified to lead to malware by safebrowsing.">
         <ph name="FILE_NAME">$1<ex>malware.exe</ex></ph> is dangerous, so Mises has blocked it.
       </message>
-      <message name="IDS_BLOCK_REASON_DANGEROUS_DOWNLOAD" desc="Message shown to the user on chrome://downloads page to explain that this download is blocked because it is malware.">
-        This file is dangerous, so Mises has blocked it.
-      </message>
-      <message name="IDS_BLOCK_REASON_UNWANTED_DOWNLOAD" desc="Message shown to the user on chrome://downloads page to explain that this download is blocked because it is unwanted sofware.">
-        This file may be dangerous, so Mises has blocked it.
-      </message>
       <message name="IDS_BLOCK_REASON_PROMPT_FOR_SCANNING" desc="Message shown to the user on chrome://downloads page to explain that this download is recommended to be scanned.">
         Mises recommends scanning this file because it may be dangerous.
       </message>
@@ -716,8 +713,17 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_BLOCK_DOWNLOAD_REASON_DANGEROUS" desc="On the chrome://downloads page, the description shown for a blocked file that is dangerous.">
         Mises blocked this download because the file is dangerous
       </message>
+      <message name="IDS_BLOCK_DOWNLOAD_REASON_DANGEROUS_COOKIE_THEFT" desc="On the chrome://downloads page, the description shown for a blocked file that is dangerous because of cookie theft.">
+        Mises blocked this download because the file can harm your personal and social network accounts
+      </message>
+      <message name="IDS_BLOCK_DOWNLOAD_REASON_DANGEROUS_COOKIE_THEFT_AND_ACCOUNT" desc="On the chrome://downloads page, the description with account info shown for a blocked file that is dangerous because of cookie theft.">
+        Mises blocked this download because the file can harm your personal and social network accounts, including <ph name="USER_EMAIL">$1<ex>john@google.com</ex></ph>
+      </message>
       <message name="IDS_BLOCK_DOWNLOAD_REASON_UNCOMMON" desc="On the chrome://downloads page, the description shown for a blocked file that is uncommon.">
         Mises blocked this download because the file isn't commonly downloaded and it may be dangerous
+      </message>
+      <message name="IDS_BLOCK_DOWNLOAD_REASON_UNCOMMON_SUSPICIOUS_ARCHIVE" desc="On the chrome://downloads page, the description shown for a blocked file that is suspicious archive.">
+        Mises blocked this download because the archive file includes other files that may hide malware
       </message>
       <message name="IDS_BLOCK_DOWNLOAD_REASON_POTENTIALLY_UNWANTED" desc="On the chrome://downloads page, the description shown for a blocked file that is potentially unwanted.">
         Mises blocked this download because the file is deceptive and may make unexpected changes to your device
@@ -727,6 +733,14 @@ Permissions you've already given to websites and apps may apply to this account.
       </message>
       <message name="IDS_BLOCK_DOWNLOAD_REASON_UNVERIFIED_NO_SAFE_BROWSING" desc="On the chrome://downloads page, the description shown for a blocked file that could not be verified because Safe Browsing is off.">
         Mises blocked this download because you turned Safe Browsing off and the file can't be verified
+      </message>
+
+      <!-- chrome://downloads page bypass dangerous download warning prompt-->
+      <message name="IDS_DOWNLOAD_WARNING_BYPASS_PROMPT_LEARN_MORE_LINK" desc="On the downloads page, the label for the link to the help center in the prompt to bypass a dangerous download warning.">
+        Learn why Mises blocks some files
+      </message>
+      <message name="IDS_DOWNLOAD_WARNING_BYPASS_PROMPT_LEARN_MORE_LINK_ACCESSIBLE" desc="On the downloads page, accessible text for the link to the help center in the prompt to bypass a dangerous download warning.">
+        Learn why Mises blocks some files, opens in new tab
       </message>
 
       <!-- Abandon in-progress downloads confirmation dialog -->
@@ -771,6 +785,28 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_EXTENSIONS_ALERT_ITEM_BLOCKLISTED_MALWARE_TITLE" desc="A statement that multiple extension/apps have been newly blocklisted for malware.">
           Mises found that these items contain malware:
         </message>
+
+        <!-- Manifest V2 Deprecation dialog -->
+        <message name="IDS_EXTENSIONS_MANIFEST_V2_DEPRECATION_KEEP_DIALOG_DESCRIPTION" desc="The description of the dialog asking the user if they want to keep the extension installed, which is affected by the Manifest V2 deprecation">
+          This extension is no longer supported. Mises recommends that you remove it instead.
+        </message>
+        <message name="IDS_EXTENSIONS_MANIFEST_V2_DEPRECATION_DISABLED_DIALOG_DESCRIPTION" desc="The description of the dialog that appears when extensions were disabled due to the Manifest V2 deprecation">
+          {NUM_EXTENSIONS, plural,
+          =1 {This extension is no longer supported. Mises recommends that you remove it.}
+          other {These extensions are no longer supported. Mises recommends that you remove them.}}
+        </message>
+        <message name="IDS_EXTENSIONS_MV2_DEPRECATION_MESSAGE_DISABLED_SUBTITLE" desc="Subtitle text displayed in the manifest v2 deprecation message for a specific extension during the disabled stage.">
+          Mises recommends that you remove it. <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>Learn more about supported extensions<ph name="END_LINK">&lt;/a&gt;</ph>
+        </message>
+        <message name="IDS_EXTENSIONS_MV2_DEPRECATION_PANEL_DISABLED_SUBTITLE" desc="Subtitle text displayed in the manifest v2 deprecation panel for the disabled stage.">
+          {NUM_EXTENSIONS, plural,
+            =1 {Mises recommends that you remove it. <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>Learn more about supported extensions<ph name="END_LINK">&lt;/a&gt;</ph>}
+            other {Mises recommends that you remove them. <ph name="BEGIN_LINK">&lt;a href="$1" target="_blank"&gt;</ph>Learn more about supported extensions<ph name="END_LINK">&lt;/a&gt;</ph>}
+          }
+        </message>
+        <message name="IDS_EXTENSIONS_MV2_DEPRECATION_PANEL_REMOVE_BUTTON_ACC_LABEL" desc="The (accessible) label for the button to remove an extension.">
+          Remove <ph name="EXTENSION_NAME">$1<ex>Mises Translate</ex></ph> from Mises
+        </message>
       </if>
 
       <!-- Extension Safety Check Detail Page strings -->
@@ -786,15 +822,32 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_EXTENSIONS_SAFETY_CHECK_PRIMARY_LABEL" desc="Alerts the user that the extension should be reviewed.">
         Mises recommends you review this extension
       </message>
+      <message name="IDS_EXTENSIONS_SAFETY_CHECK_OFFSTORE" desc="Alerts the user that the extension is not from the Mises web store.">
+        Mises can't verify where this extension comes from, and it might be unsafe. Remove it from Mises so it can no longer see and change your data on sites you visit, including personal info.
+      </message>
+      <message name="IDS_EXTENSIONS_SAFETY_CHECK_OFFSTORE_ON" desc="Alerts the user that the extension is not from the Mises web store.">
+        On • Mises can't verify where this extension comes from
+      </message>
+      <message name="IDS_EXTENSIONS_SAFETY_CHECK_OFFSTORE_OFF" desc="Alerts the user that the extension is not from the Mises web store.">
+        Off • Mises can't verify where this extension comes from
+      </message>
+      <message name="IDS_EXTENSIONS_SAFETY_CHECK_NO_PRIVACY_PRACTICES" desc="Alerts the user that the extension has not disclosed its privacy practices.">
+        This extension hasn't published privacy practices, such as how it collects and uses data. Mises recommends that you remove it.
+      </message>
 
-      <!-- chrome://settings/extensions page -->
+      <!-- chrome://extensions page -->
+  <message name="IDS_EXTENSIONS_SC_DESCRIPTION" desc="Detailed message displayed in the Safety Check description section.">
+    {NUM_EXTENSIONS, plural,
+     =1 {Mises recommends that you remove it}
+     other {Mises recommends that you remove them}}
+  </message>
       <message name="IDS_EXTENSIONS_ITEM_SHOW_ACCESS_REQUESTS_IN_TOOLBAR" desc="The label on the toggle to allow the extension to show site access requests in the toolbar.">
         Allow extension to show access requests in the Mises toolbar
       </message>
       <message name="IDS_EXTENSIONS_INCOGNITO_WARNING" desc="Warns the user that Mises cannot prevent extensions from recording history in Private mode. Displayed in extensions management UI after an extension is selected to be run in Private mode.">
         Warning: Mises cannot prevent extensions from recording your browsing history. To disable this extension in Private mode, unselect this option.
       </message>
-      <message name="IDS_EXTENSIONS_UNINSTALL" desc="The link for uninstalling extensions.">
+      <message name="IDS_EXTENSIONS_UNINSTALL" desc="The label for a control that triggers an extension uninstall.">
         Remove from Mises
       </message>
       <message name="IDS_EXTENSIONS_SHORTCUT_SCOPE_IN_CHROME" desc="The label to indicate that a shortcut will be triggerable only from within the Mises application.">
@@ -870,12 +923,6 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
-      <if expr="is_win or is_macosx or is_linux">
-        <message name="IDS_RELAUNCH_TO_UPDATE_ALT" desc="Alternate text label of the relaunch to update Mises menu item" translateable="false">
-        Not used in Mises. Placeholder to keep resource maps in sync.
-        </message>
-      </if>
-
       <if expr="is_macosx">
         <message name="IDS_APP_MENU_PRODUCT_NAME" desc="The application's short name, used for the Mac's application menu, activity monitor, etc. This should be less than 16 characters. Example: Mises, not Mises." translateable="false">
           Mises
@@ -935,12 +982,39 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_ENTERPRISE_SIGNIN_WORK_PROFILE_EXPLANATION" desc="The warning message displayed to an enterprise user about to link their profile to their Mises account. This message is followed by a 'Learn more' link.">
           Any Mises data that is generated during the use of this profile (such as the creation of bookmarks, history, passwords, and other settings) can be removed by the work profile administrator. <ph name="LEARN_MORE">$1<ex>Learn more</ex></ph>
         </message>
+        <message name="IDS_ENTERPRISE_WELCOME_PROFILE_INFORMATION_DETAILS" desc="Paragraph disclaiming to the user what their organization can do with their profile information.">
+          Your organization can see and manage browsing data in your work profile, such as your bookmarks, history, and passwords. It can’t see browsing data in personal Mises profiles.
+        </message>
         <!-- New one-click sign-in dialog contents for SAML support -->
         <message name="IDS_ONE_CLICK_SIGNIN_DIALOG_TITLE_NEW" desc="The title of the modal dialog window that opens when the user chooses to use one click sign-in.">
           You're signed in to Mises!
         </message>
         <message name="IDS_ONE_CLICK_SIGNIN_DIALOG_MESSAGE_NEW" desc="The message of the one click sign-in dialog.">
           You're signed in as <ph name="USER_EMAIL_ADDRESS">$1<ex>foo@gmail.com</ex></ph>. Now you can access your bookmarks, history, and other settings on all your signed in devices.
+        </message>
+      </if>
+
+      <!-- Management bubble -->
+      <message name="IDS_MANAGEMENT_DIALOG_BROWSER_MANAGED" desc="Disclosure that an unnamed organization is managing the browser.">
+        Your organization manages Mises
+      </message>
+      <message name="IDS_MANAGEMENT_DIALOG_BROWSER_MANAGED_BY" desc="Disclosure that a known organization is managing the browser.">
+        <ph name="MANAGER">$1<ex>The Company</ex></ph> manages Mises
+      </message>
+      <message name="IDS_MANAGEMENT_DIALOG_BROWSER_MANAGED_BY_MULTIPLE_ORGANIZATIONS" desc="Disclosure that multiple organization are managing the browser and profile.">
+        Multiple organizations manage Mises
+      </message>
+
+      <!-- Extension requests sign in to Mises through chrome.identity API -->
+      <if expr="enable_extensions">
+        <message name="IDS_EXTENSION_ASKS_IDENTITY_WHILE_SIGNED_IN_WEB_ONLY_TITLE" desc="This string is the heading of a dialog intended to inform the user that one of their installed extensions wants them to sign in to Mises to be able to use their Mises sync chain.">
+          The extension "<ph name="EXTENSION_NAME">$1<ex>Screencast</ex></ph>" wants you to sign in to Mises
+        </message>
+        <message name="IDS_EXTENSION_ASKS_IDENTITY_WHILE_SIGNED_IN_WEB_ONLY_BODY_PART_1" desc="This string is the body of a dialog intended to inform the user that one of their installed extensions wants them to sign in to Mises to be able to use their Mises sync chain.">
+         To use this extension as <ph name="USER_EMAIL_ADDRESS">$1<ex>elisa.g.beckett@gmail.com</ex></ph>, sign in to Mises.
+        </message>
+        <message name="IDS_EXTENSION_ASKS_IDENTITY_WHILE_SIGNED_IN_WEB_ONLY_TITLE_FALLBACK" desc="This string is the heading of a dialog intended to inform the user that one of their installed extensions wants them to sign in to Mises to be able to use their Mises sync chain. Used when the extension name couldn't be retrieved.">
+          An extension wants you to sign in to Mises
         </message>
       </if>
 
@@ -980,32 +1054,88 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CREATE_BUBBLE_TITLE" desc="Title of the web signin interception bubble">
           Continue in a new Mises profile?
         </message>
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CREATE_BUBBLE_TITLE_V2" desc="Title of the web signin interception bubble used when Explicit browser Sign in is enabled">
+          Sign in to Mises in a new profile?
+        </message>
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_SWITCH_BUBBLE_TITLE" desc="Title for the profile switch interception bubble">
           Switch to existing Mises profile?
         </message>
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_SWITCH_BUBBLE_DESC" desc="Description for the profile switch interception bubble">
           A Mises profile with this account already exists
         </message>
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_SWITCH_BUBBLE_DESC_V2" desc="This string is the body text for a dialog that appears when the user is already signed in to Mises, but they just tried to sign in to a Mises service (like Gmail) with a different Mises sync chain that already has its own Mises profile on this device. The body text is after the 'Switch to existing Mises profile?' string. The tone should be inviting and helpful.">
+          You're already signed in as <ph name="USER_EMAIL_ADDRESS">$1<ex>foo@gmail.com</ex></ph> in another Mises profile
+        </message>
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CONSUMER_BUBBLE_DESC" desc="Body of the web signin interception bubble">
           <ph name="EXISTING_USER">$1<ex>Elisa</ex></ph> is already signed in to this Mises profile. To keep your browsing separate, Mises can create your own profile for you.
         </message>
-          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CONSUMER_BUBBLE_DESC_MANAGED_DEVICE" desc="Body of the web signin interception bubble on a managed device">
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CREATE_BUBBLE_DESC" desc="Body of the web signin interception bubble. It is shown when the user signs in on the web while they already have another account present in the current profile.">
+         <ph name="EXISTING_USER">$1<ex>Elisa</ex></ph> is already signed in.  To keep your browsing separate, sign in to Mises in your own profile as <ph name="USER_EMAIL_ADDRESS">$2<ex>foo@gmail.com</ex></ph>.
+        </message>
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CONSUMER_BUBBLE_DESC_MANAGED_DEVICE" desc="Body of the web signin interception bubble on a managed device">
           <ph name="EXISTING_USER">$1<ex>Elisa</ex></ph> is already signed in to this Mises profile. This will create a new Mises profile for <ph name="USER_EMAIL_ADDRESS">$2<ex>foo@gmail.com</ex></ph>
         </message>
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_ENTERPRISE_BUBBLE_DESC_MANAGED_DEVICE" desc="Body of the web signin interception bubble when the new account is personal and the existing account is managed on a managed device">
           This will create a new Mises profile for <ph name="USER_EMAIL_ADDRESS">$1<ex>foo@gmail.com</ex></ph>
         </message>
-        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CONSUMER_BUBBLE_DESC_V2" desc="Body of the web signin interception bubble. It is shown when the user signs in on the web while they already have another account present in the current profile.">
-          Another account is already signed in. To keep your browsing separate, Mises can create your own profile for you.
-        </message>
-        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_TITLE" desc="Title of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
-          Get the most out of Mises
-        </message>
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_SUBTITLE" desc="Subtitle of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
-          Sign in to get your Mises stuff across devices
+          To get your passwords and more on all your devices, sign in to Mises
         </message>
-        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_DECLINE_TEXT" desc="Label of the Decline button of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
-          Use Mises without an account
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_SUBTITLE_SUPERVISED" desc="Subtitle of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with a supervised account." translateable="false">
+          Sign in to Mises so that your parents can help you stay safe on the web
+        </message>
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_IPH_TEXT_SIGNIN_REMINDER" desc="This string is the body text of a reminder message, which is intended to help users understand that they have been signed in to Mises. The user previously signed in to a Mises service (like Gmail or Maps), and saw the Mises Signin Bubble intercept; when asked whether the user wanted to sign in to Mises as well, the user selected yes. After a period of time, this reminder message appears at the top right of Mises (pointing at the Profile Menu) to remind the user that they made this choice a while ago. This body text string comes after the 'Welcome back, USER_NAME' string. We are focusing on the benefit that user enjoys, now that they're signed in to Mises. The tone should be welcoming.">
+          While you're signed in, you can use your passwords and more from your Mises sync chain in Mises. You can change this at any time in settings.
+        </message>
+        <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_IPH_TEXT_SIGNIN_REMINDER_SCREENREADER" desc="This string is the accessibility text of a reminder message, which is intended to help users understand that they have been signed in to Mises.">
+          While you're signed in, you can use your passwords and more from your Mises sync chain in Mises. <ph name="SHORTCUT">$1<ex>CTRL+SHIFT+M</ex></ph> can change your Mises services settings.
+        </message>
+        <message name="IDS_CHROME_SIGNOUT_CONFIRMATION_PROMPT_VERIFY_BODY" desc="This is the subtitle of an error message dialog that appears when the user opens the Mises Profile Menu and chooses 'Sign out of Mises'. The error message appears when the user has saved some data (like a password or payment method) to Mises, but Mises wasn't able to save the data to the user's Mises sync chain due to a sign-in error; but, the data has been saved locally to Mises. This subtitle is after the 'Some data isn’t saved yet' string. The tone should be cautionary, because we want to explain to the user that their data is not saved to their Mises sync chain. This string provides a path to resolution because it explains how the user can properly save their data before they sign out of Mises.">
+          Mises needs to verify it’s you before some data can be saved in your Mises sync chain and used on all your devices. If you sign out, this data will stay on this device.
+        </message>
+        <message name="IDS_CHROME_SIGNOUT_CONFIRMATION_PROMPT_UNSYNCED_BODY" desc="This is the subtitle of an error message dialog that appears when the user opens the Mises Profile Menu and chooses 'Sign out of Mises'. The error message appears when the user tries to sign out immediately after having saved saved some data (like a password or payment method) to Mises and Mises hasn't had time to save that data to the user's Mises sync chain yet. This subtitle is after the 'Some data isn't saved yet' string. The tone should be cautionary, because we want to explain to the user that their data is not saved to their Mises sync chain. This string asks the user to wait a few minutes before trying to sign out again.">
+          Some of your Mises data hasn't been saved in your Mises sync chain yet. Try waiting a few minutes before signing out. If you sign out now, this data will be deleted.
+        </message>
+        <message name="IDS_CLOSE_WARNING_FOR_CLEAR_COOKIES_ON_EXIT_TEXT" desc="Body of a notice displayed when closing the last Mises window, to inform the user about a change in the way the 'Clear cookie on exit' setting works.">
+          You’ll be signed out of most sites when you close all Mises windows, except your Mises sync chain if you’re signed in to Mises. To let sites remember you, <ph name="SETTINGS_LINK">$1<ex>go to settings</ex></ph>.
+        </message>
+
+        <if expr="not use_titlecase">
+          <message name="IDS_AVATAR_BUTTON_INTERCEPT_BUBBLE_CHROME_SIGNIN_TEXT" desc="Text asking the user to sign into Mises while the Mises Signin Bubble intercept is shown.">
+            Sign in to Mises?
+          </message>
+          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_TITLE" desc="Title of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
+            Make Mises your own
+          </message>
+          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_DECLINE_TEXT" desc="Label of the Decline button of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
+            Use Mises without an account
+          </message>
+        </if>
+        <if expr="use_titlecase">
+          <message name="IDS_AVATAR_BUTTON_INTERCEPT_BUBBLE_CHROME_SIGNIN_TEXT" desc="Text asking the user to sign into Mises while the Mises Signin Bubble intercept is shown.">
+            Sign In to Mises?
+          </message>
+          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_TITLE" desc="Title of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
+            Make Mises Your Own
+          </message>
+          <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNIN_DECLINE_TEXT" desc="Label of the Decline button of the Mises Signin Bubble intercept that is shown when a signed out user signs in on the web with it's first account.">
+            Use Mises Without an Account
+          </message>
+        </if>
+        <message name="IDS_AVATAR_BUTTON_INTERCEPT_BUBBLE_CHROME_SIGNIN_ACCESSIBILITY_LABEL" desc="Accessibility label (read by the accessibility tools) of the avatar button when the Mises Signin bubble is shown. The text implies that the expanded bubble underneath the button is closable by clicking on the button. The actual text is 'Sign in to Mises?' with a bubble shown under it.">
+          Click to close the Mises sign-in dialog
+        </message>
+        <message name="IDS_AVATAR_BUTTON_SIGNIN_PENDING_ACCESSIBILITY_LABEL" desc="Accessibility label (read by the accessibility tools) of the avatar button when Mises is in 'Sign-in pending' state. This state means that the account associated with Mises does not have valid credentials anymore and needs to be re-authenticated.">
+          Mises account requires re-authentication
+        </message>
+
+        <message name="IDS_SIGNIN_CONTINUE_AS_BUTTON_ACCESSIBILITY_LABEL" desc="Label of the 'Continue as' button of Mises Signin promos">
+          Sign in to Mises as <ph name="USER_EMAIL">$1<ex>john@google.com</ex></ph>
+        </message>
+
+        <!-- Autofill Sign In Promo Bubble -->
+        <message name="IDS_AUTOFILL_SIGNIN_PROMO_SUBTITLE_PASSWORD" desc="This is the body text of a confirmation message and means that the password was only saved locally to the user's device (not in their Mises sync chain). It appears when the user is not signed in to Mises and is after the 'Password saved to this device' string. If the user wants to save this data to their Mises sync chain, they can click the 'Sign in to Mises' button at the bottom of this message. The tone should be motivating.">
+          To get your passwords and more on all your devices, sign in to Mises. This password will be saved in your Mises sync chain after you sign in.
         </message>
       </if>
 
@@ -1032,6 +1162,39 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
         <message name="IDS_SYNC_OTHER_SIGN_IN_ERROR_BUBBLE_VIEW_MESSAGE" desc="Message in the sign-in error notification when there's an error signing in.">
           ChromeOS could not sync your data due to an error signing in.
+        </message>
+      </if>
+
+      <!-- Profile Menu -->
+      <message name="IDS_PROFILE_MENU_SIGNIN_PROMO_BUTTON" desc="Text for the button in the sign-in promo in the profile menu when the used is signed out.">
+        Sign in to Mises
+      </message>
+      <if expr="not use_titlecase">
+        <message name="IDS_PROFILE_MENU_SIGN_OUT_WHEN_SIGNIN_PENDING" desc="The text label of the Sign out of Mises button in the Profile Menu when the user is in sign in pending state.">
+          Remove account from Mises
+        </message>
+        <message name="IDS_PROFILE_MENU_PROFILES_LIST_TITLE" desc="Title in the profile menu for the list of 'other Mises profiles'.">
+          Other Mises profiles
+        </message>
+        <message name="IDS_PROFILE_MENU_MANAGE_PROFILES" desc="The text label of the Manage Mises Profiles item in the Profile Menu.">
+          Manage Mises profiles
+        </message>
+        <message name="IDS_PROFILE_MENU_SIGN_OUT" desc="The text label of the Sign out of Mises button in the Profile Menu.">
+          Sign out of Mises
+        </message>
+      </if>
+      <if expr="use_titlecase">
+        <message name="IDS_PROFILE_MENU_SIGN_OUT_WHEN_SIGNIN_PENDING" desc="The text label of the Sign out of Mises button in the Profile Menu when the user is in sign in pending state.">
+          Remove Account from Mises
+        </message>
+        <message name="IDS_PROFILE_MENU_PROFILES_LIST_TITLE" desc="Title in the profile menu for the list of 'other Mises profiles'.">
+          Other Mises Profiles
+        </message>
+        <message name="IDS_PROFILE_MENU_MANAGE_PROFILES" desc="The text label of the Manage Mises Profiles item in the Profile Menu.">
+          Manage Mises Profiles
+        </message>
+        <message name="IDS_PROFILE_MENU_SIGN_OUT" desc="The text label of the Sign out of Mises button in the Profile Menu.">
+          Sign Out of Mises
         </message>
       </if>
 
@@ -1072,7 +1235,7 @@ Permissions you've already given to websites and apps may apply to this account.
         Mises is using your camera.
       </message>
 
-      <if expr="is_android or not is_android">
+      <if expr="not is_android">
         <!-- WebHID system tray icon -->
         <message name="IDS_WEBHID_SYSTEM_TRAY_ICON_TITLE" desc="Title for the WebHID system tray icon">
             {NUM_DEVICES, plural,
@@ -1138,7 +1301,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
-      <if expr="is_android or not is_android">
+      <if expr="not is_android">
         <!-- Password Manager Tutorial Strings -->
         <message name="IDS_TUTORIAL_PASSWORD_MANAGER_OPEN_APP_MENU" desc="The description of the 'open add menu' step in password manager tutorial">
           Click the Mises menu
@@ -1154,18 +1317,19 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
+      <if expr="not is_android">
+        <!-- Desktop User Education IPH Strings -->
+        <message name="IDS_SIDE_PANEL_GENERIC_MENU_IPH" desc="The body text of the IPH describing how to find side panel entry points in the app menu.">
+          You can open bookmarks, reading mode, and more from the Mises menu
+        </message>
+        <message name="IDS_SIDE_PANEL_GENERIC_MENU_IPH_SCREENREADER" desc="The screen reader text of the IPH describing how to find side panel entry points in the app menu. The phrase 'top right' should read as 'top left' in rtl languages.">
+          You can open bookmarks, reading mode, and more from the Mises menu at the top right
+        </message>
+      </if>
+
       <!-- Settings API bubble -->
-      <message name="IDS_EXTENSIONS_SETTINGS_API_FIRST_LINE_START_PAGES_SPECIFIC" desc="Text displayed in the Settings API bubble as first line when an extension has changed the start pages, and we are pointing to its icon.">
-        This extension has changed what page is shown when you start Mises.
-      </message>
-      <message name="IDS_EXTENSIONS_SETTINGS_API_FIRST_LINE_START_PAGES" desc="Text displayed in the Settings API bubble as first line when an extension has changed the start pages, and we are not pointing to its icon.">
-        The extension "<ph name="EXTENSION_NAME">$1<ex>AdBlock</ex></ph>" has changed what page is shown when you start Mises.
-      </message>
       <message name="IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_PAGES" desc="Second line in the Settings API bubble. Only shown if the secondary change by the extension was just the start pages. The triple single quotes are needed to preserve the space before and after the sentence which is needed when the language (Mises is being translated to) uses space as word separator. Please preserve them, unless the language being translated to does not use space as word separator.">
         ''' It also controls what page is shown when you start Mises. '''
-      </message>
-      <message name="IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_AND_HOME" desc="Second line in the Settings API bubble. Only shown if the secondary change by the extension was both the start page and the home page. See IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_PAGES for reason for triple quotes.">
-        ''' It also controls what page is shown when you start Mises or click the Home button. '''
       </message>
       <message name="IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_AND_SEARCH" desc="Second line in the Settings API bubble. Only shown if the secondary change by the extension was both the start page and the search engine. See IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_PAGES for reason for triple quotes.">
         ''' It also controls what page is shown when you start Mises or search from the Omnibox. '''
@@ -1325,6 +1489,21 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_DESKTOP_MEDIA_PICKER_SOURCE_TYPE_TAB" desc="Text for the button on the window picker dialog, clicking which takes one to tab sharing">
         Mises Tab
       </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_SCREEN_PERMISSION_TEXT_MAC" desc="Instructive text for how to enable screen recording on Mac when trying to share a screen.">
+        To share your screen, allow screen recording for Mises in System Preferences
+      </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_SCREEN_PERMISSION_TEXT_PERIOD_MAC" desc="Instructive text for how to enable screen recording on Mac when trying to share a screen, ending with period to allow a supplementary text to follow.">
+        To share your screen, allow screen recording for Mises in System Preferences.
+      </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_WINDOW_PERMISSION_TEXT_MAC" desc="Instructive text for how to enable screen recording on Mac when trying to share a window.">
+        To share your window, allow screen recording for Mises in System Preferences
+      </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_WINDOW_PERMISSION_TEXT_PERIOD_MAC" desc="Instructive text for how to enable screen recording on Mac when trying to share a window, ending with period to allow a supplementary text to follow.">
+        To share your window, allow screen recording for Mises in System Preferences.
+      </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_PERMISSION_RESTART_TEXT_MAC" desc="Supplementary text about the need to restart Mises, displayed below the message about enabling screen-recording permissions on Mac when those permissions are missing.">
+        You'll then need to restart Mises.
+      </message>
 
       <!-- Runtime permission strings -->
       <if expr="is_android">
@@ -1350,6 +1529,9 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_MESSAGE_MISSING_AR_CAMERA_PERMISSION_TEXT" desc="Text shown in a prompt ui when a website has requested access to augmented reality capabilities, but Mises is missing the Android camera permission.">
           Mises needs camera permission to create a 3D map of your surroundings
         </message>
+        <message name="IDS_MESSAGE_MISSING_XR_PERMISSION_TEXT" desc="Text shown in an infobar when a website has requested access to mixed reality capabilities, but Mises is missing the Android scene understanding and hand tracking permission.">
+          Mises needs permission to map your surroundings and track your hands
+        </message>
         <message name="IDS_MESSAGE_MISSING_CAMERA_PERMISSION_TEXT" desc="Text shown in a prompt ui when a website has requested access to the camera capabilities, but Mises is missing the Android camera permission.">
           Mises needs camera permission for this site
         </message>
@@ -1370,6 +1552,9 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="is_macosx">
         <message name="IDS_RUNTIME_PERMISSION_OS_REASON_TEXT" desc="Text provided to the macOS permission dialog, explaining why Mises needs to access a protected resource (e.g., camera, microphone).">
           Once Mises has access, websites will be able to ask you for access.
+        </message>
+        <message name="IDS_LOCAL_NETWORK_ACCESS_PERMISSION_DESC" desc="Text shown in the macOS permission dialog, describing why Mises needs the permission to access local network.">
+          This will allow you to select from available devices and display content on them.
         </message>
       </if>
 
@@ -1456,7 +1641,7 @@ Permissions you've already given to websites and apps may apply to this account.
         Share a Mises tab
       </message>
       <!-- Idle timeout bubble. -->
-      <if expr="is_android or toolkit_views">
+      <if expr="toolkit_views">
         <message name="IDS_IDLE_BUBBLE_TITLE_CLOSE" desc="Title of a bubble that informs the user that Mises closed automatically, because they were away from the computer for X minutes.">
           Mises was automatically closed
         </message>
@@ -1508,13 +1693,17 @@ Permissions you've already given to websites and apps may apply to this account.
       </if>
 
       <!-- Mises parent extension/app install blocking dialog. -->
-      <if expr="enable_extensions and enable_supervised_users">
+      <if expr="enable_extensions">
         <message name="IDS_EXTENSION_PERMISSIONS_BLOCKED_BY_PARENT_PROMPT_MESSAGE" desc="Text for the dialog indicating that a parent has blocked extensions and apps.">
          Your parent has turned off "Permissions for sites, apps and extensions" for Mises
         </message>
       </if>
 
       <if expr="is_android or not chromeos_ash and not is_android">
+        <!-- Enterprise profile welcome screen -->
+        <message name="IDS_ENTERPRISE_OIDC_WELCOME_TIMEOUT_SUBTITLE" desc="Subtitle of a section telling the user that their work profile was created but is not fully ready yet.">
+          While we're setting up account access, you can still use Mises. You may not be able to access some resources until setup is complete.
+        </message>
         <!-- Profile Picker -->
         <if expr="chromeos_lacros">
           <message name="IDS_PROFILE_PICKER_MAIN_VIEW_SUBTITLE_LACROS" desc="Profile picker main view subtitle">
@@ -1579,12 +1768,6 @@ Permissions you've already given to websites and apps may apply to this account.
           <message name="IDS_FRE_SIGN_IN_TITLE_0" desc="This string appears as a heading on a full-page screen that asks the user to sign in to Mises with their Mises sync chain. It appears when the user launches Mises for the first time. When they sign in, they can personalize and customize Mises and remember their settings in their Mises sync chain. The tone should be inviting and alluring.">
             Sign in to Mises
           </message>
-          <message name="IDS_FRE_SIGN_IN_TITLE_1" desc="This string appears as a heading on a full-page screen that asks the user to sign in to Mises with their Mises sync chain. It appears when the user launches Mises for the first time. When they sign in, they can personalize and customize Mises and remember their settings in their Mises sync chain. The tone should be inviting and alluring.">
-            Make Mises your own
-          </message>
-          <message name="IDS_FRE_SIGN_IN_TITLE_2" desc="This string appears as a heading on a full-page screen that tells users the benefits of signing in to Mises. It appears when the user launches Mises for the first time. When they sign in, they can personalize and customize Mises and remember their settings in their Mises sync chain. The tone should be inviting and alluring.">
-            Do more with Mises
-          </message>
         </if>
 
         <!-- Default Browser Promo -->
@@ -1597,6 +1780,15 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_FRE_DEFAULT_BROWSER_ILLUSTRATION_ALT_TEXT" desc="Alt text for the illustration in the page that prompts user to set Mises as their default browser.">
           Mises logo inside a computer screen.
         </message>
+        <message name="IDS_APP_MENU_TOOLTIP_DEFAULT_PROMPT" desc="The tooltip to show for the browser menu when the default browser prompt is displayed">
+          Customize and control Mises. Set Mises as your default.
+        </message>
+        <message name="IDS_APP_MENU_BUTTON_DEFAULT_PROMPT" desc="Text in the browser menu chip indicating that the user can change their default browser">
+          Set Mises as your default
+        </message>
+        <message name="IDS_SET_BROWSER_AS_DEFAULT_MENU_ITEM" desc="Menu item that prompts user to set Mises as their default browser.">
+          Set Mises as your default browser
+        </message>
 
         <!-- Profile switch IPH -->
         <message name="IDS_PROFILE_SWITCH_PROMO" desc="Text of the In-Product-Help bubble for profile switching.">
@@ -1607,6 +1799,14 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
         <message name="IDS_PASSWORD_MANAGER_IPH_BODY_WEB_APP_PROFILE_SWITCH" desc="Body of the in Product Help for profile switching shown in the password manager web app.">
           You can switch to see passwords from another Mises profile
+        </message>
+
+        <!-- Web Signout Intercept IPH -->
+        <message name="IDS_SIGNOUT_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNOUT_IPH_TEXT" desc="This confirmation message is intended to help users to understand that signing out of a Mises service (like Gmail) will not sign them out of Mises. It appears in a blue in-product help bubble, which points to the Mises Profile Menu; it appears after the user signs out of a Mises service (like Gmail). The user can open the Profile Menu and sign out of Mises, if they wish to do so.">
+          To remove your Mises sync chain from Mises, sign out
+        </message>
+        <message name="IDS_SIGNOUT_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNOUT_IPH_TEXT_SCREENREADER" desc="Text announced by screenreaders related to the confirmation message is intended to help users to understand that signing out of a Mises service (like Gmail) will not sign them out of Mises. It appears in a blue in-product help bubble, which points to the Mises Profile Menu; it appears after the user signs out of a Mises service (like Gmail). The user can open the Profile Menu and sign out of Mises, if they wish to do so.">
+          To remove your Mises sync chain from Mises, sign out of Mises in the Settings page
         </message>
       </if>
 
@@ -1623,9 +1823,9 @@ Permissions you've already given to websites and apps may apply to this account.
       </message>
 
       <!-- Device Chooser Prompt -->
-      <message name="IDS_BLUETOOTH_DEVICE_CHOOSER_AUTHORIZE_BLUETOOTH" desc="Text shown in the Chooser when browser does not have Bluetooth permission. The '&#10;' is a newline character to force the desired line wrapping.">
-        Mises needs Bluetooth access to continue 
- pairing. <ph name="IDS_BLUETOOTH_DEVICE_CHOOSER_AUTHORIZE_BLUETOOTH_LINK">$1<ex>Open Preferences</ex></ph>
+      <message name="IDS_SERIAL_DEVICE_CHOOSER_AUTHORIZE_BLUETOOTH" desc="Text shown in the Web Serial Chooser when browser does not have Bluetooth permission. The '&#10;' is a newline character to force the desired line wrapping.">
+        Mises needs Bluetooth access to explore 
+ Bluetooth devices. <ph name="IDS_SERIAL_DEVICE_CHOOSER_AUTHORIZE_BLUETOOTH_LINK">$1<ex>Open Preferences</ex></ph>
       </message>
 
       <!-- Tailored Security -->
@@ -1684,6 +1884,17 @@ Permissions you've already given to websites and apps may apply to this account.
       </message>
       <message name="IDS_PRIVACY_SANDBOX_DIALOG_NOTICE_BOTTOM_SUMMARY" desc="A conclusion paragraph for the entire page. It sits beneath the “More control over the ads you see” subtitle but it’s no more associated with that topic than “Limit sharing between sites”. * “in Mises settings”: The URL is chrome://settings/privacySandbox. We don’t make it a live link because we need the users to stay in this moment until they make a choice.">
         You can learn more about these features in Mises settings.
+      </message>
+
+      <!-- Advanced security settings -->
+      <message name="IDS_SETTINGS_SECURITY_V8_LINK_DESCRIPTION" desc="Description for the link row of the V8 security settings page.">
+        Turn on additional protection in Mises’s JavaScript and WebAssembly engine
+      </message>
+      <message name="IDS_SETTINGS_SITE_SETTINGS_JAVASCRIPT_JIT_DESCRIPTION" desc="Description of the JavaScript optimizer content setting.">
+        V8 is Mises’s JavaScript and WebAssembly engine used to improve site performance
+      </message>
+      <message name="IDS_SETTINGS_SITE_SETTINGS_JAVASCRIPT_JIT_ALLOWED_SUB_LABEL" desc="Sub-label for the enabled option of the JavaScript optimizer content setting.">
+        Mises runs faster and features that use JavaScript should work as designed (recommended)
       </message>
 
       <!-- MisesUpdater Strings -->
@@ -1769,16 +1980,21 @@ Permissions you've already given to websites and apps may apply to this account.
         <message name="IDS_CANCEL_INSTALLATION" desc="For button to cancel the installation.">
           Cancel Installation
         </message>
-        <message name="IDS_SPLASH_SCREEN_MESSAGE" desc="Main message on the splash screen.">
-          On your marks...
-        </message>
         <message name="IDS_BUNDLE_INSTALLED_SUCCESSFULLY" desc="Installation complete message.">
           Installation complete.
+        </message>
+        <message name="IDS_UPDATER_OS_NOT_SUPPORTED" desc="Error displayed if the OS is not supported">
+          Installation failed because your version of Windows is not supported.
+        </message>
+
+        <!--extra code-->
+        <message name="IDS_EXTRA_CODE" desc="The optional extra code for any of the errors below">
+          Extra code: <ph name="EXTRA_CODE">$1<ex>0x80071234</ex></ph>.
         </message>
 
         <!--Network errors.-->
         <message name="IDS_NO_NETWORK_PRESENT_ERROR" desc="Error message displayed in the main dialog when the Updater is unable to connect to the network.">
-          Unable to connect to the Internet. If you use a firewall, please allowlist <ph name="PRODUCT_EXE_NAME">$1<ex>MisesUpdater.exe</ex></ph>.
+          Unable to connect to the Internet. If you use a firewall, please ensure <ph name="PRODUCT_EXE_NAME">$1<ex>MisesUpdater.exe</ex></ph> is in the allowlist.
         </message>
         <message name="IDS_ERROR_HTTPSTATUS_UNAUTHORIZED" desc="Error message displayed in the main dialog when an update check or download fails due to unauthorized access, usually due to proxy problems.">
           Unable to connect to the Internet. HTTP 401 Unauthorized. Please check your proxy configuration.
@@ -1796,6 +2012,21 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
         <message name="IDS_RESTRICTED_RESPONSE_FROM_SERVER" desc="Error message displayed in the main dialog when the user is in a export-restricted country.">
           Installation failed because access is restricted in this country.
+        </message>
+        <message name="IDS_OS_NOT_SUPPORTED" desc="Error message displayed in the main dialog when the OS does not meet the application's requirements.">
+          Installation failed because this version of the operating system is not supported.
+        </message>
+        <message name="IDS_HW_NOT_SUPPORTED" desc="Error message displayed in the main dialog when the computer does not meet the application's minimum hardware requirements.">
+          Installation failed because your computer does not meet the minimum hardware requirements.
+        </message>
+        <message name="IDS_NO_HASH" desc="Error message displayed in the main dialog when the server does not have the application installer's hash.">
+          Installation failed because the update server does not have any hash data for the application.
+        </message>
+        <message name="IDS_UNSUPPORTED_PROTOCOL" desc="Error message displayed in the main dialog for protocols that do not support multiple packages.">
+          Installation failed because of an unsupported protocol error.
+        </message>
+        <message name="IDS_INTERNAL" desc="Error message displayed in the main dialog when the update server encounters an internal error.">
+          Installation failed because of an update server internal error.
         </message>
         <message name="IDS_GENERIC_UPDATE_CHECK_ERROR" desc="Error message displayed in the main dialog when the update client returns an error in the update check.">
           Update check error: <ph name="UPDATE_CHECK_ERROR">$1<ex>error-internal</ex></ph>.
@@ -1818,43 +2049,104 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
 
         <!--Service errors.-->
+        <message name="IDS_SERVICE_ERROR_CANCELLED" desc="Error message displayed in the main dialog when the installation is cancelled.">
+          The installation has been cancelled.
+        </message>
         <message name="IDS_GENERIC_SERVICE_ERROR" desc="Error message displayed in the main dialog for runtime errors that occur in the update client service.">
           Service error: <ph name="SERVICE_ERROR">$1<ex>error-internal</ex></ph>.
         </message>
-        <!--Install errors.-->
-        <message name="IDS_GENERIC_INSTALL_ERROR" desc="Error message displayed in the main dialog for runtime errors that occur while installing.">
+
+        <!--update_client install errors.-->
+        <message name="IDS_GENERIC_INSTALL_ERROR" desc="Error message displayed in the main dialog if update client encounters an error while installing.">
           Install error: <ph name="INSTALL_ERROR">$1<ex>error-internal</ex></ph>
         </message>
+
+        <!--Installer errors.-->
+        <message name="IDS_GENERIC_INSTALLER_ERROR" desc="Error message displayed in the main dialog when the application installer returns an error.">
+          Installer error: <ph name="INSTALLER_ERROR">$1<ex>error-internal</ex></ph>
+        </message>
+        <message name="IDS_INSTALL_REBOOT" desc="Message displayed in the main dialog when a system reboot is required or has been initiated after installing.">
+          Reboot required: <ph name="INSTALL_SUCCESS">$1<ex>success-message-internal</ex></ph>
+        </message>
+        <message name="IDS_APP_INSTALL_DISABLED_BY_GROUP_POLICY" desc="Error message displayed in the main dialog when an IT admin has disabled installation or update of this application using Windows Group Policy.">
+          Install error: Your network administrator has applied a Group Policy that prevents installation: <ph name="INSTALL_ERROR">$1<ex>error-internal</ex></ph>
+        </message>
+        <message name="IDS_INVALID_INSTALLER_FILENAME" desc="Error message displayed in the main dialog when the application installer's filename or extension is invalid or unsupported.">
+          Install error: The installer filename is invalid or unsupported.
+        </message>
+        <message name="IDS_INSTALLER_FAILED_TO_START" desc="Error message displayed in the main dialog when the application installer process fails to start.">
+          Install error: The installer process failed to start.
+        </message>
+        <message name="IDS_INSTALLER_TIMED_OUT" desc="Error message displayed in the main dialog when the application installer does not complete in the allowed amount of time.">
+          Install error: The installer did not complete. The installation has been aborted.
+        </message>
+
+        <!--Metainstaller errors.-->
+        <message name="IDS_GENERIC_METAINSTALLER_ERROR" desc="Error message displayed when the metainstaller returns an error.">
+          Setup error: <ph name="METAINSTALLER_EXIT_CODE">$1<ex>error-internal</ex></ph>. <ph name="WINDOWS_ERROR">$2<ex>windows-error-description</ex></ph>
+        </message>
+        <message name="IDS_FAILED_TO_ELEVATE_METAINSTALLER" desc="Error displayed if the metainstaller could not be run with elevated privileges for a system install">
+          Failed to run setup with elevated privileges. <ph name="METAINSTALLER_ERROR">$1<ex>error-internal</ex></ph>
+        </message>
       </if>
-      <!-- High Efficiency Chip strings -->
+      <!-- Memory Saver Chip strings -->
       <if expr="not is_android">
-        <if expr="use_titlecase">
-          <message name="IDS_HIGH_EFFICIENCY_DIALOG_TITLE" desc="In Title Case: Title text for a dialog describing that the Memory Saver setting is enabled">
-            Memory Saver Made Mises Faster
-          </message>
-        </if>
-        <if expr="not use_titlecase">
-          <message name="IDS_HIGH_EFFICIENCY_DIALOG_TITLE" desc="Title text for a dialog describing that the Memory Saver setting is enabled">
-            Memory Saver made Mises faster
-          </message>
-        </if>
-        <message name="IDS_HIGH_EFFICIENCY_DIALOG_BODY_V2" desc="Body text for a dialog describing that Memory Saver mode will use less memory.">
+        <message name="IDS_MEMORY_SAVER_DIALOG_BODY" desc="Body text for a dialog describing that Memory Saver mode will use less memory.">
           While this tab was inactive, memory was freed up to keep Mises fast. You can choose to always exclude this site from being inactive.
         </message>
       </if>
 
-      <!-- High Efficiency IPH strings -->
+      <!-- Memory Saver IPH strings -->
       <if expr="is_android or not is_android">
         <if expr="use_titlecase">
-          <message name="IDS_HIGH_EFFICIENCY_MODE_PROMO_TITLE" desc="In Title Case: The title for the high efficiency mode in-product promo bubble">
+          <message name="IDS_MEMORY_SAVER_MODE_PROMO_TITLE" desc="In Title Case: The title for the Memory Saver mode in-product promo bubble">
             Make Mises Faster
           </message>
         </if>
         <if expr="not use_titlecase">
-          <message name="IDS_HIGH_EFFICIENCY_MODE_PROMO_TITLE" desc="The title for the high efficiency mode in-product promo bubble">
+          <message name="IDS_MEMORY_SAVER_MODE_PROMO_TITLE" desc="The title for the Memory Saver mode in-product promo bubble">
             Make Mises faster
           </message>
         </if>
+      </if>
+
+      <!-- Performance Intervention Dialog strings -->
+      <if expr="not is_android">
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_V1" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          These tabs are using extra resources. To improve your performance, let Mises make them inactive.
+        </message>
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_V2" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          Mises can make these tabs inactive to improve your browsing experience and free up resources.
+        </message>
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_V3" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          Mises can make these tabs inactive to improve your browsing experience and keep things fast.
+        </message>
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_SINGULAR_V1" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          This tab is using extra resources. To improve your performance, let Mises make it inactive.
+        </message>
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_SINGULAR_V2" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          Mises can make this tab inactive to improve your browsing experience and free up resources.
+        </message>
+        <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_SINGULAR_V3" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
+          Mises can make this tab inactive to improve your browsing experience and keep things fast.
+        </message>
+      </if>
+
+      <!-- Delete Browsing Data -->
+      <message name="IDS_SETTINGS_CLEAR_BROWSING_DATA_SIGNED_IN" desc="Description in the footer of the Delete Browsing Data dialog when the user is signed.">
+        To delete browsing data from this device only, while keeping it in your Mises sync chain, <ph name="BEGIN_LINK">&lt;a href="#" target="_blank"&gt;</ph>sign out of Mises<ph name="END_LINK">&lt;/a&gt;</ph>.
+      </message>
+
+      <!-- New Create Shortcut View Strings -->
+      <if expr="not is_android and not is_chromeos">
+        <message name="IDS_CREATE_SHORTCUT_NOT_APPS_DIALOG_SUBTITLE" desc="Subtitle of the updated Create Shortcut dialog about how the site opens for Mises">
+          Shortcuts open in Mises
+        </message>
+      </if>
+      <if expr="is_macosx">
+        <message name="IDS_CHROMIUM_SHORCUT_DESCRIPTION" desc="Text to use as description for the '.crwebloc' file format, which is generated by the 'Save and Share' -&gt; 'Create Shortcut' flow.">
+          Mises Shortcut
+        </message>
       </if>
     </messages>
   </release>

@@ -1,5 +1,5 @@
 diff --git a/components/feed/core/shared_prefs/pref_names.cc b/components/feed/core/shared_prefs/pref_names.cc
-index 7ac1995862d0b9b56a5735159a41e15f7c26d2ce..954915d2fedfecee5215c323494c4c06e0234cc7 100644
+index 50f880e715489aa45fe6f0d4f8941120679a4ce3..c80632a001c40e76e78ffb05001532f7c8896871 100644
 --- a/components/feed/core/shared_prefs/pref_names.cc
 +++ b/components/feed/core/shared_prefs/pref_names.cc
 @@ -24,9 +24,9 @@ const char kArticlesListVisible[] = "ntp_snippets.list_visible";

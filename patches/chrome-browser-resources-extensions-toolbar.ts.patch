@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/toolbar.ts b/chrome/browser/resources/extensions/toolbar.ts
-index 5aeeef76f868bf6c849e10fc50de5d06b44cbc9c..420ee55c50bea554f27799b2263383c9f8de7b43 100644
+index 56556cfc51243fd89bbae76753f9eb1a21f52225..6e5a17dcd1709851b0a1f4f799b96bf4c36e7127 100644
 --- a/chrome/browser/resources/extensions/toolbar.ts
 +++ b/chrome/browser/resources/extensions/toolbar.ts
-@@ -67,7 +67,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -62,7 +62,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
  
        inDevMode: {
          type: Boolean,
@@ -11,7 +11,7 @@ index 5aeeef76f868bf6c849e10fc50de5d06b44cbc9c..420ee55c50bea554f27799b2263383c9
          observer: 'onInDevModeChanged_',
          reflectToAttribute: true,
        },
-@@ -190,6 +190,10 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -177,6 +177,10 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
      chrome.metricsPrivate.recordUserAction('Options_LoadUnpackedExtension');
    }
  

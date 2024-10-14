@@ -1,5 +1,5 @@
 diff --git a/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc b/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
-index 811c35febe81c38626781a3c7b79d1a57feced71..a035d384a9a6c1416ba79a93852e2a365b14593a 100644
+index 69ab72d4afaab953309a545fbd592be4aba88914..b0561ba652b53c7887e5dbb7b8d48dbc06d71d3e 100644
 --- a/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
 +++ b/content/browser/picture_in_picture/document_picture_in_picture_window_controller_impl.cc
 @@ -22,6 +22,7 @@

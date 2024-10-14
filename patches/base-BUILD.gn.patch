@@ -1,10 +1,18 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 24f2397278ccb400a47e065a676be5ae783fa2e6..2bf31394bafdb7592325ca37b9514169e1873d4c 100644
+index 2561c2726d27ea2d2175dc52d0906481a231456a..340f8dae7365054212a492667f66caca97de5a11 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
-@@ -4480,7 +4480,7 @@ if (is_android) {
-       "android/java/src/org/chromium/base/task/ThreadPoolTaskExecutor.java",
-       "android/java/src/org/chromium/base/task/UiThreadTaskExecutor.java",
+@@ -4277,7 +4277,6 @@ if (is_android || is_robolectric) {
+       "android/java/src/org/chromium/base/TokenBase.java",
+       "android/java/src/org/chromium/base/UnguessableToken.java",
+     ]
+-
+     if (use_clang_profiling) {
+       sources += [
+         "test/android/javatests/src/org/chromium/base/test/ClangProfiler.java",
+@@ -4437,7 +4436,7 @@ if (is_android) {
+       "android/java/src/org/chromium/base/ValueChangedCallback.java",
+       "android/java/src/org/chromium/base/WrappedClassLoader.java",
      ]
 -
 +    sources += mises_java_base_sources

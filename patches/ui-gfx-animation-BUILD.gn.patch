@@ -1,8 +1,8 @@
 diff --git a/ui/gfx/animation/BUILD.gn b/ui/gfx/animation/BUILD.gn
-index 9dabaaca3db6ffa286ba49b3aa123a70c07dada3..30235908c3596d19a0a3d3eaba2b0a2b79a57499 100644
+index fbe6f7f32b04a5f1394ba74aafaa85310ad04306..25d459b4b57395734a3da997745eae86e6f71875 100644
 --- a/ui/gfx/animation/BUILD.gn
 +++ b/ui/gfx/animation/BUILD.gn
-@@ -49,7 +49,7 @@ component("animation") {
+@@ -53,7 +53,7 @@ component("animation") {
      sources += [ "animation_linux.cc" ]
    }
  

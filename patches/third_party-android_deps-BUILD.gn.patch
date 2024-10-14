@@ -1,17 +1,17 @@
 diff --git a/third_party/android_deps/BUILD.gn b/third_party/android_deps/BUILD.gn
-index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d18ef5d91 100644
+index 9bba687e9c49e86374f8389ed1ec49acfbe97266..1e1e904f95dbd61408c06e2a362a86c7d8eebff2 100644
 --- a/third_party/android_deps/BUILD.gn
 +++ b/third_party/android_deps/BUILD.gn
-@@ -1072,7 +1072,7 @@ if (!limit_android_deps) {
+@@ -890,7 +890,7 @@ if (!limit_android_deps) {
  
        # Target is swapped out when internal code is enabled.
-       # Please depend on :playcore_java instead.
--      visibility = [ ":*" ]
-+      visibility = [ ":*", "//mises/third_party/android_deps:*", ]
+       # Please depend on //third_party/android_deps:playcore_java instead.
+-      visibility = [ "//third_party/android_deps:*" ]
++      visibility = [ "//third_party/android_deps:*", "//mises/third_party/android_deps:*", ]
        deps = [
          ":com_google_android_play_core_common_java",
          "$google_play_services_package:google_play_services_basement_java",
-@@ -1895,6 +1895,7 @@ if (!limit_android_deps) {
+@@ -1722,6 +1722,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -19,7 +19,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
      ]
      deps = [
        ":com_android_support_customview_java",
-@@ -1931,6 +1932,7 @@ if (!limit_android_deps) {
+@@ -1759,6 +1760,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -27,7 +27,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [ "//third_party/androidx:androidx_annotation_annotation_java" ]
      }
-@@ -2051,6 +2053,7 @@ if (!limit_android_deps) {
+@@ -1861,6 +1863,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -35,7 +35,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_play_services_basement_java",
-@@ -2103,6 +2106,7 @@ if (!limit_android_deps) {
+@@ -1928,6 +1931,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -43,7 +43,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_firebase_firebase_components_java",
-@@ -2124,6 +2128,7 @@ if (!limit_android_deps) {
+@@ -1949,6 +1953,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -51,7 +51,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_firebase_firebase_annotations_java",
-@@ -2145,6 +2150,7 @@ if (!limit_android_deps) {
+@@ -1970,6 +1975,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -59,7 +59,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [ "//third_party/androidx:androidx_annotation_annotation_java" ]
  
-@@ -2165,6 +2171,7 @@ if (!limit_android_deps) {
+@@ -1990,6 +1996,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -67,7 +67,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_firebase_firebase_encoders_java",
-@@ -2205,6 +2212,7 @@ if (!limit_android_deps) {
+@@ -2030,6 +2037,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -75,7 +75,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_firebase_firebase_common_java",
-@@ -2228,6 +2236,7 @@ if (!limit_android_deps) {
+@@ -2053,6 +2061,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -83,7 +83,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps = [
          "$google_play_services_package:google_firebase_firebase_annotations_java",
-@@ -2249,6 +2258,7 @@ if (!limit_android_deps) {
+@@ -2074,6 +2083,7 @@ if (!limit_android_deps) {
        visibility = [
          ":*",
          "//third_party/androidx:*",
@@ -91,7 +91,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        ]
        deps =
            [ "$google_play_services_package:google_play_services_basement_java" ]
-@@ -2302,6 +2312,7 @@ if (!limit_android_deps) {
+@@ -2144,6 +2154,7 @@ if (!limit_android_deps) {
      # //third_party/android_deps/build.gradle.
      visibility = [
        ":*",
@@ -99,7 +99,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
        "//third_party/androidx:*",
      ]
      deps = [
-@@ -2345,6 +2356,7 @@ if (!limit_android_deps) {
+@@ -2188,6 +2199,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -107,7 +107,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
      ]
      testonly = true
    }
-@@ -2361,6 +2373,7 @@ if (!limit_android_deps) {
+@@ -2204,6 +2216,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -115,7 +115,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
      ]
      testonly = true
    }
-@@ -2438,6 +2451,7 @@ if (!limit_android_deps) {
+@@ -2282,6 +2295,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -123,7 +123,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
      ]
      testonly = true
      is_robolectric = true
-@@ -2454,6 +2468,7 @@ if (!limit_android_deps) {
+@@ -2298,6 +2312,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",
@@ -131,7 +131,7 @@ index 051c3b106cc9a0eff967c4d9d3c74ab1b5e9fbd5..543f1174007bf3a647094db20b60079d
      ]
      testonly = true
      deps = [
-@@ -2477,6 +2492,7 @@ if (!limit_android_deps) {
+@@ -2322,6 +2337,7 @@ if (!limit_android_deps) {
      visibility = [
        ":*",
        "//third_party/androidx:*",

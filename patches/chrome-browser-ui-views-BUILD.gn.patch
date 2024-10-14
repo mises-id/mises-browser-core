@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/views/BUILD.gn b/chrome/browser/ui/views/BUILD.gn
-index 38cbf138ff14abb0d22d1cdadab05ddad52d34b0..7003fba136116ac67b4de81be50b96e2ca9862a8 100644
+index 936d18a13dc1365e962eea7839fbc941a7dc849c..67fe3618ed45f83320ffa3077c15ea98fd795f66 100644
 --- a/chrome/browser/ui/views/BUILD.gn
 +++ b/chrome/browser/ui/views/BUILD.gn
 @@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
@@ -11,7 +11,7 @@ index 38cbf138ff14abb0d22d1cdadab05ddad52d34b0..7003fba136116ac67b4de81be50b96e2
  
  component("views") {
    output_name = "browser_ui_views"
-@@ -68,4 +68,10 @@ source_set("test_support") {
+@@ -76,4 +76,10 @@ source_set("test_support") {
      "//ui/views",
      "//ui/views:test_support",
    ]

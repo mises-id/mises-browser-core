@@ -1,8 +1,8 @@
 diff --git a/extensions/renderer/script_injection_manager.cc b/extensions/renderer/script_injection_manager.cc
-index 37899e10d05b942aa40b46469502a24d203a92aa..7d654988ce52521d7c383e28129f10567243e0c7 100644
+index 4974008cd130101daa322eb7b6506b78343351c6..849a03c9041d3dd9ab9968d2d40de12c2912875f 100644
 --- a/extensions/renderer/script_injection_manager.cc
 +++ b/extensions/renderer/script_injection_manager.cc
-@@ -416,6 +416,7 @@ void ScriptInjectionManager::TryToInject(
+@@ -417,6 +417,7 @@ void ScriptInjectionManager::TryToInject(
    // has blocked, add it to the list of running injections.
    // The Unretained below is safe because this object owns all the
    // ScriptInjections, so is guaranteed to outlive them.

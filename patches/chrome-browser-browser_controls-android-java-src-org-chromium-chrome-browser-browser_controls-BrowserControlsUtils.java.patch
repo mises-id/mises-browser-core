@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java b/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
-index fbdaab5ff6d28bcc10c8ebfb01950e272065876a..71ab188a41170a836e2127ce69852a8dd17c425f 100644
+index 67f713284931d43f01bd2798f93c45d2694824c4..e4dcf44f5ef39eb71626fe328d145c16ce86688f 100644
 --- a/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
 +++ b/chrome/browser/browser_controls/android/java/src/org/chromium/chrome/browser/browser_controls/BrowserControlsUtils.java
 @@ -3,6 +3,7 @@
@@ -8,9 +8,9 @@ index fbdaab5ff6d28bcc10c8ebfb01950e272065876a..71ab188a41170a836e2127ce69852a8d
  package org.chromium.chrome.browser.browser_controls;
 +import org.chromium.base.ContextUtils;
  
- /**
-  * Static utilities related to browser controls interfaces.
-@@ -27,6 +28,9 @@ public class BrowserControlsUtils {
+ /** Static utilities related to browser controls interfaces. */
+ public class BrowserControlsUtils {
+@@ -25,6 +26,9 @@ public class BrowserControlsUtils {
       * @return Whether the browser controls should be drawn as a texture.
       */
      public static boolean drawControlsAsTexture(BrowserControlsStateProvider stateProvider) {

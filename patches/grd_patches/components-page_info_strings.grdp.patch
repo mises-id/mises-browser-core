@@ -1,8 +1,8 @@
 diff --git a/components/page_info_strings.grdp b/components/page_info_strings.grdp
-index c78bc1cca713d70368adbbc3ce46defdddf5ee5a..6672337950a42645c6376d7ad5dcc13c1be644b2 100644
+index 3abb567a79c289ce6f95ed25e0181c052a87526f..96a85fdaf521c81c604f40500f780dd0a9e2821d 100644
 --- a/components/page_info_strings.grdp
 +++ b/components/page_info_strings.grdp
-@@ -216,7 +216,7 @@
+@@ -189,7 +189,7 @@
      </message>
  
      <!-- Certificate Viewer link -->
@@ -11,7 +11,7 @@ index c78bc1cca713d70368adbbc3ce46defdddf5ee5a..6672337950a42645c6376d7ad5dcc13c
        <message name="IDS_PAGE_INFO_CERTIFICATE" desc="Title of the certificate area in the Page Info bubble, shown when a HTTPS site is loaded.">
          Certificate
        </message>
-@@ -258,7 +258,7 @@
+@@ -231,7 +231,7 @@
      </if>
  
      <!-- Cookies -->
@@ -20,7 +20,7 @@ index c78bc1cca713d70368adbbc3ce46defdddf5ee5a..6672337950a42645c6376d7ad5dcc13c
        <message name="IDS_PAGE_INFO_COOKIES" desc="The label for the Cookies setting in the Page Information Window.">
          Cookies
        </message>
-@@ -531,7 +531,7 @@
+@@ -532,7 +532,7 @@
      </message>
  
      <!-- Permission change infobar. -->

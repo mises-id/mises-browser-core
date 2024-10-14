@@ -1,13 +1,13 @@
 diff --git a/components/webauthn/core/browser/BUILD.gn b/components/webauthn/core/browser/BUILD.gn
-index 206e0fd6848a40b7237393b99ac63f4656d4bc97..f22577bccd147432df1877d65040e28edf2ed8ff 100644
+index 243ade7459383485f06c5b34f2e47e526e0072a6..998ea413e36fd1aa5cafff47179604e9dec1857e 100644
 --- a/components/webauthn/core/browser/BUILD.gn
 +++ b/components/webauthn/core/browser/BUILD.gn
-@@ -15,7 +15,7 @@ source_set("browser") {
+@@ -20,7 +20,7 @@ source_set("browser") {
      ]
    }
  
--  if (!is_ios && !is_android) {
-+  if (is_android || !is_ios && !is_android) {
+-  if (!is_android) {
++  if (is_android || !is_android) {
      sources += [
-       "passkey_model.h",
-       "passkey_model_utils.cc",
+       "passkey_sync_bridge.cc",
+       "passkey_sync_bridge.h",

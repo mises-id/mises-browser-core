@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-index 78208484c8c85790c2b0e7075fe2de28b056c128..a67e449ba5cf03d144682de98ab2a397ea80ee7f 100644
+index 1c617f64daa854f7ef2266179f9b9527955e62fd..a8593e53f23b8fbe03c73e8853df16e5440867f4 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-@@ -386,6 +386,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -372,6 +372,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
                  return buildUrlBarData(originalUrl, isOfflinePage);
              }
  
@@ -13,16 +13,16 @@ index 78208484c8c85790c2b0e7075fe2de28b056c128..a67e449ba5cf03d144682de98ab2a397
              if (isOfflinePage) {
                  GURL originalUrl = mTab.getOriginalUrl();
                  formattedUrl = UrlUtilities.stripScheme(mUrlFormatter.format(originalUrl));
-@@ -626,7 +630,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -578,7 +582,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
  
      @Override
      public int getPageClassification(boolean isFocusedFromFakebox, boolean isPrefetch) {
 -        if (mNativeLocationBarModelAndroid == 0) return PageClassification.INVALID_SPEC_VALUE;
 +        if (mNativeLocationBarModelAndroid == 0) return PageClassification.NTP_VALUE;
  
-         // Provide NTP as page class in overview mode (when Start Surface is enabled). No call
-         // to the backend necessary or possible, since there is no tab or navigation entry.
-@@ -655,6 +659,17 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+         return LocationBarModelJni.get()
+                 .getPageClassification(
+@@ -611,6 +615,17 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
              return ConnectionSecurityLevel.NONE;
          }
  
@@ -37,11 +37,11 @@ index 78208484c8c85790c2b0e7075fe2de28b056c128..a67e449ba5cf03d144682de98ab2a397
 +            return ConnectionSecurityLevel.NONE;
 +        }
 +
-         @Nullable
-         GURL publisherUrl = TrustedCdn.getPublisherUrl(tab);
+         @Nullable GURL publisherUrl = TrustedCdn.getPublisherUrl(tab);
  
-@@ -689,6 +704,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
-             return R.drawable.ic_offline_pin_24dp;
+         if (publisherUrl != null) {
+@@ -658,6 +673,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+             return R.drawable.omnibox_info;
          }
  
 +        if (mNativeLocationBarModelAndroid == 0) {  
@@ -50,10 +50,10 @@ index 78208484c8c85790c2b0e7075fe2de28b056c128..a67e449ba5cf03d144682de98ab2a397
 +
          // Return early if native initialization hasn't been done yet.
          if ((securityLevel == ConnectionSecurityLevel.NONE
-                     || securityLevel == ConnectionSecurityLevel.WARNING)
-@@ -700,6 +719,15 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
-                 !mSearchEngineLogoUtils.shouldShowSearchEngineLogo(isIncognito())
-                 || mNtpDelegate.isCurrentlyVisible() || isInOverviewAndShowingOmnibox();
+                         || securityLevel == ConnectionSecurityLevel.WARNING)
+@@ -671,6 +690,15 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+                                         .shouldShowSearchEngineLogo())
+                         || mNtpDelegate.isCurrentlyVisible();
  
 +        String currentUrl = getCurrentUrl();
 +        if (currentUrl != null && 
@@ -64,6 +64,6 @@ index 78208484c8c85790c2b0e7075fe2de28b056c128..a67e449ba5cf03d144682de98ab2a397
 +        ){
 +            skipIconForNeutralState = true;
 +        }
-         boolean useUpdatedConnectionSecurityIndicators =
-                 mOmniboxUpdatedConnectionSecurityIndicatorsEnabled
-                 && !(hasTab() && mTab.isCustomTab());
+         return SecurityStatusIcon.getSecurityIconResource(
+                 securityLevel,
+                 isSmallDevice,

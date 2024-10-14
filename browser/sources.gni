@@ -133,21 +133,10 @@ if (is_android) {
 
     "//chrome/common/process_singleton_lock_posix.cc",
     "//chrome/common/importer/firefox_importer_utils_linux.cc",
-
-    "upgrade_detector/get_installed_version_fuchsia.cc",
-    "upgrade_detector/installed_version_monitor_fuchsia.cc",
-    "media/webrtc/window_icon_util_fuchsia.cc",
+    
     "policy/policy_path_parser_linux.cc",
     "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
     "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
-    "user_education/user_education_service.cc",
-    "user_education/user_education_service.h",
-    "user_education/user_education_service_factory.cc",
-    "user_education/user_education_service_factory.h",
-    "user_education/browser_tutorial_service.cc",
-    "user_education/browser_tutorial_service.h",
-    "user_education/browser_feature_promo_storage_service.cc",
-    "user_education/browser_feature_promo_storage_service.h"
 
   ]
 
@@ -240,14 +229,7 @@ mises_chrome_browser_exception_deps = []
 mises_chrome_browser_exception_allow_circular_includes_from = []
 if (is_android) {
   mises_chrome_browser_exception_sources += [
-    "enterprise/connectors/analysis/content_analysis_delegate.cc",
-    "enterprise/connectors/analysis/content_analysis_delegate.h",
-    "enterprise/connectors/analysis/files_request_handler.cc",
-    "enterprise/connectors/analysis/files_request_handler.h",
-    "enterprise/connectors/analysis/page_print_analysis_request.cc",
-    "enterprise/connectors/analysis/page_print_analysis_request.h",
-    "enterprise/connectors/analysis/request_handler_base.cc",
-    "enterprise/connectors/analysis/request_handler_base.h",
+
 
     "download/download_crx_util_android.cc",
     "resources_integrity.cc",
@@ -272,8 +254,6 @@ if (is_android) {
     "accessibility/live_caption/live_caption_speech_recognition_host.cc",
     "speech/speech_recognition_client_browser_interface_factory.cc",
     "speech/speech_recognition_client_browser_interface.cc",
-    "media/webrtc/media_stream_focus_delegate.cc",
-    "media/webrtc/media_stream_focus_delegate.h",
     "performance_manager/persistence/site_data/site_data_cache_facade.cc",
     "performance_manager/persistence/site_data/site_data_cache_facade.h",
     "performance_manager/persistence/site_data/site_data_cache_facade_factory.cc",
@@ -300,15 +280,46 @@ if (is_android) {
     "metrics/power/power_metrics_reporter.cc",
     "profiles/delete_profile_helper.cc",
     "accessibility/live_translate_controller_factory.cc",
-
-    "search/instant_service_factory.cc",
+          "supervised_user/desktop/supervised_user_service_platform_delegate.cc",
+      "supervised_user/desktop/supervised_user_service_platform_delegate.h",
   ]
   mises_chrome_browser_exception_deps += [
+    "//chrome/browser/companion/visual_query",
+    "//chrome/browser/ui/views/side_panel",
+    "//chrome/browser/lens/region_search",
+    "//chrome/browser/ui/apps",
+    "//chrome/browser/ui/apps:impl",
+    "//chrome/browser/search/background",
+    "//chrome/browser/ui/lens",
+    "//chrome/browser/ui/views/toolbar",
+    "//chrome/browser/ui/exclusive_access",
+    "//chrome/browser/companion/core",
+    "//chrome/browser/shortcuts",
+    "//chrome/browser/ui/webui/searchbox",
+    "//chrome/browser/ui/webui/top_chrome",
+    "//chrome/browser/ui/webui/top_chrome:impl",
+     "//chrome/browser/ui/webui/privacy_sandbox/related_website_sets:mojo_bindings",
+     "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
+    "//services/screen_ai",
+    "//services/screen_ai/public/cpp:utilities",
+    "//services/screen_ai/public/mojom",
+     "//chrome/browser/themes",
     "//components/live_caption",
     "//components/live_caption:live_translate",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
+
+      "//chrome/browser/screen_ai:prefs",
+      "//chrome/browser/screen_ai:screen_ai_install_state",
+      "//chrome/browser/screen_ai:screen_ai_service_router_factory",
+      "//chrome/browser/screen_ai/public:optical_character_recognizer",
   ]
   mises_chrome_browser_exception_allow_circular_includes_from += [
+    "//chrome/browser/ui/views/side_panel",
+    "//chrome/browser/ui/apps:impl",
+    "//chrome/browser/ui/views/toolbar",
+    "//chrome/browser/ui/webui/searchbox",
+    "//chrome/browser/ui/webui/top_chrome:impl",
+    "//chrome/browser/ui/exclusive_access",
     "//chrome/browser/media/router/discovery/access_code:access_code_sink_service",
   ]
 }

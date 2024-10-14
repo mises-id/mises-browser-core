@@ -1,26 +1,22 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-index cf0481e7983ea0a3de645fd23b5a143eee9032d2..04e02af1f6680c4a68c39597932dd67c27bbe067 100644
+index 82216eaac96081460f8172242840c41c63cc8ba1..c8997b84ac6b31317abbcb9879674e3786c082f4 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-@@ -50,10 +50,15 @@ import org.chromium.ui.modelutil.SimpleRecyclerViewAdapter;
- import org.chromium.ui.resources.dynamics.DynamicResourceLoader;
- import org.chromium.ui.widget.ViewLookupCachingFrameLayout;
- 
-+import org.chromium.base.ContextUtils;
- import java.lang.annotation.Retention;
+@@ -62,6 +62,11 @@ import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
  import java.util.List;
  
++import org.chromium.base.ContextUtils;
 +import android.app.Activity;
 +import android.content.res.Configuration;
 +import org.chromium.chrome.browser.multiwindow.MultiWindowUtils;
 +
- /**
-  * Coordinator for showing UI for a list of tabs. Can be used in GRID or STRIP modes.
-  */
-@@ -107,6 +112,25 @@ public class TabListCoordinator
-     private int mEmptyStateSubheadingResId;
-     private boolean mIsEmptyViewInitialized;
+ /** Coordinator for showing UI for a list of tabs. Can be used in GRID or STRIP modes. */
+ public class TabListCoordinator
+         implements PriceMessageService.PriceWelcomeMessageProvider, DestroyObserver {
+@@ -115,6 +120,25 @@ public class TabListCoordinator
+     private int mAwaitingTabId = Tab.INVALID_TAB_ID;
+     private @TabActionState int mTabActionState;
  
 +    static class ClassicStyleSwitcher extends RecyclerView.ItemDecoration {
 +        @Override
@@ -43,10 +39,10 @@ index cf0481e7983ea0a3de645fd23b5a143eee9032d2..04e02af1f6680c4a68c39597932dd67c
 +
      /**
       * Construct a coordinator for UI that shows a list of tabs.
-      * @param mode Modes of showing the list of tabs. Can be used in GRID or STRIP.
-@@ -285,6 +309,8 @@ public class TabListCoordinator
-                 GridLayoutManager gridLayoutManager =
-                         new GridLayoutManager(context, GRID_LAYOUT_SPAN_COUNT_COMPACT);
+      *
+@@ -312,6 +336,8 @@ public class TabListCoordinator
+                             }
+                         };
                  mRecyclerView.setLayoutManager(gridLayoutManager);
 +                if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic") && !componentName.equals("TabGridDialogInSwitcher") && !componentName.equals("TabGridDialogFromStrip"))
 +                    mRecyclerView.addItemDecoration(new ClassicStyleSwitcher());

@@ -1,8 +1,8 @@
 diff --git a/components/permissions/request_type.h b/components/permissions/request_type.h
-index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3942870ee 100644
+index 6443d5fbe8377998f93f28794d02da963f45d7e4..8a8eb13b80b3fc635b1f7085d796bb898d322c46 100644
 --- a/components/permissions/request_type.h
 +++ b/components/permissions/request_type.h
-@@ -22,19 +22,19 @@ namespace permissions {
+@@ -23,23 +23,23 @@ namespace permissions {
  enum class RequestType {
    kAccessibilityEvents,
    kArSession,
@@ -11,6 +11,10 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
    kCameraPanTiltZoom,
  #endif
    kCameraStream,
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   kCapturedSurfaceControl,
+ #endif
    kClipboard,
    kTopLevelStorageAccess,
    kDiskQuota,
@@ -19,13 +23,14 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
    kFileSystemAccess,
  #endif
    kGeolocation,
+   kIdentityProvider,
    kIdleDetection,
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kLocalFonts,
  #endif
    kMicStream,
-@@ -48,12 +48,12 @@ enum class RequestType {
+@@ -56,7 +56,7 @@ enum class RequestType {
  #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
    kProtectedMediaIdentifier,
  #endif
@@ -33,14 +38,17 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
 +#if true || !BUILDFLAG(IS_ANDROID)
    kRegisterProtocolHandler,
  #endif
-   kStorageAccess,
-   kVrSession,
+ #if BUILDFLAG(IS_CHROMEOS)
+@@ -67,7 +67,7 @@ enum class RequestType {
+ #if BUILDFLAG(IS_CHROMEOS) && BUILDFLAG(USE_CUPS)
+   kWebPrinting,
+ #endif
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kWindowManagement,
    kMaxValue = kWindowManagement
  #else
-@@ -86,7 +86,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
+@@ -100,7 +100,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
  // Returns the icon to display.
  IconId GetIconId(RequestType type);
  

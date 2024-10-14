@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/values-sw600dp/values.xml b/chrome/android/java/res/values-sw600dp/values.xml
 old mode 100644
 new mode 100755
-index 15be80f34d013f8fc8a4cf61cea47af242bb50a0..92800b6216713adda1872ca264cc37b8f32a0d0c
+index 0e675d0cc7e6aecb429c2e44d4cc5722ee0a8e78..92800b6216713adda1872ca264cc37b8f32a0d0c
 --- a/chrome/android/java/res/values-sw600dp/values.xml
 +++ b/chrome/android/java/res/values-sw600dp/values.xml
 @@ -1,8 +1,8 @@
@@ -17,14 +17,13 @@ index 15be80f34d013f8fc8a4cf61cea47af242bb50a0..92800b6216713adda1872ca264cc37b8
  -->
  <resources xmlns:android="http://schemas.android.com/apk/res/android">
      <!-- Full Screen Constants -->
-@@ -13,13 +13,13 @@ found in the LICENSE file.
+@@ -13,11 +13,13 @@ found in the LICENSE file.
      <item name="top_controls_hide_threshold" format="float" type="dimen">0.17</item>
  
      <!-- The number of thumbnails that the thumbnail cache can hold. -->
 -    <integer name="default_thumbnail_cache_size">2</integer>
 +    <integer name="default_thumbnail_cache_size">3</integer>
-     <!-- The number of approximation thumbnails that the approximation cache can hold. -->
--    <integer name="default_approximation_thumbnail_cache_size">8</integer>
++    <!-- The number of approximation thumbnails that the approximation cache can hold. -->
 +    <integer name="default_approximation_thumbnail_cache_size">32</integer>
      <!-- The maximum size of the write queue in the thumbnail cache. -->
 -    <integer name="default_write_queue_size">5</integer>

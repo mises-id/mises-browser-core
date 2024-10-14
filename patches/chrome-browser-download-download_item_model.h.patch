@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/download_item_model.h b/chrome/browser/download/download_item_model.h
-index bc19c70b7810912d6238ef27d904ebaf77bfc6dc..63bbf8715fda87a984dbe6b7cdf87d0d94599ce9 100644
+index e3570aac9e7a99da6dd54c09bb5a7f523e415421..56680a696a4f505fd396477d01ea0d048f007710 100644
 --- a/chrome/browser/download/download_item_model.h
 +++ b/chrome/browser/download/download_item_model.h
 @@ -27,7 +27,7 @@ class WebContents;

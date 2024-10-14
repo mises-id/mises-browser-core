@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/windows_util.cc b/chrome/browser/extensions/api/tabs/windows_util.cc
-index b0b6608777386ae4c0b40d8e9c35aba500bfc154..772755ab11a3b606ef0ad7bb4704232616e69889 100644
+index d3119fef784b31be77350a7dafe52eab8e7a3fdb..29ac93104f233e3273dda0d4d0dcd49dc7afcc0b 100644
 --- a/chrome/browser/extensions/api/tabs/windows_util.cc
 +++ b/chrome/browser/extensions/api/tabs/windows_util.cc
 @@ -24,6 +24,8 @@

@@ -1,11 +1,11 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
-index 2b794f1590f6626289ac0060a1eacaec49e9c4aa..abea919ca8a69cbde115617ddfec3083538c43b7 100644
+index f338a2773c11f411d2db274d2d0a5362132fbf6e..40e73d44283fbaf0cd409483c556d2055598a8f4 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarMediator.java
-@@ -93,12 +93,12 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate, UrlBar.Url
-      */
-     public boolean setUrlBarData(
-             UrlBarData data, @ScrollType int scrollType, @SelectionState int selectionState) {
+@@ -110,12 +110,12 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate {
+             @SelectionState int selectionState) {
+         assert data != null;
+ 
 -        if (data.originEndIndex == data.originStartIndex) {
 +        if (data != null && data.url != null && data.originEndIndex == data.originStartIndex) {
              scrollType = UrlBar.ScrollType.SCROLL_TO_BEGINNING;
@@ -17,7 +17,7 @@ index 2b794f1590f6626289ac0060a1eacaec49e9c4aa..abea919ca8a69cbde115617ddfec3083
                  && data.displayText != null
                  && data.originEndIndex == data.displayText.length()) {
              String scheme = data.url.getScheme();
-@@ -125,6 +125,8 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate, UrlBar.Url
+@@ -143,6 +143,8 @@ class UrlBarMediator implements UrlBar.UrlBarTextContextMenuDelegate {
      }
  
      private void pushTextToModel() {
