@@ -18,7 +18,7 @@ namespace {
 using PartitionedMap =
     PartitionedHostStateMap<std::map<std::string, std::string>>;
 
-std::string HashHost(base::StringPiece canonicalized_host) {
+std::string HashHost(std::string_view canonicalized_host) {
   char hashed[crypto::kSHA256Length];
   crypto::SHA256HashString(canonicalized_host, hashed, sizeof(hashed));
   return std::string(hashed, sizeof(hashed));

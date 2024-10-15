@@ -229,7 +229,7 @@ class NTPBackgroundImagesViewCounterTest : public testing::Test {
     return ViewCounterModel::kInitialCountToBrandedWallpaper;
   }
 
-  absl::optional<base::Value::Dict> TryGetFirstSponsoredImageWallpaper() {
+  std::optional<base::Value::Dict> TryGetFirstSponsoredImageWallpaper() {
     // Loading initial count times.
     for (int i = 0; i < GetInitialCountToBrandedWallpaper(); ++i) {
       auto wallpaper = view_counter_->GetCurrentWallpaperForDisplay();
@@ -458,7 +458,7 @@ TEST_F(NTPBackgroundImagesViewCounterTest, SponsoredImageAdFrequencyCapped) {
 
   EXPECT_CALL(ads_service_, IsEnabled()).WillRepeatedly(Return(true));
   EXPECT_CALL(ads_service_, GetPrefetchedNewTabPageAd())
-      .WillOnce(Return(absl::nullopt));
+      .WillOnce(Return(std::nullopt));
   EXPECT_CALL(ads_service_, PrefetchNewTabPageAd())
       .Times(GetInitialCountToBrandedWallpaper());
   EXPECT_CALL(ads_service_, OnFailedToPrefetchNewTabPageAd(_, _)).Times(0);

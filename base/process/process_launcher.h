@@ -10,7 +10,7 @@
 
 #include "base/process/launch.h"
 #include "base/process/process.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace mises {
 class ProcessLauncher {
@@ -22,7 +22,7 @@ class ProcessLauncher {
    * Launches process in this thread and reads the output.
    * This works like GetAppOutput, but respects provided LaunchOptions.
    */
-  static absl::optional<std::string> ReadAppOutput(base::CommandLine cmdline,
+  static std::optional<std::string> ReadAppOutput(base::CommandLine cmdline,
                                                    base::LaunchOptions options,
                                                    int timeout_sec);
 };

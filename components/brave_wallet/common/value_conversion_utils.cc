@@ -57,7 +57,7 @@ bool ValueToNetworkInfoCommon(const base::Value& value,
     if (symbol) {
       chain->symbol = *symbol;
     }
-    absl::optional<int> decimals = nativeCurrencyValue->FindInt("decimals");
+    std::optional<int> decimals = nativeCurrencyValue->FindInt("decimals");
     if (decimals) {
       chain->decimals = decimals.value();
     }
@@ -70,14 +70,14 @@ bool ValueToNetworkInfoCommon(const base::Value& value,
 
 namespace brave_wallet {
 
-absl::optional<std::string> ExtractChainIdFromValue(
+std::optional<std::string> ExtractChainIdFromValue(
     const base::Value::Dict* dict) {
   if (!dict)
-    return absl::nullopt;
+    return std::nullopt;
 
   const std::string* chain_id = dict->FindString("chainId");
   if (!chain_id) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   return *chain_id;
 }
@@ -265,17 +265,17 @@ mojom::BlockchainTokenPtr ValueToBlockchainToken(const base::Value::Dict& value,
     tokenPtr->logo = *logo;
   }
 
-  absl::optional<bool> is_erc20 = value.FindBool("is_erc20");
+  std::optional<bool> is_erc20 = value.FindBool("is_erc20");
   if (!is_erc20)
     return nullptr;
   tokenPtr->is_erc20 = is_erc20.value();
 
-  absl::optional<bool> is_erc721 = value.FindBool("is_erc721");
+  std::optional<bool> is_erc721 = value.FindBool("is_erc721");
   if (!is_erc721)
     return nullptr;
   tokenPtr->is_erc721 = is_erc721.value();
 
-  absl::optional<bool> is_erc1155 = value.FindBool("is_erc1155");
+  std::optional<bool> is_erc1155 = value.FindBool("is_erc1155");
   if (!is_erc1155) {
     is_erc1155 = false;
   } else {
@@ -284,18 +284,18 @@ mojom::BlockchainTokenPtr ValueToBlockchainToken(const base::Value::Dict& value,
 
   // There might be existing pref values that does not have is_nft yet, in this
   // case, fallback to is_erc721 value.
-  absl::optional<bool> is_nft = value.FindBool("is_nft");
+  std::optional<bool> is_nft = value.FindBool("is_nft");
   if (is_nft)
     tokenPtr->is_nft = is_nft.value();
   else
     tokenPtr->is_nft = tokenPtr->is_erc721;
 
-  absl::optional<int> decimals = value.FindInt("decimals");
+  std::optional<int> decimals = value.FindInt("decimals");
   if (!decimals)
     return nullptr;
   tokenPtr->decimals = decimals.value();
 
-  absl::optional<bool> visible = value.FindBool("visible");
+  std::optional<bool> visible = value.FindBool("visible");
   if (!visible)
     return nullptr;
   tokenPtr->visible = visible.value();

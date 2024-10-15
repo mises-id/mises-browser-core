@@ -10,7 +10,7 @@
 {
   "misesPrivate": [{
     "dependencies": ["permission:misesPrivate"],
-    "contexts": ["blessed_extension"]
+    "contexts": ["privileged_extension"]
    }, {
     "channel": "stable",
     "contexts": ["webui"],

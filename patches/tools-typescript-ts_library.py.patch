@@ -1,7 +1,16 @@
 diff --git a/tools/typescript/ts_library.py b/tools/typescript/ts_library.py
-index 4dbbb4455516ac35b0df5204bc182fe798468119..c5623e4b67170608177b7d968c1cc7e97974ff71 100644
+index 4dbbb4455516ac35b0df5204bc182fe798468119..8391d8a8fc4ea1fa19f7951e7cf5c1b97266b053 100644
 --- a/tools/typescript/ts_library.py
 +++ b/tools/typescript/ts_library.py
+@@ -251,7 +251,7 @@ def main(argv):
+       node_modules.PathToTypescript(),
+       '--project',
+       os.path.join(args.gen_dir, tsconfig_file),
+-      '--listFilesOnly',
++      '--listFilesOnly', '--noEmit', 'true'
+   ])
+   files_list = out.split('\n')
+   definitions_files = list(filter(lambda f: f.endswith('.d.ts'), files_list))
 @@ -276,6 +276,6 @@ def main(argv):
            [re.sub(r'\.ts$', '.js', f) for f in manifest_files]
        json.dump(manifest_data, manifest_file)

@@ -129,7 +129,7 @@ bool NewTabPageBindings::IsIncognito(v8::Isolate* isolate) {
 void NewTabPageBindings::OpenExtension(v8::Isolate* isolate,
                                                v8::Local<v8::Value> rid_value) {
   // Manually convert to integer, so that the string "\"1\"" is also accepted.
-  absl::optional<int> rid = CoerceToInt(isolate, *rid_value);
+  std::optional<int> rid = CoerceToInt(isolate, *rid_value);
   if (!rid.has_value())
     return;
   SearchBox* search_box = GetSearchBoxForCurrentContext();

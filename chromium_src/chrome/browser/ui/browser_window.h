@@ -30,7 +30,7 @@
 #include "components/translate/core/common/translate_errors.h"
 #include "components/user_education/common/feature_promo_controller.h"
 #include "components/user_education/common/feature_promo_specification.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "ui/base/base_window.h"
 #include "ui/base/interaction/element_identifier.h"
 #include "ui/base/window_open_disposition.h"

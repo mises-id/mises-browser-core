@@ -12,7 +12,7 @@
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
 #include "mises/components/brave_wallet/common/eth_abi_utils.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -86,7 +86,7 @@ namespace unstoppable_domains {
 constexpr uint8_t kGetManySelector[] = {0x1b, 0xd8, 0xcc, 0x1a};
 
 // Get mutiple record values mapped with keys of the target domain.
-absl::optional<std::string> GetMany(const std::vector<std::string>& keys,
+std::optional<std::string> GetMany(const std::vector<std::string>& keys,
                                     const std::string& domain);
 
 std::vector<std::string> MakeEthLookupKeyList(const std::string& symbol,
@@ -109,13 +109,13 @@ bool ContentHash(const std::string& domain, std::string* data);
 // Get Ethereum address from an ENS name.
 bool Addr(const std::string& domain, std::string* data);
 
-absl::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name);
+std::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name);
 
 }  // namespace ens
 
 namespace balance_scanner {
 
-absl::optional<std::string> TokensBalance(
+std::optional<std::string> TokensBalance(
     const std::string& owner_address,
     const std::vector<std::string>& contract_addresses);
 

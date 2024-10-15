@@ -11,7 +11,7 @@
 #include "services/network/public/cpp/resource_request.h"
 #include "services/network/public/mojom/fetch_api.mojom-shared.h"
 #include "services/network/public/mojom/url_loader.mojom-forward.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "content/public/browser/browser_context.h"
 #include "content/public/browser/storage_partition.h"
 #include "services/network/public/cpp/simple_url_loader.h"
@@ -174,7 +174,7 @@ void PluginResponseWriter::OnURLRedirect( const GURL& new_url) {
       net::SiteForCookies::FromUrl(ctx_->request_url),
       net::RedirectInfo::FirstPartyURLPolicy::UPDATE_URL_ON_REDIRECT,
       ctx_->referrer_policy, ctx_->referrer.spec(),
-      kInternalRedirectStatusCode, new_url, absl::nullopt,
+      kInternalRedirectStatusCode, new_url, std::nullopt,
       false /* insecure_scheme_was_upgraded */, false /* copy_fragment */,
       false /* is_signed_exchange_fallback_redirect */);
   client_->OnReceiveRedirect(redirect_info, std::move(response));
@@ -206,7 +206,7 @@ void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> res
   }
 
   client_->OnReceiveResponse(std::move(response), std::move(consumer),
-                             absl::nullopt);
+                             std::nullopt);
 
   producer_ = std::make_unique<mojo::DataPipeProducer>(std::move(producer));
 

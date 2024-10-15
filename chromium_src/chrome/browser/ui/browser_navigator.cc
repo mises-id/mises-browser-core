@@ -52,7 +52,7 @@ base::WeakPtr<content::NavigationHandle> Navigate(NavigateParams* params) {
 
 bool IsHostAllowedInIncognito(const GURL& url) {
   std::string scheme = url.scheme();
-  base::StringPiece host = url.host_piece();
+  std::string_view host = url.host_piece();
   if (scheme != content::kChromeUIScheme)
     return true;
 

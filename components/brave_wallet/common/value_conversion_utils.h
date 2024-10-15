@@ -11,12 +11,12 @@
 
 #include "base/values.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/origin.h"
 
 namespace brave_wallet {
 
-absl::optional<std::string> ExtractChainIdFromValue(
+std::optional<std::string> ExtractChainIdFromValue(
     const base::Value::Dict* dict);
 base::Value::Dict NetworkInfoToValue(const mojom::NetworkInfo& info);
 mojom::NetworkInfoPtr ValueToNetworkInfo(const base::Value& value);

@@ -28,7 +28,7 @@
 
 #include "components/favicon_base/favicon_url_parser.h"
 #include "components/sessions/content/session_tab_helper.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 #include "url/origin.h"
 

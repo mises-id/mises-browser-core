@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..d384fc20f22f602355609d2a900d61c2d0f785bc 100644
+index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392efece397d 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 @@ -27,6 +27,28 @@ import org.chromium.ui.base.WindowAndroid;
@@ -84,7 +84,7 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..d384fc20f22f602355609d2a900d61c2
              @DownloadLocationDialogType int dialogType,
              String suggestedPath,
 -            Profile profile) {
-+            Profile profile， String urlToDownload) {
++            Profile profile, String urlToDownload) {
          mWindowAndroid = windowAndroid;
          mProfile = profile;
          Activity activity = windowAndroid.getActivity().get();

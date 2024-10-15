@@ -272,7 +272,7 @@ void BraveWalletService::Bind(
 // For EVM, convert the address to a checksum address.
 // For Solana, verify if address is a base58 encoded address, if so, return it.
 // static
-absl::optional<std::string> BraveWalletService::GetUserAssetAddress(
+std::optional<std::string> BraveWalletService::GetUserAssetAddress(
     const std::string& address,
     mojom::CoinType coin,
     const std::string& chain_id) {
@@ -286,18 +286,18 @@ absl::optional<std::string> BraveWalletService::GetUserAssetAddress(
   if (coin == mojom::CoinType::SOL) {
     std::vector<uint8_t> bytes;
     if (!::brave_wallet::IsBase58EncodedSolanaPubkey(address))
-      return absl::nullopt;
+      return std::nullopt;
     return address;
   }
 
   // TODO(spylogsster): Handle Filecoin here when if we need to support tokens
   // other than the native asset in the future.
 
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 // static
-absl::optional<std::string> BraveWalletService::GetChecksumAddress(
+std::optional<std::string> BraveWalletService::GetChecksumAddress(
     const std::string& contract_address,
     const std::string& chain_id) {
   if (contract_address.empty()) {
@@ -306,11 +306,11 @@ absl::optional<std::string> BraveWalletService::GetChecksumAddress(
 
   const auto eth_addr = EthAddress::FromHex(contract_address);
   if (eth_addr.IsEmpty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   uint256_t chain;
   if (!HexValueToUint256(chain_id, &chain)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return eth_addr.ToChecksumAddress(chain);
@@ -381,7 +381,7 @@ std::vector<mojom::BlockchainTokenPtr> BraveWalletService::GetUserAssets(
 // static
 bool BraveWalletService::AddUserAsset(mojom::BlockchainTokenPtr token,
                                       PrefService* profile_prefs) {
-  absl::optional<std::string> address = GetUserAssetAddress(
+  std::optional<std::string> address = GetUserAssetAddress(
       token->contract_address, token->coin, token->chain_id);
   if (!address)
     return false;
@@ -482,7 +482,7 @@ void BraveWalletService::AddUserAsset(mojom::BlockchainTokenPtr token,
 void BraveWalletService::OnGetEthNftStandard(
     mojom::BlockchainTokenPtr token,
     AddUserAssetCallback callback,
-    const absl::optional<std::string>& standard,
+    const std::optional<std::string>& standard,
     mojom::ProviderError error,
     const std::string& error_message) {
   if (error != mojom::ProviderError::kSuccess || !standard) {
@@ -511,7 +511,7 @@ void BraveWalletService::RemoveUserAsset(mojom::BlockchainTokenPtr token,
 }
 
 bool BraveWalletService::RemoveUserAsset(mojom::BlockchainTokenPtr token) {
-  absl::optional<std::string> address = GetUserAssetAddress(
+  std::optional<std::string> address = GetUserAssetAddress(
       token->contract_address, token->coin, token->chain_id);
   if (!address)
     return false;
@@ -551,7 +551,7 @@ bool BraveWalletService::SetUserAssetVisible(mojom::BlockchainTokenPtr token,
                                              bool visible) {
   DCHECK(token);
 
-  absl::optional<std::string> address = GetUserAssetAddress(
+  std::optional<std::string> address = GetUserAssetAddress(
       token->contract_address, token->coin, token->chain_id);
   if (!address)
     return false;
@@ -582,7 +582,7 @@ mojom::BlockchainTokenPtr BraveWalletService::GetUserAsset(
     bool check_token_id,
     const std::string& chain_id,
     mojom::CoinType coin) {
-  absl::optional<std::string> address =
+  std::optional<std::string> address =
       GetUserAssetAddress(raw_address, coin, chain_id);
   if (!address)
     return nullptr;
@@ -1138,7 +1138,7 @@ void BraveWalletService::NotifySignMessageRequestProcessed(
     bool approved,
     int id,
     mojom::ByteArrayStringUnionPtr signature,
-    const absl::optional<std::string>& error) {
+    const std::optional<std::string>& error) {
   if (sign_message_requests_.empty() ||
       sign_message_requests_.front()->id != id) {
     VLOG(1) << "id: " << id << " is not expected, should be "
@@ -1171,7 +1171,7 @@ void BraveWalletService::NotifySignTransactionRequestProcessed(
     bool approved,
     int id,
     mojom::ByteArrayStringUnionPtr signature,
-    const absl::optional<std::string>& error) {
+    const std::optional<std::string>& error) {
   if (sign_transaction_requests_.empty() ||
       sign_transaction_requests_.front()->id != id) {
     VLOG(1) << "id: " << id << " is not expected, should be "
@@ -1203,8 +1203,8 @@ void BraveWalletService::GetPendingSignAllTransactionsRequests(
 void BraveWalletService::NotifySignAllTransactionsRequestProcessed(
     bool approved,
     int id,
-    absl::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
-    const absl::optional<std::string>& error) {
+    std::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
+    const std::optional<std::string>& error) {
   if (sign_all_transactions_requests_.empty() ||
       sign_all_transactions_requests_.front()->id != id) {
     VLOG(1) << "id: " << id << " is not expected, should be "
@@ -1248,7 +1248,7 @@ void BraveWalletService::OnDiscoverAssetsCompleted(
 
 void BraveWalletService::OnGetImportInfo(
     const std::string& new_password,
-    base::OnceCallback<void(bool, const absl::optional<std::string>&)> callback,
+    base::OnceCallback<void(bool, const std::optional<std::string>&)> callback,
     bool result,
     ImportInfo info,
     ImportError error) {
@@ -1291,7 +1291,7 @@ void BraveWalletService::OnGetImportInfo(
               keyring_service->AddAccountsWithDefaultName(number_of_accounts -
                                                           1);
             }
-            std::move(callback).Run(is_valid_mnemonic, absl::nullopt);
+            std::move(callback).Run(is_valid_mnemonic, std::nullopt);
           },
           std::move(callback), info.number_of_accounts, keyring_service_));
 }
@@ -1629,7 +1629,7 @@ void BraveWalletService::CancelAllSignMessageCallbacks() {
     auto callback = std::move(sign_message_callbacks_.front());
     sign_message_requests_.pop_front();
     sign_message_callbacks_.pop_front();
-    std::move(callback).Run(false, nullptr, absl::nullopt);
+    std::move(callback).Run(false, nullptr, std::nullopt);
   }
 }
 
@@ -1638,7 +1638,7 @@ void BraveWalletService::CancelAllSignTransactionCallbacks() {
     auto callback = std::move(sign_transaction_callbacks_.front());
     sign_transaction_requests_.pop_front();
     sign_transaction_callbacks_.pop_front();
-    std::move(callback).Run(false, nullptr, absl::nullopt);
+    std::move(callback).Run(false, nullptr, std::nullopt);
   }
 }
 
@@ -1647,7 +1647,7 @@ void BraveWalletService::CancelAllSignAllTransactionsCallbacks() {
     auto callback = std::move(sign_all_transactions_callbacks_.front());
     sign_all_transactions_requests_.pop_front();
     sign_all_transactions_callbacks_.pop_front();
-    std::move(callback).Run(false, absl::nullopt, absl::nullopt);
+    std::move(callback).Run(false, std::nullopt, std::nullopt);
   }
 }
 

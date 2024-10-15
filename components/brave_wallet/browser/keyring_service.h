@@ -23,7 +23,7 @@
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver_set.h"
 #include "mojo/public/cpp/bindings/remote_set.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 class PrefChangeRegistrar;
 class PrefService;
@@ -51,7 +51,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
                  PrefService* local_state);
   ~KeyringService() override;
 
-  static absl::optional<int>& GetPbkdf2IterationsForTesting();
+  static std::optional<int>& GetPbkdf2IterationsForTesting();
   static void MigrateObsoleteProfilePrefs(PrefService* profile_prefs);
 
   static bool HasPrefForKeyring(const PrefService& profile_prefs,
@@ -65,7 +65,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
                                 const std::string& key,
                                 const base::Value& value,
                                 const std::string& id);
-  static absl::optional<std::vector<uint8_t>> GetPrefInBytesForKeyring(
+  static std::optional<std::vector<uint8_t>> GetPrefInBytesForKeyring(
       const PrefService& profile_prefs,
       const std::string& key,
       const std::string& id);
@@ -74,7 +74,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
                                        base::span<const uint8_t> bytes,
                                        const std::string& id);
 
-  static absl::optional<std::string> GetKeyringIdForCoinNonFIL(
+  static std::optional<std::string> GetKeyringIdForCoinNonFIL(
       mojom::CoinType coin);
 
   mojo::PendingRemote<mojom::KeyringService> MakeRemote();
@@ -159,7 +159,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   void SignTransactionByDefaultKeyring(const std::string& address,
                                        EthTransaction* tx,
                                        uint256_t chain_id);
-  absl::optional<std::string> SignTransactionByFilecoinKeyring(
+  std::optional<std::string> SignTransactionByFilecoinKeyring(
       FilTransaction* tx);
 
   struct SignatureWithError {
@@ -170,7 +170,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
     SignatureWithError& operator=(const SignatureWithError&) = delete;
     ~SignatureWithError();
 
-    absl::optional<std::vector<uint8_t>> signature;
+    std::optional<std::vector<uint8_t>> signature;
     std::string error_message;
   };
   SignatureWithError SignMessageByDefaultKeyring(
@@ -187,7 +187,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   bool GetPublicKeyFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
       const std::string& address,
       std::string* key);
-  absl::optional<std::vector<uint8_t>>
+  std::optional<std::vector<uint8_t>>
   DecryptCipherFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
       const std::string& version,
       const std::vector<uint8_t>& nonce,
@@ -201,8 +201,8 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   bool IsLockedSync() const;
   bool HasPendingUnlockRequest() const;
   void RequestUnlock();
-  absl::optional<std::string> GetSelectedAccount(mojom::CoinType coin) const;
-  absl::optional<std::string> GetFilecoinSelectedAccount(
+  std::optional<std::string> GetSelectedAccount(mojom::CoinType coin) const;
+  std::optional<std::string> GetFilecoinSelectedAccount(
       const std::string& net) const;
 
   void AddObserver(
@@ -231,11 +231,11 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
                           const std::string& nonce,
                           SignMessageForAuthCallback callback) override;
 
-  absl::optional<std::string> GetBitcoinReceivingAddress(
+  std::optional<std::string> GetBitcoinReceivingAddress(
       const std::string& keyring_id,
       uint32_t account_index,
       uint32_t receiving_index);
-  absl::optional<std::string> GetBitcoinChangeAddress(
+  std::optional<std::string> GetBitcoinChangeAddress(
       const std::string& keyring_id,
       uint32_t account_index,
       uint32_t change_index);
@@ -295,13 +295,13 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   friend class AssetDiscoveryManagerUnitTest;
   friend class SolanaTransactionUnitTest;
 
-  absl::optional<std::string> FindImportedFilecoinKeyringId(
+  std::optional<std::string> FindImportedFilecoinKeyringId(
       const std::string& address) const;
-  absl::optional<std::string> FindBasicFilecoinKeyringId(
+  std::optional<std::string> FindBasicFilecoinKeyringId(
       const std::string& address) const;
-  absl::optional<std::string> FindHardwareFilecoinKeyringId(
+  std::optional<std::string> FindHardwareFilecoinKeyringId(
       const std::string& address) const;
-  absl::optional<std::string> FindFilecoinKeyringId(
+  std::optional<std::string> FindFilecoinKeyringId(
       const std::string& address) const;
 
   std::string GetImportedKeyringId(mojom::CoinType coin_type,
@@ -313,7 +313,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   std::string GetHardwareKeyringId(mojom::CoinType coin_type,
                                    const std::string& address) const;
 
-  absl::optional<std::string> AddAccountForKeyring(
+  std::optional<std::string> AddAccountForKeyring(
       const std::string& keyring_id,
       const std::string& account_name);
   void AddDiscoveryAccountsForKeyring(size_t discovery_account_index,
@@ -323,7 +323,7 @@ class KeyringService : public KeyedService, public mojom::KeyringService {
   std::vector<mojom::AccountInfoPtr> GetHardwareAccountsSync(
       const std::string& keyring_id) const;
   // Address will be returned when success
-  absl::optional<std::string> ImportAccountForKeyring(
+  std::optional<std::string> ImportAccountForKeyring(
       const std::string& keyring_id,
       const std::string& account_name,
       const std::vector<uint8_t>& private_key);

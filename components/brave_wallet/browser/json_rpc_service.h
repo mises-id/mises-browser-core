@@ -389,7 +389,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                             GetSupportsInterfaceCallback callback);
 
   using GetEthNftStandardCallback =
-      base::OnceCallback<void(const absl::optional<std::string>& standard,
+      base::OnceCallback<void(const std::optional<std::string>& standard,
                               mojom::ProviderError error,
                               const std::string& error_message)>;
   void GetEthNftStandard(const std::string& contract_address,
@@ -437,7 +437,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                               const std::string& error_message)>;
   void SendSolanaTransaction(
       const std::string& signed_tx,
-      absl::optional<SolanaTransaction::SendOptions> send_options,
+      std::optional<SolanaTransaction::SendOptions> send_options,
       SendSolanaTransactionCallback callback);
   using GetSolanaLatestBlockhashCallback =
       base::OnceCallback<void(const std::string& latest_blockhash,
@@ -446,14 +446,14 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                               const std::string& error_message)>;
   void GetSolanaLatestBlockhash(GetSolanaLatestBlockhashCallback callback);
   using GetSolanaSignatureStatusesCallback = base::OnceCallback<void(
-      const std::vector<absl::optional<SolanaSignatureStatus>>&
+      const std::vector<std::optional<SolanaSignatureStatus>>&
           signature_statuses,
       mojom::SolanaProviderError error,
       const std::string& error_message)>;
   void GetSolanaSignatureStatuses(const std::vector<std::string>& tx_signatures,
                                   GetSolanaSignatureStatusesCallback callback);
   using GetSolanaAccountInfoCallback =
-      base::OnceCallback<void(absl::optional<SolanaAccountInfo> account_info,
+      base::OnceCallback<void(std::optional<SolanaAccountInfo> account_info,
                               mojom::SolanaProviderError error,
                               const std::string& error_message)>;
   void GetSolanaAccountInfo(const std::string& pubkey,
@@ -551,20 +551,20 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
                              const std::string& error_message);
   void OnEnsGetEthAddrTaskDone(
       EnsResolverTask* task,
-      absl::optional<EnsResolverTaskResult> task_result,
-      absl::optional<EnsResolverTaskError> error);
+      std::optional<EnsResolverTaskResult> task_result,
+      std::optional<EnsResolverTaskError> error);
   void OnEnsGetContentHashTaskDone(
       EnsResolverTask* task,
-      absl::optional<EnsResolverTaskResult> task_result,
-      absl::optional<EnsResolverTaskError> error);
+      std::optional<EnsResolverTaskResult> task_result,
+      std::optional<EnsResolverTaskError> error);
   void OnSnsGetSolAddrTaskDone(
       SnsResolverTask* task,
-      absl::optional<SnsResolverTaskResult> task_result,
-      absl::optional<SnsResolverTaskError> error);
+      std::optional<SnsResolverTaskResult> task_result,
+      std::optional<SnsResolverTaskError> error);
   void OnSnsResolveHostTaskDone(
       SnsResolverTask* task,
-      absl::optional<SnsResolverTaskResult> task_result,
-      absl::optional<SnsResolverTaskError> error);
+      std::optional<SnsResolverTaskResult> task_result,
+      std::optional<SnsResolverTaskError> error);
   void OnEnsGetEthAddr(EnsGetEthAddrCallback callback,
                        APIRequestResult api_request_result);
   void OnGetFilEstimateGas(GetFilEstimateGasCallback callback,
@@ -661,7 +661,7 @@ class JsonRpcService : public KeyedService, public mojom::JsonRpcService {
   unstoppable_domains::MultichainCalls<unstoppable_domains::WalletAddressKey,
                                        std::string>
       ud_get_eth_addr_calls_;
-  unstoppable_domains::MultichainCalls<std::string, absl::optional<GURL>>
+  unstoppable_domains::MultichainCalls<std::string, std::optional<GURL>>
       ud_resolve_dns_calls_;
   bit::ResolveCalls<std::string, GURL> bit_resolve_dns_calls_;
   bit::ResolveCalls<std::string, GURL> fn_resolve_dns_calls_;

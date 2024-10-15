@@ -6,7 +6,7 @@
 #ifndef BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 #define BRAVE_COMPONENTS_DECENTRALIZED_DNS_CORE_UTILS_H_
 
-#include "base/strings/string_piece.h"
+#include <string_view>
 #include "mises/components/decentralized_dns/core/constants.h"
 #include "mises/net/decentralized_dns/utils.h"
 

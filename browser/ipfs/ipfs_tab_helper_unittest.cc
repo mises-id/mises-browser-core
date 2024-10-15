@@ -228,7 +228,7 @@ TEST_F(IpfsTabHelperUnitTest, DNSLinkRecordResolved_AutoRedirectDNSLink) {
   web_contents()->NavigateAndCommit(GURL("https://brantly.eth/page?query#ref"));
 
   helper->SetPageURLForTesting(GURL("https://brantly.eth/page?query#ref"));
-  helper->HostResolvedCallback(absl::nullopt, "brantly.eth",
+  helper->HostResolvedCallback(std::nullopt, "brantly.eth",
                                "/ipns/brantly.eth/");
   ASSERT_EQ(GURL("ipns://brantly.eth/page?query#ref"),
             helper->GetIPFSResolvedURL());

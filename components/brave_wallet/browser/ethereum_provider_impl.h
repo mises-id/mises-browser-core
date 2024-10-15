@@ -88,7 +88,7 @@ class EthereumProviderImpl final
                       base::Value id);
 
   void EthSubscribe(const std::string& event_type,
-                    absl::optional<base::Value::Dict> filter,
+                    std::optional<base::Value::Dict> filter,
                     RequestCallback callback,
                     base::Value id);
   void EthUnsubscribe(const std::string& subscription_id,
@@ -120,7 +120,7 @@ class EthereumProviderImpl final
       brave_wallet::mojom::KeyringInfoPtr keyring_info);
   void OnGetAllowedAccounts(bool include_accounts_when_locked,
                             bool keyring_locked,
-                            const absl::optional<std::string>& selected_account,
+                            const std::optional<std::string>& selected_account,
                             GetAllowedAccountsCallback callback,
                             bool success,
                             const std::vector<std::string>& accounts);
@@ -260,8 +260,8 @@ class EthereumProviderImpl final
                            const std::string& domain,
                            const std::string& message,
                            std::vector<uint8_t>&& message_to_sign,
-                           const absl::optional<std::string>& domain_hash,
-                           const absl::optional<std::string>& primary_hash,
+                           const std::optional<std::string>& domain_hash,
+                           const std::optional<std::string>& primary_hash,
                            bool is_eip712,
                            RequestCallback callback,
                            base::Value id,
@@ -329,7 +329,7 @@ class EthereumProviderImpl final
                                      bool is_eip712,
                                      bool approved,
                                      mojom::ByteArrayStringUnionPtr signature,
-                                     const absl::optional<std::string>& error);
+                                     const std::optional<std::string>& error);
 
   // KeyringServiceObserver
   void KeyringCreated(const std::string& keyring_id) override {}
@@ -372,7 +372,7 @@ class EthereumProviderImpl final
       const std::string& method,
       const url::Origin& origin,
       RequestPermissionsError error,
-      const absl::optional<std::vector<std::string>>& allowed_accounts);
+      const std::optional<std::vector<std::string>>& allowed_accounts);
   void OnSendRawTransaction(RequestCallback callback,
                             base::Value id,
                             const std::string& tx_hash,

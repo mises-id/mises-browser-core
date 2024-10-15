@@ -307,7 +307,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Settings specific strings -->
-      <if expr="is_android or not is_android">
+      <if expr="not is_android">
         <part file="settings_strings.grdp" />
         <part file="shared_settings_strings.grdp" />
       </if>
@@ -10320,13 +10320,13 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Mises P
         </if>
       </if>
       <if expr="is_android">
-        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option" formatter_data="android_java">
+        <message name="IDS_PASSWORD_MANAGER_SAVE_BUTTON_MISES" desc="Mobile: Button text for the 'Save Password' infobar's 'Remember password' option" formatter_data="android_java">
           Save
         </message>
         <message name="IDS_PASSWORD_MANAGER_BLOCKLIST_BUTTON" desc="Mobile: Button text for the 'Save Password' infobar's 'Never remember for this site' option">
           Never
         </message>
-        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
+        <message name="IDS_PASSWORD_MANAGER_UPDATE_BUTTON_MISES" desc="Label for the 'update' button in the Update Password infobar. This infobar asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update." formatter_data="android_java">
           Update
         </message>
         <message name="IDS_PASSWORD_MANAGER_CONTINUE_BUTTON" desc="Label for the 'continue' button in the Update Password prompt that will be followed by username confirmation dialog. This prompt asks if the user wishes to update the saved password for a site to a new password the user has just entered; the button applies the suggested update.">

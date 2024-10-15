@@ -232,17 +232,17 @@ TEST_F(TxStateManagerUnitTest, GetTransactionsByStatus) {
 
   EXPECT_EQ(tx_state_manager_
                 ->GetTransactionsByStatus(mojom::TransactionStatus::Approved,
-                                          absl::nullopt)
+                                          std::nullopt)
                 .size(),
             0u);
   EXPECT_EQ(tx_state_manager_
                 ->GetTransactionsByStatus(mojom::TransactionStatus::Confirmed,
-                                          absl::nullopt)
+                                          std::nullopt)
                 .size(),
             10u);
   EXPECT_EQ(tx_state_manager_
                 ->GetTransactionsByStatus(mojom::TransactionStatus::Submitted,
-                                          absl::nullopt)
+                                          std::nullopt)
                 .size(),
             10u);
 
@@ -253,14 +253,14 @@ TEST_F(TxStateManagerUnitTest, GetTransactionsByStatus) {
       0u);
 
   EXPECT_EQ(
-      tx_state_manager_->GetTransactionsByStatus(absl::nullopt, absl::nullopt)
+      tx_state_manager_->GetTransactionsByStatus(std::nullopt, std::nullopt)
           .size(),
       20u);
   EXPECT_EQ(
-      tx_state_manager_->GetTransactionsByStatus(absl::nullopt, addr1).size(),
+      tx_state_manager_->GetTransactionsByStatus(std::nullopt, addr1).size(),
       5u);
   EXPECT_EQ(
-      tx_state_manager_->GetTransactionsByStatus(absl::nullopt, addr2).size(),
+      tx_state_manager_->GetTransactionsByStatus(std::nullopt, addr2).size(),
       2u);
 
   auto confirmed_addr1 = tx_state_manager_->GetTransactionsByStatus(

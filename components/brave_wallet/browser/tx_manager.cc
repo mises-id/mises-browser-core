@@ -57,7 +57,7 @@ void TxManager::GetTransactionInfo(const std::string& tx_meta_id,
   std::move(callback).Run(meta->ToTransactionInfo());
 }
 
-void TxManager::GetAllTransactionInfo(const absl::optional<std::string>& from,
+void TxManager::GetAllTransactionInfo(const std::optional<std::string>& from,
                                       GetAllTransactionInfoCallback callback) {
   if (from.has_value() && from->empty()) {
     std::move(callback).Run(std::vector<mojom::TransactionInfoPtr>());
@@ -65,7 +65,7 @@ void TxManager::GetAllTransactionInfo(const absl::optional<std::string>& from,
   }
 
   std::vector<std::unique_ptr<TxMeta>> metas =
-      tx_state_manager_->GetTransactionsByStatus(absl::nullopt, from);
+      tx_state_manager_->GetTransactionsByStatus(std::nullopt, from);
 
   // Convert vector of TxMeta to vector of TransactionInfo
   std::vector<mojom::TransactionInfoPtr> tis(metas.size());

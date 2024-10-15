@@ -11,7 +11,7 @@
 #include "base/memory/raw_ptr.h"
 #include "base/memory/weak_ptr.h"
 #include "content/public/browser/url_data_source.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace base {
 class FilePath;
@@ -48,7 +48,7 @@ class NTPSponsoredImagesSource : public content::URLDataSource {
   void GetImageFile(const base::FilePath& image_file_path,
                     GotDataCallback callback);
   void OnGotImageFile(GotDataCallback callback,
-                      absl::optional<std::string> input);
+                      std::optional<std::string> input);
   bool IsValidPath(const std::string& path) const;
 
   raw_ptr<NTPBackgroundImagesService> service_ = nullptr;  // not owned

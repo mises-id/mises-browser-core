@@ -30,7 +30,7 @@ class BraveWebClient : public web::WebClient {
 
   std::unique_ptr<web::WebMainParts> CreateWebMainParts() override;
   std::string GetUserAgent(web::UserAgentType type) const override;
-  base::StringPiece GetDataResource(
+  std::string_view GetDataResource(
       int resource_id,
       ui::ResourceScaleFactor scale_factor) const override;
   base::RefCountedMemory* GetDataResourceBytes(int resource_id) const override;

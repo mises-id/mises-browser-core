@@ -58,7 +58,7 @@ std::string Uint256ValueToHex(uint256_t input);
 // It also clears the output buffer unlike base::HexStringToBytes
 bool PrefixedHexStringToBytes(const std::string& input,
                               std::vector<uint8_t>* bytes);
-absl::optional<std::vector<uint8_t>> PrefixedHexStringToBytes(
+std::optional<std::vector<uint8_t>> PrefixedHexStringToBytes(
     const std::string& input);
 
 }  // namespace brave_wallet

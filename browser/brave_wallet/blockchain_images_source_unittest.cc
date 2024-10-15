@@ -60,7 +60,7 @@ class BlockchainImagesSourceTest : public testing::Test {
   void OnDataReceived(scoped_refptr<base::RefCountedMemory> bytes) {
     data_received_ = true;
     if (bytes) {
-      data_ = std::string(base::StringPiece(
+      data_ = std::string(std::string_view(
           reinterpret_cast<const char*>(bytes->front()), bytes->size()));
     }
   }

@@ -129,7 +129,7 @@ void FaviconDriverObserver::OnFaviconUpdated(
   }
 
   NSURL* ns_url = scriptMessage.frameInfo.request.URL;
-  absl::optional<GURL> url;
+  std::optional<GURL> url;
   if (ns_url) {
     url = net::GURLWithNSURL(ns_url);
   }

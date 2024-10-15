@@ -372,7 +372,7 @@ TEST(PermissionUtilsUnitTest, SyncingWithCreatePermissionLifetimeOptions) {
   EXPECT_EQ(
       options[static_cast<size_t>(mojom::PermissionLifetimeOption::kForever)]
           .lifetime,
-      absl::nullopt);
+      std::nullopt);
 }
 
 }  // namespace brave_wallet

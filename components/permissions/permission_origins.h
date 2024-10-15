@@ -9,7 +9,7 @@
 #include <string>
 
 #include "components/content_settings/core/common/content_settings.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 
 namespace permissions {
@@ -40,7 +40,7 @@ class PermissionOrigins {
 
  private:
   GURL requesting_origin_;
-  absl::optional<GURL> embedding_origin_;
+  std::optional<GURL> embedding_origin_;
   ContentSetting content_setting_;
 };
 

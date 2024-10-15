@@ -25,7 +25,7 @@
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver_set.h"
 #include "mojo/public/cpp/bindings/remote_set.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 using brave_wallet::mojom::BlockchainTokenPtr;
 
@@ -71,12 +71,12 @@ class BraveWalletAutoPinService
   struct IntentData {
     BlockchainTokenPtr token;
     Operation operation;
-    absl::optional<std::string> service;
+    std::optional<std::string> service;
     size_t attempt = 0;
 
     IntentData(const BlockchainTokenPtr& token,
                Operation operation,
-               absl::optional<std::string> service);
+               std::optional<std::string> service);
     ~IntentData();
 
     bool Equals(
@@ -94,8 +94,8 @@ class BraveWalletAutoPinService
   void AddOrExecute(std::unique_ptr<IntentData> data);
   void PostRetry(std::unique_ptr<IntentData> data);
 
-  std::vector<absl::optional<std::string>> GetServicesToPin();
-  std::vector<absl::optional<std::string>> GetKnownServices();
+  std::vector<std::optional<std::string>> GetServicesToPin();
+  std::vector<std::optional<std::string>> GetKnownServices();
 
   void ValidateToken(const std::unique_ptr<IntentData>& data);
   void PinToken(const std::unique_ptr<IntentData>& data);

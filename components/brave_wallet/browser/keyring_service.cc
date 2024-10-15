@@ -39,7 +39,7 @@
 #include "components/prefs/pref_service.h"
 #include "components/prefs/scoped_user_pref_update.h"
 #include "crypto/random.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "third_party/re2/src/re2/re2.h"
 #include "ui/base/l10n/l10n_util.h"
 
@@ -164,7 +164,7 @@ std::string GetRootPath(const std::string& keyring_id) {
   return "";
 }
 
-static base::span<const uint8_t> ToSpan(base::StringPiece sp) {
+static base::span<const uint8_t> ToSpan(std::string_view sp) {
   return base::as_bytes(base::make_span(sp));
 }
 
@@ -279,10 +279,10 @@ struct ImportedAccountInfo {
     return base::Value(std::move(imported_account));
   }
 
-  static absl::optional<ImportedAccountInfo> FromValue(
+  static std::optional<ImportedAccountInfo> FromValue(
       const base::Value& value) {
     if (!value.is_dict()) {
-      return absl::nullopt;
+      return std::nullopt;
     }
     auto& value_dict = value.GetDict();
 
@@ -291,13 +291,13 @@ struct ImportedAccountInfo {
     const std::string* encrypted_private_key =
         value_dict.FindString(kEncryptedPrivateKey);
     if (!account_name || !account_address || !encrypted_private_key) {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
     auto encrypted_private_key_decoded =
         base::Base64Decode(*encrypted_private_key);
     if (!encrypted_private_key_decoded) {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
     return ImportedAccountInfo(*account_name, *account_address,
@@ -380,19 +380,19 @@ struct DerivedAccountInfo {
     return base::Value(std::move(imported_account));
   }
 
-  static absl::optional<DerivedAccountInfo> FromValue(
+  static std::optional<DerivedAccountInfo> FromValue(
       const std::string& account_path,
       const base::Value& value) {
     auto* value_dict = value.GetIfDict();
     if (!value_dict) {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
     const std::string* account_name = value_dict->FindString(kAccountName);
     const std::string* account_address =
         value_dict->FindString(kAccountAddress);
     if (!account_name || !account_address) {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
     return DerivedAccountInfo(account_path, *account_name, *account_address);
@@ -491,8 +491,8 @@ KeyringService::~KeyringService() {
 }
 
 // static
-absl::optional<int>& KeyringService::GetPbkdf2IterationsForTesting() {
-  static absl::optional<int> iterations;
+std::optional<int>& KeyringService::GetPbkdf2IterationsForTesting() {
+  static std::optional<int> iterations;
   return iterations;
 }
 
@@ -508,10 +508,10 @@ void KeyringService::Bind(
 }
 
 // static
-absl::optional<std::string> KeyringService::GetKeyringIdForCoinNonFIL(
+std::optional<std::string> KeyringService::GetKeyringIdForCoinNonFIL(
     mojom::CoinType coin) {
   if (coin == mojom::CoinType::FIL) {
-    return absl::nullopt;
+    return std::nullopt;
   } else if (coin == mojom::CoinType::SOL) {
     return mojom::kSolanaKeyringId;
   } else if (coin == mojom::CoinType::BTC) {
@@ -946,7 +946,7 @@ void KeyringService::AddFilecoinAccount(const std::string& account_name,
 
   auto* keyring = GetHDKeyringById(keyring_id);
 
-  absl::optional<std::string> address;
+  std::optional<std::string> address;
   if (keyring) {
     address = AddAccountForKeyring(keyring_id, account_name);
   }
@@ -1171,7 +1171,7 @@ void KeyringService::ImportAccountFromJson(const std::string& account_name,
   std::move(callback).Run(true, *address);
 }
 
-absl::optional<std::string> KeyringService::FindImportedFilecoinKeyringId(
+std::optional<std::string> KeyringService::FindImportedFilecoinKeyringId(
     const std::string& address) const {
   HDKeyring* mainnet_keyring = GetHDKeyringById(mojom::kFilecoinKeyringId);
   HDKeyring* testnet_keyring =
@@ -1185,10 +1185,10 @@ absl::optional<std::string> KeyringService::FindImportedFilecoinKeyringId(
     return mojom::kFilecoinTestnetKeyringId;
   }
 
-  return absl::nullopt;
+  return std::nullopt;
 }
 
-absl::optional<std::string> KeyringService::FindBasicFilecoinKeyringId(
+std::optional<std::string> KeyringService::FindBasicFilecoinKeyringId(
     const std::string& address) const {
   HDKeyring* mainnet_keyring = GetHDKeyringById(mojom::kFilecoinKeyringId);
   HDKeyring* testnet_keyring =
@@ -1199,10 +1199,10 @@ absl::optional<std::string> KeyringService::FindBasicFilecoinKeyringId(
   if (testnet_keyring && testnet_keyring->HasAddress(address)) {
     return mojom::kFilecoinTestnetKeyringId;
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
-absl::optional<std::string> KeyringService::FindHardwareFilecoinKeyringId(
+std::optional<std::string> KeyringService::FindHardwareFilecoinKeyringId(
     const std::string& address) const {
   for (const auto& hardware_account :
        GetHardwareAccountsSync(mojom::kFilecoinKeyringId)) {
@@ -1216,10 +1216,10 @@ absl::optional<std::string> KeyringService::FindHardwareFilecoinKeyringId(
       return mojom::kFilecoinTestnetKeyringId;
     }
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
-absl::optional<std::string> KeyringService::FindFilecoinKeyringId(
+std::optional<std::string> KeyringService::FindFilecoinKeyringId(
     const std::string& address) const {
   auto imported = FindImportedFilecoinKeyringId(address);
   if (imported) {
@@ -1236,7 +1236,7 @@ absl::optional<std::string> KeyringService::FindFilecoinKeyringId(
     return hardware;
   }
 
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 std::string KeyringService::GetImportedKeyringId(
@@ -1360,17 +1360,17 @@ void KeyringService::NotifyWalletBackupComplete() {
   }
 }
 
-absl::optional<std::string> KeyringService::AddAccountForKeyring(
+std::optional<std::string> KeyringService::AddAccountForKeyring(
     const std::string& keyring_id,
     const std::string& account_name) {
   auto* keyring = GetHDKeyringById(keyring_id);
   if (!keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   auto added_accounts = keyring->AddAccounts(1);
   if (added_accounts.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   DCHECK_EQ(added_accounts.size(), 1u);
 
@@ -1432,18 +1432,18 @@ void KeyringService::OnGetTransactionCount(size_t discovery_account_index,
   }
 }
 
-absl::optional<std::string> KeyringService::ImportAccountForKeyring(
+std::optional<std::string> KeyringService::ImportAccountForKeyring(
     const std::string& keyring_id,
     const std::string& account_name,
     const std::vector<uint8_t>& private_key) {
   auto* keyring = GetHDKeyringById(keyring_id);
   if (!keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   const std::string address = keyring->ImportAccount(private_key);
   if (address.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::vector<uint8_t> encrypted_private_key = encryptors_[keyring_id]->Encrypt(
@@ -1607,16 +1607,16 @@ void KeyringService::RemoveHardwareAccount(
   std::move(callback).Run(false);
 }
 
-absl::optional<std::string> KeyringService::SignTransactionByFilecoinKeyring(
+std::optional<std::string> KeyringService::SignTransactionByFilecoinKeyring(
     FilTransaction* tx) {
   if (!tx) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::string keyring_id = GetFilecoinKeyringId(tx->from().network());
   auto* keyring = GetHDKeyringById(keyring_id);
   if (!keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   return static_cast<FilecoinKeyring*>(keyring)->SignTransaction(tx);
 }
@@ -1647,7 +1647,7 @@ KeyringService::SignatureWithError KeyringService::SignMessageByDefaultKeyring(
   SignatureWithError ret;
   auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
   if (!keyring) {
-    ret.signature = absl::nullopt;
+    ret.signature = std::nullopt;
     ret.error_message =
         l10n_util::GetStringUTF8(IDS_BRAVE_WALLET_SIGN_MESSAGE_UNLOCK_FIRST);
     return ret;
@@ -1658,7 +1658,7 @@ KeyringService::SignatureWithError KeyringService::SignMessageByDefaultKeyring(
       static_cast<EthereumKeyring*>(keyring)->SignMessage(address, message, 0,
                                                           is_eip712);
   if (signature.empty()) {
-    ret.signature = absl::nullopt;
+    ret.signature = std::nullopt;
     ret.error_message =
         l10n_util::GetStringFUTF8(IDS_BRAVE_WALLET_SIGN_MESSAGE_INVALID_ADDRESS,
                                   base::ASCIIToUTF16(address));
@@ -1689,7 +1689,7 @@ bool KeyringService::GetPublicKeyFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
           EthAddress::FromHex(address).ToChecksumAddress(), key);
 }
 
-absl::optional<std::vector<uint8_t>>
+std::optional<std::vector<uint8_t>>
 KeyringService::DecryptCipherFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
     const std::string& version,
     const std::vector<uint8_t>& nonce,
@@ -1698,7 +1698,7 @@ KeyringService::DecryptCipherFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
     const std::string& address) {
   auto* keyring = GetHDKeyringById(mojom::kDefaultKeyringId);
   if (!keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return static_cast<EthereumKeyring*>(keyring)
@@ -1758,7 +1758,7 @@ bool KeyringService::HasPendingUnlockRequest() const {
   return request_unlock_pending_;
 }
 
-absl::optional<std::string> KeyringService::GetSelectedAccount(
+std::optional<std::string> KeyringService::GetSelectedAccount(
     mojom::CoinType coin) const {
   auto keyring_id = GetKeyringIdForCoinNonFIL(coin);
   if (!keyring_id) {
@@ -1767,26 +1767,26 @@ absl::optional<std::string> KeyringService::GetSelectedAccount(
   const base::Value* value =
       GetPrefForKeyring(*profile_prefs_, kSelectedAccount, *keyring_id);
   if (!value) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   std::string address = value->GetString();
   if (address.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   return address;
 }
 
-absl::optional<std::string> KeyringService::GetFilecoinSelectedAccount(
+std::optional<std::string> KeyringService::GetFilecoinSelectedAccount(
     const std::string& net) const {
   const base::Value* value = GetPrefForKeyring(
       *profile_prefs_, kSelectedAccount, GetFilecoinKeyringId(net));
 
   if (!value) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   std::string address = value->GetString();
   if (address.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   return address;
 }
@@ -2020,7 +2020,7 @@ void KeyringService::MaybeMigrateLegacyKeystore(const std::string& password) {
         
         if (idx == 0) {
           //for mnemonic
-          absl::optional<std::vector<uint8_t>> mnemonic = raw_bytes;
+          std::optional<std::vector<uint8_t>> mnemonic = raw_bytes;
           auto nonce =
               GetOrCreateNonceForKeyring(keyring_id, /*force_create =*/  true);
           SetPrefInBytesForKeyring(
@@ -2072,18 +2072,18 @@ void KeyringService::ResetAutoLockTimer() {
 }
 
 // static
-absl::optional<std::vector<uint8_t>> KeyringService::GetPrefInBytesForKeyring(
+std::optional<std::vector<uint8_t>> KeyringService::GetPrefInBytesForKeyring(
     const PrefService& profile_prefs,
     const std::string& key,
     const std::string& id) {
   const base::Value* value = GetPrefForKeyring(profile_prefs, key, id);
   if (!value) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   const std::string* encoded = value->GetIfString();
   if (!encoded || encoded->empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return base::Base64Decode(*encoded);
@@ -2503,45 +2503,45 @@ void KeyringService::HasPendingUnlockRequest(
   std::move(callback).Run(HasPendingUnlockRequest());
 }
 
-absl::optional<std::string> KeyringService::GetBitcoinReceivingAddress(
+std::optional<std::string> KeyringService::GetBitcoinReceivingAddress(
     const std::string& keyring_id,
     uint32_t account_index,
     uint32_t receiving_index) {
   if (keyring_id != mojom::kBitcoinKeyringId) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   if (account_index >=
       GetDerivedAccountsNumberForKeyring(profile_prefs_, keyring_id)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   auto* bitcoin_keyring =
       static_cast<BitcoinKeyring*>(GetHDKeyringById(keyring_id));
   if (!bitcoin_keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return bitcoin_keyring->GetReceivingAddress(account_index, receiving_index);
 }
 
-absl::optional<std::string> KeyringService::GetBitcoinChangeAddress(
+std::optional<std::string> KeyringService::GetBitcoinChangeAddress(
     const std::string& keyring_id,
     uint32_t account_index,
     uint32_t change_index) {
   if (keyring_id != mojom::kBitcoinKeyringId) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   if (account_index >=
       GetDerivedAccountsNumberForKeyring(profile_prefs_, keyring_id)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   auto* bitcoin_keyring =
       static_cast<BitcoinKeyring*>(GetHDKeyringById(keyring_id));
   if (!bitcoin_keyring) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return bitcoin_keyring->GetChangeAddress(account_index, change_index);

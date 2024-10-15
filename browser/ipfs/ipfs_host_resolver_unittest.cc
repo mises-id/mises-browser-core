@@ -96,8 +96,8 @@ class FakeHostResolverFail : public FakeHostResolver {
           pending_response_client) override {
     mojo::Remote<network::mojom::ResolveHostClient> response_client;
     response_client.Bind(std::move(pending_response_client));
-    response_client->OnComplete(-2, net::ResolveErrorInfo(), absl::nullopt,
-                                absl::nullopt);
+    response_client->OnComplete(-2, net::ResolveErrorInfo(), std::nullopt,
+                                std::nullopt);
     resolve_host_called_++;
   }
 };
@@ -140,7 +140,7 @@ class IPFSHostResolverTest : public testing::Test {
   void HostResolvedCallback(base::OnceClosure callback,
                             const std::string& expected_host,
                             const std::string& host,
-                            const absl::optional<std::string>& dnslink) {
+                            const std::optional<std::string>& dnslink) {
     EXPECT_EQ(expected_host, host);
     resolved_callback_called_ = true;
     if (callback)
@@ -229,7 +229,7 @@ TEST_F(IPFSHostResolverTest, SuccessOnReuse) {
                           base::BindLambdaForTesting(
                               [&run_loop, &expected_host](
                                   const std::string& host,
-                                  const absl::optional<std::string>& dnslink) {
+                                  const std::optional<std::string>& dnslink) {
                                 EXPECT_EQ(expected_host, host);
                                 EXPECT_EQ(dnslink.value(), "abc");
                                 run_loop.Quit();
@@ -254,7 +254,7 @@ TEST_F(IPFSHostResolverTest, ResolutionFailed) {
       net::DnsQueryType::TXT,
       base::BindLambdaForTesting(
           [&run_loop](const std::string& host,
-                      const absl::optional<std::string>& dnslink) {
+                      const std::optional<std::string>& dnslink) {
             EXPECT_FALSE(dnslink);
             run_loop.Quit();
           }));

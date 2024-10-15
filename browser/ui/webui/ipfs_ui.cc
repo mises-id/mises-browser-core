@@ -130,7 +130,7 @@ void IPFSDOMHandler::HandleGetConnectedPeers(const base::Value::List& args) {
   service->GetConnectedPeers(
       base::BindOnce(&IPFSDOMHandler::OnGetConnectedPeers,
                      weak_ptr_factory_.GetWeakPtr()),
-      absl::nullopt);
+      std::nullopt);
 }
 
 void IPFSDOMHandler::OnGetConnectedPeers(

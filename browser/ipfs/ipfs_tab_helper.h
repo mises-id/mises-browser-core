@@ -110,7 +110,7 @@ class IPFSTabHelper : public content::WebContentsObserver,
   void DNSLinkResolved(const GURL& ipfs);
   void MaybeCheckDNSLinkRecord(const net::HttpResponseHeaders* headers);
   void UpdateDnsLinkButtonState();
-  absl::optional<GURL> ResolveIPFSUrlFromGatewayLikeUrl(const GURL& gurl);
+  std::optional<GURL> ResolveIPFSUrlFromGatewayLikeUrl(const GURL& gurl);
 
   GURL ResolveDNSLinkUrl(const GURL& url);
   GURL ResolveXIPFSPathUrl(const std::string& x_ipfs_path_header_value);
@@ -122,10 +122,10 @@ class IPFSTabHelper : public content::WebContentsObserver,
       content::NavigationHandle* navigation_handle) override;
   void UpdateLocationBar();
 
-  void CheckDNSLinkRecord(absl::optional<std::string> x_ipfs_path_header);
-  void HostResolvedCallback(absl::optional<std::string> x_ipfs_path_header,
+  void CheckDNSLinkRecord(std::optional<std::string> x_ipfs_path_header);
+  void HostResolvedCallback(std::optional<std::string> x_ipfs_path_header,
                             const std::string& host,
-                            const absl::optional<std::string>& dnslink);
+                            const std::optional<std::string>& dnslink);
 
   void LoadUrl(const GURL& gurl);
 

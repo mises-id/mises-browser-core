@@ -31,7 +31,7 @@ constexpr char kTransformERC20Selector[] = "0x415565b0";
 
 }  // namespace
 
-absl::optional<std::tuple<mojom::TransactionType,     // tx_type
+std::optional<std::tuple<mojom::TransactionType,     // tx_type
                           std::vector<std::string>,   // tx_params
                           std::vector<std::string>>>  // tx_args
 GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
@@ -52,28 +52,28 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
   if (selector == kERC20TransferSelector) {
     auto decoded = ABIDecode({"address", "uint256"}, calldata);
     if (!decoded)
-      return absl::nullopt;
+      return std::nullopt;
 
     return std::tuple_cat(
         std::make_tuple(mojom::TransactionType::ERC20Transfer), *decoded);
   } else if (selector == kERC20ApproveSelector) {
     auto decoded = ABIDecode({"address", "uint256"}, calldata);
     if (!decoded)
-      return absl::nullopt;
+      return std::nullopt;
 
     return std::tuple_cat(std::make_tuple(mojom::TransactionType::ERC20Approve),
                           *decoded);
   } else if (selector == kERC721TransferFromSelector) {
     auto decoded = ABIDecode({"address", "address", "uint256"}, calldata);
     if (!decoded)
-      return absl::nullopt;
+      return std::nullopt;
 
     return std::tuple_cat(
         std::make_tuple(mojom::TransactionType::ERC721TransferFrom), *decoded);
   } else if (selector == kERC721SafeTransferFromSelector) {
     auto decoded = ABIDecode({"address", "address", "uint256"}, calldata);
     if (!decoded)
-      return absl::nullopt;
+      return std::nullopt;
 
     return std::tuple_cat(
         std::make_tuple(mojom::TransactionType::ERC721SafeTransferFrom),
@@ -89,12 +89,12 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
     auto decoded_calldata =
         ABIDecode({"bytes", "uint256", "address"}, calldata);
     if (!decoded_calldata)
-      return absl::nullopt;
+      return std::nullopt;
 
     const auto& tx_args = std::get<1>(*decoded_calldata);
     auto decoded_path = UniswapEncodedPathDecode(tx_args.at(0));
     if (!decoded_path)
-      return absl::nullopt;
+      return std::nullopt;
 
     std::string fill_path = "0x";
     for (const auto& path : *decoded_path) {
@@ -132,12 +132,12 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
     auto decoded_calldata =
         ABIDecode({"bytes", "uint256", "uint256", "address"}, calldata);
     if (!decoded_calldata)
-      return absl::nullopt;
+      return std::nullopt;
 
     const auto& tx_args = std::get<1>(*decoded_calldata);
     auto decoded_path = UniswapEncodedPathDecode(tx_args.at(0));
     if (!decoded_path)
-      return absl::nullopt;
+      return std::nullopt;
     std::string fill_path = "0x";
     for (const auto& path : *decoded_path) {
       base::StrAppend(&fill_path, {path.substr(2)});
@@ -161,7 +161,7 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
     auto decoded_calldata =
         ABIDecode({"address[]", "uint256", "uint256", "bool"}, calldata);
     if (!decoded_calldata)
-      return absl::nullopt;
+      return std::nullopt;
 
     const auto& tx_args = std::get<1>(*decoded_calldata);
     return std::make_tuple(
@@ -184,7 +184,7 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
         {"address", "address", "uint256", "uint256", "(uint32,bytes)[]"},
         calldata);
     if (!decoded_calldata)
-      return absl::nullopt;
+      return std::nullopt;
 
     const auto& tx_args = std::get<1>(*decoded_calldata);
     return std::make_tuple(
@@ -198,7 +198,7 @@ GetTransactionInfoFromData(const std::vector<uint8_t>& data) {
     auto decoded = ABIDecode(
         {"address", "address", "uint256", "uint256", "bytes"}, calldata);
     if (!decoded)
-      return absl::nullopt;
+      return std::nullopt;
 
     return std::tuple_cat(
         std::make_tuple(mojom::TransactionType::ERC1155SafeTransferFrom),

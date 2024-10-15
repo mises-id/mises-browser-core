@@ -21,7 +21,7 @@ TEST(EthTxMetaUnitTest, ToTransactionInfo) {
       *EthTransaction::FromTxData(mojom::TxData::New(
           "0x09", "0x4a817c800", "0x5208",
           "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
-          std::vector<uint8_t>(), false, absl::nullopt)));
+          std::vector<uint8_t>(), false, std::nullopt)));
   EthTxMeta meta(std::move(tx));
   meta.set_from(
       EthAddress::FromHex("0x2f015c60e0be116b1f0cd534704db9c92118fb6a")
@@ -71,7 +71,7 @@ TEST(EthTxMetaUnitTest, ToTransactionInfo) {
           mojom::TxData::New("0x09", "0x4a817c800", "0x5208",
                              "0x3535353535353535353535353535353535353535",
                              "0x0de0b6b3a7640000", std::vector<uint8_t>(),
-                             false, absl::nullopt),
+                             false, std::nullopt),
           0x3));
   auto* access_list = tx1->access_list();
   Eip2930Transaction::AccessListItem item_a;
@@ -118,7 +118,7 @@ TEST(EthTxMetaUnitTest, ToTransactionInfo) {
               mojom::TxData::New("0x09", "0x4a817c800", "0x5208",
                                  "0x3535353535353535353535353535353535353535",
                                  "0x0de0b6b3a7640000", std::vector<uint8_t>(),
-                                 false, absl::nullopt),
+                                 false, std::nullopt),
               "0x3", "0x1E", "0x32",
               mojom::GasEstimation1559::New(
                   "0x3b9aca00" /* Hex of 1 * 1e9 */,

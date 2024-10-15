@@ -12,7 +12,7 @@ namespace brave_l10n {
 
 // Returns |true| if the given code is a UN M.49 code otherwise returns |false|.
 // See https://en.wikipedia.org/wiki/UN_M49.
-bool IsUNM49Code(base::StringPiece code);
+bool IsUNM49Code(std::string_view code);
 
 }  // namespace brave_l10n
 

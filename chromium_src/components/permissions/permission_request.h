@@ -15,7 +15,7 @@
   bool IsConfirmationChipSupported();\
   IconId GetIconForChip();\
   IconId GetBlockedIconForChip();\
-  absl::optional<std::u16string> GetRequestChipText(ChipTextType type) const;\
+  std::optional<std::u16string> GetRequestChipText(ChipTextType type) const;\
   virtual std::u16string GetDialogMessageText
 
 #include "src/components/permissions/permission_request.h"

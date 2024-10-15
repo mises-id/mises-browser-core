@@ -14,11 +14,11 @@
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
 #include "mises/components/brave_wallet/common/hex_utils.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
-absl::optional<std::string> ParseSardineAuthToken(
+std::optional<std::string> ParseSardineAuthToken(
     const base::Value& json_value) {
   // Parses results like this:
   // {
@@ -29,13 +29,13 @@ absl::optional<std::string> ParseSardineAuthToken(
 
   if (!json_value.is_dict()) {
     VLOG(0) << "Invalid response, JSON is not a dict";
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   const std::string* auth_token =
       json_value.GetDict().FindString("clientToken");
   if (!auth_token) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return *auth_token;
@@ -89,7 +89,7 @@ bool ParseAssetPrice(const base::Value& json_value,
       asset_price->from_asset = from_asset;
       asset_price->to_asset = to_asset;
 
-      absl::optional<double> to_price =
+      std::optional<double> to_price =
           from_asset_dict->FindDoubleByDottedPath(to_asset);
       if (!to_price) {
         return false;
@@ -97,7 +97,7 @@ bool ParseAssetPrice(const base::Value& json_value,
       asset_price->price = base::NumberToString(*to_price);
       std::string to_asset_timeframe_key =
           base::StringPrintf("%s_timeframe_change", to_asset.c_str());
-      absl::optional<double> to_timeframe_change =
+      std::optional<double> to_timeframe_change =
           from_asset_dict->FindDoubleByDottedPath(to_asset_timeframe_key);
       if (!to_timeframe_change) {
         return false;
@@ -203,12 +203,12 @@ mojom::BlockchainTokenPtr ParseTokenInfo(const base::Value& json_value,
       "" /* coingecko_id */, chain_id, coin);
 }
 
-absl::optional<std::vector<mojom::CoinMarketPtr>> ParseCoinMarkets(
+std::optional<std::vector<mojom::CoinMarketPtr>> ParseCoinMarkets(
     const base::Value& json_value) {
   auto coin_market_data = api::asset_ratio::CoinMarket::FromValue(json_value);
 
   if (!coin_market_data) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::vector<mojom::CoinMarketPtr> values;

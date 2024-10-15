@@ -51,7 +51,7 @@ std::vector<uint8_t> PasswordEncryptor::Encrypt(
   return aead.Seal(plaintext, nonce, std::vector<uint8_t>());
 }
 
-absl::optional<std::vector<uint8_t>> PasswordEncryptor::Decrypt(
+std::optional<std::vector<uint8_t>> PasswordEncryptor::Decrypt(
     base::span<const uint8_t> ciphertext,
     base::span<const uint8_t> nonce) {
   crypto::Aead aead(crypto::Aead::AES_256_GCM_SIV);
@@ -59,7 +59,7 @@ absl::optional<std::vector<uint8_t>> PasswordEncryptor::Decrypt(
   return aead.Open(ciphertext, nonce, std::vector<uint8_t>());
 }
 
-absl::optional<std::vector<uint8_t>> PasswordEncryptor::DecryptForImporter(
+std::optional<std::vector<uint8_t>> PasswordEncryptor::DecryptForImporter(
     base::span<const uint8_t> ciphertext,
     base::span<const uint8_t> nonce) {
   crypto::Aead aead(crypto::Aead::AES_256_GCM);

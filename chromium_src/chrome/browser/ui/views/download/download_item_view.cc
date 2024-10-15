@@ -5,9 +5,9 @@
 #include "src/chrome/browser/ui/views/download/download_item_view.cc"
 #undef CompleteSafeBrowsingScan
 namespace safe_browsing {
-absl::optional<enterprise_connectors::AnalysisSettings>
+std::optional<enterprise_connectors::AnalysisSettings>
 DeepScanningRequest::ShouldUploadBinary(download::DownloadItem* item){
-  return absl::nullopt;
+  return std::nullopt;
 }
 }
 #else

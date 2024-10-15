@@ -20,7 +20,7 @@ namespace brave_wallet {
 
 namespace {
 std::string ParseRpcJsonResult(const std::string& json) {
-  absl::optional<base::Value> value = base::JSONReader::Read(json);
+  std::optional<base::Value> value = base::JSONReader::Read(json);
   EXPECT_TRUE(value);
   EXPECT_TRUE(value->is_dict());
   EXPECT_THAT(value->GetDict(),
@@ -192,7 +192,7 @@ TEST(JsonRpcServiceTestUtils, MakeJsonRpcStringResponse_Empty) {
 
 TEST(JsonRpcServiceTestUtils, MakeJsonRpcErrorResponse) {
   auto json = MakeJsonRpcErrorResponse(123, "Error!");
-  absl::optional<base::Value> value = base::JSONReader::Read(json);
+  std::optional<base::Value> value = base::JSONReader::Read(json);
   ASSERT_TRUE(value);
   ASSERT_TRUE(value->is_dict());
   EXPECT_EQ("2.0", *value->GetDict().FindString("jsonrpc"));
@@ -206,7 +206,7 @@ TEST(JsonRpcServiceTestUtils, MakeJsonRpcValueResponse) {
   base::Value::Dict payload;
   payload.Set("test", 555);
   auto json = MakeJsonRpcValueResponse(base::Value(std::move(payload)));
-  absl::optional<base::Value> value = base::JSONReader::Read(json);
+  std::optional<base::Value> value = base::JSONReader::Read(json);
   ASSERT_TRUE(value);
   ASSERT_TRUE(value->is_dict());
   EXPECT_EQ("2.0", *value->GetDict().FindString("jsonrpc"));

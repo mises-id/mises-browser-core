@@ -5,7 +5,7 @@
 #include "chrome/browser/extensions/api/side_panel/side_panel_service.h"
 #include "chrome/common/extensions/api/side_panel.h"
 #include "extensions/common/extension_features.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "build/build_config.h"
 
 #if BUILDFLAG(IS_ANDROID)

@@ -143,7 +143,7 @@ std::string ProxyConfigServiceTor::CircuitAnonymizationKey(const GURL& url) {
   const net::NetworkAnonymizationKey network_anonymization_key(url_site,
                                                                url_site);
 
-  const absl::optional<net::SchemefulSite>& schemeful_site =
+  const std::optional<net::SchemefulSite>& schemeful_site =
       network_anonymization_key.GetTopFrameSite();
   DCHECK(schemeful_site.has_value());
   std::string host = GURL(schemeful_site->Serialize()).host();

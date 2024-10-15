@@ -161,15 +161,15 @@ TEST(SolanaResponseParserUnitTest, ParseGetSignatureStatuses) {
       }
   )";
 
-  std::vector<absl::optional<SolanaSignatureStatus>> statuses;
+  std::vector<std::optional<SolanaSignatureStatus>> statuses;
   ASSERT_TRUE(ParseGetSignatureStatuses(ParseJson(json), &statuses));
 
-  std::vector<absl::optional<SolanaSignatureStatus>> expected_statuses(
+  std::vector<std::optional<SolanaSignatureStatus>> expected_statuses(
       {SolanaSignatureStatus(UINT64_MAX, 10u, "", "confirmed"),
        SolanaSignatureStatus(72u, UINT64_MAX, "", "confirmed"),
        SolanaSignatureStatus(
            1092u, 0u, R"({"InstructionError":[0,{"Custom":1}]})", "finalized"),
-       SolanaSignatureStatus(11u, 0u, "", ""), absl::nullopt});
+       SolanaSignatureStatus(11u, 0u, "", ""), std::nullopt});
 
   EXPECT_EQ(statuses, expected_statuses);
 
@@ -197,7 +197,7 @@ TEST(SolanaResponseParserUnitTest, ParseGetSignatureStatuses) {
       }
   )";
   expected_statuses =
-      std::vector<absl::optional<SolanaSignatureStatus>>(4, absl::nullopt);
+      std::vector<std::optional<SolanaSignatureStatus>>(4, std::nullopt);
   ASSERT_TRUE(ParseGetSignatureStatuses(ParseJson(invalid), &statuses));
   EXPECT_EQ(expected_statuses, statuses);
 }
@@ -226,7 +226,7 @@ TEST(SolanaResponseParserUnitTest, ParseGetAccountInfo) {
   expected_info.executable = false;
   expected_info.rent_epoch = UINT64_MAX;
 
-  absl::optional<SolanaAccountInfo> info;
+  std::optional<SolanaAccountInfo> info;
   ASSERT_TRUE(ParseGetAccountInfo(ParseJson(json), &info));
   EXPECT_EQ(*info, expected_info);
 

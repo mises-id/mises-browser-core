@@ -25,7 +25,7 @@ std::string getTokenAccountBalance(const std::string& pubkey) {
 
 std::string sendTransaction(
     const std::string& signed_tx,
-    absl::optional<SolanaTransaction::SendOptions> options) {
+    std::optional<SolanaTransaction::SendOptions> options) {
   base::Value::List params;
   params.Append(signed_tx);
 

@@ -7,14 +7,14 @@
 #define BRAVE_COMPONENTS_L10N_COMMON_OFAC_SANCTIONED_UN_M49_CODE_CONSTANTS_H_
 
 #include "base/containers/fixed_flat_set.h"
-#include "base/strings/string_piece.h"
+#include <string_view>
 
 namespace brave_l10n {
 
 // See https://orpa.princeton.edu/export-controls/sanctioned-countries.
 
 constexpr auto kOFACSactionedUnM49Codes =
-    base::MakeFixedFlatSet<base::StringPiece>({
+    base::MakeFixedFlatSet<std::string_view>({
         // See https://en.wikipedia.org/wiki/UN_M49.
 
         "001",  // World which includes sanctioned Cuba, Iran, North Korea,

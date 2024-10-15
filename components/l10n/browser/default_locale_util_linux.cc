@@ -9,7 +9,7 @@
 
 namespace brave_l10n {
 
-absl::optional<std::string> MaybeGetDefaultLocaleString() {
+std::optional<std::string> MaybeGetDefaultLocaleString() {
   // LC_ALL should always override the LANG variable, whether it is set or not.
   char const* language = language = std::getenv("LC_ALL");
 
@@ -18,7 +18,7 @@ absl::optional<std::string> MaybeGetDefaultLocaleString() {
   }
 
   if (!language || !*language) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return {language};

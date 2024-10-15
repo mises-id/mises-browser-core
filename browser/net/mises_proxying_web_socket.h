@@ -26,7 +26,7 @@
 #include "services/network/public/mojom/network_context.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
 #include "services/network/public/mojom/websocket.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 #include "url/origin.h"
 
@@ -66,7 +66,7 @@ class MisesProxyingWebSocket
       content::ContentBrowserClient::WebSocketFactory factory,
       const GURL& url,
       const net::SiteForCookies& site_for_cookies,
-      const absl::optional<std::string>& user_agent,
+      const std::optional<std::string>& user_agent,
       mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
           handshake_client);
 
@@ -120,11 +120,11 @@ class MisesProxyingWebSocket
   void ContinueToHeadersReceived();
   void OnBeforeSendHeadersCompleteFromProxy(
       int error_code,
-      const absl::optional<net::HttpRequestHeaders>& headers);
+      const std::optional<net::HttpRequestHeaders>& headers);
   void OnHeadersReceivedCompleteFromProxy(
       int error_code,
-      const absl::optional<std::string>& headers,
-      const absl::optional<GURL>& url);
+      const std::optional<std::string>& headers,
+      const std::optional<GURL>& url);
 
   void PauseIncomingMethodCallProcessing();
   void ResumeIncomingMethodCallProcessing();

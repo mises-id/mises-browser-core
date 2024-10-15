@@ -69,7 +69,7 @@ class IPFSDOMHandler : public content::WebUIMessageHandler,
   }
   std::string GetIpfsClientUpdaterVersion() const;
 
-  absl::optional<std::string> client_updater_version_for_testing_;
+  std::optional<std::string> client_updater_version_for_testing_;
   base::ScopedObservation<ipfs::IpfsService, ipfs::IpfsServiceObserver>
       service_observer_{this};
   base::WeakPtrFactory<IPFSDOMHandler> weak_ptr_factory_;

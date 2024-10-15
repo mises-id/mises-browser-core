@@ -13,7 +13,7 @@
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/profiles/profile_android.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace chrome {
 namespace android {
@@ -30,7 +30,7 @@ JNI_BlockchainRegistryFactory_GetTokensIconsLocation(
     const base::android::JavaParamRef<jobject>& profile_android) {
   auto* profile = ProfileAndroid::FromProfileAndroid(profile_android);
 
-  absl::optional<base::Version> version =
+  std::optional<base::Version> version =
       brave_wallet::GetLastInstalledWalletVersion();
   if (version) {
     base::FilePath path = profile->GetPath().DirName();

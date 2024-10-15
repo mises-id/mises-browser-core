@@ -330,7 +330,7 @@ void Web3sitesSafeService::OnURLCheckCompleted(const network::SimpleURLLoader* s
     }
     auto* result_data = json_value->FindDict("data");
     const std::string* origin = result_data->FindString("origin");
-    absl::optional<int> type = result_data->FindInt("type").value_or(1);
+    std::optional<int> type = result_data->FindInt("type").value_or(1);
     auto result_type = *type;
     switch(result_type) {
       case 2:

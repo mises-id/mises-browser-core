@@ -30,7 +30,7 @@ bool IsValidHostLabelCharacter(char c, bool is_first_char) {
          (c >= '0' && c <= '9') || (!is_first_char && c == '-') || c == '_';
 }
 
-absl::optional<std::string> ChainIdToVersion(const std::string& symbol,
+std::optional<std::string> ChainIdToVersion(const std::string& symbol,
                                              const std::string chain_id) {
   static base::NoDestructor<std::map<std::string, std::string>> mapping({
       {"0x1", "ERC20"},
@@ -53,7 +53,7 @@ absl::optional<std::string> ChainIdToVersion(const std::string& symbol,
   auto it = mapping->find(chain_id);
   if (it != mapping->end())
     return it->second;
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 }  // namespace
@@ -290,28 +290,28 @@ std::vector<uint8_t> SupportsInterface(eth_abi::Span4 interface) {
 
 namespace unstoppable_domains {
 
-absl::optional<std::string> GetMany(const std::vector<std::string>& keys,
+std::optional<std::string> GetMany(const std::vector<std::string>& keys,
                                     const std::string& domain) {
   const std::string function_hash =
       GetFunctionHash("getMany(string[],uint256)");
 
   std::string offset_for_array;
   if (!PadHexEncodedParameter(Uint256ValueToHex(64), &offset_for_array)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::string tokenID = ToHex(Namehash(domain));
 
   std::string encoded_keys;
   if (!EncodeStringArray(keys, &encoded_keys)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::string data;
   std::vector<std::string> hex_strings = {function_hash, offset_for_array,
                                           tokenID, encoded_keys};
   if (!ConcatHexStrings(hex_strings, &data)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return data;
@@ -424,7 +424,7 @@ bool Addr(const std::string& domain, std::string* data) {
 // https://docs.ens.domains/ens-improvement-proposals/ensip-10-wildcard-resolution#specification
 // Similar to chromium's `DNSDomainFromDot` but without length limitation and
 // support of terminal dot.
-absl::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name) {
+std::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name) {
   std::vector<uint8_t> result;
   result.resize(dotted_name.size() + 2);
   result.front() = '.';  // Placeholder for first label length.
@@ -436,11 +436,11 @@ absl::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name) {
     if (result[i] == '.') {
       size_t label_len = i - last_dot_pos - 1;
       if (label_len == 0 || label_len > 63)
-        return absl::nullopt;
+        return std::nullopt;
       result[last_dot_pos] = static_cast<uint8_t>(label_len);
       last_dot_pos = i;
     } else if (!IsValidHostLabelCharacter(result[i], i - last_dot_pos == 1)) {
-      return absl::nullopt;
+      return std::nullopt;
     }
   }
   DCHECK_EQ(last_dot_pos, result.size() - 1);
@@ -452,28 +452,28 @@ absl::optional<std::vector<uint8_t>> DnsEncode(const std::string& dotted_name) {
 
 namespace balance_scanner {
 
-absl::optional<std::string> TokensBalance(
+std::optional<std::string> TokensBalance(
     const std::string& owner_address,
     const std::vector<std::string>& contract_addresses) {
   const std::string function_hash =
       GetFunctionHash("tokensBalance(address,address[])");
   std::string padded_address;
   if (!brave_wallet::PadHexEncodedParameter(owner_address, &padded_address)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   // Indicate the next value that encodes the length of the address[] is 64
   // bytes
   std::string offset_for_array;
   if (!PadHexEncodedParameter(Uint256ValueToHex(64), &offset_for_array)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   // Encode the length of the address[] as 64 bytes
   std::string array_length;
   if (!PadHexEncodedParameter(Uint256ValueToHex(contract_addresses.size()),
                               &array_length)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::string data;
@@ -486,13 +486,13 @@ absl::optional<std::string> TokensBalance(
     std::string padded_contract_address;
     if (!brave_wallet::PadHexEncodedParameter(contract_address,
                                               &padded_contract_address)) {
-      return absl::nullopt;
+      return std::nullopt;
     }
     hex_strings.push_back(padded_contract_address);
   }
 
   if (!ConcatHexStrings(hex_strings, &data)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return data;

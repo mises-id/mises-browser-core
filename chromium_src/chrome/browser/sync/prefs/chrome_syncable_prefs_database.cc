@@ -21,7 +21,7 @@ namespace {
 
 const auto& MisesSyncablePreferences() {
   static const auto kMisesSyncablePrefsAllowList = base::MakeFixedFlatMap<
-      base::StringPiece, sync_preferences::SyncablePrefMetadata>({
+      std::string_view, sync_preferences::SyncablePrefMetadata>({
 #if BUILDFLAG(IS_ANDROID)
     {prefs::kAccessibilityReadAnythingFontName,
      {syncable_prefs_ids::kAccessibilityReadAnythingFontName,

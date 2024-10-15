@@ -25,14 +25,14 @@ int OnBeforeURLRequest_DecentralizedDnsPreRedirectWork(
 void OnBeforeURLRequest_UnstoppableDomainsRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
-    const absl::optional<GURL>& url,
+    const std::optional<GURL>& url,
     brave_wallet::mojom::ProviderError error,
     const std::string& error_message);
     
 void OnBeforeURLRequest_SnsRedirectWork(
     const mises::ResponseCallback& next_callback,
     std::shared_ptr<mises::MisesRequestInfo> ctx,
-    const absl::optional<GURL>& url,
+    const std::optional<GURL>& url,
     brave_wallet::mojom::SolanaProviderError error,
     const std::string& error_message);
 

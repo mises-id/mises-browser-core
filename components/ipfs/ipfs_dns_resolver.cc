@@ -11,7 +11,7 @@ IpfsDnsResolver::IpfsDnsResolver() = default;
 
 IpfsDnsResolver::~IpfsDnsResolver() = default;
 
-void IpfsDnsResolver::Notify(absl::optional<std::string> value) {
+void IpfsDnsResolver::Notify(std::optional<std::string> value) {
   observers_.Notify(value);
 }
 

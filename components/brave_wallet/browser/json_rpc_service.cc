@@ -1176,7 +1176,7 @@ void JsonRpcService::OnGetERC20TokenBalance(
   }
 
   const auto& args = eth::DecodeEthCallResponse(*result, {"uint256"});
-  if (args == absl::nullopt) {
+  if (args == std::nullopt) {
     std::move(callback).Run(
         "", mojom::ProviderError::kInternalError,
         l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
@@ -1249,7 +1249,7 @@ void JsonRpcService::OnGetERC20TokenAllowance(
   }
 
   const auto& args = eth::DecodeEthCallResponse(*result, {"uint256"});
-  if (args == absl::nullopt) {
+  if (args == std::nullopt) {
     std::move(callback).Run(
         "", mojom::ProviderError::kInternalError,
         l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
@@ -1282,7 +1282,7 @@ void JsonRpcService::GetERC20TokenBalances(
     return;
   }
 
-  absl::optional<std::string> calldata =
+  std::optional<std::string> calldata =
       balance_scanner::TokensBalance(user_address, token_contract_addresses);
   if (!calldata) {
     std::move(callback).Run(
@@ -1414,7 +1414,7 @@ void JsonRpcService::EnsGetContentHash(const std::string& domain,
       return;
     }
 
-    absl::optional<bool> allow_offchain;
+    std::optional<bool> allow_offchain;
     if (EnsOffchainPrefEnabled(local_state_prefs_)) {
       allow_offchain = true;
     } else if (EnsOffchainPrefDisabled(local_state_prefs_)) {
@@ -1553,7 +1553,7 @@ void JsonRpcService::EnsGetEthAddr(const std::string& domain,
       return;
     }
 
-    absl::optional<bool> allow_offchain;
+    std::optional<bool> allow_offchain;
     if (EnsOffchainPrefEnabled(local_state_prefs_)) {
       allow_offchain = true;
     } else if (EnsOffchainPrefDisabled(local_state_prefs_)) {
@@ -1581,8 +1581,8 @@ void JsonRpcService::EnsGetEthAddr(const std::string& domain,
 
 void JsonRpcService::OnEnsGetEthAddrTaskDone(
     EnsResolverTask* task,
-    absl::optional<EnsResolverTaskResult> task_result,
-    absl::optional<EnsResolverTaskError> task_error) {
+    std::optional<EnsResolverTaskResult> task_result,
+    std::optional<EnsResolverTaskError> task_error) {
   auto callbacks = ens_get_eth_addr_tasks_.TaskDone(task);
   if (callbacks.empty()) {
     return;
@@ -1651,8 +1651,8 @@ void JsonRpcService::SnsGetSolAddr(const std::string& domain,
 
 void JsonRpcService::OnSnsGetSolAddrTaskDone(
     SnsResolverTask* task,
-    absl::optional<SnsResolverTaskResult> task_result,
-    absl::optional<SnsResolverTaskError> task_error) {
+    std::optional<SnsResolverTaskResult> task_result,
+    std::optional<SnsResolverTaskError> task_error) {
   auto callbacks = sns_get_sol_addr_tasks_.TaskDone(task);
   if (callbacks.empty()) {
     return;
@@ -1681,14 +1681,14 @@ void JsonRpcService::SnsResolveHost(const std::string& domain,
                                     SnsResolveHostCallback callback) {
   if (!base::FeatureList::IsEnabled(features::kBraveWalletSnsFeature)) {
     std::move(callback).Run(
-        absl::nullopt, mojom::SolanaProviderError::kInvalidParams,
+        std::nullopt, mojom::SolanaProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
 
   if (!IsValidDomain(domain)) {
     std::move(callback).Run(
-        absl::nullopt, mojom::SolanaProviderError::kInvalidParams,
+        std::nullopt, mojom::SolanaProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
@@ -1711,8 +1711,8 @@ void JsonRpcService::SnsResolveHost(const std::string& domain,
 
 void JsonRpcService::OnSnsResolveHostTaskDone(
     SnsResolverTask* task,
-    absl::optional<SnsResolverTaskResult> task_result,
-    absl::optional<SnsResolverTaskError> task_error) {
+    std::optional<SnsResolverTaskResult> task_result,
+    std::optional<SnsResolverTaskError> task_error) {
   auto callbacks = sns_resolve_host_tasks_.TaskDone(task);
   if (callbacks.empty()) {
     return;
@@ -1739,14 +1739,14 @@ void JsonRpcService::OnSnsResolveHostTaskDone(
 
 void JsonRpcService::OnEnsGetContentHashTaskDone(
     EnsResolverTask* task,
-    absl::optional<EnsResolverTaskResult> task_result,
-    absl::optional<EnsResolverTaskError> task_error) {
+    std::optional<EnsResolverTaskResult> task_result,
+    std::optional<EnsResolverTaskError> task_error) {
   auto callbacks = ens_get_content_hash_tasks_.TaskDone(task);
   if (callbacks.empty()) {
     return;
   }
 
-  absl::optional<std::vector<uint8_t>> content_hash;
+  std::optional<std::vector<uint8_t>> content_hash;
   mojom::ProviderError error =
       task_error ? task_error->error : mojom::ProviderError::kSuccess;
   std::string error_message = task_error ? task_error->error_message : "";
@@ -2011,7 +2011,7 @@ void JsonRpcService::UnstoppableDomainsResolveDns(
 
   if (!IsValidUnstoppableDomain(domain)) {
     std::move(callback).Run(
-        absl::nullopt, mojom::ProviderError::kInvalidParams,
+        std::nullopt, mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
@@ -2020,7 +2020,7 @@ void JsonRpcService::UnstoppableDomainsResolveDns(
                                            domain);
   if (!data) {
     std::move(callback).Run(
-        absl::nullopt, mojom::ProviderError::kInvalidParams,
+        std::nullopt, mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
@@ -2698,14 +2698,14 @@ void JsonRpcService::GetEthNftStandard(
   if (!EthAddress::IsValidAddress(contract_address) ||
       !network_url.is_valid()) {
     std::move(callback).Run(
-        absl::nullopt, mojom::ProviderError::kInvalidParams,
+        std::nullopt, mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
 
   if (index >= interfaces.size()) {
     std::move(callback).Run(
-        absl::nullopt, mojom::ProviderError::kInvalidParams,
+        std::nullopt, mojom::ProviderError::kInvalidParams,
         l10n_util::GetStringUTF8(IDS_WALLET_INVALID_PARAMETERS));
     return;
   }
@@ -2730,7 +2730,7 @@ void JsonRpcService::OnGetEthNftStandard(
     mojom::ProviderError error,
     const std::string& error_message) {
   if (error != mojom::ProviderError::kSuccess) {
-    std::move(callback).Run(absl::nullopt, error, error_message);
+    std::move(callback).Run(std::nullopt, error, error_message);
     return;
   }
 
@@ -2743,7 +2743,7 @@ void JsonRpcService::OnGetEthNftStandard(
 
   index++;
   if (index >= interfaces.size()) {
-    std::move(callback).Run(absl::nullopt, mojom::ProviderError::kSuccess, "");
+    std::move(callback).Run(std::nullopt, mojom::ProviderError::kSuccess, "");
     return;
   }
   // If the contract does not implement the interface, try the next one
@@ -2891,7 +2891,7 @@ void JsonRpcService::GetSPLTokenAccountBalance(
     return;
   }
 
-  absl::optional<std::string> associated_token_account =
+  std::optional<std::string> associated_token_account =
       SolanaKeyring::GetAssociatedTokenAccount(token_mint_address,
                                                wallet_address);
   if (!associated_token_account) {
@@ -3022,7 +3022,7 @@ void JsonRpcService::OnSendFilecoinTransaction(
 
 void JsonRpcService::SendSolanaTransaction(
     const std::string& signed_tx,
-    absl::optional<SolanaTransaction::SendOptions> send_options,
+    std::optional<SolanaTransaction::SendOptions> send_options,
     SendSolanaTransactionCallback callback) {
   if (signed_tx.empty()) {
     std::move(callback).Run(
@@ -3120,13 +3120,13 @@ void JsonRpcService::OnGetSolanaSignatureStatuses(
     APIRequestResult api_request_result) {
   if (!api_request_result.Is2XXResponseCode()) {
     std::move(callback).Run(
-        std::vector<absl::optional<SolanaSignatureStatus>>(),
+        std::vector<std::optional<SolanaSignatureStatus>>(),
         mojom::SolanaProviderError::kInternalError,
         l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
     return;
   }
 
-  std::vector<absl::optional<SolanaSignatureStatus>> statuses;
+  std::vector<std::optional<SolanaSignatureStatus>> statuses;
   if (!solana::ParseGetSignatureStatuses(api_request_result.value_body(),
                                          &statuses)) {
     mojom::SolanaProviderError error;
@@ -3134,7 +3134,7 @@ void JsonRpcService::OnGetSolanaSignatureStatuses(
     ParseErrorResult<mojom::SolanaProviderError>(
         api_request_result.value_body(), &error, &error_message);
     std::move(callback).Run(
-        std::vector<absl::optional<SolanaSignatureStatus>>(), error,
+        std::vector<std::optional<SolanaSignatureStatus>>(), error,
         error_message);
     return;
   }
@@ -3174,19 +3174,19 @@ void JsonRpcService::OnGetSolanaAccountInfo(
     APIRequestResult api_request_result) {
   if (!api_request_result.Is2XXResponseCode()) {
     std::move(callback).Run(
-        absl::nullopt, mojom::SolanaProviderError::kInternalError,
+        std::nullopt, mojom::SolanaProviderError::kInternalError,
         l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
     return;
   }
 
-  absl::optional<SolanaAccountInfo> account_info;
+  std::optional<SolanaAccountInfo> account_info;
   if (!solana::ParseGetAccountInfo(api_request_result.value_body(),
                                    &account_info)) {
     mojom::SolanaProviderError error;
     std::string error_message;
     ParseErrorResult<mojom::SolanaProviderError>(
         api_request_result.value_body(), &error, &error_message);
-    std::move(callback).Run(absl::nullopt, error, error_message);
+    std::move(callback).Run(std::nullopt, error, error_message);
     return;
   }
 

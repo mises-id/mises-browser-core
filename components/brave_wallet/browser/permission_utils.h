@@ -78,7 +78,7 @@ GURL GetConnectWithSiteWebUIURL(const GURL& webui_base_url,
                                 const std::vector<std::string>& accounts,
                                 const url::Origin& origin);
 
-absl::optional<blink::PermissionType> CoinTypeToPermissionType(
+std::optional<blink::PermissionType> CoinTypeToPermissionType(
     mojom::CoinType coin_type);
 
 }  // namespace brave_wallet

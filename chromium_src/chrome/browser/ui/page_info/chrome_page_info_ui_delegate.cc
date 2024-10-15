@@ -92,7 +92,7 @@ bool ChromePageInfoUiDelegate::IsBlockAutoPlayEnabled() {
 }
 
 
-absl::optional<page_info::proto::SiteInfo>
+std::optional<page_info::proto::SiteInfo>
 ChromePageInfoUiDelegate::GetAboutThisSiteInfo() {
   Browser* browser = chrome::FindBrowserWithTab(web_contents_);
   if (!browser || !browser->is_type_normal()) {

@@ -35,7 +35,7 @@ TEST(EthTransactionUnitTest, GetMessageToSign) {
   EthTransaction tx1 = *EthTransaction::FromTxData(
       mojom::TxData::New("0x06", "0x09184e72a000", "0x0974",
                          "0xbe862ad9abfe6f22bcb087716c7d89a26051f74c",
-                         "0x016345785d8a0000", data, false, absl::nullopt));
+                         "0x016345785d8a0000", data, false, std::nullopt));
 
   EXPECT_EQ(base::ToLowerASCII(base::HexEncode(tx1.GetMessageToSign(0))),
             "61e1ec33764304dddb55348e7883d4437426f44ab3ef65e6da1e025734c03ff0");
@@ -47,7 +47,7 @@ TEST(EthTransactionUnitTest, GetMessageToSign) {
   EthTransaction tx2 = *EthTransaction::FromTxData(
       mojom::TxData::New("0x0b", "0x051f4d5c00", "0x5208",
                          "0x656e929d6fc0cac52d3d9526d288fe02dcd56fbd",
-                         "0x2386f26fc10000", data, false, absl::nullopt));
+                         "0x2386f26fc10000", data, false, std::nullopt));
 
   // with chain id (mainnet)
   EXPECT_EQ(base::ToLowerASCII(base::HexEncode(tx2.GetMessageToSign(1))),
@@ -102,7 +102,7 @@ TEST(EthTransactionUnitTest, GetMessageToSign) {
   for (const auto& entry : cases) {
     EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
         entry.nonce, entry.gas_price, entry.gas_limit, entry.to, entry.value,
-        std::vector<uint8_t>(), false, absl::nullopt));
+        std::vector<uint8_t>(), false, std::nullopt));
     // with chain id (mainnet)
     EXPECT_EQ(base::ToLowerASCII(base::HexEncode(tx.GetMessageToSign(1))),
               entry.hash);
@@ -120,7 +120,7 @@ TEST(EthTransactionUnitTest, GetSignedTransactionAndHash) {
   EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
       "0x09", "0x4a817c800", "0x5208",
       "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
-      std::vector<uint8_t>(), false, absl::nullopt));
+      std::vector<uint8_t>(), false, std::nullopt));
 
   const std::vector<uint8_t> message = tx.GetMessageToSign(1);
   EXPECT_EQ(base::ToLowerASCII(base::HexEncode(message)),
@@ -188,10 +188,10 @@ TEST(EthTransactionUnitTest, TransactionAndValue) {
   EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
       "0x09", "0x4a817c800", "0x5208",
       "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
-      std::vector<uint8_t>(), false, absl::nullopt));
+      std::vector<uint8_t>(), false, std::nullopt));
   base::Value::Dict tx_value = tx.ToValue();
   auto tx_from_value = EthTransaction::FromValue(tx_value);
-  ASSERT_NE(tx_from_value, absl::nullopt);
+  ASSERT_NE(tx_from_value, std::nullopt);
   EXPECT_EQ(tx_from_value, tx);
 }
 
@@ -221,21 +221,21 @@ TEST(EthTransactionUnitTest, GetDataFee) {
   EthTransaction tx2 = *EthTransaction::FromTxData(
       mojom::TxData::New("0x06", "0x09184e72a000", "0x0974",
                          "0xbe862ad9abfe6f22bcb087716c7d89a26051f74c",
-                         "0x016345785d8a0000", data, false, absl::nullopt));
+                         "0x016345785d8a0000", data, false, std::nullopt));
   EXPECT_EQ(tx2.GetDataFee(), uint256_t(1716));
 }
 
 TEST(EthTransactionUnitTest, GetUpFrontCost) {
   EthTransaction tx = *EthTransaction::FromTxData(mojom::TxData::New(
       "0x00", "0x3E8", "0x989680", "0x3535353535353535353535353535353535353535",
-      "0x2A", std::vector<uint8_t>(), false, absl::nullopt));
+      "0x2A", std::vector<uint8_t>(), false, std::nullopt));
   EXPECT_EQ(tx.GetUpfrontCost(), uint256_t(10000000042));
 }
 
 TEST(EthTransactionUnitTest, FromTxData) {
   auto tx = EthTransaction::FromTxData(mojom::TxData::New(
       "0x01", "0x3E8", "0x989680", "0x3535353535353535353535353535353535353535",
-      "0x2A", std::vector<uint8_t>{1}, false, absl::nullopt));
+      "0x2A", std::vector<uint8_t>{1}, false, std::nullopt));
   ASSERT_TRUE(tx);
   EXPECT_EQ(tx->nonce(), uint256_t(1));
   EXPECT_EQ(tx->gas_price(), uint256_t(1000));
@@ -248,29 +248,29 @@ TEST(EthTransactionUnitTest, FromTxData) {
   // Empty nonce
   tx = EthTransaction::FromTxData(mojom::TxData::New(
       "", "0x3E8", "0x989680", "0x3535353535353535353535353535353535353535",
-      "0x2A", std::vector<uint8_t>{1}, false, absl::nullopt));
+      "0x2A", std::vector<uint8_t>{1}, false, std::nullopt));
   ASSERT_TRUE(tx);
   EXPECT_FALSE(tx->nonce());
 
   // Missing values should not parse correctly
   EXPECT_FALSE(EthTransaction::FromTxData(mojom::TxData::New(
       "0x01", "", "0x989680", "0x3535353535353535353535353535353535353535",
-      "0x2A", std::vector<uint8_t>{1}, false, absl::nullopt)));
+      "0x2A", std::vector<uint8_t>{1}, false, std::nullopt)));
   EXPECT_FALSE(EthTransaction::FromTxData(mojom::TxData::New(
       "0x01", "0x3E8", "", "0x3535353535353535353535353535353535353535", "0x2A",
-      std::vector<uint8_t>{1}, false, absl::nullopt)));
+      std::vector<uint8_t>{1}, false, std::nullopt)));
   EXPECT_FALSE(EthTransaction::FromTxData(mojom::TxData::New(
       "0x01", "0x3E8", "0x989680", "0x3535353535353535353535353535353535353535",
-      "", std::vector<uint8_t>{1}, false, absl::nullopt)));
+      "", std::vector<uint8_t>{1}, false, std::nullopt)));
 
   // But missing data is allowed when strict is false
   tx = EthTransaction::FromTxData(
       mojom::TxData::New("", "0x3E8", "",
                          "0x3535353535353535353535353535353535353535", "",
-                         std::vector<uint8_t>{1}, false, absl::nullopt),
+                         std::vector<uint8_t>{1}, false, std::nullopt),
       false);
   ASSERT_TRUE(tx);
-  // Empty nonce should be absl::nullopt
+  // Empty nonce should be std::nullopt
   EXPECT_FALSE(tx->nonce());
   // Unspecified value defaults to 0
   EXPECT_EQ(tx->gas_limit(), uint256_t(0));
@@ -282,7 +282,7 @@ TEST(EthTransactionUnitTest, FromTxData) {
   tx = EthTransaction::FromTxData(
       mojom::TxData::New("0x1", "", "0x989680",
                          "0x3535353535353535353535353535353535353535", "0x2A",
-                         std::vector<uint8_t>{1}, false, absl::nullopt),
+                         std::vector<uint8_t>{1}, false, std::nullopt),
       false);
   ASSERT_TRUE(tx);
   // Unspecified value defaults to 0

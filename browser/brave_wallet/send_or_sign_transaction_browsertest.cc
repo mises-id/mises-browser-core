@@ -43,7 +43,7 @@
 #include "content/public/test/test_utils.h"
 #include "net/dns/mock_host_resolver.h"
 #include "net/test/embedded_test_server/embedded_test_server.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "ui/base/l10n/l10n_util.h"
 #include "url/gurl.h"
 #include "url/origin.h"
@@ -351,7 +351,7 @@ class SendOrSignTransactionBrowserTest : public InProcessBrowserTest {
     EXPECT_EQ("\"result ready\"", message);
   }
 
-  void TestUserApproved(absl::optional<std::string> expected_signed_tx,
+  void TestUserApproved(std::optional<std::string> expected_signed_tx,
                         const std::string& test_method,
                         const std::string& data = "",
                         bool skip_restore = false) {
@@ -545,40 +545,40 @@ class SendOrSignTransactionBrowserTest : public InProcessBrowserTest {
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedRequestSend) {
-  TestUserApproved(absl::nullopt, "request");
+  TestUserApproved(std::nullopt, "request");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest, UserApprovedSend1) {
-  TestUserApproved(absl::nullopt, "send1");
+  TestUserApproved(std::nullopt, "send1");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest, UserApprovedSend2) {
-  TestUserApproved(absl::nullopt, "send2");
+  TestUserApproved(std::nullopt, "send2");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedSendAsync) {
-  TestUserApproved(absl::nullopt, "sendAsync");
+  TestUserApproved(std::nullopt, "sendAsync");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedRequestData0x) {
-  TestUserApproved(absl::nullopt, "request", "0x");
+  TestUserApproved(std::nullopt, "request", "0x");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedSend1Data0x) {
-  TestUserApproved(absl::nullopt, "send1", "0x1");
+  TestUserApproved(std::nullopt, "send1", "0x1");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedSend2Data0x) {
-  TestUserApproved(absl::nullopt, "send2", "0x11");
+  TestUserApproved(std::nullopt, "send2", "0x11");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        UserApprovedSendAsyncData0x) {
-  TestUserApproved(absl::nullopt, "sendAsync", "0x");
+  TestUserApproved(std::nullopt, "sendAsync", "0x");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest, UserRejectedRequest) {
@@ -912,14 +912,14 @@ IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        EthSendTransactionEIP1559Tx) {
   SetNetworkForTesting("0x1");  // mainnet
   observer()->SetExpectEip1559Tx(true);
-  TestUserApproved(absl::nullopt, "request");
+  TestUserApproved(std::nullopt, "request");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
                        EthSendTransactionLegacyTx) {
   SetNetworkForTesting("0x539");  // localhost
   observer()->SetExpectEip1559Tx(false);
-  TestUserApproved(absl::nullopt, "request");
+  TestUserApproved(std::nullopt, "request");
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
@@ -931,7 +931,7 @@ IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,
   mojom::NetworkInfo chain = GetTestNetworkInfo1("0x5566");
   AddCustomNetwork(browser()->profile()->GetPrefs(), chain);
 
-  TestUserApproved(absl::nullopt, "request", "", true /* skip_restore */);
+  TestUserApproved(std::nullopt, "request", "", true /* skip_restore */);
 }
 
 IN_PROC_BROWSER_TEST_F(SendOrSignTransactionBrowserTest,

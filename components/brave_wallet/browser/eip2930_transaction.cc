@@ -45,7 +45,7 @@ bool Eip2930Transaction::AccessListItem::operator!=(
 }
 
 Eip2930Transaction::Eip2930Transaction(const Eip2930Transaction&) = default;
-Eip2930Transaction::Eip2930Transaction(absl::optional<uint256_t> nonce,
+Eip2930Transaction::Eip2930Transaction(std::optional<uint256_t> nonce,
                                        uint256_t gas_price,
                                        uint256_t gas_limit,
                                        const EthAddress& to,
@@ -68,31 +68,31 @@ bool Eip2930Transaction::operator==(const Eip2930Transaction& tx) const {
 }
 
 // static
-absl::optional<Eip2930Transaction> Eip2930Transaction::FromTxData(
+std::optional<Eip2930Transaction> Eip2930Transaction::FromTxData(
     const mojom::TxDataPtr& tx_data,
     uint256_t chain_id,
     bool strict) {
-  absl::optional<EthTransaction> legacy_tx =
+  std::optional<EthTransaction> legacy_tx =
       EthTransaction::FromTxData(tx_data, strict);
   if (!legacy_tx)
-    return absl::nullopt;
+    return std::nullopt;
   return Eip2930Transaction(legacy_tx->nonce(), legacy_tx->gas_price(),
                             legacy_tx->gas_limit(), legacy_tx->to(),
                             legacy_tx->value(), legacy_tx->data(), chain_id);
 }
 
 // static
-absl::optional<Eip2930Transaction> Eip2930Transaction::FromValue(
+std::optional<Eip2930Transaction> Eip2930Transaction::FromValue(
     const base::Value::Dict& value) {
-  absl::optional<EthTransaction> legacy_tx = EthTransaction::FromValue(value);
+  std::optional<EthTransaction> legacy_tx = EthTransaction::FromValue(value);
   if (!legacy_tx)
-    return absl::nullopt;
+    return std::nullopt;
   const std::string* tx_chain_id = value.FindString("chain_id");
   if (!tx_chain_id)
-    return absl::nullopt;
+    return std::nullopt;
   uint256_t chain_id;
   if (!HexValueToUint256(*tx_chain_id, &chain_id))
-    return absl::nullopt;
+    return std::nullopt;
 
   Eip2930Transaction tx(legacy_tx->nonce(), legacy_tx->gas_price(),
                         legacy_tx->gas_limit(), legacy_tx->to(),
@@ -103,11 +103,11 @@ absl::optional<Eip2930Transaction> Eip2930Transaction::FromValue(
 
   const base::Value::List* access_list = value.FindList("access_list");
   if (!access_list)
-    return absl::nullopt;
-  absl::optional<AccessList> access_list_from_value =
+    return std::nullopt;
+  std::optional<AccessList> access_list_from_value =
       ValueToAccessList(*access_list);
   if (!access_list_from_value)
-    return absl::nullopt;
+    return std::nullopt;
   tx.access_list_ = *access_list_from_value;
 
   return tx;
@@ -132,7 +132,7 @@ base::Value::List Eip2930Transaction::AccessListToValue(
 }
 
 // static
-absl::optional<Eip2930Transaction::AccessList>
+std::optional<Eip2930Transaction::AccessList>
 Eip2930Transaction::ValueToAccessList(const base::Value::List& value) {
   AccessList access_list;
   for (const auto& item_value : value) {

@@ -11,7 +11,7 @@
 #include "base/functional/callback_forward.h"
 #include "base/memory/raw_ptr.h"
 #include "chrome/browser/notifications/notification_handler.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 class GURL;
 class Profile;
@@ -33,8 +33,8 @@ class AdsNotificationHandler : public NotificationHandler {
   void OnClick(Profile* profile,
                const GURL& origin,
                const std::string& id,
-               const absl::optional<int>& action_index,
-               const absl::optional<std::u16string>& reply,
+               const std::optional<int>& action_index,
+               const std::optional<std::u16string>& reply,
                base::OnceClosure completed_closure) override;
   void OpenSettings(Profile* profile, const GURL& origin) override;
 

@@ -11,9 +11,9 @@
 
 #include "base/functional/callback.h"
 #include "base/values.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
-// TODO(apaymyshev): refactor utility methods to return absl::optional instead
+// TODO(apaymyshev): refactor utility methods to return std::optional instead
 // of bool + out-parameter.
 
 namespace brave_wallet {
@@ -34,20 +34,20 @@ bool ParseGetLatestBlockhash(const base::Value& json_value,
                              uint64_t* last_valid_block_height);
 bool ParseGetSignatureStatuses(
     const base::Value& json_value,
-    std::vector<absl::optional<SolanaSignatureStatus>>* statuses);
+    std::vector<std::optional<SolanaSignatureStatus>>* statuses);
 bool ParseGetAccountInfo(const base::Value& json_value,
-                         absl::optional<SolanaAccountInfo>* account_info_out);
+                         std::optional<SolanaAccountInfo>* account_info_out);
 bool ParseGetAccountInfoPayload(
     const base::Value::Dict& value_dict,
-    absl::optional<SolanaAccountInfo>* account_info_out);
+    std::optional<SolanaAccountInfo>* account_info_out);
 bool ParseGetFeeForMessage(const base::Value& json_value, uint64_t* fee);
 bool ParseGetBlockHeight(const base::Value& json_value, uint64_t* block_height);
 bool ParseGetTokenAccountsByOwner(const base::Value& json_value,
                                   std::vector<SolanaAccountInfo>* accounts);
 
-base::OnceCallback<absl::optional<std::string>(const std::string& raw_response)>
+base::OnceCallback<std::optional<std::string>(const std::string& raw_response)>
 ConverterForGetAccountInfo();
-base::OnceCallback<absl::optional<std::string>(const std::string& raw_response)>
+base::OnceCallback<std::optional<std::string>(const std::string& raw_response)>
 ConverterForGetProrgamAccounts();
 
 }  // namespace solana

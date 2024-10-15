@@ -10,9 +10,9 @@
 
 #include "base/auto_reset.h"
 #include "base/ranges/algorithm.h"
-#include "base/strings/string_piece.h"
+#include <string_view>
 #include "net/base/net_export.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace net {
 
@@ -27,8 +27,8 @@ class NET_EXPORT PartitionedHostStateMapBase {
       delete;
 
   // Stores scoped partition hash for use in subsequent calls.
-  base::AutoReset<absl::optional<std::string>> SetScopedPartitionHash(
-      absl::optional<std::string> partition_hash);
+  base::AutoReset<std::optional<std::string>> SetScopedPartitionHash(
+      std::optional<std::string> partition_hash);
   // Returns true if |partition_hash_| is set. The value may be empty.
   bool HasPartitionHash() const;
   // Returns true if |partition_hash_| contains a non empty valid hash.
@@ -39,14 +39,14 @@ class NET_EXPORT PartitionedHostStateMapBase {
   std::string GetKeyWithPartitionHash(const std::string& k) const;
 
   // Returns first 16 bytes from |k|.
-  static base::StringPiece GetHalfKey(base::StringPiece k);
+  static std::string_view GetHalfKey(std::string_view k);
 
  private:
   // Partition hash can be of these values:
   //   nullopt - unpartitioned;
   //   empty string - invalid/opaque partition, i.e. shouldn't be stored;
   //   non empty string - valid partition.
-  absl::optional<std::string> partition_hash_;
+  std::optional<std::string> partition_hash_;
 };
 
 // Allows data partitioning using half key from PartitionHash. The class mimics

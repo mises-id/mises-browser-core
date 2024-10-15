@@ -38,8 +38,8 @@ std::string NormalizeLocale(const std::string& locale) {
   return normalized_locale;
 }
 
-absl::optional<LocaleSubtagInfo>& CachedLocaleSubtag() {
-  static base::NoDestructor<absl::optional<LocaleSubtagInfo>>
+std::optional<LocaleSubtagInfo>& CachedLocaleSubtag() {
+  static base::NoDestructor<std::optional<LocaleSubtagInfo>>
       cached_locale_subtag;
   return *cached_locale_subtag;
 }

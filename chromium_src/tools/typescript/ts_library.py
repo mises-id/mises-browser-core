@@ -9,6 +9,13 @@ import os
 import override_utils
 
 
+def is_gen_mises_dir(out_dir):
+    GEN_MISES = 'gen/mises'
+    dirs = out_dir.split('/')
+    # Test gen/mises/... and <target_toolchain>/gen/mises/...
+    return '/'.join(dirs[:2]) == GEN_MISES or '/'.join(dirs[1:3]) == GEN_MISES
+
+
 @override_utils.override_function(globals())
 def main(original_function, argv):
     # Parse only the arguments used by this override
@@ -27,8 +34,7 @@ def main(original_function, argv):
             #
             # "error TS5055: Cannot write file '...' because it would overwrite
             # input file."
-            if args.root_dir != args.out_dir and args.out_dir.find(
-                    'gen/mises') >= 0:
+            if args.root_dir != args.out_dir and is_gen_mises_dir(args.out_dir):
                 to_check = os.path.join(args.out_dir, pathname + '.d.ts')
                 if os.path.exists(to_check):
                     os.remove(to_check)

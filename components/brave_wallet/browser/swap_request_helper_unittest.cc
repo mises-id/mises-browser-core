@@ -109,7 +109,7 @@ TEST(SwapRequestHelperUnitTest, EncodeJupiterTransactionParams) {
 
   // OK: Jupiter transaction params with feeAccount
   auto expected_params_value = ParseJson(expected_params);
-  ASSERT_NE(encoded_params, absl::nullopt);
+  ASSERT_NE(encoded_params, std::nullopt);
   ASSERT_EQ(*encoded_params, GetJSON(expected_params_value));
 
   // OK: Jupiter transaction params WITHOUT feeAccount
@@ -150,7 +150,7 @@ TEST(SwapRequestHelperUnitTest, EncodeJupiterTransactionParams) {
       "userPublicKey": "mockPubKey"
     })";
   expected_params_value = ParseJson(expected_params);
-  ASSERT_NE(encoded_params, absl::nullopt);
+  ASSERT_NE(encoded_params, std::nullopt);
   ASSERT_EQ(*encoded_params, GetJSON(expected_params_value));
 
   // KO: empty params
@@ -159,6 +159,6 @@ TEST(SwapRequestHelperUnitTest, EncodeJupiterTransactionParams) {
   // KO: invalid output mint
   params.output_mint = "invalid output mint";
   encoded_params = EncodeJupiterTransactionParams(params.Clone());
-  ASSERT_EQ(encoded_params, absl::nullopt);
+  ASSERT_EQ(encoded_params, std::nullopt);
 }
 }  // namespace brave_wallet

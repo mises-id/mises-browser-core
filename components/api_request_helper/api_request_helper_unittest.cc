@@ -32,9 +32,9 @@ MATCHER_P(MatchesAPIRequestResult, request_result, "") {
   return arg == *request_result;
 }
 
-absl::optional<std::string> ConversionCallback(
+std::optional<std::string> ConversionCallback(
     const std::string& expected_raw_response,
-    const absl::optional<std::string>& converted_response,
+    const std::optional<std::string>& converted_response,
     const std::string& raw_response) {
   EXPECT_EQ(expected_raw_response, raw_response);
   return converted_response;
@@ -107,7 +107,7 @@ class ApiRequestHelperUnitTest : public testing::Test {
     SetInterceptor("POST", network_url, server_raw_response, enable_cache);
     api_request_helper_->Request(
         "POST", network_url, "", "application/json", callback.Get(),
-        APIRequestOptions(false, enable_cache, -1u, absl::nullopt), {},
+        APIRequestOptions(false, enable_cache, -1u, std::nullopt), {},
         std::move(conversion_callback));
     base::RunLoop().RunUntilIdle();
   }
@@ -160,11 +160,11 @@ TEST_F(ApiRequestHelperUnitTest, RequestWithConversion) {
   SendRequest(server_raw_response, "", base::Value(), 200, net::OK,
               base::BindOnce(&ConversionCallback, server_raw_response, ""));
 
-  // Returning absl::nullopt in conversion callback results in empty response
+  // Returning std::nullopt in conversion callback results in empty response
   server_raw_response = "{}";
   SendRequest(
       server_raw_response, "", base::Value(), 422, net::OK,
-      base::BindOnce(&ConversionCallback, server_raw_response, absl::nullopt));
+      base::BindOnce(&ConversionCallback, server_raw_response, std::nullopt));
 }
 
 TEST_F(ApiRequestHelperUnitTest, Is2XXResponseCode) {

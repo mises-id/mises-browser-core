@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/browser/tx_state_manager.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 class PrefService;
 
@@ -38,8 +38,8 @@ class EthTxStateManager : public TxStateManager {
   EthTxStateManager operator=(const EthTxStateManager&) = delete;
 
   std::vector<std::unique_ptr<TxMeta>> GetTransactionsByStatus(
-      absl::optional<mojom::TransactionStatus> status,
-      absl::optional<EthAddress> from);
+      std::optional<mojom::TransactionStatus> status,
+      std::optional<EthAddress> from);
 
   std::unique_ptr<EthTxMeta> GetEthTx(const std::string& id);
   std::unique_ptr<EthTxMeta> ValueToEthTxMeta(const base::Value::Dict& value);

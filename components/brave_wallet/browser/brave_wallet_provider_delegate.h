@@ -11,7 +11,7 @@
 
 #include "base/functional/callback.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom-forward.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/origin.h"
 
 namespace brave_wallet {
@@ -20,7 +20,7 @@ class BraveWalletProviderDelegate {
  public:
   using RequestPermissionsCallback = base::OnceCallback<void(
       mojom::RequestPermissionsError error,
-      const absl::optional<std::vector<std::string>>& allowed_accounts)>;
+      const std::optional<std::vector<std::string>>& allowed_accounts)>;
   using IsAccountAllowedCallback = base::OnceCallback<void(bool allowed)>;
   using GetAllowedAccountsCallback =
       base::OnceCallback<void(bool success, const std::vector<std::string>&)>;

@@ -23,21 +23,19 @@ const base::FeatureParam<OsIntegrationSubManagersStage>
 #if BUILDFLAG(IS_ANDROID)
 // Enables or disables the Autofill survey triggered by opening a prompt to
 // save address info.
-const base::Feature kAutofillAddressSurvey{"AutofillAddressSurvey",
-                                           base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kAutofillAddressSurvey,
+             "AutofillAddressSurvey",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 // Enables or disables the Autofill survey triggered by opening a prompt to
 // save credit card info.
-const base::Feature kAutofillCardSurvey{"AutofillCardSurvey",
-                                        base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kAutofillCardSurvey,
+             "AutofillCardSurvey",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 // Enables or disables the Autofill survey triggered by opening a prompt to
 // save password info.
-const base::Feature kAutofillPasswordSurvey{"AutofillPasswordSurvey",
-                                            base::FEATURE_DISABLED_BY_DEFAULT};
-#endif
-
-#if BUILDFLAG(IS_ANDROID)
-const base::Feature kBlockMigratedDefaultChromeAppSync{
-    "BlockMigratedDefaultChromeAppSync", base::FEATURE_ENABLED_BY_DEFAULT};
+BASE_FEATURE(kAutofillPasswordSurvey,
+             "AutofillPasswordSurvey",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 #endif
 
 
@@ -58,8 +56,9 @@ BASE_FEATURE(kPreinstalledWebAppInstallation,
 #if BUILDFLAG(IS_ANDROID)
 // Lazy initialize IndividualSettings for extensions from enterprise policy
 // that are not installed.
-const base::Feature kExtensionDeferredIndividualSettings{
-    "ExtensionDeferredIndividualSettings", base::FEATURE_ENABLED_BY_DEFAULT};
+BASE_FEATURE(kExtensionDeferredIndividualSettings,
+             "ExtensionDeferredIndividualSettings",
+             base::FEATURE_ENABLED_BY_DEFAULT);
 #endif
 
 
@@ -222,8 +221,9 @@ extern const base::FeatureParam<std::string>
 
 
 #if BUILDFLAG(IS_ANDROID)
-const base::Feature kOnConnectNative{"OnConnectNative",
-                                     base::FEATURE_DISABLED_BY_DEFAULT};
+BASE_FEATURE(kOnConnectNative,
+             "OnConnectNative",
+             base::FEATURE_DISABLED_BY_DEFAULT);
 #endif
 
 #if BUILDFLAG(IS_ANDROID)
@@ -529,35 +529,6 @@ BASE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix,
 BASE_FEATURE(kWebAppSyncGeneratedIconUpdateFix,
              "WebAppSyncGeneratedIconUpdateFix",
              base::FEATURE_ENABLED_BY_DEFAULT);
-#endif  // !BUILDFLAG(IS_ANDROID)
-
-
-#if BUILDFLAG(IS_ANDROID)
-// Enables extensions module in Safety Check.
-BASE_FEATURE(kSafetyCheckExtensions,
-             "SafetyCheckExtensions",
-             base::FEATURE_DISABLED_BY_DEFAULT);
-
-// Enables notification permission module in Safety Check.
-BASE_FEATURE(kSafetyCheckNotificationPermissions,
-             "SafetyCheckNotificationPermissions",
-             base::FEATURE_ENABLED_BY_DEFAULT);
-
-const base::FeatureParam<int>
-    kSafetyCheckNotificationPermissionsMinEnagementLimit{
-        &kSafetyCheckNotificationPermissions,
-        "min-engagement-notification-count", 0};
-const base::FeatureParam<int>
-    kSafetyCheckNotificationPermissionsLowEnagementLimit{
-        &kSafetyCheckNotificationPermissions,
-        "low-engagement-notification-count", 4};
-
-// Enables Safety Hub feature.
-BASE_FEATURE(kSafetyHub, "SafetyHub", base::FEATURE_DISABLED_BY_DEFAULT);
-
-// Time between automated runs of the password check.
-const base::FeatureParam<base::TimeDelta> kBackgroundPasswordCheckInterval{
-    &kSafetyHub, "background-password-check-interval", base::Days(10)};
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 

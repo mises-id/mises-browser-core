@@ -11,22 +11,22 @@
 
 #include "mises/components/brave_wallet/browser/solana_instruction_decoded_data.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet::solana_ins_data_decoder {
 
-absl::optional<SolanaInstructionDecodedData> Decode(
+std::optional<SolanaInstructionDecodedData> Decode(
     const std::vector<uint8_t>& data,
     const std::string& program_id);
 
 std::vector<InsParamPair> GetAccountParamsForTesting(
-    absl::optional<mojom::SolanaSystemInstruction> sys_ins_type,
-    absl::optional<mojom::SolanaTokenInstruction> token_ins_type);
+    std::optional<mojom::SolanaSystemInstruction> sys_ins_type,
+    std::optional<mojom::SolanaTokenInstruction> token_ins_type);
 
 std::vector<mojom::SolanaInstructionAccountParamPtr>
 GetMojomAccountParamsForTesting(
-    absl::optional<mojom::SolanaSystemInstruction> sys_ins_type,
-    absl::optional<mojom::SolanaTokenInstruction> token_ins_type);
+    std::optional<mojom::SolanaSystemInstruction> sys_ins_type,
+    std::optional<mojom::SolanaTokenInstruction> token_ins_type);
 
 }  // namespace brave_wallet::solana_ins_data_decoder
 

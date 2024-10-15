@@ -41,12 +41,12 @@ class FilTxManager : public TxManager, public FilBlockTracker::Observer {
 
   void AddUnapprovedTransaction(mojom::TxDataUnionPtr tx_data_union,
                                 const std::string& from,
-                                const absl::optional<url::Origin>& origin,
-                                const absl::optional<std::string>& group_id,
+                                const std::optional<url::Origin>& origin,
+                                const std::optional<std::string>& group_id,
                                 AddUnapprovedTransactionCallback) override;
   void ApproveTransaction(const std::string& tx_meta_id,
                           ApproveTransactionCallback) override;
-  void GetAllTransactionInfo(const absl::optional<std::string>& from,
+  void GetAllTransactionInfo(const std::optional<std::string>& from,
                              GetAllTransactionInfoCallback) override;
   void GetTransactionMessageToSign(
       const std::string& tx_meta_id,
@@ -67,8 +67,8 @@ class FilTxManager : public TxManager, public FilBlockTracker::Observer {
       ProcessFilHardwareSignatureCallback callback);
 
   void GetEstimatedGas(const std::string& from,
-                       const absl::optional<url::Origin>& origin,
-                       const absl::optional<std::string>& group_id,
+                       const std::optional<url::Origin>& origin,
+                       const std::optional<std::string>& group_id,
                        std::unique_ptr<FilTransaction> tx,
                        AddUnapprovedTransactionCallback callback);
   std::unique_ptr<FilTxMeta> GetTxForTesting(const std::string& tx_meta_id);
@@ -91,8 +91,8 @@ class FilTxManager : public TxManager, public FilBlockTracker::Observer {
                                  const std::string& error_message);
   void ContinueAddUnapprovedTransaction(
       const std::string& from,
-      const absl::optional<url::Origin>& origin,
-      const absl::optional<std::string>& group_id,
+      const std::optional<url::Origin>& origin,
+      const std::optional<std::string>& group_id,
       std::unique_ptr<FilTransaction> tx,
       AddUnapprovedTransactionCallback callback,
       const std::string& gas_premium,

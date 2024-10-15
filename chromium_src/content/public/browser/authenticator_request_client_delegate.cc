@@ -3,11 +3,11 @@
 namespace content{
 
 #if BUILDFLAG(IS_ANDROID)
-absl::optional<std::string>
+std::optional<std::string>
 WebAuthenticationDelegate::MaybeGetRelyingPartyIdOverride(
     const std::string& claimed_relying_party_id,
     const url::Origin& caller_origin) {
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 bool WebAuthenticationDelegate::ShouldPermitIndividualAttestation(
@@ -38,7 +38,7 @@ bool WebAuthenticationDelegate::IsFocused(WebContents* web_contents) {
   return true;
 }
 
-absl::optional<bool> WebAuthenticationDelegate::
+std::optional<bool> WebAuthenticationDelegate::
     IsUserVerifyingPlatformAuthenticatorAvailableOverride(
         RenderFrameHost* render_frame_host) {
   FrameTreeNode* frame_tree_node =
@@ -48,7 +48,7 @@ absl::optional<bool> WebAuthenticationDelegate::
     return AuthenticatorEnvironment::GetInstance()
         ->HasVirtualUserVerifyingPlatformAuthenticator(frame_tree_node);
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 WebAuthenticationRequestProxy* WebAuthenticationDelegate::MaybeGetRequestProxy(
@@ -98,7 +98,7 @@ void AuthenticatorRequestClientDelegate::ConfigureDiscoveries(
     const std::string& rp_id,
     RequestSource request_source,
     device::FidoRequestType request_type,
-    absl::optional<device::ResidentKeyRequirement> resident_key_requirement,
+    std::optional<device::ResidentKeyRequirement> resident_key_requirement,
     base::span<const device::CableDiscoveryData> pairings_from_extension,
     device::FidoDiscoveryFactory* fido_discovery_factory) {}
 
@@ -147,7 +147,7 @@ void AuthenticatorRequestClientDelegate::FidoAuthenticatorAdded(
     const device::FidoAuthenticator& authenticator) {}
 
 void AuthenticatorRequestClientDelegate::FidoAuthenticatorRemoved(
-    base::StringPiece device_id) {}
+    std::string_view device_id) {}
 
 bool AuthenticatorRequestClientDelegate::SupportsPIN() const {
   return false;

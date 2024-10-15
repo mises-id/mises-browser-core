@@ -89,7 +89,7 @@ RequestType ContentSettingsTypeToRequestType(
   }
 }
 
-absl::optional<ContentSettingsType> RequestTypeToContentSettingsType(
+std::optional<ContentSettingsType> RequestTypeToContentSettingsType(
     RequestType request_type) {
   switch (request_type) {
    // case RequestType::kMisesGoogleSignInPermission:

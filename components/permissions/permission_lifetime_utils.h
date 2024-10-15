@@ -11,7 +11,7 @@
 #include "base/time/time.h"
 #include "mises/components/permissions/permission_lifetime_options.h"
 #include "components/permissions/permission_prompt.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace permissions {
 

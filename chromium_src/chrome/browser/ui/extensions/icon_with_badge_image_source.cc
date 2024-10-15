@@ -30,17 +30,17 @@
 #undef MISES_ICON_WITH_BADGE_IMAGE_SOURCE_DRAW_2
 #undef MISES_ICON_WITH_BADGE_IMAGE_SOURCE_DRAW_1
 
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 // Implement default virtual methods
-absl::optional<int> IconWithBadgeImageSource::GetCustomGraphicSize() {
-  return absl::nullopt;
+std::optional<int> IconWithBadgeImageSource::GetCustomGraphicSize() {
+  return std::nullopt;
 }
 
-absl::optional<int> IconWithBadgeImageSource::GetCustomGraphicXOffset() {
-  return absl::nullopt;
+std::optional<int> IconWithBadgeImageSource::GetCustomGraphicXOffset() {
+  return std::nullopt;
 }
 
-absl::optional<int> IconWithBadgeImageSource::GetCustomGraphicYOffset() {
-  return absl::nullopt;
+std::optional<int> IconWithBadgeImageSource::GetCustomGraphicYOffset() {
+  return std::nullopt;
 }

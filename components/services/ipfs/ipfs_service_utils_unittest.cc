@@ -22,7 +22,7 @@ TEST_F(IPFSServiceUtils, UpdateConfigJSONTest) {
   std::string updated;
   auto config = ipfs::mojom::IpfsConfig::New(
       base::FilePath(), base::FilePath(), base::FilePath(), "GatewayPort",
-      "APIPort", "SwarmPort", "StorageSize", absl::nullopt);
+      "APIPort", "SwarmPort", "StorageSize", std::nullopt);
 
   std::string expect =
       "{\"Addresses\":{\"API\":\"/ip4/127.0.0.1/tcp/APIPort\","
@@ -93,7 +93,7 @@ TEST_F(IPFSServiceUtils, DNSResolversRemove) {
 
   auto config = ipfs::mojom::IpfsConfig::New(
       base::FilePath(), base::FilePath(), base::FilePath(), "GatewayPort",
-      "APIPort", "SwarmPort", "StorageSize", absl::nullopt);
+      "APIPort", "SwarmPort", "StorageSize", std::nullopt);
 
   std::string expect =
       "{\"Addresses\":{\"API\":\"/ip4/127.0.0.1/tcp/APIPort\","

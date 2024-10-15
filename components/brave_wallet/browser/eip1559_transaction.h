@@ -21,7 +21,7 @@ class Eip1559Transaction : public Eip2930Transaction {
     GasEstimation(const GasEstimation&) = default;
     bool operator==(const GasEstimation&) const;
 
-    static absl::optional<GasEstimation> FromMojomGasEstimation1559(
+    static std::optional<GasEstimation> FromMojomGasEstimation1559(
         mojom::GasEstimation1559Ptr gas_estimation);
     static mojom::GasEstimation1559Ptr ToMojomGasEstimation1559(
         GasEstimation gas_estimation);
@@ -40,10 +40,10 @@ class Eip1559Transaction : public Eip2930Transaction {
   ~Eip1559Transaction() override;
   bool operator==(const Eip1559Transaction&) const;
 
-  static absl::optional<Eip1559Transaction> FromTxData(
+  static std::optional<Eip1559Transaction> FromTxData(
       const mojom::TxData1559Ptr& tx_data,
       bool strict = true);
-  static absl::optional<Eip1559Transaction> FromValue(
+  static std::optional<Eip1559Transaction> FromValue(
       const base::Value::Dict& value);
 
   uint256_t max_priority_fee_per_gas() const {
@@ -82,7 +82,7 @@ class Eip1559Transaction : public Eip2930Transaction {
   uint256_t GetUpfrontCost(uint256_t block_base_fee = 0) const override;
 
  protected:
-  Eip1559Transaction(absl::optional<uint256_t> nonce,
+  Eip1559Transaction(std::optional<uint256_t> nonce,
                      uint256_t gas_price,
                      uint256_t gas_limit,
                      const EthAddress& to,

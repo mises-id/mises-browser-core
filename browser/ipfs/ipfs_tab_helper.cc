@@ -113,9 +113,9 @@ void IPFSTabHelper::DNSLinkResolved(const GURL& ipfs) {
 }
 
 void IPFSTabHelper::HostResolvedCallback(
-    absl::optional<std::string> x_ipfs_path_header,
+    std::optional<std::string> x_ipfs_path_header,
     const std::string& host,
-    const absl::optional<std::string>& dnslink) {
+    const std::optional<std::string>& dnslink) {
   GURL current = web_contents()->GetURL();
 
   if (current.host() != host || !current.SchemeIsHTTPOrHTTPS())
@@ -166,7 +166,7 @@ GURL IPFSTabHelper::GetIPFSResolvedURL() const {
 }
 
 void IPFSTabHelper::CheckDNSLinkRecord(
-    absl::optional<std::string> x_ipfs_path_header) {
+    std::optional<std::string> x_ipfs_path_header) {
   GURL current = web_contents()->GetURL();
   if (!current.SchemeIsHTTPOrHTTPS())
     return;
@@ -239,7 +239,7 @@ GURL IPFSTabHelper::ResolveXIPFSPathUrl(
   return TranslateXIPFSPath(x_ipfs_path_header_value).value_or(GURL());
 }
 
-absl::optional<GURL> IPFSTabHelper::ResolveIPFSUrlFromGatewayLikeUrl(
+std::optional<GURL> IPFSTabHelper::ResolveIPFSUrlFromGatewayLikeUrl(
     const GURL& gurl) {
   bool api_gateway = IsAPIGateway(gurl, chrome::GetChannel());
   auto base_gateway =
@@ -250,7 +250,7 @@ absl::optional<GURL> IPFSTabHelper::ResolveIPFSUrlFromGatewayLikeUrl(
     return ipfs::TranslateToCurrentGatewayUrl(gurl);
   }
 
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 // For _dnslink we just translate url to ipns:// scheme
@@ -284,7 +284,7 @@ void IPFSTabHelper::MaybeCheckDNSLinkRecord(
   std::string normalized_header;
   if ((response_code >= net::HttpStatusCode::HTTP_INTERNAL_SERVER_ERROR &&
        response_code <= net::HttpStatusCode::HTTP_VERSION_NOT_SUPPORTED)) {
-    CheckDNSLinkRecord(absl::nullopt);
+    CheckDNSLinkRecord(std::nullopt);
   } else if (headers->GetNormalizedHeader(kIfpsPathHeader,
                                           &normalized_header)) {
     CheckDNSLinkRecord(normalized_header);

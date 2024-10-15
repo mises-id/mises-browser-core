@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/browser/solana_message_address_table_lookup.h"
 #include "mises/components/brave_wallet/browser/solana_message_header.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace base {
 class Value;
@@ -41,18 +41,18 @@ class SolanaMessage {
   ~SolanaMessage();
   bool operator==(const SolanaMessage&) const;
 
-  static absl::optional<SolanaMessage> CreateLegacyMessage(
+  static std::optional<SolanaMessage> CreateLegacyMessage(
       const std::string& recent_blockhash,
       uint64_t last_valid_block_height,
       const std::string& fee_payer,
       std::vector<SolanaInstruction>&& instructions);
 
-  absl::optional<std::vector<uint8_t>> Serialize(
+  std::optional<std::vector<uint8_t>> Serialize(
       std::vector<std::string>* signers) const;
 
-  static absl::optional<SolanaMessage> Deserialize(
+  static std::optional<SolanaMessage> Deserialize(
       const std::vector<uint8_t>& bytes);
-  static absl::optional<std::vector<std::string>>
+  static std::optional<std::vector<std::string>>
   GetSignerAccountsFromSerializedMessage(
       const std::vector<uint8_t>& serialized_message);
 
@@ -70,9 +70,9 @@ class SolanaMessage {
   mojom::SolanaTxDataPtr ToSolanaTxData() const;
   base::Value::Dict ToValue() const;
 
-  static absl::optional<SolanaMessage> FromValue(
+  static std::optional<SolanaMessage> FromValue(
       const base::Value::Dict& value);
-  static absl::optional<SolanaMessage> FromDeprecatedLegacyValue(
+  static std::optional<SolanaMessage> FromDeprecatedLegacyValue(
       const base::Value::Dict& value);
 
   void SetInstructionsForTesting(

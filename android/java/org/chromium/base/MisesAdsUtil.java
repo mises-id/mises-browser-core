@@ -23,9 +23,9 @@ import java.util.Arrays;
 import org.chromium.base.PackageUtils;
 
 
-import org.chromium.components.version_info.Channel;
-import org.chromium.components.version_info.VersionConstants;
-import org.chromium.components.version_info.VersionInfo;
+import org.chromium.base.version_info.Channel;
+import org.chromium.base.version_info.VersionConstants;
+import org.chromium.base.version_info.VersionInfo;
 
 import com.openmediation.sdk.ImpressionData;
 import com.openmediation.sdk.ImpressionDataListener;

@@ -4,14 +4,14 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "mises/components/brave_wallet/browser/password_encryptor.h"
-#include "base/strings/string_piece.h"
+#include <string_view>
 #include "crypto/aead.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
 namespace brave_wallet {
 
 namespace {
-base::span<const uint8_t> ToSpan(base::StringPiece sp) {
+base::span<const uint8_t> ToSpan(std::string_view sp) {
   return base::as_bytes(base::make_span(sp));
 }
 std::string ToString(const std::vector<uint8_t>& v) {

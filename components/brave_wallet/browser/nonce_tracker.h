@@ -42,7 +42,7 @@ class NonceTracker {
   base::Lock* GetLock() { return &nonce_lock_; }
 
  protected:
-  absl::optional<uint256_t> GetFinalNonce(const std::string& from,
+  std::optional<uint256_t> GetFinalNonce(const std::string& from,
                                           uint256_t result);
 
   raw_ptr<JsonRpcService> json_rpc_service_ = nullptr;

@@ -9,7 +9,7 @@
 #include <string>
 
 #include "components/version_info/channel.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 
 class PrefService;
@@ -58,7 +58,7 @@ bool TranslateIPFSURI(const GURL& url,
                       GURL* new_url,
                       const GURL& gateway_url,
                       bool use_subdomain);
-absl::optional<GURL> TranslateXIPFSPath(const std::string& x_ipfs_path_header);
+std::optional<GURL> TranslateXIPFSPath(const std::string& x_ipfs_path_header);
 bool IsValidNodeFilename(const std::string& filename);
 
 bool ParsePeerConnectionString(const std::string& value,
@@ -70,9 +70,9 @@ bool IsIpfsResolveMethodDisabled(PrefService* prefs);
 bool IsIpfsResolveMethodAsk(PrefService* prefs);
 std::string GetRegistryDomainFromIPNS(const GURL& url);
 bool IsValidCIDOrDomain(const std::string& value);
-absl::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url);
+std::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url);
 std::string DecodeSingleLabelForm(const std::string& input);
-absl::optional<GURL> ExtractSourceFromGateway(const GURL& url);
+std::optional<GURL> ExtractSourceFromGateway(const GURL& url);
 
 }  // namespace ipfs
 

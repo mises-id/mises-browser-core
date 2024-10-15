@@ -45,7 +45,7 @@ constexpr char kEthereumGoerli[] = "ethereum-goerli";
 constexpr char kSolanaTestnet[] = "solana-testnet";
 constexpr char kSolanaDevnet[] = "solana-devnet";
 
-absl::optional<std::string> ChainIdToSimpleHashChainId(
+std::optional<std::string> ChainIdToSimpleHashChainId(
     const std::string& chain_id) {
   static base::NoDestructor<base::flat_map<std::string, std::string>>
       chain_id_lookup({
@@ -61,13 +61,13 @@ absl::optional<std::string> ChainIdToSimpleHashChainId(
           {brave_wallet::mojom::kSolanaDevnet, kSolanaDevnet},
       });
   if (!chain_id_lookup->contains(chain_id)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return chain_id_lookup->at(chain_id);
 }
 
-absl::optional<std::string> SimpleHashChainIdToChainId(
+std::optional<std::string> SimpleHashChainIdToChainId(
     const std::string& simple_hash_chain_id) {
   static base::NoDestructor<base::flat_map<std::string, std::string>>
       simple_hash_chain_id_lookup({
@@ -83,7 +83,7 @@ absl::optional<std::string> SimpleHashChainIdToChainId(
           {kSolanaDevnet, brave_wallet::mojom::kSolanaDevnet},
       });
   if (!simple_hash_chain_id_lookup->contains(simple_hash_chain_id)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   return simple_hash_chain_id_lookup->at(simple_hash_chain_id);
@@ -148,7 +148,7 @@ void AssetDiscoveryManager::DiscoverSolAssets(
   // Convert each account address to SolanaAddress and check validity
   std::vector<SolanaAddress> solana_addresses;
   for (const auto& address : account_addresses) {
-    absl::optional<SolanaAddress> solana_address =
+    std::optional<SolanaAddress> solana_address =
         SolanaAddress::FromBase58(address);
     if (!solana_address.has_value()) {
       continue;
@@ -197,11 +197,11 @@ void AssetDiscoveryManager::OnGetSolanaTokenAccountsByOwner(
   std::vector<SolanaAddress> discovered_mint_addresses;
   for (const auto& token_account : token_accounts) {
     // Decode Base64
-    const absl::optional<std::vector<uint8_t>> data =
+    const std::optional<std::vector<uint8_t>> data =
         base::Base64Decode(token_account.data);
     if (data.has_value()) {
       // Decode the address
-      const absl::optional<SolanaAddress> mint_address =
+      const std::optional<SolanaAddress> mint_address =
           DecodeMintAddress(data.value());
       if (mint_address.has_value()) {
         // Add the contract address to the list
@@ -277,7 +277,7 @@ void AssetDiscoveryManager::DiscoverEthAssets(
 
   // Create set of all user assets per chain to use to ensure we don't
   // include assets the user has already added in the call to the BalanceScanner
-  base::flat_map<std::string, base::flat_set<base::StringPiece>>
+  base::flat_map<std::string, base::flat_set<std::string_view>>
       user_assets_per_chain;
   for (const auto& user_asset : user_assets) {
     user_assets_per_chain[user_asset->chain_id].insert(
@@ -383,7 +383,7 @@ void AssetDiscoveryManager::MergeDiscoveredEthAssets(
   std::vector<mojom::BlockchainTokenPtr> discovered_tokens;
 
   // Keep track of which contract addresses have been seen per chain
-  base::flat_map<std::string, base::flat_set<base::StringPiece>>
+  base::flat_map<std::string, base::flat_set<std::string_view>>
       seen_contract_addresses;
   for (const auto& discovered_assets_result : discovered_assets_results) {
     for (const auto& [chain_id, contract_addresses] :
@@ -453,7 +453,7 @@ void AssetDiscoveryManager::OnFetchNFTsFromSimpleHash(
     return;
   }
 
-  absl::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
+  std::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
       result = ParseNFTsFromSimpleHash(api_request_result.value_body(), coin);
   if (!result) {
     std::move(callback).Run(std::move(nfts_so_far));
@@ -480,7 +480,7 @@ void AssetDiscoveryManager::OnFetchNFTsFromSimpleHash(
   std::move(callback).Run(std::move(nfts_so_far));
 }
 
-absl::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
+std::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
 AssetDiscoveryManager::ParseNFTsFromSimpleHash(const base::Value& json_value,
                                                mojom::CoinType coin) {
   // Parses responses like this
@@ -663,12 +663,12 @@ AssetDiscoveryManager::ParseNFTsFromSimpleHash(const base::Value& json_value,
 
   // Only ETH and SOL NFTs are supported.
   if (!(coin == mojom::CoinType::ETH || coin == mojom::CoinType::SOL)) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   const base::Value::Dict* dict = json_value.GetIfDict();
   if (!dict) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   GURL nextURL;
@@ -691,7 +691,7 @@ AssetDiscoveryManager::ParseNFTsFromSimpleHash(const base::Value& json_value,
 
   const base::Value::List* nfts = dict->FindList("nfts");
   if (!nfts) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::vector<mojom::BlockchainTokenPtr> nft_tokens;
@@ -707,7 +707,7 @@ AssetDiscoveryManager::ParseNFTsFromSimpleHash(const base::Value& json_value,
     if (!collection) {
       continue;
     }
-    absl::optional<int> spam_score = collection->FindInt("spam_score");
+    std::optional<int> spam_score = collection->FindInt("spam_score");
     if (!spam_score || *spam_score > 0) {
       continue;
     }
@@ -724,7 +724,7 @@ AssetDiscoveryManager::ParseNFTsFromSimpleHash(const base::Value& json_value,
     if (!chain) {
       continue;
     }
-    absl::optional<std::string> chain_id = SimpleHashChainIdToChainId(*chain);
+    std::optional<std::string> chain_id = SimpleHashChainIdToChainId(*chain);
     if (!chain_id) {
       continue;
     }
@@ -978,10 +978,10 @@ void AssetDiscoveryManager::AccountsAdded(
 // Parses the Account object for the `mint` field which is a 32 byte public key.
 // See
 // https://github.com/solana-labs/solana-program-library/blob/f97a3dc7cf0e6b8e346d473a8c9d02de7b213cfd/token/program/src/state.rs#L86-L105
-absl::optional<SolanaAddress> AssetDiscoveryManager::DecodeMintAddress(
+std::optional<SolanaAddress> AssetDiscoveryManager::DecodeMintAddress(
     const std::vector<uint8_t>& data) {
   if (data.size() < 32) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::vector<uint8_t> pub_key_bytes(data.begin(), data.begin() + 32);
@@ -1003,7 +1003,7 @@ GURL AssetDiscoveryManager::GetSimpleHashNftsByWalletUrl(
 
   std::string chain_ids_param;
   for (const auto& chain_id : chain_ids) {
-    absl::optional<std::string> simple_hash_chain_id =
+    std::optional<std::string> simple_hash_chain_id =
         ChainIdToSimpleHashChainId(chain_id);
     if (simple_hash_chain_id) {
       if (!chain_ids_param.empty()) {

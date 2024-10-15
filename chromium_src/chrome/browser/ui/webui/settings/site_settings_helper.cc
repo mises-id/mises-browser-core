@@ -41,7 +41,7 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
   return HasRegisteredGroupName_ChromiumImpl(type);
 }
 
-base::StringPiece ContentSettingsTypeToGroupName(ContentSettingsType type) {
+std::string_view ContentSettingsTypeToGroupName(ContentSettingsType type) {
   if (type == ContentSettingsType::MISES_ETHEREUM)
     return "ethereum";
   if (type == ContentSettingsType::MISES_SOLANA)

@@ -56,10 +56,10 @@ TEST(JsonRpcResponseParserUnitTest, ParseBoolResult) {
   json =
       "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":"
       "\"0x00000000000000000000000000000000000000000\"}";
-  EXPECT_EQ(ParseBoolResult(ParseJson(json)), absl::nullopt);
+  EXPECT_EQ(ParseBoolResult(ParseJson(json)), std::nullopt);
 
   json = "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0\"}";
-  EXPECT_EQ(ParseBoolResult(ParseJson(json)), absl::nullopt);
+  EXPECT_EQ(ParseBoolResult(ParseJson(json)), std::nullopt);
 }
 
 TEST(JsonRpcResponseParserUnitTest, ParseErrorResult) {
@@ -352,7 +352,7 @@ TEST(JsonRpcResponseParserUnitTest, RPCResponse) {
   ASSERT_TRUE(response);
   EXPECT_EQ(response->jsonrpc, "2.0");
   EXPECT_EQ(response->id, base::Value(2));
-  EXPECT_EQ(response->result, absl::nullopt);
+  EXPECT_EQ(response->result, std::nullopt);
   ASSERT_TRUE(response->error);
   EXPECT_EQ(response->error->code, -32601);
   EXPECT_EQ(response->error->message, "method does not exist");

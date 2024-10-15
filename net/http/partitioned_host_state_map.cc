@@ -16,12 +16,12 @@ namespace net {
 PartitionedHostStateMapBase::PartitionedHostStateMapBase() = default;
 PartitionedHostStateMapBase::~PartitionedHostStateMapBase() = default;
 
-base::AutoReset<absl::optional<std::string>>
+base::AutoReset<std::optional<std::string>>
 PartitionedHostStateMapBase::SetScopedPartitionHash(
-    absl::optional<std::string> partition_hash) {
+    std::optional<std::string> partition_hash) {
   CHECK(!partition_hash || partition_hash->empty() ||
         partition_hash->size() == crypto::kSHA256Length);
-  return base::AutoReset<absl::optional<std::string>>(
+  return base::AutoReset<std::optional<std::string>>(
       &partition_hash_, std::move(partition_hash));
 }
 
@@ -43,7 +43,7 @@ std::string PartitionedHostStateMapBase::GetKeyWithPartitionHash(
 }
 
 // static
-base::StringPiece PartitionedHostStateMapBase::GetHalfKey(base::StringPiece k) {
+std::string_view PartitionedHostStateMapBase::GetHalfKey(std::string_view k) {
   CHECK_EQ(k.size(), crypto::kSHA256Length);
   const size_t kHalfSHA256HashLength = crypto::kSHA256Length / 2;
   return k.substr(0, kHalfSHA256HashLength);

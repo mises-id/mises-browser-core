@@ -82,7 +82,7 @@ class NftMetadataFetcher {
                                  APIRequestResult api_request_result);
   void OnGetSolanaAccountInfoTokenMetadata(
       GetSolTokenMetadataCallback callback,
-      absl::optional<SolanaAccountInfo> account_info,
+      std::optional<SolanaAccountInfo> account_info,
       mojom::SolanaProviderError error,
       const std::string& error_message);
   void CompleteGetEthTokenMetadata(GetEthTokenMetadataCallback callback,
@@ -99,7 +99,7 @@ class NftMetadataFetcher {
   friend class NftMetadataFetcherUnitTest;
   FRIEND_TEST_ALL_PREFIXES(NftMetadataFetcherUnitTest, DecodeMetadataUri);
 
-  static absl::optional<GURL> DecodeMetadataUri(
+  static std::optional<GURL> DecodeMetadataUri(
       const std::vector<uint8_t>& data);
 
   scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;

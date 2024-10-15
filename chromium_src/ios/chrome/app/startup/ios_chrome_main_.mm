@@ -9,7 +9,7 @@
 #import <vector>
 
 #import "base/check.h"
-#import "base/strings/string_piece.h"
+#import "#include <string_view>"
 #import "base/strings/sys_string_conversions.h"
 #import "base/time/time.h"
 #import "ios/web/public/init/web_main.h"

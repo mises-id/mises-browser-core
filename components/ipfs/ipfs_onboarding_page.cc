@@ -133,7 +133,7 @@ void IPFSOnboardingPage::ReportDaemonStopped() {
 }
 
 void IPFSOnboardingPage::GetConnectedPeers() {
-  ipfs_service_->GetConnectedPeers(base::NullCallback(), absl::nullopt);
+  ipfs_service_->GetConnectedPeers(base::NullCallback(), std::nullopt);
 }
 
 bool IPFSOnboardingPage::IsLocalNodeMode() {

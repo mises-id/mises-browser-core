@@ -37,7 +37,7 @@ void BraveWalletIpfsService::TranslateToNFTGatewayURL(
                              false)) {
     std::move(callback).Run(new_url.spec());
   } else {
-    std::move(callback).Run(absl::nullopt);
+    std::move(callback).Run(std::nullopt);
   }
 }
 
@@ -48,7 +48,7 @@ void BraveWalletIpfsService::ExtractIPFSUrlFromGatewayLikeUrl(
   if (result.has_value()) {
     std::move(callback).Run(result.value().spec());
   } else {
-    std::move(callback).Run(absl::nullopt);
+    std::move(callback).Run(std::nullopt);
   }
 }
 

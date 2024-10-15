@@ -26,7 +26,7 @@
   void AboutThisSiteSourceClicked(GURL url, const ui::Event& event);\
   void ShowPrivacySandboxSettings();\
   void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);\
-  absl::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
+  std::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
   void ShowPrivacySandboxAdPersonalization(); \
   bool IsBlockAutoPlayEnabled() override; \
   bool IsMultipleTabsOpen() override; \

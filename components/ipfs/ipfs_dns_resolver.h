@@ -9,7 +9,7 @@
 #include <string>
 
 #include "base/callback_list.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace ipfs {
 
@@ -20,16 +20,16 @@ class IpfsDnsResolver {
   IpfsDnsResolver(const IpfsDnsResolver&) = delete;
   IpfsDnsResolver& operator=(const IpfsDnsResolver&) = delete;
 
-  virtual absl::optional<std::string> GetFirstDnsOverHttpsServer() = 0;
+  virtual std::optional<std::string> GetFirstDnsOverHttpsServer() = 0;
 
   using IpfsDnsResolverObserverList =
-      base::RepeatingCallbackList<void(absl::optional<std::string>)>;
+      base::RepeatingCallbackList<void(std::optional<std::string>)>;
   using IpfsDnsResolverObserver = IpfsDnsResolverObserverList::CallbackType;
 
   base::CallbackListSubscription AddObserver(IpfsDnsResolverObserver observer);
 
  protected:
-  void Notify(absl::optional<std::string> value);
+  void Notify(std::optional<std::string> value);
 
  private:
   IpfsDnsResolverObserverList observers_;

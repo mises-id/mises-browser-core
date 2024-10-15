@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/browser/tx_meta.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -34,9 +34,9 @@ bool EthPendingTxTracker::UpdatePendingTransactions(size_t* num_pending) {
     return false;
 
   auto pending_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Submitted, absl::nullopt);
+      mojom::TransactionStatus::Submitted, std::nullopt);
   auto signed_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Signed, absl::nullopt);
+      mojom::TransactionStatus::Signed, std::nullopt);
   pending_transactions.insert(
       pending_transactions.end(),
       std::make_move_iterator(signed_transactions.begin()),
@@ -61,7 +61,7 @@ bool EthPendingTxTracker::UpdatePendingTransactions(size_t* num_pending) {
 void EthPendingTxTracker::ResubmitPendingTransactions() {
   // TODO(darkdh): limit the rate of tx publishing
   auto pending_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Submitted, absl::nullopt);
+      mojom::TransactionStatus::Submitted, std::nullopt);
   for (const auto& pending_transaction : pending_transactions) {
     auto* pending_eth_transaction =
         static_cast<EthTxMeta*>(pending_transaction.get());
@@ -124,7 +124,7 @@ void EthPendingTxTracker::OnSendRawTransaction(
 
 bool EthPendingTxTracker::IsNonceTaken(const EthTxMeta& meta) {
   auto confirmed_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Confirmed, absl::nullopt);
+      mojom::TransactionStatus::Confirmed, std::nullopt);
   for (const auto& confirmed_transaction : confirmed_transactions) {
     auto* eth_confirmed_transaction =
         static_cast<EthTxMeta*>(confirmed_transaction.get());
