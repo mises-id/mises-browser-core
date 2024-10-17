@@ -1270,7 +1270,7 @@ void BraveWalletService::OnGetImportInfo(
         break;
       case ImportError::kNone:
       default:
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
     }
     return;
   }

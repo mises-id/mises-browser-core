@@ -3,15 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_COMPONENTS_PERMISSIONS_PERMISSION_LIFETIME_UTILS_H_
-#define BRAVE_COMPONENTS_PERMISSIONS_PERMISSION_LIFETIME_UTILS_H_
+#ifndef MISES_COMPONENTS_PERMISSIONS_PERMISSION_LIFETIME_UTILS_H_
+#define MISES_COMPONENTS_PERMISSIONS_PERMISSION_LIFETIME_UTILS_H_
 
 #include <vector>
 
 #include "base/time/time.h"
 #include "mises/components/permissions/permission_lifetime_options.h"
 #include "components/permissions/permission_prompt.h"
-#include <optional>
 
 namespace permissions {
 

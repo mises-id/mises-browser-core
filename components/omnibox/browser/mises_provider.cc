@@ -300,7 +300,7 @@ int MisesProvider::CalculateRelevanceForWeb3sites() const {
       return 849;
 
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return 0;
   }
 }

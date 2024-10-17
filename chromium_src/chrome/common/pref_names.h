@@ -5,18 +5,6 @@
 
 namespace prefs {
 
-#if BUILDFLAG(IS_ANDROID)
-// Boolean that indicates whether Chrome enterprise extension request is enabled
-// or not.
-inline constexpr char kCloudExtensionRequestEnabled[] =
-    "enterprise_reporting.extension_request.enabled";
-
-// A list of extension ids represents pending extension request. The ids are
-// stored once user sent the request until the request is canceled, approved or
-// denied.
-inline constexpr char kCloudExtensionRequestIds[] =
-    "enterprise_reporting.extension_request.ids";
-#endif
 
 #if BUILDFLAG(IS_ANDROID)
 inline constexpr char kPinnedTabs[] = "pinned_tabs";
@@ -356,10 +344,6 @@ inline constexpr char kGoogleSearchSidePanelEnabled[] =
     "side_panel.google_search_side_panel_enabled";
 #endif
 
-#if BUILDFLAG(IS_ANDROID)
-// Dictionary that contains all of the Hats Survey Metadata.
-inline constexpr char kHatsSurveyMetadata[] = "hats.survey_metadata";
-#endif  // !BUILDFLAG(IS_ANDROID)
 
 
 inline constexpr char kExtensionsUIDefaultEVMWalletID[] = "extensions.ui.default_evm_wallet_id";

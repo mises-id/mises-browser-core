@@ -107,3 +107,4 @@ ios/third_party/mises/Device
 sdk.xcframework
 ios/third_party/mises/Distribution
 ios/third_party/mises/Bundles/GoogleService-Info.plist
+log

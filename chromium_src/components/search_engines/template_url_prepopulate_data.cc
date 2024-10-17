@@ -28,9 +28,7 @@ namespace TemplateURLPrepopulateData {
 // default value of the last two arguents.
 std::vector<std::unique_ptr<TemplateURLData>> GetPrepopulatedEngines_Unused(
     PrefService* prefs,
-    size_t* default_search_provider_index,
-    bool include_current_default = false,
-    TemplateURLService* template_url_service = nullptr);
+    search_engines::SearchEngineChoiceService* search_engine_choice_service);
 
 }  // namespace TemplateURLPrepopulateData
 
@@ -38,7 +36,7 @@ std::vector<std::unique_ptr<TemplateURLData>> GetPrepopulatedEngines_Unused(
 #if BUILDFLAG(IS_ANDROID)
 #define GetLocalPrepopulatedEngines GetLocalPrepopulatedEngines_Unused
 #endif
-#define GetPrepopulatedDefaultSearch GetPrepopulatedDefaultSearch_Unused
+#define GetPrepopulatedFallbackSearch GetPrepopulatedFallbackSearch_Unused
 #define GetPrepopulatedEngine GetPrepopulatedEngine_Unused
 #define GetPrepopulatedEngines GetPrepopulatedEngines_Unused
 #include "src/components/search_engines/template_url_prepopulate_data.cc"
@@ -46,7 +44,7 @@ std::vector<std::unique_ptr<TemplateURLData>> GetPrepopulatedEngines_Unused(
 #if BUILDFLAG(IS_ANDROID)
 #undef GetLocalPrepopulatedEngines
 #endif
-#undef GetPrepopulatedDefaultSearch
+#undef GetPrepopulatedFallbackSearch
 #undef GetPrepopulatedEngine
 #undef GetPrepopulatedEngines
 
@@ -113,7 +111,7 @@ constexpr MisesPrepopulatedEngineID kMisesEnginesNZ[] = {
 // A map to keep track of a full list of default engines for countries
 // that don't use the default list.
 constexpr auto kDefaultEnginesByCountryIdMap =
-    base::MakeFixedFlatMapSorted<int,
+    base::MakeFixedFlatMap<int,
                                  base::span<const MisesPrepopulatedEngineID>>(
         {{country_codes::CountryCharsToCountryID('A', 'M'),
           kMisesEnginesWithYandex},
@@ -180,7 +178,7 @@ constexpr auto kDefaultEnginesByCountryIdMap =
 MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
   const MisesPrepopulatedEngineID default_v6 = PREPOPULATED_ENGINE_ID_MISES;
   static constexpr auto kContentV6 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'U'),
            PREPOPULATED_ENGINE_ID_DUCKDUCKGO_AU_NZ_IE},
           {country_codes::CountryCharsToCountryID('D', 'E'),
@@ -193,7 +191,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
            PREPOPULATED_ENGINE_ID_DUCKDUCKGO_AU_NZ_IE},
       });
   static constexpr auto kContentV8 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'U'),
@@ -226,7 +224,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
            PREPOPULATED_ENGINE_ID_YANDEX},
       });
   static constexpr auto kContentV16 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'Z'),
@@ -251,7 +249,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
            PREPOPULATED_ENGINE_ID_YANDEX},
       });
   static constexpr auto kContentV17 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'Z'),
@@ -285,7 +283,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
       });
 
   static constexpr auto kContentV20 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'T'),
@@ -325,7 +323,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
       });
 
   static constexpr auto kContentV21 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'R'),
@@ -368,7 +366,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
            PREPOPULATED_ENGINE_ID_YANDEX},
       });
   static constexpr auto kContentV22 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'R'),
@@ -413,7 +411,7 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
            PREPOPULATED_ENGINE_ID_YANDEX},
       });
   static constexpr auto kContentV25 =
-      base::MakeFixedFlatMapSorted<int, MisesPrepopulatedEngineID>({
+      base::MakeFixedFlatMap<int, MisesPrepopulatedEngineID>({
           {country_codes::CountryCharsToCountryID('A', 'M'),
            PREPOPULATED_ENGINE_ID_YANDEX},
           {country_codes::CountryCharsToCountryID('A', 'R'),
@@ -461,49 +459,49 @@ MisesPrepopulatedEngineID GetDefaultSearchEngine(int country_id, int version) {
       });
 
   if (version > 24) {
-    auto* it = kContentV25.find(country_id);
+    const auto it = kContentV25.find(country_id);
     if (it == kContentV25.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 21) {
-    auto* it = kContentV22.find(country_id);
+    const auto it = kContentV22.find(country_id);
     if (it == kContentV22.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 20) {
-    auto* it = kContentV21.find(country_id);
+    const auto it = kContentV21.find(country_id);
     if (it == kContentV21.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 19) {
-    auto* it = kContentV20.find(country_id);
+    const auto it = kContentV20.find(country_id);
     if (it == kContentV20.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 16) {
-    auto* it = kContentV17.find(country_id);
+    const auto it = kContentV17.find(country_id);
     if (it == kContentV17.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 15) {
-    auto* it = kContentV16.find(country_id);
+    const auto it = kContentV16.find(country_id);
     if (it == kContentV16.end()) {
       return default_v6;
     }
     return it->second;
   } else if (version > 7) {
-    auto* it = kContentV8.find(country_id);
+    const auto it = kContentV8.find(country_id);
     if (it == kContentV8.end()) {
       return default_v6;
     }
     return it->second;
   } else {
-    auto* it = kContentV6.find(country_id);
+    const auto it = kContentV6.find(country_id);
     if (it == kContentV6.end()) {
       return default_v6;
     }
@@ -521,27 +519,21 @@ bool isMisesSearchEnabled() {
 // |engine_ids|. Fills in the default engine index for the given |country_id|,
 // if asked.
 std::vector<const PrepopulatedEngine*> GetEnginesFromEngineIDs(
-    base::span<const MisesPrepopulatedEngineID> engine_ids,
-    int country_id,
-    MisesPrepopulatedEngineID default_engine_id,
-    size_t* default_search_provider_index = nullptr) {
+    base::span<const MisesPrepopulatedEngineID> engine_ids) {
   std::vector<const PrepopulatedEngine*> engines;
   const auto& mises_engines_map =
       TemplateURLPrepopulateData::GetMisesEnginesMap();
-  if (!isMisesSearchEnabled()) {
-    if (default_engine_id == PREPOPULATED_ENGINE_ID_MISES) {
-      default_engine_id = PREPOPULATED_ENGINE_ID_GOOGLE;
-    }
-  }
+
   for (size_t i = 0; i < engine_ids.size(); ++i) {
-    const PrepopulatedEngine* engine = mises_engines_map.at(engine_ids[i]);
-    DCHECK(engine);
-    if (engine) {
-      engines.push_back(engine);
-      if (default_search_provider_index && default_engine_id == engine_ids[i]) {
-        *default_search_provider_index = i;
+    MisesPrepopulatedEngineID engine_id = engine_ids[i];
+    if (!isMisesSearchEnabled()) {
+      if (engine_id == PREPOPULATED_ENGINE_ID_MISES) {
+        engine_id = PREPOPULATED_ENGINE_ID_GOOGLE;
       }
     }
+    const PrepopulatedEngine* engine = mises_engines_map.at(engine_ids[i]);
+    CHECK(engine);
+    engines.push_back(engine);
   }
   return engines;
 }
@@ -566,26 +558,21 @@ void UpdateTemplateURLDataKeyword(
 std::vector<std::unique_ptr<TemplateURLData>>
 GetMisesPrepopulatedEnginesForCountryID(
     int country_id,
-    size_t* default_search_provider_index = nullptr,
     int version = kMisesCurrentDataVersion) {
   base::span<const MisesPrepopulatedEngineID> mises_engine_ids =
       kMisesEnginesDefault;
 
   // Check for a per-country override of this list
-  const auto* it_country = kDefaultEnginesByCountryIdMap.find(country_id);
+  const auto it_country = kDefaultEnginesByCountryIdMap.find(country_id);
   if (it_country != kDefaultEnginesByCountryIdMap.end()) {
     mises_engine_ids = it_country->second;
   }
   DCHECK_GT(mises_engine_ids.size(), 0ul);
 
-  // Get the default engine (overridable by country) for this version
-  MisesPrepopulatedEngineID default_id =
-      GetDefaultSearchEngine(country_id, version);
-
   // Build a vector PrepopulatedEngines from MisesPrepopulatedEngineIDs and
   // also get the default engine index
-  std::vector<const PrepopulatedEngine*> engines = GetEnginesFromEngineIDs(
-      mises_engine_ids, country_id, default_id, default_search_provider_index);
+  std::vector<const PrepopulatedEngine*> engines =
+      GetEnginesFromEngineIDs(mises_engine_ids);
   DCHECK(engines.size() == mises_engine_ids.size());
 
   std::vector<std::unique_ptr<TemplateURLData>> t_urls;
@@ -619,17 +606,14 @@ int GetDataVersion(PrefService* prefs) {
 // get search engines defined by Brave.
 std::vector<std::unique_ptr<TemplateURLData>> GetPrepopulatedEngines(
     PrefService* prefs,
-    size_t* default_search_provider_index,
-    bool include_current_default,
-    TemplateURLService* template_url_service) {
+    search_engines::SearchEngineChoiceService* search_engine_choice_service) {
   // If there is a set of search engines in the preferences file, it overrides
   // the built-in set.
-  if (default_search_provider_index)
-    *default_search_provider_index = 0;
   std::vector<std::unique_ptr<TemplateURLData>> t_urls =
       GetOverriddenTemplateURLData(prefs);
-  if (!t_urls.empty())
+  if (!t_urls.empty()) {
     return t_urls;
+  }
 
   int version = kMisesCurrentDataVersion;
   if (prefs && prefs->HasPrefPath(prefs::kMisesDefaultSearchVersion)) {
@@ -637,8 +621,10 @@ std::vector<std::unique_ptr<TemplateURLData>> GetPrepopulatedEngines(
   }
 
   return GetMisesPrepopulatedEnginesForCountryID(
-      country_codes::GetCountryIDFromPrefs(prefs),
-      default_search_provider_index, version);
+      search_engine_choice_service
+          ? search_engine_choice_service->GetCountryId()
+          : country_codes::GetCountryIDFromPrefs(prefs),
+      version);
 }
 
 // Redefines function with the same name in Chromium. Modifies the function to
@@ -658,33 +644,68 @@ std::vector<std::unique_ptr<TemplateURLData>> GetLocalPrepopulatedEngines(
 
 #endif
 
+
+
+// Chromium picks Google (if on the list, otherwise the first prepopulated on
+// the list). We should return the default engine by country, or Brave.
+std::unique_ptr<TemplateURLData> GetPrepopulatedFallbackSearch(
+    PrefService* prefs,
+    search_engines::SearchEngineChoiceService* search_engine_choice_service) {
+  std::vector<std::unique_ptr<TemplateURLData>> prepopulated_engines =
+      GetPrepopulatedEngines(prefs, search_engine_choice_service);
+  if (prepopulated_engines.empty()) {
+    return nullptr;
+  }
+
+  // Get the default engine (overridable by country) for this version
+  int version = kMisesCurrentDataVersion;
+  // if (prefs && prefs->HasPrefPath(prefs::kMisesCurrentDataVersion)) {
+  //   version = prefs->GetInteger(prefs::kMisesCurrentDataVersion);
+  // }
+
+  int country_id = search_engine_choice_service
+                       ? search_engine_choice_service->GetCountryId()
+                       : country_codes::GetCountryIDFromPrefs(prefs);
+
+  MisesPrepopulatedEngineID default_id =
+      GetDefaultSearchEngine(country_id, version);
+
+  std::unique_ptr<TemplateURLData> mises_engine;
+  for (auto& engine : prepopulated_engines) {
+    if (engine->prepopulate_id == static_cast<int>(default_id)) {
+      return std::move(engine);
+    } else if (engine->prepopulate_id ==
+               TemplateURLPrepopulateData::PREPOPULATED_ENGINE_ID_MISES) {
+      mises_engine = std::move(engine);
+    }
+  }
+
+  // Default engine wasn't found, then return Brave, if found.
+  if (mises_engine) {
+    return mises_engine;
+  }
+
+  // If all else fails, return the first engine on the list.
+  return std::move(prepopulated_engines[0]);
+}
+
 // Functions below are copied verbatim from
 // components\search_engines\template_url_prepopulate_data.cc because they
 // need to call our versions of redefined Chromium's functions.
 
-std::unique_ptr<TemplateURLData> GetPrepopulatedEngine(PrefService* prefs,
-                                                       int prepopulated_id) {
-  size_t default_index;
-  auto engines =
-      TemplateURLPrepopulateData::GetPrepopulatedEngines(prefs, &default_index);
+std::unique_ptr<TemplateURLData> GetPrepopulatedEngine(
+    PrefService* prefs,
+    search_engines::SearchEngineChoiceService* search_engine_choice_service,
+    int prepopulated_id) {
+  auto engines = TemplateURLPrepopulateData::GetPrepopulatedEngines(
+      prefs, search_engine_choice_service);
   for (auto& engine : engines) {
-    if (engine->prepopulate_id == prepopulated_id)
+    if (engine->prepopulate_id == prepopulated_id) {
       return std::move(engine);
+    }
   }
   return nullptr;
 }
 
-std::unique_ptr<TemplateURLData> GetPrepopulatedDefaultSearch(
-    PrefService* prefs) {
-  size_t default_search_index;
-  // This could be more efficient.  We are loading all the URLs to only keep
-  // the first one.
-  std::vector<std::unique_ptr<TemplateURLData>> loaded_urls =
-      GetPrepopulatedEngines(prefs, &default_search_index);
-
-  return (default_search_index < loaded_urls.size())
-             ? std::move(loaded_urls[default_search_index])
-             : nullptr;
-}
 
 }  // namespace TemplateURLPrepopulateData

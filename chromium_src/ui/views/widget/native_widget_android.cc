@@ -183,7 +183,7 @@ void NativeWidgetAndroid::SetWindowIcons(const gfx::ImageSkia& window_icon,
                                       const gfx::ImageSkia& app_icon) {
 }
 
-void NativeWidgetAndroid::InitModalType(ui::ModalType modal_type) {
+void NativeWidgetAndroid::InitModalType(ui::mojom::ModalType modal_type) {
 }
 
 gfx::Rect NativeWidgetAndroid::GetWindowBoundsInScreen() const {
@@ -316,11 +316,10 @@ void NativeWidgetAndroid::SetAspectRatio(const gfx::SizeF& aspect_ratio, const g
 void NativeWidgetAndroid::FlashFrame(bool flash) {
 }
 
-void NativeWidgetAndroid::RunShellDrag(View* view,
-                                    std::unique_ptr<ui::OSExchangeData> data,
-                                    const gfx::Point& location,
-                                    int operation,
-                                    ui::mojom::DragEventSource source) {
+void NativeWidgetAndroid::RunShellDrag(std::unique_ptr<ui::OSExchangeData> data,
+                    const gfx::Point& location,
+                    int operation,
+                    ui::mojom::DragEventSource source) {
 }
 
 void NativeWidgetAndroid::SchedulePaintInRect(const gfx::Rect& rect) {
@@ -366,10 +365,6 @@ void NativeWidgetAndroid::SetVisibilityAnimationDuration(
 
 void NativeWidgetAndroid::SetVisibilityAnimationTransition(
     Widget::VisibilityTransition transition) {
-}
-
-bool NativeWidgetAndroid::IsTranslucentWindowOpacitySupported() const {
-  return true;
 }
 
 ui::GestureRecognizer* NativeWidgetAndroid::GetGestureRecognizer() {

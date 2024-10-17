@@ -80,7 +80,7 @@ std::u16string GetImportNotificationTitle(ipfs::ImportState state) {
       return brave_l10n::GetLocalizedResourceUTF16String(
           IDS_IPFS_IMPORT_PARTLY_COMPLETED_NOTIFICATION_TITLE);
     default:
-      NOTREACHED();
+      NOTREACHED_IN_MIGRATION();
       break;
   }
   return std::u16string();
@@ -104,7 +104,7 @@ std::u16string GetImportNotificationBody(ipfs::ImportState state,
       return brave_l10n::GetLocalizedResourceUTF16String(
           IDS_IPFS_IMPORT_PARTLY_COMPLETED_NOTIFICATION_BODY);
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       break;
   }
   return std::u16string();
@@ -226,7 +226,7 @@ void IpfsImportController::OnDownloadFinished(
           base::GetDeletePathRecursivelyCallback(path.DirName()));
       break;
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
   }
 
   save_package_observer_.reset();
@@ -305,7 +305,7 @@ void IpfsImportController::OnImportCompleted(const ipfs::ImportedData& data) {
     content::OpenURLParams params(url, content::Referrer(),
                                   WindowOpenDisposition::NEW_FOREGROUND_TAB,
                                   ui::PAGE_TRANSITION_LINK, false);
-    web_contents_->OpenURL(params);
+    web_contents_->OpenURL(params, /*navigation_handle_callback=*/{});
   }
 }
 
@@ -332,7 +332,7 @@ void IpfsImportController::FileSelected(const base::FilePath& path,
       ImportDirectoryToIpfs(path, dialog_key_);
       break;
     default:
-      NOTREACHED() << "Only existing file or directory import supported";
+      NOTREACHED_IN_MIGRATION() << "Only existing file or directory import supported";
       break;
   }
   dialog_type_ = ui::SelectFileDialog::SELECT_NONE;

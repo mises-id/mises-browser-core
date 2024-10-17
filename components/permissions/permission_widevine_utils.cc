@@ -4,14 +4,15 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #include "mises/components/permissions/permission_widevine_utils.h"
-#include "base/logging.h"
+
 #include "components/permissions/permission_request.h"
 #include "components/permissions/request_type.h"
 
 namespace permissions {
 
 bool HasWidevinePermissionRequest(
-    const std::vector<permissions::PermissionRequest*>& requests) {
+    const std::vector<raw_ptr<permissions::PermissionRequest,
+                              VectorExperimental>>& requests) {
   // When widevine permission is requested, |requests| only includes Widevine
   // permission because it is not a candidate for grouping.
   if (requests.size() == 1 &&

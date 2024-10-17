@@ -563,7 +563,7 @@ mojom::NetworkInfoPtr GetKnownChain(PrefService* prefs,
     }
     return nullptr;
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return nullptr;
 }
 
@@ -681,7 +681,7 @@ bool KnownChainExists(const std::string& chain_id, mojom::CoinType coin) {
       if (base::CompareCaseInsensitiveASCII(network->chain_id, chain_id) == 0)
         return true;
   } else {
-    NOTREACHED() << coin;
+    NOTREACHED_IN_MIGRATION() << coin;
   }
   return false;
 }
@@ -758,7 +758,7 @@ std::string GenerateMnemonic(size_t entropy_size) {
     return "";
 
   std::vector<uint8_t> entropy(entropy_size);
-  crypto::RandBytes(&entropy[0], entropy.size());
+  crypto::RandBytes(entropy);
 
   return GenerateMnemonicInternal(entropy.data(), entropy.size());
 }
@@ -810,7 +810,7 @@ std::unique_ptr<std::vector<uint8_t>> MnemonicToEntropy(
       entropy_size = 32;
       break;
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
   }
   DCHECK(IsValidEntropySize(entropy_size)) << entropy_size;
 
@@ -1064,7 +1064,7 @@ std::vector<mojom::NetworkInfoPtr> GetAllKnownChains(PrefService* prefs,
     return result;
   }
 
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return result;
 }
 
@@ -1305,7 +1305,7 @@ GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
     return AddInfuraProjectId(GetInfuraURLForKnownChainId(chain_id));
   }
 
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return GURL();
 }
 
@@ -1467,7 +1467,7 @@ std::string GetPrefKeyForCoinType(mojom::CoinType coin) {
     case mojom::CoinType::SOL:
       return kSolanaPrefKey;
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return "";
 }
 
@@ -1479,7 +1479,7 @@ std::optional<mojom::CoinType> GetCoinTypeFromPrefKey(const std::string& key) {
   } else if (key == kSolanaPrefKey) {
     return mojom::CoinType::SOL;
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return std::nullopt;
 }
 
@@ -1512,7 +1512,7 @@ std::string GetFilecoinKeyringId(const std::string& network) {
              network == mojom::kLocalhostChainId) {
     return mojom::kFilecoinTestnetKeyringId;
   }
-  NOTREACHED() << "Unsupported chain id for filecoin " << network;
+  NOTREACHED_IN_MIGRATION() << "Unsupported chain id for filecoin " << network;
   return mojom::kFilecoinMainnet;
 }
 
@@ -1522,7 +1522,7 @@ std::string GetFilecoinChainId(const std::string& keyring_id) {
   } else if (keyring_id == mojom::kFilecoinTestnetKeyringId) {
     return mojom::kFilecoinTestnet;
   }
-  NOTREACHED() << "Unsupported keyring id for filecoin";
+  NOTREACHED_IN_MIGRATION() << "Unsupported keyring id for filecoin";
   return "";
 }
 

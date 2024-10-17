@@ -46,12 +46,12 @@ TEST(JsonRpcResponseParserUnitTest, ParseBoolResult) {
   std::string json =
       "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":"
       "\"0x0000000000000000000000000000000000000000000000000000000000000001\"}";
-  EXPECT_EQ(ParseBoolResult(ParseJson(json)), absl::make_optional(true));
+  EXPECT_EQ(ParseBoolResult(ParseJson(json)), std::make_optional(true));
 
   json =
       "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":"
       "\"0x0000000000000000000000000000000000000000000000000000000000000000\"}";
-  EXPECT_EQ(ParseBoolResult(ParseJson(json)), absl::make_optional(false));
+  EXPECT_EQ(ParseBoolResult(ParseJson(json)), std::make_optional(false));
 
   json =
       "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":"

@@ -21,6 +21,7 @@
 #include <optional>
 #include "third_party/blink/public/web/blink.h"
 #include "third_party/blink/public/web/web_local_frame.h"
+#include "third_party/blink/public/platform/scheduler/web_agent_group_scheduler.h"
 
 namespace brave_wallet {
 
@@ -79,7 +80,8 @@ void BraveWalletRenderFrameObserver::DidClearWindowObject() {
     return;
 
 
-  v8::Isolate* isolate = blink::MainThreadIsolate();
+  v8::Isolate* isolate =
+      render_frame()->GetWebFrame()->GetAgentGroupScheduler()->Isolate();
   v8::HandleScope handle_scope(isolate);
   auto* web_frame = render_frame()->GetWebFrame();
   v8::Local<v8::Context> context = web_frame->MainWorldScriptContext();
@@ -94,7 +96,8 @@ void BraveWalletRenderFrameObserver::DidClearWindowObject() {
     return;
   }
 
-  if (web_frame->GetDocument().IsDOMFeaturePolicyEnabled(context, "ethereum")) {
+  if (web_frame->GetDocument().IsDOMFeaturePolicyEnabled(isolate, context,
+                                                         "ethereum")) {
     JSEthereumProvider::Install(
         dynamic_params.allow_overwrite_window_ethereum_provider,
         render_frame());
@@ -104,7 +107,8 @@ void BraveWalletRenderFrameObserver::DidClearWindowObject() {
           brave_wallet::features::kBraveWalletSolanaFeature) &&
       base::FeatureList::IsEnabled(
           brave_wallet::features::kBraveWalletSolanaProviderFeature) &&
-      web_frame->GetDocument().IsDOMFeaturePolicyEnabled(context, "solana")) {
+      web_frame->GetDocument().IsDOMFeaturePolicyEnabled(isolate, context,
+                                                         "solana")) {
     JSSolanaProvider::Install(
         dynamic_params.allow_overwrite_window_solana_provider, render_frame());
   }

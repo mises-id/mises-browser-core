@@ -22,7 +22,7 @@
 
 namespace TemplateURLPrepopulateData {
 extern void LocalizeEngineList(int country_id,
-                               std::vector<BravePrepopulatedEngineID>* engines);
+                               std::vector<MisesPrepopulatedEngineID>* engines);
 }
 
 namespace {

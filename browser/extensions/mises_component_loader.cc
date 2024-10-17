@@ -573,7 +573,7 @@ void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
   params.should_replace_current_entry = false;
   content::WebContents* web_contents = GetWebContentsForProfile(profile_);
   if (web_contents) {
-      web_contents->OpenURL(params);
+      web_contents->OpenURL(params, /*navigation_handle_callback=*/{});
   }
 
   DismissMessageInternal(messages::DismissReason::PRIMARY_ACTION);

@@ -6,7 +6,8 @@
 #ifndef BRAVE_COMPONENTS_L10N_COMMON_UN_M49_CODE_UTIL_H_
 #define BRAVE_COMPONENTS_L10N_COMMON_UN_M49_CODE_UTIL_H_
 
-#include "base/strings/string_piece_forward.h"
+
+#include <string_view>
 
 namespace brave_l10n {
 

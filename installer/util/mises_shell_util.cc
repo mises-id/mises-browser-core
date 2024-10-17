@@ -22,7 +22,7 @@ std::wstring GetProgIdForFileType() {
     case version_info::Channel::CANARY:
       return L"MisesSFile";
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return L"MisesFile";
   }
 }

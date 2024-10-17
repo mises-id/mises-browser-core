@@ -1,31 +1,36 @@
-#include "components/password_manager/core/browser/password_feature_manager_impl.h"
-
-#include "base/feature_list.h"
-#include "build/build_config.h"
-#include "components/password_manager/core/browser/features/password_features.h"
-#include "components/password_manager/core/browser/features/password_manager_features_util.h"
-#include "components/password_manager/core/browser/password_manager_client.h"
-#include "components/password_manager/core/browser/password_sync_util.h"
-#include "components/password_manager/core/common/password_manager_pref_names.h"
-#include "components/prefs/pref_service.h"
-#include "components/sync/service/sync_service.h"
+#include "src/components/password_manager/core/browser/password_feature_manager_impl.cc"
 
 
 #if BUILDFLAG(IS_ANDROID)
+namespace password_manager {
+void PasswordFeatureManagerImpl::OptInToAccountStorage() {
+  //features_util::OptInToAccountStorage(pref_service_, sync_service_);
+}
 
-#undef BUILDFLAG_INTERNAL_IS_ANDROID
-#define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
-#undef ANDROID
+void PasswordFeatureManagerImpl::OptOutOfAccountStorage() {
+  //features_util::OptOutOfAccountStorage(pref_service_, sync_service_);
+}
 
-#include "src/components/password_manager/core/browser/password_feature_manager_impl.cc"
-#undef BUILDFLAG_INTERNAL_IS_ANDROID
-#define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
+void PasswordFeatureManagerImpl::OptOutOfAccountStorageAndClearSettings() {
+  //features_util::OptOutOfAccountStorageAndClearSettings(pref_service_,
+  //                                                      sync_service_);
+}
 
-#define ANDROID 1
-#else
+void PasswordFeatureManagerImpl::SetDefaultPasswordStore(
+    const PasswordForm::Store& store) {
+  //features_util::SetDefaultPasswordStore(pref_service_, sync_service_, store);
+}
 
-#include "src/components/password_manager/core/browser/password_feature_manager_impl.cc"
+bool PasswordFeatureManagerImpl::
+    ShouldOfferOptInAndMoveToAccountStoreAfterSavingLocally() const {
+  return ShouldShowAccountStorageOptIn() && !IsDefaultPasswordStoreSet();
+}
 
+bool PasswordFeatureManagerImpl::ShouldChangeDefaultPasswordStore() const {
+  return IsOptedInForAccountStorage() && IsDefaultPasswordStoreSet() &&
+         GetDefaultPasswordStore() == PasswordForm::Store::kProfileStore;
+}
+}
 
 #endif
 

@@ -1,0 +1,22 @@
+diff --git a/ui/base/dragdrop/os_exchange_data_provider.h b/ui/base/dragdrop/os_exchange_data_provider.h
+index dffb6a18c4a8edd7496a25cc8d739d17371871a0..f389eaf5d77e7cd07d6aac1e574ae4f7af2799c8 100644
+--- a/ui/base/dragdrop/os_exchange_data_provider.h
++++ b/ui/base/dragdrop/os_exchange_data_provider.h
+@@ -24,7 +24,7 @@
+ #include "base/functional/callback_forward.h"
+ #endif
+ 
+-#if defined(USE_AURA) || BUILDFLAG(IS_APPLE)
++#if defined(USE_AURA) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_ANDROID)
+ #include "ui/gfx/geometry/vector2d.h"
+ #include "ui/gfx/image/image_skia.h"
+ #endif
+@@ -114,7 +114,7 @@ class COMPONENT_EXPORT(UI_BASE_DATA_EXCHANGE) OSExchangeDataProvider {
+   virtual bool HasHtml() const = 0;
+ #endif
+ 
+-#if defined(USE_AURA) || BUILDFLAG(IS_APPLE)
++#if defined(USE_AURA) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_ANDROID)
+   virtual void SetDragImage(const gfx::ImageSkia& image,
+                             const gfx::Vector2d& cursor_offset) = 0;
+   virtual gfx::ImageSkia GetDragImage() const = 0;

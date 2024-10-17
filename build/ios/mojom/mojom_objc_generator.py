@@ -581,7 +581,7 @@ class Generator(generator.Generator):
                      kind)]["nullable_is_same_type"])
                     or not isinstance(typemap,
                                       (StructMojoTypemap, UnionMojoTypemap))):
-                cpp_assign = "%s ? absl::make_optional(%s) : std::nullopt" % (
+                cpp_assign = "%s ? std::make_optional(%s) : std::nullopt" % (
                     accessor, cpp_assign)
             else:
                 cpp_assign = "%s ? %s : nullptr" % (accessor, cpp_assign)

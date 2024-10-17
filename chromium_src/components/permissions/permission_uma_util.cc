@@ -27,6 +27,8 @@
     return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
   case RequestType::kFileSystemAccess: \
       return RequestTypeForUma::PERMISSION_FILE_SYSTEM_ACCESS; \
+  case RequestType::kCapturedSurfaceControl: \
+      return RequestTypeForUma::CAPTURED_SURFACE_CONTROL; \
   case RequestType::kWidevine:                    \
   case RequestType::kMisesEthereum:               \
   case RequestType::kMisesSolana:                 \

@@ -43,9 +43,9 @@ class DesktopBrowserFrameAndroid : public NativeBrowserFrame {
   void GetWindowPlacement(gfx::Rect* bounds,
                           ui::WindowShowState* show_state) const override;
   content::KeyboardEventProcessingResult PreHandleKeyboardEvent(
-      const content::NativeWebKeyboardEvent& event) override;
+      const input::NativeWebKeyboardEvent& event) override;
   bool HandleKeyboardEvent(
-      const content::NativeWebKeyboardEvent& event) override;
+      const input::NativeWebKeyboardEvent& event) override;
  bool ShouldRestorePreviousBrowserWidgetState() const override;
    bool ShouldUseInitialVisibleOnAllWorkspaces() const override;
  private:

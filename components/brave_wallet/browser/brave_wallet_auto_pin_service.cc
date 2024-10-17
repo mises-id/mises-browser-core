@@ -120,7 +120,7 @@ void BraveWalletAutoPinService::OnTokenAdded(BlockchainTokenPtr token) {
     return;
   }
   tokens_.insert(token_str.value());
-  base::EraseIf(queue_, [&token_str](const auto& intent) {
+  std::erase_if(queue_, [&token_str](const auto& intent) {
     return GetTokenStringValue(intent->token) == token_str;
   });
   AddOrExecute(
@@ -139,7 +139,7 @@ void BraveWalletAutoPinService::OnTokenRemoved(BlockchainTokenPtr token) {
     return;
   }
   tokens_.erase(token_str.value());
-  base::EraseIf(queue_, [&token_str](const auto& intent) {
+  std::erase_if(queue_, [&token_str](const auto& intent) {
     return GetTokenStringValue(intent->token) == token_str;
   });
   AddOrExecute(
@@ -148,7 +148,7 @@ void BraveWalletAutoPinService::OnTokenRemoved(BlockchainTokenPtr token) {
 
 void BraveWalletAutoPinService::Restore() {
   if (!IsAutoPinEnabled()) {
-    NOTREACHED();
+   NOTREACHED_IN_MIGRATION();
     return;
   }
   tokens_.clear();

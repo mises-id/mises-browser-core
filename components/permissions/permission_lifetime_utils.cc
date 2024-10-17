@@ -6,6 +6,7 @@
 #include "mises/components/permissions/permission_lifetime_utils.h"
 
 #include <algorithm>
+#include <optional>
 #include <string>
 #include <utility>
 
@@ -18,7 +19,6 @@
 #include "components/permissions/features.h"
 #include "components/permissions/permission_request.h"
 #include "net/base/features.h"
-#include <optional>
 
 namespace permissions {
 
@@ -90,7 +90,7 @@ bool ShouldShowLifetimeOptions(PermissionPrompt::Delegate* delegate) {
 void SetRequestsLifetime(const std::vector<PermissionLifetimeOption>& options,
                          size_t index,
                          PermissionPrompt::Delegate* delegate) {
-  for (auto* request : delegate->Requests()) {
+  for (PermissionRequest* request : delegate->Requests()) {
     SetRequestLifetime(options, index, request);
   }
 }

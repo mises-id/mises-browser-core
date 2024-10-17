@@ -48,7 +48,7 @@ void Web3sitesSafeControllerClient::GoBack() {
 
   // Prevent the back button from returning to the bad site.
   params.should_replace_current_entry = true;
-  web_contents_->OpenURL(params);
+  web_contents_->OpenURL(params, /*navigation_handle_callback=*/{});
 }
 
 void Web3sitesSafeControllerClient::Proceed() {

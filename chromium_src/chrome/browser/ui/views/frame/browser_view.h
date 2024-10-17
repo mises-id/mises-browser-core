@@ -2,7 +2,6 @@
 #define MISES_BROWSER_UI_VIEWS_FRAME_BROWSER_VIEW_H_
 
 #include "chrome/browser/ui/browser_window.h"
-#include "chrome/browser/ui/performance_controls/high_efficiency_opt_in_iph_controller.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #define HighEfficiencyOptInIPHController HighEfficiencyOptInIPHController_Mises

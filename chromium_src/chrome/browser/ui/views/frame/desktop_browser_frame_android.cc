@@ -61,12 +61,12 @@ void DesktopBrowserFrameAndroid::GetWindowPlacement(
 
 content::KeyboardEventProcessingResult
 DesktopBrowserFrameAndroid::PreHandleKeyboardEvent(
-    const content::NativeWebKeyboardEvent& event) {
+    const input::NativeWebKeyboardEvent& event) {
   return content::KeyboardEventProcessingResult::NOT_HANDLED;
 }
 
 bool DesktopBrowserFrameAndroid::HandleKeyboardEvent(
-    const content::NativeWebKeyboardEvent& event) {
+    const input::NativeWebKeyboardEvent& event) {
   return false;
 }
 

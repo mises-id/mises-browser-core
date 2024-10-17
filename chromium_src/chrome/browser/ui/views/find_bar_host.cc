@@ -1,6 +1,7 @@
 #include "build/build_config.h"
 #if BUILDFLAG(IS_ANDROID)
 #include "content/public/common/input/native_web_keyboard_event.h"
+#include "content/common/content_export.h"
 namespace content {
   struct CONTENT_EXPORT NativeWebKeyboardEvent_Mises : public NativeWebKeyboardEvent {
     explicit NativeWebKeyboardEvent_Mises(const ui::KeyEvent& key_event);

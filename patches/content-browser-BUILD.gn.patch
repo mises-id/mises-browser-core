@@ -1,5 +1,5 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index a0f17bb4ff8eede75f46bb365aca5cd59a90ebad..5a0b3815674bdb3df2e0918c80bf27108c62c5ff 100644
+index a0f17bb4ff8eede75f46bb365aca5cd59a90ebad..e44db469af88285c6edee208a16535940794b3da 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
 @@ -3310,6 +3310,8 @@ source_set("browser") {
@@ -11,12 +11,13 @@ index a0f17bb4ff8eede75f46bb365aca5cd59a90ebad..5a0b3815674bdb3df2e0918c80bf2710
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3409,6 +3411,14 @@ source_set("browser") {
+@@ -3409,6 +3411,15 @@ source_set("browser") {
        deps += [ "//media/mojo/mojom:web_speech_recognition" ]
      }
  
 +    if (is_android) {
 +      sources -= [
++        "speech/soda_speech_recognition_engine_impl.cc",
 +        "media/session/audio_focus_delegate_default.cc", 
 +        "network_sandbox.cc",
 +        "media/capture/sub_capture_target_id_web_contents_helper.cc",
@@ -26,7 +27,7 @@ index a0f17bb4ff8eede75f46bb365aca5cd59a90ebad..5a0b3815674bdb3df2e0918c80bf2710
      deps += [
        "//components/device_event_log",
        "//components/soda:constants",
-@@ -3423,7 +3433,7 @@ source_set("browser") {
+@@ -3423,7 +3434,7 @@ source_set("browser") {
      ]
    }
  

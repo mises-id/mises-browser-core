@@ -583,7 +583,7 @@ void EthereumProviderImpl::EthSubscribe(
     base::Value id) {
   const auto generateHexBytes = [](std::vector<std::string>& subscriptions) {
     std::vector<uint8_t> bytes(16);
-    crypto::RandBytes(&bytes.front(), bytes.size());
+    crypto::RandBytes(bytes);
     std::string hex_bytes = ToHex(bytes);
     subscriptions.push_back(hex_bytes);
     return std::tuple<bool, std::string>{subscriptions.size() == 1, hex_bytes};
@@ -644,7 +644,7 @@ bool EthereumProviderImpl::UnsubscribeBlockObserver(
 
 bool EthereumProviderImpl::UnsubscribeLogObserver(
     const std::string& subscription_id) {
-  if (base::Erase(eth_log_subscriptions_, subscription_id)) {
+  if (std::erase(eth_log_subscriptions_, subscription_id)) {
     eth_logs_tracker_.RemoveSubscriber(subscription_id);
     if (eth_log_subscriptions_.empty()) {
       eth_logs_tracker_.Stop();
@@ -1525,7 +1525,7 @@ void EthereumProviderImpl::OnRequestEthereumPermissions(
             l10n_util::GetStringUTF8(IDS_WALLET_NO_KEYRING_ERROR));
         break;
       default:
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
     }
   } else if (method == kRequestPermissionsMethod) {
     formed_response =

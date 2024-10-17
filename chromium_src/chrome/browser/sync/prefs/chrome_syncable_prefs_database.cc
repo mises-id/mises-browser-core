@@ -127,8 +127,8 @@ const auto& MisesSyncablePreferences() {
 
 std::optional<sync_preferences::SyncablePrefMetadata>
 ChromeSyncablePrefsDatabase::GetSyncablePrefMetadata(
-    const std::string& pref_name) const {
-  const auto* it = MisesSyncablePreferences().find(pref_name);
+    std::string_view pref_name) const {
+  const auto it = MisesSyncablePreferences().find(pref_name);
   if (it != MisesSyncablePreferences().end()) {
     return it->second;
   }

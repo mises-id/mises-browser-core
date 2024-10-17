@@ -129,7 +129,7 @@ std::string BraveWalletPinService::StatusToString(
     case mojom::TokenPinStatusCode::STATUS_UNPINNING_PENDING:
       return "unpinning_pendig";
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return "";
 }
 
@@ -154,7 +154,7 @@ std::string BraveWalletPinService::ErrorCodeToString(
     case mojom::WalletPinServiceErrorCode::ERR_MEDIA_TYPE_UNSUPPORTED:
       return "ERR_MEDIA_TYPE_UNSUPPORTED";
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return "";
 }
 
@@ -521,7 +521,7 @@ void BraveWalletPinService::AddPin(mojom::BlockchainTokenPtr token,
                        weak_ptr_factory_.GetWeakPtr(), service,
                        std::move(callback), token.Clone()));
   } else {
-    NOTREACHED();
+   NOTREACHED_IN_MIGRATION();
   }
 }
 

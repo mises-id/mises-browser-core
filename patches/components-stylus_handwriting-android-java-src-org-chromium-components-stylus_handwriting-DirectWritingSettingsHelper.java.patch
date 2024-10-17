@@ -1,8 +1,16 @@
 diff --git a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-index 2d24ce9acf54b957c6805026f73af961b9362e21..ccd438a18e087722b80a179e486d8317d5e0a9a2 100644
+index 2d24ce9acf54b957c6805026f73af961b9362e21..0c4129482db822e23026dbd88d8a597a6b0207fd 100644
 --- a/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
 +++ b/components/stylus_handwriting/android/java/src/org/chromium/components/stylus_handwriting/DirectWritingSettingsHelper.java
-@@ -25,6 +25,7 @@ public class DirectWritingSettingsHelper {
+@@ -7,6 +7,7 @@ package org.chromium.components.stylus_handwriting;
+ import android.content.Context;
+ import android.os.Build;
+ import android.provider.Settings;
++import androidx.annotation.Nullable;
+ 
+ /** Helper class for Direct writing feature support and settings. */
+ public class DirectWritingSettingsHelper {
+@@ -25,6 +26,7 @@ public class DirectWritingSettingsHelper {
      public static boolean isEnabled(Context context) {
          // Samsung keyboard supports handwriting in Chrome and Webview from Android S onwards.
          if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return false;
@@ -10,7 +18,7 @@ index 2d24ce9acf54b957c6805026f73af961b9362e21..ccd438a18e087722b80a179e486d8317
          return isHoneyboardDefault(context) && isFeatureEnabled(context);
      }
  
-@@ -64,4 +65,24 @@ public class DirectWritingSettingsHelper {
+@@ -64,4 +66,24 @@ public class DirectWritingSettingsHelper {
          }
          return false;
      }
@@ -28,7 +36,7 @@ index 2d24ce9acf54b957c6805026f73af961b9362e21..ccd438a18e087722b80a179e486d8317
 +                        "android.widget.directwriting.IDirectWritingServiceCallback.Stub");
 +                dwCallbackStubClass.getConstructor().isAccessible();
 +                sDirectWritingServiceCallbackAvailable = true;
-+            } catch (ClassNotFoundException | NoSuchMethodException e | NoSuchMethodError e) {
++            } catch (ClassNotFoundException | NoSuchMethodException | NoSuchMethodError e) {
 +                sDirectWritingServiceCallbackAvailable = false;
 +            }
 +        }

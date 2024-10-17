@@ -119,6 +119,8 @@ bool NativeViewHostAndroid::SetCornerRadii(const gfx::RoundedCornersF& corner_ra
 gfx::NativeViewAccessible  NativeViewHostAndroid::GetParentAccessible() {
   return NULL;
 }
-
+ui::Layer* NativeViewHostAndroid::GetUILayer() {
+  return NULL;
+}
 }  // namespace views
 

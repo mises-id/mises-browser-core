@@ -45,6 +45,7 @@ class NativeViewHostAndroid : public NativeViewHostWrapper {
   void SetParentAccessible(gfx::NativeViewAccessible) override;
   bool SetCornerRadii(const gfx::RoundedCornersF& corner_radii) override;
   gfx::NativeViewAccessible GetParentAccessible() override;
+  ui::Layer* GetUILayer() override;
  private:
   friend class NativeViewHostAndroidTest;
 

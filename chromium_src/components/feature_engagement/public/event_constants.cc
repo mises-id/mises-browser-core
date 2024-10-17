@@ -18,9 +18,6 @@ const char kCustomizeChromeOpened[] = "customize_chrome_opened";
 const char kMediaBackgrounded[] = "media_backgrounded";
 const char kGlobalMediaControlsOpened[] = "global_media_controls_opened";
 
-const char kFocusModeOpened[] = "focus_mode_opened";
-const char kFocusModeConditionsMet[] = "focus_mode_conditions_met";
-
 const char kSideSearchAutoTriggered[] = "side_search_auto_triggered";
 const char kSideSearchOpened[] = "side_search_opened";
 const char kSideSearchPageActionLabelShown[] =
@@ -42,8 +39,6 @@ const char kFocusHelpBubbleAcceleratorPromoRead[] =
     "focus_help_bubble_accelerator_promo_read";
 
 const char kBatterySaverDialogShown[] = "battery_saver_info_shown";
-
-const char kHighEfficiencyDialogShown[] = "high_efficiency_info_shown";
 
 const char kExtensionsMenuOpenedWhileExtensionHasAccess[] =
     "extensions_menu_opened_while_extension_has_access";

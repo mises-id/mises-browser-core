@@ -10,17 +10,17 @@
 #define IsDuplicateOf IsDuplicateOf_ChromiumImpl
 
 #if BUILDFLAG(IS_ANDROID)
-#define GetDialogMessageText\
+#define GetPermissionNameTextFragment\
   GetMessageTextFragment() const;\
   bool IsConfirmationChipSupported();\
   IconId GetIconForChip();\
   IconId GetBlockedIconForChip();\
   std::optional<std::u16string> GetRequestChipText(ChipTextType type) const;\
-  virtual std::u16string GetDialogMessageText
+  virtual std::u16string GetPermissionNameTextFragment
 
 #include "src/components/permissions/permission_request.h"
 
-#undef GetDialogMessageText
+#undef GetPermissionNameTextFragment
 
 #else
 #include "src/components/permissions/permission_request.h"
@@ -43,12 +43,23 @@ class PermissionRequest : public PermissionRequest_ChromiumImpl {
 
   PermissionRequest(PermissionRequestData request_data,
                     PermissionDecidedCallback permission_decided_callback,
-                    base::OnceClosure delete_callback);
+                    base::OnceClosure delete_callback,
+                    bool uses_automatic_embargo);
 
   PermissionRequest(const PermissionRequest&) = delete;
   PermissionRequest& operator=(const PermissionRequest&) = delete;
 
   ~PermissionRequest() override;
+
+#if BUILDFLAG(IS_ANDROID)
+  AnnotatedMessageText GetDialogAnnotatedMessageText(
+      const GURL& embedding_origin) const override;
+
+  static AnnotatedMessageText GetDialogAnnotatedMessageText(
+      std::u16string requesting_origin_formatted_for_display,
+      int message_id,
+      bool format_origin_bold);
+#endif
 
   bool SupportsLifetime() const;
   void SetLifetime(std::optional<base::TimeDelta> lifetime);

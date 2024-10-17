@@ -160,7 +160,7 @@ std::string GetRootPath(const std::string& keyring_id) {
     return "m/84'/0'";
   }
 
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return "";
 }
 
@@ -356,7 +356,7 @@ void RemoveImportedAccountForKeyring(PrefService* profile_prefs,
         return *account_address == address;
       }
     }
-    NOTREACHED();
+   NOTREACHED_IN_MIGRATION();
     return false;
   });
 }
@@ -966,7 +966,7 @@ void KeyringService::AddAccount(const std::string& account_name,
                                 AddAccountCallback callback) {
   auto keyring_id = GetKeyringIdForCoinNonFIL(coin);
   if (!keyring_id) {
-    NOTREACHED() << "AddFilecoinAccount must be used";
+    NOTREACHED_IN_MIGRATION() << "AddFilecoinAccount must be used";
     std::move(callback).Run(false);
     return;
   }
@@ -1092,7 +1092,7 @@ void KeyringService::ImportAccount(const std::string& account_name,
   auto keyring_id = GetKeyringIdForCoinNonFIL(coin);
 
   if (!keyring_id) {
-    NOTREACHED() << "ImportFilecoinAccount must be used";
+    NOTREACHED_IN_MIGRATION() << "ImportFilecoinAccount must be used";
     std::move(callback).Run(false, "");
     return;
   }
@@ -1762,7 +1762,7 @@ std::optional<std::string> KeyringService::GetSelectedAccount(
     mojom::CoinType coin) const {
   auto keyring_id = GetKeyringIdForCoinNonFIL(coin);
   if (!keyring_id) {
-    NOTREACHED() << "GetFilecoinSelectedAccount must be used";
+    NOTREACHED_IN_MIGRATION() << "GetFilecoinSelectedAccount must be used";
   }
   const base::Value* value =
       GetPrefForKeyring(*profile_prefs_, kSelectedAccount, *keyring_id);
