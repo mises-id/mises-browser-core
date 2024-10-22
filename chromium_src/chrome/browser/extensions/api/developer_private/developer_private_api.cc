@@ -4,6 +4,7 @@
 #define DeveloperPrivateLoadUnpackedFunction DeveloperPrivateLoadUnpackedFunction_Chromium
 #include "src/chrome/browser/extensions/api/developer_private/developer_private_api.cc"
 #undef DeveloperPrivateLoadUnpackedFunction
+#include "ui/shell_dialogs/selected_file_info.h"
 
 
 namespace extensions {
@@ -56,14 +57,13 @@ void DeveloperPrivateLoadUnpackedFunction::CheckFile(const base::FilePath& path)
     }
     base::DeleteFile(file_path_tmp);
 
-       content::GetUIThreadTaskRunner({})->PostTask(
-        FROM_HERE,
-        base::BindOnce(&DeveloperPrivateLoadUnpackedFunction::FileSelected, this, new_path));
+    content::GetUIThreadTaskRunner({})->PostTask(
+      FROM_HERE,
+      base::BindOnce(&DeveloperPrivateLoadUnpackedFunction::FileSelected, this, ui::SelectedFileInfo(new_path), /*index=*/0));
 }
-void DeveloperPrivateLoadUnpackedFunction::FileSelected(
-    const base::FilePath& path) {
-  base::FilePath new_path = path;
-  LOG(INFO) << "[EXTENSIONS] Selected file: " << new_path << " with extension: " << path.Extension();
+void DeveloperPrivateLoadUnpackedFunction::FileSelected(const ui::SelectedFileInfo& file, int index) {
+  base::FilePath new_path = file.file_path;
+  LOG(INFO) << "[EXTENSIONS] Selected file: " << new_path << " with extension: " << new_path.Extension();
 #if BUILDFLAG(IS_ANDROID)
   if (new_path.IsContentUri()) {
      base::ThreadPool::PostTask(
@@ -102,9 +102,9 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelected(
     }
     return ;
   }
-  new_path = path.DirName();
+  new_path = new_path.DirName();
   LOG(INFO) << "[EXTENSIONS] Loading path with: " << new_path;
-  DeveloperPrivateLoadUnpackedFunction_Chromium::FileSelected(new_path);
+  DeveloperPrivateLoadUnpackedFunction_Chromium::FileSelected(file, index);
   
 }
 

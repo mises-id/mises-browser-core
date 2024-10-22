@@ -22,7 +22,7 @@ void CreateTabObjectAndroid(
 void CreateTabListAndroid(
     const Browser* browser,
     const Extension* extension,
-    Feature::Context context,
+    mojom::ContextType context,
 		base::Value::List& tab_list);
 bool GetTabByIdAndroid(int tab_id, content::WebContents** contents, int* tab_index);
 base::Value::Dict CreateDummyWindowValueForExtension(

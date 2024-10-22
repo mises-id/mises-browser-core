@@ -218,8 +218,6 @@ void BraveWalletP3A::ReportJSProvider(mojom::JSProviderType provider_type,
 
 void BraveWalletP3A::ReportOnboardingAction(
     mojom::OnboardingAction onboarding_action) {
-  UMA_HISTOGRAM_ENUMERATION(kOnboardingConversionHistogramName,
-                            onboarding_action);
 }
 
 void BraveWalletP3A::ReportTransactionSent(mojom::CoinType coin,

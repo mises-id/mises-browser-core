@@ -46,8 +46,8 @@
 #include "ui/base/webui/web_ui_util.h"
 
 WalletPanelUI::WalletPanelUI(content::WebUI* web_ui)
-    : ui::MojoBubbleWebUIController(web_ui,
-                                    true /* Needed for webui browser tests */) {
+    : TopChromeWebUIController(web_ui,
+                                true /* Needed for webui browser tests */) {
   auto* profile = Profile::FromWebUI(web_ui);
   content::WebUIDataSource* source =
       content::WebUIDataSource::CreateAndAdd(profile, kWalletPanelHost);
@@ -72,9 +72,7 @@ WalletPanelUI::WalletPanelUI(content::WebUI* web_ui)
   source->AddBoolean(brave_wallet::mojom::kP3ACountTestNetworksLoadTimeKey,
                      base::CommandLine::ForCurrentProcess()->HasSwitch(
                          brave_wallet::mojom::kP3ACountTestNetworksSwitch));
-  if (ShouldDisableCSPForTesting()) {
-    source->DisableContentSecurityPolicy();
-  }
+
   content::URLDataSource::Add(profile,
                               std::make_unique<SanitizedImageSource>(profile));
   brave_wallet::AddBlockchainTokenImageSource(profile);

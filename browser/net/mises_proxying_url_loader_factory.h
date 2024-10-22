@@ -198,11 +198,11 @@ class MisesProxyingURLLoaderFactory
 
   ~MisesProxyingURLLoaderFactory() override;
 
-  static bool MaybeProxyRequest(
+  static void MaybeProxyRequest(
       content::BrowserContext* browser_context,
       content::RenderFrameHost* render_frame_host,
       int render_process_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+      network::URLLoaderFactoryBuilder& factory_builder,
       scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   // network::mojom::URLLoaderFactory:

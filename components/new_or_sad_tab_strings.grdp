@@ -198,7 +198,7 @@
       <message name="IDS_NEW_TAB_OTR_THIRD_PARTY_BLOCKED_COOKIE" desc="Text informing users that 3rd-party cookies are blocked." formatter_data="android_java">
         Third-party cookies are blocked
       </message>
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <if expr="_google_chrome">
           <message name="IDS_NEW_TAB_OTR_THIRD_PARTY_BLOCKED_COOKIE_SUBLABEL" desc="Sub-text explaining 3rd-party cookie blocking with a help center link to re-enabling 3rd-party cookies for specific sites." formatter_data="android_java">
             Mises blocks sites from using third-party cookies to track you as you browse.

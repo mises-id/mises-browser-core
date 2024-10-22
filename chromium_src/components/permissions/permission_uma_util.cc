@@ -29,6 +29,10 @@
       return RequestTypeForUma::PERMISSION_FILE_SYSTEM_ACCESS; \
   case RequestType::kCapturedSurfaceControl: \
       return RequestTypeForUma::CAPTURED_SURFACE_CONTROL; \
+  case RequestType::kKeyboardLock:\
+      return RequestTypeForUma::PERMISSION_KEYBOARD_LOCK;\
+  case RequestType::kPointerLock:\
+      return RequestTypeForUma::PERMISSION_POINTER_LOCK;\
   case RequestType::kWidevine:                    \
   case RequestType::kMisesEthereum:               \
   case RequestType::kMisesSolana:                 \

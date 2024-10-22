@@ -460,12 +460,13 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::ContinueToSendHeaders(
         removed_headers.begin(), removed_headers.end());
 
     for (auto& set_header : set_headers) {
-      std::string header_value;
-      if (request_.headers.GetHeader(set_header, &header_value)) {
+      std::optional<std::string> header_value =
+          request_.headers.GetHeader(set_header);
+      if (header_value) {
         pending_follow_redirect_params_->modified_headers.SetHeader(
-            set_header, header_value);
+            set_header, *header_value);
       } else {
-       NOTREACHED_IN_MIGRATION();
+        NOTREACHED_IN_MIGRATION();
       }
     }
 
@@ -660,23 +661,17 @@ MisesProxyingURLLoaderFactory::MisesProxyingURLLoaderFactory(
 MisesProxyingURLLoaderFactory::~MisesProxyingURLLoaderFactory() = default;
 
 // static
-bool MisesProxyingURLLoaderFactory::MaybeProxyRequest(
+void MisesProxyingURLLoaderFactory::MaybeProxyRequest(
     content::BrowserContext* browser_context,
     content::RenderFrameHost* render_frame_host,
     int render_process_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+    network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
-  auto proxied_receiver = std::move(*factory_receiver);
-  mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory_remote;
-  *factory_receiver = target_factory_remote.InitWithNewPipeAndPassReceiver();
-
   ResourceContextData::StartProxying(
       browser_context, render_process_id,
       render_frame_host ? render_frame_host->GetFrameTreeNodeId() : 0,
-      std::move(proxied_receiver), std::move(target_factory_remote),
-      navigation_response_task_runner);
-  return true;
+      factory_builder, navigation_response_task_runner);
 }
 
 void MisesProxyingURLLoaderFactory::CreateLoaderAndStart(

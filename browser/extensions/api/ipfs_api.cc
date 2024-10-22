@@ -80,7 +80,7 @@ base::Value MakePeersResponseFromVector(
 
 bool WriteFileOnFileThread(const base::FilePath& path,
                            const std::string& value) {
-  return base::WriteFile(path, value.c_str(), value.size());
+  return base::WriteFile(path, value);
 }
 
 }  // namespace

@@ -40,7 +40,7 @@ void CreateTabObjectAndroid(
     }
     TabAndroid* tab_android = tab_model->GetTabAt(tab_index);
     if(tab_android) {
-      tab_object->window_id = tab_android->window_id().id();
+      tab_object->window_id = tab_android->GetWindowId().id();
       if (tab_android->ExtensionWindowID() != -1) {
         tab_object->window_id = tab_android->ExtensionWindowID();
       }
@@ -52,7 +52,7 @@ void CreateTabObjectAndroid(
 void CreateTabListAndroid(
     const Browser* browser,
     const Extension* extension,
-    Feature::Context context,
+    mojom::ContextType context,
     base::Value::List& tab_list) {
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())

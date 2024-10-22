@@ -3,8 +3,6 @@
 #include "chrome/browser/ui/browser.h"
 void NavigateToManagePasswordsPage(Browser* browser,
                                    ManagePasswordsReferrer referrer) {
-  UMA_HISTOGRAM_ENUMERATION("PasswordManager.ManagePasswordsReferrer",
-                            referrer);
   chrome::ShowPasswordManager(browser);
 }
 

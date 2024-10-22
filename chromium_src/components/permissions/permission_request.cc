@@ -52,6 +52,9 @@
   case RequestType::kRegisterProtocolHandler: \
   case RequestType::kWindowManagement: \
   case RequestType::kFileSystemAccess: \
+  case RequestType::kCapturedSurfaceControl:\
+  case RequestType::kKeyboardLock: \
+  case RequestType::kPointerLock: \
       return permissions::PermissionRequest::AnnotatedMessageText( \
         std::u16string(), {});                                   
 
@@ -67,10 +70,10 @@
 namespace {
 #if BUILDFLAG(IS_ANDROID)
 const unsigned int IDS_VR_INFOBAR_TEXT_OVERRIDE = IDS_VR_INFOBAR_TEXT;
-#else
+#endif
 const unsigned int IDS_VR_PERMISSION_FRAGMENT_OVERRIDE =
     IDS_VR_PERMISSION_FRAGMENT;
-#endif
+
 }  // namespace
 
 #if BUILDFLAG(IS_ANDROID)

@@ -75,7 +75,7 @@ const auto& MisesSyncablePreferences() {
          {syncable_prefs_ids::kHomePageIsNewTabPage, syncer::PREFERENCES,
           sync_preferences::PrefSensitivity::kNone,
           sync_preferences::MergeBehavior::kNone}},
-        {prefs::kNtpCustomBackgroundDict,
+        {prefs::kNtpCustomBackgroundDictDoNotUse,
          {syncable_prefs_ids::kNtpCustomBackgroundDict, syncer::PREFERENCES,
           sync_preferences::PrefSensitivity::kNone,
           sync_preferences::MergeBehavior::kNone}},

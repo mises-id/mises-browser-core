@@ -5,6 +5,11 @@
 #include "chrome/browser/ui/views/hats/hats_next_web_dialog.h"
 #include "chrome/browser/ui/views/profiles/profile_menu_coordinator.h"
 #include "chrome/browser/ui/browser_window.h"
+#include "components/user_education/common/feature_promo_controller.h"
+#include "components/user_education/common/new_badge_controller.h"
+#include "chrome/browser/ui/autofill/save_address_bubble_controller.h"
+#include "chrome/browser/ui/autofill/update_address_bubble_controller.h"
+#include "chrome/browser/ui/autofill/add_new_address_bubble_controller.h"
 
 #if BUILDFLAG(IS_ANDROID)
 
@@ -48,11 +53,15 @@ public:
       bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowSaveAddressProfileBubble(
       content::WebContents* web_contents,
-      SaveUpdateAddressProfileBubbleController* controller,
+      std::unique_ptr<SaveAddressBubbleController> controller,
       bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowUpdateAddressProfileBubble(
       content::WebContents* web_contents,
-      SaveUpdateAddressProfileBubbleController* controller,
+      std::unique_ptr<UpdateAddressBubbleController> controller,
+      bool is_user_gesture) override {return nullptr;}
+  AutofillBubbleBase* ShowAddNewAddressProfileBubble(
+      content::WebContents* web_contents,
+      std::unique_ptr<AddNewAddressBubbleController> controller,
       bool is_user_gesture) override {return nullptr;}
   AutofillBubbleBase* ShowVirtualCardManualFallbackBubble(
       content::WebContents* web_contents,
@@ -62,11 +71,20 @@ public:
       content::WebContents* web_contents,
       VirtualCardEnrollBubbleController* controller,
       bool is_user_gesture) override {return nullptr;}
+  AutofillBubbleBase* ShowVirtualCardEnrollConfirmationBubble(
+      content::WebContents* web_contents,
+      VirtualCardEnrollBubbleController* controller) override {return nullptr;}
   AutofillBubbleBase* ShowMandatoryReauthBubble(
       content::WebContents* web_contents,
       MandatoryReauthBubbleController* controller,
       bool is_user_gesture,
       MandatoryReauthBubbleType bubble_type) override {return nullptr;}
+  AutofillBubbleBase* ShowSaveCardConfirmationBubble(
+      content::WebContents* web_contents,
+      SaveCardBubbleController* controller) override {return nullptr;}
+  AutofillBubbleBase* ShowSaveIbanConfirmationBubble(
+      content::WebContents* web_contents,
+      IbanBubbleController* controller) override {return nullptr;}
 };
 
 
@@ -74,12 +92,14 @@ public:
 
 class HatsNextWebDialog_Mises {
   public:
-   HatsNextWebDialog_Mises(Browser* browser,
-                    const std::string& trigger_id,
-                    base::OnceClosure success_callback,
-                    base::OnceClosure failure_callback,
-                    const SurveyBitsData& product_specific_bits_data,
-                    const SurveyStringData& product_specific_string_data) {}
+   HatsNextWebDialog_Mises(
+    Browser* browser,
+    const std::string& trigger_id,
+    const std::optional<std::string>& hats_histogram_name,
+    base::OnceClosure success_callback,
+    base::OnceClosure failure_callback,
+    const SurveyBitsData& product_specific_bits_data,
+    const SurveyStringData& product_specific_string_data) {}
 };
 
 class ProfileMenuCoordinator_Mises {

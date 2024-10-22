@@ -32,8 +32,6 @@
 
 #if BUILDFLAG(IS_ANDROID)
 
-#define TabModel TabModelDesktop
-
 
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
@@ -53,8 +51,6 @@
 
 #undef active_index
 
-
-#undef TabModel
 
 #else
 

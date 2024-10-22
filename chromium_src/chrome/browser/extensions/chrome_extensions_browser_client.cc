@@ -14,8 +14,9 @@
 namespace safe_browsing {
 
 void DownloadProtectionService::UploadForConsumerDeepScanning(
-    download::DownloadItem* item,
-    base::optional_ref<const std::string> password) {}
+      download::DownloadItem* item,
+      DownloadItemWarningData::DeepScanTrigger trigger,
+      base::optional_ref<const std::string> password) {}
 
 ClientDownloadResponse::TailoredVerdict
 DownloadProtectionService::GetDownloadProtectionTailoredVerdict(

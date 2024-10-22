@@ -307,7 +307,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Settings specific strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <part file="settings_strings.grdp" />
         <part file="shared_settings_strings.grdp" />
       </if>
@@ -317,7 +317,7 @@ are declared in tools/grit/grit_rule.gni.
       </if>
 
       <!-- Support Tool strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <part file="support_tool_strings.grdp" />
       </if>
 
@@ -17437,7 +17437,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </if>
     </if>
     <!-- Performance hovercard strings -->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
       <message name="IDS_HOVERCARD_TAB_MEMORY_USAGE" desc="Text at the bottom of a hovercard that shows how much memory a specific tab is using.">
         Memory usage: <ph name="MEMORY_USAGE">$1<ex>300 MB</ex></ph>
       </message>
@@ -17452,7 +17452,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </message>
     </if>
     <!-- Performance Intervention Strings-->
-    <if expr="not is_android">
+    <if expr="is_android or not is_android">
         <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_TITLE_V1" desc="Title text for a dialog with information on tabs that could be causing performance issues.">
         Performance issue alert
         </message>
@@ -17689,7 +17689,7 @@ Please help our engineers fix this problem. Tell us what happened right before y
 
     <!-- Safety Hub elements. -->
     <!-- TODO(crbug.com/324562205): Make strings translateable once finalized. -->
-    <if expr="is_android">
+    <if expr="is_android and not is_android">
         <message name="IDS_SETTINGS_SAFETY_HUB_SAFE_BROWSING_MENU_NOTIFICATION" desc="Summary for the Safe Browsing module of Safety Check in the Magic Stack. Shown when Safe Browsing is turned off by the user.">
           Get protection against dangerous sites
         </message>

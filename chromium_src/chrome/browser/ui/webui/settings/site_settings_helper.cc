@@ -6,29 +6,30 @@
 #include "chrome/browser/ui/webui/settings/site_settings_helper.h"
 
 #define HasRegisteredGroupName HasRegisteredGroupName_ChromiumImpl
-#define ContentSettingsTypeToGroupName \
-  ContentSettingsTypeToGroupName_ChromiumImpl
 #define GetVisiblePermissionCategories \
   GetVisiblePermissionCategories_ChromiumImpl
 
 // clang-format off
 #define MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST               \
   {ContentSettingsType::MISES_ETHEREUM, nullptr},                  \
-  {ContentSettingsType::MISES_SOLANA, nullptr},                    
+  {ContentSettingsType::MISES_SOLANA, nullptr},                    \
+  {ContentSettingsType::MISES_REMEMBER_1P_STORAGE, nullptr},                 
 // clang-format on
 
 #define MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_FROM_GROUP_NAME \
-  if (name == "ethereum")                                                \
-    return ContentSettingsType::MISES_ETHEREUM;                          \
-  if (name == "solana")                                                  \
-    return ContentSettingsType::MISES_SOLANA;                            
+  if (name == "autoplay")                                                \
+    return ContentSettingsType::AUTOPLAY;
+
+#define MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_TO_GROUP_NAME \
+  if (type == ContentSettingsType::AUTOPLAY)                           \
+    return "autoplay";                        
 
 #include "src/chrome/browser/ui/webui/settings/site_settings_helper.cc"
 
 #undef MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_FROM_GROUP_NAME
+#undef MISES_SITE_SETTINGS_HELPER_CONTENT_SETTINGS_TYPE_TO_GROUP_NAME
 #undef MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST
 #undef GetVisiblePermissionCategories
-#undef ContentSettingsTypeToGroupName
 #undef HasRegisteredGroupName
 
 namespace site_settings {
@@ -41,12 +42,6 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
   return HasRegisteredGroupName_ChromiumImpl(type);
 }
 
-std::string_view ContentSettingsTypeToGroupName(ContentSettingsType type) {
-  if (type == ContentSettingsType::MISES_ETHEREUM)
-    return "ethereum";
-  if (type == ContentSettingsType::MISES_SOLANA)
-    return "solana";
-  return ContentSettingsTypeToGroupName_ChromiumImpl(type);
 }
 
 const std::vector<ContentSettingsType>& GetVisiblePermissionCategories() {

@@ -1,4 +1,5 @@
 #include "mises/browser/android/mises/mises_controller.h"
+#include "base/logging.h"
 #include <jni.h>
 #include "base/android/jni_android.h"
 #include "base/android/jni_string.h"

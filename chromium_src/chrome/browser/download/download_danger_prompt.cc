@@ -7,14 +7,11 @@
 
 #else 
 
-void DownloadDangerPrompt::SendSafeBrowsingDownloadReport(
-    safe_browsing::ClientSafeBrowsingReportRequest::ReportType report_type,
-    bool did_proceed,
+// static
+void DownloadDangerPrompt::RecordDownloadWarningEvent(
+    Action action,
     download::DownloadItem* download) {
-}
-void DownloadDangerPrompt::RecordDownloadDangerPrompt(
-    bool did_proceed,
-    const download::DownloadItem& download) {
+
 }
 
 #endif

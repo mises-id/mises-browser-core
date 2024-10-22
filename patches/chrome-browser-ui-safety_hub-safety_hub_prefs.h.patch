@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/safety_hub/safety_hub_prefs.h b/chrome/browser/ui/safety_hub/safety_hub_prefs.h
+index 9ead67d073ab575f2a107395780a7970f1eb08a7..e8eea1e3c9bfd33642c69dfd02231c2ce8e6dba2 100644
+--- a/chrome/browser/ui/safety_hub/safety_hub_prefs.h
++++ b/chrome/browser/ui/safety_hub/safety_hub_prefs.h
+@@ -11,7 +11,7 @@ class PrefRegistrySimple;
+ 
+ namespace safety_hub_prefs {
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ // Dictionary that determines the next time SafetyHub will trigger a background
+ // password check.
+ inline constexpr char kBackgroundPasswordCheckTimeAndInterval[] =

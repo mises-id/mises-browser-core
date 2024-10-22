@@ -6,8 +6,8 @@
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
-extern const base::Feature kCopyLinkToText;
-extern const base::Feature kMuteNotificationSnoozeAction;
+BASE_DECLARE_FEATURE(kReadAnythingPermanentAccessibility);
+BASE_DECLARE_FEATURE(kMuteNotificationSnoozeAction);
 #endif
 
 }  // namespace features

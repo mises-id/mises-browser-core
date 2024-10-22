@@ -280,8 +280,11 @@ if (is_android) {
     "metrics/power/power_metrics_reporter.cc",
     "profiles/delete_profile_helper.cc",
     "accessibility/live_translate_controller_factory.cc",
-          "supervised_user/desktop/supervised_user_service_platform_delegate.cc",
-      "supervised_user/desktop/supervised_user_service_platform_delegate.h",
+    "supervised_user/desktop/supervised_user_service_platform_delegate.cc",
+    "supervised_user/desktop/supervised_user_service_platform_delegate.h",
+
+    "webapps/webapps_client_desktop.cc",
+    "webapps/webapps_client_desktop.h",
   ]
   mises_chrome_browser_exception_deps += [
     "//chrome/browser/companion/visual_query",
@@ -299,10 +302,10 @@ if (is_android) {
     "//chrome/browser/ui/webui/top_chrome",
     "//chrome/browser/ui/webui/top_chrome:impl",
      "//chrome/browser/ui/webui/privacy_sandbox/related_website_sets:mojo_bindings",
-     "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
+    #"//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
     "//services/screen_ai",
     "//services/screen_ai/public/cpp:utilities",
-    "//services/screen_ai/public/mojom",
+    #"//services/screen_ai/public/mojom",
      "//chrome/browser/themes",
     "//components/live_caption",
     "//components/live_caption:live_translate",

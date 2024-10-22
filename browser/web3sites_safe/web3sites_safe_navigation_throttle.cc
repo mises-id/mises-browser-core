@@ -93,7 +93,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
         interstitial_params.url, interstitial_params.referrer,
         WindowOpenDisposition::CURRENT_TAB,
         ui::PageTransition::PAGE_TRANSITION_RELOAD,
-        false /* is_renderer_initiated */));
+        false /* is_renderer_initiated */), /*navigation_handle_callback=*/{});
     return content::NavigationThrottle::CANCEL_AND_IGNORE;
   }
   //defer check

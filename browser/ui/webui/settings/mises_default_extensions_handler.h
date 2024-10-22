@@ -25,8 +25,7 @@ class Profile;
 
 class MisesDefaultExtensionsHandler : public settings::SettingsPageUIHandler
 #if BUILDFLAG(ENABLE_IPFS)
-    ,
-                                      ipfs::IpfsServiceObserver,
+                                      ,ipfs::IpfsServiceObserver,
                                       public ui::SelectFileDialog::Listener
 #endif
 {
@@ -65,10 +64,8 @@ class MisesDefaultExtensionsHandler : public settings::SettingsPageUIHandler
   void ExportIPNSKey(const base::Value::List& args);
 
   // ui::SelectFileDialog::Listener
-  void FileSelected(const base::FilePath& path,
-                    int index,
-                    void* params) override;
-  void FileSelectionCanceled(void* params) override;
+  void FileSelected(const ui::SelectedFileInfo& file, int indexs) override;
+  void FileSelectionCanceled() override;
 
   void OnKeyImported(const std::string& key,
                      const std::string& value,

@@ -39,6 +39,8 @@ android_fix = [
 "NTPCustomBackgroundEnabled",
 "WebAppSettings",
 "Startup-RestoreOnStartup",
+"RestoreOnStartup",
+"ExtensionDeveloperModeSettings",
 ]
 ios_fix = [
     "FullscreenAllowed",

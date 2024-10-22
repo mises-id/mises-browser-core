@@ -47,8 +47,12 @@ BASE_DECLARE_FEATURE(kPreinstalledWebAppDuplicationFixer);
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
+COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kChromeAppsDeprecation);
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kChromeAppsDeprecation;
+BASE_DECLARE_FEATURE(kShortcutsNotApps);
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kShortcutsNotAppsRevealDesktop);
+
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kKeepForceInstalledPreinstalledApps;
 #endif
@@ -381,13 +385,7 @@ extern const base::FeatureParam<base::TimeDelta>
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppDedupeInstallUrls);
-
-COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppManifestIconUpdating);
-
-COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppManifestImmediateUpdating);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconBackgroundFix);
@@ -397,6 +395,9 @@ BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconUpdateFix);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppUniversalInstall);
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 
@@ -439,6 +440,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>
     kTrackingProtectionSentimentSurveyTreatmentDelayedTriggerId;
 #endif
+
 
 
 }  // namespace features

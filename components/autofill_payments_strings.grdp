@@ -134,7 +134,7 @@
   <message name="IDS_AUTOFILL_SAVE_CARD_PROMPT_TITLE_TO_CLOUD_V4" desc="Title text for the Autofill save card prompt when the card is to be saved by uploading it to Google Payments, according to November 2018 UI guidelines. The prompt can be either a bubble or an infobar.">
     Save card to Mises sync chain?
   </message>
-  <if expr="not is_ios and not is_android">
+  <if expr="is_android or not is_ios and not is_android">
     <message name="IDS_AUTOFILL_SAVE_CARD_PROMPT_TITLE_TO_CLOUD_SECURITY" desc="Title text for the credit card upload save prompt on Desktop, using security-focused messaging.">
       Save card securely?
     </message>
@@ -189,7 +189,7 @@
   <message name="IDS_AUTOFILL_SAVE_CARD_WITH_CVC_PROMPT_EXPLANATION_UPLOAD" desc="Explanation for the effect of the Autofill save card prompt when the card is to be saved along with the CVC by uploading it to the server. The prompt will be shown on both the Desktop bubble and the Android bottom sheet.">
     To pay faster next time, save your card, encrypted security code, and billing address in your Mises sync chain
   </message>
-  <if expr="not is_ios and not is_android">
+  <if expr="is_android or not is_ios and not is_android">
     <message name="IDS_AUTOFILL_SAVE_CARD_PROMPT_UPLOAD_EXPLANATION_SECURITY" desc="Explanation of the benefit of credit card upload save on Desktop, using security-focused messaging.">
       Pay faster when your card is saved. Card details are encrypted in your Mises sync chain.
     </message>
@@ -748,7 +748,7 @@
       Virtual card
     </message>
   </if>
-  <if expr="not is_ios and not is_android">
+  <if expr="is_android or not is_ios and not is_android">
     <message name="IDS_AUTOFILL_VIRTUAL_CARD_ENROLLMENT_FALLBACK_ICON_TOOLTIP" desc="The tooltip message for the omnibox icon for the virtual card enroll bubble on Desktop. This bubble prompts users if they would like to enroll in a virtual card.">
       Add virtual card
     </message>

@@ -3,21 +3,14 @@
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
-// This feature can be used as an emergency kill switch to disable Screen AI
-// main content extraction service in case of security or other issues.
-// Please talk to components/services/screen_ai/OWNERS if any changes to this
-// feature or its functionality is needed.
-BASE_FEATURE(kEmergencyDisableScreenAIMainContentExtraction,
-             "EmergencyDisableScreenAIMainContentExtraction",
-             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsScreenAIMainContentExtractionEnabled() {
+  return base::FeatureList::IsEnabled(
+      ax::mojom::features::kScreenAIMainContentExtractionEnabled);
+}
 
-// This feature can be used as an emergency kill switch to disable Screen AI
-// OCR service in case of security or other issues.
-// Please talk to components/services/screen_ai/OWNERS if any changes to this
-// feature or its functionality is needed.
-BASE_FEATURE(kEmergencyDisableScreenAIOCR,
-             "EmergencyDisableScreenAIOCR",
-             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsScreenAIOCREnabled() {
+  return base::FeatureList::IsEnabled(ax::mojom::features::kScreenAIOCREnabled);
+}
 
 BASE_FEATURE(kAccessibilityService,
              "AccessibilityService",
@@ -37,45 +30,18 @@ bool IsDataCollectionModeForScreen2xEnabled() {
       ::features::kDataCollectionModeForScreen2x);
 }
 
-BASE_FEATURE(kLayoutExtraction,
-             "LayoutExtraction",
+BASE_FEATURE(kMainNodeAnnotations,
+             "MainNodeAnnotations",
              base::FEATURE_DISABLED_BY_DEFAULT);
-bool IsLayoutExtractionEnabled() {
-  return base::FeatureList::IsEnabled(::features::kLayoutExtraction);
+bool IsMainNodeAnnotationsEnabled() {
+  return base::FeatureList::IsEnabled(::features::kMainNodeAnnotations);
 }
 
-BASE_FEATURE(kPdfOcr,
-             "PdfOcr",
-#if BUILDFLAG(IS_CHROMEOS)
-             base::FEATURE_ENABLED_BY_DEFAULT
-#else
-             base::FEATURE_DISABLED_BY_DEFAULT
-#endif  // BUILDFLAG(IS_CHROMEOS)
-);
+// This feature has a 10% holdback to measure memory impact.
+BASE_FEATURE(kPdfOcr, "PdfOcr", base::FEATURE_ENABLED_BY_DEFAULT);
 
 bool IsPdfOcrEnabled() {
-  return base::FeatureList::IsEnabled(::features::kPdfOcr) &&
-         !base::FeatureList::IsEnabled(
-             ::features::kEmergencyDisableScreenAIOCR);
-}
-
-BASE_FEATURE(kReadAnything, "ReadAnything", base::FEATURE_ENABLED_BY_DEFAULT);
-bool IsReadAnythingEnabled() {
-  return base::FeatureList::IsEnabled(::features::kReadAnything);
-}
-
-BASE_FEATURE(kReadAnythingLocalSidePanel,
-             "ReadAnythingLocalSidePanel",
-             base::FEATURE_DISABLED_BY_DEFAULT);
-bool IsReadAnythingLocalSidePanelEnabled() {
-  return base::FeatureList::IsEnabled(::features::kReadAnythingLocalSidePanel);
-}
-
-BASE_FEATURE(kReadAnythingOmniboxIcon,
-             "ReadAnythingOmniboxIcon",
-             base::FEATURE_DISABLED_BY_DEFAULT);
-bool IsReadAnythingOmniboxIconEnabled() {
-  return base::FeatureList::IsEnabled(::features::kReadAnythingOmniboxIcon);
+  return base::FeatureList::IsEnabled(::features::kPdfOcr);
 }
 
 BASE_FEATURE(kReadAnythingReadAloud,
@@ -85,20 +51,46 @@ bool IsReadAnythingReadAloudEnabled() {
   return base::FeatureList::IsEnabled(::features::kReadAnythingReadAloud);
 }
 
-BASE_FEATURE(kReadAnythingWebUIToolbar,
-             "ReadAnythingWebUIToolbar",
+BASE_FEATURE(kReadAloudAutoVoiceSwitching,
+             "ReadAloudAutoVoiceSwitching",
              base::FEATURE_DISABLED_BY_DEFAULT);
-bool IsReadAnythingWebUIToolbarEnabled() {
-  return base::FeatureList::IsEnabled(::features::kReadAnythingWebUIToolbar);
+bool IsReadAloudAutoVoiceSwitchingEnabled() {
+  return IsReadAnythingReadAloudEnabled() &&
+         base::FeatureList::IsEnabled(::features::kReadAloudAutoVoiceSwitching);
+}
+
+BASE_FEATURE(kReadAloudLanguagePackDownloading,
+             "ReadAloudLanguagePackDownloading",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAloudLanguagePackDownloadingEnabled() {
+  return IsReadAnythingReadAloudEnabled() &&
+         base::FeatureList::IsEnabled(
+             ::features::kReadAloudLanguagePackDownloading);
+}
+
+BASE_FEATURE(kReadAnythingReadAloudAutomaticWordHighlighting,
+             "ReadAnythingReadAloudAutomaticWordHighlighting",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAnythingReadAloudAutomaticWordHighlightingEnabled() {
+  return base::FeatureList::IsEnabled(::features::kReadAnythingReadAloud) &&
+         base::FeatureList::IsEnabled(
+             ::features::kReadAnythingReadAloudAutomaticWordHighlighting);
+}
+
+BASE_FEATURE(kReadAnythingReadAloudPhraseHighlighting,
+             "ReadAnythingReadAloudPhraseHighlighting",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAnythingReadAloudPhraseHighlightingEnabled() {
+  return base::FeatureList::IsEnabled(::features::kReadAnythingReadAloud) &&
+         base::FeatureList::IsEnabled(
+             ::features::kReadAnythingReadAloudPhraseHighlighting);
 }
 
 BASE_FEATURE(kReadAnythingWithScreen2x,
              "ReadAnythingWithScreen2x",
              base::FEATURE_ENABLED_BY_DEFAULT);
 bool IsReadAnythingWithScreen2xEnabled() {
-  return base::FeatureList::IsEnabled(::features::kReadAnythingWithScreen2x) &&
-         !base::FeatureList::IsEnabled(
-             ::features::kEmergencyDisableScreenAIMainContentExtraction);
+  return base::FeatureList::IsEnabled(::features::kReadAnythingWithScreen2x);
 }
 
 BASE_FEATURE(kReadAnythingWithAlgorithm,
@@ -108,6 +100,30 @@ bool IsReadAnythingWithAlgorithmEnabled() {
   return base::FeatureList::IsEnabled(::features::kReadAnythingWithAlgorithm);
 }
 
+BASE_FEATURE(kReadAnythingImagesViaAlgorithm,
+             "ReadAnythingImagesViaAlgorithm",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAnythingImagesViaAlgorithmEnabled() {
+  return base::FeatureList::IsEnabled(
+             ::features::kReadAnythingImagesViaAlgorithm) &&
+         IsReadAnythingWithAlgorithmEnabled();
+}
+
+BASE_FEATURE(kReadAnythingDocsIntegration,
+             "ReadAnythingDocsIntegration",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAnythingDocsIntegrationEnabled() {
+  return base::FeatureList::IsEnabled(::features::kReadAnythingDocsIntegration);
+}
+
+BASE_FEATURE(kReadAnythingDocsLoadMoreButton,
+             "ReadAnythingDocsLoadMoreButton",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsReadAnythingDocsLoadMoreButtonEnabled() {
+  return base::FeatureList::IsEnabled(
+      ::features::kReadAnythingDocsLoadMoreButton);
+}
+
 // This feature is only for debug purposes and for security/privacy reasons,
 // should be never enabled by default .
 BASE_FEATURE(kScreenAIDebugMode,
@@ -115,6 +131,14 @@ BASE_FEATURE(kScreenAIDebugMode,
              base::FEATURE_DISABLED_BY_DEFAULT);
 bool IsScreenAIDebugModeEnabled() {
   return base::FeatureList::IsEnabled(::features::kScreenAIDebugMode);
+}
+
+// This feature is only used in tests and must not be enabled by default.
+BASE_FEATURE(kScreenAITestMode,
+             "ScreenAITestMode",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+bool IsScreenAITestModeEnabled() {
+  return base::FeatureList::IsEnabled(::features::kScreenAITestMode);
 }
 
 #endif  // !BUILDFLAG(IS_ANDROID)

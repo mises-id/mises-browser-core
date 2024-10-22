@@ -11,15 +11,14 @@
 namespace content_settings {
 
 void ContentSettingsManagerImpl::AllowEphemeralStorageAccess(
-    int32_t render_frame_id,
+    const blink::LocalFrameToken& frame_token,
     const url::Origin& origin,
     const net::SiteForCookies& site_for_cookies,
     const url::Origin& top_frame_origin,
     AllowEphemeralStorageAccessCallback callback) {
   url::Origin storage_origin;
   const bool should_use = cookie_settings_->ShouldUseEphemeralStorage(
-      origin, site_for_cookies, top_frame_origin, net::CookieSettingOverrides(),
-      storage_origin);
+      origin, site_for_cookies, top_frame_origin, storage_origin);
   std::move(callback).Run(should_use
                               ? std::make_optional<url::Origin>(storage_origin)
                               : std::nullopt);

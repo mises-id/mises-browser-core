@@ -10,6 +10,13 @@ BASE_FEATURE(kAccessCodeCastUI,
              base::FEATURE_ENABLED_BY_DEFAULT);
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+BASE_FEATURE(kPressAndHoldEscToExitBrowserFullscreen,
+             "PressAndHoldEscToExitBrowserFullscreen",
+             base::FEATURE_ENABLED_BY_DEFAULT
+);
+#endif
+
 #if defined(ANDROID)
 BASE_FEATURE(kSidePanelCompanionDefaultPinned,
              "SidePanelCompanionDefaultPinned",

@@ -18,12 +18,12 @@
 
 
 
-#define OnTabDeactivated OnMisesInfoChanged(); \
-  void SendMostVisitedInfo_Chromium(const InstantMostVisitedInfo& most_visited_info); \
-  void OpenExtension(const GURL& url) override; \
-  void ShowRewardAd() override; \
-  void LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) override; \
-  void OnTabDeactivated
+// #define OnTabDeactivated OnMisesInfoChanged(); \
+//   void SendMostVisitedInfo_Chromium(const InstantMostVisitedInfo& most_visited_info); \
+//   void OpenExtension(const GURL& url) override; \
+//   void ShowRewardAd() override; \
+//   void LogEvent(const std::u16string &event_type, const std::u16string &key,const std::u16string &value) override; \
+//   void OnTabDeactivated
 
 
 #if BUILDFLAG(IS_ANDROID)
@@ -45,7 +45,7 @@
 
 #endif
 
-#undef OnTabDeactivated
+// #undef OnTabDeactivated
 
 
 

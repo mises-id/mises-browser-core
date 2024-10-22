@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/chrome_content_browser_client.cc b/chrome/browser/chrome_content_browser_client.cc
-index 4db37945148cb812b9e03117a2cde3c68f897d51..f12c4299e38035e4c1b9e9aa57428281d5b819a5 100644
+index 4db37945148cb812b9e03117a2cde3c68f897d51..ff000a638354d842bd252982b7fe53eaf824f155 100644
 --- a/chrome/browser/chrome_content_browser_client.cc
 +++ b/chrome/browser/chrome_content_browser_client.cc
 @@ -1615,7 +1615,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
@@ -47,10 +47,18 @@ index 4db37945148cb812b9e03117a2cde3c68f897d51..f12c4299e38035e4c1b9e9aa57428281
    // Extensions are exempt from manifest policy enforcement and retain the
    // default frame permissions policy.
    if (app_origin.scheme() == extensions::kExtensionScheme) {
-@@ -6500,6 +6500,16 @@ void AddChromeSchemeFactories(
-             frame_host, chrome::kChromeSearchScheme,
+@@ -6501,6 +6501,7 @@ void AddChromeSchemeFactories(
              /*allowed_webui_hosts=*/base::flat_set<std::string>()));
    }
+ 
++
+   extensions::ChromeExtensionWebContentsObserver* web_observer =
+       extensions::ChromeExtensionWebContentsObserver::FromWebContents(
+           web_contents);
+@@ -6728,6 +6729,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
+     }
+   }
+ 
 +#if BUILDFLAG(ENABLE_IPFS)
 +  {
 +    std::unique_ptr<content::URLLoaderRequestInterceptor> ipfs_interceptor =
@@ -61,6 +69,6 @@ index 4db37945148cb812b9e03117a2cde3c68f897d51..f12c4299e38035e4c1b9e9aa57428281
 +  }
 +#endif
 +
+   return interceptors;
+ }
  
-   extensions::ChromeExtensionWebContentsObserver* web_observer =
-       extensions::ChromeExtensionWebContentsObserver::FromWebContents(

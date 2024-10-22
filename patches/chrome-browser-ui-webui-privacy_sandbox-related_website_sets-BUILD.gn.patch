@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/privacy_sandbox/related_website_sets/BUILD.gn b/chrome/browser/ui/webui/privacy_sandbox/related_website_sets/BUILD.gn
+index 7e2286d8eaa8f699b08d73dc65cdca74c0aa7730..b67c079cbab2bbbdccf6ec2f6998b100c03908cb 100644
+--- a/chrome/browser/ui/webui/privacy_sandbox/related_website_sets/BUILD.gn
++++ b/chrome/browser/ui/webui/privacy_sandbox/related_website_sets/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "related_website_sets.mojom" ]

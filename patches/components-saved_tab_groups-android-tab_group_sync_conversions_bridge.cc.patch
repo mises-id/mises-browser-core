@@ -1,0 +1,24 @@
+diff --git a/components/saved_tab_groups/android/tab_group_sync_conversions_bridge.cc b/components/saved_tab_groups/android/tab_group_sync_conversions_bridge.cc
+index 6006142cb84543f6c69ab3064ac15cda9c426b00..aef4c89709d12cb3e855e5841540520513adb5e2 100644
+--- a/components/saved_tab_groups/android/tab_group_sync_conversions_bridge.cc
++++ b/components/saved_tab_groups/android/tab_group_sync_conversions_bridge.cc
+@@ -108,7 +108,9 @@ LocalTabGroupID TabGroupSyncConversionsBridge::FromJavaTabGroupId(
+     const JavaParamRef<jobject>& j_group_id) {
+   auto j_token =
+       Java_TabGroupSyncConversionsBridge_getNativeTabGroupId(env, j_group_id);
+-  return TokenAndroid::FromJavaToken(env, j_token);
++  auto token = TokenAndroid::FromJavaToken(env, j_token);
++  return tab_groups::TabGroupId::FromRawToken(token);
++
+ }
+ 
+ // static
+@@ -117,7 +119,7 @@ ScopedJavaLocalRef<jobject> TabGroupSyncConversionsBridge::ToJavaTabGroupId(
+     const std::optional<LocalTabGroupID>& group_id) {
+   return group_id.has_value()
+              ? Java_TabGroupSyncConversionsBridge_createJavaTabGroupId(
+-                   env, TokenAndroid::Create(env, group_id.value()))
++                   env, TokenAndroid::Create(env, group_id.value().token()))
+              : ScopedJavaLocalRef<jobject>();
+ }
+ 

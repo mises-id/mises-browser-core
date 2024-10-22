@@ -10,8 +10,8 @@ ContentSetting GetPermissionSettingForOrigin_Mises(
     ContentSettingsType content_type,
     jstring origin,
     jstring embedder) {
-  GURL url(ConvertJavaStringToUTF8(env, origin));
-  std::string embedder_str = ConvertJavaStringToUTF8(env, embedder);
+  GURL url(base::android::ConvertJavaStringToUTF8(env, origin));
+  std::string embedder_str = base::android::ConvertJavaStringToUTF8(env, embedder);
   GURL embedder_url;
   // TODO(raymes): This check to see if '*' is the embedder is a hack that fixes
   // crbug.com/738377. In general querying the settings for patterns is broken

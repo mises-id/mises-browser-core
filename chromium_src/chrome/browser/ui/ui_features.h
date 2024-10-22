@@ -9,6 +9,9 @@ namespace features {
 BASE_DECLARE_FEATURE(kAccessCodeCastUI);
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+BASE_DECLARE_FEATURE(kPressAndHoldEscToExitBrowserFullscreen);
+#endif
 
 #if defined(ANDROID)
 BASE_DECLARE_FEATURE(kSidePanelCompanionDefaultPinned);
@@ -24,6 +27,9 @@ int GetSidePanelMinimumWidth();
 BASE_DECLARE_FEATURE(kHaTSWebUI);
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+BASE_DECLARE_FEATURE(kKeyboardAndPointerLockPrompt);
+#endif
 
 }  // namespace features
 

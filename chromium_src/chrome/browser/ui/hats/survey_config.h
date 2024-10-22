@@ -18,6 +18,11 @@
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)
 
+
+extern const char kHatsSurveyTriggerAndroidStartupSurvey[];
+extern const char kHatsSurveyTriggerQuickDelete[];
+extern const char kHatsSurveyTriggerSafetyHubAndroid[];
+
 #else
 
 #include "src/chrome/browser/ui/hats/survey_config.h"

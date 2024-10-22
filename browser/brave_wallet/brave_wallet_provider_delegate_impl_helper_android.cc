@@ -109,7 +109,7 @@ static void JNI_BraveWalletProviderDelegateImplHelper_IsSolanaConnected(
       content::WebContents::FromJavaWebContents(jweb_contents);
   base::android::ScopedJavaGlobalRef callback =
       base::android::ScopedJavaGlobalRef<jobject>(jcallback);
-  const std::string account = ConvertJavaStringToUTF8(env, jaccount);
+  const std::string account = base::android::ConvertJavaStringToUTF8(env, jaccount);
   if (!(rfh = web_contents->GetPrimaryMainFrame())) {
     base::android::RunBooleanCallbackAndroid(callback, false);
     return;

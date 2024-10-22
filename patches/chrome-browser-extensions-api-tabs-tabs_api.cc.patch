@@ -1,7 +1,16 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_api.cc b/chrome/browser/extensions/api/tabs/tabs_api.cc
-index cbfeb699bb92c59967d1d234d625f7a8578d8010..3a5ba94ae6cdf91629abf68e792c00852d4a3c7a 100644
+index cbfeb699bb92c59967d1d234d625f7a8578d8010..ccb496bcd8cdfbf86488d7ee800cd76a38ab3c45 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_api.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_api.cc
+@@ -146,7 +146,7 @@ using content::NavigationEntry;
+ using content::OpenURLParams;
+ using content::Referrer;
+ using content::WebContents;
+-using tabs::TabModel;
++//using tabs::TabModel;
+ using zoom::ZoomController;
+ 
+ namespace extensions {
 @@ -181,12 +181,19 @@ class ApiParameterExtractor {
    raw_ref<T> params_;
  };
@@ -307,10 +316,10 @@ index cbfeb699bb92c59967d1d234d625f7a8578d8010..3a5ba94ae6cdf91629abf68e792c0085
 +      if (!web_contents) {
 +        continue;
 +      }
-+      api::tabs::WindowType android_window_type = api::tabs::WINDOW_TYPE_NORMAL;
++      api::tabs::WindowType android_window_type = api::tabs::WindowType::kNormal;
 +      TabAndroid *tab_android = tab_strip_android->GetTabAt(i);
 +      if(tab_android && tab_android->ExtensionWindowID() > 0) {
-+        android_window_type = api::tabs::WINDOW_TYPE_POPUP;
++        android_window_type = api::tabs::WindowType::kPopup;
 +      }
 +      if (!window_type.empty() && window_type != tabs::ToString(android_window_type)) {
 +        continue;

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index 59773d17657448a508a8cea31ca3a1f72f3c5abc..8e728452f6ec71f3b7e4c8002898b892eb65743b 100644
+index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afed8fce9b3 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
 @@ -2513,6 +2513,7 @@ static_library("browser") {
@@ -66,3 +66,13 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..8e728452f6ec71f3b7e4c8002898b892
        sources += [
          "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.cc",
          "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.h",
+@@ -8449,7 +8454,8 @@ static_library("browser_generated_files") {
+       "//chrome/browser/android/webapk/proto",
+       "//chrome/browser/ui/webui/feed_internals:mojo_bindings",
+     ]
+-  } else {
++  }# else {
++  if (true) {
+     public_deps += [
+       "//chrome/browser/cart:mojo_bindings",
+       "//chrome/browser/companion/core/mojom:mojo_bindings",

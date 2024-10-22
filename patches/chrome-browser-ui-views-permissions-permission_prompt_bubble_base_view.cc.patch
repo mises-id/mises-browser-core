@@ -1,12 +1,12 @@
 diff --git a/chrome/browser/ui/views/permissions/permission_prompt_bubble_base_view.cc b/chrome/browser/ui/views/permissions/permission_prompt_bubble_base_view.cc
-index 7bb9017febd5ea1959b3869f267105488641b018..b3f97d178ceaa06308486e97d20b14364b16aa05 100644
+index 7bb9017febd5ea1959b3869f267105488641b018..92bd100de15332278b5a0fa2f88c8fe6b9873f67 100644
 --- a/chrome/browser/ui/views/permissions/permission_prompt_bubble_base_view.cc
 +++ b/chrome/browser/ui/views/permissions/permission_prompt_bubble_base_view.cc
-@@ -66,6 +66,7 @@ PermissionPromptBubbleBaseView::PermissionPromptBubbleBaseView(
-       views::DISTANCE_BUBBLE_PREFERRED_WIDTH));
- 
-   SetProperty(views::kElementIdentifierKey, kMainViewId);
+@@ -154,6 +154,7 @@ void PermissionPromptBubbleBaseView::CreatePermissionButtons(
+     SetButtonStyle(ui::DIALOG_BUTTON_OK, ui::ButtonStyle::kTonal);
+     SetButtonStyle(ui::DIALOG_BUTTON_CANCEL, ui::ButtonStyle::kTonal);
+   }
 +  MISES_PERMISSION_PROMPT_BUBBLE_BASE_VIEW
  }
  
- PermissionPromptBubbleBaseView::~PermissionPromptBubbleBaseView() = default;
+ void PermissionPromptBubbleBaseView::CreateExtraTextLabel(

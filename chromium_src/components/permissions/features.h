@@ -12,10 +12,7 @@ namespace features {
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 BASE_DECLARE_FEATURE(kPermissionLifetime);
 
-#if BUILDFLAG(IS_ANDROID)
 
-
-#endif  // BUILDFLAG(IS_ANDROID)
 
 }  // namespace features
 namespace feature_params {

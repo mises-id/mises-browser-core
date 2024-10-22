@@ -41,6 +41,7 @@
 #include "ui/message_center/public/cpp/notification.h"
 #include "ui/message_center/public/cpp/notification_types.h"
 #include "ui/message_center/public/cpp/notifier_id.h"
+#include "ui/shell_dialogs/selected_file_info.h"
 
 namespace {
 
@@ -321,15 +322,13 @@ void IpfsImportController::PushNotification(const std::u16string& title,
                            *notification, /*metadata=*/nullptr);
 }
 
-void IpfsImportController::FileSelected(const base::FilePath& path,
-                                        int index,
-                                        void* params) {
+void IpfsImportController::FileSelected(const ui::SelectedFileInfo& file, int index) {
   switch (dialog_type_) {
     case ui::SelectFileDialog::SELECT_OPEN_FILE:
-      ImportFileToIpfs(path, dialog_key_);
+      ImportFileToIpfs(file.file_path, dialog_key_);
       break;
     case ui::SelectFileDialog::SELECT_EXISTING_FOLDER:
-      ImportDirectoryToIpfs(path, dialog_key_);
+      ImportDirectoryToIpfs(file.file_path, dialog_key_);
       break;
     default:
       NOTREACHED_IN_MIGRATION() << "Only existing file or directory import supported";
@@ -340,7 +339,7 @@ void IpfsImportController::FileSelected(const base::FilePath& path,
   dialog_key_.clear();
 }
 
-void IpfsImportController::FileSelectionCanceled(void* params) {
+void IpfsImportController::FileSelectionCanceled() {
   select_file_dialog_.reset();
   dialog_key_.clear();
 }

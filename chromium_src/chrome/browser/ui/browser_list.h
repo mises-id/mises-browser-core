@@ -10,13 +10,14 @@
 #include "base/lazy_instance.h"
 #include "base/observer_list.h"
 #include "build/build_config.h"
+#include "chrome/browser/ui/browser.h"
 
 #if BUILDFLAG(IS_ANDROID)
 
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (0)
 
-
+#include "src/chrome/browser/ui/browser_list_observer.h"
 #include "src/chrome/browser/ui/browser_list.h"
 #undef BUILDFLAG_INTERNAL_IS_ANDROID
 #define BUILDFLAG_INTERNAL_IS_ANDROID() (1)

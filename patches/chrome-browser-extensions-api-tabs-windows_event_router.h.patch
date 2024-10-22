@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/windows_event_router.h b/chrome/browser/extensions/api/tabs/windows_event_router.h
-index f5cadaf2e34556770818a8b4a3cb941fed8bdcca..40315b046773d2b0b370b5d26cf33fd9cd0d53b6 100644
+index f5cadaf2e34556770818a8b4a3cb941fed8bdcca..263ae7a9e64047cbc1b7e18ccb2003e2ea8931e9 100644
 --- a/chrome/browser/extensions/api/tabs/windows_event_router.h
 +++ b/chrome/browser/extensions/api/tabs/windows_event_router.h
 @@ -42,6 +42,10 @@ class WindowsEventRouter : public AppWindowRegistry::Observer,
@@ -21,7 +21,7 @@ index f5cadaf2e34556770818a8b4a3cb941fed8bdcca..40315b046773d2b0b370b5d26cf33fd9
 +  // TabModelListObserver implementation.
 +  void OnTabModelAdded() override;
 +  void OnTabModelRemoved() override;
-+  void WillCloseTab(TabAndroid* tab, bool animate) override;
++  void WillCloseTab(TabAndroid* tab) override;
 +  void DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) override;
 +  raw_ptr<TabModel> observed_tab_model_ = nullptr;
 +#endif

@@ -48,6 +48,8 @@
 #include "mises/components/ipfs/pref_names.h"
 #endif
 
+#include "ui/shell_dialogs/selected_file_info.h"
+
 using decentralized_dns::EnsOffchainResolveMethod;
 using decentralized_dns::ResolveMethodTypes;
 
@@ -318,9 +320,7 @@ void MisesDefaultExtensionsHandler::SetIPFSStorageMax(
   }
 }
 
-void MisesDefaultExtensionsHandler::FileSelected(const base::FilePath& path,
-                                                 int index,
-                                                 void* params) {
+void MisesDefaultExtensionsHandler::FileSelected(const ui::SelectedFileInfo& file, int index) {
   ipfs::IpfsService* service =
       ipfs::IpfsServiceFactory::GetForContext(profile_);
   if (!service)
@@ -328,7 +328,7 @@ void MisesDefaultExtensionsHandler::FileSelected(const base::FilePath& path,
 #if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   if (dialog_type_ == ui::SelectFileDialog::SELECT_OPEN_FILE) {
     service->GetIpnsKeysManager()->ImportKey(
-        path, dialog_key_,
+        file.file_path, dialog_key_,
         base::BindOnce(&MisesDefaultExtensionsHandler::OnKeyImported,
                        weak_ptr_factory_.GetWeakPtr()));
   } else if (dialog_type_ == ui::SelectFileDialog::SELECT_SAVEAS_FILE) {
@@ -360,7 +360,7 @@ void MisesDefaultExtensionsHandler::OnKeyImported(const std::string& key,
                     base::Value(value), base::Value(success));
 }
 
-void MisesDefaultExtensionsHandler::FileSelectionCanceled(void* params) {
+void MisesDefaultExtensionsHandler::FileSelectionCanceled() {
   select_file_dialog_.reset();
   dialog_key_.clear();
 }

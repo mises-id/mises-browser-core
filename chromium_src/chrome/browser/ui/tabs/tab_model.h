@@ -7,7 +7,6 @@
 
 #if BUILDFLAG(IS_ANDROID)
 
-#define TabModel TabModelDesktop
 
 #endif
 
@@ -15,8 +14,6 @@
 
 #if BUILDFLAG(IS_ANDROID)
 
-
-#undef TabModel
 
 #endif
 

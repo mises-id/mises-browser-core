@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_process_impl.cc b/chrome/browser/browser_process_impl.cc
-index 126516f5d5c28957fd293fb22f6ef0a523e6781c..b00189fcb64c3745eaee604c1e89d59d28d0bbbd 100644
+index 126516f5d5c28957fd293fb22f6ef0a523e6781c..e3eab6ef03eec9a3bf08bdbdaedda92217adbec3 100644
 --- a/chrome/browser/browser_process_impl.cc
 +++ b/chrome/browser/browser_process_impl.cc
 @@ -176,7 +176,8 @@
@@ -12,6 +12,15 @@ index 126516f5d5c28957fd293fb22f6ef0a523e6781c..b00189fcb64c3745eaee604c1e89d59d
  #include "chrome/browser/devtools/devtools_auto_opener.h"
  #include "chrome/browser/gcm/gcm_product_util.h"
  #include "chrome/browser/hid/hid_system_tray_icon.h"
+@@ -188,7 +189,7 @@
+ #include "chrome/browser/ui/browser_list.h"
+ #include "chrome/browser/usb/usb_system_tray_icon.h"
+ #include "chrome/browser/web_applications/isolated_web_apps/iwa_identity_validator.h"
+-#include "chrome/browser/webapps/webapps_client_desktop.h"
++//#include "chrome/browser/webapps/webapps_client_desktop.h"
+ #include "components/gcm_driver/gcm_client_factory.h"
+ #include "components/gcm_driver/gcm_desktop_utils.h"
+ #include "components/keep_alive_registry/keep_alive_registry.h"
 @@ -954,7 +955,7 @@ printing::BackgroundPrintingManager*
  #endif
  }

@@ -54,7 +54,7 @@ bool ChromePageInfoUiDelegate::IsMultipleTabsOpen() {
       extensions::WindowControllerList::GetInstance()->windows();
   int count = 0;
   auto site_origin = site_url_.DeprecatedGetOriginAsURL();
-  for (auto* window : windows) {
+  for (extensions::WindowController* window : windows) {
     const Browser* const browser = window->GetBrowser();
     if (!browser)
       continue;
@@ -69,11 +69,6 @@ bool ChromePageInfoUiDelegate::IsMultipleTabsOpen() {
     }
   }
   return count > 1;
-}
-
-void ChromePageInfoUiDelegate::ShowPrivacySandboxAdPersonalization() {
-  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
-  chrome::ShowPrivacySandboxAdPersonalization(browser);
 }
 
 std::u16string ChromePageInfoUiDelegate::GetPermissionDetail(
@@ -110,16 +105,8 @@ ChromePageInfoUiDelegate::GetAboutThisSiteInfo() {
   return std::nullopt;
 }
 
-void ChromePageInfoUiDelegate::AboutThisSiteSourceClicked(
-    GURL url,
-    const ui::Event& event) {
-  // TODO(crbug.com/1250653): Consider moving this to presenter as other methods
-  // that open web pages.
-  web_contents_->OpenURL(content::OpenURLParams(
-      url, content::Referrer(),
-      ui::DispositionFromEventFlags(event.flags(),
-                                    WindowOpenDisposition::NEW_FOREGROUND_TAB),
-      ui::PAGE_TRANSITION_LINK, /*is_renderer_initiated=*/false));
+void ChromePageInfoUiDelegate::SettingsLinkClicked(ContentSettingsType type) {
+ 
 }
 
 void ChromePageInfoUiDelegate::ShowPrivacySandboxSettings() {
@@ -134,4 +121,7 @@ void ChromePageInfoUiDelegate::OpenMoreAboutThisPageUrl(
   //ShowAboutThisSiteSidePanel(web_contents_, url);
 }
 
+void ChromePageInfoUiDelegate::OpenSiteSettingsFileSystem() {
+  //chrome::ShowSiteSettingsFileSystem(GetProfile(), site_url_);
+}
 #endif

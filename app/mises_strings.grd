@@ -1049,7 +1049,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
-      <if expr="not chromeos_ash and not is_android and not chromeos_lacros">
+      <if expr="is_android or not chromeos_ash and not is_android and not chromeos_lacros">
         <!-- Dice Web Signin Interception Bubble-->
         <message name="IDS_SIGNIN_DICE_WEB_INTERCEPT_CREATE_BUBBLE_TITLE" desc="Title of the web signin interception bubble">
           Continue in a new Mises profile?
@@ -1235,7 +1235,7 @@ Permissions you've already given to websites and apps may apply to this account.
         Mises is using your camera.
       </message>
 
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <!-- WebHID system tray icon -->
         <message name="IDS_WEBHID_SYSTEM_TRAY_ICON_TITLE" desc="Title for the WebHID system tray icon">
             {NUM_DEVICES, plural,
@@ -1301,7 +1301,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <!-- Password Manager Tutorial Strings -->
         <message name="IDS_TUTORIAL_PASSWORD_MANAGER_OPEN_APP_MENU" desc="The description of the 'open add menu' step in password manager tutorial">
           Click the Mises menu
@@ -1317,7 +1317,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
 
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <!-- Desktop User Education IPH Strings -->
         <message name="IDS_SIDE_PANEL_GENERIC_MENU_IPH" desc="The body text of the IPH describing how to find side panel entry points in the app menu.">
           You can open bookmarks, reading mode, and more from the Mises menu
@@ -1641,7 +1641,7 @@ Permissions you've already given to websites and apps may apply to this account.
         Share a Mises tab
       </message>
       <!-- Idle timeout bubble. -->
-      <if expr="toolkit_views">
+      <if expr="is_android or toolkit_views">
         <message name="IDS_IDLE_BUBBLE_TITLE_CLOSE" desc="Title of a bubble that informs the user that Mises closed automatically, because they were away from the computer for X minutes.">
           Mises was automatically closed
         </message>
@@ -2090,7 +2090,7 @@ Permissions you've already given to websites and apps may apply to this account.
         </message>
       </if>
       <!-- Memory Saver Chip strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_MEMORY_SAVER_DIALOG_BODY" desc="Body text for a dialog describing that Memory Saver mode will use less memory.">
           While this tab was inactive, memory was freed up to keep Mises fast. You can choose to always exclude this site from being inactive.
         </message>
@@ -2111,7 +2111,7 @@ Permissions you've already given to websites and apps may apply to this account.
       </if>
 
       <!-- Performance Intervention Dialog strings -->
-      <if expr="not is_android">
+      <if expr="is_android or not is_android">
         <message name="IDS_PERFORMANCE_INTERVENTION_DIALOG_BODY_V1" desc="Body text for a dialog suggesting users to deactivate certain tabs to improve performance.">
           These tabs are using extra resources. To improve your performance, let Mises make them inactive.
         </message>
@@ -2138,7 +2138,7 @@ Permissions you've already given to websites and apps may apply to this account.
       </message>
 
       <!-- New Create Shortcut View Strings -->
-      <if expr="not is_android and not is_chromeos">
+      <if expr="is_android or not is_android and not is_chromeos">
         <message name="IDS_CREATE_SHORTCUT_NOT_APPS_DIALOG_SUBTITLE" desc="Subtitle of the updated Create Shortcut dialog about how the site opens for Mises">
           Shortcuts open in Mises
         </message>

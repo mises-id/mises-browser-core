@@ -1,5 +1,5 @@
 diff --git a/components/permissions/request_type.h b/components/permissions/request_type.h
-index 6443d5fbe8377998f93f28794d02da963f45d7e4..8a8eb13b80b3fc635b1f7085d796bb898d322c46 100644
+index 6443d5fbe8377998f93f28794d02da963f45d7e4..dad0095ba76bacebbce9d813fae45c2b2192aec3 100644
 --- a/components/permissions/request_type.h
 +++ b/components/permissions/request_type.h
 @@ -23,23 +23,23 @@ namespace permissions {
@@ -30,7 +30,15 @@ index 6443d5fbe8377998f93f28794d02da963f45d7e4..8a8eb13b80b3fc635b1f7085d796bb89
    kLocalFonts,
  #endif
    kMicStream,
-@@ -56,7 +56,7 @@ enum class RequestType {
+@@ -49,14 +49,14 @@ enum class RequestType {
+   kNfcDevice,
+ #endif
+   kNotifications,
+-#if !BUILDFLAG(IS_ANDROID)
++#if !true || BUILDFLAG(IS_ANDROID)
+   kKeyboardLock,
+   kPointerLock,
+ #endif
  #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
    kProtectedMediaIdentifier,
  #endif

@@ -15,7 +15,6 @@
 #include "chrome/browser/content_settings/cookie_settings_factory.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
 #include "chrome/browser/profiles/profile.h"
-#include "chrome/browser/profiles/profile_android.h"
 #include "chrome/browser/profiles/profile_manager.h"
 #include "chrome/common/pref_names.h"
 #include "components/content_settings/core/browser/cookie_settings.h"
@@ -74,7 +73,7 @@ void JNI_MisesPrefServiceBridge_SetIpfsGateway(JNIEnv* env,
      const JavaParamRef<jstring>& gatewayUrl) {
 #if BUILDFLAG(ENABLE_IPFS)
   GetOriginalProfile()->GetPrefs()->SetString(kIPFSPublicGatewayAddress,
-                                              ConvertJavaStringToUTF8(env, gatewayUrl));
+                                              base::android::ConvertJavaStringToUTF8(env, gatewayUrl));
 #endif
 }
 

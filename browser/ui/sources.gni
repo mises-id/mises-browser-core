@@ -13,7 +13,6 @@ if (is_android) {
       "//mises/chromium_src/chrome/browser/ui/android/native_window_tracker_android.cc",
       "//mises/chromium_src/chrome/browser/ui/android/native_window_tracker_android.h",
       "//mises/chromium_src/chrome/browser/ui/views/chrome_views_delegate_android.cc",
-      "//mises/chromium_src/chrome/browser/ui/views/dropdown_bar_host_android.cc",
       "//mises/chromium_src/chrome/browser/ui/startup/startup_browser_creator_android.cc",
       "//mises/chromium_src/chrome/browser/ui/profile_picker_android.cc",
       "views/profiles/badged_profile_photo.cc",
@@ -240,6 +239,8 @@ if (is_android) {
   ]
   mises_browser_ui_deps += [
     "//mises/components/vector_icons",
+    "//third_party/lens_server_proto:lens_overlay_proto",
+    "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
   ]
   mises_browser_ui_exception_deps += [
     "//components/live_caption",
@@ -250,7 +251,7 @@ if (is_android) {
     "//chrome/browser/companion/core",
     "//chrome/browser/ui/webui/searchbox",
      "//chrome/browser/apps/app_service/app_icon:util",
-     "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
+    # "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
      "//chrome/browser/ui/permission_bubble",
      "//chrome/browser/lens/region_search",
      "//chrome/browser/ui/exclusive_access",

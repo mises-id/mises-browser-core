@@ -49,8 +49,8 @@ base::LazyInstance<MisesContentBrowserClient>::DestructorAtExit
 
 MisesMainDelegate::MisesMainDelegate() : ChromeMainDelegate() {}
 
-MisesMainDelegate::MisesMainDelegate(base::TimeTicks exe_entry_point_ticks)
-    : ChromeMainDelegate(exe_entry_point_ticks) {}
+MisesMainDelegate::MisesMainDelegate(const StartupTimestamps& timestamps)
+    : ChromeMainDelegate(timestamps) {}
 
 MisesMainDelegate::~MisesMainDelegate() {}
 
