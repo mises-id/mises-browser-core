@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 2a59309693e63f416054ea838d02c70a5552e7f7..39164281f9b2aa1ba979b0ff6ebebf11adb08e5b 100644
+index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d321669d9 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -93,11 +93,52 @@ import java.util.ArrayList;
@@ -251,7 +251,7 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..39164281f9b2aa1ba979b0ff6ebebf11
 +            canvas.restore();
 +        }
 +
-+        previousAlpha = drawMisesExtensionButton(canvas, previousAlpha, rgbAlpha);
++        drawMisesExtensionButton(canvas, rgbAlpha);
 +
          // Draw the tab stack button and associated text if necessary.
          if (getTabSwitcherButtonCoordinator() != null && mUrlExpansionFraction != 1f) {
@@ -423,7 +423,7 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..39164281f9b2aa1ba979b0ff6ebebf11
 +    }
 +
 +
-+    private float drawMisesExtensionButton(Canvas canvas,float previousAlpha, int rgbAlpha) {
++    private void drawMisesExtensionButton(Canvas canvas, int rgbAlpha) {
 +        if (mMisesExtensionButton != null && mMisesExtensionButton.getVisibility() != View.GONE) {
 +            Log.e(TAG,"drawMisesExtensionButton");
 +	    canvas.save();
@@ -448,9 +448,9 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..39164281f9b2aa1ba979b0ff6ebebf11
 +
 +            canvas.restore();
 +        }
-+	    return previousAlpha;
++	    return;
 +    }
-+    private float drawMisesMainButton(Canvas canvas) {
++    private void drawMisesMainButton(Canvas canvas) {
 +        if (mMisesMainButton != null && mMisesMainButton.getVisibility() != View.GONE) {
 +            // Draw the New Tab button used in the URL view.
 +            drawChild(canvas, mMisesMainButton, SystemClock.uptimeMillis());

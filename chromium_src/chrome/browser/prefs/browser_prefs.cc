@@ -16,6 +16,7 @@
 #include "chrome/browser/nearby_sharing/common/nearby_share_prefs.h"
 #include "chrome/browser/new_tab_page/modules/safe_browsing/safe_browsing_handler.h"
 #include "chrome/browser/new_tab_page/promos/promo_service.h"
+#include "chrome/browser/new_tab_page/modules/file_suggestion/drive_service.h"
 #include "chrome/browser/policy/developer_tools_policy_handler.h"
 #include "chrome/browser/search/background/ntp_custom_background_service.h"
 #include "chrome/browser/serial/serial_policy_allowed_ports.h"
@@ -33,6 +34,7 @@
 #include "chrome/browser/sessions/session_service_log.h"
 #include "chrome/browser/user_education/browser_feature_promo_storage_service.h"
 #include "chrome/browser/sessions/session_data_service.h"
+#include "chrome/browser/ui/hats/hats_service_desktop.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -71,20 +73,18 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   DeviceServiceImpl::RegisterProfilePrefs(registry);
   DevToolsWindow::RegisterProfilePrefs(registry);
   DriveService::RegisterProfilePrefs(registry);
+  HatsServiceDesktop::RegisterProfilePrefs(registry);
   enterprise_connectors::RegisterProfilePrefs(registry);
   extensions::CommandService::RegisterProfilePrefs(registry);
   extensions::TabsCaptureVisibleTabFunction::RegisterProfilePrefs(registry);
   first_run::RegisterProfilePrefs(registry);
-  HatsService::RegisterProfilePrefs(registry);
   NtpCustomBackgroundService::RegisterProfilePrefs(registry);
   media_router::RegisterAccessCodeProfilePrefs(registry);
   media_router::RegisterProfilePrefs(registry);
   NewTabPageHandler::RegisterProfilePrefs(registry);
   NewTabPageUI::RegisterProfilePrefs(registry);
-  NewTabUI::RegisterProfilePrefs(registry);
   ntp::SafeBrowsingHandler::RegisterProfilePrefs(registry);
   ntp_tiles::CustomLinksManagerImpl::RegisterProfilePrefs(registry);
-  PhotosService::RegisterProfilePrefs(registry);
   PinnedTabCodec::RegisterProfilePrefs(registry);
   policy::DeveloperToolsPolicyHandler::RegisterProfilePrefs(registry);
   PromoService::RegisterProfilePrefs(registry);
@@ -123,19 +123,17 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 
 #endif
 
-#if !BUILDFLAG(ENABLE_FEED_V2)
   feed::prefs::RegisterFeedSharedProfilePrefs(registry);
   feed::RegisterProfilePrefs(registry);
-#endif 
 
 #if BUILDFLAG(IS_ANDROID)
   web_app::UserUninstalledPreinstalledWebAppPrefs::RegisterProfilePrefs(registry);
   web_app::PreinstalledWebAppManager::RegisterProfilePrefs(registry);
   web_app::WebAppPolicyManager::RegisterProfilePrefs(registry);
-  web_app::WebAppPrefsUtilsRegisterProfilePrefs(registry);
+  // web_app::WebAppPrefsUtilsRegisterProfilePrefs(registry);
   web_app::RegisterInstallBounceMetricProfilePrefs(registry);
   web_app::RegisterDailyWebAppMetricsProfilePrefs(registry);
-  web_app::WebAppShortcutManager::RegisterProfilePrefs(registry);
+  // web_app::WebAppShortcutManager::RegisterProfilePrefs(registry);
 #endif
 
 

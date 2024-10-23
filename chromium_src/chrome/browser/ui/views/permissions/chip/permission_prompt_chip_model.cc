@@ -5,11 +5,11 @@
 #include "build/build_config.h"
 
 #if !BUILDFLAG(IS_ANDROID)
-#include "src/chrome/browser/ui/views/permissions/permission_prompt_chip_model.cc"
+#include "src/chrome/browser/ui/views/permissions/chip/permission_prompt_chip_model.cc"
 
 #else
 
-#include "chrome/browser/ui/views/permissions/permission_prompt_chip_model.h"
+#include "chrome/browser/ui/views/permissions/chip/permission_prompt_chip_model.h"
 #include "base/check.h"
 #include "base/strings/utf_string_conversions.h"
 #include "chrome/browser/ui/views/location_bar/omnibox_chip_theme.h"

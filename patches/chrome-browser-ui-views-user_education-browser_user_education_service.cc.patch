@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/user_education/browser_user_education_service.cc b/chrome/browser/ui/views/user_education/browser_user_education_service.cc
+index 8e0439d5f03469b0329d6b32ab2e325483c1a348..de5c88b70a1ab093677401655e9fe9dc696d84f1 100644
+--- a/chrome/browser/ui/views/user_education/browser_user_education_service.cc
++++ b/chrome/browser/ui/views/user_education/browser_user_education_service.cc
+@@ -575,7 +575,7 @@ void MaybeRegisterChromeFeaturePromos(
+ 
+ #endif  // !BUILDFLAG(IS_CHROMEOS_ASH)
+ 
+-#if !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_CHROMEOS_LACROS)
++#if !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_CHROMEOS_LACROS) && !BUILDFLAG(IS_ANDROID)
+   // kIPHExplicitBrowserSigninPreferenceRememberedFeature:
+   registry.RegisterFeature(std::move(
+       FeaturePromoSpecification::CreateForToastPromo(

@@ -42,20 +42,18 @@ bool HasRegisteredGroupName(ContentSettingsType type) {
   return HasRegisteredGroupName_ChromiumImpl(type);
 }
 
-}
 
-const std::vector<ContentSettingsType>& GetVisiblePermissionCategories() {
-  static base::NoDestructor<std::vector<ContentSettingsType>> types{
-      {ContentSettingsType::MISES_ETHEREUM,
-       ContentSettingsType::MISES_SOLANA}};
-  static bool initialized = false;
-  if (!initialized) {
-    auto& base_types = GetVisiblePermissionCategories_ChromiumImpl();
-    types->insert(types->end(), base_types.begin(), base_types.end());
-    initialized = true;
-  }
+std::vector<ContentSettingsType> GetVisiblePermissionCategories(
+    const std::string& origin,
+    Profile* profile) {
+  static constexpr ContentSettingsType extra_types[] = {
+      ContentSettingsType::MISES_ETHEREUM,
+      ContentSettingsType::MISES_SOLANA,
+  };
+  auto types = GetVisiblePermissionCategories_ChromiumImpl(origin, profile);
 
-  return *types;
+  types.insert(std::end(types), std::begin(extra_types), std::end(extra_types));
+  return types;
 }
 
 }  // namespace site_settings

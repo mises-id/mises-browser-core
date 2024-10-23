@@ -39,8 +39,10 @@ void ChromeBrowserMainExtraPartsProfiles::
 
   BookmarkModelFactory::GetInstance();
   BookmarkUndoServiceFactory::GetInstance();
-  if (breadcrumbs::IsEnabled())
+  if (breadcrumbs::IsEnabled(
+          g_browser_process ? g_browser_process->local_state() : nullptr)) {
     BreadcrumbManagerKeyedServiceFactory::GetInstance();
+  }
   browser_sync::UserEventServiceFactory::GetInstance();
   // BrowsingDataHistoryObserverService::Factory::GetInstance();
   browsing_topics::BrowsingTopicsServiceFactory::GetInstance();
@@ -53,7 +55,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (base::FeatureList::IsEnabled(commerce::kCommerceMerchantViewer))
     MerchantViewerDataManagerFactory::GetInstance();
 #endif
-  CertificateReportingServiceFactory::GetInstance();
 
   ChromeSigninClientFactory::GetInstance();
   ClientHintsFactory::GetInstance();
@@ -97,13 +98,9 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (MediaEngagementService::IsEnabled())
     MediaEngagementServiceFactory::GetInstance();
 
-  if (base::FeatureList::IsEnabled(media::kUseMediaHistoryStore))
-    media_history::MediaHistoryKeyedServiceFactory::GetInstance();
   media_router::ChromeLocalPresentationManagerFactory::GetInstance();
   media_router::ChromeMediaRouterFactory::GetInstance();
 
-
-  ModelTypeStoreServiceFactory::GetInstance();
 
   NotifierStateTrackerFactory::GetInstance();
 

@@ -17,6 +17,7 @@ import org.chromium.chrome.browser.omnibox.suggestions.AutocompleteDelegate;
 import org.chromium.chrome.browser.omnibox.suggestions.MisesOmniboxSuggestionUiType;
 import org.chromium.chrome.browser.omnibox.suggestions.SuggestionHost;
 import org.chromium.chrome.browser.omnibox.suggestions.DropdownItemProcessor;
+import org.chromium.chrome.browser.omnibox.suggestions.OmniboxLoadUrlParams;
 import org.chromium.ui.base.PageTransition;
 import org.chromium.ui.modelutil.PropertyModel;
 
@@ -46,10 +47,16 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
         model.set(MisesAdsBannerProperties.DELEGATE, new MisesAdsBannerProperties.Delegate() {
             @Override
             public void onPositiveClicked() {
-                mUrlBarDelegate.loadUrl("https://search.mises.site/?q="
-                                + mUrlBarEditingTextProvider.getTextWithoutAutocomplete()
-                                + "&action=makeDefault",
-                        PageTransition.LINK, System.currentTimeMillis(), /*openInNewTab=*/false);
+                mUrlBarDelegate.loadUrl(
+                                new OmniboxLoadUrlParams.Builder(
+                                                "https://search.mises.site/?q="
+                                                        + mUrlBarEditingTextProvider
+                                                                .getTextWithoutAutocomplete()
+                                                        + "&action=makeDefault",
+                                                PageTransition.LINK)
+                                        .setInputStartTimestamp(System.currentTimeMillis())
+                                        .setOpenInNewTab(false)
+                                        .build());
             }
 
             @Override
@@ -80,8 +87,4 @@ public class MisesAdsBannerProcessor implements DropdownItemProcessor {
     @Override
     public void onNativeInitialized() {}
 
-    @Override
-    public boolean allowBackgroundRounding() {
-        return false;
-    }
 }

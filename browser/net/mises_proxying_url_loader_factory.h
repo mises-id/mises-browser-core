@@ -1,7 +1,7 @@
-/* Copyright 2019 The Brave Authors. All rights reserved.
+/* Copyright (c) 2019 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #ifndef BRAVE_BROWSER_NET_BRAVE_PROXYING_URL_LOADER_FACTORY_H_
 #define BRAVE_BROWSER_NET_BRAVE_PROXYING_URL_LOADER_FACTORY_H_
@@ -9,14 +9,16 @@
 #include <cstdint>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
 #include <vector>
 
-#include "base/functional/callback.h"
 #include "base/containers/unique_ptr_adapters.h"
+#include "base/functional/callback.h"
 #include "base/memory/raw_ptr.h"
+#include "base/memory/raw_ref.h"
 #include "base/memory/ref_counted_delete_on_sequence.h"
 #include "base/memory/weak_ptr.h"
 #include "base/time/time.h"
@@ -34,7 +36,6 @@
 #include "services/network/public/mojom/url_loader.mojom.h"
 #include "services/network/public/mojom/url_loader_factory.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
-#include <optional>
 #include "url/gurl.h"
 
 namespace content {
@@ -54,7 +55,7 @@ class MisesProxyingURLLoaderFactory
                             public network::mojom::URLLoaderClient {
    public:
     InProgressRequest(
-        MisesProxyingURLLoaderFactory* factory,
+        MisesProxyingURLLoaderFactory& factory,
         uint64_t request_id,
         int32_t network_service_request_id,
         int render_process_id,
@@ -99,6 +100,7 @@ class MisesProxyingURLLoaderFactory
                           OnUploadProgressCallback callback) override;
     void OnTransferSizeUpdated(int32_t transfer_size_diff) override;
     void OnComplete(const network::URLLoaderCompletionStatus& status) override;
+
    private:
     // These two methods combined form the implementation of Restart().
     void UpdateRequestInfo();
@@ -119,7 +121,7 @@ class MisesProxyingURLLoaderFactory
 
     // TODO(iefremov): Get rid of shared_ptr, we should clearly own the pointer.
     std::shared_ptr<mises::MisesRequestInfo> ctx_;
-    const raw_ptr<MisesProxyingURLLoaderFactory> factory_;
+    const raw_ref<MisesProxyingURLLoaderFactory> factory_;
     network::ResourceRequest request_;
     const uint64_t request_id_;
     const int32_t network_service_request_id_;
@@ -186,8 +188,7 @@ class MisesProxyingURLLoaderFactory
       content::BrowserContext* browser_context,
       int render_process_id,
       int frame_tree_node_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-      mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+      network::URLLoaderFactoryBuilder& factory_builder,
       scoped_refptr<RequestIDGenerator> request_id_generator,
       DisconnectCallback on_disconnect,
       scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
@@ -242,7 +243,7 @@ class MisesProxyingURLLoaderFactory
 
   DisconnectCallback disconnect_callback_;
 
-// A task runner that should be used for requests when non-null. Non-null when
+  // A task runner that should be used for requests when non-null. Non-null when
   // this was created for a navigation request.
   scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner_;
 

@@ -20,12 +20,11 @@ import org.chromium.chrome.browser.omnibox.R;
 import org.chromium.chrome.browser.omnibox.UrlBarEditingTextStateProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.basic.BasicSuggestionProcessor.BookmarkState;
 import org.chromium.chrome.browser.omnibox.suggestions.ads.MisesAdsBannerProcessor;
-import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor;
-import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor.OpenHistoryClustersDelegate;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.components.omnibox.AutocompleteMatch;
 import org.chromium.components.omnibox.AutocompleteResult;
+import org.chromium.components.omnibox.suggestions.OmniboxSuggestionUiType;
 import org.chromium.ui.modelutil.PropertyModel;
 
 import java.util.Arrays;
@@ -43,9 +42,9 @@ class MisesDropdownItemViewInfoListBuilder extends DropdownItemViewInfoListBuild
 
     private AutocompleteDelegate mAutocompleteDelegate;
 
-    MisesDropdownItemViewInfoListBuilder(@NonNull Supplier<Tab> tabSupplier,
-            BookmarkState bookmarkState, OpenHistoryClustersDelegate openHistoryClustersDelegate) {
-        super(tabSupplier, bookmarkState, openHistoryClustersDelegate);
+    MisesDropdownItemViewInfoListBuilder(
+            @NonNull Supplier<Tab> tabSupplier, BookmarkState bookmarkState) {
+        super(tabSupplier, bookmarkState);
 
         mActivityTabSupplier = tabSupplier;
     }
@@ -76,17 +75,13 @@ class MisesDropdownItemViewInfoListBuilder extends DropdownItemViewInfoListBuild
         mMisesAdsBannerProcessor.onNativeInitialized();
     }
 
-    @Override
-    void performPartialGroupingBySearchVsUrl(AutocompleteResult autocompleteResult) {
-        if (autocompleteResult.getSuggestionsList().size() > 2) {
-            final int firstSuggestionWithHeader =
-                    getIndexOfFirstSuggestionWithHeader(autocompleteResult);
-            final int numVisibleSuggestions = getVisibleSuggestionsCount(autocompleteResult);
-            if (numVisibleSuggestions == 0 && firstSuggestionWithHeader > 1) {
-                return;
+    private int getTileNavSuggestPosition(List<DropdownItemViewInfo> viewInfoList) {
+        for (int i = 0; i < viewInfoList.size(); ++i) {
+            if (viewInfoList.get(i).type == OmniboxSuggestionUiType.TILE_NAVSUGGEST) {
+                return i;
             }
         }
-        super.performPartialGroupingBySearchVsUrl(autocompleteResult);
+        return viewInfoList.size();
     }
 
     @Override

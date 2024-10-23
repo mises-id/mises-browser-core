@@ -157,8 +157,3 @@ void WalletPanelUI::CreatePanelHandler(
   }
 }
 
-// static
-bool& WalletPanelUI::ShouldDisableCSPForTesting() {
-  static bool disable_csp = false;
-  return disable_csp;
-}

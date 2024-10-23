@@ -235,6 +235,8 @@ if (is_android) {
       "views/frame/picture_in_picture_browser_frame_view.cc",
       "views/plus_addresses/plus_address_creation_controller_desktop.cc",
       "views/login_handler_views.cc",
+      "views/download/bubble/download_bubble_contents_view.cc",
+      "views/download/bubble/download_bubble_contents_view.h",
 
   ]
   mises_browser_ui_deps += [

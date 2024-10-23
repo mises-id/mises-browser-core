@@ -17,16 +17,18 @@ import org.chromium.base.jank_tracker.JankTracker;
 import org.chromium.base.supplier.Supplier;
 import org.chromium.base.MisesReflectionUtil;
 import org.chromium.url.GURL;
+import org.chromium.chrome.browser.lifecycle.ActivityLifecycleDispatcher;
+import org.chromium.chrome.browser.omnibox.DeferredIMEWindowInsetApplicationCallback;
 import org.chromium.chrome.browser.omnibox.LocationBarDataProvider;
 import org.chromium.chrome.browser.omnibox.UrlBarEditingTextStateProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.basic.BasicSuggestionProcessor.BookmarkState;
-import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor.OpenHistoryClustersDelegate;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.share.ShareDelegate;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.tabmodel.TabWindowManager;
 import org.chromium.components.user_prefs.UserPrefs;
+import org.chromium.ui.base.WindowAndroid;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.ui.modelutil.PropertyModel;
 
@@ -45,11 +47,12 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
     private Context mContext;
     private AutocompleteDelegate mDelegate;
 
-    public MisesAutocompleteMediator(@NonNull Context context,
-            @NonNull AutocompleteControllerProvider controllerProvider,
+    public MisesAutocompleteMediator(
+            @NonNull Context context,
             @NonNull AutocompleteDelegate delegate,
             @NonNull UrlBarEditingTextStateProvider textProvider,
-            @NonNull PropertyModel listPropertyModel, @NonNull Handler handler,
+            @NonNull PropertyModel listPropertyModel,
+            @NonNull Handler handler,
             @NonNull Supplier<ModalDialogManager> modalDialogManagerSupplier,
             @NonNull Supplier<Tab> activityTabSupplier,
             @Nullable Supplier<ShareDelegate> shareDelegateSupplier,
@@ -58,11 +61,31 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
             @NonNull Supplier<TabWindowManager> tabWindowManagerSupplier,
             @NonNull BookmarkState bookmarkState,
             @NonNull OmniboxActionDelegate omniboxActionDelegate,
-            @NonNull OpenHistoryClustersDelegate openHistoryClustersDelegate) {
-        super(context, controllerProvider, delegate, textProvider, listPropertyModel, handler,
-                modalDialogManagerSupplier, activityTabSupplier, shareDelegateSupplier,
-                locationBarDataProvider, bringTabToFrontCallback, tabWindowManagerSupplier,
-                bookmarkState, omniboxActionDelegate, openHistoryClustersDelegate);
+            @NonNull ActivityLifecycleDispatcher lifecycleDispatcher,
+            @NonNull OmniboxSuggestionsDropdownEmbedder embedder,
+            @NonNull WindowAndroid windowAndroid,
+            @NonNull
+                    DeferredIMEWindowInsetApplicationCallback
+                            deferredIMEWindowInsetApplicationCallback) {
+        super(
+                context,
+                delegate,
+                textProvider,
+                listPropertyModel,
+                handler,
+                modalDialogManagerSupplier,
+                activityTabSupplier,
+                shareDelegateSupplier,
+                locationBarDataProvider,
+                bringTabToFrontCallback,
+                tabWindowManagerSupplier,
+                bookmarkState,
+                omniboxActionDelegate,
+                lifecycleDispatcher,
+                embedder,
+                windowAndroid,
+                deferredIMEWindowInsetApplicationCallback);
+
         mContext = context;
         mDelegate = delegate;
     }

@@ -14,6 +14,7 @@ void StartupBrowserCreator::LaunchBrowser(
       const base::FilePath& cur_dir,
       chrome::startup::IsProcessStartup process_startup,
       chrome::startup::IsFirstRun is_first_run,
+      std::unique_ptr<OldLaunchModeRecorder> launch_mode_recorder,
       bool restore_tabbed_browser) {
 }
 

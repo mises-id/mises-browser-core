@@ -31,8 +31,7 @@ void ResourceContextData::StartProxying(
     content::BrowserContext* browser_context,
     int render_process_id,
     int frame_tree_node_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-    mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+    network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
@@ -50,8 +49,7 @@ void ResourceContextData::StartProxying(
 
   auto proxy = std::make_unique<MisesProxyingURLLoaderFactory>(
       *self->request_handler_, browser_context, render_process_id,
-      frame_tree_node_id, std::move(receiver), std::move(target_factory),
-      self->request_id_generator_,
+      frame_tree_node_id, factory_builder, self->request_id_generator_,
       base::BindOnce(&ResourceContextData::RemoveProxy,
                      self->weak_factory_.GetWeakPtr()),
       navigation_response_task_runner);

@@ -72,6 +72,7 @@ mises_browser_ui_android_toolbar_sources = [
 ]
 mises_java_base_sources = [
   "//mises/android/java/org/chromium/base/MisesReflectionUtil.java",
+  "//mises/android/java/org/chromium/base/Callbacks.java",
 ]
 mises_java_base_module_sources = [
   "//mises/android/features/mises/java/org/chromium/chrome/browser/mises/MisesLCDService.java",

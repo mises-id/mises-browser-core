@@ -228,6 +228,9 @@ mises_chrome_browser_exception_sources = []
 mises_chrome_browser_exception_deps = []
 mises_chrome_browser_exception_allow_circular_includes_from = []
 if (is_android) {
+  mises_chrome_browser_deps += [
+    "//services/screen_ai/public/mojom:factory",
+  ]
   mises_chrome_browser_exception_sources += [
 
 

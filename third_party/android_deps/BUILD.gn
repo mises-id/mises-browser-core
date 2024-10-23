@@ -177,7 +177,9 @@ android_aar_prebuilt("google_play_services_ads_lite_java") {
     ":google_play_services_measurement_api_java",
     
   ]
-
+  resource_exclusion_globs = [
+    "res/xml/gma_ad_services_config.xml",
+  ]
 }
 android_aar_prebuilt("google_play_services_appset_java") {
   aar_path = "libs/com_google_android_gms_play_services_appset/play-services-appset-16.0.1.aar"

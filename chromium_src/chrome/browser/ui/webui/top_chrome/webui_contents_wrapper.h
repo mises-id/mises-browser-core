@@ -1,4 +1,3 @@
-chrome/browser/ui/webui/top_chrome/webui_contents_wrapper.h
 /* Copyright (c) 2024 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -9,7 +8,6 @@ chrome/browser/ui/webui/top_chrome/webui_contents_wrapper.h
 
 #include <vector>
 
-#include "chrome/browser/ui/webui/top_chrome/webui_contents_wrapper.h"
 #include "content/public/browser/web_contents.h"
 #include "content/public/browser/web_contents_delegate.h"
 #include "content/public/browser/web_contents_observer.h"
