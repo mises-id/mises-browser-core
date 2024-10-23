@@ -18,7 +18,7 @@ import androidx.core.widget.ImageViewCompat;
 
 import org.chromium.base.ApiCompatibilityUtils;
 import org.chromium.chrome.R;
-import org.chromium.chrome.browser.bookmarks.BookmarkBridge;
+import org.chromium.chrome.browser.bookmarks.BookmarkModel;
 import org.chromium.chrome.browser.download.DownloadUtils;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.ui.appmenu.AppMenuDelegate;
@@ -77,7 +77,7 @@ public class AppMenuIconRowFooter extends LinearLayout implements View.OnClickLi
      * @param currentTab The current activity {@link Tab}.
      * @param appMenuDelegate The AppMenuDelegate to handle options item selection.
      */
-    public void initialize(AppMenuHandler appMenuHandler, BookmarkBridge bookmarkBridge,
+    public void initialize(AppMenuHandler appMenuHandler, BookmarkModel bookmarkBridge,
             Tab currentTab, AppMenuDelegate appMenuDelegate) {
         mAppMenuHandler = appMenuHandler;
         mAppMenuDelegate = appMenuDelegate;
@@ -110,17 +110,17 @@ public class AppMenuIconRowFooter extends LinearLayout implements View.OnClickLi
                         : getContext().getString(R.string.accessibility_btn_refresh));
     }
 
-    private void updateBookmarkMenuItem(BookmarkBridge bookmarkBridge, Tab currentTab) {
+    private void updateBookmarkMenuItem(BookmarkModel bookmarkBridge, Tab currentTab) {
         mBookmarkButton.setEnabled(bookmarkBridge.isEditBookmarksEnabled());
 
-        if (bookmarkBridge.hasBookmarkIdForTab(currentTab)) {
+        if (currentTab != null && bookmarkBridge.hasBookmarkIdForTab(currentTab)) {
             mBookmarkButton.setImageResource(R.drawable.btn_star_filled);
             mBookmarkButton.setContentDescription(getContext().getString(R.string.edit_bookmark));
             ImageViewCompat.setImageTintList(mBookmarkButton,
                     AppCompatResources.getColorStateList(
                             getContext(), R.color.default_icon_color_accent1_tint_list));
         } else {
-            mBookmarkButton.setImageResource(R.drawable.btn_star);
+            mBookmarkButton.setImageResource(R.drawable.star_outline_24dp);
             mBookmarkButton.setContentDescription(
                     getContext().getString(R.string.accessibility_menu_bookmark));
         }

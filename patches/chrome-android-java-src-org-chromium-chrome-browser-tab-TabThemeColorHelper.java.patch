@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
-index e3ae27c25fdb1c9c1e3dca7acc76e16c46de98ea..8fa55c3666829e65e07cfecfca1827f1599dbe07 100644
+index e3ae27c25fdb1c9c1e3dca7acc76e16c46de98ea..059bcb04fac472612a803b7a955bfad761f9226d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabThemeColorHelper.java
 @@ -11,6 +11,8 @@ import org.chromium.content_public.browser.NavigationHandle;
@@ -15,7 +15,7 @@ index e3ae27c25fdb1c9c1e3dca7acc76e16c46de98ea..8fa55c3666829e65e07cfecfca1827f1
      @Override
      public void onUrlUpdated(Tab tab) {
          updateIfNeeded(tab, false);
-+        if (tab != null && UrlUtilities.isNTPUrl(tab.getUrl().getSpec()))
++        if (tab != null && UrlUtilities.isNtpUrl(tab.getUrl().getSpec()))
 +            updateIfNeeded(tab, true);
      }
  

@@ -40,6 +40,7 @@ mises_java_sources = kiwi_java_sources + [
   "//mises/android/java/org/chromium/chrome/browser/ntp/CarouselAdapter.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/TileGroupDelegateWrapper.java",
   "//mises/android/java/org/chromium/chrome/browser/ntp/OnMisesNtpListener.java",
+  "//mises/android/java/org/chromium/chrome/browser/suggestions/tile/MisesMostVisitedTilesLayoutBase.java",
   "//mises/android/java/org/chromium/chrome/browser/suggestions/tile/MisesTileView.java",
   "//mises/android/java/org/chromium/chrome/browser/suggestions/tile/MisesTileRenderer.java",
   "//mises/android/java/org/chromium/chrome/browser/suggestions/MisesSiteSuggestion.java",

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
-index 11fa20c56723ac6a9f265f484c6df258338b2e6d..000f1df54fff6ee4aeae65d4a47e5890926aff5a 100644
+index 11fa20c56723ac6a9f265f484c6df258338b2e6d..198ecefe8bf2bb0effead9338b47b5efc4799849 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
 @@ -196,6 +196,10 @@ import org.chromium.url.GURL;
@@ -21,3 +21,12 @@ index 11fa20c56723ac6a9f265f484c6df258338b2e6d..000f1df54fff6ee4aeae65d4a47e5890
                          // Update the SSL security state as a result of this notification as it will
                          // sometimes be the only update we receive.
                          updateTabLoadingState(true);
+@@ -1635,7 +1640,7 @@ public class ToolbarManager
+                     TabSwitcherActionMenuCoordinator.createOnLongClickListener(
+                             menuItemId -> mAppMenuDelegate.onOptionsItemSelected(menuItemId, null),
+                             profile,
+-                            mTabModelSelectorSupplier);
++                            mTabModelSelectorSupplier, newTabClickHandler);
+             mTabSwitcherButtonCoordinator.initializeWithNative(
+                     newTabClickHandler,
+                     tabSwitcherLongClickListener,

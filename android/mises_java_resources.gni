@@ -458,6 +458,6 @@ mises_base_module_resources = [
 
 # XML preprocessing
 mises_java_preprocess_xml_sources =
-    [ "//mises/android/java/res/menu/main_menu.xml" ]
+    [ "//chrome/android/java/res/menu/main_menu.xml" ]
 mises_java_preprocess_module_sources =
     [ "//mises/android/preprocess/xml/menu_main_menu_xml.py" ]

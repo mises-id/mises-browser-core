@@ -80,7 +80,7 @@ public class IncognitoNewTabPageView extends FrameLayout {
 
         mScrollView = (NewTabPageScrollView) findViewById(R.id.ntp_scrollview);
         mScrollView.setBackgroundColor(
-                ApiCompatibilityUtils.getColor(getResources(), R.color.ntp_bg_incognito));
+               AppCompatResources.getColorStateList(this, R.color.ntp_bg_incognito));
         setContentDescription(
                 getResources().getText(R.string.accessibility_new_incognito_tab_page));
 

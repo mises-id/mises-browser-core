@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0bbd8f093 100644
+index ed52802b815dccd2e72a083b269dbdfe0ac3d254..e1701222ef18361ef97efe8c113fbdbbbbedbdf9 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
@@ -27,7 +27,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
  import org.chromium.chrome.browser.preferences.Pref;
  import org.chromium.chrome.browser.printing.TabPrinter;
  import org.chromium.chrome.browser.profiles.Profile;
-@@ -253,6 +255,39 @@ import org.chromium.webapk.lib.client.WebApkNavigationClient;
+@@ -253,6 +255,38 @@ import org.chromium.webapk.lib.client.WebApkNavigationClient;
  import java.util.ArrayList;
  import java.util.List;
  
@@ -37,8 +37,6 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
 +import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
 +import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 +import org.chromium.chrome.browser.night_mode.ThemeType;
-+import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
-+import org.chromium.components.browser_ui.settings.SettingsLauncher;
 +import org.chromium.components.content_settings.ContentSettingValues;
 +import org.chromium.components.content_settings.ContentSettingsType;
 +import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridge;
@@ -52,6 +50,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
 +
 +import android.view.Gravity;
 +import android.app.role.RoleManager;
++import androidx.appcompat.content.res.AppCompatResources;
 +import androidx.activity.result.ActivityResultLauncher;
 +import androidx.activity.result.contract.ActivityResultContracts;
 +import org.chromium.chrome.browser.AppMenuBridge;
@@ -67,7 +66,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
  /**
   * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder} and
   * associated classes.
-@@ -376,6 +411,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -376,6 +410,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
      /** Listen to display change and start tab-reparenting if necessary. */
      private DisplayAndroidObserver mDisplayAndroidObserver;
  
@@ -76,7 +75,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
      /**
       * The RootUiCoordinator associated with the activity. This variable is held to facilitate
       * testing.
-@@ -534,6 +571,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -534,6 +570,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          // not go through ChromeLauncherActivity that would have normally triggered this.
          mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
  
@@ -85,7 +84,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
          CommandLine commandLine = CommandLine.getInstance();
          if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
              TypedValue threshold = new TypedValue();
-@@ -849,6 +888,12 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -849,6 +887,12 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  ViewStub toolbarContainerStub = findViewById(R.id.control_container_stub);
  
                  toolbarContainerStub.setLayoutResource(getControlContainerLayoutId());
@@ -98,7 +97,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
                  TraceEvent.begin("toolbarContainerStub.inflate");
                  toolbarContainerStub.inflate();
                  TraceEvent.end("toolbarContainerStub.inflate");
-@@ -926,12 +971,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -926,12 +970,24 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                      @Override
                      public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
                          postDeferredStartupIfNeeded();
@@ -123,7 +122,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
                      }
  
                      @Override
-@@ -1227,6 +1284,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1227,6 +1283,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          }
  
          getManualFillingComponent().onResume();
@@ -131,7 +130,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
          checkForDeviceLockOnAutomotive();
      }
  
-@@ -1910,6 +1968,22 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1910,6 +1967,22 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                      }
                  };
          display.addObserver(mDisplayAndroidObserver);
@@ -154,7 +153,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
      }
  
      private void initializeManualFillingComponent(ProfileProvider profileProvider) {
-@@ -1943,6 +2017,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -1943,6 +2016,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
          return mNativeInitialized;
      }
  
@@ -220,7 +219,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
      @Override
      public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
          if (mManualFillingComponentSupplier.hasValue()) {
-@@ -2551,10 +2684,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2551,10 +2683,38 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
                  mMenuActionHandlers) {
              if (handler.handleMenuOrKeyboardAction(id, fromMenu)) return true;
          }
@@ -260,7 +259,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
          if (id == R.id.preferences_id) {
              SettingsLauncher settingsLauncher = SettingsLauncherFactory.createSettingsLauncher();
              settingsLauncher.launchSettingsActivity(this);
-@@ -2682,9 +2843,113 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2682,9 +2842,113 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
  
          if (id == R.id.translate_id) {
              RecordUserAction.record("MobileMenuTranslate");
@@ -374,22 +373,22 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
              return true;
          }
  
-@@ -2741,6 +3006,43 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2741,6 +3005,43 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
 +        if (id == R.id.adblock_id || id == R.id.adblock_check_id) {
-+            boolean adBlockIsActive = (WebsitePreferenceBridgeJni.get().isContentSettingEnabled(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS) == false);
++            boolean adBlockIsActive = (WebsitePreferenceBridgeJni.get().isContentSettingEnabled(ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.ADS) == false);
 +            if (!adBlockIsActive) {
-+              WebsitePreferenceBridgeJni.get().setContentSettingEnabled(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, false); // BLOCK
++              WebsitePreferenceBridgeJni.get().setContentSettingEnabled(ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.ADS, false); // BLOCK
 +            } else {
 +	      final String origin = currentTab.getUrl().getOrigin().getSpec();
-+              int adblockSettingForThisSite = WebsitePreferenceBridgeJni.get().getPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin);
++              int adblockSettingForThisSite = WebsitePreferenceBridgeJni.get().getPermissionSettingForOrigin(ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin);
 +              Log.i("Mises", "Adblock switch for " + origin + " " + String.valueOf(adblockSettingForThisSite));
 +	      if (adblockSettingForThisSite == ContentSettingValues.DEFAULT || adblockSettingForThisSite == ContentSettingValues.BLOCK)
-+                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin, ContentSettingValues.ALLOW);
++                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin, ContentSettingValues.ALLOW);
 +              else
-+                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin, ContentSettingValues.DEFAULT);
++                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.ADS, origin, origin, ContentSettingValues.DEFAULT);
 +            }
 +            currentTab.stopLoading();
 +            currentTab.reload();
@@ -418,7 +417,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2774,6 +3076,65 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2774,6 +3075,63 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -429,15 +428,13 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
 +            SharedPreferencesManager prefs = ChromeSharedPreferences.getInstance();
 +            if (!isDarkModeEnabled) {
 +              getWindow().setBackgroundDrawable(new ColorDrawable(
-+                          ApiCompatibilityUtils.getColor(getResources(),
-+                          R.color.media_viewer_bg)));
++                          getColor(R.color.media_viewer_bg)));
 +              int currentTheme = ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0);
 +              prefs.writeIntUnchecked("previous_ui_theme_setting", currentTheme);
 +              prefs.writeInt("ui_theme_setting", ThemeType.DARK);
 +            } else {
 +              getWindow().setBackgroundDrawable(new ColorDrawable(
-+                          ApiCompatibilityUtils.getColor(getResources(),
-+                          R.color.resizing_background_color)));
++                          getColor(R.color.resizing_background_color)));
 +              int previousTheme = ContextUtils.getAppSharedPreferences().getInt("previous_ui_theme_setting", 0);
 +              prefs.writeInt("ui_theme_setting", previousTheme);
 +            }
@@ -445,7 +442,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
 +            MisesPrefServiceBridge.getInstance().setDarkModeEnabled(!isDarkModeEnabled);
 +
 +            WebsitePreferenceBridge.setContentSettingEnabled(
-+                    Profile.getLastUsedRegularProfile(), ContentSettingsType.AUTO_DARK_WEB_CONTENT, !isDarkModeEnabled);
++                    ProfileManager.getLastUsedRegularProfile(), ContentSettingsType.AUTO_DARK_WEB_CONTENT, !isDarkModeEnabled);
 +            currentTab.getWebContents().notifyRendererPreferenceUpdate();
 +        }
 +
@@ -471,7 +468,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..b550f169053dc8a6da5b29fd64b785e0
 +
 +        if (id == R.id.clear_data_menu_id) {
 +            RecordUserAction.record("ClearBrowsingDataFromMainMenu");
-+            SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
++            SettingsLauncher settingsLauncher = SettingsLauncherFactory.createSettingsLauncher();
 +            settingsLauncher.launchSettingsActivity(this, ClearBrowsingDataTabsFragment.class);
 +        }
 +

@@ -1,21 +1,20 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-index 5287942681817e8d05147eadc92366824d6c1b9a..fdd0f8c176356e3e9e19ffe4ed0628e4d949e57f 100644
+index 5287942681817e8d05147eadc92366824d6c1b9a..0f08ac678f8755b21d44ed532d89cad84d9f2dad 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-@@ -233,6 +233,12 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -233,6 +233,11 @@ public class MainSettings extends ChromeBaseSettingsFragment
          setManagedPreferenceDelegateForPreference(PREF_PASSWORDS);
          setManagedPreferenceDelegateForPreference(PREF_SEARCH_ENGINE);
  
 +        Preference safetyCheck = findPreference(PREF_SAFETY_CHECK);
 +        if (safetyCheck != null)
 +            getPreferenceScreen().removePreference(safetyCheck);
-+	    //removePreferenceIfPresent("toolbar_options");
 +	    removePreferenceIfPresent("nightmode");
 +
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              // If we are on Android O+ the Notifications preference should lead to the Android
              // Settings notifications page.
-@@ -244,6 +250,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -244,6 +249,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
              PackageManager pm = getActivity().getPackageManager();
              if (intent.resolveActivity(pm) != null) {
                  Preference notifications = findPreference(PREF_NOTIFICATIONS);
@@ -23,12 +22,3 @@ index 5287942681817e8d05147eadc92366824d6c1b9a..fdd0f8c176356e3e9e19ffe4ed0628e4
                  notifications.setOnPreferenceClickListener(
                          preference -> {
                              startActivity(intent);
-@@ -273,7 +280,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
-                             // finch.
-                             if (uiState.canShowUi) return;
-                             getPreferenceScreen()
--                                    .removePreference(findPreference(PREF_TOOLBAR_SHORTCUT));
-+                                    .removePreferenceIfPresent(PREF_TOOLBAR_SHORTCUT);
-                         });
- 
-         if (BuildInfo.getInstance().isAutomotive) {

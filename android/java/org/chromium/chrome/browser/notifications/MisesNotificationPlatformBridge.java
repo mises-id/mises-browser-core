@@ -65,20 +65,47 @@ public class MisesNotificationPlatformBridge extends NotificationPlatformBridge 
         }
     }
 
-    @Override
-    protected NotificationBuilderBase prepareNotificationBuilder(String notificationId,
-            @NotificationType int notificationType, String origin, String scopeUrl,
-            String profileId, boolean incognito, boolean vibrateEnabled, String title, String body,
-            Bitmap image, Bitmap icon, Bitmap badge, int[] vibrationPattern, long timestamp,
-            boolean renotify, boolean silent, ActionInfo[] actions, String webApkPackage) {
-        mNotificationType = notificationType;
 
-        if (notificationType == NotificationType.BRAVE_ADS) {
+    public static NotificationBuilderBase prepareNotificationBuilder(
+            NotificationIdentifyingAttributes identifyingAttributes,
+            boolean vibrateEnabled,
+            String title,
+            String body,
+            Bitmap image,
+            Bitmap icon,
+            Bitmap badge,
+            int[] vibrationPattern,
+            long timestamp,
+            boolean renotify,
+            boolean silent,
+            ActionInfo[] actions) {
+        if (identifyingAttributes.notificationType == NotificationType.BRAVE_ADS) {
             vibrationPattern = EMPTY_VIBRATION_PATTERN;
         }
 
-        return super.prepareNotificationBuilder(notificationId, notificationType, origin, scopeUrl,
-                profileId, incognito, vibrateEnabled, title, body, image, icon, badge,
-                vibrationPattern, timestamp, renotify, silent, actions, webApkPackage);
+        NotificationBuilderBase result =
+                NotificationPlatformBridge.prepareNotificationBuilder(
+                        identifyingAttributes,
+                        vibrateEnabled,
+                        title,
+                        body,
+                        image,
+                        icon,
+                        badge,
+                        vibrationPattern,
+                        timestamp,
+                        renotify,
+                        silent,
+                        actions);
+
+        // assert result instanceof BraveNotificationBuilder
+        //         : "Bytecode changes for BraveNotificationBuilder were not applied!";
+        // if (result instanceof BraveNotificationBuilder) {
+        //     ((BraveNotificationBuilder) result)
+        //             .setIsBraveNotification(
+        //                     identifyingAttributes.notificationType == NotificationType.BRAVE_ADS);
+        // }
+
+        return result;
     }
 }

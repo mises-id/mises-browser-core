@@ -46,6 +46,7 @@ public class MisesClassAdapter {
         chain = new MisesTranslateCompactInfoBarBaseClassAdapter(chain);
         chain = new MisesMenuButtonCoordinatorClassAdapter(chain);
         chain = new MisesMimeUtilsClassAdapter(chain);
+        chain = new MisesMostVisitedTilesLayoutBaseClassAdapter(chain);
         chain = new MisesMostVisitedTilesMediatorClassAdapter(chain);
         chain = new MisesNewTabPageClassAdapter(chain);
         chain = new MisesNewTabPageLayoutClassAdapter(chain);

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import org.chromium.base.Log;
 import org.chromium.base.jank_tracker.JankTracker;
 import org.chromium.base.supplier.ObservableSupplier;
+import org.chromium.base.supplier.OneshotSupplier;
 import org.chromium.base.supplier.Supplier;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.browser_controls.BrowserControlsStateProvider;
@@ -24,6 +25,7 @@ import org.chromium.chrome.browser.feed.FeedSurfaceProvider;
 import org.chromium.chrome.browser.feed.FeedSwipeRefreshLayout;
 import org.chromium.chrome.browser.feedback.HelpAndFeedbackLauncherImpl;
 import org.chromium.chrome.browser.lifecycle.ActivityLifecycleDispatcher;
+import org.chromium.chrome.browser.magic_stack.ModuleRegistry;
 import org.chromium.chrome.browser.privacy.settings.PrivacyPreferencesManagerImpl;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.share.ShareDelegate;
@@ -40,6 +42,7 @@ import org.chromium.components.browser_ui.bottomsheet.BottomSheetController;
 import org.chromium.components.browser_ui.settings.SettingsLauncher;
 import org.chromium.components.search_engines.TemplateUrlService;
 import org.chromium.ui.base.WindowAndroid;
+import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.chrome.browser.feed.MisesFeedSurfaceCoordinator;
 
@@ -52,12 +55,14 @@ public class MisesNewTabPage extends NewTabPage {
     private Supplier<Toolbar> mToolbarSupplier;
     private TabModelSelector mTabModelSelector;
     private BottomSheetController mBottomSheetController;
+    private ObservableSupplier<Integer> mTabStripHeightSupplier;
     private JankTracker mJankTracker;
 
   public MisesNewTabPage(
             Activity activity,
             BrowserControlsStateProvider browserControlsStateProvider,
             Supplier<Tab> activityTabProvider,
+            ModalDialogManager modalDialogManager,
             SnackbarManager snackbarManager,
             ActivityLifecycleDispatcher lifecycleDispatcher,
             TabModelSelector tabModelSelector,
@@ -72,13 +77,15 @@ public class MisesNewTabPage extends NewTabPage {
             WindowAndroid windowAndroid,
             JankTracker jankTracker,
             Supplier<Toolbar> toolbarSupplier,
-            SettingsLauncher settingsLauncher,
             HomeSurfaceTracker homeSurfaceTracker,
-            ObservableSupplier<TabContentManager> tabContentManagerSupplier) {
+            ObservableSupplier<TabContentManager> tabContentManagerSupplier,
+            ObservableSupplier<Integer> tabStripHeightSupplier,
+            OneshotSupplier<ModuleRegistry> moduleRegistrySupplier) {
         super(
                 activity,
                 browserControlsStateProvider,
                 activityTabProvider,
+                modalDialogManager,
                 snackbarManager,
                 lifecycleDispatcher,
                 tabModelSelector,
@@ -93,9 +100,10 @@ public class MisesNewTabPage extends NewTabPage {
                 windowAndroid,
                 jankTracker,
                 toolbarSupplier,
-                settingsLauncher,
                 homeSurfaceTracker,
-                tabContentManagerSupplier);
+                tabContentManagerSupplier,
+                tabStripHeightSupplier,
+                moduleRegistrySupplier);
 
         
         assert mNewTabPageLayout instanceof MisesNewTabPageLayout;
@@ -116,7 +124,7 @@ public class MisesNewTabPage extends NewTabPage {
         LayoutInflater inflater = LayoutInflater.from(activity);
         mNewTabPageLayout = (NewTabPageLayout) inflater.inflate(R.layout.new_tab_page_layout, null);
 
-        assert !FeedFeatures.isFeedEnabled();
+        assert !FeedFeatures.isFeedEnabled(profile);
         FeedSurfaceCoordinator feedSurfaceCoordinator = new MisesFeedSurfaceCoordinator(
                         activity,
                         snackbarManager,
@@ -128,21 +136,18 @@ public class MisesNewTabPage extends NewTabPage {
                         isInNightMode,
                         this,
                         profile,
-                        /* isPlaceholderShownInitially= */ false,
                         mBottomSheetController,
                         shareDelegateSupplier,
                         /* externalScrollableContainerDelegate= */ null,
                         NewTabPageUtils.decodeOriginFromNtpUrl(url),
                         PrivacyPreferencesManagerImpl.getInstance(),
                         mToolbarSupplier,
-                        SurfaceType.NEW_TAB_PAGE,
                         mConstructedTimeNs,
                         FeedSwipeRefreshLayout.create(activity, R.id.toolbar_container),
                         /* overScrollDisabled= */ false,
                         /* viewportView= */ null,
                         /* actionDelegate= */ null,
-                        HelpAndFeedbackLauncherImpl.getForProfile(profile),
-                        mTabModelSelector);
+                        mTabStripHeightSupplier);
 
         mFeedSurfaceProvider = feedSurfaceCoordinator;
 

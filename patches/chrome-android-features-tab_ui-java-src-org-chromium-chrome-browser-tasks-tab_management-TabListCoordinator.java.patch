@@ -1,12 +1,13 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-index 82216eaac96081460f8172242840c41c63cc8ba1..c8997b84ac6b31317abbcb9879674e3786c082f4 100644
+index 82216eaac96081460f8172242840c41c63cc8ba1..01ebf8a97e750158157b5c3a5789eb2682b6e71a 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-@@ -62,6 +62,11 @@ import java.lang.annotation.Retention;
+@@ -62,6 +62,12 @@ import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
  import java.util.List;
  
 +import org.chromium.base.ContextUtils;
++import android.content.res.Resources;
 +import android.app.Activity;
 +import android.content.res.Configuration;
 +import org.chromium.chrome.browser.multiwindow.MultiWindowUtils;
@@ -14,7 +15,7 @@ index 82216eaac96081460f8172242840c41c63cc8ba1..c8997b84ac6b31317abbcb9879674e37
  /** Coordinator for showing UI for a list of tabs. Can be used in GRID or STRIP modes. */
  public class TabListCoordinator
          implements PriceMessageService.PriceWelcomeMessageProvider, DestroyObserver {
-@@ -115,6 +120,25 @@ public class TabListCoordinator
+@@ -115,6 +121,25 @@ public class TabListCoordinator
      private int mAwaitingTabId = Tab.INVALID_TAB_ID;
      private @TabActionState int mTabActionState;
  
@@ -40,7 +41,7 @@ index 82216eaac96081460f8172242840c41c63cc8ba1..c8997b84ac6b31317abbcb9879674e37
      /**
       * Construct a coordinator for UI that shows a list of tabs.
       *
-@@ -312,6 +336,8 @@ public class TabListCoordinator
+@@ -312,6 +337,8 @@ public class TabListCoordinator
                              }
                          };
                  mRecyclerView.setLayoutManager(gridLayoutManager);

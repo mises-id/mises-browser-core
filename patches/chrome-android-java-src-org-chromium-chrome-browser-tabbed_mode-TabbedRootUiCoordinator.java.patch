@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
-index 751c747f216a2810bec94483a61f1e1241cde201..fa67cbc80b16637d236b7758bc63b0c9eaf91d13 100644
+index 751c747f216a2810bec94483a61f1e1241cde201..593cc902c74f708cef4886ca543cacdb0893940c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
 @@ -152,6 +152,8 @@ import org.chromium.ui.modaldialog.ModalDialogManager;
@@ -16,7 +16,7 @@ index 751c747f216a2810bec94483a61f1e1241cde201..fa67cbc80b16637d236b7758bc63b0c9
          initStatusIndicatorCoordinator(layoutManager);
          mLayoutManager = layoutManager;
 +        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
-+            updateTopControlsHeight(false);
++            updateTopControlsHeight();
 +        }
      }
  

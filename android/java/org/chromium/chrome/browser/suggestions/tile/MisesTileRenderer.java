@@ -27,6 +27,7 @@ import org.chromium.chrome.browser.feature_engagement.TrackerFactory;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
 import org.chromium.chrome.browser.omnibox.suggestions.mostvisited.SuggestTileType;
 import org.chromium.chrome.browser.profiles.Profile;
+import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.search_engines.TemplateUrlServiceFactory;
 import org.chromium.chrome.browser.suggestions.SiteSuggestion;
 import org.chromium.chrome.browser.suggestions.MisesSiteSuggestion;
@@ -59,7 +60,7 @@ public class MisesTileRenderer extends TileRenderer {
     public MisesTileRenderer(
             Context context, @TileStyle int style, int titleLines, org.chromium.chrome.browser.suggestions.ImageFetcher imageFetcher) {
         super(context, style, titleLines, imageFetcher);
-        Profile profile = Profile.getLastUsedRegularProfile();
+        Profile profile = ProfileManager.getLastUsedRegularProfile();
         mImageFetcher = ImageFetcherFactory.createImageFetcher(ImageFetcherConfig.IN_MEMORY_WITH_DISK_CACHE,
                         profile.getProfileKey(),
                         GlobalDiscardableReferencePool.getReferencePool());

@@ -18,7 +18,7 @@ public class MisesTabUiThemeProvider {
     @ColorInt
     public static int getTitleTextColor(Context context, boolean isIncognito, boolean isSelected) {
         if (isSelected) {
-            return ApiCompatibilityUtils.getColor(
+            return AppCompatResources.getColorStateList(
                     context.getResources(), R.color.baseline_neutral_900);
         }
 
@@ -38,8 +38,8 @@ public class MisesTabUiThemeProvider {
     public static int getCardViewBackgroundColor(
             Context context, boolean isIncognito, boolean isSelected) {
         if (isSelected && !isIncognito) {
-            return ApiCompatibilityUtils.getColor(
-                    context.getResources(), R.color.brave_tab_view_card_selected_bg);
+            return AppCompatResources.getColorStateList(
+                    context, R.color.brave_tab_view_card_selected_bg);
         }
 
         return TabUiThemeProvider.getCardViewBackgroundColor(context, isIncognito, isSelected);

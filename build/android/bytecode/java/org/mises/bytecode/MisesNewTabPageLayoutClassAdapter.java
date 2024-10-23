@@ -31,9 +31,9 @@ public class MisesNewTabPageLayoutClassAdapter extends MisesClassVisitor {
         // addMethodAnnotation(
         //         sMisesNewTabPageLayoutClassName, "updateSearchBoxOnScroll", "Ljava/lang/Override;");
 
-        makePublicMethod(sNewTabPageLayoutClassName, "isScrollableMvtEnabled");
-        addMethodAnnotation(
-                sMisesNewTabPageLayoutClassName, "isScrollableMvtEnabled", "Ljava/lang/Override;");
+        // makePublicMethod(sNewTabPageLayoutClassName, "isScrollableMvtEnabled");
+        // addMethodAnnotation(
+        //         sMisesNewTabPageLayoutClassName, "isScrollableMvtEnabled", "Ljava/lang/Override;");
 
         changeSuperName(sNewTabPageLayoutClassName, sNewTabPageLayoutSuperClassName);
     }
