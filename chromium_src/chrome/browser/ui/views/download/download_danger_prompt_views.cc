@@ -55,11 +55,3 @@ namespace {
 #endif
 
 
-
-#if BUILDFLAG(IS_ANDROID)
-void DownloadDangerPrompt::RecordDownloadWarningEvent(
-    Action action,
-    download::DownloadItem* download) {
-
-}
-#endif

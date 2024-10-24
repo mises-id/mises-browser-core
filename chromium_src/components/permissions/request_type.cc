@@ -106,4 +106,10 @@ bool IsRequestablePermissionType(ContentSettingsType content_settings_type) {
   }
 }
 
+#if BUILDFLAG(IS_ANDROID)
+IconId GetBlockedIconId(RequestType type) {
+  return GetIconIdAndroid(type);
+}
+#endif
+
 }  // namespace permissions

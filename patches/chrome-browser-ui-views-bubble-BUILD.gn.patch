@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/bubble/BUILD.gn b/chrome/browser/ui/views/bubble/BUILD.gn
+index 97bc6a7834a023b5e18ff3745520271067ce7e83..76aff8283867a454029d1f5e3c1b287ea3acb383 100644
+--- a/chrome/browser/ui/views/bubble/BUILD.gn
++++ b/chrome/browser/ui/views/bubble/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++assert(true || is_win || is_mac || is_linux || is_chromeos)
+ 
+ import("//build/config/ui.gni")
+ 

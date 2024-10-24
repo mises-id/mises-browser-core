@@ -13,7 +13,8 @@ rust_static_library("rust_lib") {
   cxx_bindings = [ "lib.rs" ]
 
   deps = [
-    "//mises/third_party/rust/curve25519_dalek/v3:lib",
-    "//mises/third_party/rust/ed25519_dalek_bip32/v0_2:lib",
+    "//mises/third_party/rust/bech32/v0_9:lib",
+    "//mises/third_party/rust/curve25519_dalek/v4:lib",
+    "//mises/third_party/rust/ed25519_dalek_bip32/v0_3:lib",
   ]
 }

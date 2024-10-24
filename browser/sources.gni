@@ -132,11 +132,18 @@ if (is_android) {
     "//mises/chromium_src/chrome/browser/first_run/first_run_internal_android.cc",
 
     "//chrome/common/process_singleton_lock_posix.cc",
-    "//chrome/common/importer/firefox_importer_utils_linux.cc",
+    "process_singleton_posix.cc",
+    "importer/firefox_profile_lock_posix.cc",
+    #"//chrome/common/importer/firefox_importer_utils_linux.cc",
     
     "policy/policy_path_parser_linux.cc",
     "safe_browsing/extension_telemetry/tabs_execute_script_signal.cc",
     "safe_browsing/extension_telemetry/remote_host_contacted_signal.cc",
+
+    "enterprise/connectors/common.cc",
+    "enterprise/connectors/common.h",
+    "enterprise/connectors/connectors_service.cc",
+    "enterprise/connectors/connectors_service.h",
 
   ]
 

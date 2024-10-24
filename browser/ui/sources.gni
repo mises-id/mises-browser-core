@@ -18,10 +18,9 @@ if (is_android) {
       "views/profiles/badged_profile_photo.cc",
       "views/profiles/badged_profile_photo.h",
       "views/frame/browser_non_client_frame_view_factory_views.cc",
-      "frame/window_frame_util.cc",
-      "frame/window_frame_util.h",
       "tab_contents/chrome_web_contents_menu_helper.cc",
       "views/close_bubble_on_tab_activation_helper.cc",
+      "//mises/browser/ui/tab_model_desktop.cc",
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
@@ -151,6 +150,8 @@ if (is_android) {
       "views/passwords/manage_passwords_icon_views.cc",
       "views/ssl_client_certificate_selector.cc",
       "views/ssl_client_certificate_selector.h",
+      "views/webid/fedcm_account_selection_view_controller.cc",
+      "views/webid/fedcm_account_selection_view_controller.h",
       "views/webid/fedcm_account_selection_view_desktop.cc",
       "views/webid/fedcm_account_selection_view_desktop.h",
       "views/overlay/video_overlay_window_views.cc",
@@ -231,12 +232,18 @@ if (is_android) {
 
       "tabs/tab_model.cc",
       "tabs/tab_model.h",
+      "tabs/tab_network_state.cc",
+      "tabs/tab_network_state.h",
 
       "views/frame/picture_in_picture_browser_frame_view.cc",
       "views/plus_addresses/plus_address_creation_controller_desktop.cc",
       "views/login_handler_views.cc",
       "views/download/bubble/download_bubble_contents_view.cc",
       "views/download/bubble/download_bubble_contents_view.h",
+      "views/omnibox/omnibox_popup_view_webui.cc",
+      "views/omnibox/omnibox_popup_view_webui.h",
+      "views/omnibox/omnibox_popup_presenter.cc",
+      "views/omnibox/omnibox_popup_presenter.h",
 
   ]
   mises_browser_ui_deps += [
@@ -245,10 +252,12 @@ if (is_android) {
     "//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
   ]
   mises_browser_ui_exception_deps += [
+    "//chrome/browser/ui/views",
+    "//chrome/browser/ui/views/toolbar",
     "//components/live_caption",
     "//chrome/browser/ui/toasts",
     "//chrome/browser/ui/webui/util",
-    "//chrome/browser/ui/views/bubble",
+    #"//chrome/browser/ui/views/bubble",
     "//chrome/browser/companion/visual_query",
     "//chrome/browser/companion/core",
     "//chrome/browser/ui/webui/searchbox",
@@ -265,7 +274,9 @@ if (is_android) {
       "//chrome/browser/headless:command_processor",
   ]
   mises_browser_ui_exception_allow_circular_includes_from += [
-    "//chrome/browser/ui/views/bubble",
+    "//chrome/browser/ui/views",
+    "//chrome/browser/ui/views/toolbar",
+    #"//chrome/browser/ui/views/bubble",
     "//chrome/browser/ui/webui/searchbox",
     "//chrome/browser/lens/region_search",
     "//chrome/browser/ui/exclusive_access",

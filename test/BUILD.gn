@@ -115,7 +115,7 @@ test("mises_unit_tests") {
    
   ]
 
-  if (true || toolkit_views) {
+  if (toolkit_views) {
     deps += [ "//chrome/browser/ui/views" ]
   }
 

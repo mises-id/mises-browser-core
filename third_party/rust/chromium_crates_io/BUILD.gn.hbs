@@ -54,14 +54,14 @@ deps = [
 ":lib",
 {{/if}}
 {{#each this.packages}}
-"//brave/third_party/rust/{{this.name}}/{{this.epoch}}:lib",
+"//mises/third_party/rust/{{this.name}}/{{this.epoch}}:lib",
 {{/each}}
 ]
 {{else}}
 if ({{this.cond}}) {
 deps += [
 {{#each this.packages}}
-"//brave/third_party/rust/{{this.name}}/{{this.epoch}}:lib",
+"//mises/third_party/rust/{{this.name}}/{{this.epoch}}:lib",
 {{/each}}
 ]
 }
@@ -70,7 +70,7 @@ deps += [
 {{#if aliased_deps}}
 aliased_deps = {
 {{#each aliased_deps}}
-{{this.0}} = "//brave/third_party/rust/{{this.1}}:lib"
+{{this.0}} = "//mises/third_party/rust/{{this.1}}:lib"
 {{/each}}
 }
 {{/if}}
@@ -78,14 +78,14 @@ aliased_deps = {
 {{#if @first}}
 build_deps = [
 {{#each this.packages}}
-"//brave/third_party/rust/{{this.name}}/{{this.epoch}}:buildrs_support",
+"//mises/third_party/rust/{{this.name}}/{{this.epoch}}:buildrs_support",
 {{/each}}
 ]
 {{else}}
 if ({{this.cond}}) {
 build_deps += [
 {{#each this.packages}}
-"//brave/third_party/rust/{{this.name}}/{{this.epoch}}:buildrs_support",
+"//mises/third_party/rust/{{this.name}}/{{this.epoch}}:buildrs_support",
 {{/each}}
 ]
 }

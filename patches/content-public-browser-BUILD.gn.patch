@@ -1,0 +1,13 @@
+diff --git a/content/public/browser/BUILD.gn b/content/public/browser/BUILD.gn
+index 35318cd019e2a52a071b2c426aff95040077d427..214c286996629c7641ba9914873a90af1e000d2e 100644
+--- a/content/public/browser/BUILD.gn
++++ b/content/public/browser/BUILD.gn
+@@ -692,7 +692,7 @@ source_set("browser_sources") {
+     ]
+   }
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "direct_sockets_delegate.h",
+ 

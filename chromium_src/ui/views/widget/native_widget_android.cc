@@ -85,6 +85,11 @@ void NativeWidgetAndroid::InitNativeWidget(Widget::InitParams params) {
 
 void NativeWidgetAndroid::OnWidgetInitDone() {}
 
+void NativeWidgetAndroid::ReparentNativeViewImpl(gfx::NativeView new_parent) {
+  
+}
+
+
 std::unique_ptr<NonClientFrameView> NativeWidgetAndroid::CreateNonClientFrameView() {
   return nullptr;
 }
@@ -322,6 +327,10 @@ void NativeWidgetAndroid::RunShellDrag(std::unique_ptr<ui::OSExchangeData> data,
                     ui::mojom::DragEventSource source) {
 }
 
+void NativeWidgetAndroid::CancelShellDrag(View* view) {
+
+}
+
 void NativeWidgetAndroid::SchedulePaintInRect(const gfx::Rect& rect) {
 }
 
@@ -387,6 +396,12 @@ const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
 ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
 void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
 void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
+bool NativeWidgetAndroid::SetAllowScreenshots(bool allow) {
+  return false;
+}
+bool NativeWidgetAndroid::AreScreenshotsAllowed() {
+  return true;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAndroid, protected:

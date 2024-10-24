@@ -470,6 +470,14 @@ const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2SafetyCheckTriggerId{
         &kTrustSafetySentimentSurveyV2, "safety-check-trigger-id", ""};
 const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubInteractionTriggerId{
+        &kTrustSafetySentimentSurveyV2, "safety-hub-interaction-trigger-id",
+        ""};
+const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubNotificationTriggerId{
+        &kTrustSafetySentimentSurveyV2, "safety-hub-notification-trigger-id",
+        ""};
+const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2TrustedSurfaceTriggerId{
         &kTrustSafetySentimentSurveyV2, "trusted-surface-trigger-id", ""};
 const base::FeatureParam<std::string>
@@ -579,6 +587,10 @@ extern const base::FeatureParam<std::string>
 #endif
 
 
-
+#if BUILDFLAG(IS_ANDROID)
+BASE_FEATURE(kShortcutsNotAppsRevealDesktop,
+             "ShortcutsNotAppsRevealDesktop",
+             base::FEATURE_ENABLED_BY_DEFAULT);
+#endif
 
 }  // namespace features

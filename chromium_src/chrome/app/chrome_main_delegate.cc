@@ -50,10 +50,6 @@ std::optional<int> ChromeMainDelegate::BasicStartupComplete() {
   // please see: brave/chromium_src/base/feature_override.h
   std::unordered_set<const char*> disabled_features = {};
 
-  if (base::CommandLine::ForCurrentProcess()->HasSwitch(
-          switches::kDisableDnsOverHttps)) {
-    disabled_features.insert(features::kDnsOverHttps.name);
-  }
 
   command_line.AppendFeatures(enabled_features, disabled_features);
 

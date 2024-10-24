@@ -48,4 +48,21 @@ int GetSidePanelMinimumWidth() {
 BASE_FEATURE(kHaTSWebUI, "HaTSWebUI", base::FEATURE_DISABLED_BY_DEFAULT);
 #endif  // !BUILDFLAG(IS_ANDROID)
 
+#if BUILDFLAG(IS_ANDROID)
+
+BASE_FEATURE(kKeyboardAndPointerLockPrompt,
+             "KeyboardAndPointerLockPrompt",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+
+BASE_FEATURE(kToolbarPinning,
+             "ToolbarPinning",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+bool IsToolbarPinningEnabled() {
+  return base::FeatureList::IsEnabled(kToolbarPinning);
+}
+
+#endif  // !BUILDFLAG(IS_ANDROID)
+
 }  // namespace features

@@ -357,6 +357,12 @@ extern const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2SafetyCheckTriggerId;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubInteractionTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubNotificationTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2TrustedSurfaceTriggerId;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>

@@ -1,6 +1,8 @@
 mises_browser_permissions_sources = [
   "//mises/browser/permissions/permission_lifetime_manager_factory.cc",
   "//mises/browser/permissions/permission_lifetime_manager_factory.h",
+  "//mises/browser/permissions/permission_origin_lifetime_monitor_impl.cc",
+  "//mises/browser/permissions/permission_origin_lifetime_monitor_impl.h",
 ]
 
 mises_browser_permissions_deps = [
