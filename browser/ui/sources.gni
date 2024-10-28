@@ -15,12 +15,18 @@ if (is_android) {
       "//mises/chromium_src/chrome/browser/ui/views/chrome_views_delegate_android.cc",
       "//mises/chromium_src/chrome/browser/ui/startup/startup_browser_creator_android.cc",
       "//mises/chromium_src/chrome/browser/ui/profile_picker_android.cc",
+      "//mises/browser/ui/tab_model_desktop.cc",
+
       "views/profiles/badged_profile_photo.cc",
       "views/profiles/badged_profile_photo.h",
       "views/frame/browser_non_client_frame_view_factory_views.cc",
-      "tab_contents/chrome_web_contents_menu_helper.cc",
-      "views/close_bubble_on_tab_activation_helper.cc",
-      "//mises/browser/ui/tab_model_desktop.cc",
+      #"tab_contents/chrome_web_contents_menu_helper.cc",
+      #"views/close_bubble_on_tab_activation_helper.cc",
+
+      "omnibox/omnibox_tab_helper.cc",
+      "omnibox/alternate_nav_infobar_delegate.cc",
+      "lens/lens_overlay_entry_point_controller.cc",
+      "lens/lens_overlay_controller.cc",
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
@@ -122,6 +128,10 @@ if (is_android) {
       "webui/signin/login_ui_service_factory.h",
       "webui/signin/signin_utils.cc",
       "webui/signin/signin_utils.h",
+      "webui/signin/sync_confirmation_handler.cc",
+      "webui/signin/sync_confirmation_handler.h",
+      "webui/signin/sync_confirmation_ui.cc",
+      "webui/signin/sync_confirmation_ui.h",
 
 
       "webui/access_code_cast/access_code_cast_dialog.cc",
@@ -182,7 +192,6 @@ if (is_android) {
       "bluetooth/chrome_bluetooth_chooser_controller.cc",
       "bluetooth/chrome_bluetooth_chooser_controller.h",
       "passwords/manage_passwords_ui_controller.cc",
-      "passwords/passwords_client_ui_delegate.cc",
       "media_router/presentation_receiver_window_controller.cc",
       "startup/startup_tab_provider.cc",
       "startup/startup_browser_creator_impl.cc",
@@ -196,6 +205,12 @@ if (is_android) {
 
       "views/chrome_javascript_app_modal_view_factory_views.cc",
       
+      
+      
+      "views/desktop_capture/desktop_media_content_pane_view.cc",
+      "views/desktop_capture/desktop_media_content_pane_view.h",
+      "views/desktop_capture/desktop_media_delegated_source_list_view.cc",
+      "views/desktop_capture/desktop_media_delegated_source_list_view.h",
       "views/desktop_capture/desktop_media_list_controller.cc",
       "views/desktop_capture/desktop_media_list_controller.h",
       "views/desktop_capture/desktop_media_list_view.cc",
@@ -218,8 +233,13 @@ if (is_android) {
       "hats/hats_helper.cc",
 
       "webui/support_tool/support_tool_ui.cc",
+      "webui/support_tool/support_tool_ui_utils.cc",
+      "webui/support_tool/support_tool_ui_utils.h",
       "webui/settings/site_settings_handler.cc",
       "webui/settings/hats_handler.cc",
+      "webui/settings/accessibility_main_handler.cc",
+      "webui/settings/accessibility_main_handler.h",
+
       
 
       "views/bookmarks/bookmark_editor_view.cc",
@@ -240,10 +260,34 @@ if (is_android) {
       "views/login_handler_views.cc",
       "views/download/bubble/download_bubble_contents_view.cc",
       "views/download/bubble/download_bubble_contents_view.h",
+      "views/download/bubble/download_toolbar_button_view.cc",
+      "views/download/bubble/download_toolbar_button_view.h",
       "views/omnibox/omnibox_popup_view_webui.cc",
       "views/omnibox/omnibox_popup_view_webui.h",
       "views/omnibox/omnibox_popup_presenter.cc",
       "views/omnibox/omnibox_popup_presenter.h",
+
+
+
+      "views/permissions/permission_prompt_bubble_one_origin_view.cc",
+      "views/permissions/permission_prompt_bubble_one_origin_view.h",
+      "views/page_info/page_info_permission_content_view.cc",
+      "views/page_info/page_info_permission_content_view.h",
+      "frame/window_frame_util.cc",
+      "frame/window_frame_util.h",
+
+      "tab_contents/chrome_web_contents_view_handle_drop.cc",
+      "tab_contents/chrome_web_contents_view_handle_drop.h",
+      "window_name_prompt/window_name_prompt.cc",
+      "views/file_system_access/file_system_access_restore_permission_bubble_view.cc",
+      "views/folder_upload_confirmation_view.cc",
+
+      "webui/discards/discards_ui.cc",
+      "webui/discards/discards_ui.h",
+      "webui/discards/graph_dump_impl.cc",
+      "webui/discards/graph_dump_impl.h",
+      "webui/discards/site_data_provider_impl.cc",
+      "webui/discards/site_data_provider_impl.h",
 
   ]
   mises_browser_ui_deps += [
@@ -256,7 +300,7 @@ if (is_android) {
     "//chrome/browser/ui/views/toolbar",
     "//components/live_caption",
     "//chrome/browser/ui/toasts",
-    "//chrome/browser/ui/webui/util",
+    #"//chrome/browser/ui/webui/util",
     #"//chrome/browser/ui/views/bubble",
     "//chrome/browser/companion/visual_query",
     "//chrome/browser/companion/core",
@@ -272,6 +316,7 @@ if (is_android) {
       "//chrome/browser/screen_ai:screen_ai_service_router_factory",
       "//components/search_engines:generate_search_engine_icons",
       "//chrome/browser/headless:command_processor",
+      "//chrome/browser/ui/lens",
   ]
   mises_browser_ui_exception_allow_circular_includes_from += [
     "//chrome/browser/ui/views",

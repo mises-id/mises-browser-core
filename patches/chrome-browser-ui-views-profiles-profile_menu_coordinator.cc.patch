@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/profiles/profile_menu_coordinator.cc b/chrome/browser/ui/views/profiles/profile_menu_coordinator.cc
+index ce7e02f549ab38390946d8f79b90807f6b4cdbfa..46d545fd8b02858fe58795a96135eba30fb37d19 100644
+--- a/chrome/browser/ui/views/profiles/profile_menu_coordinator.cc
++++ b/chrome/browser/ui/views/profiles/profile_menu_coordinator.cc
+@@ -60,7 +60,7 @@ void ProfileMenuCoordinator::Show(bool is_source_accelerator) {
+     bubble =
+         std::make_unique<IncognitoMenuView>(avatar_toolbar_button, &browser);
+   } else {
+-#if BUILDFLAG(IS_CHROMEOS_ASH)
++#if BUILDFLAG(IS_CHROMEOS_ASH) || BUILDFLAG(IS_ANDROID)
+     // Note: on Ash, only incognito windows have a profile menu.
+     NOTREACHED() << "The profile menu is not implemented on Ash.";
+ #else

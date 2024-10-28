@@ -14,9 +14,11 @@ class OmniboxEditController;
 class PrefRegistrySimple;
 class Profile;
 
-class MisesOmniboxClientImpl : public ChromeOmniboxClient {
+class MisesOmniboxClientImpl : public OmniboxClient  {
  public:
-  MisesOmniboxClientImpl(OmniboxEditController* controller, Profile* profile);
+  MisesOmniboxClientImpl(LocationBar* location_bar,
+                         Browser* browser,
+                         Profile* profile);
   MisesOmniboxClientImpl(const MisesOmniboxClientImpl&) = delete;
   MisesOmniboxClientImpl& operator=(const MisesOmniboxClientImpl&) = delete;
   ~MisesOmniboxClientImpl() override;
@@ -24,9 +26,8 @@ class MisesOmniboxClientImpl : public ChromeOmniboxClient {
   static void RegisterProfilePrefs(PrefRegistrySimple* prefs);
 
   const AutocompleteSchemeClassifier& GetSchemeClassifier() const override;
-  bool IsAutocompleteEnabled() const override;
 
-  void OnInputAccepted(const AutocompleteMatch& match) override;
+
   void OnURLOpenedFromOmnibox(OmniboxLog* log) override;
 
  private:

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/AndroidManifest.xml b/chrome/android/java/AndroidManifest.xml
-index 0635acb3c2ff5ab80600e4e6b3fce79280366236..982996cfd30069cf4ed1154c0c4f4b1df78a327e 100644
+index 0635acb3c2ff5ab80600e4e6b3fce79280366236..384d8723ba6dca096a6ddb23b728ba451677ba1c 100644
 --- a/chrome/android/java/AndroidManifest.xml
 +++ b/chrome/android/java/AndroidManifest.xml
 @@ -28,7 +28,7 @@ by a child template that "extends" this file.
@@ -19,7 +19,15 @@ index 0635acb3c2ff5ab80600e4e6b3fce79280366236..982996cfd30069cf4ed1154c0c4f4b1d
              <meta-data android:name="android.app.searchable"
                  android:resource="@xml/searchable" />
          </activity-alias>
-@@ -1203,7 +1204,7 @@ by a child template that "extends" this file.
+@@ -1178,6 +1179,7 @@ by a child template that "extends" this file.
+         </activity>
+ 
+         <property android:name="android.adservices.AD_SERVICES_CONFIG"
++            tools:replace="android:resource"
+             android:resource="@xml/ad_services_config" />
+ 
+         {% set enable_openxr = enable_openxr|default(0) %}
+@@ -1203,7 +1205,7 @@ by a child template that "extends" this file.
              </intent-filter>
            </activity>
          {% endif %}
@@ -28,7 +36,7 @@ index 0635acb3c2ff5ab80600e4e6b3fce79280366236..982996cfd30069cf4ed1154c0c4f4b1d
          {% block extra_application_definitions %}
          {% endblock %}
        {% endmacro %}
-@@ -1221,7 +1222,7 @@ by a child template that "extends" this file.
+@@ -1221,7 +1223,7 @@ by a child template that "extends" this file.
            android:value="{{ num_sandboxed_services }}"/>
  
        {% for i in range(num_sandboxed_services) %}

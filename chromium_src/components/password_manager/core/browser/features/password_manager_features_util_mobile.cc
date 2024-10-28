@@ -22,4 +22,15 @@ int GetMoveOfferedToNonOptedInUserCount(
     const syncer::SyncService* sync_service) {
   return 0;
 }
+
+bool AreAccountStorageOptInPromosAllowed() {
+  return false;
+}
+
+bool ShouldShowAccountStorageSettingToggle(
+    const PrefService* pref_service,
+    const syncer::SyncService* sync_service) {
+  return false;
+}
+
 }

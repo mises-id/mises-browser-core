@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/ui/webui/side_panel/read_anything/read_anything_untrusted_page_handler.cc b/chrome/browser/ui/webui/side_panel/read_anything/read_anything_untrusted_page_handler.cc
+index 30ed0906a5746e5db022b564a14bf0bfe336ed8e..a1ef3bb6d640560445d7fe75bf65121cf022d656 100644
+--- a/chrome/browser/ui/webui/side_panel/read_anything/read_anything_untrusted_page_handler.cc
++++ b/chrome/browser/ui/webui/side_panel/read_anything/read_anything_untrusted_page_handler.cc
+@@ -313,7 +313,7 @@ ReadAnythingUntrustedPageHandler::ReadAnythingUntrustedPageHandler(
+   std::string prefs_lang = language_model->GetLanguages().front().lang_code;
+   prefs_lang = language::ExtractBaseLanguage(prefs_lang);
+   SetDefaultLanguageCode(prefs_lang);
+-
++#if !BUILDFLAG(IS_ANDROID)
+   if (features::IsReadAnythingWithScreen2xEnabled()) {
+     screen_ai::ScreenAIServiceRouterFactory::GetForBrowserContext(profile_)
+         ->GetServiceStateAsync(
+@@ -327,7 +327,7 @@ ReadAnythingUntrustedPageHandler::ReadAnythingUntrustedPageHandler(
+         ->GetServiceStateAsync(screen_ai::ScreenAIServiceRouter::Service::kOCR,
+                                base::DoNothing());
+   }
+-
++#endif
+   // Enable accessibility for the top level render frame and all descendants.
+   // This causes AXTreeSerializer to reset and send accessibility events of
+   // the AXTree when it is re-serialized.

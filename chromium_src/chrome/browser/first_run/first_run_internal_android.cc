@@ -19,5 +19,14 @@ base::FilePath InitialPrefsPath() {
   return installer::InitialPreferences::Path(dir_exe);
 }
 
+void DoPostImportPlatformSpecificTasks() {
+
+}
+
+bool ShowPostInstallEULAIfNeeded(installer::InitialPreferences* install_prefs) {
+  // The EULA is only handled on Windows.
+  return false;
+}
+
 }  // namespace internal
 }  // namespace first_run

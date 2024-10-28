@@ -69,3 +69,7 @@ void ProfilePicker::Show(Params&& params) {
 base::FilePath ProfilePicker::GetPickerProfilePath() {
   return ProfileManager::GetSystemProfilePath();
 }
+
+
+void ProfilePicker::HideDialog() {
+}

@@ -48,6 +48,10 @@ const char kExtensionsRequestAccessButtonClicked[] =
 
 const char kCookieControlsBubbleShown[] = "cookie_controls_bubble_shown";
 
+
+const char kMemorySaverDialogShown[] = "high_efficiency_info_shown";
+const char kSidePanelPinned[] = "side_panel_pinned";
+const char kSidePanelFromMenuShown[] = "side_panel_from_menu_shown";
 #endif 
 
 }  // namespace events

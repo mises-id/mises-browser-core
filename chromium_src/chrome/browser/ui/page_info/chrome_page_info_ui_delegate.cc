@@ -124,4 +124,11 @@ void ChromePageInfoUiDelegate::OpenMoreAboutThisPageUrl(
 void ChromePageInfoUiDelegate::OpenSiteSettingsFileSystem() {
   //chrome::ShowSiteSettingsFileSystem(GetProfile(), site_url_);
 }
+
+bool ChromePageInfoUiDelegate::ShouldShowSettingsLinkForPermission(
+    ContentSettingsType type,
+    int* text_id,
+    int* link_id) {
+  return false;
+}
 #endif

@@ -1,0 +1,24 @@
+diff --git a/chrome/browser/ui/views/toolbar/toolbar_view.cc b/chrome/browser/ui/views/toolbar/toolbar_view.cc
+index 577215577d9acfd8c55f4bbf1b32c7d82640cbbe..23d068cee80d85c35a80f3ca2baad025d08343df 100644
+--- a/chrome/browser/ui/views/toolbar/toolbar_view.cc
++++ b/chrome/browser/ui/views/toolbar/toolbar_view.cc
+@@ -291,8 +291,10 @@ void ToolbarView::Init() {
+ 
+   std::unique_ptr<DownloadToolbarButtonView> download_button;
+   if (download::IsDownloadBubbleEnabled()) {
++#if !BUILDFLAG(IS_ANDROID)
+     download_button =
+         std::make_unique<DownloadToolbarButtonView>(browser_view_);
++#endif
+   }
+ 
+   if (display_mode_ != DisplayMode::NORMAL) {
+@@ -469,7 +471,7 @@ void ToolbarView::Init() {
+     send_tab_to_self_button_ =
+         container_view_->AddChildView(std::move(send_tab_to_self_button));
+ 
+-#if !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_CHROMEOS) && !BUILDFLAG(IS_ANDROID)
+   management_toolbar_button_ =
+       container_view_->AddChildView(std::make_unique<ManagementToolbarButton>(
+           browser_view_, browser_->profile()));

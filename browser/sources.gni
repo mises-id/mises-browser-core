@@ -144,6 +144,14 @@ if (is_android) {
     "enterprise/connectors/common.h",
     "enterprise/connectors/connectors_service.cc",
     "enterprise/connectors/connectors_service.h",
+    "enterprise/connectors/analysis/content_analysis_downloads_delegate.cc",
+    "enterprise/connectors/analysis/content_analysis_downloads_delegate.h",
+
+    "ui/chrome_web_modal_dialog_manager_delegate.cc",
+    "media/webrtc/desktop_media_picker_controller.cc",
+
+    "upgrade_detector/get_installed_version_linux.cc",
+    "upgrade_detector/directory_monitor.cc"
 
   ]
 
@@ -240,17 +248,13 @@ if (is_android) {
   ]
   mises_chrome_browser_exception_sources += [
 
-
+    
     "download/download_crx_util_android.cc",
     "resources_integrity.cc",
     "resources_integrity.h",
     "banners/app_banner_manager_desktop.cc",
     "banners/app_banner_manager_desktop.h",
     "metrics/incognito_observer_desktop.cc",
-    "policy/chrome_browser_cloud_management_controller_desktop.cc",
-    "policy/chrome_browser_cloud_management_controller_desktop.h",
-    "policy/chrome_browser_cloud_management_register_watcher.cc",
-    "policy/chrome_browser_cloud_management_register_watcher.h",
     "policy/client_data_delegate_desktop.cc",
     "policy/client_data_delegate_desktop.h",
     "policy/cloud/user_policy_signin_service.cc",
@@ -295,6 +299,39 @@ if (is_android) {
 
     "webapps/webapps_client_desktop.cc",
     "webapps/webapps_client_desktop.h",
+    "support_tool/support_tool_util.cc",
+    "support_tool/support_tool_util.h",
+
+
+    "component_updater/screen_ai_component_installer.cc",
+    "component_updater/screen_ai_component_installer.h",
+    "device_notifications/device_status_icon_renderer.cc",
+    "device_notifications/device_status_icon_renderer.h",
+    "external_protocol/auto_launch_protocols_policy_handler.cc",
+    "external_protocol/auto_launch_protocols_policy_handler.h",
+    "hid/hid_status_icon.cc",
+    "hid/hid_status_icon.h",
+    "net/disk_cache_dir_policy_handler.cc",
+    "net/disk_cache_dir_policy_handler.h",
+    "policy/cbcm_invalidations_initializer.cc",
+    "policy/cbcm_invalidations_initializer.h",
+    "policy/chrome_browser_cloud_management_controller_desktop.cc",
+    "policy/chrome_browser_cloud_management_controller_desktop.h",
+    "policy/chrome_browser_cloud_management_register_watcher.cc",
+    "policy/chrome_browser_cloud_management_register_watcher.h",
+    "policy/file_selection_dialogs_policy_handler.cc",
+    "policy/file_selection_dialogs_policy_handler.h",
+    "screen_ai/screen_ai_downloader_non_chromeos.cc",
+    "screen_ai/screen_ai_downloader_non_chromeos.h",
+    "usb/usb_status_icon.cc",
+    "usb/usb_status_icon.h",
+
+    "accessibility/ax_main_node_annotator_controller.cc",
+    "accessibility/ax_main_node_annotator_controller.h",
+    "accessibility/ax_main_node_annotator_controller_factory.cc",
+    "accessibility/ax_main_node_annotator_controller_factory.h",
+    
+    
   ]
   mises_chrome_browser_exception_deps += [
     "//chrome/browser/companion/visual_query",
@@ -307,11 +344,11 @@ if (is_android) {
     "//chrome/browser/ui/views/toolbar",
     "//chrome/browser/ui/exclusive_access",
     "//chrome/browser/companion/core",
-    "//chrome/browser/shortcuts",
+    #"//chrome/browser/shortcuts",
     "//chrome/browser/ui/webui/searchbox",
     "//chrome/browser/ui/webui/top_chrome",
     "//chrome/browser/ui/webui/top_chrome:impl",
-     "//chrome/browser/ui/webui/privacy_sandbox/related_website_sets:mojo_bindings",
+    "//chrome/browser/ui/webui/privacy_sandbox/related_website_sets:mojo_bindings",
     #"//ui/webui/resources/cr_components/history_embeddings:mojo_bindings",
     "//services/screen_ai",
     "//services/screen_ai/public/cpp:utilities",
@@ -325,6 +362,7 @@ if (is_android) {
       "//chrome/browser/screen_ai:screen_ai_install_state",
       "//chrome/browser/screen_ai:screen_ai_service_router_factory",
       "//chrome/browser/screen_ai/public:optical_character_recognizer",
+      
   ]
   mises_chrome_browser_exception_allow_circular_includes_from += [
     "//chrome/browser/ui/views/side_panel",

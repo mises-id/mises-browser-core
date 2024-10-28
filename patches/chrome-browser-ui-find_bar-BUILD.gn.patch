@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/find_bar/BUILD.gn b/chrome/browser/ui/find_bar/BUILD.gn
+index 4f5531d35c52842488fed5250cc0e0dc6ce13408..ab21e66e005262e464c3f3a0431b532b26764c62 100644
+--- a/chrome/browser/ui/find_bar/BUILD.gn
++++ b/chrome/browser/ui/find_bar/BUILD.gn
+@@ -34,7 +34,7 @@ source_set("impl") {
+   ]
+   deps = [ ":find_bar" ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "find_bar_controller.cc",
+       "find_bar_platform_helper.cc",

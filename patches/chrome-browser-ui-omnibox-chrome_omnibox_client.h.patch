@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/omnibox/chrome_omnibox_client.h b/chrome/browser/ui/omnibox/chrome_omnibox_client.h
+index 1134f8834ed188e9b48401f0f12e240ef3813d05..63471c84697a8eaf3948b3b08e5b873ff4139ec6 100644
+--- a/chrome/browser/ui/omnibox/chrome_omnibox_client.h
++++ b/chrome/browser/ui/omnibox/chrome_omnibox_client.h
+@@ -23,7 +23,7 @@ class GURL;
+ class LocationBar;
+ class Profile;
+ 
+-class ChromeOmniboxClient final : public OmniboxClient {
++class ChromeOmniboxClient : public OmniboxClient {
+  public:
+   ChromeOmniboxClient(LocationBar* location_bar,
+                       Browser* browser,

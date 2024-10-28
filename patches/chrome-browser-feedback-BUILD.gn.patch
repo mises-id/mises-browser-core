@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/feedback/BUILD.gn b/chrome/browser/feedback/BUILD.gn
+index 6db0a435f445dd98f767d837f4939aa298b3242b..29a07f993b02f74792dadd71a7d4a6bf11403266 100644
+--- a/chrome/browser/feedback/BUILD.gn
++++ b/chrome/browser/feedback/BUILD.gn
+@@ -61,7 +61,7 @@ source_set("feedback_impl") {
+   sources = []
+   deps = [ ":feedback" ]
+   public_deps = [ "//components/feedback" ]
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "feedback_dialog_utils.cc",
+       "feedback_uploader_chrome.cc",

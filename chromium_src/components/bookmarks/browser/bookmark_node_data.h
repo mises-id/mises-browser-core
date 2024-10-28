@@ -17,12 +17,10 @@
 
 #if BUILDFLAG(IS_ANDROID)
 
-#undef TOOLKIT_VIEWS
 #define TOOLKIT_VIEWS 1
 
 #include "src/components/bookmarks/browser/bookmark_node_data.h"
 #undef TOOLKIT_VIEWS 
-#define TOOLKIT_VIEWS 0
 
 #else
 

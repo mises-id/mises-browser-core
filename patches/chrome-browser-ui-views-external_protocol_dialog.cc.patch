@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/external_protocol_dialog.cc b/chrome/browser/ui/views/external_protocol_dialog.cc
+index 4196e50baf2afe00b7498d04e63eefb3183b0666..566208b8b10867a0d674034f6dbad629bbc4e37f 100644
+--- a/chrome/browser/ui/views/external_protocol_dialog.cc
++++ b/chrome/browser/ui/views/external_protocol_dialog.cc
+@@ -48,7 +48,7 @@ std::u16string GetMessageTextForOrigin(
+ 
+ }  // namespace
+ 
+-#if !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS)
+ // static
+ void ExternalProtocolHandler::RunExternalProtocolDialog(
+     const GURL& url,

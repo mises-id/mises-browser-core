@@ -1,0 +1,17 @@
+diff --git a/chrome/browser/ui/views/web_apps/frame_toolbar/web_app_toolbar_button_container.cc b/chrome/browser/ui/views/web_apps/frame_toolbar/web_app_toolbar_button_container.cc
+index d9a3ce97ddd355b0e892a74ddde1ee11722948ea..7e49492d672f63341aeece29661251b9c5316e58 100644
+--- a/chrome/browser/ui/views/web_apps/frame_toolbar/web_app_toolbar_button_container.cc
++++ b/chrome/browser/ui/views/web_apps/frame_toolbar/web_app_toolbar_button_container.cc
+@@ -179,10 +179,12 @@ WebAppToolbarButtonContainer::WebAppToolbarButtonContainer(
+   }
+ 
+   if (download::IsDownloadBubbleEnabled()) {
++#if !BUILDFLAG(IS_ANDROID)
+     download_button_ = AddChildView(
+         std::make_unique<DownloadToolbarButtonView>(browser_view_));
+     views::SetHitTestComponent(download_button_, static_cast<int>(HTCLIENT));
+     ConfigureWebAppToolbarButton(download_button_, toolbar_button_provider_);
++#endif
+   }
+ 
+ #if !BUILDFLAG(IS_CHROMEOS)

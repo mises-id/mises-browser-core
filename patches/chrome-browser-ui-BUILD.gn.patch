@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..26cae372d0f74d4d78c054324d2b7bca671c69d9 100644
+index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..292a1ad20eebc20d81e1e67cce99f463be71bfff 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
 @@ -1040,7 +1040,8 @@ static_library("ui") {
@@ -12,6 +12,15 @@ index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..26cae372d0f74d4d78c054324d2b7bca
      # !is_android
      sources += [
        "app_icon_loader.cc",
+@@ -3226,7 +3227,7 @@ static_library("ui") {
+     ]
+   }
+ 
+-  if (is_win || is_mac || is_linux || is_chromeos) {
++  if (true || is_win || is_mac || is_linux || is_chromeos) {
+     sources += [
+       "autofill/payments/webauthn_dialog.h",
+       "autofill/payments/webauthn_dialog_controller.h",
 @@ -3985,7 +3986,18 @@ static_library("ui") {
      }
    }

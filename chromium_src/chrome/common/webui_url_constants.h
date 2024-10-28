@@ -33,6 +33,7 @@ inline constexpr char kChromeUILensUntrustedSidePanelURL[] =
 inline constexpr char kChromeUILensOverlayHost[] = "lens-overlay";
 inline constexpr char kChromeUILensOverlayUntrustedURL[] =
     "chrome-untrusted://lens-overlay/";
+inline constexpr char kChromeUILensUntrustedURL[] = "chrome-untrusted://lens/";
 inline constexpr char kChromeUINearbyInternalsHost[] = "nearby-internals";
 inline constexpr char kChromeUINearbyInternalsURL[] =
     "chrome://nearby-internals";

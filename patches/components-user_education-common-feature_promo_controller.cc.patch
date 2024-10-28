@@ -1,0 +1,13 @@
+diff --git a/components/user_education/common/feature_promo_controller.cc b/components/user_education/common/feature_promo_controller.cc
+index 47644ae8e2a0fb5bb141a1dca48702cba79294f2..736380d825b8bdec40479c654653a72d8f52afc5 100644
+--- a/components/user_education/common/feature_promo_controller.cc
++++ b/components/user_education/common/feature_promo_controller.cc
+@@ -418,7 +418,7 @@ bool FeaturePromoControllerCommon::DismissNonCriticalBubbleInRegion(
+   return result;
+ }
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ void FeaturePromoControllerCommon::NotifyFeatureUsedIfValid(
+     const base::Feature& feature) {
+   if (base::FeatureList::IsEnabled(feature) &&

@@ -16,13 +16,13 @@ namespace internals {
 // no-ops. We instead integrate with the Launcher and the Shelf through the App
 // Service.
 
-bool CreatePlatformShortcuts(const base::FilePath& web_app_path,
+void CreatePlatformShortcuts(const base::FilePath& web_app_path,
                              const ShortcutLocations& creation_locations,
                              ShortcutCreationReason creation_reason,
-                             const ShortcutInfo& shortcut_info) {
-  return true;
+                             const ShortcutInfo& shortcut_info,
+                             CreateShortcutsCallback callback) {
+  return;
 }
-
 void DeletePlatformShortcuts(const base::FilePath& web_app_path,
                              const ShortcutInfo& shortcut_info,
                              scoped_refptr<base::TaskRunner> result_runner,
@@ -31,12 +31,12 @@ void DeletePlatformShortcuts(const base::FilePath& web_app_path,
                                                     /*shortcut_deleted=*/true));
 }
 
-Result UpdatePlatformShortcuts(
-    const base::FilePath& /*web_app_path*/,
-    const std::u16string& /*old_app_title*/,
+void UpdatePlatformShortcuts(
+    const base::FilePath& shortcut_data_path,
+    const std::u16string& old_app_title,
     std::optional<ShortcutLocations> user_specified_locations,
+    ResultCallback callback,
     const ShortcutInfo& shortcut_info) {
-  return Result::kOk;
 }
 
 ShortcutLocations GetAppExistingShortCutLocationImpl(

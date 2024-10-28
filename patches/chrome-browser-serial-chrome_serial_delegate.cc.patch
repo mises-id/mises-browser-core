@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/serial/chrome_serial_delegate.cc b/chrome/browser/serial/chrome_serial_delegate.cc
+index bde8c88e0b63b699bc13e68877bafc97eeba0b9b..98fa0592349ecad71c4008dd8e30ca4049efed02 100644
+--- a/chrome/browser/serial/chrome_serial_delegate.cc
++++ b/chrome/browser/serial/chrome_serial_delegate.cc
+@@ -33,11 +33,15 @@ std::unique_ptr<content::SerialChooser> ChromeSerialDelegate::RunChooser(
+     std::vector<blink::mojom::SerialPortFilterPtr> filters,
+     std::vector<device::BluetoothUUID> allowed_bluetooth_service_class_ids,
+     content::SerialChooser::Callback callback) {
++#if defined(TOOLKIT_VIEWS)
+   return std::make_unique<SerialChooser>(chrome::ShowDeviceChooserDialog(
+       frame, std::make_unique<SerialChooserController>(
+                  frame, std::move(filters),
+                  std::move(allowed_bluetooth_service_class_ids),
+                  std::move(callback))));
++#else
++  return nullptr;
++#endif
+ }
+ 
+ bool ChromeSerialDelegate::CanRequestPortPermission(

@@ -1,0 +1,21 @@
+diff --git a/chrome/browser/payments/chrome_payment_request_delegate.cc b/chrome/browser/payments/chrome_payment_request_delegate.cc
+index 6d1da4beaa86f18c48bb3494b9acdee904ca8cc2..c697905ddced5ffd3ea22a381ea4141c889c7380 100644
+--- a/chrome/browser/payments/chrome_payment_request_delegate.cc
++++ b/chrome/browser/payments/chrome_payment_request_delegate.cc
+@@ -87,7 +87,7 @@ void ChromePaymentRequestDelegate::ShowDialog(
+     base::WeakPtr<PaymentRequest> request) {
+   DCHECK_EQ(nullptr, shown_dialog_.get());
+   DCHECK_EQ(nullptr, spc_dialog_.get());
+-
++#if !BUILDFLAG(IS_ANDROID)
+   switch (dialog_type_) {
+     case DialogType::PAYMENT_REQUEST:
+       shown_dialog_ = PaymentRequestDialogView::Create(request, nullptr);
+@@ -100,6 +100,7 @@ void ChromePaymentRequestDelegate::ShowDialog(
+   }
+ 
+   shown_dialog_->ShowDialog();
++#endif
+ }
+ 
+ void ChromePaymentRequestDelegate::RetryDialog() {

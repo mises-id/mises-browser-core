@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/views/frame/browser_view.cc b/chrome/browser/ui/views/frame/browser_view.cc
+index d775394c47cf5f8d76d8a1da31e88be0595f18d5..b18be7a07b78b99128f16c484f544937c673bc4e 100644
+--- a/chrome/browser/ui/views/frame/browser_view.cc
++++ b/chrome/browser/ui/views/frame/browser_view.cc
+@@ -5184,7 +5184,7 @@ void BrowserView::ShowAvatarBubbleFromAvatarButton(bool is_source_accelerator) {
+ }
+ 
+ void BrowserView::ShowBubbleFromManagementToolbarButton() {
+-#if !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_CHROMEOS)
+   ManagedMenuCoordinator::GetOrCreateForBrowser(browser())->Show();
+ #endif
+ }

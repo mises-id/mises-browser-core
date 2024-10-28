@@ -3,8 +3,8 @@
 namespace google_apis {
 
 #if BUILDFLAG(IS_ANDROID)
-std::string GetHatsAPIKey() {
-  return DUMMY_API_TOKEN;
+const std::string& GetHatsAPIKey() {
+  return "";
 }
 #endif
 

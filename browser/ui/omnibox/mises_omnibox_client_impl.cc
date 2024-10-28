@@ -11,7 +11,6 @@
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/omnibox/chrome_omnibox_client.h"
-#include "chrome/browser/ui/omnibox/chrome_omnibox_edit_controller.h"
 #include "components/omnibox/browser/autocomplete_match.h"
 #include "components/omnibox/browser/autocomplete_result.h"
 #include "components/omnibox/browser/omnibox_log.h"
@@ -23,23 +22,23 @@ namespace {
 // using brave_search_conversion::ConversionType;
 // using brave_search_conversion::GetConversionType;
 
-constexpr char kSearchCountPrefName[] = "brave.weekly_storage.search_count";
+// constexpr char kSearchCountPrefName[] = "brave.weekly_storage.search_count";
 
-bool IsSearchEvent(const AutocompleteMatch& match) {
-  switch (match.type) {
-    case AutocompleteMatchType::SEARCH_WHAT_YOU_TYPED:
-    case AutocompleteMatchType::SEARCH_HISTORY:
-    case AutocompleteMatchType::SEARCH_SUGGEST:
-    case AutocompleteMatchType::SEARCH_SUGGEST_ENTITY:
-    case AutocompleteMatchType::SEARCH_SUGGEST_TAIL:
-    case AutocompleteMatchType::SEARCH_SUGGEST_PERSONALIZED:
-    case AutocompleteMatchType::SEARCH_SUGGEST_PROFILE:
-    case AutocompleteMatchType::SEARCH_OTHER_ENGINE:
-      return true;
-    default:
-      return false;
-  }
-}
+// bool IsSearchEvent(const AutocompleteMatch& match) {
+//   switch (match.type) {
+//     case AutocompleteMatchType::SEARCH_WHAT_YOU_TYPED:
+//     case AutocompleteMatchType::SEARCH_HISTORY:
+//     case AutocompleteMatchType::SEARCH_SUGGEST:
+//     case AutocompleteMatchType::SEARCH_SUGGEST_ENTITY:
+//     case AutocompleteMatchType::SEARCH_SUGGEST_TAIL:
+//     case AutocompleteMatchType::SEARCH_SUGGEST_PERSONALIZED:
+//     case AutocompleteMatchType::SEARCH_SUGGEST_PROFILE:
+//     case AutocompleteMatchType::SEARCH_OTHER_ENGINE:
+//       return true;
+//     default:
+//       return false;
+//   }
+// }
 
 // void RecordSearchEventP3A(uint64_t number_of_searches) {
 //   p3a_utils::RecordToHistogramBucket("Brave.Omnibox.SearchCount",
@@ -49,24 +48,19 @@ bool IsSearchEvent(const AutocompleteMatch& match) {
 
 }  // namespace
 
-MisesOmniboxClientImpl::MisesOmniboxClientImpl(
-    OmniboxEditController* controller,
-    Profile* profile)
-    : ChromeOmniboxClient(controller, profile),
+MisesOmniboxClientImpl::MisesOmniboxClientImpl(LocationBar* location_bar,
+                                               Browser* browser,
+                                               Profile* profile)
+    : ChromeOmniboxClient(location_bar, browser, profile),
       profile_(profile),
-      scheme_classifier_(profile) {
-  // Record initial search count p3a value.
-  // const auto& search_p3a = profile_->GetPrefs()->GetList(kSearchCountPrefName);
-  // if (search_p3a.size() == 0) {
-  //   RecordSearchEventP3A(0);
-  // }
+      scheme_classifier_(profile){
 }
 
 MisesOmniboxClientImpl::~MisesOmniboxClientImpl() = default;
 
 void MisesOmniboxClientImpl::RegisterProfilePrefs(
     PrefRegistrySimple* registry) {
-  registry->RegisterListPref(kSearchCountPrefName);
+  //registry->RegisterListPref(kSearchCountPrefName);
 }
 
 const AutocompleteSchemeClassifier&
@@ -74,22 +68,9 @@ MisesOmniboxClientImpl::GetSchemeClassifier() const {
   return scheme_classifier_;
 }
 
-bool MisesOmniboxClientImpl::IsAutocompleteEnabled() const {
-  return profile_->GetPrefs()->GetBoolean(omnibox::kAutocompleteEnabled);
-}
 
-void MisesOmniboxClientImpl::OnInputAccepted(const AutocompleteMatch& match) {
-  // if (IsSearchEvent(match)) {
-  //   // TODO(iefremov): Optimize this.
-  //   WeeklyStorage storage(profile_->GetPrefs(), kSearchCountPrefName);
-  //   storage.AddDelta(1);
-  //   RecordSearchEventP3A(storage.GetWeeklySum());
-  // }
-}
 
 void MisesOmniboxClientImpl::OnURLOpenedFromOmnibox(OmniboxLog* log) {
-  if (log->selected_index <= 0)
-    return;
   // const auto match = log->result.match_at(log->selected_index);
   // if (IsBraveSearchPromotionMatch(match)) {
   //   brave_search_conversion::p3a::RecordPromoTrigger(

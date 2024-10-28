@@ -61,7 +61,6 @@ void MisesRegisterLocalStatePrefs(PrefRegistrySimple* registry) {
   //StartupBrowserCreator::RegisterLocalStatePrefs(registry);
   task_manager::TaskManagerInterface::RegisterPrefs(registry);
   UpgradeDetector::RegisterPrefs(registry);
-  WhatsNewUI::RegisterLocalStatePrefs(registry);
 #endif
   mises::RegisterLocalStatePrefs(registry);
 }

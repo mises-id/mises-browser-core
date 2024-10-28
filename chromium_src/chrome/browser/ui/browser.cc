@@ -19,13 +19,13 @@
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
-SigninViewController::SigninViewController(Browser* browser)
-    : browser_(browser) {}
+// SigninViewController::SigninViewController(Browser* browser)
+//     : browser_(browser) {}
 
-SigninViewController::~SigninViewController() {
-}
-bool SigninViewController::ShowsModalDialog() {
-  return false;
-}
+// SigninViewController::~SigninViewController() {
+// }
+// bool SigninViewController::ShowsModalDialog() {
+//   return false;
+// }
 
 #endif
