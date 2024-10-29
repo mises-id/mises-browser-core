@@ -40,7 +40,7 @@ android_fix = [
 "WebAppSettings",
 "Startup-RestoreOnStartup",
 "RestoreOnStartup",
-"ExtensionDeveloperModeSettings",
+"ExtensionDeveloperModeSettings"
 ]
 ios_fix = [
     "FullscreenAllowed",
@@ -69,6 +69,8 @@ def NeedFixForIOS(policy):
             return True
     return False
 
+
+
 def FixPolicies(policies):
     for policy in policies:
         if policy["name"] in android_fix:
@@ -80,6 +82,8 @@ def FixPolicies(policies):
                 policy['supported_on'] = []
             policy['supported_on'].append("ios:120-")
     return policies
+
+
 
 def AddMisesPolicies(template_file_contents):
     highest_id = template_file_contents['highest_id_currently_used']
@@ -137,3 +141,52 @@ def AddMisesPolicies(template_file_contents):
     # Update highest id
     template_file_contents['highest_id_currently_used'] = highest_id + \
         len(policies)
+
+def FixPolicyData(policy_data):
+    print('FixPolicyData')
+    policies = [
+        {
+            'name': 'TorDisabled',
+            'type': 'main',
+            'schema': {'type': 'boolean'},
+            'supported_on': ['chrome.win:78-',
+                             'chrome.mac:93-',
+                             'chrome.linux:93-'],
+            'features': {
+                'dynamic_refresh': False,
+                'per_profile': False,
+                'can_be_recommended': False,
+                'can_be_mandatory': True
+            },
+            'example_value': True,
+            'id': 0,
+            'caption': '''Disables the tor feature.''',
+            'tags': [],
+            'desc': ('''This policy allows an admin to specify that tor '''
+                     '''must be disabled at startup.'''),
+        },
+        {
+            'name': 'IPFSEnabled',
+            'type': 'main',
+            'schema': {'type': 'boolean'},
+            'supported_on': ['chrome.*:87-', 'android:112-', 'ios:120-'],
+            'future_on': [],
+            'features': {
+                'dynamic_refresh': False,
+                'per_profile': True,
+                'can_be_recommended': False,
+                'can_be_mandatory': True
+            },
+            'example_value': True,
+            'id': 1,
+            'caption': '''Enable IPFS feature''',
+            'tags': [],
+            'desc': ('''This policy allows an admin to specify whether IPFS '''
+                     '''feature can be enabled.'''),
+        }
+    ]
+    old_policies = policy_data['policy_definitions']
+    policy_data['policy_definitions'] = FixPolicies(old_policies)
+
+    for policy in policies:
+        policy_data['policy_definitions'].append(policy)

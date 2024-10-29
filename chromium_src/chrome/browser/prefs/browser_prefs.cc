@@ -35,6 +35,7 @@
 #include "chrome/browser/user_education/browser_feature_promo_storage_service.h"
 #include "chrome/browser/sessions/session_data_service.h"
 #include "chrome/browser/ui/hats/hats_service_desktop.h"
+#include "chrome/browser/ui/toolbar/toolbar_pref_names.h"
 #endif  // BUILDFLAG(IS_ANDROID)
 
 
@@ -94,6 +95,7 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   signin::RegisterProfilePrefs(registry);
   //StartupBrowserCreator::RegisterProfilePrefs(registry);
   tab_search_prefs::RegisterProfilePrefs(registry);
+  toolbar::RegisterProfilePrefs(registry);
   //TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
   RegisterSessionServiceLogProfilePrefs(registry);

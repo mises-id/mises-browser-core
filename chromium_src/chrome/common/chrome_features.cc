@@ -1,8 +1,15 @@
 #include "src/chrome/common/chrome_features.cc"
 
+#include "base/feature_override.h"
+
 namespace features {
 
 #if BUILDFLAG(IS_ANDROID)
+
+OVERRIDE_FEATURE_DEFAULT_STATES({{
+    {kSafetyHub, base::FEATURE_ENABLED_BY_DEFAULT},
+}});
+
 // Enables OS Integration sub managers to execute the
 // registration/unregistration functionality and write the new OS states to the
 // DB.

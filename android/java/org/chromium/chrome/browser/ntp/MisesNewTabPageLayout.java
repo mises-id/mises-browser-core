@@ -490,7 +490,7 @@ public class MisesNewTabPageLayout
         super.initialize(
                 manager,
                 activity,
-                tileGroupDelegate,
+                mTileGroupDelegateWrapper,
                 searchProviderHasLogo,
                 searchProviderIsGoogle,
                 scrollDelegate,

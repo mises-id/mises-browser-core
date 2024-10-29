@@ -80,4 +80,15 @@ class WalletPanelUI : public TopChromeWebUIController,
   WEB_UI_CONTROLLER_TYPE_DECL();
 };
 
+class WalletPanelUIConfig : public DefaultTopChromeWebUIConfig<WalletPanelUI> {
+ public:
+  WalletPanelUIConfig();
+
+  // WebUIConfig::
+  bool IsWebUIEnabled(content::BrowserContext* browser_context) override;
+
+  // TopChromeWebUIConfig::
+  bool ShouldAutoResizeHost() override;
+};
+
 #endif  // BRAVE_BROWSER_UI_WEBUI_BRAVE_WALLET_WALLET_PANEL_UI_H_

@@ -223,11 +223,10 @@ public class PersonalizeResults {
 
         try {
           URL url = new URL(sUrl);
-            String sHost = url.getHost();
-            if (sHost.contains(".google."))
-                return true;
+          String sHost = url.getHost();
+          if (sHost.contains(".google."))
+              return true;
         } catch(MalformedURLException e) {
-          Log.w("Mises", "MalformedURLException "+ e.getMessage());
         }
 
         return false;

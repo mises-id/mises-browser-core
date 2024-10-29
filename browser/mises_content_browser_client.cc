@@ -116,6 +116,7 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 
 #include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
 #include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+#include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views.h"
 
 
 
@@ -242,9 +243,13 @@ std::unique_ptr<content::BrowserMainParts>
 MisesContentBrowserClient::CreateBrowserMainParts(bool is_integration_test) {
   std::unique_ptr<content::BrowserMainParts> main_parts =
       ChromeContentBrowserClient::CreateBrowserMainParts(is_integration_test);
-  // ChromeBrowserMainParts* chrome_main_parts =
-  //     static_cast<ChromeBrowserMainParts*>(main_parts.get());
+#if BUILDFLAG(IS_ANDROID)
+   ChromeBrowserMainParts* chrome_main_parts =
+       static_cast<ChromeBrowserMainParts*>(main_parts.get());
   // chrome_main_parts->AddParts(std::make_unique<MisesBrowserMainExtraParts>());
+
+  chrome_main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsViews>());
+#endif
   return main_parts;
 }
 

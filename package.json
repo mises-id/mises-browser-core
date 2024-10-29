@@ -1,6 +1,6 @@
 {
   "name": "mises-browser-core",
-  "version": "1.63.72",
+  "version": "1.72.47",
   "description": "Mises Browser Core is a set of changes, APIs and scripts used for customizing Chromium to make Mises.",
   "main": "index.js",
   "scripts": {

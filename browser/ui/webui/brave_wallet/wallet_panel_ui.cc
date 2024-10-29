@@ -10,6 +10,7 @@
 
 #include "base/command_line.h"
 #include "base/functional/bind.h"
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
 #include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
 #include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
 #include "mises/browser/brave_wallet/json_rpc_service_factory.h"
@@ -155,5 +156,19 @@ void WalletPanelUI::CreatePanelHandler(
   if (blockchain_registry) {
     blockchain_registry->Bind(std::move(blockchain_registry_receiver));
   }
+}
+
+
+
+WalletPanelUIConfig::WalletPanelUIConfig()
+    : DefaultTopChromeWebUIConfig(content::kChromeUIScheme, kWalletPanelHost) {}
+
+bool WalletPanelUIConfig::IsWebUIEnabled(
+    content::BrowserContext* browser_context) {
+  return brave_wallet::IsAllowedForContext(browser_context);
+}
+
+bool WalletPanelUIConfig::ShouldAutoResizeHost() {
+  return true;
 }
 

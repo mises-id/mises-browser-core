@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc b/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
+index 9d41b8071a7d98464e3ba0ce475f4ea5f67a4ff1..cb36d7c1b7ed80c9bac4235968c2679cbf19be7a 100644
+--- a/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
++++ b/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
+@@ -65,7 +65,7 @@
+ #include "chrome/browser/performance_manager/extension_watcher.h"
+ #endif
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ #include "chrome/browser/performance_manager/policies/memory_saver_mode_policy.h"
+ #include "chrome/browser/performance_manager/policies/page_discarding_helper.h"
+ #include "chrome/browser/performance_manager/policies/urgent_page_discarding_policy.h"
+@@ -228,7 +228,7 @@ void ChromeBrowserMainExtraPartsPerformanceManager::PostCreateThreads() {
+ 
+   g_browser_process->profile_manager()->AddObserver(this);
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   profile_discard_opt_out_list_helper_ = std::make_unique<
+       performance_manager::user_tuning::ProfileDiscardOptOutListHelper>();
+   // Create the UserPerformanceTuningManager and BatterySaverMode here so that

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..260c44a5c0c837ff5ee71e312e9bc482041e89b4 100644
+index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..4cf1513b7ce02602ac334b14e18795e84a165b5a 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 @@ -100,6 +100,38 @@ import java.util.ArrayList;
@@ -480,9 +480,9 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..260c44a5c0c837ff5ee71e312e9bc482
          if (itemId == R.id.disable_price_tracking_menu_id) {
              return R.color.default_icon_color_accent1_tint_list;
          }
-+	if (itemId == R.id.mises_wallet_id) {
-+	  return -1;
-+	}
++	    if (itemId == R.id.mises_wallet_id) {
++	        return -1;
++	    }
          return R.color.default_icon_color_secondary_tint_list;
      }
  
