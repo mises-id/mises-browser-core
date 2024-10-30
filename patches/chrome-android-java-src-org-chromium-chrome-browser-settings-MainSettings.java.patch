@@ -1,20 +1,17 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-index 5287942681817e8d05147eadc92366824d6c1b9a..0f08ac678f8755b21d44ed532d89cad84d9f2dad 100644
+index 5287942681817e8d05147eadc92366824d6c1b9a..3aa4c4266263a2fae9f91d8e28f8153e1d248e00 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/settings/MainSettings.java
-@@ -233,6 +233,11 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -233,6 +233,8 @@ public class MainSettings extends ChromeBaseSettingsFragment
          setManagedPreferenceDelegateForPreference(PREF_PASSWORDS);
          setManagedPreferenceDelegateForPreference(PREF_SEARCH_ENGINE);
  
-+        Preference safetyCheck = findPreference(PREF_SAFETY_CHECK);
-+        if (safetyCheck != null)
-+            getPreferenceScreen().removePreference(safetyCheck);
-+	    removePreferenceIfPresent("nightmode");
++	    //removePreferenceIfPresent("nightmode");
 +
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              // If we are on Android O+ the Notifications preference should lead to the Android
              // Settings notifications page.
-@@ -244,6 +249,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
+@@ -244,6 +246,7 @@ public class MainSettings extends ChromeBaseSettingsFragment
              PackageManager pm = getActivity().getPackageManager();
              if (intent.resolveActivity(pm) != null) {
                  Preference notifications = findPreference(PREF_NOTIFICATIONS);

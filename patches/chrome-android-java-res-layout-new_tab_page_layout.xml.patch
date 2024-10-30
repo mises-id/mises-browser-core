@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/res/layout/new_tab_page_layout.xml b/chrome/android/java/res/layout/new_tab_page_layout.xml
-index 5216462e2f03ee09f234f7e540bd0fd6ff512520..42cb8f93e9d7701d4816b2b916a015d2720f8d21 100644
+index 5216462e2f03ee09f234f7e540bd0fd6ff512520..0ecce85f94ef95baed15d421ed44509f320a2a09 100644
 --- a/chrome/android/java/res/layout/new_tab_page_layout.xml
 +++ b/chrome/android/java/res/layout/new_tab_page_layout.xml
-@@ -1,10 +1,8 @@
+@@ -1,88 +1,113 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<!--
 -Copyright 2016 The Chromium Authors
@@ -17,7 +17,13 @@ index 5216462e2f03ee09f234f7e540bd0fd6ff512520..42cb8f93e9d7701d4816b2b916a015d2
      xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:app="http://schemas.android.com/apk/res-auto"
      xmlns:tools="http://schemas.android.com/tools"
-@@ -18,71 +16,99 @@ found in the LICENSE file.
+     android:id="@+id/ntp_content"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+-    android:background="@drawable/home_surface_background"
+     android:layout_gravity="center_horizontal"
+     android:orientation="vertical"
+     android:gravity="center"
      android:paddingTop="@dimen/toolbar_height_no_shadow"
      android:visibility="gone" >
  

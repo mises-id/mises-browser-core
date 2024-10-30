@@ -16,14 +16,15 @@ public class MisesMostVisitedTilesMediatorClassAdapter extends MisesClassVisitor
     public MisesMostVisitedTilesMediatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(
-        //         sMostVisitedTilesMediatorClassName, sMisesMostVisitedTilesMediatorClassName);
 
-        // makePublicMethod(sMostVisitedTilesMediatorClassName, "updateTilePlaceholderVisibility");
-        // addMethodAnnotation(sMisesMostVisitedTilesMediatorClassName,
-        //         "updateTilePlaceholderVisibility", "Ljava/lang/Override;");
+        redirectConstructor(
+                sMostVisitedTilesMediatorClassName, sMisesMostVisitedTilesMediatorClassName);
 
-        // deleteField(sMisesMostVisitedTilesMediatorClassName, "mTileGroup");
-        // makeProtectedField(sMostVisitedTilesMediatorClassName, "mTileGroup");
+        makePublicMethod(sMostVisitedTilesMediatorClassName, "updateTilePlaceholderVisibility");
+        addMethodAnnotation(sMisesMostVisitedTilesMediatorClassName,
+                "updateTilePlaceholderVisibility", "Ljava/lang/Override;");
+
+        deleteField(sMisesMostVisitedTilesMediatorClassName, "mTileGroup");
+        makeProtectedField(sMostVisitedTilesMediatorClassName, "mTileGroup");
     }
 }

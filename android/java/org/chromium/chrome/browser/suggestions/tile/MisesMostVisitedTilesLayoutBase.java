@@ -9,10 +9,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 
 /** The most visited tiles layout. */
-public class MisesMostVisitedTilesLayoutBase extends GridLayout {
-    private static int FIXED_COLUMNS_COUNT = 4;
+public class MisesMostVisitedTilesLayoutBase extends LinearLayout {
+    //private static int FIXED_COLUMNS_COUNT = 4;
 
     private boolean mUseFixedLayout;
 
@@ -29,28 +30,28 @@ public class MisesMostVisitedTilesLayoutBase extends GridLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int childCount = getChildCount();
-        if (mUseFixedLayout && widthMeasureSpec > 0 && childCount > FIXED_COLUMNS_COUNT) {
-            int numColumns = FIXED_COLUMNS_COUNT;
-            if (getColumnCount() < numColumns) {
-                setColumnCount(numColumns);
-            }
-            int numRows = (childCount / numColumns) + 1;
-            if (getRowCount() < numRows) {
-                setRowCount(numRows);
-            }
-            int tileViewWidth = widthMeasureSpec / numColumns;
-            for (int i = 0; i < childCount; i++) {
-                SuggestionsTileView tileView = (SuggestionsTileView) getChildAt(i);
-                int row = i / numColumns;
-                int column = i % numColumns;
-                GridLayout.LayoutParams params =
-                        new GridLayout.LayoutParams(
-                                GridLayout.spec(row, GridLayout.CENTER, 1),
-                                GridLayout.spec(column, GridLayout.CENTER, 1));
-                params.width = tileViewWidth;
-                updateViewLayout(tileView, params);
-            }
-        }
+        // if (mUseFixedLayout && widthMeasureSpec > 0 && childCount > FIXED_COLUMNS_COUNT) {
+        //     int numColumns = FIXED_COLUMNS_COUNT;
+        //     if (getColumnCount() < numColumns) {
+        //         setColumnCount(numColumns);
+        //     }
+        //     int numRows = (childCount / numColumns) + 1;
+        //     if (getRowCount() < numRows) {
+        //         setRowCount(numRows);
+        //     }
+        //     int tileViewWidth = widthMeasureSpec / numColumns;
+        //     for (int i = 0; i < childCount; i++) {
+        //         SuggestionsTileView tileView = (SuggestionsTileView) getChildAt(i);
+        //         int row = i / numColumns;
+        //         int column = i % numColumns;
+        //         GridLayout.LayoutParams params =
+        //                 new GridLayout.LayoutParams(
+        //                         GridLayout.spec(row, GridLayout.CENTER, 1),
+        //                         GridLayout.spec(column, GridLayout.CENTER, 1));
+        //         params.width = tileViewWidth;
+        //         updateViewLayout(tileView, params);
+        //     }
+        // }
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

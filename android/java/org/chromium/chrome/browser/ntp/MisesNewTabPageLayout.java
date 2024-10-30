@@ -231,7 +231,7 @@ public class MisesNewTabPageLayout
 
 
         mMvTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
-                                          .inflate(R.layout.mv_tiles_container, mMainLayout, false);
+                                          .inflate(R.layout.mises_mv_tiles_container, mMainLayout, false);
         mMvTilesContainerLayout.setVisibility(View.VISIBLE);
 
         final Runnable runable = new Runnable() {
@@ -266,12 +266,10 @@ public class MisesNewTabPageLayout
         mWeb3ExtensionTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mWeb3ExtensionTilesContainerLayout.setVisibility(View.VISIBLE);
-        mWeb3ExtensionTilesContainerLayout.post(runable);
         
         mShortcutTilesContainerLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
                                         .inflate(R.layout.mises_service_tiles_container, mMainLayout, false);
         mShortcutTilesContainerLayout.setVisibility(View.VISIBLE);
-        mShortcutTilesContainerLayout.post(runable);
 
         mNewsFlowListControlPanelLayout = (ViewGroup) LayoutInflater.from(mMainLayout.getContext())
             .inflate(R.layout.mises_news_flow_list_control_panel, mMainLayout, false);

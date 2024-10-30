@@ -257,6 +257,7 @@ Config.prototype.buildArgs = function () {
     safe_browsing_mode: 1,
     mises_services_key: this.misesServicesKey,
     root_extra_deps: ["//mises"],
+    clang_unsafe_buffers_paths: "//mises/build/config/unsafe_buffers_paths.txt",
     // TODO: Re-enable when chromium_src overrides work for files in relative
     // paths like widevine_cmdm_compoennt_installer.cc
     // use_jumbo_build: !this.officialBuild,
@@ -530,6 +531,9 @@ Config.prototype.buildArgs = function () {
     delete args.ftx_client_secret
     delete args.gemini_client_id
     delete args.gemini_client_secret
+    if (this.buildConfig === 'Debug') {
+      delete args.clang_unsafe_buffers_paths
+    }
   }
 
   if (this.targetOS === 'ios') {

@@ -108,3 +108,7 @@ sdk.xcframework
 ios/third_party/mises/Distribution
 ios/third_party/mises/Bundles/GoogleService-Info.plist
 log
+
+
+# buffer exclusion file generated locally during sync
+build/config/unsafe_buffers_paths.txt

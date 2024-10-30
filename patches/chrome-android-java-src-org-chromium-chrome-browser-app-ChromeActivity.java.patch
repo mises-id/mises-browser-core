@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index ed52802b815dccd2e72a083b269dbdfe0ac3d254..e1701222ef18361ef97efe8c113fbdbbbbedbdf9 100644
+index ed52802b815dccd2e72a083b269dbdfe0ac3d254..f7c7503c2a3f9ddc542df2009382cdf5fe4cfb1e 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
@@ -417,7 +417,7 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..e1701222ef18361ef97efe8c113fbdbb
          if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
              // Get values needed to check/enable auto dark for the current site.
              Profile profile = getCurrentTabModel().getProfile();
-@@ -2774,6 +3075,63 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+@@ -2774,6 +3075,57 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
              return true;
          }
  
@@ -464,12 +464,6 @@ index ed52802b815dccd2e72a083b269dbdfe0ac3d254..e1701222ef18361ef97efe8c113fbdbb
 +        if (id == R.id.set_default_browser) {
 +            RecordUserAction.record("SetDefaultBrowserFromMainMenu");
 +            setDefaultBrowser();
-+        }
-+
-+        if (id == R.id.clear_data_menu_id) {
-+            RecordUserAction.record("ClearBrowsingDataFromMainMenu");
-+            SettingsLauncher settingsLauncher = SettingsLauncherFactory.createSettingsLauncher();
-+            settingsLauncher.launchSettingsActivity(this, ClearBrowsingDataTabsFragment.class);
 +        }
 +
 +        if (id == R.id.exit_id) {
