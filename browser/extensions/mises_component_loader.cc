@@ -72,6 +72,8 @@
 #include "mises/browser/brave_wallet/keyring_service_factory.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 
+#include "chrome/browser/extensions/updater/extension_updater.h"
+
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 namespace extensions {
 
@@ -475,6 +477,8 @@ void MisesComponentLoader::OnWebstoreInstallResult(
     const std::string& error,
     extensions::webstore_install::Result result) {
   LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
+  pending_preinstall.erase(extension_id);
+
   if (result != extensions::webstore_install::Result::SUCCESS &&
       result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
     preinstall_error_counter_ ++;
@@ -510,6 +514,23 @@ void MisesComponentLoader::OnWebstoreInstallResult(
     AppMenuBridge::Factory::GetForProfile(profile_)->ReloadTabs();
     base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "finish", "id", extension_id);
 #endif
+ }
+
+ if (pending_preinstall.empty()) {
+  //no more pending_preinstall, do a update check now to report extension installed
+    extensions::ExtensionService* service =
+      extensions::ExtensionSystem::Get(profile_)->extension_service();
+    if (service) {
+      ExtensionUpdater* updater = service->updater();
+      if (updater) {
+        ExtensionUpdater::CheckParams params;
+        params.fetch_priority = DownloadFetchPriority::kBackground;
+        params.install_immediately = false;
+        updater->CheckNow(std::move(params));
+      }
+    }
+
+
  }
 }
 
@@ -607,7 +628,7 @@ void MisesComponentLoader::PreInstallExtensionFromWebStore(const std::string& ex
 #endif
   
   
-
+  pending_preinstall.insert(extension_id);
 
   scoped_refptr<WebstoreInstallerForImporting> installer =
       new WebstoreInstallerForImporting(

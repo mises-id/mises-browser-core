@@ -11,6 +11,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.net.URLEncoder;
+import java.util.Optional;
 
 import org.chromium.base.Callback;
 import org.chromium.base.jank_tracker.JankTracker;
@@ -41,11 +42,11 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
     private static final int SUGGESTION_NOT_FOUND = -1;
     private @NonNull UrlBarEditingTextStateProvider mUrlBarEditingTextProvider;
     private boolean mNativeInitialized;
-    private AutocompleteController mAutocomplete;
-    private @Nullable Runnable mDeferredLoadAction;
+    private @NonNull Optional<AutocompleteController> mAutocomplete = Optional.empty();
+    private @NonNull Optional<Runnable> mDeferredLoadAction = Optional.empty();
 
-    private Context mContext;
-    private AutocompleteDelegate mDelegate;
+    private final @NonNull Context mContext;
+    private final @NonNull AutocompleteDelegate mDelegate;
 
     public MisesAutocompleteMediator(
             @NonNull Context context,
@@ -115,26 +116,27 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
         }
         final String urlTextToLoad = urlText;
         cancelAutocompleteRequests();
-        if (mNativeInitialized && mAutocomplete != null) {
+        if (mNativeInitialized && mAutocomplete.isPresent()) {
             findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
         } else {
-            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
+            mDeferredLoadAction =
+                    Optional.of(() -> findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab));
         }
     }
 
     GURL updateSuggestionUrlIfNeeded(@NonNull AutocompleteMatch suggestion, int matchIndex,
         @NonNull GURL url, boolean skipCheck) {
-        if (!mNativeInitialized || mAutocomplete == null) return url;
+        if (!mNativeInitialized || mAutocomplete.isPresent()) return url;
         if (suggestion.getType() == OmniboxSuggestionType.TILE_NAVSUGGEST) {
             return url;
         }
 
-        // TODO(mariakhomenko): Ideally we want to update match destination URL with new aqs
-        // for query in the omnibox and voice suggestions, but it's currently difficult to do.
-        GURL updatedUrl = mAutocomplete.updateMatchDestinationUrlWithQueryFormulationTime(
-                suggestion, getElapsedTimeSinceInputChange());
-
-        GURL superRet =  updatedUrl == null ? url : updatedUrl;
+        GURL superRet =  mAutocomplete
+                .map(
+                        a ->
+                                a.updateMatchDestinationUrlWithQueryFormulationTime(
+                                        suggestion, getElapsedTimeSinceInputChange()))
+                .orElse(url);
 
         String newUrl = superRet.getSpec();
         if (newUrl.startsWith("mises://"))

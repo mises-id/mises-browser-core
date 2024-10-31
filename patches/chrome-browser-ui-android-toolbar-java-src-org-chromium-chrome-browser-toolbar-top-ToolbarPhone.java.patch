@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d321669d9 100644
+index 2a59309693e63f416054ea838d02c70a5552e7f7..67a35f41e2693be58f98f788eadd10f7869b83aa 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -93,11 +93,52 @@ import java.util.ArrayList;
@@ -130,14 +130,14 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d
              return mToolbarSidePaddingForNtp;
          } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
              return getBoundsAfterAccountingForRightButtons();
-@@ -759,6 +818,7 @@ public class ToolbarPhone extends ToolbarLayout
-      */
-     private int getBoundsAfterAccountingForLeftButton() {
-         int padding = mToolbarSidePaddingForNtp;
+@@ -765,6 +824,7 @@ public class ToolbarPhone extends ToolbarLayout
+         if (mHomeButton.getVisibility() != GONE) {
+             padding = mHomeButton.getMeasuredWidth();
+         }
 +        padding = getMisesButtonPadding();
+         return padding;
+     }
  
-         // If home button is visible, mHomeButton.getMeasuredWidth() should be returned as the left
-         // bound.
 @@ -776,7 +836,8 @@ public class ToolbarPhone extends ToolbarLayout
      private int getViewBoundsRightOfLocationBar(@VisualState int visualState) {
          // Uses getMeasuredWidth()s instead of getRight() because this is called in onMeasure
@@ -168,7 +168,7 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d
      }
  
      private void onNtpScrollChanged(float scrollFraction) {
-+        Log.e(TAG,"onNtpScrollChanged:" + scrollFraction);
++        Log.d(TAG,"onNtpScrollChanged:" + scrollFraction);
          mNtpSearchBoxScrollFraction = scrollFraction;
          if (mNtpSearchBoxScrollFraction > 0) {
              updateLocationBarForNtp(mVisualState, urlHasFocus());
@@ -183,6 +183,15 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d
  
          updateLocationBarLayoutForExpansionAnimation();
      }
+@@ -1117,7 +1185,7 @@ public class ToolbarPhone extends ToolbarLayout
+             locationBarTranslationX = locationBarBaseTranslationX + mLocationBarNtpOffsetLeft;
+         }
+ 
+-        mLocationBar.getPhoneCoordinator().setTranslationX(locationBarTranslationX);
++        //mLocationBar.getPhoneCoordinator().setTranslationX(locationBarTranslationX);
+ 
+         if (!mOptionalButtonAnimationRunning) {
+             boolean isUrlFocusChangeInProgressWithScrollCompleted =
 @@ -1253,7 +1321,8 @@ public class ToolbarPhone extends ToolbarLayout
          mLocationBar.getPhoneCoordinator().setTranslationX(0);
          if (!mUrlFocusChangeInProgress) {
@@ -314,7 +323,7 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d
          return super.shouldDrawShadow()
                  && mTabSwitcherState == STATIC_TAB
                  && !hideShadowForIncognitoNtp()
-@@ -2918,4 +3034,262 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2918,4 +3034,261 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }
@@ -425,7 +434,6 @@ index 2a59309693e63f416054ea838d02c70a5552e7f7..335164b445ebd9a5c460674ef368006d
 +
 +    private void drawMisesExtensionButton(Canvas canvas, int rgbAlpha) {
 +        if (mMisesExtensionButton != null && mMisesExtensionButton.getVisibility() != View.GONE) {
-+            Log.e(TAG,"drawMisesExtensionButton");
 +	    canvas.save();
 +	    ChromeImageButton imageButton = mMisesExtensionButton;
 +	    Drawable buttonDrawable = mMisesExtensionButton.getDrawable();

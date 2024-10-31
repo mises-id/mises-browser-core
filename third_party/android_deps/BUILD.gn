@@ -166,12 +166,50 @@ android_aar_prebuilt("google_play_services_ads_base_java") {
   info_path = "libs/com_google_android_gms_play_services_ads_base/com_google_android_gms_play_services_ads_base.info"
 
 }
+
+java_prebuilt("androidx_room_room_common_java") {
+  jar_path = "libs/androidx_room_room_common/room-common-2.6.1.jar"
+  output_name = "androidx_room_room_common"
+  supports_android = true
+}
+
+
+android_aar_prebuilt("androidx_room_room_runtime_java") {
+  aar_path = "libs/androidx_room_room_runtime/room-runtime-2.6.1.aar"
+  deps = [
+    ":androidx_sqlite_sqlite_framework_java",
+    ":androidx_sqlite_sqlite_java",
+  ]
+  info_path = "libs/androidx_room_room_runtime/androidx_room_room_runtime.info"
+}
+
+android_aar_prebuilt("androidx_sqlite_sqlite_java") {
+  aar_path = "libs/androidx_sqlite_sqlite/sqlite-2.4.0.aar"
+  info_path = "libs/androidx_sqlite_sqlite/androidx_sqlite_sqlite.info"
+}
+
+android_aar_prebuilt("androidx_sqlite_sqlite_framework_java") {
+  aar_path = "libs/androidx_sqlite_sqlite_framework/sqlite-framework-2.4.0.aar"
+  info_path = "libs/androidx_sqlite_sqlite_framework/androidx_sqlite_sqlite_framework.info"
+}
+
+android_aar_prebuilt("androidx_work_work_runtime_java") {
+  aar_path = "libs/androidx_work_work_runtime/work-runtime-2.9.1.aar"
+  info_path = "libs/androidx_work_work_runtime/androidx_work_work_runtime.info"
+  deps = [ 
+    "//third_party/androidx:androidx_lifecycle_lifecycle_service_java",
+    ":androidx_room_room_common_java",
+    ":androidx_room_room_runtime_java",
+  ]
+}
+
 android_aar_prebuilt("google_play_services_ads_lite_java") {
   aar_path = "libs/com_google_android_gms_play_services_ads_lite/play-services-ads-lite-22.4.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads_lite/com_google_android_gms_play_services_ads_lite.info"
 
   deps = [ 
     "//third_party/androidx:androidx_privacysandbox_ads_ads_adservices_java_java",
+    ":androidx_work_work_runtime_java",
     "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_ads_base_java",
     ":google_play_services_measurement_api_java",

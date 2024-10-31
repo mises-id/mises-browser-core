@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/extensions/updater/chrome_update_client_config.h b/chrome/browser/extensions/updater/chrome_update_client_config.h
+index de6c63b9c0853df7bef89fb0121a622ea842cf4d..3111e181009b59640b2f1a62e6baa4f7029f096f 100644
+--- a/chrome/browser/extensions/updater/chrome_update_client_config.h
++++ b/chrome/browser/extensions/updater/chrome_update_client_config.h
+@@ -86,6 +86,7 @@ class ChromeUpdateClientConfig : public update_client::Configurator {
+   update_client::UpdaterStateProvider GetUpdaterStateProvider() const override;
+   std::optional<base::FilePath> GetCrxCachePath() const override;
+   bool IsConnectionMetered() const override;
++  MISES_CHROME_UPDATE_CLIENT_CONFIG_H_
+ 
+  protected:
+   friend class base::RefCountedThreadSafe<ChromeUpdateClientConfig>;

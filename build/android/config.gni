@@ -83,7 +83,7 @@ mises_resources_exclusion_exceptions =
     [ "*com_google_android_material*design_bottom_*" ]
 
 mises_jni_headers_sources = [
-  "//mises/android/java/org/chromium/chrome/browser/ntp_background_images/NTPBackgroundImagesBridge.java",
+  #"//mises/android/java/org/chromium/chrome/browser/ntp_background_images/NTPBackgroundImagesBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/MisesFeatureUtil.java",
   "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",
