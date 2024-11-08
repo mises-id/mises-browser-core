@@ -16,6 +16,8 @@
 #include "components/commerce/core/proto/cart_db_content.pb.h"
 #include "components/commerce/core/proto/coupon_db_content.pb.h"
 #include "chrome/browser/chrome_browser_main_extra_parts.h"
+#include "components/omnibox/browser/omnibox_input_watcher.h"
+#include "components/omnibox/browser/omnibox_suggestions_watcher.h"
 
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
 
@@ -104,6 +106,11 @@ void ChromeBrowserMainExtraPartsProfiles::
 
 
   NotifierStateTrackerFactory::GetInstance();
+
+#if BUILDFLAG(IS_ANDROID) && BUILDFLAG(ENABLE_EXTENSIONS)
+  OmniboxInputWatcher::EnsureFactoryBuilt();
+  OmniboxSuggestionsWatcher::EnsureFactoryBuilt();
+#endif
 
   OptimizationGuideKeyedServiceFactory::GetInstance();
   if (optimization_guide::switches::ShouldValidateModel())

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/extensions/extension_install_prompt_show_params.cc b/chrome/browser/extensions/extension_install_prompt_show_params.cc
+index 797e85a90dbb442b3b29dcb58fcb34444ef5ff37..b858ed8adb22fd750602c6af0f669f3e35e177e4 100644
+--- a/chrome/browser/extensions/extension_install_prompt_show_params.cc
++++ b/chrome/browser/extensions/extension_install_prompt_show_params.cc
+@@ -48,7 +48,7 @@ ExtensionInstallPromptShowParams::ExtensionInstallPromptShowParams(
+     // true, even though there is no real window to check. Thus, there is no
+     // window to track here. Reset the web contents in this case, and just keep
+     // the profile.
+-    CHECK_IS_TEST();
++    //CHECK_IS_TEST();
+     parent_web_contents_.reset();
+   }
+ }

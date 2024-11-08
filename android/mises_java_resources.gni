@@ -398,7 +398,7 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
 
 
 
-    "java/res/xml/simple_accessibility_preferences.xml",
+    #"java/res/xml/simple_accessibility_preferences.xml",
     "java/res/xml/data_reduction_preferences_off_lite_mode.xml",
     "java/res/xml/translate_preferences.xml",
     "java/res/xml/tabswitcher_preferences.xml",
