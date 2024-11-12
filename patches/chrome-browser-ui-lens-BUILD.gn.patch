@@ -1,0 +1,33 @@
+diff --git a/chrome/browser/ui/lens/BUILD.gn b/chrome/browser/ui/lens/BUILD.gn
+index 92b1e67ed3724a206542cf895f992eb8ff1fea9a..090f45b3385cef6a4573b3d318ebbbc8444ca8d4 100644
+--- a/chrome/browser/ui/lens/BUILD.gn
++++ b/chrome/browser/ui/lens/BUILD.gn
+@@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
+ import("//pdf/features.gni")
+ 
+ # Contained Lens dependencies are currently for desktop platforms only
+-assert(!is_android, "Lens Overlay is for desktop platforms only")
++#assert(!is_android, "Lens Overlay is for desktop platforms only")
+ 
+ source_set("lens") {
+   # The public interface is intentionally minimal. There should be a small
+@@ -205,6 +205,9 @@ source_set("browser_tests") {
+   if (enable_pdf) {
+     deps += [ "//chrome/browser/pdf" ]
+   }
++  if (is_android) {
++    deps -= ["//chrome/test:test_support_ui"]
++  }
+ }
+ 
+ source_set("interactive_ui_tests") {
+@@ -237,6 +240,9 @@ source_set("interactive_ui_tests") {
+     "//content/test:test_support",
+     "//testing/gtest",
+   ]
++  if (is_android) {
++    deps -= ["//chrome/test:test_support_ui"]
++  }
+ }
+ 
+ source_set("unit_tests") {

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/search/background/BUILD.gn b/chrome/browser/search/background/BUILD.gn
-index 3d295f6d89428a5dc4f3f98517e53589afdc2b13..471ce3f408d16ef25ac8836e255189c2446d0a3e 100644
+index 8ed84e3db292499700cfa30cae11ae72add08008..b948d001050a3f0ee1515974c6690dbd02670ab1 100644
 --- a/chrome/browser/search/background/BUILD.gn
 +++ b/chrome/browser/search/background/BUILD.gn
 @@ -2,7 +2,7 @@

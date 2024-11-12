@@ -1,23 +1,23 @@
 diff --git a/chrome/browser/ui/web_applications/BUILD.gn b/chrome/browser/ui/web_applications/BUILD.gn
-index 269bc69a2fda90355db9e8f22e27934d75d9a453..256d16bf6da2b2ca1a8863901e9c4e6b9d918971 100644
+index 2f15bf6f5b3c586387ba75893205eb196e18c390..cd599a8ffb56f5d3b2d01123e93e13f5d70da454 100644
 --- a/chrome/browser/ui/web_applications/BUILD.gn
 +++ b/chrome/browser/ui/web_applications/BUILD.gn
-@@ -126,6 +126,10 @@ source_set("browser_tests") {
+@@ -130,6 +130,10 @@ source_set("browser_tests") {
    if (is_chromeos) {
      deps += [ "//chromeos/constants" ]
    }
 +
 +  if (is_android) {
-+    deps -= ["//chrome/test:test_support_ui"]
++    deps -= ["//chrome/test:test_support_ui", "//chrome/browser/apps/link_capturing", "//chrome/browser/apps/link_capturing:test_support", "//chrome/browser/picture_in_picture:test_support_ui"]
 +  }
  }
  
  # On Lacros, these browser tests require Ash to be running, as they rely on web
-@@ -191,4 +195,7 @@ source_set("app_service_browser_tests") {
+@@ -199,4 +203,7 @@ source_set("app_service_browser_tests") {
        "//chromeos/startup",
      ]
    }
 +  if (is_android) {
-+    deps -= ["//chrome/test:test_support_ui"]
++    deps -= ["//chrome/test:test_support_ui", "//chrome/browser/apps/link_capturing", "//chrome/browser/apps/link_capturing:test_support"]
 +  }
  }

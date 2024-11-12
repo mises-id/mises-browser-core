@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/customize_chrome/BUILD.gn b/chrome/browser/ui/customize_chrome/BUILD.gn
+index 006ff49abb98b3da635272188e9c7d96b9bb36aa..6d08b6a36cc8f26dbd773af5155f18a2cb8036cc 100644
+--- a/chrome/browser/ui/customize_chrome/BUILD.gn
++++ b/chrome/browser/ui/customize_chrome/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ source_set("customize_chrome") {
+   sources = [ "side_panel_controller.h" ]

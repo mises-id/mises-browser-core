@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/BUILD.gn b/chrome/browser/resources/BUILD.gn
-index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074a3d59f2b 100644
+index 745ab36b7f834eb8a0d0274c6393bcaaf1534faa..f25d46dfa353e8038f9d048a67c1406bf5f03613 100644
 --- a/chrome/browser/resources/BUILD.gn
 +++ b/chrome/browser/resources/BUILD.gn
 @@ -21,7 +21,7 @@ group("resources") {
@@ -11,13 +11,16 @@ index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074
      public_deps += [
        ":app_icon_resources",
        ":component_extension_resources",
-@@ -125,12 +125,17 @@ group("resources") {
+@@ -124,12 +124,20 @@ group("resources") {
        "app_settings:resources",
      ]
    }
 +  if (is_android) {
 +    public_deps -= [
 +      ":dev_ui_paks",
++      "lens/shared:resources",
++      "lens/overlay:resources",
++      "lens/overlay/search_bubble:resources"
 +    ]
 +  }
  
@@ -30,7 +33,7 @@ index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074
      public_deps += [
        "inline_login:resources",
        "intro:resources",
-@@ -177,7 +182,7 @@ if (is_chromeos_ash && enable_js_type_check) {
+@@ -180,7 +188,7 @@ if (is_chromeos_ash && enable_js_type_check) {
    }
  }
  
@@ -39,7 +42,7 @@ index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074
    grit("component_extension_resources") {
      source = "component_extension_resources.grd"
  
-@@ -294,7 +299,8 @@ group("dev_ui_resources") {
+@@ -297,7 +305,8 @@ group("dev_ui_resources") {
        "//chrome/browser/resources/feed_internals:resources",
        "//chrome/browser/resources/webapks:resources",
      ]
@@ -49,7 +52,7 @@ index 0fb86b69f79e2266d4488046ba930f5f8d4e139b..c5dade2d8c796bdf1a905fc5e09f3074
      public_deps += [
        "media_router/internals:resources",
        "on_device_internals:resources",
-@@ -352,7 +358,8 @@ repack("dev_ui_paks") {
+@@ -355,7 +364,8 @@ repack("dev_ui_paks") {
        "$root_gen_dir/chrome/feed_internals_resources.pak",
        "$root_gen_dir/chrome/webapks_resources.pak",
      ]

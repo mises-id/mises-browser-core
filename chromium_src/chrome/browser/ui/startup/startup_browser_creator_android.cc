@@ -22,13 +22,12 @@ StartupBrowserCreator::~StartupBrowserCreator() {
 
 }
 void StartupBrowserCreator::LaunchBrowser(
-      const base::CommandLine& command_line,
-      Profile* profile,
-      const base::FilePath& cur_dir,
-      chrome::startup::IsProcessStartup process_startup,
-      chrome::startup::IsFirstRun is_first_run,
-      std::unique_ptr<OldLaunchModeRecorder> launch_mode_recorder,
-      bool restore_tabbed_browser) {
+    const base::CommandLine& command_line,
+    Profile* profile,
+    const base::FilePath& cur_dir,
+    chrome::startup::IsProcessStartup process_startup,
+    chrome::startup::IsFirstRun is_first_run,
+    bool restore_tabbed_browser) {
 }
 
 

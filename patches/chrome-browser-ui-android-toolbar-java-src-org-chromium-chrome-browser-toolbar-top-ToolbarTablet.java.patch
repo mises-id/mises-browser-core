@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
-index a78210e6c74c4c6a9d7f1cf484ab2fd3ad77df64..c966706934f31b93698508d36a895499ce3db9f8 100644
+index a158d0d3652ade968a504548fa220176bea8299b..f4f52cfec3e2e770019ddf26830a20e9beb39ee7 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarTablet.java
-@@ -65,6 +65,14 @@ import java.util.ArrayList;
+@@ -67,6 +67,14 @@ import java.util.ArrayList;
  import java.util.Collection;
  import java.util.function.BooleanSupplier;
  
@@ -17,15 +17,15 @@ index a78210e6c74c4c6a9d7f1cf484ab2fd3ad77df64..c966706934f31b93698508d36a895499
  /** The Toolbar object for Tablet screens. */
  @SuppressLint("Instantiatable")
  public class ToolbarTablet extends ToolbarLayout
-@@ -89,6 +97,7 @@ public class ToolbarTablet extends ToolbarLayout
-     private ImageButton mBookmarkButton;
+@@ -92,6 +100,7 @@ public class ToolbarTablet extends ToolbarLayout
      private ImageButton mSaveOfflineButton;
+     private View mIncognitoIndicator;
  
 +
      private OnClickListener mBookmarkListener;
  
      private boolean mIsInTabSwitcherMode;
-@@ -176,6 +185,7 @@ public class ToolbarTablet extends ToolbarLayout
+@@ -182,6 +191,7 @@ public class ToolbarTablet extends ToolbarLayout
          mShouldAnimateButtonVisibilityChange = false;
          mToolbarButtonsVisible = true;
          mToolbarButtons = new ImageButton[] {mBackButton, mForwardButton, mReloadButton};
@@ -33,15 +33,15 @@ index a78210e6c74c4c6a9d7f1cf484ab2fd3ad77df64..c966706934f31b93698508d36a895499
  
          setTooltipTextForToolbarButtons();
      }
-@@ -343,6 +353,7 @@ public class ToolbarTablet extends ToolbarLayout
+@@ -350,6 +360,7 @@ public class ToolbarTablet extends ToolbarLayout
  
          mSaveOfflineButton.setOnClickListener(this);
          mSaveOfflineButton.setOnLongClickListener(this);
 +        setupMisesButtonClickListener();
      }
  
-     @Override
-@@ -410,6 +421,7 @@ public class ToolbarTablet extends ToolbarLayout
+     /**
+@@ -439,6 +450,7 @@ public class ToolbarTablet extends ToolbarLayout
              mOfflineDownloader.downloadPage(getContext(), getToolbarDataProvider().getTab());
              RecordUserAction.record("MobileToolbarDownloadPage");
          }
@@ -49,7 +49,7 @@ index a78210e6c74c4c6a9d7f1cf484ab2fd3ad77df64..c966706934f31b93698508d36a895499
      }
  
      @Override
-@@ -541,6 +553,8 @@ public class ToolbarTablet extends ToolbarLayout
+@@ -571,6 +583,8 @@ public class ToolbarTablet extends ToolbarLayout
          if (mOptionalButton != null && mOptionalButtonUsesTint) {
              ImageViewCompat.setImageTintList(mOptionalButton, activityFocusTint);
          }
@@ -58,9 +58,9 @@ index a78210e6c74c4c6a9d7f1cf484ab2fd3ad77df64..c966706934f31b93698508d36a895499
      }
  
      @Override
-@@ -953,4 +967,12 @@ public class ToolbarTablet extends ToolbarLayout
-     public ImageButton getBookmarkButtonForTesting() {
-         return mBookmarkButton;
+@@ -1004,4 +1018,12 @@ public class ToolbarTablet extends ToolbarLayout
+     OnTouchListener getReloadButtonTouchListenerForTest() {
+         return mReloadButtonTouchListener;
      }
 +
 +    private void setupMisesButton() {

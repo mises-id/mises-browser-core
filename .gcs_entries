@@ -46,35 +46,35 @@
       "20.11.0/2cb36010af52bc5e2a2d1e3675c10361c80d8f8d"
     ],
     "src/third_party/node/node_modules": [
-      "b0e3bb6a66b904836731f881ef00b5cd69d92dea"
+      "8832b899a93c8be572bd8d8ff9b3e4af563169fe"
     ],
     "src/third_party/llvm-build/Release+Asserts": [
-      "Linux_x64/clang-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Linux_x64/clang-tidy-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Linux_x64/clangd-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Linux_x64/llvm-code-coverage-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Linux_x64/llvmobjdump-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac/clang-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac/clang-mac-runtime-library-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac/clang-tidy-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac/clangd-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac/llvm-code-coverage-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac_arm64/clang-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac_arm64/clang-tidy-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac_arm64/clangd-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Mac_arm64/llvm-code-coverage-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/clang-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/clang-tidy-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/clang-win-runtime-library-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/clangd-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/llvm-code-coverage-llvmorg-20-init-1009-g7088a5ed-10.tar.xz",
-      "Win/llvmobjdump-llvmorg-20-init-1009-g7088a5ed-10.tar.xz"
+      "Linux_x64/clang-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Linux_x64/clang-tidy-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Linux_x64/clangd-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Linux_x64/llvm-code-coverage-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Linux_x64/llvmobjdump-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac/clang-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac/clang-mac-runtime-library-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac/clang-tidy-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac/clangd-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac/llvm-code-coverage-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac_arm64/clang-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac_arm64/clang-tidy-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac_arm64/clangd-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Mac_arm64/llvm-code-coverage-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/clang-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/clang-tidy-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/clang-win-runtime-library-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/clangd-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/llvm-code-coverage-llvmorg-20-init-3847-g69c43468-28.tar.xz",
+      "Win/llvmobjdump-llvmorg-20-init-3847-g69c43468-28.tar.xz"
     ],
     "src/third_party/rust-toolchain": [
-      "Linux_x64/rust-toolchain-595316b4006932405a63862d8fe65f71a6356293-5-llvmorg-20-init-1009-g7088a5ed.tar.xz",
-      "Mac/rust-toolchain-595316b4006932405a63862d8fe65f71a6356293-5-llvmorg-20-init-1009-g7088a5ed.tar.xz",
-      "Mac_arm64/rust-toolchain-595316b4006932405a63862d8fe65f71a6356293-5-llvmorg-20-init-1009-g7088a5ed.tar.xz",
-      "Win/rust-toolchain-595316b4006932405a63862d8fe65f71a6356293-5-llvmorg-20-init-1009-g7088a5ed.tar.xz"
+      "Linux_x64/rust-toolchain-009e73825af0e59ad4fc603562e038b3dbd6593a-2-llvmorg-20-init-3847-g69c43468.tar.xz",
+      "Mac/rust-toolchain-009e73825af0e59ad4fc603562e038b3dbd6593a-2-llvmorg-20-init-3847-g69c43468.tar.xz",
+      "Mac_arm64/rust-toolchain-009e73825af0e59ad4fc603562e038b3dbd6593a-2-llvmorg-20-init-3847-g69c43468.tar.xz",
+      "Win/rust-toolchain-009e73825af0e59ad4fc603562e038b3dbd6593a-2-llvmorg-20-init-3847-g69c43468.tar.xz"
     ],
     "src/third_party/blink/renderer/core/css/perftest_data": [
       "e9ce994346c62f8c9fd6d0cecb2b2b0b93b4c2d8",
@@ -109,7 +109,7 @@
       "test_data/chrome_input_with_frame_view_new.pftrace-e901ad9577088e62c921dd8bfcb43d652ecf49fa69b5b57f81bb3d27dbe94e12"
     ],
     "src/third_party/subresource-filter-ruleset/data": [
-      "e4d1c702ca1b5497a3abcdd9495a5d0758f19ffc"
+      "7f7f432c27d97dee184dcd3ea20f731674c008be849c0136f9c5358e359f3ea9"
     ],
     "src/third_party/test_fonts/test_fonts": [
       "f26f29c9d3bfae588207bbc9762de8d142e58935c62a86f67332819b15203b35"

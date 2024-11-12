@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
-index 45e431d1f294ddd76bd75f0c52075a44713560e3..6e8f574d4a13ac0639ec2970bffc581d054b9ad5 100644
+index cae1f4d5848b60e752c24a39cbb964ee203a1853..e0ea66bba6423f82caf09022d037c3eeb88fe58d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
 @@ -57,6 +57,11 @@ import org.chromium.ui.util.ColorUtils;

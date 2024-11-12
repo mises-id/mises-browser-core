@@ -1,5 +1,5 @@
 diff --git a/components/ntp_tiles/most_visited_sites.cc b/components/ntp_tiles/most_visited_sites.cc
-index 99902df4c1ec8f06b4b76fa52cf72cd2d5b4c254..d516a5a4b9108494c0bfecd2db697ab83b142669 100644
+index b72a63d222a2b69fdd0878d2c5a8b1bb74ca96f0..3f886e83f794a700bde9d1060d0cb624d46e14ac 100644
 --- a/components/ntp_tiles/most_visited_sites.cc
 +++ b/components/ntp_tiles/most_visited_sites.cc
 @@ -225,6 +225,7 @@ void MostVisitedSites::SetHomepageClient(
@@ -10,7 +10,7 @@ index 99902df4c1ec8f06b4b76fa52cf72cd2d5b4c254..d516a5a4b9108494c0bfecd2db697ab8
    observers_.AddObserver(observer);
  
    // All observer must provide the same |max_num_sites| value.
-@@ -892,4 +893,16 @@ void MostVisitedSites::AddToHostsAndTotalCount(const NTPTilesVector& new_tiles,
+@@ -893,4 +894,16 @@ void MostVisitedSites::AddToHostsAndTotalCount(const NTPTilesVector& new_tiles,
    DCHECK_LE(*total_tile_count, GetMaxNumSites());
  }
  

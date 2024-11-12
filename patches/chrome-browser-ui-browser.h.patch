@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/browser.h b/chrome/browser/ui/browser.h
-index 9081a0ed32b64202ead5495f188a97cedf1a6d35..0d4d9831448163a5495a619a2643cb949f457889 100644
+index 85b6845aa871c2e7ae553f245774006a7d9b9085..ff7d3415f4fc5901faa4e1e6afd33fd72c984bd4 100644
 --- a/chrome/browser/ui/browser.h
 +++ b/chrome/browser/ui/browser.h
 @@ -53,7 +53,7 @@

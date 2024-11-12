@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/signin/BUILD.gn b/chrome/browser/ui/signin/BUILD.gn
+index db6298a9b9542f19697836962684fb5d2dd24b14..bcde7517573b98c26ef8ad902cdb328d89b118c0 100644
+--- a/chrome/browser/ui/signin/BUILD.gn
++++ b/chrome/browser/ui/signin/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//components/signin/features.gni")
+ 
+-assert(!is_android && !is_fuchsia)
++#assert(!is_android && !is_fuchsia)
+ 
+ source_set("signin") {
+   sources = [

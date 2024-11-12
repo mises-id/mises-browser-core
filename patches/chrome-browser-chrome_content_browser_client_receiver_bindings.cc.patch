@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/chrome_content_browser_client_receiver_bindings.cc b/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
-index 3ad28f1eee437bd4447c49cd93444fd4842d8630..5e34dee825459dc19b5c3a3095fa845ccb7db712 100644
+index 34485c7703ab8d17f7acc23ba809a4b0c425a3a2..d41db474cec5fa18fe5a6d63412369ea1a8d9382 100644
 --- a/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
 +++ b/chrome/browser/chrome_content_browser_client_receiver_bindings.cc
 @@ -169,7 +169,7 @@ void MaybeCreateSafeBrowsingForRenderer(

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/views/user_education/browser_user_education_service.cc b/chrome/browser/ui/views/user_education/browser_user_education_service.cc
-index 8e0439d5f03469b0329d6b32ab2e325483c1a348..de5c88b70a1ab093677401655e9fe9dc696d84f1 100644
+index a719145da2bfafd4b6b9aad22dd68f75ffbcc0cc..3d810dbf21d74084364e138844f03895c5988597 100644
 --- a/chrome/browser/ui/views/user_education/browser_user_education_service.cc
 +++ b/chrome/browser/ui/views/user_education/browser_user_education_service.cc
-@@ -575,7 +575,7 @@ void MaybeRegisterChromeFeaturePromos(
+@@ -600,7 +600,7 @@ void MaybeRegisterChromeFeaturePromos(
  
  #endif  // !BUILDFLAG(IS_CHROMEOS_ASH)
  

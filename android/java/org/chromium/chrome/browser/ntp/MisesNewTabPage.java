@@ -115,9 +115,13 @@ public class MisesNewTabPage extends NewTabPage {
     }
 
     @Override
-    protected void initializeMainView(Activity activity, WindowAndroid windowAndroid,
-            SnackbarManager snackbarManager, NewTabPageUma uma, boolean isInNightMode,
-            Supplier<ShareDelegate> shareDelegateSupplier, String url) {
+    protected void initializeMainView(
+            Activity activity,
+            WindowAndroid windowAndroid,
+            SnackbarManager snackbarManager,
+            boolean isInNightMode,
+            Supplier<ShareDelegate> shareDelegateSupplier,
+            String url) {
         // Override surface provider
         Profile profile = Profile.fromWebContents(mTab.getWebContents());
 

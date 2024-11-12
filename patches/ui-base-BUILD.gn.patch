@@ -1,8 +1,8 @@
 diff --git a/ui/base/BUILD.gn b/ui/base/BUILD.gn
-index 1388140fcb81fcd56404aba6dea3ec32911b963c..61fdaa7fe4dbd6b6ec5927052ac2c1b962fad972 100644
+index 79937bebda1b3405a8acbf1559ebd994a3f7bf0b..394c17cf919f08d2ce9e52154b04245bdfc385b8 100644
 --- a/ui/base/BUILD.gn
 +++ b/ui/base/BUILD.gn
-@@ -419,7 +419,7 @@ component("base") {
+@@ -423,7 +423,7 @@ component("base") {
        "themed_vector_icon.h",
      ]
  
@@ -11,7 +11,7 @@ index 1388140fcb81fcd56404aba6dea3ec32911b963c..61fdaa7fe4dbd6b6ec5927052ac2c1b9
        sources += [
          "menu_source_utils.cc",
          "menu_source_utils.h",
-@@ -643,7 +643,7 @@ component("base") {
+@@ -649,7 +649,7 @@ component("base") {
      ]
    }
  
@@ -20,7 +20,7 @@ index 1388140fcb81fcd56404aba6dea3ec32911b963c..61fdaa7fe4dbd6b6ec5927052ac2c1b9
      sources -= [
        "dragdrop/drop_target_event.cc",
        "dragdrop/drop_target_event.h",
-@@ -660,11 +660,17 @@ component("base") {
+@@ -666,11 +666,17 @@ component("base") {
      deps += [ ":ui_base_jni_headers" ]
      libs += [ "jnigraphics" ]
  

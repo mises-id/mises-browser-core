@@ -55,6 +55,7 @@
   case RequestType::kCapturedSurfaceControl:\
   case RequestType::kKeyboardLock: \
   case RequestType::kPointerLock: \
+  case RequestType::kWebAppInstallation: \
       return permissions::PermissionRequest::AnnotatedMessageText( \
         std::u16string(), {});                                   
 

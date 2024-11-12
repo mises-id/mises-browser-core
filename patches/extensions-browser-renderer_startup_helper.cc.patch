@@ -1,8 +1,8 @@
 diff --git a/extensions/browser/renderer_startup_helper.cc b/extensions/browser/renderer_startup_helper.cc
-index a09b3b75054b5b4e9f1e8862482e0ccc0915a50a..c7cc0ccc917e4db16050f1a4a1331eae982cc440 100644
+index 388232d3fd3d67b31d44290bbb91028af3c39d4f..fdfe65d0a93558b9bc65e081acaec21e57402da5 100644
 --- a/extensions/browser/renderer_startup_helper.cc
 +++ b/extensions/browser/renderer_startup_helper.cc
-@@ -157,6 +157,11 @@ void RendererStartupHelper::InitializeProcess(
+@@ -191,6 +191,11 @@ void RendererStartupHelper::InitializeProcess(
    renderer->SetDeveloperMode(
        GetCurrentDeveloperMode(util::GetBrowserContextId(browser_context_)));
  

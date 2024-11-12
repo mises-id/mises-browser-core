@@ -2,6 +2,7 @@ mises_browser_ui_sources = []
 mises_browser_ui_exception_sources = []
 mises_browser_ui_deps = []
 mises_browser_ui_exception_deps = []
+mises_browser_ui_exception_public_deps = []
 mises_browser_ui_exception_allow_circular_includes_from = []
 if (is_android) {
   mises_browser_ui_sources += [
@@ -27,6 +28,8 @@ if (is_android) {
       "omnibox/alternate_nav_infobar_delegate.cc",
       "lens/lens_overlay_entry_point_controller.cc",
       "lens/lens_overlay_controller.cc",
+      
+      "browser_window/browser_window_features.cc"
   ]
   mises_browser_ui_exception_sources += [
       "views/payments/contact_info_editor_view_controller.cc",
@@ -126,8 +129,6 @@ if (is_android) {
       "webui/signin/login_ui_service.h",
       "webui/signin/login_ui_service_factory.cc",
       "webui/signin/login_ui_service_factory.h",
-      "webui/signin/signin_utils.cc",
-      "webui/signin/signin_utils.h",
       "webui/signin/sync_confirmation_handler.cc",
       "webui/signin/sync_confirmation_handler.h",
       "webui/signin/sync_confirmation_ui.cc",
@@ -169,22 +170,6 @@ if (is_android) {
       "views/screen_capture_notification_ui_views.cc",
       "views/tab_dialogs_views.cc",
       "views/autofill/popup/popup_view_views.cc",
-
-      
-
-      "autofill/payments/local_card_migration_dialog_controller_impl.cc",
-      "autofill/payments/local_card_migration_dialog_controller_impl.h",
-      "autofill/payments/local_card_migration_bubble_controller_impl.cc",
-      "autofill/payments/local_card_migration_bubble_controller_impl.h",  
-      "autofill/payments/local_card_migration_controller_observer.h",
-      "autofill/payments/local_card_migration_dialog.h",
-      "autofill/payments/local_card_migration_dialog_factory.h",
-      "autofill/payments/local_card_migration_dialog_state.h",
-      "autofill/payments/manage_migration_ui_controller.cc",
-      "autofill/payments/manage_migration_ui_controller.h",
-      "autofill/payments/offer_notification_bubble_controller.h",
-      "autofill/payments/save_card_bubble_controller.h",
-      "autofill/payments/save_card_ui.h",
 
 
       "browser_otr_state.cc",
@@ -299,7 +284,6 @@ if (is_android) {
     "//chrome/browser/ui/views",
     "//chrome/browser/ui/views/toolbar",
     "//components/live_caption",
-    "//chrome/browser/ui/toasts",
     #"//chrome/browser/ui/webui/util",
     #"//chrome/browser/ui/views/bubble",
     "//chrome/browser/companion/visual_query",
@@ -317,6 +301,17 @@ if (is_android) {
       "//components/search_engines:generate_search_engine_icons",
       "//chrome/browser/headless:command_processor",
       "//chrome/browser/ui/lens",
+      "//chrome/browser/ui/browser_window:impl",
+      "//chrome/browser/ui/browser_window",
+      "//chrome/browser/ui/commerce",
+      #"//chrome/browser/ui/commerce:impl",
+      "//chrome/browser/ui/toasts:toasts",
+      "//chrome/browser/ui/toasts/api:toasts",
+      "//chrome/browser/ui/toasts:impl",
+       "//chrome/browser/ui/views/side_panel:side_panel_enums",
+       "//chrome/browser/apps/link_capturing:features",
+       "//chrome/browser/apps/link_capturing",
+       "//chrome/browser/ui/customize_chrome",
   ]
   mises_browser_ui_exception_allow_circular_includes_from += [
     "//chrome/browser/ui/views",
@@ -325,6 +320,13 @@ if (is_android) {
     "//chrome/browser/ui/webui/searchbox",
     "//chrome/browser/lens/region_search",
     "//chrome/browser/ui/exclusive_access",
+    "//chrome/browser/ui/browser_window:impl",
+    #"//chrome/browser/ui/commerce:impl",
+    "//chrome/browser/ui/toasts:impl",
+    "//chrome/browser/ui/views/side_panel",
 
+  ]
+  mises_browser_ui_exception_public_deps += [
+     "//chrome/browser/ui/views/side_panel",
   ]
 }

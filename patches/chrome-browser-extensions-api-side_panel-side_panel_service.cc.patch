@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/side_panel/side_panel_service.cc b/chrome/browser/extensions/api/side_panel/side_panel_service.cc
-index eb87bf29ab343f3f13919e405a3aa77fa12bb782..3ce9e0b6183aaf1d0fe5d5d36428d065a01391fe 100644
+index c44bbe14edc005ad7c9f8fe5a6be212c0777cd0d..11271d8ef68ac5e2aeb967f9f38cb3ec848eaff0 100644
 --- a/chrome/browser/extensions/api/side_panel/side_panel_service.cc
 +++ b/chrome/browser/extensions/api/side_panel/side_panel_service.cc
 @@ -19,6 +19,7 @@
@@ -10,7 +10,7 @@ index eb87bf29ab343f3f13919e405a3aa77fa12bb782..3ce9e0b6183aaf1d0fe5d5d36428d065
  
  namespace extensions {
  
-@@ -248,6 +249,13 @@ base::expected<bool, std::string> SidePanelService::OpenSidePanelForTab(
+@@ -250,6 +251,13 @@ base::expected<bool, std::string> SidePanelService::OpenSidePanelForTab(
      int tab_id,
      std::optional<int> window_id,
      bool include_incognito_information) {

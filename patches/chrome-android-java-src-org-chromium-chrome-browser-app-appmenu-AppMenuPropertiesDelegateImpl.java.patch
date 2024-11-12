@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957ea2d4567 100644
+index 2d676879d1de7ffff1aebc89f9cf6e1a15deac2b..98fa4b91ba8a6742850b4fc13de19b4b4f4f74e0 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 @@ -100,6 +100,38 @@ import java.util.ArrayList;
@@ -388,7 +388,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
      /**
       * @param currentTab The currentTab for which the app menu is showing.
       * @return Whether the reader mode preferences menu item should be displayed.
-@@ -957,7 +1197,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -935,7 +1175,62 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
      /** Sets the visibility of the "Translate" menu item. */
      protected void prepareTranslateMenuItem(Menu menu, @Nullable Tab currentTab) {
          boolean isTranslateVisible = currentTab != null && shouldShowTranslateMenuItem(currentTab);
@@ -451,7 +451,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
      }
  
      /** Sets visibility of the "Listen to this page" menu item. */
-@@ -1084,6 +1379,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1062,6 +1357,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
                  return mContext.getResources().getString(R.string.menu_settings_account_error);
              }
          }
@@ -459,7 +459,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
          return null;
      }
  
-@@ -1111,6 +1407,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1089,6 +1385,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
  
      @Override
      public void onMenuDismissed() {
@@ -467,7 +467,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
          mReloadPropertyModel = null;
          if (mUpdateMenuItemVisible) {
              UpdateMenuItemHelper updateHelper =
-@@ -1185,6 +1482,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1163,6 +1460,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
       */
      protected void updateBookmarkMenuItemShortcut(
              MenuItem bookmarkMenuItemShortcut, @Nullable Tab currentTab, boolean fromCCT) {
@@ -475,7 +475,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
          if (!mBookmarkModelSupplier.hasValue() || currentTab == null) {
              // If the BookmarkModel still isn't available, assume the bookmark menu item is not
              // editable.
-@@ -1336,6 +1634,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1314,6 +1612,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          // Hide app menu item if on non-NTP chrome:// page or auto dark not enabled.
          boolean isAutoDarkEnabled = isAutoDarkWebContentsEnabled();
          boolean itemVisible = currentTab != null && !isNativePage && isAutoDarkEnabled;
@@ -483,7 +483,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
          autoDarkMenuRow.setVisible(itemVisible);
          if (!itemVisible) return;
  
-@@ -1381,6 +1680,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1359,6 +1658,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
          if (itemId == R.id.disable_price_tracking_menu_id) {
              return R.color.default_icon_color_accent1_tint_list;
          }
@@ -493,7 +493,7 @@ index ea1c40d97e133ebb9b90c7426d30828f4a4a4eb2..e72be4e8f7b397bd1bc91afa628ab957
          return R.color.default_icon_color_secondary_tint_list;
      }
  
-@@ -1410,4 +1712,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1388,4 +1690,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
              BrowserUiUtils.recordModuleClickHistogram(ModuleTypeOnStartAndNtp.MENU_BUTTON);
          }
      }

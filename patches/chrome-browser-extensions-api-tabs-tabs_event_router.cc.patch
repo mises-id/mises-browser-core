@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_event_router.cc b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
-index d78710f3e02e0699237b7dd30c5054ad1efcbac7..79ce3b2a6a8b5a68ad16d916674101ddbdbb3b3e 100644
+index 90ca642a31716f33c5de032e3b34940e966dcd45..9bce10baf35d0d91515b897cdd2a51e901f49cae 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_event_router.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
 @@ -174,10 +174,21 @@ TabsEventRouter::TabsEventRouter(Profile* profile)

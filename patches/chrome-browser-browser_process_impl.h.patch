@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_process_impl.h b/chrome/browser/browser_process_impl.h
-index c73845ee5a52ef723283ad914ab049b992caf51e..2902e1fe50b8131adf9f0305b8c87bc6d08f8fd1 100644
+index 9b6380d7fe36ce94b2068f02daad4deade3bb392..8288c3a1b0c9cadbbb9e3d8e542405fa2ca9af4e 100644
 --- a/chrome/browser/browser_process_impl.h
 +++ b/chrome/browser/browser_process_impl.h
 @@ -38,7 +38,7 @@
@@ -37,7 +37,7 @@ index c73845ee5a52ef723283ad914ab049b992caf51e..2902e1fe50b8131adf9f0305b8c87bc6
    SerialPolicyAllowedPorts* serial_policy_allowed_ports() override;
    HidSystemTrayIcon* hid_system_tray_icon() override;
    UsbSystemTrayIcon* usb_system_tray_icon() override;
-@@ -347,7 +347,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -349,7 +349,7 @@ class BrowserProcessImpl : public BrowserProcess,
    std::unique_ptr<NotificationUIManager> notification_ui_manager_;
  #endif
  
@@ -46,7 +46,7 @@ index c73845ee5a52ef723283ad914ab049b992caf51e..2902e1fe50b8131adf9f0305b8c87bc6
    std::unique_ptr<IntranetRedirectDetector> intranet_redirect_detector_;
  #endif
  
-@@ -453,7 +453,7 @@ class BrowserProcessImpl : public BrowserProcess,
+@@ -455,7 +455,7 @@ class BrowserProcessImpl : public BrowserProcess,
    std::unique_ptr<SecureOriginPrefsObserver> secure_origin_prefs_observer_;
    std::unique_ptr<SiteIsolationPrefsObserver> site_isolation_prefs_observer_;
  

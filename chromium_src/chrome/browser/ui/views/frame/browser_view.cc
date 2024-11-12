@@ -85,6 +85,11 @@ public:
   AutofillBubbleBase* ShowSaveIbanConfirmationBubble(
       content::WebContents* web_contents,
       IbanBubbleController* controller) override {return nullptr;}
+
+  AutofillBubbleBase* ShowSaveAutofillPredictionImprovementsBubble(
+      content::WebContents* web_contents,
+      SaveAutofillPredictionImprovementsController* controller) override {return nullptr;}
+
 };
 
 
@@ -92,14 +97,14 @@ public:
 
 class HatsNextWebDialog_Mises {
   public:
-   HatsNextWebDialog_Mises(
-    Browser* browser,
-    const std::string& trigger_id,
-    const std::optional<std::string>& hats_histogram_name,
-    base::OnceClosure success_callback,
-    base::OnceClosure failure_callback,
-    const SurveyBitsData& product_specific_bits_data,
-    const SurveyStringData& product_specific_string_data) {}
+   HatsNextWebDialog_Mises(Browser* browser,
+                    const std::string& trigger_id,
+                    const std::optional<std::string>& hats_histogram_name,
+                    const std::optional<uint64_t> hats_survey_ukm_id,
+                    base::OnceClosure success_callback,
+                    base::OnceClosure failure_callback,
+                    const SurveyBitsData& product_specific_bits_data,
+                    const SurveyStringData& product_specific_string_data) {}
 };
 
 class ProfileMenuCoordinator_Mises {

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/tabs/windows_event_router.cc b/chrome/browser/extensions/api/tabs/windows_event_router.cc
-index 57f0a82523657c55168ec22a1a36db8d06018226..3d414fa2566966fe086078a584b0bfd229b390dd 100644
+index 663cab095f535c0205954eebe9b1ed5f1270ef12..024f833ba32a95b1bd007a8570f32327dee2acac 100644
 --- a/chrome/browser/extensions/api/tabs/windows_event_router.cc
 +++ b/chrome/browser/extensions/api/tabs/windows_event_router.cc
 @@ -169,18 +169,25 @@ WindowsEventRouter::WindowsEventRouter(Profile* profile)

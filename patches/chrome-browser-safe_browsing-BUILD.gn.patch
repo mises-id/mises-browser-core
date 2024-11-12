@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/safe_browsing/BUILD.gn b/chrome/browser/safe_browsing/BUILD.gn
-index 75934762c580cd6c3f321fa705db159831737c01..1c11dcb7e062d51c15b71185d299d92c0a9099de 100644
+index fd47cd395ad8e531da57dc4ca0666162f5b28caa..0673ca1cff24e88f4393359a603fb559b4dcb5b3 100644
 --- a/chrome/browser/safe_browsing/BUILD.gn
 +++ b/chrome/browser/safe_browsing/BUILD.gn
-@@ -452,6 +452,16 @@ static_library("safe_browsing") {
+@@ -457,6 +457,16 @@ static_library("safe_browsing") {
            "tailored_security/unconsented_message_android.h",
            "telemetry/android/android_telemetry_service.cc",
            "telemetry/android/android_telemetry_service.h",

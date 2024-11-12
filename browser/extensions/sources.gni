@@ -10,7 +10,25 @@ mises_extensions_sources = [
 mises_extensions_exception_sources = [
 ]
 
+mises_extensions_exception_deps = [
+]
+
+mises_extensions_deps = [
+
+]
+
+mises_extensions_exception_allow_circular_includes_from = []
+
 if (is_android) {
+  mises_extensions_exception_deps += [
+    #"//chrome/browser/ui/browser_window",
+    #"//chrome/browser/ui/views/side_panel",
+    #"//chrome/browser/ui/views/toolbar",
+  ]
+  mises_extensions_exception_allow_circular_includes_from += [
+     #"//chrome/browser/ui/views/side_panel",
+     #"//chrome/browser/ui/views/toolbar",
+  ]
   mises_extensions_sources += [
     "//mises/chromium_src/chrome/browser/extensions/global_shortcut_listener_android.cc",
     "//mises/chromium_src/chrome/browser/extensions/global_shortcut_listener_android.h",
@@ -28,7 +46,6 @@ if (is_android) {
       "api/messaging/native_messaging_launch_from_native.h",
       "api/messaging/native_process_launcher.cc",
       "api/messaging/native_process_launcher.h",
-      "api/networking_private/networking_private_ui_delegate_factory_impl.cc",
   ]
 }
 

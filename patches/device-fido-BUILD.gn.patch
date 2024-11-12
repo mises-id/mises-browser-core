@@ -1,5 +1,5 @@
 diff --git a/device/fido/BUILD.gn b/device/fido/BUILD.gn
-index a013e21ea51e27b80a136473aefcea5812c9559b..39070b935979331dab0de4537a25651beb48b84b 100644
+index 44da37096aab855f046173b9c0ffb4962676166d..ea425c458e61f709906a5865ae718de5132a7283 100644
 --- a/device/fido/BUILD.gn
 +++ b/device/fido/BUILD.gn
 @@ -103,7 +103,7 @@ component("fido") {

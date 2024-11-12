@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/feedback/BUILD.gn b/chrome/browser/feedback/BUILD.gn
-index 6db0a435f445dd98f767d837f4939aa298b3242b..29a07f993b02f74792dadd71a7d4a6bf11403266 100644
+index 42ca7ce0dff019e89f457a81beb16f6aa88450cc..a58e2884d380b270fdaa34847cefc0c24cc2fd7a 100644
 --- a/chrome/browser/feedback/BUILD.gn
 +++ b/chrome/browser/feedback/BUILD.gn
 @@ -61,7 +61,7 @@ source_set("feedback_impl") {

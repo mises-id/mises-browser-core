@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/task_manager/BUILD.gn b/chrome/browser/task_manager/BUILD.gn
-index 2986602ca6bf3e7ded9510a1160d2485940fab86..0585add3c78f406056b8ba8cca009c53a1e12ebc 100644
+index 95bbc69a6b3c47a7d1213d5b7d7c0a9aacc447b5..168a102967e4fa150d040214bf9b8224cf459652 100644
 --- a/chrome/browser/task_manager/BUILD.gn
 +++ b/chrome/browser/task_manager/BUILD.gn
 @@ -2,7 +2,7 @@

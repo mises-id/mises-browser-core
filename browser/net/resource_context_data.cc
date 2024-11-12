@@ -30,7 +30,7 @@ ResourceContextData::~ResourceContextData() = default;
 void ResourceContextData::StartProxying(
     content::BrowserContext* browser_context,
     int render_process_id,
-    int frame_tree_node_id,
+    content::FrameTreeNodeId frame_tree_node_id,
     network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
@@ -68,7 +68,7 @@ MisesProxyingWebSocket* ResourceContextData::StartProxyingWebSocket(
     content::BrowserContext* browser_context,
     int render_process_id,
     int frame_id,
-    int frame_tree_node_id,
+    content::FrameTreeNodeId frame_tree_node_id,
     const url::Origin& origin) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 

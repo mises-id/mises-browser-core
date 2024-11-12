@@ -59,7 +59,7 @@ MisesRequestInfo::~MisesRequestInfo() = default;
 std::shared_ptr<mises::MisesRequestInfo> MisesRequestInfo::MakeCTX(
     const network::ResourceRequest& request,
     int render_process_id,
-    int frame_tree_node_id,
+    content::FrameTreeNodeId frame_tree_node_id,
     uint64_t request_identifier,
     content::BrowserContext* browser_context,
     std::shared_ptr<mises::MisesRequestInfo> old_ctx) {

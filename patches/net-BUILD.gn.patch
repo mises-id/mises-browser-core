@@ -1,12 +1,12 @@
 diff --git a/net/BUILD.gn b/net/BUILD.gn
-index ca877b38dc730ed77bb211f0b1fb0a857c03a23c..5caad4a9ab44200cdb6249bfafb255d676c6121a 100644
+index e229ec4c97bb6beeba509da8d1ab40be17d5992a..830ffe49c32b89143f85554b7b9613e0d173a5df 100644
 --- a/net/BUILD.gn
 +++ b/net/BUILD.gn
-@@ -1174,6 +1174,7 @@ component("net") {
+@@ -1161,6 +1161,7 @@ component("net") {
+       "reporting/reporting_uploader.h",
      ]
-     deps += [ "//components/unexportable_keys:unexportable_keys" ]
    }
 +  sources += mises_net_sources
  
-   if (is_android) {
+   if (enable_device_bound_sessions) {
      sources += [

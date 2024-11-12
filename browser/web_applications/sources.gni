@@ -1,9 +1,14 @@
 mises_browser_web_applications_sources = []
+mises_browser_web_applications_exception_deps = []
 if (is_android) {
     mises_browser_web_applications_sources += [
       "//mises/chromium_src/chrome/browser/web_applications/os_integration/web_app_file_handler_registration_android.cc",
       "//mises/chromium_src/chrome/browser/web_applications/os_integration/web_app_run_on_os_login_android.cc",
       "//mises/chromium_src/chrome/browser/web_applications/os_integration/web_app_shortcut_android.cc",
       "//mises/chromium_src/chrome/browser/web_applications/os_integration/web_app_shortcut_android.h",
+    ]
+    mises_browser_web_applications_exception_deps += [
+       #"//chrome/browser/ui/views/toolbar",
+
     ]
 }

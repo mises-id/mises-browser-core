@@ -1,5 +1,5 @@
 diff --git a/third_party/blink/renderer/core/css/style_engine.h b/third_party/blink/renderer/core/css/style_engine.h
-index ec99131ca09b822dfacadb8900c2300874262d7a..d38368750be03aea2ac1b6a015cb4ed17ce09337 100644
+index 8d9c87ccfebef8fa334894b478408b155b10eea2..668307d34a57a2b2cfa051b07d073f80a27f5b36 100644
 --- a/third_party/blink/renderer/core/css/style_engine.h
 +++ b/third_party/blink/renderer/core/css/style_engine.h
 @@ -68,6 +68,7 @@
@@ -10,7 +10,7 @@ index ec99131ca09b822dfacadb8900c2300874262d7a..d38368750be03aea2ac1b6a015cb4ed1
  
  namespace WTF {
  class TextPosition;
-@@ -698,7 +699,7 @@ class CORE_EXPORT StyleEngine final : public GarbageCollected<StyleEngine>,
+@@ -697,7 +698,7 @@ class CORE_EXPORT StyleEngine final : public GarbageCollected<StyleEngine>,
    mojom::PreferredColorScheme GetPreferredColorScheme() const {
      return preferred_color_scheme_;
    }

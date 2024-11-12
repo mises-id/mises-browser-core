@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/resources/lens/shared/BUILD.gn b/chrome/browser/resources/lens/shared/BUILD.gn
+index 7b52a8c9accdb7320c4612c3576baf86656d46c9..4227051f7ddea8e474390006f41c8156367294c7 100644
+--- a/chrome/browser/resources/lens/shared/BUILD.gn
++++ b/chrome/browser/resources/lens/shared/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ build_webui("build") {
+   grd_prefix = "lens_shared"

@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/renderer/platform/runtime_enabled_features.json5 b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-index 72d0c25e9d70dc18a2684a0eabd65c8515e877d0..e27c5e5c3b4b9c30aff9f7cced9e284b1cbe0bb9 100644
+index 46369bcb300556a63ea7394943af693d84ff8063..e0e739e8e36b1e5a2aa3e2e9a4a16a655b43853d 100644
 --- a/third_party/blink/renderer/platform/runtime_enabled_features.json5
 +++ b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-@@ -4776,7 +4776,7 @@
+@@ -4731,7 +4731,7 @@
      },
      {
        name: "WebHID",

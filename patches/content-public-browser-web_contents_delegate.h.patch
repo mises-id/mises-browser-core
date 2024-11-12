@@ -1,8 +1,8 @@
 diff --git a/content/public/browser/web_contents_delegate.h b/content/public/browser/web_contents_delegate.h
-index 553a8726a501171a44cbca4d7d8a9e026347f1c8..2671ad3d553d7eeaa0bd973a9ae1e28e12ab028e 100644
+index a080fb57f00c712eb8a3a9be669413e1082ce3b3..b142ff809a10506dcb654cc06fef7a2fa8e5c0db 100644
 --- a/content/public/browser/web_contents_delegate.h
 +++ b/content/public/browser/web_contents_delegate.h
-@@ -787,7 +787,7 @@ class CONTENT_EXPORT WebContentsDelegate {
+@@ -794,7 +794,7 @@ class CONTENT_EXPORT WebContentsDelegate {
        const std::vector<blink::mojom::DraggableRegionPtr>& regions,
        WebContents* contents) {}
  

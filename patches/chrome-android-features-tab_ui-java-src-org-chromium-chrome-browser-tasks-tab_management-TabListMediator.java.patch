@@ -1,16 +1,16 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-index 4f90f0a86ee1f652d647c9195cde7153c2d9c9d2..b447facebc2e7ad348cb30f1389710961715366b 100644
+index 0465c0edd5a62e72649ceb9bb9b8d919ad545b6d..bf6805bd3d41a7eb398d505a5888460ef15e63ed 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-@@ -114,6 +114,7 @@ import org.chromium.ui.modelutil.PropertyKey;
- import org.chromium.ui.modelutil.PropertyModel;
+@@ -109,6 +109,7 @@ import org.chromium.ui.modelutil.PropertyModel;
+ import org.chromium.ui.modelutil.PropertyModel.WritableObjectPropertyKey;
  import org.chromium.ui.modelutil.SimpleRecyclerViewAdapter;
  import org.chromium.url.GURL;
 +import org.chromium.base.ContextUtils;
  
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1821,6 +1822,9 @@ class TabListMediator {
+@@ -1765,6 +1766,9 @@ class TabListMediator implements TabListNotificationHandler {
       * reasonable.
       */
      private int getSpanCount(int screenWidthDp) {

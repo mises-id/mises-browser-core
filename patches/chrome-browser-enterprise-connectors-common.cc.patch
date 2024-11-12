@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/enterprise/connectors/common.cc b/chrome/browser/enterprise/connectors/common.cc
-index d230ecf5dc44264b279aabe4b0cedab3cc87fe34..30ef316d5a77f3a13476bf7aca6f6663f3e4ee14 100644
+index 860e2d68e66daff1c4767e40c0a0ae8ddd83a747..ea943bc96da09ada128105a590fd945dbdeadc8f 100644
 --- a/chrome/browser/enterprise/connectors/common.cc
 +++ b/chrome/browser/enterprise/connectors/common.cc
-@@ -222,6 +222,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
+@@ -293,6 +293,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
                                content::WebContents* web_contents,
                                base::OnceClosure keep_closure,
                                base::OnceClosure discard_closure) {
@@ -10,7 +10,7 @@ index d230ecf5dc44264b279aabe4b0cedab3cc87fe34..30ef316d5a77f3a13476bf7aca6f6663
    auto state = FinalContentAnalysisResult::FAILURE;
    download::DownloadDangerType danger_type = download_item->GetDangerType();
  
-@@ -266,6 +267,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
+@@ -337,6 +338,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
        true,  // Downloads are always cloud-based for now.
        web_contents, safe_browsing::DeepScanAccessPoint::DOWNLOAD,
        /* file_count */ 1, state, download_item);

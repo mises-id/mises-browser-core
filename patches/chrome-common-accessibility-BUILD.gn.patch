@@ -1,5 +1,5 @@
 diff --git a/chrome/common/accessibility/BUILD.gn b/chrome/common/accessibility/BUILD.gn
-index 67b77a72bf51e77f45be42b974be71e25c59e93f..35be9e2c84bc36e2a813a60351da61cdca94b4cd 100644
+index 5dd333ac1814be33bc5f5eb2fa817ac6a2a663e4..abea5ab2b54b82ccfa62b888c637929ca2679d56 100644
 --- a/chrome/common/accessibility/BUILD.gn
 +++ b/chrome/common/accessibility/BUILD.gn
 @@ -4,7 +4,7 @@

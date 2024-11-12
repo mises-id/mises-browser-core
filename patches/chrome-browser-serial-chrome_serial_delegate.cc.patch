@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/serial/chrome_serial_delegate.cc b/chrome/browser/serial/chrome_serial_delegate.cc
-index bde8c88e0b63b699bc13e68877bafc97eeba0b9b..98fa0592349ecad71c4008dd8e30ca4049efed02 100644
+index 6f0eb60b86da134f29c061e5bd404371c92ae461..89c9e757af12dc0853836b6991ef7805d1bb1bbe 100644
 --- a/chrome/browser/serial/chrome_serial_delegate.cc
 +++ b/chrome/browser/serial/chrome_serial_delegate.cc
-@@ -33,11 +33,15 @@ std::unique_ptr<content::SerialChooser> ChromeSerialDelegate::RunChooser(
+@@ -38,11 +38,15 @@ std::unique_ptr<content::SerialChooser> ChromeSerialDelegate::RunChooser(
      std::vector<blink::mojom::SerialPortFilterPtr> filters,
      std::vector<device::BluetoothUUID> allowed_bluetooth_service_class_ids,
      content::SerialChooser::Callback callback) {

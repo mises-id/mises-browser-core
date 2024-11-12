@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/identity/web_auth_flow.cc b/chrome/browser/extensions/api/identity/web_auth_flow.cc
-index 78fa383dbb6bf752f39f8d9b9348316676bd9e06..a07711f6fe16dcf5424fcddd07172b5e62ee88c3 100644
+index 05cd9c6b997d61bab64a07318dc07253ed1f0010..2ae89ce620f76ba6afa2fdb8356f8941b78226b1 100644
 --- a/chrome/browser/extensions/api/identity/web_auth_flow.cc
 +++ b/chrome/browser/extensions/api/identity/web_auth_flow.cc
 @@ -30,6 +30,11 @@
@@ -14,7 +14,7 @@ index 78fa383dbb6bf752f39f8d9b9348316676bd9e06..a07711f6fe16dcf5424fcddd07172b5e
  using content::WebContents;
  using content::WebContentsObserver;
  
-@@ -122,7 +127,13 @@ bool WebAuthFlow::DisplayAuthPageInPopupWindow() {
+@@ -132,7 +137,13 @@ bool WebAuthFlow::DisplayAuthPageInPopupWindow() {
        Browser::CreationStatus::kOk) {
      return false;
    }
@@ -29,7 +29,7 @@ index 78fa383dbb6bf752f39f8d9b9348316676bd9e06..a07711f6fe16dcf5424fcddd07172b5e
    Browser::CreateParams browser_params(Browser::TYPE_POPUP, profile_,
                                         user_gesture_);
    browser_params.omit_from_session_restore = true;
-@@ -138,6 +149,7 @@ bool WebAuthFlow::DisplayAuthPageInPopupWindow() {
+@@ -148,6 +159,7 @@ bool WebAuthFlow::DisplayAuthPageInPopupWindow() {
        AddTabTypes::ADD_ACTIVE);
  
    browser->window()->Show();

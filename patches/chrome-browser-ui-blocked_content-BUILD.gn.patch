@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/blocked_content/BUILD.gn b/chrome/browser/ui/blocked_content/BUILD.gn
+index 15d3098986e46fd59eda9f72a0539a024740b821..cea7e40603fc3ac2e34a79c691935e16eb53746a 100644
+--- a/chrome/browser/ui/blocked_content/BUILD.gn
++++ b/chrome/browser/ui/blocked_content/BUILD.gn
+@@ -51,7 +51,7 @@ source_set("impl") {
+ 
+   public_deps = [ "//chrome/browser:browser_public_dependencies" ]
+ 
+-  if (!is_android) {
++  if (is_android || !is_android) {
+     sources += [
+       "framebust_block_tab_helper.cc",
+       "popunder_preventer.cc",

@@ -1,0 +1,18 @@
+diff --git a/chrome/browser/renderer_context_menu/link_to_text_menu_observer.cc b/chrome/browser/renderer_context_menu/link_to_text_menu_observer.cc
+index 7effe7afc376ba5c3d9990468a44e2cb2386dfec..b0416bb93d9939b90379eb50edfa41c7b8b80676 100644
+--- a/chrome/browser/renderer_context_menu/link_to_text_menu_observer.cc
++++ b/chrome/browser/renderer_context_menu/link_to_text_menu_observer.cc
+@@ -273,11 +273,13 @@ void LinkToTextMenuObserver::ExecuteCopyLinkToText() {
+       shared_highlighting::LinkGenerationCopiedLinkType::
+           kCopiedFromNewGeneration);
+ 
++#if !BUILDFLAG(IS_ANDROID)
+   if (toast_features::IsEnabled(toast_features::kLinkToHighlightCopiedToast) &&
+       toast_controller_) {
+     toast_controller_->MaybeShowToast(
+         ToastParams(ToastId::kLinkToHighlightCopied));
+   }
++#endif
+ 
+   // Log usage for Shared Highlighting promo.
+   feature_engagement::TrackerFactory::GetForBrowserContext(

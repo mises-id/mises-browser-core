@@ -1,8 +1,8 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 2561c2726d27ea2d2175dc52d0906481a231456a..340f8dae7365054212a492667f66caca97de5a11 100644
+index 9247e9b3f4c92e6f573898049bca784cccb4b19c..b76e81cdd1b11d91d9ddf035fb03f0636f7cb69c 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
-@@ -4277,7 +4277,6 @@ if (is_android || is_robolectric) {
+@@ -4245,7 +4245,6 @@ if (is_android || is_robolectric) {
        "android/java/src/org/chromium/base/TokenBase.java",
        "android/java/src/org/chromium/base/UnguessableToken.java",
      ]
@@ -10,7 +10,7 @@ index 2561c2726d27ea2d2175dc52d0906481a231456a..340f8dae7365054212a492667f66caca
      if (use_clang_profiling) {
        sources += [
          "test/android/javatests/src/org/chromium/base/test/ClangProfiler.java",
-@@ -4437,7 +4436,7 @@ if (is_android) {
+@@ -4407,7 +4406,7 @@ if (is_android) {
        "android/java/src/org/chromium/base/ValueChangedCallback.java",
        "android/java/src/org/chromium/base/WrappedClassLoader.java",
      ]

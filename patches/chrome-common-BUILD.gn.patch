@@ -1,5 +1,5 @@
 diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
-index bb07b24fe6baeace445cbc3419112127a67a1ba3..da41e475b379fdacd63c418875eab86876d612be 100644
+index 830aa518d192fb9bc365f207cdd1f0e6c659fe56..aba64fd9f6c43f8fd48f3ea3db7a9f6ff3b66b33 100644
 --- a/chrome/common/BUILD.gn
 +++ b/chrome/common/BUILD.gn
 @@ -100,6 +100,7 @@ source_set("channel_info") {
@@ -10,7 +10,7 @@ index bb07b24fe6baeace445cbc3419112127a67a1ba3..da41e475b379fdacd63c418875eab868
  }
  
  source_set("ini_parser") {
-@@ -358,7 +359,8 @@ static_library("common_lib") {
+@@ -361,7 +362,8 @@ static_library("common_lib") {
        "media/chrome_media_drm_bridge_client.cc",
        "media/chrome_media_drm_bridge_client.h",
      ]
@@ -20,7 +20,7 @@ index bb07b24fe6baeace445cbc3419112127a67a1ba3..da41e475b379fdacd63c418875eab868
      # Non-Android.
      public_deps += [ "//chrome/common/importer" ]
      sources += [
-@@ -558,6 +560,7 @@ static_library("url_constants") {
+@@ -556,6 +558,7 @@ static_library("url_constants") {
      "//components/safe_browsing/core/common",
      "//device/vr/buildflags",
    ]

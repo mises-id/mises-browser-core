@@ -41,7 +41,7 @@ using content::WebContents;
 
 
 TabModelJniBridge::TabModelJniBridge(JNIEnv* env,
-                                     jobject jobj,
+                                     const jni_zero::JavaRef<jobject>& jobj,
                                      Profile* profile,
                                      ActivityType activity_type,
                                      bool is_archived_tab_model)

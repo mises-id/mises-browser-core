@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/history_clusters/BUILD.gn b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
-index 4f9d1cd9e3c227efdecfbe7d2f1c2aaf9a2c5be8..189c4ba9e80f2b7134a5e29e196a4bfbe7f492fb 100644
+index be1219c807b5829180f6c58d4a6dce1509c3036e..779bb22e7f3a740c5fd6eef3431541d8fbb0a994 100644
 --- a/ui/webui/resources/cr_components/history_clusters/BUILD.gn
 +++ b/ui/webui/resources/cr_components/history_clusters/BUILD.gn
 @@ -5,7 +5,7 @@

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-index 009e5bcacc452895e0d61bd41231b841f68ae3fe..214b7b0dda0883f5216e525f3c65f59746ec88d5 100644
+index f31f9f8b0e1127378ef30f94da36025e38261655..fade09ac990dfe8612750a0f0484aad58851e28b 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
-@@ -60,6 +60,7 @@ public class ThemeSettingsFragment extends ChromeBaseSettingsFragment
+@@ -64,6 +64,7 @@ public class ThemeSettingsFragment extends ChromeBaseSettingsFragment
                      }
                      int theme = (int) newValue;
                      sharedPreferencesManager.writeInt(UI_THEME_SETTING, theme);

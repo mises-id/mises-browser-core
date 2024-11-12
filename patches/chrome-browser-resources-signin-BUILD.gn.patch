@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/signin/BUILD.gn b/chrome/browser/resources/signin/BUILD.gn
-index 8d466f1abee6dc522e65fb54115cca833f5b295f..e582de9dcff5f75602f3654ea30cbc186879bb34 100644
+index fc8eaf9a88637f1d90fa5302d1cf8a2ce7a74de7..bb5c557aca4e4df840cacb89dc2ebeaa4b030ed5 100644
 --- a/chrome/browser/resources/signin/BUILD.gn
 +++ b/chrome/browser/resources/signin/BUILD.gn
 @@ -7,7 +7,7 @@ import("//chrome/common/features.gni")

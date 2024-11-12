@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc b/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
-index 9d41b8071a7d98464e3ba0ce475f4ea5f67a4ff1..cb36d7c1b7ed80c9bac4235968c2679cbf19be7a 100644
+index 9e88fc4d4507b062b56d42bcc15b0540c077bbf5..3a33157aef438ea0314f0df40985f4751e9b88fa 100644
 --- a/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
 +++ b/chrome/browser/performance_manager/chrome_browser_main_extra_parts_performance_manager.cc
-@@ -65,7 +65,7 @@
+@@ -64,7 +64,7 @@
  #include "chrome/browser/performance_manager/extension_watcher.h"
  #endif
  
@@ -11,7 +11,7 @@ index 9d41b8071a7d98464e3ba0ce475f4ea5f67a4ff1..cb36d7c1b7ed80c9bac4235968c2679c
  #include "chrome/browser/performance_manager/policies/memory_saver_mode_policy.h"
  #include "chrome/browser/performance_manager/policies/page_discarding_helper.h"
  #include "chrome/browser/performance_manager/policies/urgent_page_discarding_policy.h"
-@@ -228,7 +228,7 @@ void ChromeBrowserMainExtraPartsPerformanceManager::PostCreateThreads() {
+@@ -225,7 +225,7 @@ void ChromeBrowserMainExtraPartsPerformanceManager::PostCreateThreads() {
  
    g_browser_process->profile_manager()->AddObserver(this);
  

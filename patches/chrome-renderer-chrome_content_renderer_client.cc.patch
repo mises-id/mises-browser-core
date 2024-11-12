@@ -1,8 +1,8 @@
 diff --git a/chrome/renderer/chrome_content_renderer_client.cc b/chrome/renderer/chrome_content_renderer_client.cc
-index a0f33874eab71fa3834ff4748f2d4bcce3d25b9d..840ee853dfdf4e9634a5eea38484ecb3fb3bbde2 100644
+index ef6547e22245c8b9a5a83f25e2475541c79d1c63..eab287b5a632fde4b4ec8a2d33570d3620c9dc33 100644
 --- a/chrome/renderer/chrome_content_renderer_client.cc
 +++ b/chrome/renderer/chrome_content_renderer_client.cc
-@@ -182,7 +182,8 @@
+@@ -187,7 +187,8 @@
  #include "components/facilitated_payments/core/features/features.h"
  #include "components/feed/content/renderer/rss_link_reader.h"
  #include "components/feed/feed_feature_list.h"

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-index 6aa63c17cb2dfd8a75de2e5b48f9b2ed001b1141..bbe926f1159440aac8765ad68773abc6e2b076dc 100644
+index 9c4e80dd284e55aecca87a0433240763ca113894..38ed3778ecb6e42c558a79e3ae07168a77d2d57c 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiMediator.java
-@@ -51,6 +51,8 @@ import org.chromium.url.GURL;
+@@ -56,6 +56,8 @@ import org.chromium.url.GURL;
  
  import java.util.List;
  
@@ -10,8 +10,8 @@ index 6aa63c17cb2dfd8a75de2e5b48f9b2ed001b1141..bbe926f1159440aac8765ad68773abc6
 +
  /** A mediator for the TabGroupUi. Responsible for managing the internal state of the component. */
  public class TabGroupUiMediator implements BackPressHandler {
-     /** An interface to control the TabGroupUi component. */
-@@ -463,6 +465,9 @@ public class TabGroupUiMediator implements BackPressHandler {
+     /** Defines an interface for a {@link TabGroupUiMediator} reset event handler. */
+@@ -414,6 +416,9 @@ public class TabGroupUiMediator implements BackPressHandler {
      private void resetTabStripWithRelatedTabsForId(int id) {
          if (!mTabModelSelector.isTabStateInitialized()) return;
  

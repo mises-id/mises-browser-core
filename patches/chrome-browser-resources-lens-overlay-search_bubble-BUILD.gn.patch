@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/lens/overlay/search_bubble/BUILD.gn b/chrome/browser/resources/lens/overlay/search_bubble/BUILD.gn
-index 38bef05e3e017201b64f63523efd43aa3bebc935..06b2bfaebd93ad7940dc5d2f51362c1e5cb860f3 100644
+index a307bb192a8451e136ca60296728faa8e9ec270f..6335e14d37f057a55d014dd70dd5bc27b5c14888 100644
 --- a/chrome/browser/resources/lens/overlay/search_bubble/BUILD.gn
 +++ b/chrome/browser/resources/lens/overlay/search_bubble/BUILD.gn
 @@ -5,7 +5,7 @@

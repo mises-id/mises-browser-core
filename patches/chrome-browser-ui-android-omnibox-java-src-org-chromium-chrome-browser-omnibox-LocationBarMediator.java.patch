@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
-index 74cc2d47cfb7e5302e3f546601cd1b92e6fe5a2e..5c77997e2ca3e710cc8c3c87668620ed4360814b 100644
+index 466d992e1a39c69deefd85a7740094d3ca815847..bc26618fd333160117e8296ea056901ce478c799 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
 @@ -83,6 +83,8 @@ import org.chromium.ui.base.PageTransition;
@@ -11,7 +11,7 @@ index 74cc2d47cfb7e5302e3f546601cd1b92e6fe5a2e..5c77997e2ca3e710cc8c3c87668620ed
  
  import java.util.ArrayList;
  import java.util.List;
-@@ -481,6 +483,7 @@ class LocationBarMediator
+@@ -483,6 +485,7 @@ class LocationBarMediator
              if (NativePage.isChromePageUrl(currentUrl, mLocationBarDataProvider.isOffTheRecord())) {
                  setUrlBarTextEmpty();
              } else {
@@ -19,7 +19,7 @@ index 74cc2d47cfb7e5302e3f546601cd1b92e6fe5a2e..5c77997e2ca3e710cc8c3c87668620ed
                  setUrlBarText(
                          mLocationBarDataProvider.getUrlBarData(),
                          UrlBar.ScrollType.NO_SCROLL,
-@@ -1429,6 +1432,12 @@ class LocationBarMediator
+@@ -1432,6 +1435,12 @@ class LocationBarMediator
  
      @Override
      public void loadUrlFromVoice(String url) {

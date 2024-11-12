@@ -1,8 +1,8 @@
 diff --git a/components/permissions/permission_request.cc b/components/permissions/permission_request.cc
-index 3edb6fd163dc21684950a2abdc382412c00cd512..8f6e631bc21b3f332b4fb5b0ee3f588f070c5c5c 100644
+index 5ac92496e78ff862834f5a0a0cad51665bcaa635..e221ff3b204f87ffffc0348d2204bc94cc9fe09d 100644
 --- a/components/permissions/permission_request.cc
 +++ b/components/permissions/permission_request.cc
-@@ -186,7 +186,7 @@ std::optional<gfx::Rect> PermissionRequest::GetAnchorElementPosition() const {
+@@ -189,7 +189,7 @@ std::optional<gfx::Rect> PermissionRequest::GetAnchorElementPosition() const {
    return data_.anchor_element_position;
  }
  

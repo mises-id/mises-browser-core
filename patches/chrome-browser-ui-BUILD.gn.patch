@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..292a1ad20eebc20d81e1e67cce99f463be71bfff 100644
+index bc6e4008f2c5a5aa47406e4ec69b804b356c7383..698b29be4e5c75c3b329ed01580b5407e72dc4d1 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
-@@ -1040,7 +1040,8 @@ static_library("ui") {
+@@ -1004,7 +1004,8 @@ static_library("ui") {
      # TODO(b/335257259): Resolve circular deps.
      # Any circular includes must depend on the target "//chrome/browser:browser_public_dependencies".
      allow_circular_includes_from += [ "//chrome/browser/facilitated_payments" ]
@@ -12,36 +12,25 @@ index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..292a1ad20eebc20d81e1e67cce99f463
      # !is_android
      sources += [
        "app_icon_loader.cc",
-@@ -3226,7 +3227,7 @@ static_library("ui") {
+@@ -3206,7 +3207,7 @@ static_library("ui") {
      ]
    }
  
 -  if (is_win || is_mac || is_linux || is_chromeos) {
 +  if (true || is_win || is_mac || is_linux || is_chromeos) {
      sources += [
-       "autofill/payments/webauthn_dialog.h",
-       "autofill/payments/webauthn_dialog_controller.h",
-@@ -3985,7 +3986,18 @@ static_library("ui") {
+       "frame/window_frame_util.cc",
+       "frame/window_frame_util.h",
+@@ -3945,7 +3946,7 @@ static_library("ui") {
      }
    }
  
 -  if (toolkit_views) {
-+  if (is_android) {
-+      sources -= [
-+        "autofill/autofill_bubble_controller_base.cc",
-+        "autofill/autofill_bubble_controller_base.h",
-+        "autofill/payments/mandatory_reauth_bubble_controller_impl.cc",
-+        "autofill/payments/mandatory_reauth_bubble_controller_impl.h",
-+        "autofill/payments/virtual_card_enroll_bubble_controller_impl.cc",
-+        "autofill/payments/virtual_card_enroll_bubble_controller_impl.h",
-+      ]
-+  }
-+
 +  if (is_android || toolkit_views) {
      sources += [
-       "autofill/add_new_address_bubble_controller.cc",
-       "autofill/add_new_address_bubble_controller.h",
-@@ -5331,6 +5343,13 @@ static_library("ui") {
+       "bubble_anchor_util.h",
+       "dialogs/outdated_upgrade_bubble.cc",
+@@ -5231,6 +5232,13 @@ static_library("ui") {
            [ "views/user_education/browser_help_bubble_event_relay_mac.mm" ]
      }
  
@@ -55,11 +44,20 @@ index 94bcf99cf9e89d149b606d0faa38056b8aea8d53..292a1ad20eebc20d81e1e67cce99f463
      deps += [
        "side_search:side_search_tab_data_proto",
        "//base",
-@@ -6077,6 +6096,7 @@ static_library("ui") {
+@@ -5990,6 +5998,7 @@ static_library("ui") {
    if (enable_reporting) {
      deps += [ "//components/tpcd/enterprise_reporting" ]
    }
-+  import("//mises/browser/ui/sources.gni") sources += mises_browser_ui_sources sources -= mises_browser_ui_exception_sources deps += mises_browser_ui_deps deps -= mises_browser_ui_exception_deps allow_circular_includes_from -= mises_browser_ui_exception_allow_circular_includes_from
++  import("//mises/browser/ui/sources.gni") sources += mises_browser_ui_sources sources -= mises_browser_ui_exception_sources deps += mises_browser_ui_deps deps -= mises_browser_ui_exception_deps allow_circular_includes_from -= mises_browser_ui_exception_allow_circular_includes_from public_deps -= mises_browser_ui_exception_public_deps
  }
  
  # These are the dependencies for the "ui" target that are outside of
+@@ -6081,7 +6090,7 @@ source_set("browser_navigator_params_headers") {
+   deps = []
+ }
+ 
+-if (!is_android) {
++if (true || !is_android) {
+   source_set("browser_list") {
+     sources = [
+       "browser_list.h",

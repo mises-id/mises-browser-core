@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-index 1c617f64daa854f7ef2266179f9b9527955e62fd..a8593e53f23b8fbe03c73e8853df16e5440867f4 100644
+index e6c19a577ea8b9d1ae9676dfd8830ae37db4d1b4..56e8705fa06ba5b8b10a0f5ad4f108d5ccf5abd0 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/LocationBarModel.java
-@@ -372,6 +372,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -383,6 +383,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
                  return buildUrlBarData(originalUrl, isOfflinePage);
              }
  
@@ -13,16 +13,16 @@ index 1c617f64daa854f7ef2266179f9b9527955e62fd..a8593e53f23b8fbe03c73e8853df16e5
              if (isOfflinePage) {
                  GURL originalUrl = mTab.getOriginalUrl();
                  formattedUrl = UrlUtilities.stripScheme(mUrlFormatter.format(originalUrl));
-@@ -578,7 +582,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -593,7 +597,7 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
  
      @Override
-     public int getPageClassification(boolean isFocusedFromFakebox, boolean isPrefetch) {
+     public int getPageClassification(boolean isPrefetch) {
 -        if (mNativeLocationBarModelAndroid == 0) return PageClassification.INVALID_SPEC_VALUE;
 +        if (mNativeLocationBarModelAndroid == 0) return PageClassification.NTP_VALUE;
  
          return LocationBarModelJni.get()
-                 .getPageClassification(
-@@ -611,6 +615,17 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+                 .getPageClassification(mNativeLocationBarModelAndroid, isPrefetch);
+@@ -622,6 +626,17 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
              return ConnectionSecurityLevel.NONE;
          }
  
@@ -40,7 +40,7 @@ index 1c617f64daa854f7ef2266179f9b9527955e62fd..a8593e53f23b8fbe03c73e8853df16e5
          @Nullable GURL publisherUrl = TrustedCdn.getPublisherUrl(tab);
  
          if (publisherUrl != null) {
-@@ -658,6 +673,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -669,6 +684,10 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
              return R.drawable.omnibox_info;
          }
  
@@ -51,7 +51,7 @@ index 1c617f64daa854f7ef2266179f9b9527955e62fd..a8593e53f23b8fbe03c73e8853df16e5
          // Return early if native initialization hasn't been done yet.
          if ((securityLevel == ConnectionSecurityLevel.NONE
                          || securityLevel == ConnectionSecurityLevel.WARNING)
-@@ -671,6 +690,15 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
+@@ -682,6 +701,15 @@ public class LocationBarModel implements ToolbarDataProvider, LocationBarDataPro
                                          .shouldShowSearchEngineLogo())
                          || mNtpDelegate.isCurrentlyVisible();
  

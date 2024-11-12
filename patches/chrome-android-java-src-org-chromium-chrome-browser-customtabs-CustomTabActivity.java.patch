@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/CustomTabActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/CustomTabActivity.java
-index 11e08f96b445c8b8c64863a27d47eabfaf854b0d..b9efb2eff4f20badadca02a20761df907860cdb7 100644
+index f510f998a3e8fee04c8cea115f90731bedf98a2b..5f1af843bf16284896334115b2138995ff4ccc1c 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/CustomTabActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/CustomTabActivity.java
 @@ -267,6 +267,11 @@ public class CustomTabActivity extends BaseCustomTabActivity {

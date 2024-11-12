@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/views/toolbar/BUILD.gn b/chrome/browser/ui/views/toolbar/BUILD.gn
-index b2ca8e50ca316df13fc8f5931ac5d38c156ab17c..46f4a464ea2204a7f5af86337b4cdab691c49a9f 100644
+index e368f860ec9a73a8b16a8c496e6ad237ca9e7e3c..b3373b42ed4ecba01bba68a1bb20191de8437a53 100644
 --- a/chrome/browser/ui/views/toolbar/BUILD.gn
 +++ b/chrome/browser/ui/views/toolbar/BUILD.gn
 @@ -2,7 +2,7 @@

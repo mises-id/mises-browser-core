@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/permissions/permissions_api.cc b/chrome/browser/extensions/api/permissions/permissions_api.cc
-index ab894f7e846b36287ab0fef8aa70cab4b6c3ecae..91237482e7101ef5ae5b0151b0903e5e33983ca8 100644
+index b5da189432e23255316f04cb7339532e83e012d2..2c3693e193e856ce10f6ae639e1d1657501198de 100644
 --- a/chrome/browser/extensions/api/permissions/permissions_api.cc
 +++ b/chrome/browser/extensions/api/permissions/permissions_api.cc
-@@ -310,9 +310,11 @@ ExtensionFunction::ResponseAction PermissionsRequestFunction::Run() {
+@@ -311,9 +311,11 @@ ExtensionFunction::ResponseAction PermissionsRequestFunction::Run() {
  
    gfx::NativeWindow native_window =
        ChromeExtensionFunctionDetails(this).GetNativeWindowForUI();

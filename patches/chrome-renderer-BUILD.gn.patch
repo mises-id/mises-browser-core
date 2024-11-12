@@ -1,8 +1,8 @@
 diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
-index 3b8b9a9eb5cbffc9880f87d2c44666a924c93549..e7bc3b4990707415c2280cfadedd04dc93b0617d 100644
+index 3a4b21b9b90ab77b3a71d2905febac21eb54ecd1..ab9a3d84d127debae3f27c49dbd98a6d78c55e6f 100644
 --- a/chrome/renderer/BUILD.gn
 +++ b/chrome/renderer/BUILD.gn
-@@ -408,7 +408,8 @@ static_library("renderer") {
+@@ -381,7 +381,8 @@ static_library("renderer") {
        "//chrome/common/wallet:mojo_bindings",
        "//components/feed/content/renderer:feed_renderer",
      ]
@@ -12,7 +12,7 @@ index 3b8b9a9eb5cbffc9880f87d2c44666a924c93549..e7bc3b4990707415c2280cfadedd04dc
      sources += [
        "accessibility/ax_tree_distiller.cc",
        "accessibility/ax_tree_distiller.h",
-@@ -429,6 +430,12 @@ static_library("renderer") {
+@@ -402,6 +403,12 @@ static_library("renderer") {
        "searchbox/searchbox_extension.cc",
        "searchbox/searchbox_extension.h",
      ]
@@ -25,7 +25,7 @@ index 3b8b9a9eb5cbffc9880f87d2c44666a924c93549..e7bc3b4990707415c2280cfadedd04dc
  
      deps += [
        "//chrome/common/accessibility:mojo_bindings",
-@@ -483,4 +490,5 @@ static_library("renderer") {
+@@ -470,4 +477,5 @@ static_library("renderer") {
        ]
      }
    }

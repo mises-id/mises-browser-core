@@ -132,7 +132,6 @@ android_aar_prebuilt("google_firebase_firebase_crashlytics_java") {
     ":google_android_datatransport_transport_runtime_java",
     ":google_android_datatransport_transport_backend_cct_java",
     "$google_play_services_package:google_firebase_firebase_common_java",
-    "$google_play_services_package:google_firebase_firebase_components_java",
     "$google_play_services_package:google_firebase_firebase_encoders_java",
     "$google_play_services_package:google_firebase_firebase_encoders_json_java",
     "$google_play_services_package:google_firebase_firebase_installations_interop_java",
@@ -286,7 +285,6 @@ android_aar_prebuilt("google_play_services_measurement_api_java") {
   ]
   deps = [
     "$google_play_services_package:google_firebase_firebase_common_java",
-    "$google_play_services_package:google_firebase_firebase_components_java",
     "$google_play_services_package:google_firebase_firebase_installations_interop_java",
     "$google_play_services_package:google_firebase_firebase_installations_java",
     "$google_play_services_package:google_firebase_firebase_measurement_connector_java",

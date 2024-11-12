@@ -1,0 +1,21 @@
+diff --git a/chrome/browser/ui/views/download/download_item_view.cc b/chrome/browser/ui/views/download/download_item_view.cc
+index 31a271a03e5e6ec2183c94b71773bc76a8dd5076..44599f344c0551d9a2ce86b20fc7d46bc95c10bc 100644
+--- a/chrome/browser/ui/views/download/download_item_view.cc
++++ b/chrome/browser/ui/views/download/download_item_view.cc
+@@ -1205,7 +1205,7 @@ void DownloadItemView::ReviewButtonPressed() {
+   // dialog to review their sensitive data/malware violation.
+   review_button_->SetEnabled(false);
+   dropdown_button_->SetEnabled(false);
+-
++#if BUILDFLAG(FULL_SAFE_BROWSING)
+   enterprise_connectors::ShowDownloadReviewDialog(
+       ElidedFilename(*file_name_label_), model_->profile(),
+       model_->GetDownloadItem(),
+@@ -1214,6 +1214,7 @@ void DownloadItemView::ReviewButtonPressed() {
+                      DownloadCommands::KEEP),
+       base::BindOnce(&DownloadItemView::ExecuteCommand, base::Unretained(this),
+                      DownloadCommands::DISCARD));
++#endif
+ }
+ 
+ void DownloadItemView::ShowOpenDialog(content::WebContents* web_contents) {

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
-index 7b2d972a236b74de8b56a59f4025105008074d6d..7d2637de578433e8f8bdaf54f80ab34d3f143851 100644
+index f0b1c90c9e796c189d53546702f5235fab7e2f65..400081185d3408f58e475810e9d02cd6b6007f44 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
 @@ -70,13 +70,31 @@ import org.chromium.url.GURL;
@@ -64,7 +64,7 @@ index 7b2d972a236b74de8b56a59f4025105008074d6d..7d2637de578433e8f8bdaf54f80ab34d
          // Initialize the provider to an empty version to avoid null checking everywhere.
          mToolbarDataProvider =
                  new ToolbarDataProvider() {
-@@ -978,4 +1004,74 @@ public abstract class ToolbarLayout extends FrameLayout
+@@ -990,4 +1016,74 @@ public abstract class ToolbarLayout extends FrameLayout
              BrowserUiUtils.recordModuleClickHistogram(ModuleTypeOnStartAndNtp.HOME_BUTTON);
          }
      }

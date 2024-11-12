@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/BUILD.gn b/chrome/browser/BUILD.gn
-index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afed8fce9b3 100644
+index 7f1c26990d8d43e92615bd3a5f4046d121d6ac6b..c03f0aabab4241e2609c31e4ef249392726df333 100644
 --- a/chrome/browser/BUILD.gn
 +++ b/chrome/browser/BUILD.gn
-@@ -2513,6 +2513,7 @@ static_library("browser") {
+@@ -2523,6 +2523,7 @@ static_library("browser") {
        "signin/wait_for_network_callback_helper_chrome.h",
      ]
    }
@@ -10,7 +10,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
  
    if (is_android) {
      sources += [
-@@ -3457,7 +3458,8 @@ static_library("browser") {
+@@ -3475,7 +3476,8 @@ static_library("browser") {
        ]
        deps += [ "//chrome/android/modules/dev_ui/provider:native" ]
      }
@@ -20,7 +20,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
      #!is_android
      sources += [
        "accessibility/ax_main_node_annotator_controller.cc",
-@@ -4415,7 +4417,7 @@ static_library("browser") {
+@@ -4435,7 +4437,7 @@ static_library("browser") {
          ]
        }
      }
@@ -29,7 +29,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
        sources += [
          "accessibility/soda_installer_impl.cc",
          "accessibility/soda_installer_impl.h",
-@@ -4474,7 +4476,7 @@ static_library("browser") {
+@@ -4486,7 +4488,7 @@ static_library("browser") {
        ]
      }
  
@@ -38,7 +38,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
        # On Windows, the hashes are embedded in //chrome:chrome_initial rather
        # than here in :chrome_dll.
        deps += [ "//chrome:packed_resources_integrity_header" ]
-@@ -4499,6 +4501,9 @@ static_library("browser") {
+@@ -4511,6 +4513,9 @@ static_library("browser") {
          "component_updater/hyphenation_component_installer.h",
        ]
      }
@@ -48,7 +48,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
    }
  
    if (is_chromeos_ash) {
-@@ -7958,7 +7963,7 @@ static_library("browser") {
+@@ -8061,7 +8066,7 @@ static_library("browser") {
      }
    }
  
@@ -57,16 +57,7 @@ index 59773d17657448a508a8cea31ca3a1f72f3c5abc..6a39dca5239a518c7c38a42b22f35afe
      sources += [
        "sessions/app_session_service.cc",
        "sessions/app_session_service.h",
-@@ -8163,7 +8168,7 @@ static_library("browser") {
-       "navigation_predictor/preloading_model_handler.cc",
-       "navigation_predictor/preloading_model_handler.h",
-     ]
--    if (!is_android) {
-+    if (is_android || !is_android) {
-       sources += [
-         "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.cc",
-         "new_tab_page/modules/history_clusters/ranking/history_clusters_module_ranking_model_executor.h",
-@@ -8449,7 +8454,8 @@ static_library("browser_generated_files") {
+@@ -8554,7 +8559,8 @@ static_library("browser_generated_files") {
        "//chrome/browser/android/webapk/proto",
        "//chrome/browser/ui/webui/feed_internals:mojo_bindings",
      ]

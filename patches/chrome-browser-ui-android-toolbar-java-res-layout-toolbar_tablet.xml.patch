@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
-index d109456fca6775a88a3d39947086cd69a9495a2d..01e17c4a35cd97d6601e89b85f5ea3e4ff2ad6c0 100644
+index b42cdce90f03672094a77f16004064b17e8e446f..f450de2a6e28265b25bc710de2cab8a5894e5958 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/layout/toolbar_tablet.xml
-@@ -75,6 +75,15 @@ found in the LICENSE file.
-             android:paddingStart="8dp"
+@@ -85,6 +85,15 @@ found in the LICENSE file.
+             android:layout_marginHorizontal="@dimen/incognito_indicator_lateral_margin"
              android:visibility="gone" />
  
 +        <org.chromium.ui.widget.ChromeImageButton

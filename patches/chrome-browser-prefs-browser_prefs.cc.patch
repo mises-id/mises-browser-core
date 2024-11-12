@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/prefs/browser_prefs.cc b/chrome/browser/prefs/browser_prefs.cc
-index 812bb38a0c53e8759138fbb34936f2112341f001..b16d5b8b8488a03ae07639cda4b9ebefe6485614 100644
+index 921f99a4ee22d230e0a035d15c8800d15ef8223f..7cdbb3583067635d288e594017dd80923b23f637 100644
 --- a/chrome/browser/prefs/browser_prefs.cc
 +++ b/chrome/browser/prefs/browser_prefs.cc
-@@ -1743,6 +1743,8 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
+@@ -1825,6 +1825,8 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
    DeviceOAuth2TokenStoreDesktop::RegisterPrefs(registry);
  #endif
  
@@ -11,7 +11,7 @@ index 812bb38a0c53e8759138fbb34936f2112341f001..b16d5b8b8488a03ae07639cda4b9ebef
  #if !BUILDFLAG(IS_ANDROID)
    screen_ai::RegisterLocalStatePrefs(registry);
  #endif  // !BUILDFLAG(IS_ANDROID)
-@@ -1998,6 +2000,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
+@@ -2081,6 +2083,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
    captions::LiveCaptionController::RegisterProfilePrefs(registry);
  #endif  // !BUILDFLAG(IS_CHROMEOS_LACROS)
  #endif  // BUILDFLAG(IS_ANDROID)

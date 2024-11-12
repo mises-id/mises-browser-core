@@ -26,7 +26,7 @@ void CreateTabListAndroid(
 		base::Value::List& tab_list);
 bool GetTabByIdAndroid(int tab_id, content::WebContents** contents, int* tab_index);
 base::Value::Dict CreateDummyWindowValueForExtension(
-		  ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior);
+		  WindowController::PopulateTabBehavior populate_tab_behavior);
 Browser* FindBrowserForWindowAndroid(Profile* profile, int window_id);
 #endif
 

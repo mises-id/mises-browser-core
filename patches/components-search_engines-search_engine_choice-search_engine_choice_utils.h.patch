@@ -1,8 +1,8 @@
 diff --git a/components/search_engines/search_engine_choice/search_engine_choice_utils.h b/components/search_engines/search_engine_choice/search_engine_choice_utils.h
-index 20aacc4b870d941a5b2046e797f3de4ee3305a4b..e13fafe47f93c34a1ed8f2a39a17dc57d5e6067a 100644
+index d63cdd12494d9a8f140ba90061a3b4f525b66b8a..bd57369112482ad3f20e34f7c7b129a72535648c 100644
 --- a/components/search_engines/search_engine_choice/search_engine_choice_utils.h
 +++ b/components/search_engines/search_engine_choice/search_engine_choice_utils.h
-@@ -298,7 +298,7 @@ void RecordUnexpectedSearchProvider(const TemplateURLData& data);
+@@ -300,7 +300,7 @@ void RecordUnexpectedSearchProvider(const TemplateURLData& data);
  void WipeSearchEngineChoicePrefs(PrefService& profile_prefs,
                                   WipeSearchEngineChoiceReason reason);
  

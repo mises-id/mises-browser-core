@@ -21,8 +21,8 @@ void ChromeRenderFrameObserver::DidCommitProvisionalLoad(
     ui::PageTransition transition) {
   DidCommitProvisionalLoad_Chromium(transition);
 
-  if (render_frame()->GetEnabledBindings() &
-      content::kWebUIBindingsPolicyMask) {
+  if (render_frame()->GetEnabledBindings().HasAny(
+          content::kWebUIBindingsPolicySet)) {
     for (const auto& script : webui_javascript_)
       render_frame()->ExecuteJavaScript(script);
     webui_javascript_.clear();

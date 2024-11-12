@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-index 9ea8672af6f78c5d410c514ee7893fc368ca67a8..f4b32c33cd8968d393a5c1b8fa31a043089004c7 100644
+index 2d9d434575553fd364ddfa136c69a00b91be4255..924d05583abc9b69fac691c7deb6668dcb67416d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelImpl.java
-@@ -848,14 +848,14 @@ public class TabModelImpl extends TabModelJniBridge {
+@@ -850,14 +850,14 @@ public class TabModelImpl extends TabModelJniBridge {
      /** Used to restore tabs from native. */
      @Override
      protected boolean createTabWithWebContents(
@@ -19,7 +19,7 @@ index 9ea8672af6f78c5d410c514ee7893fc368ca67a8..f4b32c33cd8968d393a5c1b8fa31a043
      }
  
      @Override
-@@ -907,6 +907,24 @@ public class TabModelImpl extends TabModelJniBridge {
+@@ -909,6 +909,24 @@ public class TabModelImpl extends TabModelJniBridge {
          return mIndex;
      }
  

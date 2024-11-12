@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/lens/overlay/BUILD.gn b/chrome/browser/resources/lens/overlay/BUILD.gn
-index af7963879c6b924f1c44583b4d5cb8175b43135f..9b1620ebac5e3f6bf45e28a38a6f9f000550bda0 100644
+index 4c28b1f4f5180ff810256d3e7cff099b735609a9..f182d16f663feef1a5059c8cfa0f74438b5b1852 100644
 --- a/chrome/browser/resources/lens/overlay/BUILD.gn
 +++ b/chrome/browser/resources/lens/overlay/BUILD.gn
 @@ -4,7 +4,7 @@
@@ -7,7 +7,7 @@ index af7963879c6b924f1c44583b4d5cb8175b43135f..9b1620ebac5e3f6bf45e28a38a6f9f00
  import("//ui/webui/resources/tools/build_webui.gni")
  
 -assert(toolkit_views)
-+# assert(toolkit_views)
++#assert(toolkit_views)
  
  if (is_chrome_branded) {
    generate_grd("build_icons_grdp") {

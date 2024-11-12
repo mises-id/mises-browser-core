@@ -1,8 +1,8 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-index a019ec3ad5441d63eec47370e9aa648a9b55df90..6219d63d6b4c8e7a7e109cdbb76cb42a2e9bfe79 100644
+index 1469f4e9f320bce344a7a2b75316c0e345cab4f9..1282d37a4efd97261a05e0ee7c8c174fcb3488f7 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-@@ -59,6 +59,10 @@ import org.chromium.ui.widget.ViewRectProvider;
+@@ -57,6 +57,10 @@ import org.chromium.ui.widget.ViewRectProvider;
  
  import java.util.List;
  
@@ -13,7 +13,7 @@ index a019ec3ad5441d63eec47370e9aa648a9b55df90..6219d63d6b4c8e7a7e109cdbb76cb42a
  /**
   * A coordinator for TabGridDialog component. Manages the communication with {@link
   * TabListCoordinator} as well as the life-cycle of shared component objects.
-@@ -184,13 +188,18 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
+@@ -186,13 +190,18 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
                              showColorPickerPopupRunnable,
                              actionConfirmationManager);
  
@@ -35,7 +35,7 @@ index a019ec3ad5441d63eec47370e9aa648a9b55df90..6219d63d6b4c8e7a7e109cdbb76cb42a
                              activity,
                              mBrowserControlsStateProvider,
                              mModalDialogManager,
-@@ -300,6 +309,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
+@@ -285,6 +294,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
                      TabUiFeatureUtilities.shouldUseListMode()
                              ? TabListCoordinator.TabListMode.LIST
                              : TabListCoordinator.TabListMode.GRID;

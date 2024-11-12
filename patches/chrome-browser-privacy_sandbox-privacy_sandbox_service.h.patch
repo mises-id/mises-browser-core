@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/privacy_sandbox/privacy_sandbox_service.h b/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
-index 1b484c4f9605581ec3e48df3ffbcf38f8799f8ac..c3eca44a8bf8ff3aa34229bce8aae20d410246de 100644
+index 1e4d8ff4b66229544888f64c251e6778eaac296d..6f7890bbe45df15d061caaf1cdb9fa0e64ccfd8b 100644
 --- a/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
 +++ b/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
-@@ -172,7 +172,7 @@ class PrivacySandboxService : public KeyedService {
+@@ -162,7 +162,7 @@ class PrivacySandboxService : public KeyedService {
    // Functions for coordinating the display of the Privacy Sandbox prompts
    // across multiple browser windows. Only relevant for Desktop.
  

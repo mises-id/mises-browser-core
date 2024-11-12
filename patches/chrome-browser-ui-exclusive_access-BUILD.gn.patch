@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/ui/exclusive_access/BUILD.gn b/chrome/browser/ui/exclusive_access/BUILD.gn
-index ce123e0e78ef1f01334874695a467bf4cd169a90..ff4bb1a8b50826ea591c25fc6d7158f11359a677 100644
+index df3905a88ea1e2fc63188c7d680a6e523b2b65e2..78160c938a63de9ad20aaeac6c3ea9795a36a7fd 100644
 --- a/chrome/browser/ui/exclusive_access/BUILD.gn
 +++ b/chrome/browser/ui/exclusive_access/BUILD.gn
-@@ -4,7 +4,7 @@
- 
+@@ -6,7 +6,7 @@ import("//build/config/chromeos/args.gni")
+ import("//build/config/ozone.gni")
  import("//extensions/buildflags/buildflags.gni")
  
 -assert(is_win || is_mac || is_linux || is_chromeos)

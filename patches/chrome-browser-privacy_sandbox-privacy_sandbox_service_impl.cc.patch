@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/privacy_sandbox/privacy_sandbox_service_impl.cc b/chrome/browser/privacy_sandbox/privacy_sandbox_service_impl.cc
-index 6167f393da09ec8faa476dfb255595a3225febb3..a64a01ac40ad9b66d60569c8ec39f35f612e30d4 100644
+index 5ea629d44f0709874be8e899ad6cea284ba26772..4367fa979cf666cde34a584eabccc9fa29561aa0 100644
 --- a/chrome/browser/privacy_sandbox/privacy_sandbox_service_impl.cc
 +++ b/chrome/browser/privacy_sandbox/privacy_sandbox_service_impl.cc
-@@ -486,7 +486,7 @@ void PrivacySandboxServiceImpl::PromptActionOccurred(PromptAction action,
+@@ -593,7 +593,7 @@ void PrivacySandboxServiceImpl::PromptActionOccurred(PromptAction action,
    }
  }
  

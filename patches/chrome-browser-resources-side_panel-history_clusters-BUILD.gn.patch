@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/history_clusters/BUILD.gn b/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
-index dc654a49f91b4baccb2b4cbc32125bfcd6dcfaa6..ae2872d03b90e891d1341daf0d0852a94893cb49 100644
+index 3d1dccd925b3e23101e54496e8413a3c57b08501..45c19467d8be52361adafe558256e606f305e5a0 100644
 --- a/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/history_clusters/BUILD.gn
 @@ -4,7 +4,7 @@

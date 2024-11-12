@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/window_sizer/BUILD.gn b/chrome/browser/ui/window_sizer/BUILD.gn
+index 528bdae37f9ee87b4f3b76164a24d6dcd86787aa..194289f32ef7f20bf8c530ba1b0704bac2ab1754 100644
+--- a/chrome/browser/ui/window_sizer/BUILD.gn
++++ b/chrome/browser/ui/window_sizer/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//build/config/ui.gni")
+ 
+-assert(!is_android && !is_fuchsia)
++#assert(!is_android && !is_fuchsia)
+ 
+ source_set("window_sizer") {
+   sources = [ "window_sizer.h" ]

@@ -1,8 +1,8 @@
 diff --git a/components/omnibox/browser/shortcuts_backend.cc b/components/omnibox/browser/shortcuts_backend.cc
-index 1533544825bc26b31981c2975ba5b296b3e33b12..b264ff7bc19a71cfaa9d41aa4b9ae57c98161a85 100644
+index 3dbc24c636331380a405ce511a665bc79de4fa54..bb69aa9660812bfd9b81a49f8e0b2e465f23c768 100644
 --- a/components/omnibox/browser/shortcuts_backend.cc
 +++ b/components/omnibox/browser/shortcuts_backend.cc
-@@ -393,7 +393,7 @@ ShortcutsDatabase::Shortcut::MatchCore ShortcutsBackend::MatchToMatchCore(
+@@ -403,7 +403,7 @@ ShortcutsDatabase::Shortcut::MatchCore ShortcutsBackend::MatchToMatchCore(
    const AutocompleteMatch* normalized_match = &match;
    AutocompleteMatch temp;
  

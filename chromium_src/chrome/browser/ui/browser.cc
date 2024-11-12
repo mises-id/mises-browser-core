@@ -28,4 +28,9 @@
 //   return false;
 // }
 
+#include "chrome/browser/ui/webui/signin/signin_email_confirmation_ui.h"
+void SigninEmailConfirmationUI::Close() {
+
+}
+
 #endif

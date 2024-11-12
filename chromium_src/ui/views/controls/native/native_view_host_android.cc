@@ -39,9 +39,6 @@ void NativeViewHostAndroid::AddedToWidget() {
 void NativeViewHostAndroid::RemovedFromWidget() {
 }
 
-bool NativeViewHostAndroid::SetCustomMask(std::unique_ptr<ui::LayerOwner> mask) {
-  return false;
-}
 
 void NativeViewHostAndroid::SetHitTestTopInset(int top_inset) {
 }

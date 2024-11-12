@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc b/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
-index e55744659641b71abd542e9fd8c708aeab313b49..4db2189e07c619fd7fbdc6a782f813f55de7443c 100644
+index bdeb81323b13ccd79431e494c5b165f125bf3342..7761e799b7fb3cecd67ea04f398601416ed106ac 100644
 --- a/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
 +++ b/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
-@@ -459,7 +459,11 @@ bool IsConsumerScanRequest(const BinaryUploadService::Request& request) {
+@@ -424,7 +424,11 @@ bool IsConsumerScanRequest(const BinaryUploadService::Request& request) {
        return false;
      }
    }

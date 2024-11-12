@@ -1,8 +1,8 @@
 diff --git a/extensions/renderer/bindings/api_binding_unittest.cc b/extensions/renderer/bindings/api_binding_unittest.cc
-index 9e842e41b70479bdb0206d34e0d14c3edcbf1b51..b555ef2bc19a17935f2e28ab2dad2a064d421e6c 100644
+index 147a73c144a20780a3fb2d6694ef610f1edefac9..b5fcc20bab116420fa42ef087cc03269744bfeb7 100644
 --- a/extensions/renderer/bindings/api_binding_unittest.cc
 +++ b/extensions/renderer/bindings/api_binding_unittest.cc
-@@ -781,9 +781,11 @@ TEST_F(APIBindingUnittest, TestProperties) {
+@@ -782,9 +782,11 @@ TEST_F(APIBindingUnittest, TestProperties) {
              GetStringPropertyFromObject(binding_object, context, "linuxOnly"));
    EXPECT_EQ("undefined",
              GetStringPropertyFromObject(binding_object, context, "lacrosOnly"));

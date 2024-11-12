@@ -10,3 +10,6 @@ mises_chromium_src_chrome_test_test_support_sources = [
 
 mises_chromium_src_chrome_test_test_support_deps = [
 ]
+mises_chromium_src_chrome_test_test_support_exception_deps = [
+  "//chrome/browser/apps/app_service",
+]

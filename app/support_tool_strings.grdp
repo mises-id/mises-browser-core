@@ -2,7 +2,7 @@
 <!-- Support Tool UI (chrome://support-tool) strings (included from generated_resources.grd). -->
 <!--This file is created by l10nUtil.js. Do not edit manually.-->
 <grit-part>
-    <if expr="is_android or not is_android">
+    <if expr="not is_android">
         <message name="IDS_SUPPORT_TOOL_ISSUE_DETAILS_PAGE_TITLE" desc="The title of first page (out of four pages) of Support Tool. This page contains details about the issue that the user wants to collect diagnose data. The title describes that the user needs to describe the issue on those fields.">
             Step 1 of 4: Describe the issue
         </message>

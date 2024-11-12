@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
-index e166d3dc94fbbcb36bd0a2fdb0888e3d3b2bbb5a..ab8286c3547e81a0813ec83d3ab9be6ab6ca524c 100644
+index 370568de1b0259186921806818bde2400af0fab2..cb6275edbb465e4df515c4b853df3ed99d1bdf7d 100644
 --- a/third_party/blink/public/mojom/BUILD.gn
 +++ b/third_party/blink/public/mojom/BUILD.gn
-@@ -344,8 +344,10 @@ mojom("mojom_platform") {
+@@ -347,8 +347,10 @@ mojom("mojom_platform") {
        "//services/network/public/mojom:mojom_storage_access_api",
        "//ui/accessibility:ax_enums_mojo",
        "//ui/latency/mojom",

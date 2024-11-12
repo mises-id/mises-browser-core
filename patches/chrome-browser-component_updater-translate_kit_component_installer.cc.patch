@@ -1,0 +1,17 @@
+diff --git a/chrome/browser/component_updater/translate_kit_component_installer.cc b/chrome/browser/component_updater/translate_kit_component_installer.cc
+index a65d2e988a822c00d2c6baa33242d1754c2518cd..6eebc112e949675e68afc4f757092a7b495b4c33 100644
+--- a/chrome/browser/component_updater/translate_kit_component_installer.cc
++++ b/chrome/browser/component_updater/translate_kit_component_installer.cc
+@@ -142,10 +142,12 @@ TranslateKitComponentInstallerPolicy::GetInstallerAttributes() const {
+ void RegisterTranslateKitComponent(ComponentUpdateService* cus,
+                                    PrefService* pref_service) {
+   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
++#if !BUILDFLAG(IS_ANDROID)
+   if (!base::FeatureList::IsEnabled(
+           on_device_translation::kEnableTranslateKitComponent)) {
+     return;
+   }
++#endif
+ 
+   VLOG(1) << "Registering TranslateKit component.";
+   // TODO(crbug.com/362123222): Update when adding language model installer.

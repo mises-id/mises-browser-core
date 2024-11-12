@@ -140,7 +140,7 @@ PluginResponseWriter::PluginResponseWriter(
   request_handler_ = std::make_unique<MisesRequestHandler>();    
   redirect_url_ = GURL();
   ctx_ = mises::MisesRequestInfo::MakeCTX(request, 0,
-                                          0, 0,
+                                          content::FrameTreeNodeId(), 0,
                                           browser_context,  nullptr);                                             
 
 }
@@ -256,7 +256,7 @@ void PluginResponseWriter::
         network::ResourceRequest request;
         request.url = new_url;
         std::shared_ptr<mises::MisesRequestInfo> ctx = mises::MisesRequestInfo::MakeCTX(request, 0,
-                                        0, 1,
+                                        content::FrameTreeNodeId(), 1,
                                         ctx_->browser_context,  nullptr); 
         ctx_ = ctx;
         request_handler_->OnBeforeURLRequest(ctx_, continuation, &redirect_url_);
@@ -314,13 +314,13 @@ void CreateLoaderAndStart(
 // static
 std::unique_ptr<content::URLLoaderRequestInterceptor>
 IPFSURLLoaderRequestInterceptor::MaybeCreateInterceptor(
-    int frame_tree_node_id) {
+    content::FrameTreeNodeId frame_tree_node_id) {
   return std::make_unique<IPFSURLLoaderRequestInterceptor>(
       frame_tree_node_id);
 }
 
 IPFSURLLoaderRequestInterceptor::IPFSURLLoaderRequestInterceptor(
-    int frame_tree_node_id)
+    content::FrameTreeNodeId frame_tree_node_id)
     : frame_tree_node_id_(frame_tree_node_id) {}
 
 IPFSURLLoaderRequestInterceptor::~IPFSURLLoaderRequestInterceptor() = default;

@@ -1,8 +1,8 @@
 diff --git a/ui/views/widget/widget.cc b/ui/views/widget/widget.cc
-index ef981eeb13aba6ed4a6935c6e8dc7632e50d5b1e..635f6c02cf0977d7056dfcaa1b0c5e6c2d3c6964 100644
+index 0b36c074cb789101af0e4fb9e0da9faec746e89c..a8cd1fc785b06b09924e59032d62dec6065061fe 100644
 --- a/ui/views/widget/widget.cc
 +++ b/ui/views/widget/widget.cc
-@@ -476,11 +476,13 @@ void Widget::Init(InitParams params) {
+@@ -487,11 +487,13 @@ void Widget::Init(InitParams params) {
    AddObserver(&root_view_->GetViewAccessibility());
  
    // Copy the elements of params that will be used after it is moved.
@@ -17,7 +17,7 @@ index ef981eeb13aba6ed4a6935c6e8dc7632e50d5b1e..635f6c02cf0977d7056dfcaa1b0c5e6c
  #if BUILDFLAG(IS_CHROMEOS)
    // If the target display is specified on ChromeOS, the initial bounds will be
    // set based on the display.
-@@ -488,6 +490,7 @@ void Widget::Init(InitParams params) {
+@@ -499,6 +501,7 @@ void Widget::Init(InitParams params) {
  #endif
  
    native_widget_->InitNativeWidget(std::move(params));
@@ -25,7 +25,7 @@ index ef981eeb13aba6ed4a6935c6e8dc7632e50d5b1e..635f6c02cf0977d7056dfcaa1b0c5e6c
    if (type == InitParams::TYPE_MENU)
      is_mouse_button_pressed_ = native_widget_->IsMouseButtonDown();
    if (RequiresNonClientView(type)) {
-@@ -543,6 +546,7 @@ void Widget::Init(InitParams params) {
+@@ -554,6 +557,7 @@ void Widget::Init(InitParams params) {
    }
  
    native_theme_observation_.Observe(GetNativeTheme());
@@ -33,7 +33,7 @@ index ef981eeb13aba6ed4a6935c6e8dc7632e50d5b1e..635f6c02cf0977d7056dfcaa1b0c5e6c
    native_widget_initialized_ = true;
    native_widget_->OnWidgetInitDone();
  
-@@ -2186,11 +2190,13 @@ void Widget::OnDragWillStart() {}
+@@ -2197,11 +2201,13 @@ void Widget::OnDragWillStart() {}
  void Widget::OnDragComplete() {}
  
  const ui::NativeTheme* Widget::GetNativeTheme() const {

@@ -1,5 +1,5 @@
 diff --git a/components/browser_ui/widget/android/java/res/values/dimens.xml b/components/browser_ui/widget/android/java/res/values/dimens.xml
-index c288588c99f1917d16a1c5419ace695c1e79343b..441f84b80edd14e04965498f3c6182b557f66380 100644
+index e88cba8613aecff8032f72e9b3cb7ada11501ea0..33baa6688ff5e3a883a1acb87ca6b7d5d969fca8 100644
 --- a/components/browser_ui/widget/android/java/res/values/dimens.xml
 +++ b/components/browser_ui/widget/android/java/res/values/dimens.xml
 @@ -118,7 +118,7 @@ found in the LICENSE file.

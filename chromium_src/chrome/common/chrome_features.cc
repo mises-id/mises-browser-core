@@ -608,4 +608,29 @@ BASE_FEATURE(kShortcutsNotAppsRevealDesktop,
              base::FEATURE_ENABLED_BY_DEFAULT);
 #endif
 
+
+
+#if BUILDFLAG(IS_ANDROID)
+// Enables or disables the Trust Safety Sentiment Survey for Safety Hub.
+BASE_FEATURE(kSafetyHubTrustSafetySentimentSurvey,
+             "TrustSafetySentimentSurveyForSafetyHub",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+// Enables or disables the A/B Experiment Survey for Safety Hub.
+BASE_FEATURE(kSafetyHubHaTSOneOffSurvey,
+             "SafetyHubHaTSOneOffSurvey",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentControlTriggerId{
+        &kSafetyHubHaTSOneOffSurvey, "safety-hub-ab-control-trigger-id", ""};
+const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentNotificationTriggerId{
+        &kSafetyHubHaTSOneOffSurvey, "safety-hub-ab-notification-trigger-id",
+        ""};
+const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentInteractionTriggerId{
+        &kSafetyHubHaTSOneOffSurvey, "safety-hub-ab-interaction-trigger-id",
+        ""};
+#endif  // !BUILDFLAG(IS_ANDROID)
+
 }  // namespace features

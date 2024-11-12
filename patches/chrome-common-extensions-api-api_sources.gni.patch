@@ -1,21 +1,13 @@
 diff --git a/chrome/common/extensions/api/api_sources.gni b/chrome/common/extensions/api/api_sources.gni
-index 7a95de143bd275937da7b032a3ff9062fa2b2813..f7535780147f38501b866b430a241fa5447b72df 100644
+index cd69077aacd08ac6f0251fbbfd1db7a2f2fee291..6cacd5c84de3267e7540259843c249ce45f53196 100644
 --- a/chrome/common/extensions/api/api_sources.gni
 +++ b/chrome/common/extensions/api/api_sources.gni
-@@ -67,7 +67,7 @@ schema_sources_ = [
-   "windows.json",
- ]
+@@ -79,7 +79,7 @@ if (enable_extensions) {
+     "windows.json",
+   ]
  
--if (!is_android) {
-+if (true || !is_android) {
-   schema_sources_ += [ "processes.idl" ]
- }
+-  if (!is_android) {
++  if (true || !is_android) {
+     schema_sources_ += [ "processes.idl" ]
+   }
  
-@@ -157,7 +157,6 @@ if (is_chromeos_ash) {
- }
- 
- chrome_extensions_api_schema_sources = get_path_info(schema_sources_, "abspath")
--
- chrome_extensions_manifest_only_schema_sources =
-     get_path_info([
-                     "manifest_types.json",

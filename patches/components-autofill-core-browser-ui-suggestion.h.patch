@@ -1,0 +1,13 @@
+diff --git a/components/autofill/core/browser/ui/suggestion.h b/components/autofill/core/browser/ui/suggestion.h
+index da82f1fc14da64b027607d1700f50e1438b04aa1..3d19cc1157cc81e867b6e990ed87ffc9ba10f71c 100644
+--- a/components/autofill/core/browser/ui/suggestion.h
++++ b/components/autofill/core/browser/ui/suggestion.h
+@@ -403,7 +403,7 @@ struct Suggestion {
+   // will make the suggestion deactivated and unclickable.
+   bool apply_deactivated_style = false;
+ 
+-#if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
++#if true || !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
+   // If true, selecting a suggestion or, when it exists, expanding its
+   // sub-popup, highlights the background of the suggestion row and its
+   // contained cells.

@@ -1,5 +1,5 @@
 diff --git a/chrome/test/base/test_browser_window.h b/chrome/test/base/test_browser_window.h
-index 0c390855e3d660793c1a349b785efbe9e9d0c0da..6669d8e4756586e7893a57a29647f1479e631e2c 100644
+index 6444ae54bfbe52853350809549c6da74bc50a209..199d642d8efbe36e6f24e2bd0d050a85d8b7a85d 100644
 --- a/chrome/test/base/test_browser_window.h
 +++ b/chrome/test/base/test_browser_window.h
 @@ -21,6 +21,7 @@

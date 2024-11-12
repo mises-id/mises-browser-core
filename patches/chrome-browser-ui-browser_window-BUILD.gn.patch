@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/browser_window/BUILD.gn b/chrome/browser/ui/browser_window/BUILD.gn
+index 5f595cc27189a20bffa88260971b4cc9231acfed..c99f94078e90180d7c88734f48e92dcda2a8a6d0 100644
+--- a/chrome/browser/ui/browser_window/BUILD.gn
++++ b/chrome/browser/ui/browser_window/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ # This is the public interface for a browser window. Most features in
+ # //chrome/browser depend on this interface, and thus to prevent circular

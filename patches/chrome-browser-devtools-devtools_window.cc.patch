@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/devtools/devtools_window.cc b/chrome/browser/devtools/devtools_window.cc
-index 9b388234f3dfe9d17bbd3ca85bee270c4601fce7..51da99898acece299eec1769142b54a371aaf31b 100644
+index b4a11f0509df7689f2dd461183e8475a40f168ab..a3ec5e07fa580cb7d41c4ea9749c8b8da9a24618 100644
 --- a/chrome/browser/devtools/devtools_window.cc
 +++ b/chrome/browser/devtools/devtools_window.cc
-@@ -1613,6 +1613,7 @@ void DevToolsWindow::SetIsDocked(bool dock_requested) {
+@@ -1612,6 +1612,7 @@ void DevToolsWindow::SetIsDocked(bool dock_requested) {
      return;
  
    if (dock_requested && !was_docked && browser_) {
@@ -10,7 +10,7 @@ index 9b388234f3dfe9d17bbd3ca85bee270c4601fce7..51da99898acece299eec1769142b54a3
      // Detach window from the external devtools browser. It will lead to
      // the browser object's close and delete. Remove observer first.
      TabStripModel* tab_strip_model = browser_->tab_strip_model();
-@@ -1633,6 +1634,9 @@ void DevToolsWindow::SetIsDocked(bool dock_requested) {
+@@ -1632,6 +1633,9 @@ void DevToolsWindow::SetIsDocked(bool dock_requested) {
          tabs::TabModel::DestroyAndTakeWebContents(std::move(tab_model));
      owned_main_web_contents_ =
          std::make_unique<OwnedMainWebContents>(std::move(web_contents));
@@ -20,7 +20,7 @@ index 9b388234f3dfe9d17bbd3ca85bee270c4601fce7..51da99898acece299eec1769142b54a3
    } else if (!dock_requested && was_docked) {
      UpdateBrowserWindow();
    }
-@@ -1855,10 +1859,15 @@ void DevToolsWindow::CreateDevToolsBrowser() {
+@@ -1854,10 +1858,15 @@ void DevToolsWindow::CreateDevToolsBrowser() {
    }
    browser_ =
        Browser::Create(Browser::CreateParams::CreateForDevTools(profile_));

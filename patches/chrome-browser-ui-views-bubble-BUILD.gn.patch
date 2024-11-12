@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/views/bubble/BUILD.gn b/chrome/browser/ui/views/bubble/BUILD.gn
-index 97bc6a7834a023b5e18ff3745520271067ce7e83..76aff8283867a454029d1f5e3c1b287ea3acb383 100644
+index a9047629e19f47a57f2f4d5a6d451f84b3bfa062..c12f1d7375d096b8d270a81e535ba0299c411d5b 100644
 --- a/chrome/browser/ui/views/bubble/BUILD.gn
 +++ b/chrome/browser/ui/views/bubble/BUILD.gn
 @@ -2,7 +2,7 @@

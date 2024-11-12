@@ -1,5 +1,5 @@
 diff --git a/build/config/android/rules.gni b/build/config/android/rules.gni
-index 0db0395c6619b2b544dccfed39d91cc3a350d1b8..f9aac321c1954e23dd5d8fb0f8f8c6cbf72ee34c 100644
+index 95c88605890462aeb97dab4dbffd80960bf1533e..2195b830de25d4714c5f5ee9825b6e6b58c85749 100644
 --- a/build/config/android/rules.gni
 +++ b/build/config/android/rules.gni
 @@ -207,6 +207,7 @@ if (!is_robolectric && enable_java_templates) {
@@ -27,3 +27,11 @@ index 0db0395c6619b2b544dccfed39d91cc3a350d1b8..f9aac321c1954e23dd5d8fb0f8f8c6cb
          script = "//build/android/gyp/validate_inputs.py"
          inputs = _all_sources
          outputs = [ "$target_gen_dir/$target_name.stamp" ]
+@@ -4206,6 +4208,7 @@ if (!is_robolectric && enable_java_templates) {
+   #     aar_path = "foo.aar"
+   #   }
+   template("android_aar_prebuilt") {
++    if (defined(invoker.visibility)) { invoker.visibility += ["//mises/third_party/android_deps:*"] }
+     _info_path = "$target_name.info"
+     if (defined(invoker.info_path)) {
+       _info_path = invoker.info_path

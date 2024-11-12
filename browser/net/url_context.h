@@ -11,6 +11,7 @@
 #include <string>
 
 #include "base/memory/raw_ptr.h"
+#include "content/public/browser/frame_tree_node_id.h"
 #include "net/base/network_anonymization_key.h"
 #include "net/base/network_isolation_key.h"
 #include "net/http/http_request_headers.h"
@@ -89,7 +90,7 @@ struct MisesRequestInfo {
   bool allow_http_upgradable_resource = false;
   bool allow_referrers = false;
   bool is_webtorrent_disabled = false;
-  int frame_tree_node_id = 0;
+  content::FrameTreeNodeId frame_tree_node_id;
   uint64_t request_identifier = 0;
   size_t next_url_request_index = 0;
 
@@ -131,7 +132,7 @@ struct MisesRequestInfo {
   static std::shared_ptr<mises::MisesRequestInfo> MakeCTX(
       const network::ResourceRequest& request,
       int render_process_id,
-      int frame_tree_node_id,
+      content::FrameTreeNodeId frame_tree_node_id,
       uint64_t request_identifier,
       content::BrowserContext* browser_context,
       std::shared_ptr<mises::MisesRequestInfo> old_ctx);

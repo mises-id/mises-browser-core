@@ -1,8 +1,17 @@
 diff --git a/components/webauthn/core/browser/BUILD.gn b/components/webauthn/core/browser/BUILD.gn
-index 243ade7459383485f06c5b34f2e47e526e0072a6..998ea413e36fd1aa5cafff47179604e9dec1857e 100644
+index d2d3f1b20d9dba3db24b46011092d3ea08a4b824..238f13e729beee3dcd990f9f10c341d2953329ef 100644
 --- a/components/webauthn/core/browser/BUILD.gn
 +++ b/components/webauthn/core/browser/BUILD.gn
-@@ -20,7 +20,7 @@ source_set("browser") {
+@@ -11,7 +11,7 @@ source_set("browser") {
+   ]
+   deps = [ "//components/sync" ]
+ 
+-  if (!is_android && !is_ios) {
++  if (is_android || !is_android && !is_ios) {
+     sources += [
+       "passkey_change_quota_tracker.cc",
+       "passkey_change_quota_tracker.h",
+@@ -27,7 +27,7 @@ source_set("browser") {
      ]
    }
  

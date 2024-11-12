@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
-index 92fc963fec6c4cf3b7d77952b3f1aa0fa896a8da..e9c23f0272832cce38f08b7bc89167943b28142b 100644
+index ec7194176b91b87277f83674f11ff1a937ecd490..c419f83cfbf1d53de4394b50db799acfaf77da2d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
-@@ -123,6 +123,7 @@ public class GoogleServicesSettings extends ChromeBaseSettingsFragment
+@@ -127,6 +127,7 @@ public class GoogleServicesSettings extends ChromeBaseSettingsFragment
              mAllowSignin.setOnPreferenceChangeListener(this);
              mAllowSignin.setManagedPreferenceDelegate(mManagedPreferenceDelegate);
          }

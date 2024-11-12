@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/apps/link_capturing/BUILD.gn b/chrome/browser/apps/link_capturing/BUILD.gn
-index 65f6ec193aabe08f2a7fef089464c9fc19c6263b..9efb657faa96b5e7a054ca9d2506c4e26a80bf03 100644
+index 1a7069c1729d321baabb7bcfb141120b50f09db4..7642ff0eb45246b32d86afb1bfb66d49f8010806 100644
 --- a/chrome/browser/apps/link_capturing/BUILD.gn
 +++ b/chrome/browser/apps/link_capturing/BUILD.gn
 @@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")
@@ -11,7 +11,7 @@ index 65f6ec193aabe08f2a7fef089464c9fc19c6263b..9efb657faa96b5e7a054ca9d2506c4e2
  
  source_set("link_capturing") {
    sources = [
-@@ -157,4 +157,7 @@ source_set("app_service_browser_tests") {
+@@ -160,4 +160,7 @@ source_set("app_service_browser_tests") {
      "//chrome/test:test_support",
      "//chrome/test:test_support_ui",
    ]

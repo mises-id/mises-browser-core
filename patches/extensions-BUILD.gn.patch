@@ -1,5 +1,5 @@
 diff --git a/extensions/BUILD.gn b/extensions/BUILD.gn
-index bcdc39564584e16ed4fb29f29fcf6a5533e94ed9..57abf4c1ceb5512e4086b97ca2dd041f1eafc77c 100644
+index 2b7dfb97986a0e5c3672d26de7f0a7dc5f64c0d2..6c9cf1df0ddd5b1c85b5cab8802160538d7021a8 100644
 --- a/extensions/BUILD.gn
 +++ b/extensions/BUILD.gn
 @@ -10,6 +10,10 @@ import("//ui/base/ui_features.gni")
@@ -13,9 +13,9 @@ index bcdc39564584e16ed4fb29f29fcf6a5533e94ed9..57abf4c1ceb5512e4086b97ca2dd041f
  if (is_component_build) {
    component("extensions") {
      visibility = [
-@@ -260,6 +264,27 @@ if (enable_extensions) {
-       "//ui/resources",
-       "//ui/strings",
+@@ -265,6 +269,27 @@ repack("shell_and_test_pak") {
+       "//device/bluetooth/strings",
+       "//extensions/shell:resources",
      ]
 +
 +    if (is_android) {
@@ -39,31 +39,12 @@ index bcdc39564584e16ed4fb29f29fcf6a5533e94ed9..57abf4c1ceb5512e4086b97ca2dd041f
 +      ]
 +    }
    }
+ }
  
-   test("extensions_unittests") {
-@@ -303,6 +328,25 @@ if (enable_extensions) {
-     if (is_chromeos) {
-       deps += [ "//chrome/browser/chromeos/extensions/telemetry/api:extensions_unittests" ]
+@@ -421,5 +446,6 @@ if (enable_extensions) {
+     if (is_chromeos_ash) {
+       deps += [ "//components/user_manager:test_support" ]
      }
-+  if (is_android) {
-+    deps -= [":extensions_resources",]
-+    deps += [
-+      "//content/public/android:content_java",
-+      "//content/public/browser",
-+      "//gin:v8_snapshot_assets",
-+      "//net",
-+      "//services/data_decoder/public/cpp/android:safe_json_java",
-+      "//ui/android:ui_java",
-+      "//ui/base",
-+      "//ui/gfx",
-+    ]
-+    data_deps += [
-+      ":shell_and_test_pak",
-+      "//third_party/mesa_headers",
-+      "//ui/resources:ui_test_pak_data",
-+    ]
-+  }
 +
    }
- 
-   test("extensions_browsertests") {
+ }

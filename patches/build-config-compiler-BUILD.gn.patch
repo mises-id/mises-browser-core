@@ -1,8 +1,8 @@
 diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
-index 45086d6838cac1b99a6a38ea45ab9d5d9860761d..982ee690f88cb6df4a4cb7004352ab72c5ea125d 100644
+index 765345a16d112673ebdd0af4cd91cdccd4af57f0..a279eb78d03195dd40997ffc04fd7fb20da939f8 100644
 --- a/build/config/compiler/BUILD.gn
 +++ b/build/config/compiler/BUILD.gn
-@@ -865,7 +865,7 @@ config("compiler") {
+@@ -868,7 +868,7 @@ config("compiler") {
    # Pass flag to LLD so Android builds can allow debuggerd to properly symbolize
    # stack crashes (http://crbug.com/919499).
    if (use_lld && is_android) {
@@ -11,7 +11,7 @@ index 45086d6838cac1b99a6a38ea45ab9d5d9860761d..982ee690f88cb6df4a4cb7004352ab72
    }
  
    # TODO(crbug.com/40242425): Cleanup undefined symbol errors caught by
-@@ -1181,6 +1181,10 @@ config("compiler_cpu_abi") {
+@@ -1186,6 +1186,10 @@ config("compiler_cpu_abi") {
    if (is_chromeos) {
      configs += [ "//build/config/chromeos:compiler_cpu_abi" ]
    }
@@ -22,7 +22,7 @@ index 45086d6838cac1b99a6a38ea45ab9d5d9860761d..982ee690f88cb6df4a4cb7004352ab72
  
    if ((is_posix && !is_apple) || is_fuchsia) {
      # CPU architecture. We may or may not be doing a cross compile now, so for
-@@ -3056,6 +3060,11 @@ if (is_apple) {
+@@ -3078,6 +3082,11 @@ if (is_apple) {
      cflags_objc = common_flags
      cflags_objcc = common_flags
    }
