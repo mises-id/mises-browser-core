@@ -13,6 +13,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:paddingTop="@dimen/toolbar_height_no_shadow"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:visibility="gone" >
 
     <ImageView

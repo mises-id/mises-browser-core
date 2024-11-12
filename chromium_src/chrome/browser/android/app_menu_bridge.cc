@@ -23,6 +23,7 @@
 #include "base/memory/weak_ptr.h"
 #include "base/values.h"
 #include "base/logging.h"
+#include "url/origin.h"
 #include "chrome/browser/browsing_data/browsing_data_important_sites_util.h"
 #include "chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h"
 #include "chrome/browser/engagement/important_sites_util.h"
@@ -436,6 +437,16 @@ jboolean AppMenuBridge::IsProxyEnabled(
   return 0;
 }
 
+void AppMenuBridge::MaybeGrantExtensionWebContents(const extensions::Extension* extension_ptr,content::WebContents* web_contents ) {
+    const GURL& url = web_contents->GetLastCommittedURL();
+    const url::Origin real_origin = url::Origin::Create(url);
+    if (!real_origin.opaque()) {
+      LOG(INFO) << "[Mises] Granting tab access to: " << extension_ptr->id();
+      extensions::TabHelper::FromWebContents(web_contents)
+          ->active_tab_permission_granter()
+          ->GrantIfRequested(extension_ptr);
+    }
+}
 void AppMenuBridge::GrantExtensionActiveTab(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj,
 		const base::android::JavaParamRef<jobject>& jweb_contents,
@@ -461,10 +472,7 @@ void AppMenuBridge::GrantExtensionActiveTab(
     if (extension_action_) {
       content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
       if (web_contents != nullptr) {
-        LOG(INFO) << "[Mises] Granting tab access to: " << extension_to_call;
-        extensions::TabHelper::FromWebContents(web_contents)
-            ->active_tab_permission_granter()
-            ->GrantIfRequested(extension_ptr);
+        MaybeGrantExtensionWebContents(extension_ptr, web_contents);
       }
     }
   }
@@ -503,10 +511,7 @@ void AppMenuBridge::CallExtension(
       content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
       int tabid = extensions::ExtensionAction::kDefaultTabId;
       if (web_contents != nullptr) {
-        LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
-        extensions::TabHelper::FromWebContents(web_contents)
-            ->active_tab_permission_granter()
-            ->GrantIfRequested(extension_ptr);
+        MaybeGrantExtensionWebContents(extension_ptr, web_contents);
         tabid = sessions::SessionTabHelper::IdForTab(web_contents).id();
       }
 
