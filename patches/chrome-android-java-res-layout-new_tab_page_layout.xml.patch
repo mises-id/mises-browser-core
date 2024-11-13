@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/res/layout/new_tab_page_layout.xml b/chrome/android/java/res/layout/new_tab_page_layout.xml
-index 5216462e2f03ee09f234f7e540bd0fd6ff512520..0ecce85f94ef95baed15d421ed44509f320a2a09 100644
+index 5216462e2f03ee09f234f7e540bd0fd6ff512520..10d29b2fc9667ef0b1db371b1fb65a3ebb8a9530 100644
 --- a/chrome/android/java/res/layout/new_tab_page_layout.xml
 +++ b/chrome/android/java/res/layout/new_tab_page_layout.xml
-@@ -1,88 +1,113 @@
+@@ -1,88 +1,115 @@
  <?xml version="1.0" encoding="utf-8"?>
 -<!--
 -Copyright 2016 The Chromium Authors
@@ -25,6 +25,8 @@ index 5216462e2f03ee09f234f7e540bd0fd6ff512520..0ecce85f94ef95baed15d421ed44509f
      android:orientation="vertical"
      android:gravity="center"
      android:paddingTop="@dimen/toolbar_height_no_shadow"
++    android:paddingLeft="5dp"
++    android:paddingRight="5dp"
      android:visibility="gone" >
  
 -    <!-- Search provider logo -->

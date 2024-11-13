@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.css b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.css
+index de24f1a045261121bf8f913ffb800bee01f256a3..c1961bdef8c794567c15be2fbff53800389d7162 100644
+--- a/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.css
++++ b/ui/webui/resources/cr_elements/cr_toolbar/cr_toolbar.css
+@@ -52,7 +52,7 @@ h1 {
+   box-sizing: border-box;
+   display: flex;
+   /* 12px to match #rightSpacer + 6px to align with icons in menus. */
+-  padding-inline-start: calc(12px + 6px);
++  padding-inline-start: calc(0px);
+   width: var(--cr-toolbar-left-spacer-width, auto);
+ }
+ 
