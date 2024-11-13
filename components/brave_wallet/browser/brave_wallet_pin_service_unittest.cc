@@ -185,7 +185,7 @@ class MockContentTypeChecker : public ContentTypeChecker {
  public:
   MOCK_METHOD2(CheckContentTypeSupported,
                void(const std::string&,
-                    base::OnceCallback<void(absl::optional<bool>)>));
+                    base::OnceCallback<void(std::optional<bool>)>));
 };
 
 }  // namespace
@@ -241,7 +241,7 @@ TEST_F(BraveWalletPinServiceTest, AddSolPin) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               std::move(callback).Run(true);
             }));
   }
@@ -271,9 +271,9 @@ TEST_F(BraveWalletPinServiceTest, AddSolPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kSolMonkey1Path);
     token->is_nft = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -315,9 +315,9 @@ TEST_F(BraveWalletPinServiceTest, AddSolPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kSolMonkey2Path);
     token->is_nft = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -345,7 +345,7 @@ TEST_F(BraveWalletPinServiceTest, AddPin) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               std::move(callback).Run(true);
             }));
   }
@@ -379,9 +379,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -425,9 +425,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey2Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -455,7 +455,7 @@ TEST_F(BraveWalletPinServiceTest, AddPin_GatewayUrl) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               std::move(callback).Run(true);
             }));
   }
@@ -490,9 +490,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_GatewayUrl) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey5Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -537,9 +537,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_GatewayUrl) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey6Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -567,7 +567,7 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               EXPECT_EQ(cid, "ipfs://bafy1");
               std::move(callback).Run(true);
             }));
@@ -600,9 +600,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -633,7 +633,7 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               EXPECT_EQ(cid, "ipfs://bafy2");
               std::move(callback).Run(false);
             }));
@@ -665,9 +665,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -686,9 +686,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     ON_CALL(*GetContentTypeChecker(), CheckContentTypeSupported(_, _))
         .WillByDefault(::testing::Invoke(
             [](const std::string& cid,
-               base::OnceCallback<void(absl::optional<bool>)> callback) {
+               base::OnceCallback<void(std::optional<bool>)> callback) {
               EXPECT_EQ(cid, "ipfs://bafy3");
-              std::move(callback).Run(absl::nullopt);
+              std::move(callback).Run(std::nullopt);
             }));
     ON_CALL(*GetJsonRpcService(), GetERC721Metadata(_, _, _, _))
         .WillByDefault(::testing::Invoke(
@@ -718,9 +718,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_ContentVerification) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -750,9 +750,9 @@ TEST_F(BraveWalletPinServiceTest, AddPin_NonIpfsImage) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey4Path);
     token->is_erc721 = true;
-    absl::optional<bool> call_status;
+    std::optional<bool> call_status;
     service()->AddPin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&call_status](bool result, mojom::PinErrorPtr error) {
               call_status = result;
@@ -797,9 +797,9 @@ TEST_F(BraveWalletPinServiceTest, RemoveSolPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kSolMonkey1Path);
     token->is_nft = true;
-    absl::optional<bool> remove_status;
+    std::optional<bool> remove_status;
     service()->RemovePin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&remove_status](bool status, mojom::PinErrorPtr error) {
               remove_status = status;
@@ -824,9 +824,9 @@ TEST_F(BraveWalletPinServiceTest, RemoveSolPin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> remove_status;
+    std::optional<bool> remove_status;
     service()->RemovePin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&remove_status](bool status, mojom::PinErrorPtr error) {
               remove_status = status;
@@ -864,9 +864,9 @@ TEST_F(BraveWalletPinServiceTest, RemovePin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> remove_status;
+    std::optional<bool> remove_status;
     service()->RemovePin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&remove_status](bool status, mojom::PinErrorPtr error) {
               remove_status = status;
@@ -891,9 +891,9 @@ TEST_F(BraveWalletPinServiceTest, RemovePin) {
     mojom::BlockchainTokenPtr token =
         BraveWalletPinService::TokenFromPrefPath(kMonkey1Path);
     token->is_erc721 = true;
-    absl::optional<bool> remove_status;
+    std::optional<bool> remove_status;
     service()->RemovePin(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&remove_status](bool status, mojom::PinErrorPtr error) {
               remove_status = status;
@@ -939,9 +939,9 @@ TEST_F(BraveWalletPinServiceTest, ValidatePin) {
               std::move(callback).Run(true);
             }));
 
-    absl::optional<mojom::TokenValidationResult> validate_status;
+    std::optional<mojom::TokenValidationResult> validate_status;
     service()->Validate(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&validate_status](mojom::TokenValidationResult status) {
               validate_status = status;
@@ -965,12 +965,12 @@ TEST_F(BraveWalletPinServiceTest, ValidatePin) {
         .WillByDefault(::testing::Invoke(
             [](const std::string& prefix, const std::vector<std::string>& cids,
                ipfs::ValidatePinsCallback callback) {
-              std::move(callback).Run(absl::nullopt);
+              std::move(callback).Run(std::nullopt);
             }));
 
-    absl::optional<mojom::TokenValidationResult> validate_status;
+    std::optional<mojom::TokenValidationResult> validate_status;
     service()->Validate(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&validate_status](mojom::TokenValidationResult status) {
               validate_status = status;
@@ -998,9 +998,9 @@ TEST_F(BraveWalletPinServiceTest, ValidatePin) {
               std::move(callback).Run(false);
             }));
 
-    absl::optional<mojom::TokenValidationResult> validate_status;
+    std::optional<mojom::TokenValidationResult> validate_status;
     service()->Validate(
-        std::move(token), absl::nullopt,
+        std::move(token), std::nullopt,
         base::BindLambdaForTesting(
             [&validate_status](mojom::TokenValidationResult status) {
               validate_status = status;
@@ -1073,7 +1073,7 @@ TEST_F(BraveWalletPinServiceTest, GetTokenStatus) {
   token1->is_erc721 = true;
   {
     mojom::TokenPinStatusPtr status =
-        service()->GetTokenStatus(absl::nullopt, token1);
+        service()->GetTokenStatus(std::nullopt, token1);
     EXPECT_EQ(mojom::TokenPinStatusCode::STATUS_PINNED, status->code);
     EXPECT_TRUE(status->error.is_null());
     EXPECT_EQ(base::Time::FromTimeT(123u), status->validate_time);
@@ -1090,7 +1090,7 @@ TEST_F(BraveWalletPinServiceTest, GetTokenStatus) {
   token2->is_erc721 = true;
   {
     mojom::TokenPinStatusPtr status =
-        service()->GetTokenStatus(absl::nullopt, token2);
+        service()->GetTokenStatus(std::nullopt, token2);
     EXPECT_EQ(mojom::TokenPinStatusCode::STATUS_PINNING_FAILED, status->code);
     EXPECT_EQ(mojom::WalletPinServiceErrorCode::ERR_FETCH_METADATA_FAILED,
               status->error->error_code);
@@ -1103,7 +1103,7 @@ TEST_F(BraveWalletPinServiceTest, GetTokenStatus) {
     token1->is_nft = true;
     {
       mojom::TokenPinStatusPtr status =
-          service()->GetTokenStatus(absl::nullopt, token3);
+          service()->GetTokenStatus(std::nullopt, token3);
       EXPECT_EQ(mojom::TokenPinStatusCode::STATUS_PINNED, status->code);
       EXPECT_TRUE(status->error.is_null());
       EXPECT_EQ(base::Time::FromTimeT(123u), status->validate_time);
@@ -1133,7 +1133,7 @@ TEST_F(BraveWalletPinServiceTest, GetLastValidateTime) {
   token->is_erc721 = true;
   {
     base::Time last_validate_time =
-        service()->GetLastValidateTime(absl::nullopt, token).value();
+        service()->GetLastValidateTime(std::nullopt, token).value();
     EXPECT_EQ(base::Time::FromTimeT(123u), last_validate_time);
   }
 
@@ -1190,7 +1190,7 @@ TEST_F(BraveWalletPinServiceTest, GetPath) {
     token->contract_address = "abc";
     token->token_id = "0x2";
     token->chain_id = "mainnet";
-    auto path = BraveWalletPinService::GetTokenPrefPath(absl::nullopt, token);
+    auto path = BraveWalletPinService::GetTokenPrefPath(std::nullopt, token);
     EXPECT_EQ("nft.local.60.mainnet.abc.0x2", path.value());
   }
 
@@ -1256,7 +1256,7 @@ TEST_F(BraveWalletPinServiceTest, GetTokens) {
   }
 
   {
-    auto tokens = service()->GetTokens(absl::nullopt);
+    auto tokens = service()->GetTokens(std::nullopt);
     EXPECT_EQ(3u, tokens.size());
     EXPECT_TRUE(tokens.contains(kMonkey1Path));
     EXPECT_TRUE(tokens.contains(kMonkey2Path));
@@ -1297,7 +1297,7 @@ TEST_F(BraveWalletPinServiceTest, Reset) {
           ::testing::Invoke([](base::OnceCallback<void(bool)> callback) {
             std::move(callback).Run(true);
           }));
-  absl::optional<bool> reset_result;
+  std::optional<bool> reset_result;
   service()->Reset(base::BindLambdaForTesting(
       [&reset_result](bool result) { reset_result = result; }));
   EXPECT_TRUE(reset_result.value());
@@ -1326,7 +1326,7 @@ TEST_F(BraveWalletPinServiceTest, Reset_Failed) {
           ::testing::Invoke([](base::OnceCallback<void(bool)> callback) {
             std::move(callback).Run(false);
           }));
-  absl::optional<bool> reset_result;
+  std::optional<bool> reset_result;
   service()->Reset(base::BindLambdaForTesting(
       [&reset_result](bool result) { reset_result = result; }));
   EXPECT_FALSE(reset_result.value());

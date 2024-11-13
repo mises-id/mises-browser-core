@@ -125,18 +125,18 @@ std::vector<uint8_t> EthSignTypedDataHelper::GetTypeHash(
   return std::vector<uint8_t>(type_hash.begin(), type_hash.end());
 }
 
-absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::HashStruct(
+std::optional<std::vector<uint8_t>> EthSignTypedDataHelper::HashStruct(
     const std::string primary_type_name,
     const base::Value::Dict& data) const {
   auto encoded_data = EncodeData(primary_type_name, data);
   if (!encoded_data)
-    return absl::nullopt;
+    return std::nullopt;
   return KeccakHash(*encoded_data);
 }
 
 // Encode the json data by the its type defined in json custom types starting
 // from primary type. See unittests for some examples.
-absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeData(
+std::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeData(
     const std::string& primary_type_name,
     const base::Value::Dict& data) const {
   const auto* primary_type = types_.FindList(primary_type_name);
@@ -151,13 +151,13 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeData(
     const std::string* type_str = field.FindString("type");
     const std::string* name_str = field.FindString("name");
     if (!type_str || !name_str) {
-      return absl::nullopt;
+      return std::nullopt;
     }
     const base::Value* value = data.Find(*name_str);
     if (value) {
       auto encoded_field = EncodeField(*type_str, *value);
       if (!encoded_field)
-        return absl::nullopt;
+        return std::nullopt;
       result.insert(result.end(), encoded_field->begin(), encoded_field->end());
     } else {
       if (version_ == Version::kV4) {
@@ -171,7 +171,7 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeData(
 
 // Encode each field of a custom type, if a field is also a custom type it
 // will call EncodeData recursively until it reaches an atomic type
-absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
+std::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
     const std::string& type,
     const base::Value& value) const {
   // ES6 section 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -181,20 +181,20 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   if (base::EndsWith(type, "]")) {
     if (version_ != Version::kV4) {
       VLOG(0) << "version has to be v4 to support array";
-      return absl::nullopt;
+      return std::nullopt;
     }
     if (!value.is_list())
-      return absl::nullopt;
+      return std::nullopt;
     auto type_split = base::SplitString(type, "[", base::KEEP_WHITESPACE,
                                         base::SPLIT_WANT_ALL);
     if (type_split.size() != 2)
-      return absl::nullopt;
+      return std::nullopt;
     const std::string array_type = type_split[0];
     std::vector<uint8_t> array_result;
     for (const auto& item : value.GetList()) {
       auto encoded_item = EncodeField(array_type, item);
       if (!encoded_item)
-        return absl::nullopt;
+        return std::nullopt;
       array_result.insert(array_result.end(), encoded_item->begin(),
                           encoded_item->end());
     }
@@ -203,7 +203,7 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   } else if (type == "string") {
     const std::string* value_str = value.GetIfString();
     if (!value_str)
-      return absl::nullopt;
+      return std::nullopt;
     const std::string encoded_value = KeccakHash(*value_str, false);
     const std::vector<uint8_t> encoded_value_bytes(encoded_value.begin(),
                                                    encoded_value.end());
@@ -212,16 +212,16 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   } else if (type == "bytes") {
     const std::string* value_str = value.GetIfString();
     if (!value_str || (!value_str->empty() && !IsValidHexString(*value_str)))
-      return absl::nullopt;
+      return std::nullopt;
     std::vector<uint8_t> bytes;
     if (!value_str->empty())
       CHECK(PrefixedHexStringToBytes(*value_str, &bytes));
     const std::vector<uint8_t> encoded_value = KeccakHash(bytes);
     result.insert(result.end(), encoded_value.begin(), encoded_value.end());
   } else if (type == "bool") {
-    absl::optional<bool> value_bool = value.GetIfBool();
+    std::optional<bool> value_bool = value.GetIfBool();
     if (!value_bool)
-      return absl::nullopt;
+      return std::nullopt;
     uint256_t encoded_value = (uint256_t)*value_bool;
     // Append the encoded value to byte array result in big endian order
     for (int i = 256 - 8; i >= 0; i -= 8) {
@@ -230,7 +230,7 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   } else if (type == "address") {
     const std::string* value_str = value.GetIfString();
     if (!value_str || !IsValidHexString(*value_str))
-      return absl::nullopt;
+      return std::nullopt;
     std::vector<uint8_t> address;
     CHECK(PrefixedHexStringToBytes(*value_str, &address));
     DCHECK_EQ(address.size(), 20u);
@@ -240,14 +240,14 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   } else if (base::StartsWith(type, "bytes", base::CompareCase::SENSITIVE)) {
     unsigned num_bits;
     if (!base::StringToUint(type.data() + 5, &num_bits) || num_bits > 32)
-      return absl::nullopt;
+      return std::nullopt;
     const std::string* value_str = value.GetIfString();
     if (!value_str || !IsValidHexString(*value_str))
-      return absl::nullopt;
+      return std::nullopt;
     std::vector<uint8_t> bytes;
     CHECK(PrefixedHexStringToBytes(*value_str, &bytes));
     if (bytes.size() > 32)
-      return absl::nullopt;
+      return std::nullopt;
     result.insert(result.end(), bytes.begin(), bytes.end());
     for (size_t i = 0; i < 32u - bytes.size(); ++i) {
       result.push_back(0);
@@ -257,27 +257,27 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
     unsigned num_bits;
     if (!base::StringToUint(type.data() + 4, &num_bits) ||
         !ValidSolidityBits(num_bits))
-      return absl::nullopt;
+      return std::nullopt;
 
-    absl::optional<double> value_double = value.GetIfDouble();
+    std::optional<double> value_double = value.GetIfDouble();
     const std::string* value_str = value.GetIfString();
     uint256_t encoded_value = 0;
     if (value_double) {
       encoded_value = (uint256_t)(uint64_t)*value_double;
       if (encoded_value > (uint256_t)kMaxSafeInteger)
-        return absl::nullopt;
+        return std::nullopt;
     } else if (value_str) {
       if (!value_str->empty() &&
           !HexValueToUint256(*value_str, &encoded_value) &&
           !Base10ValueToUint256(*value_str, &encoded_value))
-        return absl::nullopt;
+        return std::nullopt;
     } else {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
-    absl::optional<uint256_t> max_value = MaxSolidityUint(num_bits);
-    if (max_value == absl::nullopt || encoded_value > *max_value) {
-      return absl::nullopt;
+    std::optional<uint256_t> max_value = MaxSolidityUint(num_bits);
+    if (max_value == std::nullopt || encoded_value > *max_value) {
+      return std::nullopt;
     }
 
     // Append the encoded value to byte array result in big endian order
@@ -289,28 +289,28 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
     unsigned num_bits;
     if (!base::StringToUint(type.data() + 3, &num_bits) ||
         !ValidSolidityBits(num_bits))
-      return absl::nullopt;
-    absl::optional<double> value_double = value.GetIfDouble();
+      return std::nullopt;
+    std::optional<double> value_double = value.GetIfDouble();
     const std::string* value_str = value.GetIfString();
     int256_t encoded_value = 0;
     if (value_double) {
       encoded_value = (int256_t)(int64_t)*value_double;
       if (encoded_value > (int256_t)kMaxSafeInteger)
-        return absl::nullopt;
+        return std::nullopt;
     } else if (value_str) {
       if (!value_str->empty() &&
           !HexValueToInt256(*value_str, &encoded_value) &&
           !Base10ValueToInt256(*value_str, &encoded_value))
-        return absl::nullopt;
+        return std::nullopt;
     } else {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
-    absl::optional<int256_t> min_value = MinSolidityInt(num_bits);
-    absl::optional<int256_t> max_value = MaxSolidityInt(num_bits);
-    if (min_value == absl::nullopt || max_value == absl::nullopt ||
+    std::optional<int256_t> min_value = MinSolidityInt(num_bits);
+    std::optional<int256_t> max_value = MaxSolidityInt(num_bits);
+    if (min_value == std::nullopt || max_value == std::nullopt ||
         encoded_value > *max_value || encoded_value < *min_value) {
-      return absl::nullopt;
+      return std::nullopt;
     }
 
     // Append the encoded value to byte array result in big endian order
@@ -321,7 +321,7 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
     DCHECK(value.is_dict());
     auto encoded_data = EncodeData(type, value.GetDict());
     if (!encoded_data)
-      return absl::nullopt;
+      return std::nullopt;
     std::vector<uint8_t> encoded_value = KeccakHash(*encoded_data);
 
     result.insert(result.end(), encoded_value.begin(), encoded_value.end());
@@ -329,13 +329,13 @@ absl::optional<std::vector<uint8_t>> EthSignTypedDataHelper::EncodeField(
   return result;
 }
 
-absl::optional<std::vector<uint8_t>>
+std::optional<std::vector<uint8_t>>
 EthSignTypedDataHelper::GetTypedDataDomainHash(
     const base::Value::Dict& domain_separator) const {
   return HashStruct("EIP712Domain", domain_separator);
 }
 
-absl::optional<std::vector<uint8_t>>
+std::optional<std::vector<uint8_t>>
 EthSignTypedDataHelper::GetTypedDataPrimaryHash(
     const std::string& primary_type_name,
     const base::Value::Dict& message) const {
@@ -343,12 +343,12 @@ EthSignTypedDataHelper::GetTypedDataPrimaryHash(
 }
 
 // static
-absl::optional<std::vector<uint8_t>>
+std::optional<std::vector<uint8_t>>
 EthSignTypedDataHelper::GetTypedDataMessageToSign(
     const std::vector<uint8_t>& domain_hash,
     const std::vector<uint8_t>& primary_hash) {
   if (domain_hash.empty() || primary_hash.empty())
-    return absl::nullopt;
+    return std::nullopt;
   std::vector<uint8_t> encoded_data({0x19, 0x01});
   encoded_data.insert(encoded_data.end(), domain_hash.begin(),
                       domain_hash.end());

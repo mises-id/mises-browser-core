@@ -1,8 +1,8 @@
 diff --git a/ui/base/BUILD.gn b/ui/base/BUILD.gn
-index 3af6a66b319a17f7a5962a3135358dfa3ca5fa00..c4fb9217eff7284b36e90f7fd0d50fcfd45edb36 100644
+index 79937bebda1b3405a8acbf1559ebd994a3f7bf0b..394c17cf919f08d2ce9e52154b04245bdfc385b8 100644
 --- a/ui/base/BUILD.gn
 +++ b/ui/base/BUILD.gn
-@@ -416,7 +416,7 @@ component("base") {
+@@ -423,7 +423,7 @@ component("base") {
        "themed_vector_icon.h",
      ]
  
@@ -11,7 +11,7 @@ index 3af6a66b319a17f7a5962a3135358dfa3ca5fa00..c4fb9217eff7284b36e90f7fd0d50fcf
        sources += [
          "menu_source_utils.cc",
          "menu_source_utils.h",
-@@ -630,7 +630,7 @@ component("base") {
+@@ -649,7 +649,7 @@ component("base") {
      ]
    }
  
@@ -20,7 +20,7 @@ index 3af6a66b319a17f7a5962a3135358dfa3ca5fa00..c4fb9217eff7284b36e90f7fd0d50fcf
      sources -= [
        "dragdrop/drop_target_event.cc",
        "dragdrop/drop_target_event.h",
-@@ -647,12 +647,18 @@ component("base") {
+@@ -666,11 +666,17 @@ component("base") {
      deps += [ ":ui_base_jni_headers" ]
      libs += [ "jnigraphics" ]
  
@@ -28,7 +28,6 @@ index 3af6a66b319a17f7a5962a3135358dfa3ca5fa00..c4fb9217eff7284b36e90f7fd0d50fcf
      sources -= [
        "l10n/l10n_font_util.cc",
        "models/button_menu_item_model.cc",
-       "pointer/touch_editing_controller.cc",
        "theme_provider.cc",
      ]
 +    }

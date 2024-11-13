@@ -32,7 +32,7 @@ class IpfsDnsResolverImpl
   void OnDnsConfigChanged() override;
   void OnDnsConfigChangeManagerConnectionError();
 
-  absl::optional<std::string> GetFirstDnsOverHttpsServer() override;
+  std::optional<std::string> GetFirstDnsOverHttpsServer() override;
 
  private:
   FRIEND_TEST_ALL_PREFIXES(IpfsDnsResolverImplUnitTest, ReconnectOnMojoError);

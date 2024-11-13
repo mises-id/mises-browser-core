@@ -21,15 +21,18 @@
 
 #define ShouldShowAsk                     \
   AddIPFSTabForURL(const GURL& ipfs_url); \
+  std::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
+  void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);\
   bool ShouldShowSiteSettings(int* link_text_id, int* tooltip_text_id); \
   std::u16string GetPermissionDetail(ContentSettingsType type); \
-  void AboutThisSiteSourceClicked(GURL url, const ui::Event& event);\
+  bool ShouldShowSettingsLinkForPermission(ContentSettingsType type,\
+                                           int* text_id,\
+                                           int* link_id);\
+  void SettingsLinkClicked(ContentSettingsType type);\
   void ShowPrivacySandboxSettings();\
-  void OpenMoreAboutThisPageUrl(const GURL& url, const ui::Event& event);\
-  absl::optional<page_info::proto::SiteInfo> GetAboutThisSiteInfo();\
-  void ShowPrivacySandboxAdPersonalization(); \
   bool IsBlockAutoPlayEnabled() override; \
   bool IsMultipleTabsOpen() override; \
+  void OpenSiteSettingsFileSystem() override; \
   bool ShouldShowAsk
 
 #endif

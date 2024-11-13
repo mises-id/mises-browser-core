@@ -43,7 +43,7 @@ bool MisesExtensionsAPIProvider::IsAPISchemaGenerated(
   return api::MisesGeneratedSchemas::IsGenerated(name);
 }
 
-base::StringPiece MisesExtensionsAPIProvider::GetAPISchema(
+std::string_view MisesExtensionsAPIProvider::GetAPISchema(
     const std::string& name) {
   return api::MisesGeneratedSchemas::Get(name);
 }

@@ -1,45 +1,48 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-index 9cecfd81f037c30d557e538fc00be35678abba23..58ae536c03ef661ee9b93bdd4d85df7533f4316a 100644
+index 1469f4e9f320bce344a7a2b75316c0e345cab4f9..1282d37a4efd97261a05e0ee7c8c174fcb3488f7 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridDialogCoordinator.java
-@@ -29,6 +29,8 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor;
+@@ -57,6 +57,10 @@ import org.chromium.ui.widget.ViewRectProvider;
  
  import java.util.List;
  
 +import org.chromium.base.ContextUtils;
 +
++import org.chromium.base.ContextUtils;
++
  /**
-  * A coordinator for TabGridDialog component. Manages the communication with
-  * {@link TabListCoordinator} as well as the life-cycle of shared component
-@@ -88,12 +90,17 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
-                     tabCreatorManager, resetHandler, this::getRecyclerViewPosition,
-                     animationSourceViewProvider, mSnackbarManager, mComponentName);
+  * A coordinator for TabGridDialog component. Manages the communication with {@link
+  * TabListCoordinator} as well as the life-cycle of shared component objects.
+@@ -186,13 +190,18 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
+                             showColorPickerPopupRunnable,
+                             actionConfirmationManager);
  
-+            int mode = TabUiFeatureUtilities.shouldUseListMode(mActivity)
++            int mode = TabUiFeatureUtilities.shouldUseListMode()
 +                            ? TabListCoordinator.TabListMode.LIST
 +                            : TabListCoordinator.TabListMode.GRID;
 +            final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
 +            if (active_tabswitcher.equals("default") || active_tabswitcher.equals("grid"))
 +                mode = TabListCoordinator.TabListMode.GRID;
 +
-             // TODO(crbug.com/1031349) : Remove the inline mode logic here, make the constructor to
+             // TODO(crbug.com/40662311) : Remove the inline mode logic here, make the constructor to
              // take in a mode parameter instead.
-             mTabListCoordinator = new TabListCoordinator(
--                    TabUiFeatureUtilities.shouldUseListMode(mActivity)
--                            ? TabListCoordinator.TabListMode.LIST
--                            : TabListCoordinator.TabListMode.GRID,
-+                    mode,
-                     activity, mBrowserControlsStateProvider, tabModelSelector,
-                     (tabId, thumbnailSize, callback, forceUpdate, writeBack, isSelected)
-                             -> {
-@@ -135,6 +142,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
-             int mode = TabUiFeatureUtilities.shouldUseListMode(mActivity)
-                     ? TabListCoordinator.TabListMode.LIST
-                     : TabListCoordinator.TabListMode.GRID;
+             mTabListCoordinator =
+                     new TabListCoordinator(
+-                            TabUiFeatureUtilities.shouldUseListMode()
+-                                    ? TabListCoordinator.TabListMode.LIST
+-                                    : TabListCoordinator.TabListMode.GRID,
++                            mode,
+                             activity,
+                             mBrowserControlsStateProvider,
+                             mModalDialogManager,
+@@ -285,6 +294,10 @@ public class TabGridDialogCoordinator implements TabGridDialogMediator.DialogCon
+                     TabUiFeatureUtilities.shouldUseListMode()
+                             ? TabListCoordinator.TabListMode.LIST
+                             : TabListCoordinator.TabListMode.GRID;
 +            final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
 +            if (active_tabswitcher.equals("default") || active_tabswitcher.equals("grid"))
 +                mode = TabListCoordinator.TabListMode.GRID;
 +
-             mTabSelectionEditorCoordinator = new TabSelectionEditorCoordinator(mActivity,
-                     mDialogView.findViewById(R.id.dialog_container_view),
-                     mBrowserControlsStateProvider, mTabModelSelector, mTabContentManager,
+             ViewGroup container = mDialogView.findViewById(R.id.dialog_container_view);
+             mTabListEditorCoordinator =
+                     new TabListEditorCoordinator(

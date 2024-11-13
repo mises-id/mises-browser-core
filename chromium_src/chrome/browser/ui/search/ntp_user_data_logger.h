@@ -12,7 +12,7 @@
 #include "chrome/common/search/ntp_logging_events.h"
 #include "components/ntp_tiles/constants.h"
 #include "components/ntp_tiles/ntp_tile_impression.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 
 #if BUILDFLAG(IS_ANDROID)

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/companion/visual_query/BUILD.gn b/chrome/browser/companion/visual_query/BUILD.gn
+index 902306c4e584d4dde0994aa90ee95985ef43ad37..52f40bb60ca7eebafd9cf83df73d4fb48d65ee9b 100644
+--- a/chrome/browser/companion/visual_query/BUILD.gn
++++ b/chrome/browser/companion/visual_query/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android, "Visual Query is for desktop platforms only")
++#assert(!is_android, "Visual Query is for desktop platforms only")
+ 
+ source_set("visual_query") {
+   sources = [

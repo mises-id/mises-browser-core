@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/search/BUILD.gn b/chrome/browser/search/BUILD.gn
+index 7327a4d1ad814d6325058ba54790373c1ef91bd2..e3a43b901dfc4b2967d3a7370d132aea6f26d328 100644
+--- a/chrome/browser/search/BUILD.gn
++++ b/chrome/browser/search/BUILD.gn
+@@ -31,7 +31,8 @@ source_set("search") {
+     ]
+     public_deps += [ "//components/policy/core/browser" ]
+     deps += [ "//components/prefs" ]
+-  } else {
++  }# else {
++  if (true) {
+     sources += [
+       "instant_service.cc",
+       "instant_service.h",

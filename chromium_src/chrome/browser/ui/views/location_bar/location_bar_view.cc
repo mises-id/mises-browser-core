@@ -4,6 +4,10 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include "base/containers/adapters.h"
+#include "mises/browser/ui/omnibox/mises_omnibox_client_impl.h"
+#include "chrome/browser/ui/color/chrome_color_id.h"
+#include "chrome/browser/ui/views/omnibox/omnibox_view_views.h"
+#include "ui/views/style/typography.h"
 
 #define MISES_LAYOUT_TRAILING_DECORATIONS                                    \
   auto right_most = GetTrailingViews();                                      \

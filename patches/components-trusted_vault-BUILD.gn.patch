@@ -1,0 +1,13 @@
+diff --git a/components/trusted_vault/BUILD.gn b/components/trusted_vault/BUILD.gn
+index 185234936f3ee602c8c8d8930c8a402de69cad87..1c2355e1cdc5c3451c79aafd2b7bf0fb22b1bef5 100644
+--- a/components/trusted_vault/BUILD.gn
++++ b/components/trusted_vault/BUILD.gn
+@@ -16,7 +16,7 @@ static_library("trusted_vault") {
+   ]
+   configs += [ "//build/config/compiler:wexit_time_destructors" ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "command_line_switches.cc",
+       "command_line_switches.h",

@@ -1,0 +1,19 @@
+diff --git a/components/saved_tab_groups/android/tab_group_sync_conversions_utils.cc b/components/saved_tab_groups/android/tab_group_sync_conversions_utils.cc
+index 78bb586d98f8c3532893dd3c7df43d18c2e4fa51..3d7998e740553471ec6f9a3aa4d601f99d6f703f 100644
+--- a/components/saved_tab_groups/android/tab_group_sync_conversions_utils.cc
++++ b/components/saved_tab_groups/android/tab_group_sync_conversions_utils.cc
+@@ -26,11 +26,12 @@ int kInvalidTabId = -1;
+ }  // namespace
+ 
+ LocalTabID FromJavaTabId(int tab_id) {
+-  return tab_id;
++  return base::Token(0, tab_id);
+ }
+ 
+ jint ToJavaTabId(const std::optional<LocalTabID>& tab_id) {
+-  return tab_id.value_or(kInvalidTabId);
++  if (!tab_id.has_value()) return kInvalidTabId;
++  return tab_id.value().low();
+ }
+ 
+ ScopedJavaLocalRef<jstring> UuidToJavaString(JNIEnv* env,

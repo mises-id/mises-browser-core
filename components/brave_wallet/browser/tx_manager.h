@@ -52,8 +52,8 @@ class TxManager : public TxStateManager::Observer,
   virtual void AddUnapprovedTransaction(
       mojom::TxDataUnionPtr tx_data_union,
       const std::string& from,
-      const absl::optional<url::Origin>& origin,
-      const absl::optional<std::string>& group_id,
+      const std::optional<url::Origin>& origin,
+      const std::optional<std::string>& group_id,
       AddUnapprovedTransactionCallback) = 0;
   virtual void ApproveTransaction(const std::string& tx_meta_id,
                                   ApproveTransactionCallback) = 0;
@@ -61,7 +61,7 @@ class TxManager : public TxStateManager::Observer,
                                  RejectTransactionCallback);
   virtual void GetTransactionInfo(const std::string& tx_meta_id,
                                   GetTransactionInfoCallback);
-  virtual void GetAllTransactionInfo(const absl::optional<std::string>& from,
+  virtual void GetAllTransactionInfo(const std::optional<std::string>& from,
                                      GetAllTransactionInfoCallback);
 
   virtual void SpeedupOrCancelTransaction(

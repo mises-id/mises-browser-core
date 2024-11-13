@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/ui/autofill/BUILD.gn b/chrome/browser/ui/autofill/BUILD.gn
+index e59acb3d8568c3d3e705469a73de223319117f93..a0fd87b9cb83e2abfa370f4c84bfc7da2038cc1d 100644
+--- a/chrome/browser/ui/autofill/BUILD.gn
++++ b/chrome/browser/ui/autofill/BUILD.gn
+@@ -163,7 +163,8 @@ source_set("impl") {
+       "//components/messages/android:feature_flags",
+       "//components/password_manager/core/browser/features:password_features",
+     ]
+-  } else {
++  }#} else {
++  if (true) {
+     sources += [
+       "add_new_address_bubble_controller.cc",
+       "address_bubbles_controller.cc",

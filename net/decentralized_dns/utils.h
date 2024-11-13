@@ -6,22 +6,22 @@
 #ifndef MISES_NET_DECENTRALIZED_DNS_UTILS_H_
 #define MISES_NET_DECENTRALIZED_DNS_UTILS_H_
 
-#include "base/strings/string_piece.h"
+#include <string_view>
 #include "net/base/net_export.h"
 namespace decentralized_dns {
 
 
-NET_EXPORT bool IsIpfsLocalTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsIpfsLocalTLD(const std::string_view& host, size_t* suffix_length = nullptr);
 
-NET_EXPORT bool IsUnstoppableDomainsTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsUnstoppableDomainsTLD(const std::string_view& host, size_t* suffix_length = nullptr);
 
-NET_EXPORT bool IsBitTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
-NET_EXPORT bool IsFreeNameTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsBitTLD(const std::string_view& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsFreeNameTLD(const std::string_view& host, size_t* suffix_length = nullptr);
 
-NET_EXPORT bool IsENSTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
-NET_EXPORT bool IsSnsTLD(const base::StringPiece& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsENSTLD(const std::string_view& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsSnsTLD(const std::string_view& host, size_t* suffix_length = nullptr);
 
-NET_EXPORT bool IsDNSForEthDomain(const base::StringPiece& host, size_t* suffix_length = nullptr);
+NET_EXPORT bool IsDNSForEthDomain(const std::string_view& host, size_t* suffix_length = nullptr);
 
 }  // namespace decentralized_dns
 

@@ -1,8 +1,8 @@
 diff --git a/ui/base/dragdrop/os_exchange_data.h b/ui/base/dragdrop/os_exchange_data.h
-index 7e0e21766587f4c4c4f46d3cf390eaa7985a05dc..6c4f808dda07e1ab6d8d55ff3bacf41dcbd90e7f 100644
+index c01cc12e761b8a50a5b6af7fec2f5f368799afa8..736ce38cef7879250d91270da6c071bb746a7320 100644
 --- a/ui/base/dragdrop/os_exchange_data.h
 +++ b/ui/base/dragdrop/os_exchange_data.h
-@@ -58,7 +58,7 @@ class COMPONENT_EXPORT(UI_BASE) OSExchangeData {
+@@ -57,7 +57,7 @@ class COMPONENT_EXPORT(UI_BASE) OSExchangeData {
      FILE_NAME = 1 << 2,
      PICKLED_DATA = 1 << 3,
      FILE_CONTENTS = 1 << 4,

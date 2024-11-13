@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "base/feature_list.h"
-#include "base/strings/string_piece_forward.h"
 #include "base/strings/string_split.h"
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
@@ -74,12 +73,12 @@ const int64_t kIpfsNSCodec = 0xE3;
 const int64_t kIpnsNSCodec = 0xE5;
 
 
-absl::optional<GURL> ExtractSourceFromGatewayHost(const GURL& url) {
+std::optional<GURL> ExtractSourceFromGatewayHost(const GURL& url) {
   std::vector<std::string> host_parts = base::SplitStringUsingSubstr(
       url.host(), ".", base::KEEP_WHITESPACE, base::SPLIT_WANT_ALL);
 
   if (host_parts.size() <= 2) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   GURL final_url;
   if (host_parts.at(1) == "ipfs" && ipfs::IsValidCID(host_parts.at(0))) {
@@ -93,7 +92,7 @@ absl::optional<GURL> ExtractSourceFromGatewayHost(const GURL& url) {
   }
 
   if (!final_url.is_valid()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   GURL::Replacements replacements;
@@ -102,12 +101,12 @@ absl::optional<GURL> ExtractSourceFromGatewayHost(const GURL& url) {
   return final_url.ReplaceComponents(replacements);
 }
 
-absl::optional<GURL> ExtractSourceFromGatewayPath(const GURL& url) {
+std::optional<GURL> ExtractSourceFromGatewayPath(const GURL& url) {
   std::vector<std::string> path_parts = base::SplitStringUsingSubstr(
       url.path(), "/", base::KEEP_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
 
   if (path_parts.size() < 2) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   GURL final_url;
 
@@ -129,7 +128,7 @@ absl::optional<GURL> ExtractSourceFromGatewayPath(const GURL& url) {
   }
 
   if (!final_url.is_valid()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   GURL::Replacements replacements;
@@ -218,22 +217,22 @@ bool IsDefaultGatewayURL(const GURL& url, PrefService* prefs) {
           url.DomainIs(std::string("ipns.") + gateway_host));
 }
 
-absl::optional<GURL> TranslateXIPFSPath(const std::string& x_ipfs_path_header) {
+std::optional<GURL> TranslateXIPFSPath(const std::string& x_ipfs_path_header) {
   std::string scheme;
   if (base::StartsWith(x_ipfs_path_header, "/ipfs/")) {
     scheme = kIPFSScheme;
   } else if (base::StartsWith(x_ipfs_path_header, "/ipns/")) {
     scheme = kIPNSScheme;
   } else {
-    return absl::nullopt;
+    return std::nullopt;
   }
   std::string content = x_ipfs_path_header.substr(6, x_ipfs_path_header.size());
   if (content.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   GURL result = GURL(scheme + "://" + content);
   if (!result.is_valid()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   return result;
 }
@@ -512,8 +511,7 @@ GURL ContentHashToCIDv1URL(base::span<const uint8_t> contenthash) {
     return GURL();
   if (code != kIpnsNSCodec && code != kIpfsNSCodec)
     return GURL();
-  std::string encoded = base32::Base32Encode(base::StringPiece(
-      reinterpret_cast<const char*>(contenthash.data()), contenthash.size()));
+  std::string encoded = base32::Base32Encode(contenthash);
   if (encoded.empty())
     return GURL();
   std::string trimmed;
@@ -572,9 +570,9 @@ std::string DecodeSingleLabelForm(const std::string& input) {
 // ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfy
 // bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfy.ipfs.gateway.io ->
 // ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfy
-absl::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url) {
+std::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url) {
   if (!url.is_valid() || !url.SchemeIsHTTPOrHTTPS()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   std::vector<std::string> host_parts = base::SplitStringUsingSubstr(
@@ -608,7 +606,7 @@ absl::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url) {
     return final_url.ReplaceComponents(replacements);
   }
 
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 
@@ -632,9 +630,9 @@ absl::optional<GURL> TranslateToCurrentGatewayUrl(const GURL& url) {
 // 4) IPNS key:
 // gateway.io/ipns/k2k4r8k4oiuzuccssu5jj27hrth43yqoq55wvm46e7ygqokvlz4ixmfn ->
 // ipns://k2k4r8k4oiuzuccssu5jj27hrth43yqoq55wvm46e7ygqokvlz4ixmfn
-absl::optional<GURL> ExtractSourceFromGateway(const GURL& url) {
+std::optional<GURL> ExtractSourceFromGateway(const GURL& url) {
   if (!url.is_valid() || !url.SchemeIsHTTPOrHTTPS()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   auto result = ExtractSourceFromGatewayHost(url);

@@ -126,13 +126,13 @@ Web3sitesSafeService* Web3sitesSafeService::Get(Profile* profile) {
 
 //CheckWeb3sitesURL
 void Web3sitesSafeService::CheckWeb3sitesURL(std::unique_ptr<MisesURLCheckCallback> callback,const GURL& url){
-    LOG(INFO) << "Cg Web3sitesSafeService::CheckWeb3sitesURL url=" << url;
+    LOG(INFO) << "Web3sitesSafeService::CheckWeb3sitesURL url=" << url;
     callback_ = std::move(callback);
     check_url_ = url;
 
     //white list
     if(IsWeb3sitesWhiteList(check_url_)){
-      LOG(INFO) << "Cg Web3sitesSafeService::CheckWeb3sitesURL white list";
+      LOG(INFO) << "Web3sitesSafeService::CheckWeb3sitesURL white list";
       GURL& safe_url = check_url_;
       MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,safe_url);
       return OnCheckResponse(check_result);
@@ -142,7 +142,7 @@ void Web3sitesSafeService::CheckWeb3sitesURL(std::unique_ptr<MisesURLCheckCallba
 
     //is needed check
     if (!IsWeb3sitesNeedCheck()){
-      LOG(INFO) << "Cg Web3sitesSafeService::CheckWeb3sitesURL not needed checking";
+      LOG(INFO) << "Web3sitesSafeService::CheckWeb3sitesURL not needed checking";
       GURL& safe_url = check_url_;
       MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,safe_url);
       return OnCheckResponse(check_result);
@@ -205,7 +205,7 @@ bool Web3sitesSafeService::IsLookalike(const GURL& url,GURL *suggested_url) cons
     float lcs_rate = float(lcs_len) / float(check_url_len);
     if (edit_distance <= 3 || lcs_rate >= 0.8){
       *suggested_url = GURL(web3site.hostname);
-      LOG(INFO) << "Cg Web3sitesSafeService::IsLookalike"
+      LOG(INFO) << "Web3sitesSafeService::IsLookalike"
       << ",check_url=" << checkURL.hostname
       << ",web3site=" << web3site.domain_without_registry
       << ",edit_distance=" << edit_distance
@@ -219,7 +219,7 @@ bool Web3sitesSafeService::IsLookalike(const GURL& url,GURL *suggested_url) cons
 }
 //IsWeb3sitesNeedCheck
 bool Web3sitesSafeService::IsWeb3sitesNeedCheck() const{
-  LOG(INFO) << "Cg Web3sitesSafeService::IsWeb3sitesNeedCheck";
+  LOG(INFO) << "Web3sitesSafeService::IsWeb3sitesNeedCheck";
   MisesDomainInfo checkURL = GetMisesDomainInfo(check_url_);
   //lookalike
 
@@ -231,7 +231,7 @@ bool Web3sitesSafeService::IsWeb3sitesNeedCheck() const{
     int lcs_len = lcs_string.size();
     float lcs_rate = float(lcs_len) / float(check_url_len);
     if (edit_distance <= 5 || lcs_rate >= 0.6){
-      LOG(INFO) << "Cg Web3sitesSafeService::IsWeb3sitesNeedCheck lookalike"
+      LOG(INFO) << "Web3sitesSafeService::IsWeb3sitesNeedCheck lookalike"
       << ",check_url=" << checkURL.hostname
       << ",web3site=" << web3site.domain_without_registry
       << ",edit_distance=" << edit_distance
@@ -246,7 +246,7 @@ bool Web3sitesSafeService::IsWeb3sitesNeedCheck() const{
 
 //StartURLCheck
 void Web3sitesSafeService::StartURLCheck() {
-   LOG(INFO) << "Cg Web3sitesSafeService::StartURLCheck";
+   LOG(INFO) << "Web3sitesSafeService::StartURLCheck";
     net::NetworkTrafficAnnotationTag traffic_annotation =
             net::DefineNetworkTrafficAnnotation("mises_web3sites_phishing_check", R"(
         semantics {
@@ -293,7 +293,7 @@ void Web3sitesSafeService::StartURLCheck() {
 //OnURLCheckCompleted
 void Web3sitesSafeService::OnURLCheckCompleted(const network::SimpleURLLoader* source,
                                     std::unique_ptr<std::string> response_body){
-    LOG(INFO) << "Cg Web3sitesSafeService::OnURLCheckCompleted";
+    LOG(INFO) << "Web3sitesSafeService::OnURLCheckCompleted";
     const GURL& url = check_url_;
     GURL& safe_url = check_url_;
     MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,safe_url);
@@ -318,19 +318,19 @@ void Web3sitesSafeService::OnURLCheckCompleted(const network::SimpleURLLoader* s
         VLOG(1) << "No mises match found in the response.";
        return OnCheckResponse(check_result);
     }
-    LOG(INFO) << "Cg Web3sitesSafeService::OnMisesURLCheckCompleted json_string=" << json_string;
+    LOG(INFO) << "Web3sitesSafeService::OnMisesURLCheckCompleted json_string=" << json_string;
     if (!json_value->is_dict()) {
       return OnCheckResponse(check_result);
     }
     auto result_code = json_value->FindInt("code");
-    LOG(INFO) << "Cg Web3sitesSafeService::OnURLCheckCompleted"
+    LOG(INFO) << "Web3sitesSafeService::OnURLCheckCompleted"
     << ",result_code=" << *result_code;
     if(*result_code != 0) {
       return OnCheckResponse(check_result);
     }
     auto* result_data = json_value->FindDict("data");
     const std::string* origin = result_data->FindString("origin");
-    absl::optional<int> type = result_data->FindInt("type").value_or(1);
+    std::optional<int> type = result_data->FindInt("type").value_or(1);
     auto result_type = *type;
     switch(result_type) {
       case 2:
@@ -346,7 +346,7 @@ void Web3sitesSafeService::OnURLCheckCompleted(const network::SimpleURLLoader* s
       origin_url = GURL("https://" + origin_string);
     }
     check_result.safe_url = origin_url;
-    LOG(INFO) << "Cg Web3sitesSafeService::OnURLCheckCompleted"
+    LOG(INFO) << "Web3sitesSafeService::OnURLCheckCompleted"
     << ",result_type=" << check_result.result_type
     << ",origin=" << origin_string
     << ",safe_url=" << check_result.safe_url
@@ -366,7 +366,7 @@ bool Web3sitesSafeService::Web3sitesNeedUpdating() const {
 
 //UpdateWeb3sites
 void Web3sitesSafeService::UpdateWeb3sites() {
-    LOG(INFO) << "Cg Web3sitesSafeService::UpdateWeb3sites";
+    LOG(INFO) << "Web3sitesSafeService::UpdateWeb3sites";
     //getMisesMatch
     net::NetworkTrafficAnnotationTag traffic_annotation =
             net::DefineNetworkTrafficAnnotation("web3sites_phishing_config", R"(
@@ -414,7 +414,7 @@ void Web3sitesSafeService::UpdateWeb3sites() {
 //OnUpdateWeb3sitesCompleted
 void Web3sitesSafeService::OnUpdateWeb3sitesCompleted(const network::SimpleURLLoader* source,
                                     std::unique_ptr<std::string> response_body){
-    LOG(INFO) << "Cg Web3sitesSafeService::OnUpdateWeb3sitesCompleted";
+    LOG(INFO) << "Web3sitesSafeService::OnUpdateWeb3sitesCompleted";
     int response_code = -1;
     if (source->ResponseInfo() &&
         source->ResponseInfo()->headers) {

@@ -1,20 +1,20 @@
 diff --git a/chrome/browser/extensions/BUILD.gn b/chrome/browser/extensions/BUILD.gn
-index bb5ccf84803aa93da71a562230e13a9708c2f648..2f8cd9d9432b6dcf942c009b3c77e8b60ad24a47 100644
+index 3297c631e40aa95ed19907dd89f3cc1204e6c5b8..84c6902c8627fcf6498f3f0c22eadb12933afad4 100644
 --- a/chrome/browser/extensions/BUILD.gn
 +++ b/chrome/browser/extensions/BUILD.gn
-@@ -991,6 +991,7 @@ static_library("extensions") {
+@@ -990,6 +990,7 @@ source_set("extensions") {
      "//ui/strings",
      "//url",
    ]
 +  
  
-   if (enable_supervised_users) {
-     deps += [ "//components/supervised_user/core/browser" ]
-@@ -1417,6 +1418,7 @@ static_library("extensions") {
-   } else {
-     sources += [ "api/braille_display_private/braille_controller_stub.cc" ]
+   if (is_linux || is_mac || is_win) {
+     sources += [
+@@ -1543,6 +1544,7 @@ source_set("extensions") {
+       "//components/enterprise/data_controls/core/browser",
+     ]
    }
-+  import("//mises/browser/extensions/sources.gni") sources -= mises_extensions_exception_sources sources += mises_extensions_sources deps += mises_extensions_resources
++  import("//mises/browser/extensions/sources.gni") sources -= mises_extensions_exception_sources sources += mises_extensions_sources deps -= mises_extensions_exception_deps deps += mises_extensions_deps allow_circular_includes_from -= mises_extensions_exception_allow_circular_includes_from
  }
  
- proto_library("cws_item_service_proto") {
+ # KeyedService factories initialization.

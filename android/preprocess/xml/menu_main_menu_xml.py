@@ -111,18 +111,18 @@ def _ProcessXML(root):
     set_as_default_child_str = 'item/[@android:id="@+id/managed_by_menu_id"]'
     _InsertNode(parent, set_as_default_node_str, set_as_default_child_str)
 
-    clear_data_node_str = '<item xmlns:android='\
-    '"http://schemas.android.com/apk/res/android" '\
-      'android:id="@+id/clear_data_menu_id" ' \
-      'android:title="@string/main_menu_clear_data" />'
-    clear_data_child_str = 'item/[@android:id="@+id/set_default_browser"]'
-    _InsertNode(parent, clear_data_node_str, clear_data_child_str)
+    # clear_data_node_str = '<item xmlns:android='\
+    # '"http://schemas.android.com/apk/res/android" '\
+    #   'android:id="@+id/clear_data_menu_id" ' \
+    #   'android:title="@string/main_menu_clear_data" />'
+    # clear_data_child_str = 'item/[@android:id="@+id/set_default_browser"]'
+    # _InsertNode(parent, clear_data_node_str, clear_data_child_str)
 
     exit_node_str = '<item xmlns:android='\
     '"http://schemas.android.com/apk/res/android" '\
       'android:id="@+id/exit_id" ' \
       'android:title="@string/main_menu_exit" />'
-    exit_child_str = 'item/[@android:id="@+id/clear_data_menu_id"]'
+    exit_child_str = 'item/[@android:id="@+id/set_default_browser"]'
     _InsertNode(parent, exit_node_str, exit_child_str)
 
     return root

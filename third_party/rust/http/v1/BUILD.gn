@@ -1,0 +1,62 @@
+# Copyright (c) 2024 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# @generated from third_party/rust/chromium_crates_io/BUILD.gn.hbs by
+# tools/crates/gnrt.
+# Do not edit!
+
+import("//build/rust/cargo_crate.gni")
+
+cargo_crate("lib") {
+  crate_name = "http"
+  epoch = "1"
+  crate_type = "rlib"
+  crate_root =
+      "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/lib.rs"
+  sources = [
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/byte_str.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/convert.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/error.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/extensions.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/header/map.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/header/mod.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/header/name.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/header/value.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/lib.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/method.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/request.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/response.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/status.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/authority.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/builder.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/mod.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/path.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/port.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/scheme.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/uri/tests.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/http-1.0.0/src/version.rs",
+  ]
+  inputs = []
+
+  build_native_rust_unit_tests = false
+  edition = "2018"
+  cargo_pkg_version = "1.0.0"
+  cargo_pkg_authors = "Alex Crichton <alex@alexcrichton.com>, Carl Lerche <me@carllerche.com>, Sean McArthur <sean@seanmonstar.com>"
+  cargo_pkg_name = "http"
+  cargo_pkg_description =
+      "A set of types for representing HTTP requests and responses."
+  library_configs -= [ "//build/config/compiler:chromium_code" ]
+  library_configs += [ "//build/config/compiler:no_chromium_code" ]
+  executable_configs -= [ "//build/config/compiler:chromium_code" ]
+  executable_configs += [ "//build/config/compiler:no_chromium_code" ]
+  proc_macro_configs -= [ "//build/config/compiler:chromium_code" ]
+  proc_macro_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/bytes/v1:lib",
+    "//mises/third_party/rust/fnv/v1:lib",
+    "//mises/third_party/rust/itoa/v1:lib",
+  ]
+  features = [ "std" ]
+}

@@ -13,9 +13,11 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.chromium.base.ApiCompatibilityUtils;
 import org.chromium.base.jank_tracker.JankTracker;
+import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.Supplier;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.feedback.HelpAndFeedbackLauncher;
@@ -30,6 +32,7 @@ import org.chromium.chrome.browser.xsurface.feed.FeedLaunchReliabilityLogger.Sur
 import org.chromium.components.browser_ui.bottomsheet.BottomSheetController;
 import org.chromium.ui.UiUtils;
 import org.chromium.ui.base.WindowAndroid;
+
 
 public class MisesFeedSurfaceCoordinator extends FeedSurfaceCoordinator {
     // To delete in bytecode, members from parent class will be used instead.
@@ -50,21 +53,18 @@ public class MisesFeedSurfaceCoordinator extends FeedSurfaceCoordinator {
             boolean showDarkBackground,
             FeedSurfaceDelegate delegate,
             Profile profile,
-            boolean isPlaceholderShownInitially,
             BottomSheetController bottomSheetController,
             Supplier<ShareDelegate> shareDelegateSupplier,
             @Nullable ScrollableContainerDelegate externalScrollableContainerDelegate,
             @NewTabPageLaunchOrigin int launchOrigin,
             PrivacyPreferencesManagerImpl privacyPreferencesManager,
             @NonNull Supplier<Toolbar> toolbarSupplier,
-            @SurfaceType int surfaceType,
             long embeddingSurfaceCreatedTimeNs,
             @Nullable FeedSwipeRefreshLayout swipeRefreshLayout,
             boolean overScrollDisabled,
             @Nullable ViewGroup viewportView,
             FeedActionDelegate actionDelegate,
-            HelpAndFeedbackLauncher helpAndFeedbackLauncher,
-            TabModelSelector tabModelSelector) {
+            @NonNull ObservableSupplier<Integer> tabStripHeightSupplier) {
         super(
                 activity,
                 snackbarManager,
@@ -76,21 +76,18 @@ public class MisesFeedSurfaceCoordinator extends FeedSurfaceCoordinator {
                 showDarkBackground,
                 delegate,
                 profile,
-                isPlaceholderShownInitially,
                 bottomSheetController,
                 shareDelegateSupplier,
                 externalScrollableContainerDelegate,
                 launchOrigin,
                 privacyPreferencesManager,
                 toolbarSupplier,
-                surfaceType,
                 embeddingSurfaceCreatedTimeNs,
                 swipeRefreshLayout,
                 overScrollDisabled,
                 viewportView,
                 actionDelegate,
-                helpAndFeedbackLauncher,
-                tabModelSelector);
+                tabStripHeightSupplier);
     }
 
     public void createFrameLayoutForPolicy() {
@@ -102,8 +99,7 @@ public class MisesFeedSurfaceCoordinator extends FeedSurfaceCoordinator {
         mFrameLayoutForPolicy = new FrameLayout(mActivity);
         mFrameLayoutForPolicy.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        mFrameLayoutForPolicy.setBackgroundColor(ApiCompatibilityUtils.getColor(
-                mActivity.getResources(), R.color.default_bg_color_baseline));
+        mFrameLayoutForPolicy.setBackgroundColor(mActivity.getColor(R.color.default_bg_color_baseline));
 
         // Make framelayout focusable so that it is the next focusable view when the url bar clears
         // focus.

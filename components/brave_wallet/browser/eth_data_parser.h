@@ -14,7 +14,7 @@
 
 namespace brave_wallet {
 
-absl::optional<std::tuple<mojom::TransactionType,     // tx_type
+std::optional<std::tuple<mojom::TransactionType,     // tx_type
                           std::vector<std::string>,   // tx_params
                           std::vector<std::string>>>  // tx_args
 GetTransactionInfoFromData(const std::vector<uint8_t>& data);

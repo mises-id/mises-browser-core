@@ -1,12 +1,12 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
-index 8a60a8500c67998f774817b4c5c075e9534d2cfa..a6402ff80051d50c85cedcca85a4df08c4b11abe 100644
+index ec7194176b91b87277f83674f11ff1a937ecd490..c419f83cfbf1d53de4394b50db799acfaf77da2d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/sync/settings/GoogleServicesSettings.java
-@@ -109,6 +109,7 @@ public class GoogleServicesSettings extends ChromeBaseSettingsFragment
+@@ -127,6 +127,7 @@ public class GoogleServicesSettings extends ChromeBaseSettingsFragment
              mAllowSignin.setOnPreferenceChangeListener(this);
              mAllowSignin.setManagedPreferenceDelegate(mManagedPreferenceDelegate);
          }
 +        mAllowSignin.setEnabled(false);
  
-         mSearchSuggestions = (ChromeSwitchPreference) findPreference(PREF_SEARCH_SUGGESTIONS);
-         mSearchSuggestions.setOnPreferenceChangeListener(this);
+         mPasswordsAccountStorage =
+                 (ChromeSwitchPreference) findPreference(PREF_PASSWORDS_ACCOUNT_STORAGE);

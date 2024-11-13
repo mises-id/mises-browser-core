@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/commerce/BUILD.gn b/chrome/browser/resources/side_panel/commerce/BUILD.gn
-index 518ec4d30e7599ca06d92abbbcce0d0d4e0035bb..aa839b5a9ccbccf3ea90e0438ef3bc4d2dcc6cce 100644
+index e3a03d8ee2b40ccf87b4b31e28e39367e83a6682..306c6f153ac2938248050c67ca3f021c37a5adf6 100644
 --- a/chrome/browser/resources/side_panel/commerce/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/commerce/BUILD.gn
 @@ -4,7 +4,7 @@

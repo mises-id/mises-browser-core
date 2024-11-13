@@ -21,6 +21,7 @@
 #include "chrome/browser/apps/app_service/app_service_proxy_factory.h"
 #include "chrome/browser/search/instant_service_factory.h"
 #include "chrome/browser/ui/tabs/pinned_tab_service_factory.h"
+#include "chrome/browser/ui/tabs/organization/tab_organization_service_factory.h"
 #include "chrome/browser/themes/theme_service_factory.h"
 #include "chrome/browser/user_education/user_education_service_factory.h"
 #include "chrome/browser/sessions/session_service_factory.h"
@@ -67,7 +68,11 @@ void EnsureBrowserContextKeyedServiceFactoriesBuiltExtra() {
 #if BUILDFLAG(IS_ANDROID)
   EnsureBrowserContextKeyedServiceFactoriesBuilt();
   //InstantServiceFactory::GetInstance();
+
   PinnedTabServiceFactory::GetInstance();
+  
+
+  TabOrganizationServiceFactory::GetInstance();
   ThemeServiceFactory::GetInstance();
   AppSessionServiceFactory::GetInstance();
   apps::AppServiceProxyFactory::GetInstance();

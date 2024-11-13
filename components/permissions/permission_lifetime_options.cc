@@ -11,7 +11,7 @@ namespace permissions {
 
 PermissionLifetimeOption::PermissionLifetimeOption(
     std::u16string label,
-    absl::optional<base::TimeDelta> lifetime)
+    std::optional<base::TimeDelta> lifetime)
     : label(std::move(label)), lifetime(std::move(lifetime)) {}
 
 PermissionLifetimeOption::PermissionLifetimeOption(

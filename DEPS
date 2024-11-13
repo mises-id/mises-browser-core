@@ -14,7 +14,6 @@ vars = {
 deps = {
   "vendor/transifex": "https://github.com/transifex/transifex-python@103b6ac7ad937155f7f1497a68d5a05882664d58",
   "vendor/lxml": "https://github.com/lxml/lxml@d01872ccdf7e1e5e825b6c6292b43e7d27ae5fc4",
-  "vendor/requests": "https://github.com/kennethreitz/requests@e4d59bedfd3c7f4f254f4f5d036587bcd8152458",
   "vendor/boto": "https://github.com/boto/boto@f7574aa6cc2c819430c1f05e9a1a1a666ef8169b",
   "vendor/challenge_bypass_ristretto_ffi": "https://github.com/brave-intl/challenge-bypass-ristretto-ffi.git@419995e4a873c294f1eaefca276f8ad25328e89f",
   "third_party/ethash/src": "https://github.com/chfast/ethash.git@e4a15c3d76dc09392c7efd3e30d84ee3b871e9ce",

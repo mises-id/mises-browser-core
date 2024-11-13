@@ -6,11 +6,6 @@
 #include "base/trace_event/trace_event.h"
 #include "chrome/browser/profiles/profile.h"
 
-InstantService* InstantServiceFactory::GetForProfile(Profile* profile) {
-  return nullptr;
-}
-
-
 
 
 #endif

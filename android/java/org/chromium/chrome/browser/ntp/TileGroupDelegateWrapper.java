@@ -8,7 +8,9 @@ import org.json.JSONArray;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.chromium.chrome.browser.preloading.AndroidPrerenderManager;
 import org.chromium.chrome.browser.profiles.Profile;
+import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.mises.HttpUtil;
 import org.chromium.base.shared_preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
@@ -111,6 +113,12 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
     public void onLoadingComplete(List<Tile> tiles) {
         if (!isValid()) return;
         mWrapped.onLoadingComplete(tiles);
+    }
+
+    @Override
+    public void initAndroidPrerenderManager(AndroidPrerenderManager androidPrerenderManager) {
+        if (!isValid()) return;
+        mWrapped.initAndroidPrerenderManager(androidPrerenderManager);
     }
 
     @Override
@@ -299,7 +307,7 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
 
     private Map<String, String> getRunningExtensions() {
         Map<String, String> extensionInfos = new HashMap<String, String>();
-        Profile profile = Profile.getLastUsedRegularProfile();
+        Profile profile = ProfileManager.getLastUsedRegularProfile();
         String extensions = AppMenuBridge.getForProfile(profile).getRunningExtensions(null);
         if (!extensions.isEmpty()) {
             String[] extensionsArray = extensions.split("\u001f");

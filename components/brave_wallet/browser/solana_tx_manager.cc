@@ -49,8 +49,8 @@ SolanaTxManager::~SolanaTxManager() {
 void SolanaTxManager::AddUnapprovedTransaction(
     mojom::TxDataUnionPtr tx_data_union,
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   DCHECK(tx_data_union->is_solana_tx_data());
 
@@ -214,7 +214,7 @@ void SolanaTxManager::OnGetBlockHeight(uint64_t block_height,
   }
 
   auto pending_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Submitted, absl::nullopt);
+      mojom::TransactionStatus::Submitted, std::nullopt);
   std::vector<std::string> tx_meta_ids;
   std::vector<std::string> tx_signatures;
   for (const auto& pending_transaction : pending_transactions) {
@@ -232,7 +232,7 @@ void SolanaTxManager::OnGetBlockHeight(uint64_t block_height,
 void SolanaTxManager::OnGetSignatureStatuses(
     const std::vector<std::string>& tx_meta_ids,
     uint64_t block_height,
-    const std::vector<absl::optional<SolanaSignatureStatus>>&
+    const std::vector<std::optional<SolanaSignatureStatus>>&
         signature_statuses,
     mojom::SolanaProviderError error,
     const std::string& error_message) {
@@ -323,7 +323,7 @@ void SolanaTxManager::MakeSystemProgramTransferTxData(
     const std::string& to,
     uint64_t lamports,
     MakeSystemProgramTransferTxDataCallback callback) {
-  absl::optional<SolanaInstruction> instruction =
+  std::optional<SolanaInstruction> instruction =
       solana::system_program::Transfer(from, to, lamports);
   if (!instruction) {
     std::move(callback).Run(
@@ -362,10 +362,10 @@ void SolanaTxManager::MakeTokenProgramTransferTxData(
     const std::string& to_wallet_address,
     uint64_t amount,
     MakeTokenProgramTransferTxDataCallback callback) {
-  absl::optional<std::string> from_associated_token_account =
+  std::optional<std::string> from_associated_token_account =
       SolanaKeyring::GetAssociatedTokenAccount(spl_token_mint_address,
                                                from_wallet_address);
-  absl::optional<std::string> to_associated_token_account =
+  std::optional<std::string> to_associated_token_account =
       SolanaKeyring::GetAssociatedTokenAccount(spl_token_mint_address,
                                                to_wallet_address);
   if (!from_associated_token_account || !to_associated_token_account) {
@@ -390,7 +390,7 @@ void SolanaTxManager::MakeTxDataFromBase64EncodedTransaction(
     const mojom::TransactionType tx_type,
     mojom::SolanaSendTransactionOptionsPtr send_options,
     MakeTxDataFromBase64EncodedTransactionCallback callback) {
-  absl::optional<std::vector<std::uint8_t>> transaction_bytes =
+  std::optional<std::vector<std::uint8_t>> transaction_bytes =
       base::Base64Decode(encoded_transaction);
   if (!transaction_bytes || transaction_bytes->empty() ||
       transaction_bytes->size() > kSolanaMaxTxSize) {
@@ -432,7 +432,7 @@ void SolanaTxManager::OnGetAccountInfo(
     const std::string& to_associated_token_account,
     uint64_t amount,
     MakeTokenProgramTransferTxDataCallback callback,
-    absl::optional<SolanaAccountInfo> account_info,
+    std::optional<SolanaAccountInfo> account_info,
     mojom::SolanaProviderError error,
     const std::string& error_message) {
   if (error != mojom::SolanaProviderError::kSuccess) {
@@ -443,7 +443,7 @@ void SolanaTxManager::OnGetAccountInfo(
   bool create_associated_token_account = false;
   std::vector<SolanaInstruction> instructions;
   if (!account_info || account_info->owner != mojom::kSolanaTokenProgramId) {
-    absl::optional<SolanaInstruction> create_associated_token_instruction =
+    std::optional<SolanaInstruction> create_associated_token_instruction =
         solana::spl_associated_token_account_program::
             CreateAssociatedTokenAccount(from_wallet_address, to_wallet_address,
                                          to_associated_token_account,
@@ -458,7 +458,7 @@ void SolanaTxManager::OnGetAccountInfo(
     create_associated_token_account = true;
   }
 
-  absl::optional<SolanaInstruction> transfer_instruction =
+  std::optional<SolanaInstruction> transfer_instruction =
       solana::spl_token_program::Transfer(
           mojom::kSolanaTokenProgramId, from_associated_token_account,
           to_associated_token_account, from_wallet_address,
@@ -580,7 +580,7 @@ void SolanaTxManager::ProcessSolanaHardwareSignature(
         l10n_util::GetStringUTF8(IDS_BRAVE_WALLET_TRANSACTION_NOT_FOUND));
     return;
   }
-  absl::optional<std::vector<std::uint8_t>> transaction_bytes =
+  std::optional<std::vector<std::uint8_t>> transaction_bytes =
       meta->tx()->GetSignedTransactionBytes(keyring_service_, &signature_bytes);
   if (!transaction_bytes) {
     std::move(callback).Run(

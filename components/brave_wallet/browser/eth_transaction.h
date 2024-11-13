@@ -13,7 +13,7 @@
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
 #include "mises/components/brave_wallet/common/eth_address.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace base {
 class Value;
@@ -31,15 +31,15 @@ class EthTransaction {
   virtual ~EthTransaction();
   bool operator==(const EthTransaction&) const;
 
-  static absl::optional<EthTransaction> FromTxData(
+  static std::optional<EthTransaction> FromTxData(
       const mojom::TxDataPtr& tx_data,
       bool strict = true);
-  static absl::optional<EthTransaction> FromValue(
+  static std::optional<EthTransaction> FromValue(
       const base::Value::Dict& value);
 
   uint8_t type() const { return type_; }
 
-  absl::optional<uint256_t> nonce() const { return nonce_; }
+  std::optional<uint256_t> nonce() const { return nonce_; }
   uint256_t gas_price() const { return gas_price_; }
   uint256_t gas_limit() const { return gas_limit_; }
   EthAddress to() const { return to_; }
@@ -51,7 +51,7 @@ class EthTransaction {
 
   void set_to(EthAddress to) { to_ = to; }
   void set_value(uint256_t value) { value_ = value; }
-  void set_nonce(absl::optional<uint256_t> nonce) { nonce_ = nonce; }
+  void set_nonce(std::optional<uint256_t> nonce) { nonce_ = nonce; }
   void set_data(const std::vector<uint8_t>& data) { data_ = data; }
   void set_gas_price(uint256_t gas_price) { gas_price_ = gas_price; }
   void set_gas_limit(uint256_t gas_limit) { gas_limit_ = gas_limit; }
@@ -97,7 +97,7 @@ class EthTransaction {
   // type 0 would be LegacyTransaction
   uint8_t type_ = 0;
 
-  absl::optional<uint256_t> nonce_;
+  std::optional<uint256_t> nonce_;
   uint256_t gas_price_;
   uint256_t gas_limit_;
   EthAddress to_;
@@ -109,7 +109,7 @@ class EthTransaction {
   std::vector<uint8_t> s_;
 
  protected:
-  EthTransaction(absl::optional<uint256_t> nonce,
+  EthTransaction(std::optional<uint256_t> nonce,
                  uint256_t gas_price,
                  uint256_t gas_limit,
                  const EthAddress& to,

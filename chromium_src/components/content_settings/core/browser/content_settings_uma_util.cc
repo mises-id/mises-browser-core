@@ -22,7 +22,7 @@ constexpr int mises_value(int incr) {
 
 }  // namespace
 
-static_assert(static_cast<int>(ContentSettingsType::NUM_TYPES) <
+static_assert(static_cast<int>(ContentSettingsType::kMaxValue) <
                   kMisesValuesStart,
               "There must a gap between the histograms used by Chromium, and "
               "the ones used by Brave.");
@@ -30,7 +30,8 @@ static_assert(static_cast<int>(ContentSettingsType::NUM_TYPES) <
 // clang-format off
 #define MISES_HISTOGRAM_VALUE_LIST                                        \
   {ContentSettingsType::MISES_ETHEREUM, mises_value(9)},                  \
-  {ContentSettingsType::MISES_SOLANA, mises_value(10)},                   
+  {ContentSettingsType::MISES_SOLANA, mises_value(10)},                   \
+  {ContentSettingsType::MISES_REMEMBER_1P_STORAGE, mises_value(13)},                    
 // clang-format on
 
 #include "src/components/content_settings/core/browser/content_settings_uma_util.cc"

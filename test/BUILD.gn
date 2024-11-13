@@ -115,7 +115,7 @@ test("mises_unit_tests") {
    
   ]
 
-  if (true || toolkit_views) {
+  if (toolkit_views) {
     deps += [ "//chrome/browser/ui/views" ]
   }
 
@@ -168,7 +168,7 @@ test("mises_unit_tests") {
       "//components/gcm_driver/instance_id/android:instance_id_driver_test_support_java",
     ]
     if (use_v8_context_snapshot) {
-      deps += [ "//tools/v8_context_snapshot:v8_context_snapshot_assets" ]
+      deps += [ "//tools/v8_context_snapshot" ]
     }
 
     if (!use_v8_context_snapshot || include_both_v8_snapshots) {
@@ -285,7 +285,6 @@ test("mises_browser_tests") {
     "//chrome/app:command_ids",
     "//chrome/browser",
     "//chrome/browser:browser_process",
-    "//chrome/browser:theme_properties",
     "//chrome/browser/enterprise/connectors/analysis:features",
     "//chrome/browser/media/router:media_router_feature",
     "//chrome/browser/profiles:profile",
@@ -403,7 +402,7 @@ if (is_android) {
     ]
   }
 
-  chrome_public_common_apk_or_module_tmpl("mises_public_test_apk") {
+  chrome_public_test_apk_tmpl("mises_public_test_apk") {
     testonly = true
     target_type = "instrumentation_test_apk"
     apk_name = "MisesPublicTest"
@@ -425,7 +424,7 @@ if (is_android) {
       "//base:base_java",
       "//base:base_java_test_support",
       "//mises/components/brave_wallet/common:mojom_java",
-      "//chrome/android:chrome_apk_pak_assets",
+      #"//chrome/android:chrome_apk_pak_assets",
       "//chrome/android:chrome_public_base_module_java_for_test",
       "//chrome/browser/android/lifecycle:java",
       "//chrome/browser/back_press/android:java",

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/manager.html b/chrome/browser/resources/extensions/manager.html
-index 89c0e1c16a0255b00451929df7fe46ad68aa4b8a..336260d47fd46f6e44173c0f2fa1af7ea769c405 100644
+index 972033712ecc7615cf0fe88c44e5a1a7ff53a3a7..abbadc71f065d8156dcc740082ea34d6df072214 100644
 --- a/chrome/browser/resources/extensions/manager.html
 +++ b/chrome/browser/resources/extensions/manager.html
-@@ -87,6 +87,11 @@
+@@ -83,6 +83,11 @@
      </div>
    </cr-drawer>
  </template>
@@ -14,7 +14,7 @@ index 89c0e1c16a0255b00451929df7fe46ad68aa4b8a..336260d47fd46f6e44173c0f2fa1af7e
  <div id="container">
    <div id="left" hidden$="[[narrow_]]">
      <extensions-sidebar on-close-drawer="onCloseDrawer_"
-@@ -174,3 +179,4 @@
+@@ -166,3 +171,4 @@
    </extensions-install-warnings-dialog>
  </template>
  <cr-toast-manager></cr-toast-manager>

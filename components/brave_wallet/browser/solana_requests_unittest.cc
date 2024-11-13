@@ -26,7 +26,7 @@ TEST(SolanaRequestsUnitTest, getTokenAccountBalance) {
 
 TEST(SolanaRequestsUnitTest, sendTransaction) {
   ASSERT_EQ(
-      sendTransaction("signed_tx", absl::nullopt),
+      sendTransaction("signed_tx", std::nullopt),
       R"({"id":1,"jsonrpc":"2.0","method":"sendTransaction","params":["signed_tx",{"encoding":"base64"}]})");
 
   std::string expected_json_string = R"(

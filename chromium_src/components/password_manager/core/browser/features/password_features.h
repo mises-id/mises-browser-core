@@ -6,7 +6,8 @@
 namespace password_manager::features {
 
 #if BUILDFLAG(IS_ANDROID) 
-BASE_DECLARE_FEATURE(kNewConfirmationBubbleForGeneratedPasswords);
+BASE_DECLARE_FEATURE(kAutofillPasswordUserPerceptionSurvey);
+BASE_DECLARE_FEATURE(kPasswordGenerationExperiment);
 #endif  // !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
 
 }

@@ -17,7 +17,7 @@
 
 + (nullable NSURL*)tokenLogoBaseURL {
   base::FilePath path;
-  absl::optional<base::Version> version =
+  std::optional<base::Version> version =
       brave_wallet::GetLastInstalledWalletVersion();
   if (base::PathService::Get(ios::DIR_USER_DATA, &path) && version) {
     path = path.AppendASCII(brave_wallet::kWalletBaseDirectory);

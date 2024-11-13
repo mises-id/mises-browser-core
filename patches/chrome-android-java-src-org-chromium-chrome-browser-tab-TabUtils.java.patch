@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
-index 69eb70178573349ec8d9b6d5be4852aa5b0ce651..2f30918559ae57d50e1230346398c4d5983a0836 100644
+index cd44b4be3ed4f9edc07581506779c7aa5a72d9e8..6071fdfdabae812a5b560ea0d2e47cf784d832ef 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tab/TabUtils.java
 @@ -44,6 +44,8 @@ import org.chromium.url.GURL;
@@ -8,10 +8,10 @@ index 69eb70178573349ec8d9b6d5be4852aa5b0ce651..2f30918559ae57d50e1230346398c4d5
  
 +import org.chromium.base.ContextUtils;
 +
- /**
-  * Collection of utility methods that operates on Tab.
-  */
-@@ -203,6 +205,8 @@ public class TabUtils {
+ /** Collection of utility methods that operates on Tab. */
+ public class TabUtils {
+     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+@@ -160,6 +162,8 @@ public class TabUtils {
                  tabUserAgent = TabUserAgent.DESKTOP;
              } else {
                  tabUserAgent = TabUserAgent.DEFAULT;
@@ -20,7 +20,7 @@ index 69eb70178573349ec8d9b6d5be4852aa5b0ce651..2f30918559ae57d50e1230346398c4d5
              }
              tab.setUserAgent(tabUserAgent);
          }
-@@ -243,6 +247,8 @@ public class TabUtils {
+@@ -200,6 +204,8 @@ public class TabUtils {
       * @return Whether the desktop site should be requested.
       */
      public static boolean isDesktopSiteGlobalEnabled(Profile profile) {

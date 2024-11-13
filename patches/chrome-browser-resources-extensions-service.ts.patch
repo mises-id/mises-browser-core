@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/service.ts b/chrome/browser/resources/extensions/service.ts
-index eb91927f93eb5549dd48c38784fdb5fda77967a2..7b2ef9788b9756cfce728c164ff9a486d97f9840 100644
+index ca7d97397486eddc5643ee7981476abf01092636..2e74f1e3a0153c07e2228825f2852c14d3c5a433 100644
 --- a/chrome/browser/resources/extensions/service.ts
 +++ b/chrome/browser/resources/extensions/service.ts
-@@ -283,6 +283,15 @@ export class Service implements ServiceInterface {
+@@ -290,6 +290,15 @@ export class Service implements ServiceInterface {
          {inDeveloperMode: inDevMode});
    }
  

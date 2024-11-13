@@ -205,8 +205,9 @@ void WalletButton::UpdateImageAndText() {
   auto text = GetBadgeText();
   image_source->SetBadge(std::make_unique<IconWithBadgeImageSource::Badge>(
       text, mises::kBadgeTextColor, mises::kBadgeNotificationBG));
-  SetImage(views::Button::STATE_NORMAL,
-           gfx::ImageSkia(std::move(image_source), preferred_size));
+  SetImageModel(views::Button::STATE_NORMAL,
+                ui::ImageModel::FromImageSkia(
+                    gfx::ImageSkia(std::move(image_source), preferred_size)));
   SetTooltipText(
       brave_l10n::GetLocalizedResourceUTF16String(IDS_TOOLTIP_WALLET));
 }
@@ -253,5 +254,5 @@ views::View* WalletButton::GetAsAnchorView() {
   return anchor_view;
 }
 
-BEGIN_METADATA(WalletButton, ToolbarButton)
+BEGIN_METADATA(WalletButton)
 END_METADATA

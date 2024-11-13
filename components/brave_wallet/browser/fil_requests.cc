@@ -86,10 +86,10 @@ std::string getStateSearchMsgLimited(const std::string& cid, uint64_t period) {
   return result;
 }
 
-absl::optional<std::string> getSendTransaction(const std::string& signed_tx) {
-  absl::optional<base::Value> parsed_tx = base::JSONReader::Read(signed_tx);
+std::optional<std::string> getSendTransaction(const std::string& signed_tx) {
+  std::optional<base::Value> parsed_tx = base::JSONReader::Read(signed_tx);
   if (!parsed_tx || !parsed_tx->is_dict()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   base::Value::List params;
   params.Append(std::move(*parsed_tx));

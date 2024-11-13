@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/public/common/web_preferences/web_preferences.h b/third_party/blink/public/common/web_preferences/web_preferences.h
-index 65cf8211005546a8c527a679306e5ad6617cc046..cb40c5b98181180ed1c1c77c29267a6706eabab8 100644
+index 27cc511b84dfe970fd9eff520b81446ce3ba497a..fcb6440c12ec2c9becafef2c6fdfa8e0e4fdb6e3 100644
 --- a/third_party/blink/public/common/web_preferences/web_preferences.h
 +++ b/third_party/blink/public/common/web_preferences/web_preferences.h
-@@ -269,6 +269,7 @@ struct BLINK_COMMON_EXPORT WebPreferences {
+@@ -301,6 +301,7 @@ struct BLINK_COMMON_EXPORT WebPreferences {
    // Enable forcibly modifying content rendering to result in a light on dark
    // color scheme.
    bool force_dark_mode_enabled = false;

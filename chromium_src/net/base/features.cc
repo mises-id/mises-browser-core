@@ -10,16 +10,9 @@ OVERRIDE_FEATURE_DEFAULT_STATES({{
     // Enable NIK-partitioning by default.
     {kPartitionConnectionsByNetworkIsolationKey,
      base::FEATURE_ENABLED_BY_DEFAULT},
-    {kPartitionedCookies, base::FEATURE_DISABLED_BY_DEFAULT},
-    {kPartitionHttpServerPropertiesByNetworkIsolationKey,
-     base::FEATURE_ENABLED_BY_DEFAULT},
-    {kPartitionSSLSessionsByNetworkIsolationKey,
-     base::FEATURE_ENABLED_BY_DEFAULT},
-    {kSplitHostCacheByNetworkIsolationKey, base::FEATURE_ENABLED_BY_DEFAULT},
-    // It is necessary yet to make chromium storage partitioning compatible with
-    // Brave ephemeral storage. For reference:
-    // https://github.com/brave/brave-browser/issues/26165
-    {kSupportPartitionedBlobUrl, base::FEATURE_DISABLED_BY_DEFAULT},
+    {kTopLevelTpcdOriginTrial, base::FEATURE_DISABLED_BY_DEFAULT},
+    {kTpcdMetadataGrants, base::FEATURE_DISABLED_BY_DEFAULT},
+    {kWaitForFirstPartySetsInit, base::FEATURE_DISABLED_BY_DEFAULT},
 }});
 
 BASE_FEATURE(kMisesEphemeralStorage,

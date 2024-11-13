@@ -1,0 +1,22 @@
+diff --git a/components/speech/BUILD.gn b/components/speech/BUILD.gn
+index 2340f1737c51bae18a6c41166a9d4d2a13e25ccd..a6ccc90fda54469800c44819a89c6348e4719910 100644
+--- a/components/speech/BUILD.gn
++++ b/components/speech/BUILD.gn
+@@ -30,7 +30,7 @@ source_set("speech") {
+     "//third_party/flac",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "endpointer/endpointer.cc",
+       "endpointer/endpointer.h",
+@@ -41,7 +41,7 @@ source_set("speech") {
+     ]
+   }
+ 
+-  if (use_blink && !is_android) {
++  if (true || use_blink && !is_android) {
+     sources += [
+       "speech_recognizer_fsm.cc",
+       "speech_recognizer_fsm.h",

@@ -209,7 +209,7 @@ class AssetDiscoveryManagerUnitTest : public testing::Test {
     url_loader_factory_.SetInterceptor(base::BindLambdaForTesting(
         [&, intended_url, requests](const network::ResourceRequest& request) {
           if (request.url.spec() == intended_url) {
-            base::StringPiece request_string(
+            std::string_view request_string(
                 request.request_body->elements()
                     ->at(0)
                     .As<network::DataElementBytes>()
@@ -238,7 +238,7 @@ class AssetDiscoveryManagerUnitTest : public testing::Test {
         [&, requests](const network::ResourceRequest& request) {
           for (auto const& [url, address_response_map] : requests) {
             if (request.url.spec() == url.spec()) {
-              base::StringPiece request_string;
+              std::string_view request_string;
               if (request.request_body) {
                 request_string = request.request_body->elements()
                                      ->at(0)
@@ -975,14 +975,14 @@ TEST_F(AssetDiscoveryManagerUnitTest, KeyringServiceObserver) {
 
 TEST_F(AssetDiscoveryManagerUnitTest, DecodeMintAddress) {
   // Invalid (data too short)
-  absl::optional<std::vector<uint8_t>> data_short = base::Base64Decode("YQ==");
+  std::optional<std::vector<uint8_t>> data_short = base::Base64Decode("YQ==");
   ASSERT_TRUE(data_short);
-  absl::optional<SolanaAddress> mint_address =
+  std::optional<SolanaAddress> mint_address =
       asset_discovery_manager_->DecodeMintAddress(*data_short);
   ASSERT_FALSE(mint_address);
 
   // Valid
-  absl::optional<std::vector<uint8_t>> data = base::Base64Decode(
+  std::optional<std::vector<uint8_t>> data = base::Base64Decode(
       "afxiYbRCtH5HgLYFzytARQOXmFT6HhvNzk2Baxua+"
       "lM2kEWUG3BArj8SJRSnd1faFt2Tm0Ey/"
       "qtGnPdOOlQlugEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1501,7 +1501,7 @@ TEST_F(AssetDiscoveryManagerUnitTest, GetSimpleHashNftsByWalletUrl) {
 
 TEST_F(AssetDiscoveryManagerUnitTest, ParseNFTsFromSimpleHash) {
   std::string json;
-  absl::optional<base::Value> json_value;
+  std::optional<base::Value> json_value;
 
   // Non dictionary JSON response yields nullopt
   json = R"([])";

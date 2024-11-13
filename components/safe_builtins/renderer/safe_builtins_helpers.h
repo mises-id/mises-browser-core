@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef MISES_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_HELPERS_H_
-#define MISES_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_HELPERS_H_
+#ifndef BRAVE_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_HELPERS_H_
+#define BRAVE_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_HELPERS_H_
 
 #include <string>
 
@@ -22,8 +22,7 @@ namespace mises {
 // WrapSource and args for SafeCallFunction.
 v8::MaybeLocal<v8::Value> LoadScriptWithSafeBuiltins(
     blink::WebLocalFrame* web_frame,
-    const std::string& script,
-    const std::string& name);
+    const std::string& script);
 
 }  //  namespace brave
 

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/settings_shared/BUILD.gn b/chrome/browser/resources/settings_shared/BUILD.gn
-index 2fef3f27a6d62c231293fd892a2e5b54198bc87a..f8c2afe6e08c3f251b3aeacf2e0600c85851a237 100644
+index 52c6030fea4faf2fbe4a5c683a225232b8a6237d..0a47dced42f03563922314904e4f387309abd1ba 100644
 --- a/chrome/browser/resources/settings_shared/BUILD.gn
 +++ b/chrome/browser/resources/settings_shared/BUILD.gn
 @@ -4,7 +4,7 @@

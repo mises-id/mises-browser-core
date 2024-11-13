@@ -1,0 +1,13 @@
+diff --git a/ui/webui/resources/cr_components/history/BUILD.gn b/ui/webui/resources/cr_components/history/BUILD.gn
+index fb5adc71ab2c757829fe55cc64278916156a584d..c7be07273f05726ffecb16f65fd4d85b7defd1be 100644
+--- a/ui/webui/resources/cr_components/history/BUILD.gn
++++ b/ui/webui/resources/cr_components/history/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//ui/webui/resources/tools/build_webui.gni")
+ 
+-assert(!is_android && !is_ios)
++#assert(!is_android && !is_ios)
+ 
+ build_webui("build") {
+   grd_prefix = "cr_components_history_embeddings"

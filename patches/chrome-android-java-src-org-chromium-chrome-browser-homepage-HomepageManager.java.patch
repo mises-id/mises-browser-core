@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..cc38158b167dd94476535d70f9167051df362868 100644
+index 06593f15483f890dc56ba8fcccec47c8e90caaea..17ffbd1d4b115f3880c624c911910f89a5ff3b3d 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
-@@ -31,6 +31,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
+@@ -29,6 +29,8 @@ import org.chromium.components.embedder_support.util.UrlConstants;
  import org.chromium.components.embedder_support.util.UrlUtilities;
  import org.chromium.url.GURL;
  
@@ -11,17 +11,16 @@ index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..cc38158b167dd94476535d70f9167051
  /**
   * Provides information regarding homepage enabled states and URI.
   *
-@@ -124,8 +126,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -110,7 +112,7 @@ public class HomepageManager
       * @return Whether to close the app when the user has zero tabs.
       */
-     public static boolean shouldCloseAppWithZeroTabs() {
--        return HomepageManager.isHomepageEnabled()
--                && !UrlUtilities.isNTPUrl(HomepageManager.getHomepageGurl());
+     public boolean shouldCloseAppWithZeroTabs() {
+-        return isHomepageEnabled() && !UrlUtilities.isNtpUrl(getHomepageGurl());
 +        return ContextUtils.getAppSharedPreferences().getBoolean("close_browser_after_last_tab", false);
      }
  
      /**
-@@ -220,7 +221,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -212,7 +214,7 @@ public class HomepageManager
       * Get homepage URI without checking if the homepage is enabled.
       * @return Homepage GURL based on policy and shared preference settings.
       */
@@ -30,7 +29,7 @@ index 7cd3d2bb13dc7e5db18a2039b4975cbb095ec116..cc38158b167dd94476535d70f9167051
          if (HomepagePolicyManager.isHomepageManagedByPolicy()) {
              return HomepagePolicyManager.getHomepageUrl();
          }
-@@ -232,6 +233,9 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+@@ -224,6 +226,9 @@ public class HomepageManager
          }
          return getPrefHomepageCustomGurl();
      }

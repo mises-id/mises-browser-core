@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
-index bac2a418532ea26e9d9551c2737c38ca6a33a789..2c0637637aea40d9a6c48a920b34e9061332f750 100644
+index f7eb18f34d323d47524d382ad7dab2c5623ea94b..ae34b05a98f86fb35e333dadd8648b9acd84ac2f 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
-@@ -39,6 +39,9 @@ import org.chromium.ui.KeyboardVisibilityDelegate;
- import org.chromium.ui.base.DeviceFormFactor;
- import org.chromium.ui.base.ViewUtils;
+@@ -43,6 +43,9 @@ import org.chromium.ui.base.ViewUtils;
+ 
+ import java.util.Optional;
  
 +import android.graphics.Rect;
 +import org.chromium.base.ContextUtils;
@@ -12,33 +12,30 @@ index bac2a418532ea26e9d9551c2737c38ca6a33a789..2c0637637aea40d9a6c48a920b34e906
  /** A widget for showing a list of omnibox suggestions. */
  public class OmniboxSuggestionsDropdown extends RecyclerView {
      /**
-@@ -382,11 +385,29 @@ public class OmniboxSuggestionsDropdown extends RecyclerView {
-         mEmbedder.removeAlignmentObserver(mOmniboxAlignmentObserver);
+@@ -410,10 +413,26 @@ public class OmniboxSuggestionsDropdown extends RecyclerView {
+         super.setAdapter(mAdapter);
      }
  
 +    private void onMeasureBottomToolbar(int widthMeasureSpec, int heightMeasureSpec) {
++        boolean isTablet = mEmbedder.map(e -> e.isTablet()).orElse(false);
 +        maybeUpdateLayoutParams(0);
-+        final Rect mTempRect = new Rect();
-+        mEmbedder.getWindowDelegate().getWindowVisibleDisplayFrame(mTempRect);
-+        int availableViewportHeight = mTempRect.height();
-+        OmniboxAlignment omniboxAlignment = mEmbedder.getCurrentAlignment();
-+        int desiredWidth = omniboxAlignment.width;
++        int availableViewportHeight = mListViewMaxHeight;
++        int desiredWidth = mOmniboxAlignment.width;
 +        adjustHorizontalPosition();
 +        notifyObserversIfViewportHeightChanged(availableViewportHeight);
 +        widthMeasureSpec = MeasureSpec.makeMeasureSpec(desiredWidth, MeasureSpec.EXACTLY);
 +        heightMeasureSpec = MeasureSpec.makeMeasureSpec(availableViewportHeight,
-+                mEmbedder.isTablet() ? MeasureSpec.AT_MOST : MeasureSpec.EXACTLY);
++                isTablet ? MeasureSpec.AT_MOST : MeasureSpec.EXACTLY);
 +        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 +    }
      @Override
      protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+         boolean isTablet = mEmbedder.map(e -> e.isTablet()).orElse(false);
+ 
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
++            onMeasureBottomToolbar(widthMeasureSpec, heightMeasureSpec);
++            return;
++        }
          try (TraceEvent tracing = TraceEvent.scoped("OmniboxSuggestionsList.Measure");
                  TimingMetric metric = OmniboxMetrics.recordSuggestionListMeasureTime();
                  TimingMetric metric2 = OmniboxMetrics.recordSuggestionListMeasureWallTime()) {
-+            if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
-+                onMeasureBottomToolbar(widthMeasureSpec, heightMeasureSpec);
-+                return;
-+            }
-             OmniboxAlignment omniboxAlignment = mEmbedder.getCurrentAlignment();
-             maybeUpdateLayoutParams(omniboxAlignment.top);
-             int availableViewportHeight = omniboxAlignment.height;

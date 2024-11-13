@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/res/xml/privacy_preferences.xml b/chrome/android/java/res/xml/privacy_preferences.xml
-index 6a32c6f8f5229dbb46a4bf0abc53912965a6d1d0..d59d36e788b9e12885f56a66429552a7c2808aa0 100644
+index 66a7ae7b153842fb789eecaa1680d4c541952fb6..62fbb896a918235433b1ec44c125e0317ddd87e3 100644
 --- a/chrome/android/java/res/xml/privacy_preferences.xml
 +++ b/chrome/android/java/res/xml/privacy_preferences.xml
-@@ -71,6 +71,21 @@ found in the LICENSE file.
+@@ -87,6 +87,21 @@ found in the LICENSE file.
          android:title="@string/cablev2_paask_title"
          android:summary="@string/cablev2_paask_body"
          android:fragment="org.chromium.chrome.browser.webauthn.PrivacySettingsFragment" />

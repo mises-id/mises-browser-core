@@ -1,8 +1,8 @@
 diff --git a/components/components_strings.grd b/components/components_strings.grd
-index 0ccb816cbff91738bf36bd355e8e47aad50fc13a..32d6efd8c50e4c4034e5963921da24d91ae229c0 100644
+index 59850526e7a9607cca029c4ae0fc26c6a5659904..8702df347cc7d85470d645bd831c6c0de950cf55 100644
 --- a/components/components_strings.grd
 +++ b/components/components_strings.grd
-@@ -435,7 +435,7 @@
+@@ -434,7 +434,7 @@
        <message name="IDS_PLUGIN_NOT_SUPPORTED" desc="The placeholder text for an unsupported plugin.">
          This plugin is not supported
        </message>

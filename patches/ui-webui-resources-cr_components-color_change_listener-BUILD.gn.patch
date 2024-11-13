@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
-index 5ff8c3e1f67380c270acce9b6f8b44a79ab41ec0..ffce833cbd696a6a60628909fefdbaf20a674e3b 100644
+index 1cf9c1ca2ef35ec93149d5b01df719c282f59229..1f6877cc5f43c210d39efd0791ba300a2ca47bc4 100644
 --- a/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
 +++ b/ui/webui/resources/cr_components/color_change_listener/BUILD.gn
 @@ -5,7 +5,7 @@

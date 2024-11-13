@@ -146,6 +146,6 @@ void MultichainCalls<KeyType, ResultType>::SetError(const KeyType& key,
 
 template class MultichainCalls<std::string, std::string>;
 template class MultichainCalls<WalletAddressKey, std::string>;
-template class MultichainCalls<std::string, absl::optional<GURL>>;
+template class MultichainCalls<std::string, std::optional<GURL>>;
 
 }  // namespace brave_wallet::unstoppable_domains

@@ -1,8 +1,8 @@
 diff --git a/services/device/public/cpp/BUILD.gn b/services/device/public/cpp/BUILD.gn
-index a08a1dbfa49df17a2809de7248b902dd243a5a2b..33e5fa4d8a8c60c197f14a66e8dc8eb00b7fe77d 100644
+index 4724c107c4d25bcf00038b4244457c2809759723..7c638524dc95ee1f3d14af5d42ad45498139fa55 100644
 --- a/services/device/public/cpp/BUILD.gn
 +++ b/services/device/public/cpp/BUILD.gn
-@@ -87,6 +87,8 @@ source_set("test_support") {
+@@ -92,6 +92,8 @@ source_set("test_support") {
      sources += [
        "test/scoped_nfc_overrider.cc",
        "test/scoped_nfc_overrider.h",

@@ -21,8 +21,8 @@ void ChromeRenderFrameObserver::DidCommitProvisionalLoad(
     ui::PageTransition transition) {
   DidCommitProvisionalLoad_Chromium(transition);
 
-  if (render_frame()->GetEnabledBindings() &
-      content::kWebUIBindingsPolicyMask) {
+  if (render_frame()->GetEnabledBindings().HasAny(
+          content::kWebUIBindingsPolicySet)) {
     for (const auto& script : webui_javascript_)
       render_frame()->ExecuteJavaScript(script);
     webui_javascript_.clear();
@@ -32,20 +32,11 @@ void ChromeRenderFrameObserver::DidCommitProvisionalLoad(
 
 void ChromeRenderFrameObserver::DidClearWindowObject() {
   DidClearWindowObject_Chromium();
-  const base::CommandLine& command_line =
-      *base::CommandLine::ForCurrentProcess();
-  if (command_line.HasSwitch(switches::kInstantProcess))
-    SearchBoxExtension::Install(render_frame()->GetWebFrame());
+  // const base::CommandLine& command_line =
+  //     *base::CommandLine::ForCurrentProcess();
+  // if (command_line.HasSwitch(switches::kInstantProcess))
+  //   SearchBoxExtension::Install(render_frame()->GetWebFrame());
 
-  // Install ReadAnythingAppController on render frames belonging to a WebUIs.
-  // ReadAnythingAppController installs v8 bindings in the chrome.readAnything
-  // namespace which are consumed by read_anything/app.ts, the resource of the
-  // Read Anything WebUI.
-  if (features::IsReadAnythingEnabled() &&
-      render_frame()->GetEnabledBindings() &
-          content::kWebUIBindingsPolicyMask) {
-    ReadAnythingAppController::Install(render_frame());
-  }
 }
 
 

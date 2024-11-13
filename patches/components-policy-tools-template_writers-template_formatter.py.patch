@@ -1,0 +1,14 @@
+diff --git a/components/policy/tools/template_writers/template_formatter.py b/components/policy/tools/template_writers/template_formatter.py
+index cba27c07c6642061bd7cea437f9df6a5996db214..15c158d67769f52d305405519845fdb5db4d7409 100755
+--- a/components/policy/tools/template_writers/template_formatter.py
++++ b/components/policy/tools/template_writers/template_formatter.py
+@@ -214,7 +214,8 @@ def main():
+     with codecs.open(policy_templates_json_path, 'r', 'utf-8') as policy_file:
+       policy_data = json.loads(
+           policy_file.read(), object_hook=_JsonToUtf8Encoding)
+-
++    from policy_source_helper import FixPolicyData
++    FixPolicyData(policy_data)
+     # Preprocess the policy data.
+     policy_generator = policy_template_generator.PolicyTemplateGenerator(
+         config, policy_data)

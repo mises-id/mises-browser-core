@@ -1,20 +1,20 @@
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
-index 91697840424b5e30dcb46f06d2e97bfc731cd824..8378fa4c9ad828fd42fadbde5fdb746908190dac 100644
+index 61a91d8530fe2c77ee0eb255b461f767f8e87b64..8d1905e7086f778f95d4b611ebab3ed11aa88f26 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
-@@ -38,6 +38,9 @@ import org.chromium.ui.base.ViewUtils;
+@@ -37,6 +37,9 @@ import org.chromium.chrome.browser.tab.TabUtils;
  import org.chromium.ui.modelutil.PropertyKey;
  import org.chromium.ui.modelutil.PropertyModel;
  
 +import org.chromium.base.ContextUtils;
 +import android.content.res.Resources;
 +
- /**
-  * ViewBinder for TabListRecyclerView.
-  */
-@@ -70,6 +73,11 @@ class TabListContainerViewBinder {
+ /** ViewBinder for TabListRecyclerView. */
+ class TabListContainerViewBinder {
+     /**
+@@ -53,6 +56,11 @@ class TabListContainerViewBinder {
          } else if (INITIAL_SCROLL_INDEX == propertyKey) {
-             int index = (Integer) model.get(INITIAL_SCROLL_INDEX);
+             int index = model.get(INITIAL_SCROLL_INDEX);
              int offset = computeOffset(view, model);
 +            if (ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default").equals("classic")) {
 +                offset = (int) Math.ceil(75 * Resources.getSystem().getDisplayMetrics().density);

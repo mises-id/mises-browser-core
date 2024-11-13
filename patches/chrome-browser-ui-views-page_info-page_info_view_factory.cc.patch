@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/ui/views/page_info/page_info_view_factory.cc b/chrome/browser/ui/views/page_info/page_info_view_factory.cc
+index 0a86475f8db193526d28e3af74a66d1fde3ba50f..53bc27ac0583b542171c427d4264b0b59f094044 100644
+--- a/chrome/browser/ui/views/page_info/page_info_view_factory.cc
++++ b/chrome/browser/ui/views/page_info/page_info_view_factory.cc
+@@ -144,11 +144,15 @@ std::unique_ptr<views::View> PageInfoViewFactory::CreateSecurityPageView() {
+ std::unique_ptr<views::View> PageInfoViewFactory::CreatePermissionPageView(
+     ContentSettingsType type,
+     content::WebContents* web_contents) {
++#if BUILDFLAG(IS_ANDROID)
++  return nullptr;
++#else
+   return std::make_unique<PageInfoSubpageView>(
+       CreateSubpageHeader(PageInfoUI::PermissionTypeToUIString(type),
+                           presenter_->GetSubjectNameForDisplay()),
+       std::make_unique<PageInfoPermissionContentView>(presenter_, ui_delegate_,
+                                                       type, web_contents));
++#endif
+ }
+ 
+ std::unique_ptr<views::View>

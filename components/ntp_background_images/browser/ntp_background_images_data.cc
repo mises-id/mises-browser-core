@@ -54,13 +54,13 @@ NTPBackgroundImagesData::NTPBackgroundImagesData(
     const std::string& json_string,
     const base::FilePath& installed_dir)
     : NTPBackgroundImagesData() {
-  absl::optional<base::Value> json_value = base::JSONReader::Read(json_string);
+  std::optional<base::Value> json_value = base::JSONReader::Read(json_string);
   if (!json_value) {
     DVLOG(2) << "Read json data failed. Invalid JSON data";
     return;
   }
 
-  absl::optional<int> incomingSchemaVersion =
+  std::optional<int> incomingSchemaVersion =
       json_value->FindInt(kSchemaVersionKey);
   const bool schemaVersionIsValid = incomingSchemaVersion &&
       *incomingSchemaVersion == kExpectedSchemaVersion;

@@ -1,0 +1,22 @@
+diff --git a/ui/base/dragdrop/os_exchange_data_provider_non_backed.cc b/ui/base/dragdrop/os_exchange_data_provider_non_backed.cc
+index 084f2a2f395758ed7885011a3cc7958570384480..600dde1ddc7b9f28ba375d809cfe856c259e0592 100644
+--- a/ui/base/dragdrop/os_exchange_data_provider_non_backed.cc
++++ b/ui/base/dragdrop/os_exchange_data_provider_non_backed.cc
+@@ -219,7 +219,7 @@ OSExchangeDataProviderNonBacked::GetFileContents() const {
+ bool OSExchangeDataProviderNonBacked::HasFileContents() const {
+   return !file_contents_filename_.empty();
+ }
+-
++#if defined(USE_AURA)
+ void OSExchangeDataProviderNonBacked::SetHtml(const std::u16string& html,
+                                               const GURL& base_url) {
+   formats_ |= OSExchangeData::HTML;
+@@ -242,7 +242,7 @@ OSExchangeDataProviderNonBacked::GetHtml() const {
+ bool OSExchangeDataProviderNonBacked::HasHtml() const {
+   return ((formats_ & OSExchangeData::HTML) != 0);
+ }
+-
++#endif
+ void OSExchangeDataProviderNonBacked::SetDragImage(
+     const gfx::ImageSkia& image,
+     const gfx::Vector2d& cursor_offset) {

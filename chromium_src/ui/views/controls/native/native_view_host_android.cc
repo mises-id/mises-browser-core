@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "base/logging.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "build/build_config.h"
 #include "ui/base/cursor/cursor.h"
 #include "ui/base/hit_test.h"
@@ -39,9 +39,6 @@ void NativeViewHostAndroid::AddedToWidget() {
 void NativeViewHostAndroid::RemovedFromWidget() {
 }
 
-bool NativeViewHostAndroid::SetCustomMask(std::unique_ptr<ui::LayerOwner> mask) {
-  return false;
-}
 
 void NativeViewHostAndroid::SetHitTestTopInset(int top_inset) {
 }
@@ -119,6 +116,8 @@ bool NativeViewHostAndroid::SetCornerRadii(const gfx::RoundedCornersF& corner_ra
 gfx::NativeViewAccessible  NativeViewHostAndroid::GetParentAccessible() {
   return NULL;
 }
-
+ui::Layer* NativeViewHostAndroid::GetUILayer() {
+  return NULL;
+}
 }  // namespace views
 

@@ -11,17 +11,12 @@ struct Feature;
 namespace page_info {
 
 #if BUILDFLAG(IS_ANDROID)
+
 // Enables the history section for Page Info on desktop.
-extern const base::Feature kPageInfoHistoryDesktop;
+BASE_DECLARE_FEATURE(kPageInfoHistoryDesktop);
+
 // Hides site settings row.
-extern const base::Feature kPageInfoHideSiteSettings;
-
-// Enables Cookies Subpage. For implementation phase.
-BASE_DECLARE_FEATURE(kPageInfoCookiesSubpage);
-
-
-// Enables the new page specific site data dialog.
-BASE_DECLARE_FEATURE(kPageSpecificSiteDataDialog);
+BASE_DECLARE_FEATURE(kPageInfoHideSiteSettings);
 
 #endif
 

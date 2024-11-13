@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
-index 09b8f051d6a156172d7ae8226664d28d076a7ac8..5dc4802671a077c6fa2b7255cfd59a6190e62b15 100644
+index 5c7d412da89383551837c8c869e707e41c3bb814..f52be0c688f0b0b51a732c827f7fb760ce4c7a48 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBar.java
-@@ -935,6 +935,7 @@ public abstract class UrlBar extends AutocompleteEditText {
+@@ -1009,6 +1009,7 @@ public class UrlBar extends AutocompleteEditText {
                      break;
                  }
              }

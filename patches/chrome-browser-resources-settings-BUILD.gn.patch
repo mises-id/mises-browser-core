@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/settings/BUILD.gn b/chrome/browser/resources/settings/BUILD.gn
-index 22fdc428177889b68d4a5ccb15ba1cdd39d4302f..f9e8ba41ab10904ab0c117f2bc755bb555acaee8 100644
+index 5ecfd08141976b2b4fdd3aa878d62c2973e45ba9..e5fcbe3264e3f1726e2c65bf47f2be3579a27bc4 100644
 --- a/chrome/browser/resources/settings/BUILD.gn
 +++ b/chrome/browser/resources/settings/BUILD.gn
 @@ -8,7 +8,7 @@ import("//crypto/features.gni")
@@ -11,10 +11,9 @@ index 22fdc428177889b68d4a5ccb15ba1cdd39d4302f..f9e8ba41ab10904ab0c117f2bc755bb5
  
  build_webui("build") {
    grd_prefix = "settings"
-@@ -445,5 +445,6 @@ build_webui("build") {
-         [ "/shared/settings|" + rebase_path(
+@@ -451,4 +451,5 @@ build_webui("build") {
                "$root_gen_dir/chrome/browser/resources/settings_shared/tsc",
                root_build_dir) ]
-+    import("//mises/browser/resources/settings/sources.gni") web_component_files += mises_settings_web_component_files non_web_component_files += mises_settings_non_web_component_files icons_html_files += mises_settings_icons_html_files exclude_html_css_preprocess_files = mises_settings_local_html_files exclude_ts_preprocess_files = mises_settings_local_ts_files preprocess_deps = mises_settings_preprocess_deps ts_extra_deps = mises_settings_ts_extra_deps ts_definitions += mises_settings_ts_definitions if (optimize_webui) { extra_grdp_deps += [ "//mises/browser/resources/settings:resources" ] }
    }
++  import("//mises/browser/resources/settings/sources.gni") web_component_files += mises_settings_web_component_files non_web_component_files += mises_settings_non_web_component_files icons_html_files += mises_settings_icons_html_files exclude_html_css_preprocess_files = mises_settings_local_html_files exclude_ts_preprocess_files = mises_settings_local_ts_files preprocess_deps = mises_settings_preprocess_deps ts_extra_deps = mises_settings_ts_extra_deps ts_definitions += mises_settings_ts_definitions  if (optimize_webui) { extra_grdp_deps = [ "//mises/browser/resources/settings:resources" ] extra_grdp_files = [] }
  }

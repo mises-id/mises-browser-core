@@ -1,8 +1,8 @@
 diff --git a/components/permissions/request_type.h b/components/permissions/request_type.h
-index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3942870ee 100644
+index 97aafc80d1013f5c6ec86de2519a27a568fcd8c7..388fcfbb61a7cf1f4de365afcb72d5714ea780ac 100644
 --- a/components/permissions/request_type.h
 +++ b/components/permissions/request_type.h
-@@ -22,19 +22,19 @@ namespace permissions {
+@@ -23,24 +23,24 @@ namespace permissions {
  enum class RequestType {
    kAccessibilityEvents,
    kArSession,
@@ -11,6 +11,10 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
    kCameraPanTiltZoom,
  #endif
    kCameraStream,
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   kCapturedSurfaceControl,
+ #endif
    kClipboard,
    kTopLevelStorageAccess,
    kDiskQuota,
@@ -19,13 +23,23 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
    kFileSystemAccess,
  #endif
    kGeolocation,
+   kHandTracking,
+   kIdentityProvider,
    kIdleDetection,
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kLocalFonts,
  #endif
    kMicStream,
-@@ -48,12 +48,12 @@ enum class RequestType {
+@@ -50,14 +50,14 @@ enum class RequestType {
+   kNfcDevice,
+ #endif
+   kNotifications,
+-#if !BUILDFLAG(IS_ANDROID)
++#if !true || BUILDFLAG(IS_ANDROID)
+   kKeyboardLock,
+   kPointerLock,
+ #endif
  #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN)
    kProtectedMediaIdentifier,
  #endif
@@ -33,14 +47,24 @@ index 660d1c39eeb0b1bc2e01733201fa6815458a41f4..0afbfa5d785b12dd5fce4027897811f3
 +#if true || !BUILDFLAG(IS_ANDROID)
    kRegisterProtocolHandler,
  #endif
+ #if BUILDFLAG(IS_CHROMEOS)
+@@ -65,13 +65,13 @@ enum class RequestType {
+ #endif
    kStorageAccess,
    kVrSession,
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   kWebAppInstallation,
+ #endif
+ #if BUILDFLAG(IS_CHROMEOS) && BUILDFLAG(USE_CUPS)
+   kWebPrinting,
+ #endif
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)
    kWindowManagement,
    kMaxValue = kWindowManagement
  #else
-@@ -86,7 +86,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
+@@ -104,7 +104,7 @@ bool IsConfirmationChipSupported(RequestType for_request_type);
  // Returns the icon to display.
  IconId GetIconId(RequestType type);
  

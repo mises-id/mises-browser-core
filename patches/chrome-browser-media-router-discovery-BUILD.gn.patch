@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/media/router/discovery/BUILD.gn b/chrome/browser/media/router/discovery/BUILD.gn
-index e2440c0473984be4db2fe7c2dde3ccaac4f7974b..cf6ea1e47c2ae2ed4134cdfb89ddfd9e999f86bb 100644
+index 51c27662f2eac5ab6bbeebd766fb0f009fc21dce..87ff29e4f3cdc8ef1d800d81d1d3fb3936711862 100644
 --- a/chrome/browser/media/router/discovery/BUILD.gn
 +++ b/chrome/browser/media/router/discovery/BUILD.gn
 @@ -4,7 +4,7 @@
@@ -8,6 +8,6 @@ index e2440c0473984be4db2fe7c2dde3ccaac4f7974b..cf6ea1e47c2ae2ed4134cdfb89ddfd9e
  
 -assert(!is_android)
 +#assert(!is_android)
+ assert(!is_fuchsia, "Fuchsia shouldn't use anything in //chrome")
  
  static_library("discovery") {
-   inputs = [ "$root_gen_dir/chrome/grit/generated_resources.h" ]

@@ -41,6 +41,7 @@
 #include "ui/message_center/public/cpp/notification.h"
 #include "ui/message_center/public/cpp/notification_types.h"
 #include "ui/message_center/public/cpp/notifier_id.h"
+#include "ui/shell_dialogs/selected_file_info.h"
 
 namespace {
 
@@ -80,7 +81,7 @@ std::u16string GetImportNotificationTitle(ipfs::ImportState state) {
       return brave_l10n::GetLocalizedResourceUTF16String(
           IDS_IPFS_IMPORT_PARTLY_COMPLETED_NOTIFICATION_TITLE);
     default:
-      NOTREACHED();
+      NOTREACHED_IN_MIGRATION();
       break;
   }
   return std::u16string();
@@ -104,7 +105,7 @@ std::u16string GetImportNotificationBody(ipfs::ImportState state,
       return brave_l10n::GetLocalizedResourceUTF16String(
           IDS_IPFS_IMPORT_PARTLY_COMPLETED_NOTIFICATION_BODY);
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       break;
   }
   return std::u16string();
@@ -226,7 +227,7 @@ void IpfsImportController::OnDownloadFinished(
           base::GetDeletePathRecursivelyCallback(path.DirName()));
       break;
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
   }
 
   save_package_observer_.reset();
@@ -305,7 +306,7 @@ void IpfsImportController::OnImportCompleted(const ipfs::ImportedData& data) {
     content::OpenURLParams params(url, content::Referrer(),
                                   WindowOpenDisposition::NEW_FOREGROUND_TAB,
                                   ui::PAGE_TRANSITION_LINK, false);
-    web_contents_->OpenURL(params);
+    web_contents_->OpenURL(params, /*navigation_handle_callback=*/{});
   }
 }
 
@@ -321,18 +322,16 @@ void IpfsImportController::PushNotification(const std::u16string& title,
                            *notification, /*metadata=*/nullptr);
 }
 
-void IpfsImportController::FileSelected(const base::FilePath& path,
-                                        int index,
-                                        void* params) {
+void IpfsImportController::FileSelected(const ui::SelectedFileInfo& file, int index) {
   switch (dialog_type_) {
     case ui::SelectFileDialog::SELECT_OPEN_FILE:
-      ImportFileToIpfs(path, dialog_key_);
+      ImportFileToIpfs(file.file_path, dialog_key_);
       break;
     case ui::SelectFileDialog::SELECT_EXISTING_FOLDER:
-      ImportDirectoryToIpfs(path, dialog_key_);
+      ImportDirectoryToIpfs(file.file_path, dialog_key_);
       break;
     default:
-      NOTREACHED() << "Only existing file or directory import supported";
+      NOTREACHED_IN_MIGRATION() << "Only existing file or directory import supported";
       break;
   }
   dialog_type_ = ui::SelectFileDialog::SELECT_NONE;
@@ -340,7 +339,7 @@ void IpfsImportController::FileSelected(const base::FilePath& path,
   dialog_key_.clear();
 }
 
-void IpfsImportController::FileSelectionCanceled(void* params) {
+void IpfsImportController::FileSelectionCanceled() {
   select_file_dialog_.reset();
   dialog_key_.clear();
 }

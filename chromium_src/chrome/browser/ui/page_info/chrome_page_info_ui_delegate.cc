@@ -50,18 +50,12 @@ bool ChromePageInfoUiDelegate::ShouldShowSiteSettings(int* link_text_id,
 
 // TODO(crbug.com/1227074): Reconcile with LastTabStandingTracker.
 bool ChromePageInfoUiDelegate::IsMultipleTabsOpen() {
-  const extensions::WindowControllerList::ControllerList& windows =
-      extensions::WindowControllerList::GetInstance()->windows();
   int count = 0;
   auto site_origin = site_url_.DeprecatedGetOriginAsURL();
-  for (auto* window : windows) {
-    const Browser* const browser = window->GetBrowser();
-    if (!browser)
-      continue;
-    const TabStripModel* const tabs = browser->tab_strip_model();
-    DCHECK(tabs);
-    for (int i = 0; i < tabs->count(); ++i) {
-      content::WebContents* const web_contents = tabs->GetWebContentsAt(i);
+  for (extensions::WindowController* window :
+       *extensions::WindowControllerList::GetInstance()) {
+    for (int i = 0; i < window->GetTabCount(); ++i) {
+      content::WebContents* const web_contents = window->GetWebContentsAt(i);
       if (web_contents->GetLastCommittedURL().DeprecatedGetOriginAsURL() ==
           site_origin) {
         count++;
@@ -69,11 +63,6 @@ bool ChromePageInfoUiDelegate::IsMultipleTabsOpen() {
     }
   }
   return count > 1;
-}
-
-void ChromePageInfoUiDelegate::ShowPrivacySandboxAdPersonalization() {
-  Browser* browser = chrome::FindBrowserWithTab(web_contents_);
-  chrome::ShowPrivacySandboxAdPersonalization(browser);
 }
 
 std::u16string ChromePageInfoUiDelegate::GetPermissionDetail(
@@ -92,7 +81,7 @@ bool ChromePageInfoUiDelegate::IsBlockAutoPlayEnabled() {
 }
 
 
-absl::optional<page_info::proto::SiteInfo>
+std::optional<page_info::proto::SiteInfo>
 ChromePageInfoUiDelegate::GetAboutThisSiteInfo() {
   Browser* browser = chrome::FindBrowserWithTab(web_contents_);
   if (!browser || !browser->is_type_normal()) {
@@ -110,16 +99,8 @@ ChromePageInfoUiDelegate::GetAboutThisSiteInfo() {
   return std::nullopt;
 }
 
-void ChromePageInfoUiDelegate::AboutThisSiteSourceClicked(
-    GURL url,
-    const ui::Event& event) {
-  // TODO(crbug.com/1250653): Consider moving this to presenter as other methods
-  // that open web pages.
-  web_contents_->OpenURL(content::OpenURLParams(
-      url, content::Referrer(),
-      ui::DispositionFromEventFlags(event.flags(),
-                                    WindowOpenDisposition::NEW_FOREGROUND_TAB),
-      ui::PAGE_TRANSITION_LINK, /*is_renderer_initiated=*/false));
+void ChromePageInfoUiDelegate::SettingsLinkClicked(ContentSettingsType type) {
+ 
 }
 
 void ChromePageInfoUiDelegate::ShowPrivacySandboxSettings() {
@@ -134,4 +115,14 @@ void ChromePageInfoUiDelegate::OpenMoreAboutThisPageUrl(
   //ShowAboutThisSiteSidePanel(web_contents_, url);
 }
 
+void ChromePageInfoUiDelegate::OpenSiteSettingsFileSystem() {
+  //chrome::ShowSiteSettingsFileSystem(GetProfile(), site_url_);
+}
+
+bool ChromePageInfoUiDelegate::ShouldShowSettingsLinkForPermission(
+    ContentSettingsType type,
+    int* text_id,
+    int* link_id) {
+  return false;
+}
 #endif

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/devtools/BUILD.gn b/chrome/browser/devtools/BUILD.gn
-index 71e6ebd092df956cf41694777959e4d56290cca6..cc505bcf82b86efb948bbd3d32b169a5240f1876 100644
+index 4fb5c2e0b555435501667699854317f1df6e5e93..cf1535e1701ab1df66c3e0e4919a53b1806969ba 100644
 --- a/chrome/browser/devtools/BUILD.gn
 +++ b/chrome/browser/devtools/BUILD.gn
-@@ -7,13 +7,13 @@ import("//chrome/browser/devtools/buildflags.gni")
+@@ -6,13 +6,13 @@ import("//build/config/chromeos/ui_mode.gni")
  import("//extensions/buildflags/buildflags.gni")
  import("//printing/buildflags/buildflags.gni")
  
@@ -18,16 +18,16 @@ index 71e6ebd092df956cf41694777959e4d56290cca6..cc505bcf82b86efb948bbd3d32b169a5
    _inspector_protocol = "//third_party/inspector_protocol"
    import("$_inspector_protocol/inspector_protocol.gni")
  
-@@ -130,7 +130,7 @@ static_library("devtools") {
+@@ -138,7 +138,7 @@ static_library("devtools") {
      "//ui/events:dom_keycode_converter",
    ]
  
 -  if (!is_android) {
 +  if (true || !is_android) {
-     deps += [
-       "//build:chromeos_buildflags",
-       "//chrome:extra_resources",
-@@ -260,7 +260,7 @@ static_library("devtools") {
+     public_deps += [
+       "//chrome/browser/ui:browser_list",
+       "//chrome/browser/ui/tabs:tab_strip_model_observer",
+@@ -282,7 +282,7 @@ static_library("devtools") {
    } else {
      sources += [ "devtools_dock_tile.cc" ]
    }

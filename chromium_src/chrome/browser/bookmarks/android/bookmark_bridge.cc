@@ -17,6 +17,8 @@
 #include "chrome/browser/ui/chrome_select_file_policy.h"
 #include "components/url_formatter/url_fixer.h"
 #include "ui/android/window_android.h"
+#include "ui/shell_dialogs/select_file_dialog.h"
+#include "ui/shell_dialogs/selected_file_info.h"
 
 
 #include "src/chrome/browser/bookmarks/android/bookmark_bridge.cc"
@@ -32,7 +34,7 @@ void BookmarkBridge::BookmarksExportTo(const base::FilePath& file_path) {
 
   Java_BookmarkBridge_bookmarksExported(env, 
     ScopedJavaLocalRef<jobject>(java_bookmark_model_), 
-    ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
+    base::android::ConvertUTF8ToJavaString(env, file_path.MaybeAsASCII()));
 }
 void BookmarkBridge::BookmarksImportFrom(const base::FilePath& file_path) {
   LOG(INFO) << "Bookmarks - import from " << file_path;
@@ -85,15 +87,14 @@ void BookmarkBridge::BookmarksImportFrom(const base::FilePath& file_path) {
     message = "Imported " + std::to_string(bookmarks.size()) + " bookmarks";
   else
     message = "No bookmarks have been imported";
-  Java_BookmarkBridge_bookmarksImported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), ConvertUTF8ToJavaString(env, message));
+  Java_BookmarkBridge_bookmarksImported(env, ScopedJavaLocalRef<jobject>(java_bookmark_model_), base::android::ConvertUTF8ToJavaString(env, message));
 
 }
-void BookmarkBridge::FileSelected(const base::FilePath& file_path, int index,
-                            void* params) {
-  BookmarksImportFrom(file_path);
+void BookmarkBridge::FileSelected(const ui::SelectedFileInfo& file, int index) {
+  BookmarksImportFrom(file.file_path);
 }
 
-void BookmarkBridge::FileSelectionCanceled(void* params) {
+void BookmarkBridge::FileSelectionCanceled() {
   LOG(ERROR) << "Bookmarks - FileSelectionCanceled";
 }
 

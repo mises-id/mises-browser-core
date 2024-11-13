@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn b/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
-index 6232fd056a0e746673a3be8b0ab835ecf7464e55..1a7bd0f3c6e2c4c6ba09c072a32b41b2837df282 100644
+index 19ca9d54ef22382a7c3d9d4910d7666a8782fb04..ee1f99f8b8739fd1c32f182da2b5aa0e2b0e1b2b 100644
 --- a/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
 +++ b/ui/webui/resources/cr_components/customize_color_scheme_mode/BUILD.gn
 @@ -5,7 +5,7 @@

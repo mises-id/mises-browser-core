@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/companion/core/BUILD.gn b/chrome/browser/companion/core/BUILD.gn
+index 6170041604f470eef6725a1ef6ec2ccf18499764..db96abe6c434243bd17a2d6c55471d278691f94f 100644
+--- a/chrome/browser/companion/core/BUILD.gn
++++ b/chrome/browser/companion/core/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD - style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ static_library("core") {
+   sources = [

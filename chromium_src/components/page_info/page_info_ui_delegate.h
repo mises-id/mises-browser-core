@@ -4,7 +4,7 @@
 #include "build/build_config.h"
 #include "components/content_settings/core/common/content_settings_types.h"
 #include "content/public/browser/permission_result.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 #if BUILDFLAG(IS_ANDROID)
 

@@ -8,11 +8,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ntp_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     android:gravity="center"
     android:paddingTop="@dimen/toolbar_height_no_shadow"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:visibility="gone" >
 
     <ImageView
@@ -28,22 +30,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
 
-        <ViewStub
-            android:id="@+id/cryptid_holder"
-            android:layout="@layout/new_tab_page_cryptid_holder"
-            android:layout_width="@dimen/cryptid_width_in_logo_wrapper"
-            android:layout_height="@dimen/cryptid_height_in_logo_wrapper"
-            android:layout_gravity="bottom|start" />
-
-        <org.chromium.chrome.browser.logo.LogoView
-            android:id="@+id/search_provider_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/ntp_logo_height"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="@dimen/ntp_logo_margin_top"
-            android:layout_marginBottom="23dp" />
+        <include layout="@layout/logo_view_layout"/>
 
     </FrameLayout>
 
@@ -63,68 +50,66 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <!-- Search box -->
+        <include layout="@layout/fake_search_box_layout"/>
 
-            <!-- Search box -->
-            <include layout="@layout/fake_search_box_layout"/>
+        <!-- Query tiles -->
+        <FrameLayout
+            android:id="@+id/query_tiles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
-            <!-- Query tiles -->
-            <FrameLayout
-                android:id="@+id/query_tiles"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"/>
+        <!-- Middle spacer -->
+        <View
+            android:id="@+id/ntp_middle_spacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:visibility="invisible" />
 
-            <!-- Middle spacer -->
-            <View
-                android:id="@+id/ntp_middle_spacer"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0"
-                android:visibility="invisible" />
+        <!-- Insertion point of the SiteSectionView, see NewTabPageLayout#insertSiteSection() -->
 
-            <!-- Insertion point of the SiteSectionView, see NewTabPageLayout#insertSiteSection() -->
+        <!-- Site suggestion tile grid placeholder -->
+        <ViewStub
+            android:id="@+id/tile_grid_placeholder_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inflatedId="@+id/tile_grid_placeholder"
+            android:layout="@layout/new_tab_page_tile_grid_placeholder" />
 
-            <!-- Site suggestion tile grid placeholder -->
-            <ViewStub
-                android:id="@+id/tile_grid_placeholder_stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inflatedId="@+id/tile_grid_placeholder"
-                android:layout="@layout/new_tab_page_tile_grid_placeholder" />
+        <ViewStub
+            android:id="@+id/home_modules_recycler_view_stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/home_modules_recycler_view_layout"
+            android:visibility="gone" />
 
-            <!-- Single tab card -->
-            <ViewStub
-                android:id="@+id/tab_switcher_module_container_stub"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout="@layout/tab_switcher_module_container" />
-            <ViewStub
-                android:id="@+id/search_resumption_module_container_stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/search_resumption_module_margin_top"
-                android:layout="@layout/search_resumption_module_layout" />
+        <!-- Single tab card -->
+        <ViewStub
+            android:id="@+id/tab_switcher_module_container_stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/tab_switcher_module_container" />
 
-            <!-- Middle spacer -->
-            <View
-                android:id="@+id/ntp_middle_spacer"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                tools:ignore="NestedWeights"
-                android:layout_weight="0"
-                android:visibility="invisible" />
+        <ViewStub
+            android:id="@+id/search_resumption_module_container_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_resumption_module_margin_top"
+            android:layout="@layout/search_resumption_module_layout" />
 
-            <!-- Spacer for when there is no search provider logo. -->
-            <View
-                android:id="@+id/no_search_logo_spacer"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:visibility="gone" />
+        <!-- Spacer for when there is no search provider logo. -->
+        <View
+            android:id="@+id/no_search_logo_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </org.chromium.chrome.browser.ntp.MisesNewTabPageLayout>

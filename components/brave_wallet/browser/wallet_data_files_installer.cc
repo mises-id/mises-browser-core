@@ -27,7 +27,7 @@
 #include "components/component_updater/component_updater_service.h"
 #include "crypto/sha2.h"
 #include "services/data_decoder/public/cpp/json_sanitizer.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -49,7 +49,7 @@ const char kComponentId[] = "bbckkcdiepaecefgfnibemejliemjnio";
 static_assert(std::size(kWalletDataFilesSha2Hash) == crypto::kSHA256Length,
               "Wrong hash length");
 
-absl::optional<base::Version> last_installed_wallet_version;
+std::optional<base::Version> last_installed_wallet_version;
 
 void OnSanitizedTokenList(mojom::CoinType coin,
                           data_decoder::JsonSanitizer::Result result) {
@@ -265,7 +265,7 @@ void RegisterWalletDataFilesComponent(
   }
 }
 
-absl::optional<base::Version> GetLastInstalledWalletVersion() {
+std::optional<base::Version> GetLastInstalledWalletVersion() {
   return last_installed_wallet_version;
 }
 

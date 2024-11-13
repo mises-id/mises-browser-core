@@ -46,7 +46,7 @@ std::string BraveWebClient::GetUserAgent(web::UserAgentType type) const {
   return user_agent_;
 }
 
-base::StringPiece BraveWebClient::GetDataResource(
+std::string_view BraveWebClient::GetDataResource(
     int resource_id,
     ui::ResourceScaleFactor scale_factor) const {
   return ui::ResourceBundle::GetSharedInstance().GetRawDataResourceForScale(

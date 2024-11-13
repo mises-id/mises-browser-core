@@ -13,7 +13,7 @@ namespace {
         TabModel* tab_model = *(TabModelList::models().begin());
         TabAndroid* tab = tab_model->GetTabAt(tab_model->GetActiveIndex());
         if (tab && web_contents) {
-          tab_model->CreateTab(tab, web_contents);
+          tab_model->CreateTab(tab, web_contents, /*select=*/true);
         }
       }
   }

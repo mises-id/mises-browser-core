@@ -67,19 +67,19 @@ void TabsEventRouter::DidSelectTab(TabAndroid* tab,
   }
   
 }
-void TabsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
+void TabsEventRouter::WillCloseTab(TabAndroid* tab) {
   LOG(INFO) << "TabsEventRouter::WillCloseTab " << tab->web_contents();
   //tab->RemoveObserver(this);
   if (!tab->web_contents())
     return;
-  DispatchTabClosingAt(nullptr, tab->web_contents(), tab->window_id().id());
+  DispatchTabClosingAt(nullptr, tab->web_contents(), tab->GetWindowId().id());
 }
 void TabsEventRouter::DidAddTab(TabAndroid* tab, TabModel::TabLaunchType type) {
   LOG(INFO) << "TabsEventRouter::DidAddTab " << tab->web_contents();
   //tab->AddObserver(this);
   if (!tab->web_contents())
     return;
-  DispatchTabInsertedAt(nullptr, tab->web_contents(), tab->window_id().id(), !tab->IsHidden());
+  DispatchTabInsertedAt(nullptr, tab->web_contents(), tab->GetWindowId().id(), !tab->IsHidden());
 }
 void TabsEventRouter::OnTabModelRemoved() {
    LOG(INFO) << "TabsEventRouter::OnTabModelRemoved";

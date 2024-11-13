@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/frame/BUILD.gn b/chrome/browser/ui/frame/BUILD.gn
+index a140a8bfbc3d94fca6167ffaafd8e56c21eabe83..4ddd4d047e00ef374c2d91813bfc8472d4de9cd7 100644
+--- a/chrome/browser/ui/frame/BUILD.gn
++++ b/chrome/browser/ui/frame/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ source_set("frame") {
+   sources = [

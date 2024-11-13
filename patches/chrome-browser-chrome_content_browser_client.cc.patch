@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/chrome_content_browser_client.cc b/chrome/browser/chrome_content_browser_client.cc
-index d9c675c8aca73a6a8411735a6c6a350795fa308f..53170d6e4599727e3ad6ee3effa61bd6e1bf1fdb 100644
+index e5ce608907f720786fa3683b6492c2249e2ce125..c13083800c4ddb858905e35bb8d2506c0fae19a0 100644
 --- a/chrome/browser/chrome_content_browser_client.cc
 +++ b/chrome/browser/chrome_content_browser_client.cc
-@@ -1614,7 +1614,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
+@@ -1626,7 +1626,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
    registry->RegisterDictionaryPref(
        prefs::kDevToolsBackgroundServicesExpirationDict);
    registry->RegisterBooleanPref(prefs::kSignedHTTPExchangeEnabled, true);
@@ -11,7 +11,7 @@ index d9c675c8aca73a6a8411735a6c6a350795fa308f..53170d6e4599727e3ad6ee3effa61bd6
    registry->RegisterBooleanPref(prefs::kAutoplayAllowed, false);
    registry->RegisterListPref(prefs::kAutoplayAllowlist);
    registry->RegisterListPref(
-@@ -2023,7 +2023,7 @@ bool ChromeContentBrowserClient::ShouldUseProcessPerSite(
+@@ -2100,7 +2100,7 @@ bool ChromeContentBrowserClient::ShouldUseProcessPerSite(
      return true;
    }
  
@@ -20,7 +20,7 @@ index d9c675c8aca73a6a8411735a6c6a350795fa308f..53170d6e4599727e3ad6ee3effa61bd6
    if (search::ShouldUseProcessPerSiteForInstantSiteURL(site_url, profile))
      return true;
  #endif
-@@ -2093,7 +2093,7 @@ bool ChromeContentBrowserClient::DoesWebUIUrlRequireProcessLock(
+@@ -2226,7 +2226,7 @@ bool ChromeContentBrowserClient::DoesWebUIUrlRequireProcessLock(
    // embeds those tiles, should be locked.  This allows most visited tiles to
    // stay in their parent (i.e., third-party NTP's) process.
    if (url.SchemeIs(chrome::kChromeSearchScheme) &&
@@ -29,28 +29,28 @@ index d9c675c8aca73a6a8411735a6c6a350795fa308f..53170d6e4599727e3ad6ee3effa61bd6
      return false;
    }
  
-@@ -2280,7 +2280,7 @@ bool ChromeContentBrowserClient::ShouldStayInParentProcessForNTP(
+@@ -2413,7 +2413,7 @@ bool ChromeContentBrowserClient::ShouldStayInParentProcessForNTP(
    //
-   // TODO(crbug.com/624410): clean up the logic for detecting NTP.
+   // TODO(crbug.com/41261582): clean up the logic for detecting NTP.
    return url.SchemeIs(chrome::kChromeSearchScheme) &&
 -         url.host() == chrome::kChromeSearchMostVisitedHost &&
 +         (url.host() == chrome::kChromeSearchMostVisitedHost || url.host() == "local-ntp") &&
           search::IsNTPURL(parent_site_url);
  }
  
-@@ -2346,7 +2346,7 @@ absl::optional<blink::ParsedPermissionsPolicy>
+@@ -2479,7 +2479,7 @@ std::optional<blink::ParsedPermissionsPolicy>
  ChromeContentBrowserClient::GetPermissionsPolicyForIsolatedWebApp(
-     content::BrowserContext* browser_context,
+     content::WebContents* web_contents,
      const url::Origin& app_origin) {
 -#if !BUILDFLAG(IS_ANDROID)
 +#if !BUILDFLAG(IS_ANDROID) || true
    // Extensions are exempt from manifest policy enforcement and retain the
    // default frame permissions policy.
    if (app_origin.scheme() == extensions::kExtensionScheme) {
-@@ -6352,6 +6352,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
-   if (https_upgrades_interceptor) {
-     interceptors.push_back(std::move(https_upgrades_interceptor));
+@@ -6751,6 +6751,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
+     }
    }
+ 
 +#if BUILDFLAG(ENABLE_IPFS)
 +  {
 +    std::unique_ptr<content::URLLoaderRequestInterceptor> ipfs_interceptor =
@@ -61,6 +61,6 @@ index d9c675c8aca73a6a8411735a6c6a350795fa308f..53170d6e4599727e3ad6ee3effa61bd6
 +  }
 +#endif
 +
- 
    return interceptors;
  }
+ 

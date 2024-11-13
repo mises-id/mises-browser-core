@@ -38,7 +38,7 @@ bool HasImportableExtensions(const base::FilePath& secured_preference_path) {
 
   std::string secured_preference_content;
   base::ReadFileToString(secured_preference_path, &secured_preference_content);
-  absl::optional<base::Value> secured_preference =
+  std::optional<base::Value> secured_preference =
       base::JSONReader::Read(secured_preference_content);
   DCHECK(secured_preference);
   DCHECK(secured_preference->is_dict());
@@ -90,7 +90,7 @@ base::Value::List GetChromeSourceProfiles(
   if (base::PathExists(local_state_path)) {
     std::string local_state_content;
     base::ReadFileToString(local_state_path, &local_state_content);
-    absl::optional<base::Value> local_state =
+    std::optional<base::Value> local_state =
         base::JSONReader::Read(local_state_content);
     if (!local_state)
       return profiles;

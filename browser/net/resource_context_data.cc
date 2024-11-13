@@ -30,9 +30,8 @@ ResourceContextData::~ResourceContextData() = default;
 void ResourceContextData::StartProxying(
     content::BrowserContext* browser_context,
     int render_process_id,
-    int frame_tree_node_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-    mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+    content::FrameTreeNodeId frame_tree_node_id,
+    network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 
@@ -50,8 +49,7 @@ void ResourceContextData::StartProxying(
 
   auto proxy = std::make_unique<MisesProxyingURLLoaderFactory>(
       *self->request_handler_, browser_context, render_process_id,
-      frame_tree_node_id, std::move(receiver), std::move(target_factory),
-      self->request_id_generator_,
+      frame_tree_node_id, factory_builder, self->request_id_generator_,
       base::BindOnce(&ResourceContextData::RemoveProxy,
                      self->weak_factory_.GetWeakPtr()),
       navigation_response_task_runner);
@@ -64,13 +62,13 @@ MisesProxyingWebSocket* ResourceContextData::StartProxyingWebSocket(
     content::ContentBrowserClient::WebSocketFactory factory,
     const GURL& url,
     const net::SiteForCookies& site_for_cookies,
-    const absl::optional<std::string>& user_agent,
+    const std::optional<std::string>& user_agent,
     mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
         handshake_client,
     content::BrowserContext* browser_context,
     int render_process_id,
     int frame_id,
-    int frame_tree_node_id,
+    content::FrameTreeNodeId frame_tree_node_id,
     const url::Origin& origin) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
 

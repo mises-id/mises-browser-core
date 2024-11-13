@@ -47,7 +47,7 @@ std::unique_ptr<TxMeta> SolanaTxStateManager::ValueToTxMeta(
       value.FindDict("signature_status");
   if (!signature_status_value)
     return nullptr;
-  absl::optional<SolanaSignatureStatus> signature_status =
+  std::optional<SolanaSignatureStatus> signature_status =
       SolanaSignatureStatus::FromValue(*signature_status_value);
   if (!signature_status)
     return nullptr;

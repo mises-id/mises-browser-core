@@ -1,8 +1,27 @@
 diff --git a/chrome/browser/ui/views/location_bar/location_bar_view.cc b/chrome/browser/ui/views/location_bar/location_bar_view.cc
-index 6cdefe6a0d1487b32cbf6447ecd585caf3810b91..f523263b0e786bb7c8618be0c95c4a3229b7a43d 100644
+index eca41f6f37b37fbec30c8d13a0c45c2f3fe44b8a..c531000c74a94f3543a7b79952052c2abfe9e9d8 100644
 --- a/chrome/browser/ui/views/location_bar/location_bar_view.cc
 +++ b/chrome/browser/ui/views/location_bar/location_bar_view.cc
-@@ -757,6 +757,7 @@ void LocationBarView::Layout() {
+@@ -269,11 +269,18 @@ void LocationBarView::Init() {
+   location_icon_view_ = AddChildView(std::move(location_icon_view));
+ 
+   // Initialize the Omnibox view.
++#if !BUILDFLAG(IS_ANDROID)
+   auto omnibox_view = std::make_unique<OmniboxViewViews>(
+       std::make_unique<ChromeOmniboxClient>(
+           /*location_bar=*/this, browser_, profile_),
+       is_popup_mode_,
+       /*location_bar_view=*/this, font_list);
++#else
++  auto omnibox_view = std::make_unique<OmniboxViewViews>(
++      nullptr,
++      is_popup_mode_,
++      /*location_bar_view=*/this, font_list);
++#endif
+   omnibox_view_ = AddChildView(std::move(omnibox_view));
+   omnibox_view_->Init();
+   // LocationBarView directs mouse button events from
+@@ -802,6 +809,7 @@ void LocationBarView::Layout(PassKey) {
      }
    };
  

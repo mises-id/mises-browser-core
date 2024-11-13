@@ -1,0 +1,13 @@
+diff --git a/components/payments/core/BUILD.gn b/components/payments/core/BUILD.gn
+index 5bb71696924a5e1d16458593d3165b97fdeca7c2..ccd7b58183e7f60342bbbb1a811f2ba53c548a93 100644
+--- a/components/payments/core/BUILD.gn
++++ b/components/payments/core/BUILD.gn
+@@ -67,7 +67,7 @@ static_library("core") {
+     "url_util.h",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     sources += [
+       "payment_options.cc",
+       "payment_options.h",

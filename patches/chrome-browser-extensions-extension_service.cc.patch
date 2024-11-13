@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/extension_service.cc b/chrome/browser/extensions/extension_service.cc
-index b2eed6b7ca301578716ef4f443099cf4068f686b..d5510e9dfcc8a8c0d03d3abc0cdc15ba776ee41d 100644
+index 51d09735dee68145483f5c9c475b683c2c04229f..d7687ba3c778a15247a950ce5694ffc5404dc106 100644
 --- a/chrome/browser/extensions/extension_service.cc
 +++ b/chrome/browser/extensions/extension_service.cc
-@@ -484,6 +484,10 @@ ExtensionService::ExtensionService(
+@@ -486,6 +486,10 @@ ExtensionService::ExtensionService(
    SetCurrentDeveloperMode(
        util::GetBrowserContextId(profile),
        profile->GetPrefs()->GetBoolean(prefs::kExtensionsUIDeveloperMode));

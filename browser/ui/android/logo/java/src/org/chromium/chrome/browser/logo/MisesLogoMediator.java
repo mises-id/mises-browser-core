@@ -19,14 +19,21 @@ public class MisesLogoMediator extends LogoMediator {
     private boolean mShouldShowLogo;
     private LogoCoordinator.VisibilityObserver mVisibilityObserver;
 
-    public MisesLogoMediator(Context context, Callback<LoadUrlParams> logoClickedCallback,
-            PropertyModel logoModel, boolean shouldFetchDoodle,
+    public MisesLogoMediator(
+            Context context,
+            Callback<LoadUrlParams> logoClickedCallback,
+            PropertyModel logoModel,
+            boolean shouldFetchDoodle,
             Callback<LogoBridge.Logo> onLogoAvailableCallback,
-            Runnable onCachedLogoRevalidatedRunnable, boolean isParentSurfaceShown,
             LogoCoordinator.VisibilityObserver visibilityObserver,
             CachedTintedBitmap defaultGoogleLogo) {
-        super(context, logoClickedCallback, logoModel, shouldFetchDoodle, onLogoAvailableCallback,
-                onCachedLogoRevalidatedRunnable, isParentSurfaceShown, visibilityObserver,
+        super(
+                context,
+                logoClickedCallback,
+                logoModel,
+                shouldFetchDoodle,
+                onLogoAvailableCallback,
+                visibilityObserver,
                 defaultGoogleLogo);
     }
 

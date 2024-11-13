@@ -55,11 +55,19 @@ import java.util.List;
 
 public class MisesAutocompleteCoordinator {
     public ViewProvider<SuggestionListViewHolder> createViewProvider(
-            Context context, MVCListAdapter.ModelList modelList) {
+            Context context, MVCListAdapter.ModelList modelList, boolean forcePhoneStyleOmnibox) {
         ViewProvider<SuggestionListViewHolder> provider =
-                (ViewProvider<SuggestionListViewHolder>) MisesReflectionUtil.InvokeMethod(
-                        AutocompleteCoordinator.class, this, "createViewProvider", Context.class,
-                        context, MVCListAdapter.ModelList.class, modelList);
+                (ViewProvider<SuggestionListViewHolder>)
+                        MisesReflectionUtil.invokeMethod(
+                                AutocompleteCoordinator.class,
+                                this,
+                                "createViewProvider",
+                                Context.class,
+                                context,
+                                MVCListAdapter.ModelList.class,
+                                modelList,
+                                boolean.class,
+                                forcePhoneStyleOmnibox);
 
         return new ViewProvider<SuggestionListViewHolder>() {
             private List<Callback<SuggestionListViewHolder>> mCallbacks = new ArrayList<>();

@@ -1,9 +1,9 @@
 diff --git a/chrome/utility/BUILD.gn b/chrome/utility/BUILD.gn
-index 69dedb71cc24e08c66580189393790254dd0c879..3ba0cf79b0a4b5a86e8b40af132b373c2e38d7ef 100644
+index 54946c415c57c5ba1df3f643e8d79b216ac0d560..eef7ed7add6cb01c96dd7ea8ec60466a35b4ff76 100644
 --- a/chrome/utility/BUILD.gn
 +++ b/chrome/utility/BUILD.gn
-@@ -144,6 +144,15 @@ static_library("utility") {
-     ]
+@@ -264,6 +264,15 @@ static_library("utility") {
+     deps += [ "//chrome/services/media_gallery_util:lib" ]
    }
  
 +  if (is_android) {
@@ -15,6 +15,6 @@ index 69dedb71cc24e08c66580189393790254dd0c879..3ba0cf79b0a4b5a86e8b40af132b373c
 +    ]
 +  }
 +
-   if (enable_screen_ai_service) {
-     deps += [ "//components/services/screen_ai" ]
+   if (enable_browser_speech_service) {
+     deps += [ "//chrome/services/speech:lib" ]
    }

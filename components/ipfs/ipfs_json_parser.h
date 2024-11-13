@@ -50,11 +50,11 @@ class IPFSJSONParser {
                                               const std::string& address);
 #if BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
   // Local pins
-  static absl::optional<ipfs::AddPinResult> GetAddPinsResultFromJSON(
+  static std::optional<ipfs::AddPinResult> GetAddPinsResultFromJSON(
       const base::Value& value);
-  static absl::optional<ipfs::GetPinsResult> GetGetPinsResultFromJSON(
+  static std::optional<ipfs::GetPinsResult> GetGetPinsResultFromJSON(
       const base::Value& value);
-  static absl::optional<ipfs::RemovePinResult> GetRemovePinsResultFromJSON(
+  static std::optional<ipfs::RemovePinResult> GetRemovePinsResultFromJSON(
       const base::Value& value);
 #endif  // BUILDFLAG(ENABLE_IPFS_LOCAL_NODE)
 };

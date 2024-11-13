@@ -1,28 +1,28 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index 401ef0c1099a566af71816fbbcd80c84c6cc9420..7fd355ab5a653cbd0c7c7c2259df8fb91b502747 100644
+index 8297746bf51ca28a72cf062dde00a2f606c77cb6..ebd13933d716c70bdb1b449356f731fab8c004c1 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-@@ -23,6 +23,7 @@ import org.chromium.content_public.common.ResourceRequestBody;
- import org.chromium.ui.base.WindowAndroid;
+@@ -22,6 +22,7 @@ import org.chromium.content_public.browser.WebContents;
+ import org.chromium.content_public.common.ResourceRequestBody;
  import org.chromium.url.GURL;
  import org.chromium.url.Origin;
 +import org.chromium.ui.base.PageTransition;
  
- /**
-  * Bridges between the C++ and Java {@link TabModel} interfaces.
-@@ -132,7 +133,7 @@ public abstract class TabModelJniBridge implements TabModel {
+ /** Bridges between the C++ and Java {@link TabModel} interfaces. */
+ public abstract class TabModelJniBridge implements TabModel {
+@@ -153,7 +154,7 @@ public abstract class TabModelJniBridge implements TabModel {
       */
      @CalledByNative
      protected abstract boolean createTabWithWebContents(
--            Tab parent, Profile profile, WebContents webContents);
-+            Tab parent, Profile profile, WebContents webContents, @TabLaunchType int type);
+-            Tab parent, Profile profile, WebContents webContents, boolean select);
++            Tab parent, Profile profile, WebContents webContents, boolean select, @TabLaunchType int type);
  
      @CalledByNative
-     protected abstract void openNewTab(Tab parent, GURL url, @Nullable Origin initiatorOrigin,
-@@ -146,7 +147,14 @@ public abstract class TabModelJniBridge implements TabModel {
+     protected abstract void openNewTab(
+@@ -173,7 +174,14 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      protected Tab createNewTabForDevTools(GURL url) {
-         return getTabCreator(/*incognito=*/false)
+         return getTabCreator(/* incognito= */ false)
 -                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, null);
 +                .createNewTab(new LoadUrlParams(url), TabLaunchType.FROM_CHROME_UI, getTabAt(index()));
 +    }
@@ -35,7 +35,7 @@ index 401ef0c1099a566af71816fbbcd80c84c6cc9420..7fd355ab5a653cbd0c7c7c2259df8fb9
      }
  
      /** Returns whether supplied Tab instance has been grouped together with other Tabs. */
-@@ -182,6 +190,10 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -197,6 +205,10 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      public abstract int index();
  
@@ -43,6 +43,6 @@ index 401ef0c1099a566af71816fbbcd80c84c6cc9420..7fd355ab5a653cbd0c7c7c2259df8fb9
 +    @CalledByNative
 +    public abstract int getLastNonExtensionActiveIndex();
 +
-     /** @return Whether or not a sync session is currently being restored. */
+     /** Returns whether or not a sync session is currently being restored. */
      @CalledByNative
      protected abstract boolean isSessionRestoreInProgress();

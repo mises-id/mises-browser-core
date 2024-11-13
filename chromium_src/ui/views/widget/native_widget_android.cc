@@ -85,6 +85,11 @@ void NativeWidgetAndroid::InitNativeWidget(Widget::InitParams params) {
 
 void NativeWidgetAndroid::OnWidgetInitDone() {}
 
+void NativeWidgetAndroid::ReparentNativeViewImpl(gfx::NativeView new_parent) {
+  
+}
+
+
 std::unique_ptr<NonClientFrameView> NativeWidgetAndroid::CreateNonClientFrameView() {
   return nullptr;
 }
@@ -183,7 +188,7 @@ void NativeWidgetAndroid::SetWindowIcons(const gfx::ImageSkia& window_icon,
                                       const gfx::ImageSkia& app_icon) {
 }
 
-void NativeWidgetAndroid::InitModalType(ui::ModalType modal_type) {
+void NativeWidgetAndroid::InitModalType(ui::mojom::ModalType modal_type) {
 }
 
 gfx::Rect NativeWidgetAndroid::GetWindowBoundsInScreen() const {
@@ -316,11 +321,14 @@ void NativeWidgetAndroid::SetAspectRatio(const gfx::SizeF& aspect_ratio, const g
 void NativeWidgetAndroid::FlashFrame(bool flash) {
 }
 
-void NativeWidgetAndroid::RunShellDrag(View* view,
-                                    std::unique_ptr<ui::OSExchangeData> data,
-                                    const gfx::Point& location,
-                                    int operation,
-                                    ui::mojom::DragEventSource source) {
+void NativeWidgetAndroid::RunShellDrag(std::unique_ptr<ui::OSExchangeData> data,
+                    const gfx::Point& location,
+                    int operation,
+                    ui::mojom::DragEventSource source) {
+}
+
+void NativeWidgetAndroid::CancelShellDrag(View* view) {
+
 }
 
 void NativeWidgetAndroid::SchedulePaintInRect(const gfx::Rect& rect) {
@@ -368,10 +376,6 @@ void NativeWidgetAndroid::SetVisibilityAnimationTransition(
     Widget::VisibilityTransition transition) {
 }
 
-bool NativeWidgetAndroid::IsTranslucentWindowOpacitySupported() const {
-  return true;
-}
-
 ui::GestureRecognizer* NativeWidgetAndroid::GetGestureRecognizer() {
   return nullptr;
 }
@@ -392,6 +396,12 @@ const gfx::ImageSkia* NativeWidgetAndroid::GetWindowAppIcon() {return NULL;}
 ui::GestureConsumer* NativeWidgetAndroid::GetGestureConsumer() {return NULL;}
 void NativeWidgetAndroid::OnNativeViewHierarchyWillChange() {}
 void NativeWidgetAndroid::OnNativeViewHierarchyChanged() {}
+bool NativeWidgetAndroid::SetAllowScreenshots(bool allow) {
+  return false;
+}
+bool NativeWidgetAndroid::AreScreenshotsAllowed() {
+  return true;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAndroid, protected:

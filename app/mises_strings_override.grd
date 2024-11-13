@@ -110,15 +110,27 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
       <if expr="not is_macosx and not chromeos_ash">
         </if>
       <if expr="not chromeos_ash">
+        <if expr="_is_chrome_for_testing_branded">
+          <then>
+            </then>
+          <else>
+            </else>
         </if>
+      </if>
       <if expr="chromeos_ash">
         </if>
-      <if expr="not chromeos_ash and not is_macosx">
+      <if expr="not is_chromeos and not is_macosx">
         </if>
-      <if expr="chromeos_ash">
+      <if expr="is_chromeos">
         </if>
       <if expr="is_macosx">
         </if>
+      <if expr="_is_chrome_for_testing_branded">
+        <then>
+          </then>
+        <else>
+          </else>
+      </if>
       <if expr="_is_chrome_for_testing_branded">
         <then>
           </then>
@@ -162,6 +174,10 @@ If you want to use this account one-time only, you can use <ph name="GUEST_LINK_
 Permissions you've already given to websites and apps may apply to this account. You can manage your Mises sync chains in <ph name="SETTINGS_LINK_BEGIN">&lt;a id="osSettingsLink" href="$3<ex>https://google.com/</ex>"&gt;</ph>Settings<ph name="SETTINGS_LINK_END">&lt;/a&gt;</ph>.
         </message>
       </if>
+
+      <if expr="is_linux">
+        </if>
+
       <if expr="is_win">
         </if>
       <if expr="is_macosx">
@@ -170,9 +186,6 @@ Permissions you've already given to websites and apps may apply to this account.
         </if>
       <if expr="is_win">
         </if>
-      <if expr="is_win">
-        </if>
-
       <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_UNKNOWN_SOURCE" desc="Summary of dangerous warning for a file (like an extension) from an unknown source.">
         Extensions, apps, and themes from unknown sources can harm your device. Mises recommends only installing them from the <ph name="IDS_EXTENSION_WEB_STORE_TITLE">$1<ex>Web Store</ex></ph>
       </message>
@@ -221,9 +234,6 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="chromeos_ash">
         </if>
 
-      <if expr="is_win or is_macosx or is_linux">
-        </if>
-
       <if expr="is_macosx">
         </if>
 
@@ -231,6 +241,9 @@ Permissions you've already given to websites and apps may apply to this account.
         </if>
 
       <if expr="is_android or toolkit_views">
+        </if>
+
+      <if expr="enable_extensions">
         </if>
 
       <if expr="is_android or toolkit_views and not chromeos_lacros and not chromeos_ash">
@@ -246,6 +259,11 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="not chromeos_ash">
         </if>
 
+      <if expr="not use_titlecase">
+        </if>
+      <if expr="use_titlecase">
+        </if>
+
       <if expr="not chromeos_ash and not is_android and not chromeos_lacros">
         </if>
 
@@ -253,6 +271,11 @@ Permissions you've already given to websites and apps may apply to this account.
         </if>
 
       <if expr="chromeos_ash">
+        </if>
+
+      <if expr="not use_titlecase">
+        </if>
+      <if expr="use_titlecase">
         </if>
 
       <if expr="chromeos_ash">
@@ -278,6 +301,9 @@ Permissions you've already given to websites and apps may apply to this account.
           This profile's browsing data will be deleted from this device. To recover the data, sign in to Mises as <ph name="USER_EMAIL">$2<ex>foo@example.com</ex></ph>.
         </message>
 
+        </if>
+
+      <if expr="not is_android">
         </if>
 
       <if expr="not is_android">
@@ -363,7 +389,7 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="is_android or not is_android">
         </if>
 
-      <if expr="enable_extensions and enable_supervised_users">
+      <if expr="enable_extensions">
         </if>
 
       <if expr="is_android or not chromeos_ash and not is_android">
@@ -384,10 +410,6 @@ Permissions you've already given to websites and apps may apply to this account.
       <if expr="is_win">
         </if>
       <if expr="not is_android">
-        <if expr="use_titlecase">
-          </if>
-        <if expr="not use_titlecase">
-          </if>
         </if>
 
       <if expr="is_android or not is_android">
@@ -396,6 +418,14 @@ Permissions you've already given to websites and apps may apply to this account.
         <if expr="not use_titlecase">
           </if>
       </if>
+
+      <if expr="not is_android">
+        </if>
+
+      <if expr="not is_android and not is_chromeos">
+        </if>
+      <if expr="is_macosx">
+        </if>
     </messages>
   </release>
 </grit>

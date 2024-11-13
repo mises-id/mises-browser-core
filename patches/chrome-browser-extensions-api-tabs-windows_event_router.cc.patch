@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/tabs/windows_event_router.cc b/chrome/browser/extensions/api/tabs/windows_event_router.cc
-index 1294e98fc1e3cb6ae25a479f72c474985771bee2..1d24b225b31ee87f021b6367ce27aa42d7847983 100644
+index 663cab095f535c0205954eebe9b1ed5f1270ef12..024f833ba32a95b1bd007a8570f32327dee2acac 100644
 --- a/chrome/browser/extensions/api/tabs/windows_event_router.cc
 +++ b/chrome/browser/extensions/api/tabs/windows_event_router.cc
-@@ -168,18 +168,25 @@ WindowsEventRouter::WindowsEventRouter(Profile* profile)
+@@ -169,18 +169,25 @@ WindowsEventRouter::WindowsEventRouter(Profile* profile)
  #elif defined(TOOLKIT_VIEWS)
    views::WidgetFocusManager::GetInstance()->AddFocusChangeListener(this);
  #else

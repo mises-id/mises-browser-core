@@ -12,32 +12,12 @@ namespace features {
 COMPONENT_EXPORT(PERMISSIONS_COMMON)
 BASE_DECLARE_FEATURE(kPermissionLifetime);
 
-#if BUILDFLAG(IS_ANDROID)
 
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-BASE_DECLARE_FEATURE(kPermissionsPromptSurvey);
-
-
-#endif  // BUILDFLAG(IS_ANDROID)
 
 }  // namespace features
 namespace feature_params {
 
 
-#if BUILDFLAG(IS_ANDROID)
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const base::FeatureParam<std::string> kPermissionsPromptSurveyTriggerId;
-
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const base::FeatureParam<std::string>
-    kPermissionsPromptSurveyRequestTypeFilter;
-
-COMPONENT_EXPORT(PERMISSIONS_COMMON)
-extern const base::FeatureParam<std::string>
-    kPermissionsPromptSurveyActionFilter;
-
-
-#endif
 
 }  // namespace feature_params
 }  // namespace permissions

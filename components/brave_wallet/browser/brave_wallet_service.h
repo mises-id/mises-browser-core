@@ -25,7 +25,7 @@
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver_set.h"
 #include "mojo/public/cpp/bindings/remote_set.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/origin.h"
 
 namespace network {
@@ -52,15 +52,15 @@ class BraveWalletService : public KeyedService,
   using SignMessageRequestCallback =
       base::OnceCallback<void(bool,
                               mojom::ByteArrayStringUnionPtr,
-                              const absl::optional<std::string>&)>;
+                              const std::optional<std::string>&)>;
   using SignTransactionRequestCallback =
       base::OnceCallback<void(bool,
                               mojom::ByteArrayStringUnionPtr,
-                              const absl::optional<std::string>&)>;
+                              const std::optional<std::string>&)>;
   using SignAllTransactionsRequestCallback = base::OnceCallback<void(
       bool,
-      absl::optional<std::vector<mojom::ByteArrayStringUnionPtr>>,
-      const absl::optional<std::string>&)>;
+      std::optional<std::vector<mojom::ByteArrayStringUnionPtr>>,
+      const std::optional<std::string>&)>;
   using AddSuggestTokenCallback =
       base::OnceCallback<void(bool, mojom::ProviderError, const std::string&)>;
 
@@ -116,7 +116,7 @@ class BraveWalletService : public KeyedService,
                     AddUserAssetCallback callback) override;
   void OnGetEthNftStandard(mojom::BlockchainTokenPtr token,
                            AddUserAssetCallback callback,
-                           const absl::optional<std::string>& standard,
+                           const std::optional<std::string>& standard,
                            mojom::ProviderError error,
                            const std::string& error_message);
   void RemoveUserAsset(mojom::BlockchainTokenPtr token,
@@ -181,17 +181,17 @@ class BraveWalletService : public KeyedService,
       bool approved,
       int id,
       mojom::ByteArrayStringUnionPtr signature,
-      const absl::optional<std::string>& error) override;
+      const std::optional<std::string>& error) override;
   void NotifySignAllTransactionsRequestProcessed(
       bool approved,
       int id,
-      absl::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
-      const absl::optional<std::string>& error) override;
+      std::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
+      const std::optional<std::string>& error) override;
   void NotifySignMessageRequestProcessed(
       bool approved,
       int id,
       mojom::ByteArrayStringUnionPtr signature,
-      const absl::optional<std::string>& error) override;
+      const std::optional<std::string>& error) override;
   void GetPendingAddSuggestTokenRequests(
       GetPendingAddSuggestTokenRequestsCallback callback) override;
   void GetPendingGetEncryptionPublicKeyRequests(
@@ -273,10 +273,10 @@ class BraveWalletService : public KeyedService,
   void OnDefaultBaseCryptocurrencyChanged();
   void OnNetworkListChanged();
 
-  static absl::optional<std::string> GetChecksumAddress(
+  static std::optional<std::string> GetChecksumAddress(
       const std::string& contract_address,
       const std::string& chain_id);
-  static absl::optional<std::string> GetUserAssetAddress(
+  static std::optional<std::string> GetUserAssetAddress(
       const std::string& address,
       mojom::CoinType coin,
       const std::string& chain_id);
@@ -284,7 +284,7 @@ class BraveWalletService : public KeyedService,
 
   void OnGetImportInfo(
       const std::string& new_password,
-      base::OnceCallback<void(bool, const absl::optional<std::string>&)>
+      base::OnceCallback<void(bool, const std::optional<std::string>&)>
           callback,
       bool result,
       ImportInfo info,

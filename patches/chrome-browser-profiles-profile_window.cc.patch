@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/profiles/profile_window.cc b/chrome/browser/profiles/profile_window.cc
-index 35028f77c6b9f725ded177e759fe5192851c9a08..01a0640adcdaaee399eb0407cbe47a7c0b57ae9b 100644
+index 3071855d76e7e3e6a5b02c201c9313928244d930..f82cf831bb95757d82f103c7236e2dd5cb28d55b 100644
 --- a/chrome/browser/profiles/profile_window.cc
 +++ b/chrome/browser/profiles/profile_window.cc
-@@ -52,7 +52,7 @@
+@@ -51,7 +51,7 @@
  #include "extensions/browser/extension_system.h"
  #endif  // BUILDFLAG(ENABLE_EXTENSIONS)
  
@@ -11,7 +11,7 @@ index 35028f77c6b9f725ded177e759fe5192851c9a08..01a0640adcdaaee399eb0407cbe47a7c
  #include "chrome/browser/ui/browser_finder.h"
  #include "chrome/browser/ui/browser_list.h"
  #include "chrome/browser/ui/browser_list_observer.h"
-@@ -218,7 +218,7 @@ void OpenBrowserWindowForProfile(base::OnceCallback<void(Browser*)> callback,
+@@ -212,7 +212,7 @@ void OpenBrowserWindowForProfile(base::OnceCallback<void(Browser*)> callback,
                                              is_first_run, true);
  }
  

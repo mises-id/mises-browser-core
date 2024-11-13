@@ -3,21 +3,16 @@
 namespace page_info {
 
 #if BUILDFLAG(IS_ANDROID)
-const base::Feature kPageInfoHistoryDesktop{"PageInfoHistoryDesktop",
-                                            base::FEATURE_DISABLED_BY_DEFAULT};
-
-const base::Feature kPageInfoHideSiteSettings{
-    "PageInfoHideSiteSettings", base::FEATURE_DISABLED_BY_DEFAULT};
 
 
-BASE_FEATURE(kPageInfoCookiesSubpage,
-             "PageInfoCookiesSubpage",
+BASE_FEATURE(kPageInfoHistoryDesktop,
+             "PageInfoHistoryDesktop",
              base::FEATURE_DISABLED_BY_DEFAULT);
 
-
-BASE_FEATURE(kPageSpecificSiteDataDialog,
-             "PageSpecificSiteDataDialog",
+BASE_FEATURE(kPageInfoHideSiteSettings,
+             "PageInfoHideSiteSettings",
              base::FEATURE_DISABLED_BY_DEFAULT);
+
 
 #endif
 

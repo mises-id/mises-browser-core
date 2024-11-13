@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/background/background_contents_service.cc b/chrome/browser/background/background_contents_service.cc
-index a7df191ad3ef001af5decfeb1f8f6891957d014c..e6c680b93ddb750863bd05e6517bad3255406eaa 100644
+index 4199417a65ab09e2b29a3939f9628f4ca722696b..777563fc74998356e541c0308010671c51457849 100644
 --- a/chrome/browser/background/background_contents_service.cc
 +++ b/chrome/browser/background/background_contents_service.cc
-@@ -729,9 +729,13 @@ void BackgroundContentsService::HandleExtensionCrashed(
+@@ -727,9 +727,13 @@ void BackgroundContentsService::HandleExtensionCrashed(
    if (!extension)
      return;
  

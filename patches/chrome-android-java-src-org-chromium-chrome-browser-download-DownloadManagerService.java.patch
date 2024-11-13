@@ -1,15 +1,15 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java b/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
-index 2ac5a873571f7941e20ae06eef0918569655a2fa..978e6206bc783fa2fe0d52451c583e5f1c180f14 100644
+index 7f1bc2339c2767d631d97d4a5e59f073dcbfa023..935113f11fecd6c38f13f1337549765373b89abc 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/download/DownloadManagerService.java
-@@ -509,6 +509,10 @@ public class DownloadManagerService implements DownloadController.Observer,
-                             info, item.getSystemDownloadId(), result.second, isSupportedMimeType);
-                     broadcastDownloadSuccessful(info);
-                 } else {
-+		             if (info.getMimeType().equalsIgnoreCase("application/x-chrome-extension")){
-+		               mDownloadNotifier.notifyDownloadCanceled(item.getContentId());
-+		               return;
-+		             }
-                     info = DownloadInfo.Builder.fromDownloadInfo(info)
-                                    .setFailState(FailState.CANNOT_DOWNLOAD)
-                                    .build();
+@@ -473,6 +473,10 @@ public class DownloadManagerService implements DownloadServiceDelegate, ProfileM
+                                     isSupportedMimeType);
+                             broadcastDownloadSuccessful(info);
+                         } else {
++		                     if (info.getMimeType().equalsIgnoreCase("application/x-chrome-extension")){
++		                         mDownloadNotifier.notifyDownloadCanceled(item.getContentId());
++		                         return;
++		                     }
+                             info =
+                                     DownloadInfo.Builder.fromDownloadInfo(info)
+                                             .setFailState(FailState.CANNOT_DOWNLOAD)

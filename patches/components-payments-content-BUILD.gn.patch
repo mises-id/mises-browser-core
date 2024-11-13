@@ -1,0 +1,14 @@
+diff --git a/components/payments/content/BUILD.gn b/components/payments/content/BUILD.gn
+index cb1aa537763468a60f48bbe370857686546673ae..5c39c86f986bb42210bbd8acace3cd142880854d 100644
+--- a/components/payments/content/BUILD.gn
++++ b/components/payments/content/BUILD.gn
+@@ -122,7 +122,8 @@ static_library("content") {
+       "secure_payment_confirmation_no_creds_view_stub.cc",
+       "secure_payment_confirmation_view_stub.cc",
+     ]
+-  } else {
++  } #} else {
++  if (true) {
+     sources += [
+       "content_payment_request_delegate.cc",
+       "content_payment_request_delegate.h",

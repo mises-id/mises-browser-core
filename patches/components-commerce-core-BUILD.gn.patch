@@ -1,8 +1,8 @@
 diff --git a/components/commerce/core/BUILD.gn b/components/commerce/core/BUILD.gn
-index 0b9adde0cb4cd80014faadfa1b92eb51a5253653..a5a3b0eb9dc38907bb667cd6d434e0c685119af9 100644
+index 349dadb3e82fda568600eff373608e655a3e2c0a..97440c8bb34a9e8159003921a6c54d02479bff41 100644
 --- a/components/commerce/core/BUILD.gn
 +++ b/components/commerce/core/BUILD.gn
-@@ -89,7 +89,8 @@ if (is_android) {
+@@ -127,7 +127,8 @@ if (is_android) {
      proto_in_dir = "//"
      sources = [ "proto/merchant_signal_db_content.proto" ]
    }

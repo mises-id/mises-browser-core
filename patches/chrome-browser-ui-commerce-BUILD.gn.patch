@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/commerce/BUILD.gn b/chrome/browser/ui/commerce/BUILD.gn
+index 01f3ad76457e6c0a91a7d44d2fec5b2f1243b9b0..494e30b299d745dec62f121955fa304b85d14d2d 100644
+--- a/chrome/browser/ui/commerce/BUILD.gn
++++ b/chrome/browser/ui/commerce/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ source_set("commerce") {
+   sources = [

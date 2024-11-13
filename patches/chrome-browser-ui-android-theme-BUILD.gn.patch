@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/theme/BUILD.gn b/chrome/browser/ui/android/theme/BUILD.gn
-index a9ea6299a78266acbeda978f899a75ae40ec889c..3651a391a346d7764ff2d22267ae1623a8b267bd 100644
+index 944f15e36b03cdae59f6ad08cc18a247b8011eb0..6b725f0e3fb97db83ec791603afdc1c311693421 100644
 --- a/chrome/browser/ui/android/theme/BUILD.gn
 +++ b/chrome/browser/ui/android/theme/BUILD.gn
-@@ -27,6 +27,7 @@ android_library("java") {
+@@ -29,6 +29,7 @@ android_library("java") {
      "//third_party/androidx:androidx_appcompat_appcompat_resources_java",
      "//third_party/androidx:androidx_core_core_java",
      "//ui/android:ui_no_recycler_view_java",

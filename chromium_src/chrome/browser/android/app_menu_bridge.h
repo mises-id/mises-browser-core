@@ -131,6 +131,7 @@ private:
     void DestroyJavaObject();
 
     void CloseWalletTabs();
+    void MaybeGrantExtensionWebContents(const extensions::Extension* extension_ptr,content::WebContents* web_contents );
 
     std::unique_ptr<IconWithBadgeImageSource> GetIconImageSource(
       const extensions::Extension* extension,

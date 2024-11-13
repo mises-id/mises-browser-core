@@ -1,8 +1,8 @@
 diff --git a/build/config/android/rules.gni b/build/config/android/rules.gni
-index 9bc8939ee101caa4eb14cf79d142c5936c22cc99..a18e8ba389e38d0d7c8e53c9a90f3e8025778b89 100644
+index 95c88605890462aeb97dab4dbffd80960bf1533e..2195b830de25d4714c5f5ee9825b6e6b58c85749 100644
 --- a/build/config/android/rules.gni
 +++ b/build/config/android/rules.gni
-@@ -213,6 +213,7 @@ if (enable_java_templates && is_android) {
+@@ -207,6 +207,7 @@ if (!is_robolectric && enable_java_templates) {
    #     ]
    #   }
    template("java_cpp_enum") {
@@ -10,7 +10,7 @@ index 9bc8939ee101caa4eb14cf79d142c5936c22cc99..a18e8ba389e38d0d7c8e53c9a90f3e80
      action_with_pydeps(target_name) {
        forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "sources" ])
  
-@@ -388,6 +389,7 @@ if (enable_java_templates && is_android) {
+@@ -382,6 +383,7 @@ if (!is_robolectric && enable_java_templates) {
    #     output = "$target_gen_dir/AndroidManifest.xml"
    #   }
    template("jinja_template") {
@@ -18,7 +18,7 @@ index 9bc8939ee101caa4eb14cf79d142c5936c22cc99..a18e8ba389e38d0d7c8e53c9a90f3e80
      action_with_pydeps(target_name) {
        forward_variables_from(invoker, TESTONLY_AND_VISIBILITY + [ "deps" ])
        inputs = [ invoker.input ]
-@@ -939,7 +941,7 @@ if (enable_java_templates && is_android) {
+@@ -927,7 +929,7 @@ if (!is_robolectric && enable_java_templates) {
        action(target_name) {
          forward_variables_from(invoker, [ "deps" ])
          public_deps = [ ":$_build_config_target_name" ]
@@ -27,3 +27,11 @@ index 9bc8939ee101caa4eb14cf79d142c5936c22cc99..a18e8ba389e38d0d7c8e53c9a90f3e80
          script = "//build/android/gyp/validate_inputs.py"
          inputs = _all_sources
          outputs = [ "$target_gen_dir/$target_name.stamp" ]
+@@ -4206,6 +4208,7 @@ if (!is_robolectric && enable_java_templates) {
+   #     aar_path = "foo.aar"
+   #   }
+   template("android_aar_prebuilt") {
++    if (defined(invoker.visibility)) { invoker.visibility += ["//mises/third_party/android_deps:*"] }
+     _info_path = "$target_name.info"
+     if (defined(invoker.info_path)) {
+       _info_path = invoker.info_path

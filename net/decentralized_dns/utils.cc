@@ -11,15 +11,10 @@
 namespace decentralized_dns {
 namespace{
 #include "mises/third_party/freename/freename_tld_names-reversed-inc.cc"
-struct DafsaParams {
-  const unsigned char* dafsa;
-  size_t length;
-};
-
-DafsaParams g_dafsa_params{kDafsa, sizeof(kDafsa)};
+base::span<const uint8_t> g_dafsa_params = kDafsa;
 }
 
-bool IsIpfsLocalTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsIpfsLocalTLD(const std::string_view& host, size_t* suffix_length) {
   constexpr char kIpfsLocalhost[] = ".ipfs.localhost";
   constexpr char kIpnsLocalhost[] = ".ipns.localhost";
 
@@ -39,7 +34,7 @@ bool IsIpfsLocalTLD(const base::StringPiece& host, size_t* suffix_length) {
   return false;
 }
 
-bool IsUnstoppableDomainsTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsUnstoppableDomainsTLD(const std::string_view& host, size_t* suffix_length) {
   for (auto* domain : kUnstoppableDomains) {
     if (base::EndsWith(host, domain)) {
       if (suffix_length)
@@ -50,7 +45,7 @@ bool IsUnstoppableDomainsTLD(const base::StringPiece& host, size_t* suffix_lengt
   return false;
 }
 
-bool IsBitTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsBitTLD(const std::string_view& host, size_t* suffix_length) {
   if (base::EndsWith(host, kBitDomain)) {
     if (suffix_length)
       *suffix_length = strlen(decentralized_dns::kBitDomain) - 1;
@@ -59,10 +54,10 @@ bool IsBitTLD(const base::StringPiece& host, size_t* suffix_length) {
   return false;
 }
 
-bool IsFreeNameTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsFreeNameTLD(const std::string_view& host, size_t* suffix_length) {
   size_t length;
   int type = net::LookupSuffixInReversedSet_ChromiumImpl(
-    g_dafsa_params.dafsa, g_dafsa_params.length, false,
+    g_dafsa_params, false,
     host, &length);
   bool ret = type == net::kDafsaFound;
   if (ret) {
@@ -72,7 +67,7 @@ bool IsFreeNameTLD(const base::StringPiece& host, size_t* suffix_length) {
   return ret;
 }
 
-bool IsENSTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsENSTLD(const std::string_view& host, size_t* suffix_length) {
   if (base::EndsWith(host, kEthDomain)) {
     if (suffix_length)
       *suffix_length = strlen(decentralized_dns::kEthDomain) - 1;
@@ -81,7 +76,7 @@ bool IsENSTLD(const base::StringPiece& host, size_t* suffix_length) {
   return false;
 }
 
-bool IsDNSForEthDomain(const base::StringPiece& host, size_t* suffix_length) {
+bool IsDNSForEthDomain(const std::string_view& host, size_t* suffix_length) {
   if (base::EndsWith(host, decentralized_dns::kDNSForEthDomain)) {
     if (suffix_length)
       *suffix_length = strlen(decentralized_dns::kDNSForEthDomain) - 1;
@@ -90,7 +85,7 @@ bool IsDNSForEthDomain(const base::StringPiece& host, size_t* suffix_length) {
   return false;
 }
 
-bool IsSnsTLD(const base::StringPiece& host, size_t* suffix_length) {
+bool IsSnsTLD(const std::string_view& host, size_t* suffix_length) {
   if (base::EndsWith(host, kSolDomain)) {
     if (suffix_length)
       *suffix_length = strlen(decentralized_dns::kSolDomain) - 1;

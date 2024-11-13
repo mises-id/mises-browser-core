@@ -224,7 +224,7 @@ class NftMetadataFetcherUnitTest : public testing::Test {
           url_loader_factory_.ClearResponses();
           if (request.method ==
               "POST") {  // An eth_call, either to supportsInterface or tokenURI
-            base::StringPiece request_string(
+            std::string_view request_string(
                 request.request_body->elements()
                     ->at(0)
                     .As<network::DataElementBytes>()

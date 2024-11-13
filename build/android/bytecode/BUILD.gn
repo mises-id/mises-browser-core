@@ -46,6 +46,7 @@ java_binary("java_bytecode_rewriter") {
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesManageSyncSettingsClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesMenuButtonCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesMimeUtilsClassAdapter.java",
+    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesMostVisitedTilesLayoutBaseClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesMostVisitedTilesMediatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesNewTabPageClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesNewTabPageLayoutClassAdapter.java",

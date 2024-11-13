@@ -1,0 +1,15 @@
+diff --git a/chrome/browser/ui/views/bookmarks/bookmark_drag_drop_views.cc b/chrome/browser/ui/views/bookmarks/bookmark_drag_drop_views.cc
+index e30b3abac01d316e24345d2ec1f165cfe7fb546f..23108ccc2fc55fffd457dfbfff6d2690e0a651cd 100644
+--- a/chrome/browser/ui/views/bookmarks/bookmark_drag_drop_views.cc
++++ b/chrome/browser/ui/views/bookmarks/bookmark_drag_drop_views.cc
+@@ -249,8 +249,10 @@ class BookmarkDragHelper : public bookmarks::BaseBookmarkModelObserver {
+ 
+       icon = ui::ImageModel::FromImage(image);
+     } else {
++#if defined(TOOLKIT_VIEWS)
+       icon = GetBookmarkFolderIcon(chrome::BookmarkFolderIconType::kNormal,
+                                    ui::kColorMenuIcon);
++#endif
+     }
+ 
+     OnBookmarkIconLoaded(drag_node, icon);

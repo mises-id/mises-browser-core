@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/privacy_sandbox/private_state_tokens/BUILD.gn b/chrome/browser/ui/webui/privacy_sandbox/private_state_tokens/BUILD.gn
+index 47274f2a791916b8b220969e83746cdec8a5edfe..394068c58b2733031f074e632275d4e8d0d041ec 100644
+--- a/chrome/browser/ui/webui/privacy_sandbox/private_state_tokens/BUILD.gn
++++ b/chrome/browser/ui/webui/privacy_sandbox/private_state_tokens/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//mojo/public/tools/bindings/mojom.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ mojom("mojo_bindings") {
+   sources = [ "private_state_tokens.mojom" ]

@@ -100,18 +100,11 @@ found in the LICENSE file.
             android:paddingBottom="6dp"
             android:id="@+id/fl_tiles" >
             <!-- android:background="@drawable/border_line" -->
-
             <ViewStub
-                android:id="@+id/mv_tiles_carousel_stub"
+                android:id="@+id/mv_tiles_layout_stub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout="@layout/mv_tiles_carousel" />
-
-            <ViewStub
-                android:id="@+id/mv_tiles_grid_stub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/mv_tiles_grid" />
+                android:layout="@layout/mv_tiles_layout" />
 
             <!-- Site suggestion tile grid placeholder -->
             <ViewStub

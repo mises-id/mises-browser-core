@@ -166,7 +166,7 @@ void BraveWalletP3A::ReportJSProvider(mojom::JSProviderType provider_type,
                                       bool allow_provider_overwrite) {
   CHECK(coin_type == mojom::CoinType::ETH || coin_type == mojom::CoinType::SOL);
 
-  absl::optional<std::string> keyring_id =
+  std::optional<std::string> keyring_id =
       keyring_service_->GetKeyringIdForCoinNonFIL(coin_type);
   CHECK(keyring_id.has_value());
 
@@ -218,8 +218,6 @@ void BraveWalletP3A::ReportJSProvider(mojom::JSProviderType provider_type,
 
 void BraveWalletP3A::ReportOnboardingAction(
     mojom::OnboardingAction onboarding_action) {
-  UMA_HISTOGRAM_ENUMERATION(kOnboardingConversionHistogramName,
-                            onboarding_action);
 }
 
 void BraveWalletP3A::ReportTransactionSent(mojom::CoinType coin,

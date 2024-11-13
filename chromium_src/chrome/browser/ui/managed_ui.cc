@@ -1,6 +1,6 @@
 
 #include "src/chrome/browser/ui/managed_ui.cc"
-
+#include "components/supervised_user/core/common/buildflags.h"
 
 namespace chrome {
 #if BUILDFLAG(IS_ANDROID)
@@ -12,7 +12,7 @@ GURL GetManagedUiUrl(Profile* profile) {
 
 #if BUILDFLAG(ENABLE_SUPERVISED_USERS)
   if (ShouldDisplayManagedByParentUi(profile)) {
-    return GURL(supervised_user::kManagedByParentUiMoreInfoUrl.Get());
+    return GURL(supervised_user::kManagedByParentUiMoreInfoUrl);
   }
 #endif
 
@@ -23,9 +23,7 @@ const gfx::VectorIcon& GetManagedUiIcon(Profile* profile) {
   CHECK(ShouldDisplayManagedUi(profile));
 
   if (enterprise_util::IsBrowserManaged(profile)) {
-    return features::IsChromeRefresh2023()
-               ? vector_icons::kBusinessChromeRefreshIcon
-               : vector_icons::kBusinessIcon;
+    return vector_icons::kBusinessChromeRefreshIcon;
   }
 
   CHECK(ShouldDisplayManagedByParentUi(profile));
@@ -112,44 +110,34 @@ std::u16string GetManagedUiWebUILabel(Profile* profile) {
 
   switch (GetManagementStringType(profile)) {
     case BROWSER_MANAGED:
-      return l10n_util::GetStringFUTF16(
-          IDS_MANAGED_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL));
+      return l10n_util::GetStringFUTF16(IDS_MANAGED_WITH_HYPERLINK,
+                                        chrome::kChromeUIManagementURL16);
     case BROWSER_MANAGED_BY:
-      return l10n_util::GetStringFUTF16(
-          IDS_MANAGED_BY_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL),
-          base::UTF8ToUTF16(*device_manager));
+      return l10n_util::GetStringFUTF16(IDS_MANAGED_BY_WITH_HYPERLINK,
+                                        chrome::kChromeUIManagementURL16,
+                                        base::UTF8ToUTF16(*device_manager));
     case BROWSER_PROFILE_SAME_MANAGED_BY:
       return l10n_util::GetStringFUTF16(
           IDS_BROWSER_AND_PROFILE_SAME_MANAGED_BY_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL),
-          base::UTF8ToUTF16(*device_manager));
+          chrome::kChromeUIManagementURL16, base::UTF8ToUTF16(*device_manager));
     case BROWSER_PROFILE_DIFFERENT_MANAGED_BY:
       return l10n_util::GetStringFUTF16(
           IDS_BROWSER_AND_PROFILE_DIFFERENT_MANAGED_BY_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL),
-          base::UTF8ToUTF16(*device_manager),
+          chrome::kChromeUIManagementURL16, base::UTF8ToUTF16(*device_manager),
           base::UTF8ToUTF16(*account_manager));
     case BROWSER_MANAGED_PROFILE_MANAGED_BY:
       return l10n_util::GetStringFUTF16(
           IDS_BROWSER_MANAGED_AND_PROFILE_MANAGED_BY_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL),
+          chrome::kChromeUIManagementURL16,
           base::UTF8ToUTF16(*account_manager));
     case PROFILE_MANAGED_BY:
-      return l10n_util::GetStringFUTF16(
-          IDS_PROFILE_MANAGED_BY_WITH_HYPERLINK,
-          base::UTF8ToUTF16(chrome::kChromeUIManagementURL),
-          base::UTF8ToUTF16(*account_manager));
+      return l10n_util::GetStringFUTF16(IDS_PROFILE_MANAGED_BY_WITH_HYPERLINK,
+                                        chrome::kChromeUIManagementURL16,
+                                        base::UTF8ToUTF16(*account_manager));
     case SUPERVISED:
-#if BUILDFLAG(ENABLE_SUPERVISED_USERS)
       return l10n_util::GetStringFUTF16(
           IDS_MANAGED_BY_PARENT_WITH_HYPERLINK,
-          base::UTF8ToUTF16(
-              supervised_user::kManagedByParentUiMoreInfoUrl.Get()));
-#else
-      break;
-#endif
+          base::UTF8ToUTF16(supervised_user::kManagedByParentUiMoreInfoUrl));
     case NOT_MANAGED:
       return std::u16string();
   }

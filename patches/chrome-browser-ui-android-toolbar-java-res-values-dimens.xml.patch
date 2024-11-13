@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
-index 4656169a3bcc95107f522cc1dce6f6f96b0131eb..78908f9440f4ac1ab9883ca61e5a3b743794286d 100644
+index 1385bb9b8179b3b870c46b4bcaf244dedd66de46..052dbe889308b0883831bd70c80744c5410a5aa5 100644
 --- a/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
 +++ b/chrome/browser/ui/android/toolbar/java/res/values/dimens.xml
 @@ -8,6 +8,7 @@ found in the LICENSE file.

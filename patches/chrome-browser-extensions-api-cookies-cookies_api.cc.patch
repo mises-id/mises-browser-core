@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/cookies/cookies_api.cc b/chrome/browser/extensions/api/cookies/cookies_api.cc
-index b01486e73061ace312de9944dbb95848198c3375..69f81500d917f9e211b0a546c2662c09d50fb96f 100644
+index 721735555830cb14d4675e937513a2ebd0567e36..671ff4ea38252754457eba72b86fd2c190fe903b 100644
 --- a/chrome/browser/extensions/api/cookies/cookies_api.cc
 +++ b/chrome/browser/extensions/api/cookies/cookies_api.cc
-@@ -38,6 +38,7 @@
+@@ -37,6 +37,7 @@
  #include "net/cookies/canonical_cookie.h"
  #include "net/cookies/cookie_constants.h"
  #include "services/network/public/mojom/network_service.mojom.h"
@@ -10,7 +10,7 @@ index b01486e73061ace312de9944dbb95848198c3375..69f81500d917f9e211b0a546c2662c09
  
  using content::BrowserThread;
  
-@@ -301,6 +302,7 @@ void CookiesGetFunction::GetCookieListCallback(
+@@ -333,6 +334,7 @@ void CookiesGetFunction::GetCookieListCallback(
  }
  
  void CookiesGetFunction::NotifyExtensionTelemetry() {
@@ -18,15 +18,15 @@ index b01486e73061ace312de9944dbb95848198c3375..69f81500d917f9e211b0a546c2662c09
    auto* telemetry_service =
        safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(
            Profile::FromBrowserContext(browser_context()));
-@@ -314,6 +316,7 @@ void CookiesGetFunction::NotifyExtensionTelemetry() {
+@@ -346,6 +348,7 @@ void CookiesGetFunction::NotifyExtensionTelemetry() {
        parsed_args_->details.store_id.value_or(std::string()),
-       parsed_args_->details.url);
+       parsed_args_->details.url, js_callstack().value_or(StackTrace()));
    telemetry_service->AddSignal(std::move(cookies_get_signal));
 +#endif
  }
  
  CookiesGetAllFunction::CookiesGetAllFunction() {
-@@ -406,6 +409,7 @@ void CookiesGetAllFunction::GetCookieListCallback(
+@@ -439,6 +442,7 @@ void CookiesGetAllFunction::GetCookieListCallback(
  }
  
  void CookiesGetAllFunction::NotifyExtensionTelemetry() {
@@ -34,9 +34,9 @@ index b01486e73061ace312de9944dbb95848198c3375..69f81500d917f9e211b0a546c2662c09
    auto* telemetry_service =
        safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(
            Profile::FromBrowserContext(browser_context()));
-@@ -424,6 +428,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
+@@ -457,6 +461,7 @@ void CookiesGetAllFunction::NotifyExtensionTelemetry() {
            parsed_args_->details.url.value_or(std::string()),
-           parsed_args_->details.session);
+           parsed_args_->details.session, js_callstack().value_or(StackTrace()));
    telemetry_service->AddSignal(std::move(cookies_get_all_signal));
 +#endif
  }

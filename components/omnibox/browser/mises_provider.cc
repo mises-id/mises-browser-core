@@ -57,7 +57,7 @@ void MisesProvider::Start(const AutocompleteInput& input,
 
 void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
   const std::string input_text = base::ToLowerASCII(base::UTF16ToUTF8(input.text()));
-  // LOG(INFO) << "Cg MisesProvider::Start find input_text="
+  // LOG(INFO) << "MisesProvider::Start find input_text="
   //     << input_text;
   ACMatches mises_matches;
   for (auto& mises_match : mises_matches_ ) {
@@ -143,7 +143,7 @@ ACMatchClassifications MisesProvider::StylesForSingleMatch(
 }
 
 void MisesProvider::GetTopSiteData() {
-    LOG(INFO) << "Cg MisesProvider::GetTopSiteData";
+    LOG(INFO) << "MisesProvider::GetTopSiteData";
     //getMisesMatch
     net::NetworkTrafficAnnotationTag traffic_annotation =
             net::DefineNetworkTrafficAnnotation("mises_provider_data", R"(
@@ -191,7 +191,7 @@ void MisesProvider::GetTopSiteData() {
 
 void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
                                     std::unique_ptr<std::string> response_body){
-    LOG(INFO) << "Cg MisesProvider::OnURLLoadComplete";
+    LOG(INFO) << "MisesProvider::OnURLLoadComplete";
     int response_code = -1;
     if (source->ResponseInfo() &&
         source->ResponseInfo()->headers) {
@@ -217,7 +217,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         LOG(WARNING) << "Response is not a JSON dictionary.";
         return;
     }
-    LOG(INFO) << "Cg MisesProvider::DoAutocomplete set_new_top_sites";
+    LOG(INFO) << "MisesProvider::DoAutocomplete set_new_top_sites";
 
     for (const auto& data : json_value->GetList()) {
         //const std::string* title = data.FindString("title");
@@ -229,7 +229,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         const std::string* logo = dict.FindString("logo");
         const std::string* content = dict.FindString("title");
         const std::string* domain_name = dict.FindString("domain_name");
-        absl::optional<int> search_score = dict.FindInt("search_score").value_or(0);
+        std::optional<int> search_score = dict.FindInt("search_score").value_or(0);
         AutocompleteMatch match;
         match.type = AutocompleteMatchType::SEARCH_SUGGEST_ENTITY;
         match.relevance = *search_score;
@@ -300,7 +300,7 @@ int MisesProvider::CalculateRelevanceForWeb3sites() const {
       return 849;
 
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return 0;
   }
 }

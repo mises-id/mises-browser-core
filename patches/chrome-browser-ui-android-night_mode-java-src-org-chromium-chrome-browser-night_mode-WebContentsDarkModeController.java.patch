@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
-index e089e9d160db409dd1a7c947cece10d145bb2c19..31a3bbbecba0a9598f5436d325460db2e53a0c67 100644
+index d1e19e12d09692a9845f5500608fa6b70bdf1933..c7e15c19cd067425d9b8057178d68ba985a0a45a 100644
 --- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
 +++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/WebContentsDarkModeController.java
 @@ -17,6 +17,19 @@ import org.chromium.content_public.browser.WebContents;
@@ -22,7 +22,7 @@ index e089e9d160db409dd1a7c947cece10d145bb2c19..31a3bbbecba0a9598f5436d325460db2
  /**
   * A controller class could enable or disable web content dark mode feature based on the content
   * settings {@link ContentSettingsType.AUTO_DARK_WEB_CONTENT}.
-@@ -130,4 +143,40 @@ public class WebContentsDarkModeController {
+@@ -136,4 +149,40 @@ public class WebContentsDarkModeController {
          }
          return true;
      }

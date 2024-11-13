@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/extensions/api/BUILD.gn b/chrome/browser/extensions/api/BUILD.gn
+index 6173ec0a17669dc66a7eda1b6870ae8873e11a61..6e8740daeee8ef6629f61d4f194857a2725144ae 100644
+--- a/chrome/browser/extensions/api/BUILD.gn
++++ b/chrome/browser/extensions/api/BUILD.gn
+@@ -34,7 +34,7 @@ group("api_implementations") {
+     "//chrome/browser/extensions/api/downloads_internal",
+     "//chrome/browser/extensions/api/experimental_ai_data",
+     "//chrome/browser/extensions/api/font_settings",
+-    "//chrome/browser/extensions/api/mdns",
++    #"//chrome/browser/extensions/api/mdns",
+     "//chrome/browser/extensions/api/module",
+     "//chrome/browser/extensions/api/networking_private",
+     "//chrome/browser/extensions/api/omnibox",

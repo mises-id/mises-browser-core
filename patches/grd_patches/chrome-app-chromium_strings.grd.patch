@@ -1,5 +1,5 @@
 diff --git a/chrome/app/chromium_strings.grd b/chrome/app/chromium_strings.grd
-index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c9169172309 100644
+index 3e6fffc6bc3259b2dd68a83d6a8b18866137ce53..561ed019b41b2d6731f67d5a241d5bc20ecf284e 100644
 --- a/chrome/app/chromium_strings.grd
 +++ b/chrome/app/chromium_strings.grd
 @@ -272,7 +272,7 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
@@ -11,7 +11,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <part file="settings_chromium_strings.grdp" />
        </if>
  
-@@ -935,7 +935,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -983,7 +983,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Enterprise sign-in dialog -->
@@ -20,7 +20,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_ENTERPRISE_SIGNIN_TITLE" desc="The title of the dialog to confirm linking the browser profile with the signed-in enterprise account">
            Link your Chromium data to this account?
          </message>
-@@ -967,7 +967,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1042,7 +1042,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- about:browser-switch strings -->
@@ -29,7 +29,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_ABOUT_BROWSER_SWITCH_DESCRIPTION_UNKNOWN_BROWSER" desc="Description shown while waiting for an alternative browser to open, when the browser name is not auto-detected">
            Your system administrator has configured Chromium to open an alternative browser to access <ph name="TARGET_URL_HOSTNAME">$1<ex>example.com</ex></ph>.
          </message>
-@@ -1129,7 +1129,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1302,7 +1302,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Material Design User Manager -->
@@ -38,7 +38,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <!-- User pod remove sync warning text -->
          <message name="IDS_LOGIN_POD_USER_REMOVE_WARNING_SYNC" desc="Main text shown as a warning when attempting to remove an user.">
            This person's browsing data will be deleted from this device. To recover the data, sign in to Chromium as <ph name="USER_EMAIL">$2<ex>foo@example.com</ex></ph>.
-@@ -1222,7 +1222,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1396,7 +1396,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </message>
        </if>
  
@@ -47,7 +47,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_CONTENT_CONTEXT_ACCESSIBILITY_LABELS_BUBBLE_TEXT" desc="The text of a bubble that confirms users allows integrating the accessibility labels service of Google to Chromium.">
            If an image doesn’t have a useful description, Chromium will try to provide one for you. To create descriptions, images are sent to Google. You can turn this off in settings at any time.
          </message>
-@@ -1313,7 +1313,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1487,7 +1487,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </message>
  
        <!-- Sync errors. Android uses native UI to handle Sync settings -->
@@ -56,7 +56,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_SYNC_UPGRADE_CLIENT" desc="Message indicating client needs to be upgraded to the latest version.">
            Update Chromium to start sync
          </message>
-@@ -1414,7 +1414,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1609,7 +1609,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
        <!-- Welcome page (chrome://welcome) strings -->
@@ -65,7 +65,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_WELCOME_HEADER" desc="A message which will appear as the header on the Welcome UI if the user has never run Chromium before.">
            Welcome to Chromium
          </message>
-@@ -1427,7 +1427,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1622,7 +1622,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </message>
        </if>
        <!-- Relaunch notification bubble and dialog. -->
@@ -74,7 +74,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <if expr="not chromeos_ash">
            <message name="IDS_RELAUNCH_RECOMMENDED_TITLE" desc="The title of a dialog that tells users that a browser relaunch is recommended for an update available for some number of days.">
              {0, plural,
-@@ -1471,7 +1471,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1666,7 +1666,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </if>
        </if>
        <!-- Chromium launch blocking dialog. -->
@@ -83,7 +83,7 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
           <message name="IDS_ENTERPRISE_STARTUP_CLOUD_POLICY_ENROLLMENT_TOOLTIP" desc="The information message of Chromium launch blocking dialog for machine level user cloud policy enrollment.">
            Launching Chromium...
          </message>
-@@ -1531,7 +1531,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1726,7 +1726,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </message>
        </if>
        <!-- User happiness tracking survey UI -->
@@ -92,21 +92,21 @@ index 776847bfe250c346653f9dd847756410537714a6..c7ff3c1978a870273fc330d7c3267c91
          <message name="IDS_HATS_BUBBLE_TITLE" translateable="false" desc="The title of Happiness Tracking Survey's invitation banner, it invites users to take a survey">
            Help us improve Chromium
          </message>
-@@ -1544,7 +1544,7 @@ Permissions you've already given to websites and apps may apply to this account.
+@@ -1739,7 +1739,7 @@ Permissions you've already given to websites and apps may apply to this account.
          </message>
        </if>
  
 -      <if expr="not chromeos_ash and not is_android">
 +      <if expr="is_android or not chromeos_ash and not is_android">
-         <!-- Profile Picker -->
-         <if expr="chromeos_lacros">
-           <message name="IDS_PROFILE_PICKER_MAIN_VIEW_SUBTITLE_LACROS" desc="Profile picker main view subtitle">
-@@ -1889,7 +1889,7 @@ Permissions you've already given to websites and apps may apply to this account.
+         <!-- Enterprise profile welcome screen -->
+         <message name="IDS_ENTERPRISE_OIDC_WELCOME_TIMEOUT_SUBTITLE" desc="Subtitle of a section telling the user that their work profile was created but is not fully ready yet.">
+           While we're setting up account access, you can still use Chromium. You may not be able to access some resources until setup is complete.
+@@ -2164,7 +2164,7 @@ Permissions you've already given to websites and apps may apply to this account.
        </if>
  
-       <!-- High Efficiency IPH strings -->
+       <!-- Memory Saver IPH strings -->
 -      <if expr="not is_android">
 +      <if expr="is_android or not is_android">
          <if expr="use_titlecase">
-           <message name="IDS_HIGH_EFFICIENCY_MODE_PROMO_TITLE" desc="In Title Case: The title for the high efficiency mode in-product promo bubble">
+           <message name="IDS_MEMORY_SAVER_MODE_PROMO_TITLE" desc="In Title Case: The title for the Memory Saver mode in-product promo bubble">
              Make Chromium Faster

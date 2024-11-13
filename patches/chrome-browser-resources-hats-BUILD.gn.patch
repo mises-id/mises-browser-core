@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/hats/BUILD.gn b/chrome/browser/resources/hats/BUILD.gn
-index 7309121fd0df942060780b851ecd115f7397f8c6..036e4fc5165ea7c1084f6f707eb3ddc573077161 100644
+index e056c659f30027d6b1dfd55b6a50e6fe9c40fe54..3d972f586d26106eef43df3170282d27f1aba348 100644
 --- a/chrome/browser/resources/hats/BUILD.gn
 +++ b/chrome/browser/resources/hats/BUILD.gn
 @@ -4,7 +4,7 @@

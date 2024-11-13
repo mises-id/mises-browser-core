@@ -93,32 +93,32 @@ ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() 
 }
 
 ExtensionFunction::ResponseAction MisesPrivateGetAppStateFunction::Run() {
-  api::mises_private::AppState state = api::mises_private::AppState::APP_STATE_NONE;
+  api::mises_private::AppState state = api::mises_private::AppState::kNone;
 #if BUILDFLAG(IS_ANDROID)
   switch (base::android::ApplicationStatusListener::GetState()) {
     case base::android::ApplicationState::APPLICATION_STATE_UNKNOWN :{
-      state = api::mises_private::AppState::APP_STATE_UNKNOWN;
+      state = api::mises_private::AppState::kUnknown;
       break;
     }
     case base::android::ApplicationState::APPLICATION_STATE_HAS_RUNNING_ACTIVITIES :{
-      state = api::mises_private::AppState::APP_STATE_RUNNING;
+      state = api::mises_private::AppState::kRunning;
       break;
     }
     case base::android::ApplicationState::APPLICATION_STATE_HAS_PAUSED_ACTIVITIES :{
-      state = api::mises_private::AppState::APP_STATE_PAUSED;
+      state = api::mises_private::AppState::kPaused;
       break;
     }
     case base::android::ApplicationState::APPLICATION_STATE_HAS_STOPPED_ACTIVITIES :{
-      state = api::mises_private::AppState::APP_STATE_STOPPED;
+      state = api::mises_private::AppState::kStopped;
       break;
     }
     case base::android::ApplicationState::APPLICATION_STATE_HAS_DESTROYED_ACTIVITIES :{
-      state = api::mises_private::AppState::APP_STATE_DESTROYED;
+      state = api::mises_private::AppState::kDestroyed;
       break;
     }
   }
 #endif
-  state = api::mises_private::AppState::APP_STATE_RUNNING;
+  state = api::mises_private::AppState::kRunning;
   return RespondNow(ArgumentList(
     api::mises_private::GetAppState::Results::Create(state)));
 }
@@ -142,7 +142,7 @@ ExtensionFunction::ResponseAction MisesPrivateNotifyPhishingDetectedFunction::Ru
   return RespondLater();
 #else
   return RespondNow(ArgumentList(
-    api::mises_private::NotifyPhishingDetected::Results::Create(api::mises_private::Web3SafeAction::WEB3_SAFE_ACTION_IGNOR)));
+    api::mises_private::NotifyPhishingDetected::Results::Create(api::mises_private::Web3SafeAction::kIgnor)));
 #endif
 }
 

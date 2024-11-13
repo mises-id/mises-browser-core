@@ -1,8 +1,8 @@
 diff --git a/content/browser/devtools/BUILD.gn b/content/browser/devtools/BUILD.gn
-index d9812e6c609dfaca1de7e7569c6d7f4635ca5df9..cd8c7bdb6e146ea240cc160987c8a27a7115e71d 100644
+index fad8c1c626d46d02067ffa4672c2b1699fc66572..24c69ac449685dcbd883c3fd413fffdaffc16299 100644
 --- a/content/browser/devtools/BUILD.gn
 +++ b/content/browser/devtools/BUILD.gn
-@@ -10,7 +10,7 @@ import("//third_party/protobuf/proto_library.gni")
+@@ -11,7 +11,7 @@ import("//third_party/protobuf/proto_library.gni")
  import("//tools/grit/grit_rule.gni")
  
  # Android and iOS don't support DevTools front-end.

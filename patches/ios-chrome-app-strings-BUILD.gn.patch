@@ -1,9 +1,0 @@
-diff --git a/ios/chrome/app/strings/BUILD.gn b/ios/chrome/app/strings/BUILD.gn
-index feedd9021660204c498ef636c4a4f35c89ae4aa1..74c67d743be09ca7eb299f18303d49321d839efe 100644
---- a/ios/chrome/app/strings/BUILD.gn
-+++ b/ios/chrome/app/strings/BUILD.gn
-@@ -30,3 +30,4 @@ grit("ios_branded_strings") {
-     outputs += [ "ios_${branding_path_product}_strings_$locale.pak" ]
-   }
- }
-+

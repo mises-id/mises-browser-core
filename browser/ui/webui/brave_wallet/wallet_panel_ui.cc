@@ -10,6 +10,7 @@
 
 #include "base/command_line.h"
 #include "base/functional/bind.h"
+#include "mises/browser/brave_wallet/brave_wallet_context_utils.h"
 #include "mises/browser/brave_wallet/asset_ratio_service_factory.h"
 #include "mises/browser/brave_wallet/brave_wallet_service_factory.h"
 #include "mises/browser/brave_wallet/json_rpc_service_factory.h"
@@ -46,8 +47,8 @@
 #include "ui/base/webui/web_ui_util.h"
 
 WalletPanelUI::WalletPanelUI(content::WebUI* web_ui)
-    : ui::MojoBubbleWebUIController(web_ui,
-                                    true /* Needed for webui browser tests */) {
+    : TopChromeWebUIController(web_ui,
+                                true /* Needed for webui browser tests */) {
   auto* profile = Profile::FromWebUI(web_ui);
   content::WebUIDataSource* source =
       content::WebUIDataSource::CreateAndAdd(profile, kWalletPanelHost);
@@ -72,9 +73,7 @@ WalletPanelUI::WalletPanelUI(content::WebUI* web_ui)
   source->AddBoolean(brave_wallet::mojom::kP3ACountTestNetworksLoadTimeKey,
                      base::CommandLine::ForCurrentProcess()->HasSwitch(
                          brave_wallet::mojom::kP3ACountTestNetworksSwitch));
-  if (ShouldDisableCSPForTesting()) {
-    source->DisableContentSecurityPolicy();
-  }
+
   content::URLDataSource::Add(profile,
                               std::make_unique<SanitizedImageSource>(profile));
   brave_wallet::AddBlockchainTokenImageSource(profile);
@@ -159,8 +158,17 @@ void WalletPanelUI::CreatePanelHandler(
   }
 }
 
-// static
-bool& WalletPanelUI::ShouldDisableCSPForTesting() {
-  static bool disable_csp = false;
-  return disable_csp;
+
+
+WalletPanelUIConfig::WalletPanelUIConfig()
+    : DefaultTopChromeWebUIConfig(content::kChromeUIScheme, kWalletPanelHost) {}
+
+bool WalletPanelUIConfig::IsWebUIEnabled(
+    content::BrowserContext* browser_context) {
+  return brave_wallet::IsAllowedForContext(browser_context);
 }
+
+bool WalletPanelUIConfig::ShouldAutoResizeHost() {
+  return true;
+}
+

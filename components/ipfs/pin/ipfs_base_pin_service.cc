@@ -127,7 +127,7 @@ void IpfsBasePinService::GetConnectedPeers(size_t attempt) {
   ipfs_service_->GetConnectedPeers(
       base::BindOnce(&IpfsBasePinService::OnGetConnectedPeersResult,
                      weak_ptr_factory_.GetWeakPtr(), attempt),
-      absl::nullopt);
+      std::nullopt);
 }
 
 bool IpfsBasePinService::HasJobs() {

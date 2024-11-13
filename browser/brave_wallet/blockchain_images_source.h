@@ -10,10 +10,10 @@
 
 #include "base/memory/weak_ptr.h"
 #include "content/public/browser/url_data_source.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "base/memory/weak_ptr.h"
 #include "base/time/time.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 class ProfileKey;
 class GURL;

@@ -146,7 +146,7 @@ void BlockchainImagesSource::OnTokenImageFetched(
     const gfx::Image& token_image,
     const image_fetcher::RequestMetadata& metadata) {
     
-  absl::optional<std::string> input;
+  std::optional<std::string> input;
   if (!token_image.IsEmpty() && token_image.ToSkBitmap()) {
     std::vector<unsigned char> output;
     gfx::PNGCodec::EncodeBGRASkBitmap(*token_image.ToSkBitmap(), false, &output);
@@ -161,9 +161,7 @@ void BlockchainImagesSource::OnTokenImageFetched(
   }
 
   LOG(INFO) << "BlockchainImagesSource::OnTokenImageFetched success";
-  bytes = new base::RefCountedBytes(
-      reinterpret_cast<const unsigned char*>(input->c_str()), input->length());
-  std::move(callback).Run(std::move(bytes));
+  std::move(callback).Run(new base::RefCountedBytes(base::as_byte_span(*input)));
 }
 
 

@@ -287,7 +287,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
         break;
 
       default:
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
     }
 
     return Write(utf8_string);
@@ -315,7 +315,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
     if (!title_ptr || !date_added_string || !type_string ||
         (*type_string != BookmarkCodec::kTypeURL &&
          *type_string != BookmarkCodec::kTypeFolder)) {
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return false;
     }
 
@@ -323,7 +323,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
     if (*type_string == BookmarkCodec::kTypeURL) {
       const std::string* url_string = value.FindString(BookmarkCodec::kURLKey);
       if (!url_string) {
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
         return false;
       }
 
@@ -333,7 +333,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
         scoped_refptr<base::RefCountedMemory> data(itr->second.get());
         std::string favicon_base64_encoded;
         base::Base64Encode(
-            base::StringPiece(data->front_as<char>(), data->size()),
+            std::string_view(data->front_as<char>(), data->size()),
             &favicon_base64_encoded);
         GURL favicon_url("data:image/png;base64," + favicon_base64_encoded);
         favicon_string = favicon_url.spec();
@@ -357,7 +357,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
     const base::Value::List* child_values =
         value.FindList(BookmarkCodec::kChildrenKey);
     if (!last_modified_date || !child_values) {
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return false;
     }
     if (folder_type != BookmarkNode::OTHER_NODE &&
@@ -387,7 +387,7 @@ class Writer : public base::RefCountedThreadSafe<Writer> {
     // Write the children.
     for (const base::Value& child_value : *child_values) {
       if (!child_value.is_dict()) {
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
         return false;
       }
       if (!WriteNode(child_value.GetDict(), BookmarkNode::FOLDER)) {

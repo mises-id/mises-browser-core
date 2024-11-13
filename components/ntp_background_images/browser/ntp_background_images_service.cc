@@ -67,7 +67,7 @@ std::string HandleComponentData(const base::FilePath& installed_dir) {
   std::string contents;
 
   if (json_path.empty()) {
-    NOTREACHED() << __func__ << ": Can't find valid manifest file in "
+    NOTREACHED_IN_MIGRATION() << __func__ << ": Can't find valid manifest file in "
                              << installed_dir;
     return contents;
   }
@@ -370,7 +370,7 @@ void NTPBackgroundImagesService::OnGetMappingTableData(
     return;
   }
 
-  absl::optional<base::Value> mapping_table_value =
+  std::optional<base::Value> mapping_table_value =
       base::JSONReader::Read(json_string);
 
   if (!mapping_table_value) {

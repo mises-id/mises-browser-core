@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java
-index c8dd0c576ad604a9b5d0b18dad221da9ddcb14da..b4a856ef09fd1058c585ea664b4b8d3aa9da211a 100644
+index a6d85b9a7c12b6a0bf6b7d3b6cf56b8a8b089e0c..13578ec5f35af037efcce94011e1d1fd592ce054 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java
-@@ -33,6 +33,9 @@ import org.chromium.ui.widget.RectProvider;
+@@ -40,6 +40,9 @@ import org.chromium.ui.widget.RectProvider;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
  
@@ -12,20 +12,25 @@ index c8dd0c576ad604a9b5d0b18dad221da9ddcb14da..b4a856ef09fd1058c585ea664b4b8d3a
  /**
   * The main coordinator for the Tab Switcher Action Menu, responsible for creating the popup menu
   * (popup window) in general and building a list of menu items.
-@@ -55,13 +58,24 @@ public class TabSwitcherActionMenuCoordinator {
-      * @param onItemClicked  The clicked listener handling clicks on TabSwitcherActionMenu.
-      * @return a long click listener of the long press action of tab switcher button.
-      */
--    public static OnLongClickListener createOnLongClickListener(Callback<Integer> onItemClicked) {
--        return createOnLongClickListener(new TabSwitcherActionMenuCoordinator(), onItemClicked);
-+    public static OnLongClickListener createOnLongClickListener(Callback<Integer> onItemClicked, OnClickListener newTabClickHandler) {
-+        return createOnLongClickListener(new TabSwitcherActionMenuCoordinator(), onItemClicked, newTabClickHandler);
+@@ -73,18 +76,29 @@ public class TabSwitcherActionMenuCoordinator {
+     public static OnLongClickListener createOnLongClickListener(
+             Callback<Integer> onItemClicked,
+             Profile profile,
+-            ObservableSupplier<TabModelSelector> tabModelSelectorSupplier) {
++            ObservableSupplier<TabModelSelector> tabModelSelectorSupplier, OnClickListener newTabClickHandler) {
+         return createOnLongClickListener(
+                 new TabSwitcherActionMenuCoordinator(profile, tabModelSelectorSupplier),
+                 profile,
+-                onItemClicked);
++                onItemClicked, newTabClickHandler);
      }
  
      // internal helper function to create a long click listener.
      protected static OnLongClickListener createOnLongClickListener(
--            TabSwitcherActionMenuCoordinator menu, Callback<Integer> onItemClicked) {
-+            TabSwitcherActionMenuCoordinator menu, Callback<Integer> onItemClicked, OnClickListener newTabClickHandler) {
+             TabSwitcherActionMenuCoordinator menu,
+             Profile profile,
+-            Callback<Integer> onItemClicked) {
++            Callback<Integer> onItemClicked, OnClickListener newTabClickHandler) {
 +        if (!ContextUtils.getAppSharedPreferences().getBoolean("tabswitcher_opens_contextual_menu", false)) {
 +            return new OnLongClickListener() {
 +                @Override
@@ -39,4 +44,4 @@ index c8dd0c576ad604a9b5d0b18dad221da9ddcb14da..b4a856ef09fd1058c585ea664b4b8d3a
 +
          return (view) -> {
              Context context = view.getContext();
-             menu.displayMenu(context, (ListMenuButton) view, menu.buildMenuItems(), (id) -> {
+             menu.displayMenu(

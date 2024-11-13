@@ -165,7 +165,7 @@ IN_PROC_BROWSER_TEST_F(BraveWalletSignMessageBrowserTest, UserApprovedRequest) {
     base::RunLoop().RunUntilIdle();
     EXPECT_TRUE(WaitForWalletBubble(web_contents()));
     brave_wallet_service_->NotifySignMessageRequestProcessed(
-        true, request_index++, nullptr, absl::nullopt);
+        true, request_index++, nullptr, std::nullopt);
     EXPECT_EQ(EvalJs(web_contents(), "getSignMessageResult()",
                      content::EXECUTE_SCRIPT_USE_MANUAL_REPLY)
                   .ExtractString(),
@@ -195,7 +195,7 @@ IN_PROC_BROWSER_TEST_F(BraveWalletSignMessageBrowserTest, UserRejectedRequest) {
     base::RunLoop().RunUntilIdle();
     EXPECT_TRUE(WaitForWalletBubble(web_contents()));
     brave_wallet_service_->NotifySignMessageRequestProcessed(
-        false, request_index++, nullptr, absl::nullopt);
+        false, request_index++, nullptr, std::nullopt);
     EXPECT_EQ(EvalJs(web_contents(), "getSignMessageResult()",
                      content::EXECUTE_SCRIPT_USE_MANUAL_REPLY)
                   .ExtractString(),

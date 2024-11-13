@@ -2,7 +2,7 @@
 #define MISES_BROWSER_UI_EXTENSIONS_ICON_WITH_BADGE_IMAGE_SOURCE_H_
 
 
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace mises {
 class MisesIconWithBadgeImageSource;
@@ -12,9 +12,9 @@ class MisesIconWithBadgeImageSource;
  private:                                                \
   friend class AppMenuBridge;\
   friend class mises::MisesIconWithBadgeImageSource;     \
-  virtual absl::optional<int> GetCustomGraphicSize();    \
-  virtual absl::optional<int> GetCustomGraphicXOffset(); \
-  virtual absl::optional<int> GetCustomGraphicYOffset(); \
+  virtual std::optional<int> GetCustomGraphicSize();    \
+  virtual std::optional<int> GetCustomGraphicXOffset(); \
+  virtual std::optional<int> GetCustomGraphicYOffset(); \
                                                          \
  public:                                                 \
   // #define BRAVE_ICON_WITH_BADGE_IMAGE_SOURCE_H_

@@ -1,25 +1,25 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
-index 7a9248b936c3a68337720504494b7d35685987b3..2881c8f5a2f4d51ffc7090622bcd43427a6d292d 100644
+index 9c2d283ae6946bc7db29a7bde250f10cdd4d5352..582f6984b0100e9089b27cab0a99e7ea598c49ee 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/TabSwitcherDrawable.java
-@@ -28,6 +28,7 @@ import java.util.Locale;
- public class TabSwitcherDrawable extends TintedDrawable {
+@@ -47,6 +47,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+ 
      private final float mSingleDigitTextSize;
      private final float mDoubleDigitTextSize;
 +    private final float mTripleDigitTextSize;
  
      private final Rect mTextBounds = new Rect();
-     private final TextPaint mTextPaint;
-@@ -45,7 +46,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
-     public static TabSwitcherDrawable createTabSwitcherDrawable(
-             Context context, @BrandedColorScheme int brandedColorScheme) {
-         Bitmap icon = BitmapFactory.decodeResource(
--                context.getResources(), R.drawable.btn_tabswitcher_modern);
-+                context.getResources(), R.drawable.btn_tabswitcher_mises);
-         return new TabSwitcherDrawable(context, brandedColorScheme, icon);
+     private final Paint mNotificationPaint;
+@@ -76,7 +77,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+             @TabSwitcherDrawableLocation int tabSwitcherDrawableLocation) {
+         Bitmap icon =
+                 BitmapFactory.decodeResource(
+-                        context.getResources(), R.drawable.btn_tabswitcher_modern);
++                        context.getResources(), R.drawable.btn_tabswitcher_mises);
+         return new TabSwitcherDrawable(
+                 context, brandedColorScheme, icon, tabSwitcherDrawableLocation);
      }
- 
-@@ -57,6 +58,8 @@ public class TabSwitcherDrawable extends TintedDrawable {
+@@ -92,6 +93,8 @@ public class TabSwitcherDrawable extends TintedDrawable {
                  context.getResources().getDimension(R.dimen.toolbar_tab_count_text_size_1_digit);
          mDoubleDigitTextSize =
                  context.getResources().getDimension(R.dimen.toolbar_tab_count_text_size_2_digit);
@@ -28,7 +28,7 @@ index 7a9248b936c3a68337720504494b7d35685987b3..2881c8f5a2f4d51ffc7090622bcd4342
  
          mTextPaint = new TextPaint();
          mTextPaint.setAntiAlias(true);
-@@ -106,6 +109,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+@@ -190,6 +193,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
          mTabCount = tabCount;
          mIncognito = incognito;
          float textSizePx = mTabCount > 9 ? mDoubleDigitTextSize : mSingleDigitTextSize;
@@ -36,7 +36,7 @@ index 7a9248b936c3a68337720504494b7d35685987b3..2881c8f5a2f4d51ffc7090622bcd4342
          mTextPaint.setTextSize(textSizePx);
          invalidateSelf();
      }
-@@ -113,7 +117,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
+@@ -197,7 +201,7 @@ public class TabSwitcherDrawable extends TintedDrawable {
      private String getTabCountString() {
          if (mTabCount <= 0) {
              return "";

@@ -50,7 +50,7 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
   const char* GetTypeName() override;
 
   // mojom::SolanaEventsListener
-  void AccountChangedEvent(const absl::optional<std::string>& account) override;
+  void AccountChangedEvent(const std::optional<std::string>& account) override;
 
  private:
   explicit JSSolanaProvider(content::RenderFrame* render_frame);
@@ -160,18 +160,18 @@ class JSSolanaProvider final : public gin::Wrappable<JSSolanaProvider>,
                     bool success);
 
   // Get solanaWeb3.Transaction.serializedMessage with base58 encoding
-  absl::optional<std::string> GetSerializedMessage(
+  std::optional<std::string> GetSerializedMessage(
       v8::Local<v8::Value> transaction);
 
-  absl::optional<std::vector<uint8_t>> GetSignatureBlobFromV8Signature(
+  std::optional<std::vector<uint8_t>> GetSignatureBlobFromV8Signature(
       const v8::Local<v8::Value>& v8_signature,
       const v8::Local<v8::Context>& context);
 
-  absl::optional<std::string> GetPubkeyStringFromV8Pubkey(
+  std::optional<std::string> GetPubkeyStringFromV8Pubkey(
       const v8::Local<v8::Value>& v8_pubkey_object,
       const v8::Local<v8::Context>& context);
 
-  absl::optional<std::vector<mojom::SignaturePubkeyPairPtr>> GetSignatures(
+  std::optional<std::vector<mojom::SignaturePubkeyPairPtr>> GetSignatures(
       v8::Local<v8::Value> transaction);
 
   mojom::SolanaSignTransactionParamPtr GetSignTransactionParam(

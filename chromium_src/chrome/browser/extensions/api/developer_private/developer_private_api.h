@@ -22,7 +22,7 @@ namespace extensions {
             ~DeveloperPrivateLoadUnpackedFunction() override;
 
             // EntryPickerClient:
-            void FileSelected(const base::FilePath& path) override;
+            void FileSelected(const ui::SelectedFileInfo& file, int index) override;
 
             void CheckFile(const base::FilePath& path);
         };

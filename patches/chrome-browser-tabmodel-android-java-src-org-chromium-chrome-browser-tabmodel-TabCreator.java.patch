@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
-index 4097f37b531b393132100d4721f7f0c54fded3e8..5049e7eebfa2bbc0ad337b536c74ddfe2825f0a5 100644
+index ee25bbe16eddfd52ac0a7b420e3e2394f27b395f..3cb74cd015009eb986e7414ce30fd1f3464ab856 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabCreator.java
 @@ -16,6 +16,9 @@ import org.chromium.content_public.browser.LoadUrlParams;
@@ -12,14 +12,8 @@ index 4097f37b531b393132100d4721f7f0c54fded3e8..5049e7eebfa2bbc0ad337b536c74ddfe
  /**
   * Creates Tabs.  If the TabCreator creates Tabs asynchronously, null pointers will be returned
   * everywhere instead of a Tab.
-@@ -111,9 +114,17 @@ public abstract class TabCreator {
-     public final void launchNTP(@TabLaunchType int type) {
-         try {
-             TraceEvent.begin("TabCreator.launchNTP");
--            launchUrl(UrlConstants.NTP_URL, type);
-+	    launchUrl(UrlConstants.NTP_URL, type);
-         } finally {
-             TraceEvent.end("TabCreator.launchNTP");
+@@ -124,4 +127,12 @@ public abstract class TabCreator {
+             TraceEvent.end("TabCreator.launchNtp");
          }
      }
 +

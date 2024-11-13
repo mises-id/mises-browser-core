@@ -155,7 +155,7 @@ class AssetDiscoveryManager : public mojom::KeyringServiceObserver {
       bool triggered_by_accounts_added,
       const std::vector<std::vector<mojom::BlockchainTokenPtr>>& nfts);
 
-  absl::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
+  std::optional<std::pair<GURL, std::vector<mojom::BlockchainTokenPtr>>>
   ParseNFTsFromSimpleHash(const base::Value& json_value, mojom::CoinType coin);
 
   // CompleteDiscoverAssets signals that the discover assets request has
@@ -163,7 +163,7 @@ class AssetDiscoveryManager : public mojom::KeyringServiceObserver {
   void CompleteDiscoverAssets(
       const std::string& chain_id,
       std::vector<mojom::BlockchainTokenPtr> discovered_assets,
-      absl::optional<mojom::ProviderError> error,
+      std::optional<mojom::ProviderError> error,
       const std::string& error_message,
       bool triggered_by_accounts_added);
 
@@ -179,7 +179,7 @@ class AssetDiscoveryManager : public mojom::KeyringServiceObserver {
       mojom::CoinType coin,
       const std::vector<std::string>& account_addresses);
 
-  static absl::optional<SolanaAddress> DecodeMintAddress(
+  static std::optional<SolanaAddress> DecodeMintAddress(
       const std::vector<uint8_t>& data);
   static GURL GetSimpleHashNftsByWalletUrl(
       const std::string& account_address,

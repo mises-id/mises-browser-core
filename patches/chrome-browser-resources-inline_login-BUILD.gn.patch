@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/inline_login/BUILD.gn b/chrome/browser/resources/inline_login/BUILD.gn
-index 0122ed04d5ffddf7c5539cfa0ceb3b903a6439c4..9f9c8cff4620f6482e1a53b93090aa862c4236d0 100644
+index a5846f9b701e0ee5e1d18de479967d09f97baa30..f5a5234381ee9fd598da2fb4773a42e3c103f6d9 100644
 --- a/chrome/browser/resources/inline_login/BUILD.gn
 +++ b/chrome/browser/resources/inline_login/BUILD.gn
 @@ -6,7 +6,7 @@ import("//chrome/browser/buildflags.gni")
  import("//chrome/common/features.gni")
  import("//ui/webui/resources/tools/build_webui.gni")
  
--assert(!is_android)
-+#assert(!is_android)
+-assert(!is_android && !is_chromeos_ash)
++#assert(!is_android && !is_chromeos_ash)
  
  build_webui("build") {
    grd_prefix = "inline_login"

@@ -113,11 +113,11 @@ class SolanaTxManagerUnitTest : public testing::Test {
          last_valid_block_height, block_height,
          get_null_signature_statuses](const network::ResourceRequest& request) {
           url_loader_factory_.ClearResponses();
-          base::StringPiece request_string(request.request_body->elements()
+          std::string_view request_string(request.request_body->elements()
                                                ->at(0)
                                                .As<network::DataElementBytes>()
                                                .AsStringPiece());
-          absl::optional<base::Value> request_value =
+          std::optional<base::Value> request_value =
               base::JSONReader::Read(request_string);
           std::string* method = request_value->FindString("method");
           ASSERT_TRUE(method);
@@ -232,15 +232,15 @@ class SolanaTxManagerUnitTest : public testing::Test {
                                 const std::string& from,
                                 std::string* meta_id) {
     AddUnapprovedTransaction(std::move(solana_tx_data), from, GetOrigin(),
-                             meta_id, absl::nullopt);
+                             meta_id, std::nullopt);
   }
 
   void AddUnapprovedTransaction(
       mojom::SolanaTxDataPtr solana_tx_data,
       const std::string& from,
-      const absl::optional<url::Origin>& origin,
+      const std::optional<url::Origin>& origin,
       std::string* meta_id,
-      const absl::optional<std::string>& group_id = absl::nullopt) {
+      const std::optional<std::string>& group_id = std::nullopt) {
     auto tx_data_union =
         mojom::TxDataUnion::NewSolanaTxData(std::move(solana_tx_data));
 
@@ -362,7 +362,7 @@ class SolanaTxManagerUnitTest : public testing::Test {
 
   void TestGetTransactionMessageToSign(
       const std::string& tx_meta_id,
-      absl::optional<std::vector<std::uint8_t>> expected_tx_message) {
+      std::optional<std::vector<std::uint8_t>> expected_tx_message) {
     base::RunLoop run_loop;
     solana_tx_manager()->GetTransactionMessageToSign(
         tx_meta_id,
@@ -371,7 +371,7 @@ class SolanaTxManagerUnitTest : public testing::Test {
               EXPECT_EQ(!!tx_message, expected_tx_message.has_value());
               if (expected_tx_message.has_value()) {
                 ASSERT_TRUE(tx_message->is_message_bytes());
-                absl::optional<std::vector<std::uint8_t>> message_bytes =
+                std::optional<std::vector<std::uint8_t>> message_bytes =
                     tx_message->get_message_bytes();
                 EXPECT_EQ(message_bytes, expected_tx_message);
               }
@@ -544,7 +544,7 @@ TEST_F(SolanaTxManagerUnitTest, WalletOrigin) {
   ASSERT_TRUE(system_transfer_data);
 
   std::string meta_id;
-  AddUnapprovedTransaction(std::move(system_transfer_data), from, absl::nullopt,
+  AddUnapprovedTransaction(std::move(system_transfer_data), from, std::nullopt,
                            &meta_id);
 
   auto tx_meta = solana_tx_manager()->GetTxForTesting(meta_id);
@@ -586,7 +586,7 @@ TEST_F(SolanaTxManagerUnitTest, AddUnapprovedTransactionWithGroupId) {
   ASSERT_TRUE(system_transfer_data);
 
   std::string meta_id;
-  AddUnapprovedTransaction(std::move(system_transfer_data), from, absl::nullopt,
+  AddUnapprovedTransaction(std::move(system_transfer_data), from, std::nullopt,
                            &meta_id, "mockGroupId");
 
   auto tx_meta = solana_tx_manager()->GetTxForTesting(meta_id);
@@ -617,7 +617,7 @@ TEST_F(SolanaTxManagerUnitTest, MakeSystemProgramTransferTxData) {
   auto mojom_decoded_data = mojom::DecodedSolanaInstructionData::New(
       static_cast<uint32_t>(mojom::SolanaSystemInstruction::kTransfer),
       solana_ins_data_decoder::GetMojomAccountParamsForTesting(
-          mojom::SolanaSystemInstruction::kTransfer, absl::nullopt),
+          mojom::SolanaSystemInstruction::kTransfer, std::nullopt),
       std::move(mojom_params));
 
   auto mojom_instruction = mojom::SolanaInstruction::New(
@@ -688,7 +688,7 @@ TEST_F(SolanaTxManagerUnitTest, MakeTokenProgramTransferTxData) {
   auto mojom_decoded_data = mojom::DecodedSolanaInstructionData::New(
       static_cast<uint32_t>(mojom::SolanaTokenInstruction::kTransfer),
       solana_ins_data_decoder::GetMojomAccountParamsForTesting(
-          absl::nullopt, mojom::SolanaTokenInstruction::kTransfer),
+          std::nullopt, mojom::SolanaTokenInstruction::kTransfer),
       std::move(mojom_params));
 
   auto mojom_transfer_instruction = mojom::SolanaInstruction::New(
@@ -855,7 +855,7 @@ TEST_F(SolanaTxManagerUnitTest, MakeTxDataFromBase64EncodedTransaction) {
   auto mojom_decoded_data = mojom::DecodedSolanaInstructionData::New(
       static_cast<uint32_t>(mojom::SolanaSystemInstruction::kTransfer),
       solana_ins_data_decoder::GetMojomAccountParamsForTesting(
-          mojom::SolanaSystemInstruction::kTransfer, absl::nullopt),
+          mojom::SolanaSystemInstruction::kTransfer, std::nullopt),
       std::move(mojom_params));
 
   auto mojom_instruction = mojom::SolanaInstruction::New(
@@ -870,7 +870,7 @@ TEST_F(SolanaTxManagerUnitTest, MakeTxDataFromBase64EncodedTransaction) {
   std::vector<mojom::SolanaInstructionPtr> instructions;
   instructions.push_back(std::move(mojom_instruction));
   auto send_options =
-      SolanaTransaction::SendOptions(absl::nullopt, absl::nullopt, true);
+      SolanaTransaction::SendOptions(std::nullopt, std::nullopt, true);
   auto tx_data = mojom::SolanaTxData::New(
       recent_blockhash, 0, from_account, "", "", 0, 0,
       mojom::TransactionType::SolanaSwap, std::move(instructions),
@@ -993,7 +993,7 @@ TEST_F(SolanaTxManagerUnitTest, DropTxWithInvalidBlockhash) {
   // Check two submitted tx.
   auto pending_transactions =
       solana_tx_manager()->GetSolanaTxStateManager()->GetTransactionsByStatus(
-          mojom::TransactionStatus::Submitted, absl::nullopt);
+          mojom::TransactionStatus::Submitted, std::nullopt);
   EXPECT_EQ(pending_transactions.size(), 2u);
   auto tx1 = solana_tx_manager()->GetTxForTesting(meta_id1);
   ASSERT_TRUE(tx1);
@@ -1022,20 +1022,20 @@ TEST_F(SolanaTxManagerUnitTest, DropTxWithInvalidBlockhash) {
   // Check blockhash1 should be dropped, blockhash2 stay as submitted.
   auto dropped_transactions =
       solana_tx_manager()->GetSolanaTxStateManager()->GetTransactionsByStatus(
-          mojom::TransactionStatus::Dropped, absl::nullopt);
+          mojom::TransactionStatus::Dropped, std::nullopt);
   ASSERT_EQ(dropped_transactions.size(), 1u);
   EXPECT_EQ(dropped_transactions[0]->id(), meta_id1);
 
   pending_transactions =
       solana_tx_manager()->GetSolanaTxStateManager()->GetTransactionsByStatus(
-          mojom::TransactionStatus::Submitted, absl::nullopt);
+          mojom::TransactionStatus::Submitted, std::nullopt);
   ASSERT_EQ(pending_transactions.size(), 1u);
   EXPECT_EQ(pending_transactions[0]->id(), meta_id2);
 }
 
 TEST_F(SolanaTxManagerUnitTest, GetTransactionMessageToSign) {
   // Unknown tx_meta_id yields null message
-  TestGetTransactionMessageToSign("Unknown", absl::nullopt);
+  TestGetTransactionMessageToSign("Unknown", std::nullopt);
 
   const std::string from = "89DzXVKJ79xf9MkzTxatQESh5fcvsqBo9fCsbAXkCaZE";
   const std::string to = "148FvZU6e67eSB12wv7fXCH5FsTDW8tsxXo3nFuZhfCF";
@@ -1051,11 +1051,11 @@ TEST_F(SolanaTxManagerUnitTest, GetTransactionMessageToSign) {
 
   // Invalid latest blockhash yields null message
   SetInterceptor("", 0, "");
-  TestGetTransactionMessageToSign(system_transfer_meta_id, absl::nullopt);
+  TestGetTransactionMessageToSign(system_transfer_meta_id, std::nullopt);
 
   // Valid latest blockhash yields valid transaction message to sign
   SetInterceptor(latest_blockhash1_, last_valid_block_height1_, "");
-  absl::optional<std::vector<std::uint8_t>> message = base::Base64Decode(
+  std::optional<std::vector<std::uint8_t>> message = base::Base64Decode(
       "AQABA2odJRVUDnxVZv71pBNy0DZ/"
       "ui6dv1N37VgGEA+"
       "aezhZAMzywrLOSju1o9VJQ5KaB2lsblgqvdjtkDFlmZHz4KQAAAAAAAAAAAAAAAAAAAAAAAA"

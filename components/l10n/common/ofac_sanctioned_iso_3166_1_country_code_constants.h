@@ -7,14 +7,14 @@
 #define BRAVE_COMPONENTS_L10N_COMMON_OFAC_SANCTIONED_ISO_3166_1_COUNTRY_CODE_CONSTANTS_H_
 
 #include "base/containers/fixed_flat_set.h"
-#include "base/strings/string_piece.h"
+#include <string_view>
 
 namespace brave_l10n {
 
 // See https://orpa.princeton.edu/export-controls/sanctioned-countries.
 
 constexpr auto kOFACSactionedISO31661CountryCodes =
-    base::MakeFixedFlatSet<base::StringPiece>({
+    base::MakeFixedFlatSet<std::string_view>({
         // List of Comprehensively Sanctioned Countries. Most transactions,
         // including those involving persons or entities "ordinarily resident"
         // in the following countries, require an Office of Foreign Assets

@@ -18,6 +18,7 @@
 #include "mises/browser/net/resource_context_data.h"
 #include "mises/browser/net/url_context.h"
 #include "content/public/browser/content_browser_client.h"
+#include "content/public/browser/frame_tree_node_id.h"
 #include "mojo/public/cpp/bindings/pending_receiver.h"
 #include "mojo/public/cpp/bindings/receiver.h"
 #include "mojo/public/cpp/bindings/remote.h"
@@ -26,7 +27,7 @@
 #include "services/network/public/mojom/network_context.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
 #include "services/network/public/mojom/websocket.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 #include "url/origin.h"
 
@@ -52,7 +53,7 @@ class MisesProxyingWebSocket
       mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
           handshake_client,
       int process_id,
-      int frame_tree_node_id,
+      content::FrameTreeNodeId frame_tree_node_id,
       content::BrowserContext* browser_context,
       scoped_refptr<RequestIDGenerator> request_id_generator,
       MisesRequestHandler& handler,
@@ -66,7 +67,7 @@ class MisesProxyingWebSocket
       content::ContentBrowserClient::WebSocketFactory factory,
       const GURL& url,
       const net::SiteForCookies& site_for_cookies,
-      const absl::optional<std::string>& user_agent,
+      const std::optional<std::string>& user_agent,
       mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
           handshake_client);
 
@@ -120,11 +121,11 @@ class MisesProxyingWebSocket
   void ContinueToHeadersReceived();
   void OnBeforeSendHeadersCompleteFromProxy(
       int error_code,
-      const absl::optional<net::HttpRequestHeaders>& headers);
+      const std::optional<net::HttpRequestHeaders>& headers);
   void OnHeadersReceivedCompleteFromProxy(
       int error_code,
-      const absl::optional<std::string>& headers,
-      const absl::optional<GURL>& url);
+      const std::optional<std::string>& headers,
+      const std::optional<GURL>& url);
 
   void PauseIncomingMethodCallProcessing();
   void ResumeIncomingMethodCallProcessing();
@@ -138,7 +139,7 @@ class MisesProxyingWebSocket
   std::shared_ptr<mises::MisesRequestInfo> ctx_;
 
   const int process_id_;
-  const int frame_tree_node_id_;
+  const content::FrameTreeNodeId frame_tree_node_id_;
   content::ContentBrowserClient::WebSocketFactory factory_;
   const raw_ptr<content::BrowserContext>  browser_context_;
   scoped_refptr<RequestIDGenerator> request_id_generator_;

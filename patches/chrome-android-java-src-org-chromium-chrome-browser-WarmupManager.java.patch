@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java b/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
-index da450948dad405d83b7bab1f94c6a594e1a77a3d..cb8fd75de1bd940aa752785eab4f7ec37fae58ab 100644
+index aee3b16543a76dfaf1f8a2913151cac03d41cc25..534de8cc192fb651935daa2a9d5e66809b85017e 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/WarmupManager.java
-@@ -58,6 +58,10 @@ import java.util.HashSet;
+@@ -77,6 +77,10 @@ import java.util.HashSet;
  import java.util.Map;
  import java.util.Set;
  
@@ -13,10 +13,10 @@ index da450948dad405d83b7bab1f94c6a594e1a77a3d..cb8fd75de1bd940aa752785eab4f7ec3
  /**
   * This class is a singleton that holds utilities for warming up Chrome and prerendering urls
   * without creating the Activity.
-@@ -367,6 +371,13 @@ public class WarmupManager {
-                     layoutInflater, R.layout.main, contentHolder);
+@@ -446,6 +450,13 @@ public class WarmupManager {
+                                     layoutInflater, R.layout.main, contentHolder);
              if (toolbarContainerId != ActivityUtils.NO_RESOURCE_ID) {
-                 ViewStub stub = (ViewStub) mainView.findViewById(R.id.control_container_stub);
+                 ViewStub stub = mainView.findViewById(R.id.control_container_stub);
 +                if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
 +                      CoordinatorLayoutForPointer.LayoutParams params = new CoordinatorLayoutForPointer.LayoutParams(
 +                        CoordinatorLayoutForPointer.LayoutParams.MATCH_PARENT, CoordinatorLayoutForPointer.LayoutParams.WRAP_CONTENT);

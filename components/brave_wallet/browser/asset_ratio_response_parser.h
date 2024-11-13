@@ -12,11 +12,11 @@
 
 #include "base/values.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
-absl::optional<std::string> ParseSardineAuthToken(
+std::optional<std::string> ParseSardineAuthToken(
     const base::Value& json_value);
 
 bool ParseAssetPrice(const base::Value& json_value,
@@ -25,7 +25,7 @@ bool ParseAssetPrice(const base::Value& json_value,
                      std::vector<mojom::AssetPricePtr>* values);
 bool ParseAssetPriceHistory(const base::Value& json_value,
                             std::vector<mojom::AssetTimePricePtr>* values);
-absl::optional<std::vector<mojom::CoinMarketPtr>> ParseCoinMarkets(
+std::optional<std::vector<mojom::CoinMarketPtr>> ParseCoinMarkets(
     const base::Value& json_value);
 
 mojom::BlockchainTokenPtr ParseTokenInfo(const base::Value& json_value,

@@ -26,3 +26,7 @@ mises_chrome_renderer_deps += [ "//third_party/widevine/cdm:headers" ]
 
 mises_chrome_renderer_public_deps = []
 
+mises_chrome_renderer_exception_deps = [
+  #"//services/screen_ai/public/mojom"
+]
+

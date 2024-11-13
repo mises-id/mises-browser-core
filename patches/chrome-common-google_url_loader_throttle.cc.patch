@@ -1,8 +1,8 @@
 diff --git a/chrome/common/google_url_loader_throttle.cc b/chrome/common/google_url_loader_throttle.cc
-index aa23712b2273c4ef873785c143f58da8991d4de8..6154f15e958f87026fe449ac51d7e63bc7b43ad2 100644
+index 9b5813b900de1e923f49b9160be7825414b7439b..c42b457a462e4ecf3fcb92dc44fa0c934185a487 100644
 --- a/chrome/common/google_url_loader_throttle.cc
 +++ b/chrome/common/google_url_loader_throttle.cc
-@@ -192,8 +192,8 @@ void GoogleURLLoaderThrottle::WillProcessResponse(
+@@ -304,8 +304,8 @@ void GoogleURLLoaderThrottle::WillProcessResponse(
      // relying on implicit ordering between this check and the time at which
      // ParsedHeaders is created.
      CHECK(response_head);

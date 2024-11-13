@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/tab_helpers.cc b/chrome/browser/ui/tab_helpers.cc
-index 31cdb67a0b84b4b5eb9e3175c3fa973021d83c6f..8c1402b23fec3dc3e77df61e480e41cbb71b5b53 100644
+index b7dacc2a46e5351d265fe36321460b50c3f3d3ef..10240c05e6fbb3a0251cedfceccbc86e65622787 100644
 --- a/chrome/browser/ui/tab_helpers.cc
 +++ b/chrome/browser/ui/tab_helpers.cc
-@@ -340,6 +340,7 @@ void TabHelpers::AttachTabHelpers(WebContents* web_contents) {
+@@ -356,6 +356,7 @@ void TabHelpers::AttachTabHelpers(WebContents* web_contents) {
    Profile* profile =
        Profile::FromBrowserContext(web_contents->GetBrowserContext());
  

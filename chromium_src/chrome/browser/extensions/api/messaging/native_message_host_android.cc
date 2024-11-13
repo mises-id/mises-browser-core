@@ -6,7 +6,7 @@
 #include "base/json/json_writer.h"
 #include "base/values.h"
 #include "content/public/browser/browser_context.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 #include "chrome/browser/extensions/api/messaging/native_message_built_in_host.h"
 #include "content/public/browser/browser_context.h"
@@ -77,7 +77,7 @@ void NativeMessageMisesHost::Start(Client* client) {
 }
 
 void NativeMessageMisesHost::OnMessage(const std::string& request_string) {
-  absl::optional<base::Value> request_value =
+  std::optional<base::Value> request_value =
       base::JSONReader::Read(request_string);
   if (!request_value.has_value()) {
     client_->CloseChannel(kHostInputOutputError);

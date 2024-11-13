@@ -87,19 +87,17 @@
     <messages fallback_to_english="true">
       <part file="bookmark_bar_strings_override.grdp" />
       <part file="error_page_strings_override.grdp" />
+      <part file="management_strings_override.grdp" />
       <part file="new_or_sad_tab_strings_override.grdp" />
       <part file="omnibox_strings_override.grdp" />
       <part file="page_info_strings_override.grdp" />
       <part file="payments_strings_override.grdp" />
-      <part file="privacy_sandbox_strings_override.grdp" />
+      <part file="privacy_sandbox_chrome_strings_override.grdp" />
       <part file="security_interstitials_strings_override.grdp" />
       <part file="supervised_user_strings_override.grdp" />
-      <if expr="use_blink">
-        <part file="history_clusters_strings_override.grdp" />
-      </if>
+      <part file="history_clusters_strings_override.grdp" />
       <if expr="is_android">
-        <part file="webauthn_strings_override.grdp" />
-      </if>
+        </if>
       <if expr="is_ios">
         </if>
       <if expr="enable_vr">

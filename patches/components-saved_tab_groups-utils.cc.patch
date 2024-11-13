@@ -1,0 +1,13 @@
+diff --git a/components/saved_tab_groups/utils.cc b/components/saved_tab_groups/utils.cc
+index 4af69d691985ad55b65df7233406f1f59045a52e..cd4970bbfcc86c489c4c20beb463fae453047496 100644
+--- a/components/saved_tab_groups/utils.cc
++++ b/components/saved_tab_groups/utils.cc
+@@ -30,7 +30,7 @@ std::string LocalTabGroupIDToString(const LocalTabGroupID& local_tab_group_id) {
+ 
+ std::optional<LocalTabGroupID> LocalTabGroupIDFromString(
+     const std::string& serialized_local_tab_group_id) {
+-#if BUILDFLAG(IS_ANDROID)
++#if false && BUILDFLAG(IS_ANDROID)
+   return base::Token::FromString(serialized_local_tab_group_id);
+ #else
+   auto token = base::Token::FromString(serialized_local_tab_group_id);

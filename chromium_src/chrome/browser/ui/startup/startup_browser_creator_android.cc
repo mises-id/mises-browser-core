@@ -2,6 +2,19 @@
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/startup/launch_mode_recorder.h"
 #if BUILDFLAG(IS_ANDROID)
+#include "chrome/browser/ui/startup/startup_browser_creator_impl.h"
+#include "chrome/browser/ui/startup/infobar_utils.h"
+
+void AddInfoBarsIfNecessary(Browser* browser,
+                            Profile* profile,
+                            const base::CommandLine& startup_command_line,
+                            chrome::startup::IsFirstRun is_first_run,
+                            bool is_web_app) {
+}
+// static
+void StartupBrowserCreatorImpl::MaybeToggleFullscreen(Browser* browser) {
+
+}
 
 StartupBrowserCreator::StartupBrowserCreator() = default;
 
@@ -14,7 +27,7 @@ void StartupBrowserCreator::LaunchBrowser(
     const base::FilePath& cur_dir,
     chrome::startup::IsProcessStartup process_startup,
     chrome::startup::IsFirstRun is_first_run,
-    std::unique_ptr<OldLaunchModeRecorder> launch_mode_recorder) {
+    bool restore_tabbed_browser) {
 }
 
 

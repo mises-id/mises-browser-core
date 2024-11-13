@@ -1,10 +1,10 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
-index f3745077720cca536a9b1c0117d9b6f3af0c9e57..1ed9e7a9c88b90758706a11a86fff282ddc4ed56 100644
+index 99dc3fd4a06373864dd8a118902c7e7eb82c548f..e283b3e075bf7a112a79259482cf863364fcb28d 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/EmptyTabModel.java
-@@ -91,6 +91,11 @@ public class EmptyTabModel implements TabModel {
-     @Override
-     public void setIndex(int i, @TabSelectionType int type, boolean skipLoadingTab) {}
+@@ -92,6 +92,11 @@ public class EmptyTabModel implements IncognitoTabModel {
+         return null;
+     }
  
 +    @Override
 +    public int getLastNonExtensionActiveIndex() {
@@ -12,5 +12,5 @@ index f3745077720cca536a9b1c0117d9b6f3af0c9e57..1ed9e7a9c88b90758706a11a86fff282
 +    }
 +
      @Override
-     public boolean isActiveModel() {
-         return false;
+     public int indexOf(Tab tab) {
+         return INVALID_TAB_INDEX;

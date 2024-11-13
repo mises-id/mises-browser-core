@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
-index 409173d49c446ba6ab90fa8da6261d67245c3af2..552912723aef096e8c2710e547c55d18e2531734 100644
+index 4d1e2f0534c41f06da4a474437175eb56276732e..bb4d3b2c2ae3251a23a4b2805b17795fa2a66b2a 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/TabList.java
 @@ -26,6 +26,8 @@ public interface TabList {
-      */
-     int index();
+     @Deprecated
+     boolean isIncognito();
  
 +    int getLastNonExtensionActiveIndex();
 +
      /**
-      * @return the number of open tabs in this model
-      */
+      * Returns whether this tab model contains only off-the-record tabs or only normal tabs.
+      *

@@ -1,8 +1,8 @@
 diff --git a/build/config/ios/BUILD.gn b/build/config/ios/BUILD.gn
-index 4360f328cbfc7c0472ba7664f9bf2d542e292b36..a617084202cef7f5ecd59319952d5cb28e641c3b 100644
+index 295f36de0864a3a9591774d0eda2012bced72707..f42f744297e752f499960ac69eca9f6e88161205 100644
 --- a/build/config/ios/BUILD.gn
 +++ b/build/config/ios/BUILD.gn
-@@ -144,7 +144,7 @@ config("ios_executable_flags") {
+@@ -147,7 +147,7 @@ config("ios_executable_flags") {
      ldflags += [ "-Wl,-rpath,@loader_path/../Frameworks" ]
    }
  

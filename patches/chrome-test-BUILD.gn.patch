@@ -1,16 +1,16 @@
 diff --git a/chrome/test/BUILD.gn b/chrome/test/BUILD.gn
-index 513f89056096f8567ef68e90934f8a4f1f9081e2..1f2a54dc7672ebf214eede33803f518458cca856 100644
+index 26702ebe305dae944d7f425ec610058e51c43656..b77a8f7a70d1209151f97e2b3e52bada92c457a0 100644
 --- a/chrome/test/BUILD.gn
 +++ b/chrome/test/BUILD.gn
-@@ -478,6 +478,7 @@ static_library("test_support") {
+@@ -578,6 +578,7 @@ static_library("test_support") {
    ]
  
    data = []
-+  import("//mises/chromium_src/chrome/test/sources.gni") deps += mises_chromium_src_chrome_test_test_support_deps sources += mises_chromium_src_chrome_test_test_support_sources
++  import("//mises/chromium_src/chrome/test/sources.gni") deps += mises_chromium_src_chrome_test_test_support_deps deps -= mises_chromium_src_chrome_test_test_support_exception_deps sources += mises_chromium_src_chrome_test_test_support_sources
    data_deps = []
  
    if (enable_pdf) {
-@@ -9067,6 +9068,10 @@ test("unit_tests") {
+@@ -9356,6 +9357,10 @@ test("unit_tests") {
        "//tools/json_schema_compiler/test:unit_tests",
      ]
  

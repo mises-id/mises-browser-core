@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index 831c3db429bd5d9e9092c43b6d8aa58e0edb220a..18cac96a61a22a62113d20bb4201e67543cfd104 100644
+index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392efece397d 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 @@ -27,6 +27,28 @@ import org.chromium.ui.base.WindowAndroid;
@@ -28,10 +28,10 @@ index 831c3db429bd5d9e9092c43b6d8aa58e0edb220a..18cac96a61a22a62113d20bb4201e675
 +import android.net.Uri;
 +import java.io.File;
 +
- /**
-  * Glues download dialogs UI code and handles the communication to download native backend.
-  */
-@@ -65,16 +87,62 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+ /** Glues download dialogs UI code and handles the communication to download native backend. */
+ public class DownloadDialogBridge implements DownloadLocationDialogController {
+     private long mNativeDownloadDialogBridge;
+@@ -64,6 +86,47 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
          mLocationDialog.destroy();
      }
  
@@ -77,13 +77,18 @@ index 831c3db429bd5d9e9092c43b6d8aa58e0edb220a..18cac96a61a22a62113d20bb4201e675
 +    }
 +
      @CalledByNative
-     private void showDialog(WindowAndroid windowAndroid, long totalBytes,
-             @ConnectionType int connectionType, @DownloadLocationDialogType int dialogType,
--            String suggestedPath, boolean isIncognito) {
-+            String suggestedPath, boolean isIncognito, String urlToDownload) {
+     private void showDialog(
+             WindowAndroid windowAndroid,
+@@ -71,7 +134,7 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+             @ConnectionType int connectionType,
+             @DownloadLocationDialogType int dialogType,
+             String suggestedPath,
+-            Profile profile) {
++            Profile profile, String urlToDownload) {
          mWindowAndroid = windowAndroid;
+         mProfile = profile;
          Activity activity = windowAndroid.getActivity().get();
-         if (activity == null) {
+@@ -79,6 +142,11 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
              onCancel();
              return;
          }
@@ -93,5 +98,5 @@ index 831c3db429bd5d9e9092c43b6d8aa58e0edb220a..18cac96a61a22a62113d20bb4201e675
 +        }
 +
  
-         DownloadDirectoryProvider.getInstance().getAllDirectoriesOptions((dirs) -> {
-             ModalDialogManager modalDialogManager =
+         DownloadDirectoryProvider.getInstance()
+                 .getAllDirectoriesOptions(

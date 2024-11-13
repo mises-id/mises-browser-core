@@ -1,9 +1,9 @@
 diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
-index 46ca69630fed35a4a4bd7edb9bf3fb39ae577a16..8d6c8cc5ecc333663e800e5f6fe2f9c536470263 100644
+index 370568de1b0259186921806818bde2400af0fab2..cb6275edbb465e4df515c4b853df3ed99d1bdf7d 100644
 --- a/third_party/blink/public/mojom/BUILD.gn
 +++ b/third_party/blink/public/mojom/BUILD.gn
-@@ -334,8 +334,10 @@ mojom("mojom_platform") {
-       "//services/network/public/mojom:mojom_schemeful_site",
+@@ -347,8 +347,10 @@ mojom("mojom_platform") {
+       "//services/network/public/mojom:mojom_storage_access_api",
        "//ui/accessibility:ax_enums_mojo",
        "//ui/latency/mojom",
 +      "//services/network/public/mojom:mojom_host_resolver",
@@ -13,4 +13,4 @@ index 46ca69630fed35a4a4bd7edb9bf3fb39ae577a16..8d6c8cc5ecc333663e800e5f6fe2f9c5
 +  if (true) {
      sources += [
        "direct_sockets/direct_sockets.mojom",
-       "serial/serial.mojom",
+       "printing/web_printing.mojom",

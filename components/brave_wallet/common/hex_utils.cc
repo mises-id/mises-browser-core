@@ -180,11 +180,11 @@ bool PrefixedHexStringToBytes(const std::string& input,
   return true;
 }
 
-absl::optional<std::vector<uint8_t>> PrefixedHexStringToBytes(
+std::optional<std::vector<uint8_t>> PrefixedHexStringToBytes(
     const std::string& input) {
   std::vector<uint8_t> result;
   if (!PrefixedHexStringToBytes(input, &result))
-    return absl::nullopt;
+    return std::nullopt;
 
   return result;
 }

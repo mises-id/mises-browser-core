@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/privacy_sandbox/privacy_sandbox_survey_desktop_controller.h b/chrome/browser/privacy_sandbox/privacy_sandbox_survey_desktop_controller.h
+index 4e5d58a31473faf5ff2c67d560ba0597dbd41d47..30bf960d1cbe0c7d88073932cb6f2fab60f176be 100644
+--- a/chrome/browser/privacy_sandbox/privacy_sandbox_survey_desktop_controller.h
++++ b/chrome/browser/privacy_sandbox/privacy_sandbox_survey_desktop_controller.h
+@@ -10,7 +10,7 @@
+ #include "components/keyed_service/core/keyed_service.h"
+ #include "components/privacy_sandbox/privacy_sandbox_survey_service.h"
+ 
+-#if BUILDFLAG(IS_ANDROID)
++#if false && BUILDFLAG(IS_ANDROID)
+ #error This file should only be included on desktop.
+ #endif
+ 

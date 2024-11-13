@@ -1,12 +1,12 @@
 diff --git a/chrome/test/base/test_browser_window.h b/chrome/test/base/test_browser_window.h
-index f90aae2975bf267da5b70bbbc1d1a72d00ae02b0..bd016452b774b8898396722fb3c88ee406c3a825 100644
+index 6444ae54bfbe52853350809549c6da74bc50a209..199d642d8efbe36e6f24e2bd0d050a85d8b7a85d 100644
 --- a/chrome/test/base/test_browser_window.h
 +++ b/chrome/test/base/test_browser_window.h
-@@ -20,6 +20,7 @@
+@@ -21,6 +21,7 @@
  #include "chrome/browser/ui/browser_window.h"
  #include "chrome/browser/ui/location_bar/location_bar.h"
  #include "chrome/browser/ui/translate/partial_translate_bubble_model.h"
 +#include "chrome/browser/ui/browser_list_observer.h"
  #include "chrome/common/buildflags.h"
  #include "components/user_education/common/feature_promo_controller.h"
- #include "ui/base/interaction/element_identifier.h"
+ #include "components/user_education/common/new_badge_controller.h"

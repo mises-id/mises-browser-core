@@ -64,7 +64,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillStartRequest() {
 //WillProcessResponse
 ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
 
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::WillStartRequest -1";
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::WillStartRequest -1";
   content::NavigationHandle* handle = navigation_handle();
  if (!handle->GetURL().SchemeIsHTTPOrHTTPS() || handle->GetNetErrorCode() != net::OK || !handle->IsInMainFrame() ||
       handle->IsSameDocument()) {
@@ -83,7 +83,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
   if (handle->GetReloadType() != content::ReloadType::NONE &&
       IsInterstitialReload(handle->GetURL(),
                            interstitial_params.redirect_chain)) {
-      LOG(INFO) << "Cg ::Web3sitesSafeTabStorage::IsReload";
+      LOG(INFO) << "::Web3sitesSafeTabStorage::IsReload";
     CHECK(interstitial_params.url.SchemeIsHTTPOrHTTPS());
     // See
     // https://groups.google.com/a/chromium.org/forum/#!topic/chromium-dev/plIZV3Rkzok
@@ -93,7 +93,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
         interstitial_params.url, interstitial_params.referrer,
         WindowOpenDisposition::CURRENT_TAB,
         ui::PageTransition::PAGE_TRANSITION_RELOAD,
-        false /* is_renderer_initiated */));
+        false /* is_renderer_initiated */), /*navigation_handle_callback=*/{});
     return content::NavigationThrottle::CANCEL_AND_IGNORE;
   }
   //defer check
@@ -107,14 +107,14 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillProcessResponse() {
 
 //WillFailRequest
 ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillFailRequest(){
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::WillFailRequest -1";
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::WillFailRequest -1";
 
   return content::NavigationThrottle::PROCEED;
 }
 
 //PerformChecks
  ThrottleCheckResult Web3sitesSafeNavigationThrottle::PerformChecks(){
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::PerformCheck -1";
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::PerformCheck -1";
   content::NavigationHandle* handle = navigation_handle();
   GURL url = handle->GetURL();
   const GURL& last_url_in_redirect_chain =
@@ -138,7 +138,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::WillFailRequest(){
 MisesURLCheckResult Web3sitesSafeNavigationThrottle::LocalCheckUrl(const GURL& url)
 {
 
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckUrl url=" << url;
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::CheckUrl url=" << url;
   GURL suggested_url = url;
   MisesURLCheckResult check_result(url,Web3sitesResultType::kWhite,suggested_url);
   // Don't warn on non-public domains.
@@ -149,39 +149,39 @@ MisesURLCheckResult Web3sitesSafeNavigationThrottle::LocalCheckUrl(const GURL& u
   }
   //is ignored
   if (ReputationService::Get(profile_)->IsIgnored(url)){
-      LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsIgnored url=" << url;
+      LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsIgnored url=" << url;
       return check_result;
   }
    Web3sitesSafeService* service = Web3sitesSafeService::Get(profile_);
   //is white
   if (service->IsWeb3sitesWhiteList(url)){
-     LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
+     LOG(INFO) << "Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
      return check_result;
   }
   //is top
   const MisesDomainInfo navigation_domain = GetMisesDomainInfo(url);
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::CheckIsTopDomain url=" << url;
   if(CheckIsTopDomain(navigation_domain)) {
-    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsTopDomain url=" << url;
+    LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsTopDomain url=" << url;
     return check_result;
   }
   //is black
   if (service->IsWeb3sitesBlackList(url,&suggested_url)){
-    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsWeb3sitesBlackList url=" << url;
+    LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsWeb3sitesBlackList url=" << url;
     check_result.result_type = Web3sitesResultType::kBlack;
     check_result.safe_url = suggested_url;
     return check_result;
   }
   //is fuzzy
   if (service->IsWeb3sitesFuzzyList(url,&suggested_url)){
-    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsWeb3sitesFuzzyList url=" << url;
+    LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsWeb3sitesFuzzyList url=" << url;
     check_result.result_type = Web3sitesResultType::kFuzzy;
     check_result.safe_url = suggested_url;
     return check_result;
   }
   //is lookakie
   if (service->IsLookalike(url,&suggested_url)){
-    LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsLookalike url=" << url;
+    LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsLookalike url=" << url;
     check_result.result_type = Web3sitesResultType::kFuzzy;
     check_result.safe_url = suggested_url;
     return check_result;
@@ -191,7 +191,7 @@ MisesURLCheckResult Web3sitesSafeNavigationThrottle::LocalCheckUrl(const GURL& u
 
 //OnLocalCheckUrlResult
 ThrottleCheckResult Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult(const MisesURLCheckResult& check_url_result){
-   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult"
+   LOG(INFO) << "Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult"
     << ",url=" << check_url_result.check_url
     << ",result_type=" << check_url_result.result_type
     << ",safe_url=" << check_url_result.safe_url
@@ -215,13 +215,13 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::OnLocalCheckUrlResult(const
 //PerformChecksDeferred
 void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
 
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::PerformChecksDeferred -1";
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::PerformChecksDeferred -1";
 
   content::NavigationHandle* handle = navigation_handle();
    GURL url = handle->GetURL();
   // If the URL is in the local temporary allowlist, don't show any warning.
   if (ReputationService::Get(profile_)->IsIgnored(url)) {
-     LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::IsIgnored"
+     LOG(INFO) << "Web3sitesSafeNavigationThrottle::IsIgnored"
      << ",url=" << url;
      ;
      Resume();
@@ -245,7 +245,7 @@ void Web3sitesSafeNavigationThrottle::PerformChecksDeferred() {
 
 //OnApiCheckUrlResult
 void Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult(const MisesURLCheckResult& check_url_result){
-   LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult -1";
+   LOG(INFO) << "Web3sitesSafeNavigationThrottle::OnApiCheckUrlResult -1";
    if (check_url_result.result_type == Web3sitesResultType::kWhite){
     Resume();
     return;
@@ -268,7 +268,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::ShowInterstitial(
     ukm::SourceId source_id,
     Web3sitesResultType::Type result_type,
     bool triggered_by_initial_url) {
-  LOG(INFO) << "Cg Web3sitesSafeNavigationThrottle::ShowInterstitial -1";
+  LOG(INFO) << "Web3sitesSafeNavigationThrottle::ShowInterstitial -1";
 
   content::NavigationHandle* handle = navigation_handle();
   content::WebContents* web_contents = handle->GetWebContents();
@@ -282,7 +282,7 @@ ThrottleCheckResult Web3sitesSafeNavigationThrottle::ShowInterstitial(
           handle->IsSignedExchangeInnerResponse(), triggered_by_initial_url,
           std::move(controller)));
 
-  absl::optional<std::string> error_page_contents =
+  std::optional<std::string> error_page_contents =
       blocking_page->GetHTMLContents();
 
   security_interstitials::SecurityInterstitialTabHelper::AssociateBlockingPage(

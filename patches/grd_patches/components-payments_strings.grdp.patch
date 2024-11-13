@@ -1,5 +1,5 @@
 diff --git a/components/payments_strings.grdp b/components/payments_strings.grdp
-index 66a3dfcc722b79724bb870da5584d1143fa285b6..3ca84eb84ccf43bf8272b24ec73581c6cc046bc5 100644
+index 1b05daf93bd3e810105bf19872addcb7cebba3a8..c6e0f91431d4352e7577bd8ee1b29286664baea0 100644
 --- a/components/payments_strings.grdp
 +++ b/components/payments_strings.grdp
 @@ -400,7 +400,7 @@

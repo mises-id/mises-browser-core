@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/AutocompleteEditText.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/AutocompleteEditText.java
-index 540c97ada8406a167164cf71b7639476e58fd4ff..2eae1da6c79b7dd95e15bd41f68907648c536c02 100644
+index 082f9b7ac6782007703c9ab73ca0109dbdbd2a17..b8b7a9f421d474f751f902fa0ba2f74d6717e618 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/AutocompleteEditText.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/AutocompleteEditText.java
-@@ -249,7 +249,11 @@ public class AutocompleteEditText extends VerticallyFixedEditText
+@@ -262,7 +262,11 @@ public class AutocompleteEditText extends VerticallyFixedEditText
              if (DEBUG) Log.i(TAG, "Ignoring accessibility event from autocomplete.");
              return;
          }

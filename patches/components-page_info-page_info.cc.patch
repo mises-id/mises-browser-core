@@ -1,8 +1,8 @@
 diff --git a/components/page_info/page_info.cc b/components/page_info/page_info.cc
-index 8b228b1c338ba528080fa8a58499e74202846244..9b88b3bda56085c9558006788dc45a00e9e7ab57 100644
+index de497055da9fda1ed7e5b95ab41ba86324bdca27..7b7561fb797811aba11d3fbd5ac39f31c703e9e0 100644
 --- a/components/page_info/page_info.cc
 +++ b/components/page_info/page_info.cc
-@@ -914,6 +914,7 @@ void PageInfo::ComputeUIInputs(const GURL& url) {
+@@ -913,6 +913,7 @@ void PageInfo::ComputeUIInputs(const GURL& url) {
    bool is_chrome_ui_native_scheme = false;
  #if BUILDFLAG(IS_ANDROID)
    is_chrome_ui_native_scheme = url.SchemeIs(browser_ui::kChromeUINativeScheme);

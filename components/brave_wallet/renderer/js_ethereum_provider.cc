@@ -25,10 +25,11 @@
 #include "gin/function_template.h"
 #include "gin/handle.h"
 #include "gin/object_template_builder.h"
-#include "third_party/blink/public/common/browser_interface_broker_proxy.h"
+#include "third_party/blink/public/platform/browser_interface_broker_proxy.h"
 #include "third_party/blink/public/mojom/devtools/console_message.mojom.h"
 #include "third_party/blink/public/web/blink.h"
 #include "third_party/blink/public/web/web_local_frame.h"
+#include "third_party/blink/public/platform/scheduler/web_agent_group_scheduler.h"
 #include "url/origin.h"
 
 
@@ -37,7 +38,7 @@ namespace {
 constexpr char kEthereum[] = "misesEthereum";
 constexpr char kEmit[] = "emit";
 constexpr char kIsMisesWallet[] = "isMisesWallet";
-constexpr char kEthereumProviderScript[] = "ethereum_provider.js";
+//constexpr char kEthereumProviderScript[] = "ethereum_provider.js";
 constexpr char kEthereumProxyHandlerScript[] = R"((function() {
   const handler = {
     get: (target, property, receiver) => {
@@ -59,7 +60,7 @@ constexpr char kEthereumProxyHandlerScript[] = R"((function() {
   };
   return handler;
 })())";
-constexpr char kEthereumProxyScript[] = "ethereum_proxy.js";
+//constexpr char kEthereumProxyScript[] = "ethereum_proxy.js";
 constexpr char kIsMetaMask[] = "isMetaMask";
 constexpr char kMetaMask[] = "_metamask";
 constexpr char kIsUnlocked[] = "isUnlocked";
@@ -154,7 +155,7 @@ bool JSEthereumProvider::EnsureConnected() {
   }
 
   if (!ethereum_provider_.is_bound()) {
-    render_frame()->GetBrowserInterfaceBroker()->GetInterface(
+    render_frame()->GetBrowserInterfaceBroker().GetInterface(
         ethereum_provider_.BindNewPipeAndPassReceiver());
     ethereum_provider_->Init(receiver_.BindNewPipeAndPassRemote());
   }
@@ -165,7 +166,8 @@ bool JSEthereumProvider::EnsureConnected() {
 // static
 void JSEthereumProvider::Install(bool allow_overwrite_window_ethereum_provider,
                                  content::RenderFrame* render_frame) {
-  v8::Isolate* isolate = blink::MainThreadIsolate();
+  v8::Isolate* isolate =
+      render_frame->GetWebFrame()->GetAgentGroupScheduler()->Isolate();
   v8::HandleScope handle_scope(isolate);
   v8::Local<v8::Context> context =
       render_frame->GetWebFrame()->MainWorldScriptContext();
@@ -204,7 +206,7 @@ void JSEthereumProvider::Install(bool allow_overwrite_window_ethereum_provider,
   blink::WebLocalFrame* web_frame = render_frame->GetWebFrame();
   v8::Local<v8::Proxy> ethereum_proxy;
   auto ethereum_proxy_handler_val = ExecuteScript(
-      web_frame, kEthereumProxyHandlerScript, kEthereumProxyScript);
+      web_frame, kEthereumProxyHandlerScript);
   v8::Local<v8::Object> ethereum_proxy_handler_obj =
       ethereum_proxy_handler_val.ToLocalChecked()
           ->ToObject(context)
@@ -239,7 +241,6 @@ void JSEthereumProvider::Install(bool allow_overwrite_window_ethereum_provider,
                          gin::StringToV8(isolate, kIsMetaMask), true);
 
   // Set non-writable _metamask obj with non-writable isUnlocked method.
-  v8::Local<v8::Value> metamask_value;
   v8::Local<v8::Object> metamask_obj = v8::Object::New(isolate);
   provider_object
       ->Set(context, gin::StringToSymbol(isolate, kMetaMask), metamask_obj)
@@ -260,8 +261,7 @@ void JSEthereumProvider::Install(bool allow_overwrite_window_ethereum_provider,
 
   ExecuteScript(web_frame,
                 LoadDataResource(
-                    IDR_BRAVE_WALLET_SCRIPT_ETHEREUM_PROVIDER_SCRIPT_BUNDLE_JS),
-                kEthereumProviderScript);
+                    IDR_BRAVE_WALLET_SCRIPT_ETHEREUM_PROVIDER_SCRIPT_BUNDLE_JS));
 }
 
 v8::Local<v8::Promise> JSEthereumProvider::ShowAds(v8::Isolate* isolate) {
@@ -646,7 +646,8 @@ void JSEthereumProvider::FireEvent(const std::string& event,
   base::Value event_name(event);
   base::ValueView args_list[] = {event_name, event_args};
 
-  v8::Isolate* isolate = blink::MainThreadIsolate();
+  v8::Isolate* isolate =
+      render_frame()->GetWebFrame()->GetAgentGroupScheduler()->Isolate();
   v8::HandleScope handle_scope(isolate);
   v8::Local<v8::Context> context =
       render_frame()->GetWebFrame()->MainWorldScriptContext();

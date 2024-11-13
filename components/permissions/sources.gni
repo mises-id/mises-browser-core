@@ -20,8 +20,6 @@ mises_components_permissions_sources = [
   "//mises/components/permissions/permission_lifetime_utils.cc",
   "//mises/components/permissions/permission_lifetime_utils.h",
   "//mises/components/permissions/permission_origin_lifetime_monitor.h",
-  "//mises/components/permissions/permission_origin_lifetime_monitor_impl.cc",
-  "//mises/components/permissions/permission_origin_lifetime_monitor_impl.h",
   "//mises/components/permissions/permission_origins.cc",
   "//mises/components/permissions/permission_origins.h",
 ]

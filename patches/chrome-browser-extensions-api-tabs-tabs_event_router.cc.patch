@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/tabs/tabs_event_router.cc b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
-index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104bdb53e91 100644
+index 90ca642a31716f33c5de032e3b34940e966dcd45..9bce10baf35d0d91515b897cdd2a51e901f49cae 100644
 --- a/chrome/browser/extensions/api/tabs/tabs_event_router.cc
 +++ b/chrome/browser/extensions/api/tabs/tabs_event_router.cc
-@@ -173,10 +173,21 @@ TabsEventRouter::TabsEventRouter(Profile* profile)
+@@ -174,10 +174,21 @@ TabsEventRouter::TabsEventRouter(Profile* profile)
    browser_tab_strip_tracker_.Init();
  
    tab_manager_scoped_observation_.Observe(g_browser_process->GetTabManager());
@@ -24,7 +24,7 @@ index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104
  }
  
  bool TabsEventRouter::ShouldTrackBrowser(Browser* browser) {
-@@ -380,7 +391,7 @@ void TabsEventRouter::DispatchTabClosingAt(TabStripModel* tab_strip_model,
+@@ -381,7 +392,7 @@ void TabsEventRouter::DispatchTabClosingAt(TabStripModel* tab_strip_model,
    object_args.Set(tabs_constants::kWindowIdKey,
                    ExtensionTabUtil::GetWindowIdOfTab(contents));
    object_args.Set(tabs_constants::kWindowClosing,
@@ -33,7 +33,7 @@ index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104
    args.Append(std::move(object_args));
  
    Profile* profile = Profile::FromBrowserContext(contents->GetBrowserContext());
-@@ -601,10 +612,12 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
+@@ -602,10 +613,12 @@ void TabsEventRouter::DispatchTabUpdatedEvent(
  }
  
  void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
@@ -46,7 +46,7 @@ index c72256066c8085bac1a0492fe6b7a25c98f88f54..c96a7a6ba0c3d8184f411f2fe49b9104
  
    int tab_id = ExtensionTabUtil::GetTabId(contents);
    DCHECK(tab_entries_.find(tab_id) == tab_entries_.end());
-@@ -612,12 +625,14 @@ void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
+@@ -613,12 +626,14 @@ void TabsEventRouter::RegisterForTabNotifications(WebContents* contents) {
  }
  
  void TabsEventRouter::UnregisterForTabNotifications(WebContents* contents) {

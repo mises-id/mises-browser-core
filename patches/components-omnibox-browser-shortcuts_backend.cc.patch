@@ -1,0 +1,13 @@
+diff --git a/components/omnibox/browser/shortcuts_backend.cc b/components/omnibox/browser/shortcuts_backend.cc
+index 3dbc24c636331380a405ce511a665bc79de4fa54..bb69aa9660812bfd9b81a49f8e0b2e465f23c768 100644
+--- a/components/omnibox/browser/shortcuts_backend.cc
++++ b/components/omnibox/browser/shortcuts_backend.cc
+@@ -403,7 +403,7 @@ ShortcutsDatabase::Shortcut::MatchCore ShortcutsBackend::MatchToMatchCore(
+   const AutocompleteMatch* normalized_match = &match;
+   AutocompleteMatch temp;
+ 
+-  if (AutocompleteMatch::IsSpecializedSearchType(match.type)) {
++  if (match.search_terms_args && AutocompleteMatch::IsSpecializedSearchType(match.type)) {
+     DCHECK(match.search_terms_args);
+     temp = BaseSearchProvider::CreateShortcutSearchSuggestion(
+         match.search_terms_args->search_terms, match_type,

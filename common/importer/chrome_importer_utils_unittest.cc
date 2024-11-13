@@ -40,7 +40,7 @@ TEST(ChromeImporterUtilsTest, ExtensionImportTest) {
 
   std::string secured_preference_content;
   base::ReadFileToString(secured_preference_path, &secured_preference_content);
-  absl::optional<base::Value> secured_preference =
+  std::optional<base::Value> secured_preference =
       base::JSONReader::Read(secured_preference_content);
   ASSERT_TRUE(secured_preference);
   ASSERT_TRUE(secured_preference->is_dict());

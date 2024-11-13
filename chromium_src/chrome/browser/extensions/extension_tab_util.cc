@@ -40,7 +40,7 @@ void CreateTabObjectAndroid(
     }
     TabAndroid* tab_android = tab_model->GetTabAt(tab_index);
     if(tab_android) {
-      tab_object->window_id = tab_android->window_id().id();
+      tab_object->window_id = tab_android->GetWindowId().id();
       if (tab_android->ExtensionWindowID() != -1) {
         tab_object->window_id = tab_android->ExtensionWindowID();
       }
@@ -52,7 +52,7 @@ void CreateTabObjectAndroid(
 void CreateTabListAndroid(
     const Browser* browser,
     const Extension* extension,
-    Feature::Context context,
+    mojom::ContextType context,
     base::Value::List& tab_list) {
   TabModel *tab_strip = nullptr;
   if (!TabModelList::models().empty())
@@ -95,7 +95,7 @@ bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index) {
   return false;
 }
 base::Value::Dict CreateDummyWindowValueForExtension(
-		                    ExtensionTabUtil::PopulateTabBehavior populate_tab_behavior) {
+		                    WindowController::PopulateTabBehavior populate_tab_behavior) {
   base::Value::Dict dict;
   dict.Set(tabs_constants::kIdKey, -1);
   dict.Set(tabs_constants::kWindowTypeKey, "");
@@ -109,7 +109,7 @@ base::Value::Dict CreateDummyWindowValueForExtension(
   dict.Set(tabs_constants::kWidthKey, 1920);
   dict.Set(tabs_constants::kHeightKey, 1080);
 
-  if (populate_tab_behavior == ExtensionTabUtil::kPopulateTabs) {
+  if (populate_tab_behavior == WindowController::PopulateTabBehavior::kPopulateTabs) {
     dict.Set(tabs_constants::kTabsKey,base::Value::List());
   }
   return dict;

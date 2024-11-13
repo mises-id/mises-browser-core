@@ -23,10 +23,10 @@ AX_BASE_EXPORT bool IsAccessibilityServiceEnabled();
 AX_BASE_EXPORT BASE_DECLARE_FEATURE(kDataCollectionModeForScreen2x);
 AX_BASE_EXPORT bool IsDataCollectionModeForScreen2xEnabled();
 
-// Use local MI service to make inaccessibile surfaces (e.g.
-// canvases) accessible.
-AX_BASE_EXPORT BASE_DECLARE_FEATURE(kLayoutExtraction);
-AX_BASE_EXPORT bool IsLayoutExtractionEnabled();
+// Identify and annotate the main node of the AXTree where one was not already
+// provided.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kMainNodeAnnotations);
+AX_BASE_EXPORT bool IsMainNodeAnnotationsEnabled();
 
 // Use OCR to make inaccessible (i.e. untagged) PDFs
 // accessibility. (Note: Due to the size of the OCR component, this feature
@@ -34,28 +34,26 @@ AX_BASE_EXPORT bool IsLayoutExtractionEnabled();
 AX_BASE_EXPORT BASE_DECLARE_FEATURE(kPdfOcr);
 AX_BASE_EXPORT bool IsPdfOcrEnabled();
 
-// Include the Read Anything feature. (Note: This feature shows
-// users websites, such as articles, in a comfortable reading experience in a
-// side panel)
-AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnything);
-AX_BASE_EXPORT bool IsReadAnythingEnabled();
-
-// Make the Read Anything Side Panel local (don't persist when opening a new
-// tab)
-AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingLocalSidePanel);
-AX_BASE_EXPORT bool IsReadAnythingLocalSidePanelEnabled();
-
-// Show a reading mode icon in the omnibox.
-AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingOmniboxIcon);
-AX_BASE_EXPORT bool IsReadAnythingOmniboxIconEnabled();
-
 // Show the Read Aloud feature in Read Anything.
 AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingReadAloud);
 AX_BASE_EXPORT bool IsReadAnythingReadAloudEnabled();
 
-// Use the WebUI toolbar in Read Anything.
-AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingWebUIToolbar);
-AX_BASE_EXPORT bool IsReadAnythingWebUIToolbarEnabled();
+// Use automatic voice switching in the Read Aloud feature in Read Anything.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAloudAutoVoiceSwitching);
+AX_BASE_EXPORT bool IsReadAloudAutoVoiceSwitchingEnabled();
+
+// Use automatic voice switching in the Read Aloud feature in Read Anything.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAloudLanguagePackDownloading);
+AX_BASE_EXPORT bool IsReadAloudLanguagePackDownloadingEnabled();
+
+// Enable automatic word highlighting in Read Anything Read Aloud.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(
+    kReadAnythingReadAloudAutomaticWordHighlighting);
+AX_BASE_EXPORT bool IsReadAnythingReadAloudAutomaticWordHighlightingEnabled();
+
+// Enable phrase highlighting in Read Anything Read Aloud.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingReadAloudPhraseHighlighting);
+AX_BASE_EXPORT bool IsReadAnythingReadAloudPhraseHighlightingEnabled();
 
 // Use screen2x integration for Read Anything to distill web pages
 // using an ML model.
@@ -67,9 +65,35 @@ AX_BASE_EXPORT bool IsReadAnythingWithScreen2xEnabled();
 AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingWithAlgorithm);
 AX_BASE_EXPORT bool IsReadAnythingWithAlgorithmEnabled();
 
+// Enable images to be distilled via algorithm. Should be disabled by
+// default.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingImagesViaAlgorithm);
+AX_BASE_EXPORT bool IsReadAnythingImagesViaAlgorithmEnabled();
+
+// Enable Reading Mode to work on Google Docs. Should be disabled by default.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingDocsIntegration);
+AX_BASE_EXPORT bool IsReadAnythingDocsIntegrationEnabled();
+
+// Enable "load more" button to show at the end of Reading Mode panel.
+// Should be disabled by default.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kReadAnythingDocsLoadMoreButton);
+AX_BASE_EXPORT bool IsReadAnythingDocsLoadMoreButtonEnabled();
+
 // Write some ScreenAI library debug data in /tmp.
 AX_BASE_EXPORT BASE_DECLARE_FEATURE(kScreenAIDebugMode);
 AX_BASE_EXPORT bool IsScreenAIDebugModeEnabled();
+
+// ScreenAI library's Main Content Extraction service is enabled.
+AX_BASE_EXPORT bool IsScreenAIMainContentExtractionEnabled();
+
+// ScreenAI library's OCR service is enabled.
+AX_BASE_EXPORT bool IsScreenAIOCREnabled();
+
+// Enables to use the Screen AI component available for testing.
+// If enabled, ScreenAI library will be loaded from //third_party/screen-ai.
+AX_BASE_EXPORT BASE_DECLARE_FEATURE(kScreenAITestMode);
+AX_BASE_EXPORT bool IsScreenAITestModeEnabled();
+
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

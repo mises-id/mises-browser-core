@@ -6,6 +6,7 @@ const crypto = require('crypto')
 const l10nUtil = require('./l10nUtil')
 const Log = require('./sync/logging')
 const assert = require('assert')
+const updateUnsafeBuffersPaths = require('./updateUnsafeBuffersPaths.js')
 
 const mergeWithDefault = (options) => {
   return Object.assign({}, config.defaultOptions, options)
@@ -52,6 +53,8 @@ async function applyPatches() {
     Log.error('Exiting as not all patches were successful!')
     process.exit(1)
   }
+
+  await updateUnsafeBuffersPaths()
 }
 
 const isOverrideNewer = (original, override) => {

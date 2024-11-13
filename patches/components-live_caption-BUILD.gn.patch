@@ -1,0 +1,13 @@
+diff --git a/components/live_caption/BUILD.gn b/components/live_caption/BUILD.gn
+index 672df977a9fd791ccdd31701164a191b2ad2a688..d53093aebd894b09fff60c5472e20b4d48218b69 100644
+--- a/components/live_caption/BUILD.gn
++++ b/components/live_caption/BUILD.gn
+@@ -135,7 +135,7 @@ source_set("constants") {
+     "//media",
+   ]
+ 
+-  if (!is_android) {
++  if (true || !is_android) {
+     deps += [ "//components/soda:constants" ]
+   }
+ }

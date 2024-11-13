@@ -11,12 +11,13 @@
 #include <string>
 
 #include "base/memory/raw_ptr.h"
+#include "content/public/browser/frame_tree_node_id.h"
 #include "net/base/network_anonymization_key.h"
 #include "net/base/network_isolation_key.h"
 #include "net/http/http_request_headers.h"
 #include "net/http/http_response_headers.h"
 #include "net/url_request/referrer_policy.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "third_party/blink/public/mojom/loader/resource_load_info.mojom-shared.h"
 #include "url/gurl.h"
 
@@ -74,9 +75,9 @@ struct MisesRequestInfo {
   GURL referrer;
   net::ReferrerPolicy referrer_policy =
       net::ReferrerPolicy::CLEAR_ON_TRANSITION_FROM_SECURE_TO_INSECURE;
-  absl::optional<GURL> new_referrer;
+  std::optional<GURL> new_referrer;
 
-  absl::optional<int> pending_error;
+  std::optional<int> pending_error;
   std::string new_url_spec;
   std::string failover_url_spec;
   int provider_error;
@@ -89,7 +90,7 @@ struct MisesRequestInfo {
   bool allow_http_upgradable_resource = false;
   bool allow_referrers = false;
   bool is_webtorrent_disabled = false;
-  int frame_tree_node_id = 0;
+  content::FrameTreeNodeId frame_tree_node_id;
   uint64_t request_identifier = 0;
   size_t next_url_request_index = 0;
 
@@ -131,7 +132,7 @@ struct MisesRequestInfo {
   static std::shared_ptr<mises::MisesRequestInfo> MakeCTX(
       const network::ResourceRequest& request,
       int render_process_id,
-      int frame_tree_node_id,
+      content::FrameTreeNodeId frame_tree_node_id,
       uint64_t request_identifier,
       content::BrowserContext* browser_context,
       std::shared_ptr<mises::MisesRequestInfo> old_ctx);

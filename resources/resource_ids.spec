@@ -4,45 +4,30 @@
 {
   "SRCDIR": "../..",
   "mises/common/extensions/api/mises_api_resources.grd": {
-    "includes": [53050],
+    "includes": [58800],
   },
   "mises/components/resources/mises_components_resources.grd": {
-    "includes": [53100],
+    "includes": [58810],
   },
   # This file is generated during the build.
   "<(SHARED_INTERMEDIATE_DIR)/mises/browser/resources/settings/mises_settings_resources.grd": {
     "META": {"sizes": {"includes": [400]}},
-    "includes": [53800],
+    "includes": [59080],
   },
 
 
   "mises/app/mises_generated_resources.grd": {
-    "includes": [54200],
-    "messages": [54700],
+    "includes": [59100],
+    "messages": [59150],
   },
   "mises/app/theme/mises_theme_resources.grd": {
-    "structures": [55200],
+    "structures": [60100],
   },
   "mises/app/theme/mises_unscaled_resources.grd": {
-    "includes": [55700],
+    "includes": [60200],
   },
   "mises/components/resources/mises_components_strings.grd": {
-    "messages": [55900]
-  },
-  "mises/components/mises_extension/extension/resources.grd": {
-    "includes": [57000],
-  },
-  # This file is generated during the build.
-
-  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_page/brave_wallet_page.grd": {
-    "META": {"sizes": {"includes": [200]}},
-    "includes": [59800],
-  },
-
-
-  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_panel/brave_wallet_panel.grd": {
-    "META": {"sizes": {"includes": [200]}},
-    "includes": [60000],
+    "messages": [60310]
   },
 
   # This file is generated during the build.
@@ -52,9 +37,27 @@
   },
 
   # This file is generated during the build.
+
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_page/brave_wallet_page.grd": {
+    "META": {"sizes": {"includes": [200]}},
+    "includes": [62860],
+  },
+
+
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_panel/brave_wallet_panel.grd": {
+    "META": {"sizes": {"includes": [200]}},
+    "includes": [63070],
+  },
+
+  "mises/components/mises_extension/extension/resources.grd": {
+    "includes": [63270],
+  },
+
+
+  # This file is generated during the build.
   "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-brave_wallet_script/brave_wallet_script.grd": {
     "META": {"sizes": {"includes": [250]}},
-    "includes": [62000]
+    "includes": [63420]
   },
   # This file is generated during the build.
   "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-trezor_bridge/trezor_bridge.grd": {

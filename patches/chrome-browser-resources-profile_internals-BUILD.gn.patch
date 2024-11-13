@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/profile_internals/BUILD.gn b/chrome/browser/resources/profile_internals/BUILD.gn
-index cc9de112409ee7f337f5826f7ed75a44917063cb..2b3091136575ad5b44d4f298ac605608b9d64dcc 100644
+index d3e7ddfe210e056823ced6290a3aded6c724b0f9..e0ccd6dbf6b781b3c60e172af1e38d2e6899d901 100644
 --- a/chrome/browser/resources/profile_internals/BUILD.gn
 +++ b/chrome/browser/resources/profile_internals/BUILD.gn
 @@ -5,7 +5,7 @@

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/tabs/BUILD.gn b/chrome/browser/ui/tabs/BUILD.gn
+index f6af5f724e1dffb026380254bae10465c971ad20..4df7142c54ccc417adb4c72ed5d44e681ef140b2 100644
+--- a/chrome/browser/ui/tabs/BUILD.gn
++++ b/chrome/browser/ui/tabs/BUILD.gn
+@@ -29,7 +29,7 @@ source_set("tab_enums") {
+ # As a result, it created quite a few of circular dependencies when
+ # directories in //c/b and //c/b/ui began to be modularized.
+ # TODO(crbug.com/364501603): modularize all the rest.
+-if (!is_android) {
++if (true || !is_android) {
+   source_set("tab_strip_model_observer") {
+     sources = [
+       "tab_change_type.h",

@@ -36,7 +36,7 @@ bool TxStateManager::ValueToTxMeta(const base::Value::Dict& value,
   }
   meta->set_id(*id);
 
-  absl::optional<int> status = value.FindInt("status");
+  std::optional<int> status = value.FindInt("status");
   if (!status) {
     return false;
   }
@@ -51,7 +51,7 @@ bool TxStateManager::ValueToTxMeta(const base::Value::Dict& value,
   if (!created_time) {
     return false;
   }
-  absl::optional<base::Time> created_time_from_value =
+  std::optional<base::Time> created_time_from_value =
       base::ValueToTime(created_time);
   if (!created_time_from_value) {
     return false;
@@ -62,7 +62,7 @@ bool TxStateManager::ValueToTxMeta(const base::Value::Dict& value,
   if (!submitted_time) {
     return false;
   }
-  absl::optional<base::Time> submitted_time_from_value =
+  std::optional<base::Time> submitted_time_from_value =
       base::ValueToTime(submitted_time);
   if (!submitted_time_from_value) {
     return false;
@@ -73,7 +73,7 @@ bool TxStateManager::ValueToTxMeta(const base::Value::Dict& value,
   if (!confirmed_time) {
     return false;
   }
-  absl::optional<base::Time> confirmed_time_from_value =
+  std::optional<base::Time> confirmed_time_from_value =
       base::ValueToTime(confirmed_time);
   if (!confirmed_time_from_value) {
     return false;
@@ -162,8 +162,8 @@ void TxStateManager::WipeTxs() {
 }
 
 std::vector<std::unique_ptr<TxMeta>> TxStateManager::GetTransactionsByStatus(
-    absl::optional<mojom::TransactionStatus> status,
-    absl::optional<std::string> from) {
+    std::optional<mojom::TransactionStatus> status,
+    std::optional<std::string> from) {
   std::vector<std::unique_ptr<TxMeta>> result;
   const auto& dict = prefs_->GetDict(kBraveWalletTransactions);
   const base::Value::Dict* network_dict =
@@ -193,7 +193,7 @@ void TxStateManager::RetireTxByStatus(mojom::TransactionStatus status,
       status != mojom::TransactionStatus::Rejected) {
     return;
   }
-  auto tx_metas = GetTransactionsByStatus(status, absl::nullopt);
+  auto tx_metas = GetTransactionsByStatus(status, std::nullopt);
   if (tx_metas.size() > max_num) {
     TxMeta* oldest_meta = nullptr;
     for (const auto& tx_meta : tx_metas) {

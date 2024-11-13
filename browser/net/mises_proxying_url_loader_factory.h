@@ -1,7 +1,7 @@
-/* Copyright 2019 The Brave Authors. All rights reserved.
+/* Copyright (c) 2019 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #ifndef BRAVE_BROWSER_NET_BRAVE_PROXYING_URL_LOADER_FACTORY_H_
 #define BRAVE_BROWSER_NET_BRAVE_PROXYING_URL_LOADER_FACTORY_H_
@@ -9,14 +9,16 @@
 #include <cstdint>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
 #include <vector>
 
-#include "base/functional/callback.h"
 #include "base/containers/unique_ptr_adapters.h"
+#include "base/functional/callback.h"
 #include "base/memory/raw_ptr.h"
+#include "base/memory/raw_ref.h"
 #include "base/memory/ref_counted_delete_on_sequence.h"
 #include "base/memory/weak_ptr.h"
 #include "base/time/time.h"
@@ -34,7 +36,7 @@
 #include "services/network/public/mojom/url_loader.mojom.h"
 #include "services/network/public/mojom/url_loader_factory.mojom.h"
 #include "services/network/public/mojom/url_response_head.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include "content/public/browser/frame_tree_node_id.h"
 #include "url/gurl.h"
 
 namespace content {
@@ -54,11 +56,11 @@ class MisesProxyingURLLoaderFactory
                             public network::mojom::URLLoaderClient {
    public:
     InProgressRequest(
-        MisesProxyingURLLoaderFactory* factory,
+        MisesProxyingURLLoaderFactory& factory,
         uint64_t request_id,
         int32_t network_service_request_id,
         int render_process_id,
-        int frame_tree_node_id,
+        content::FrameTreeNodeId frame_tree_node_id,
         uint32_t options,
         const network::ResourceRequest& request,
         content::BrowserContext* browser_context,
@@ -78,7 +80,7 @@ class MisesProxyingURLLoaderFactory
         const std::vector<std::string>& removed_headers,
         const net::HttpRequestHeaders& modified_headers,
         const net::HttpRequestHeaders& modified_cors_exempt_headers,
-        const absl::optional<GURL>& new_url) override;
+        const std::optional<GURL>& new_url) override;
     void SetPriority(net::RequestPriority priority,
                      int32_t intra_priority_value) override;
     void PauseReadingBodyFromNet() override;
@@ -90,7 +92,7 @@ class MisesProxyingURLLoaderFactory
     void OnReceiveResponse(
         network::mojom::URLResponseHeadPtr response_head,
         mojo::ScopedDataPipeConsumerHandle body,
-        absl::optional<mojo_base::BigBuffer> cached_metadata) override;
+        std::optional<mojo_base::BigBuffer> cached_metadata) override;
     void OnReceiveRedirect(
         const net::RedirectInfo& redirect_info,
         network::mojom::URLResponseHeadPtr response_head) override;
@@ -99,6 +101,7 @@ class MisesProxyingURLLoaderFactory
                           OnUploadProgressCallback callback) override;
     void OnTransferSizeUpdated(int32_t transfer_size_diff) override;
     void OnComplete(const network::URLLoaderCompletionStatus& status) override;
+
    private:
     // These two methods combined form the implementation of Restart().
     void UpdateRequestInfo();
@@ -119,13 +122,13 @@ class MisesProxyingURLLoaderFactory
 
     // TODO(iefremov): Get rid of shared_ptr, we should clearly own the pointer.
     std::shared_ptr<mises::MisesRequestInfo> ctx_;
-    const raw_ptr<MisesProxyingURLLoaderFactory> factory_;
+    const raw_ref<MisesProxyingURLLoaderFactory> factory_;
     network::ResourceRequest request_;
     const uint64_t request_id_;
     const int32_t network_service_request_id_;
 
     const int render_process_id_;
-    const int frame_tree_node_id_;
+    const content::FrameTreeNodeId  frame_tree_node_id_;
     const uint32_t options_;
 
     raw_ptr<content::BrowserContext> browser_context_ = nullptr;
@@ -149,7 +152,7 @@ class MisesProxyingURLLoaderFactory
     // ExtensionWebRequestEventRouter) through much of the request's lifetime.
     // That code supports both Network Service and non-Network Service behavior,
     // which is why this weirdness exists here.
-    absl::optional<mojo_base::BigBuffer> cached_metadata_;
+    std::optional<mojo_base::BigBuffer> cached_metadata_;
     network::mojom::URLResponseHeadPtr current_response_head_;
     mojo::ScopedDataPipeConsumerHandle current_response_body_;
     scoped_refptr<net::HttpResponseHeaders> override_headers_;
@@ -168,7 +171,7 @@ class MisesProxyingURLLoaderFactory
       std::vector<std::string> removed_headers;
       net::HttpRequestHeaders modified_headers;
       net::HttpRequestHeaders modified_cors_exempt_headers;
-      absl::optional<GURL> new_url;
+      std::optional<GURL> new_url;
     };
     std::unique_ptr<FollowRedirectParams> pending_follow_redirect_params_;
 
@@ -185,9 +188,8 @@ class MisesProxyingURLLoaderFactory
       MisesRequestHandler& request_handler,
       content::BrowserContext* browser_context,
       int render_process_id,
-      int frame_tree_node_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-      mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+      content::FrameTreeNodeId frame_tree_node_id,
+      network::URLLoaderFactoryBuilder& factory_builder,
       scoped_refptr<RequestIDGenerator> request_id_generator,
       DisconnectCallback on_disconnect,
       scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
@@ -198,11 +200,11 @@ class MisesProxyingURLLoaderFactory
 
   ~MisesProxyingURLLoaderFactory() override;
 
-  static bool MaybeProxyRequest(
+  static void MaybeProxyRequest(
       content::BrowserContext* browser_context,
       content::RenderFrameHost* render_frame_host,
       int render_process_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+      network::URLLoaderFactoryBuilder& factory_builder,
       scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   // network::mojom::URLLoaderFactory:
@@ -230,7 +232,7 @@ class MisesProxyingURLLoaderFactory
   const raw_ref<MisesRequestHandler> request_handler_;
   raw_ptr<content::BrowserContext> browser_context_ = nullptr;
   const int render_process_id_;
-  const int frame_tree_node_id_;
+  const content::FrameTreeNodeId frame_tree_node_id_;
 
   mojo::ReceiverSet<network::mojom::URLLoaderFactory> proxy_receivers_;
   mojo::Remote<network::mojom::URLLoaderFactory> target_factory_;
@@ -242,7 +244,7 @@ class MisesProxyingURLLoaderFactory
 
   DisconnectCallback disconnect_callback_;
 
-// A task runner that should be used for requests when non-null. Non-null when
+  // A task runner that should be used for requests when non-null. Non-null when
   // this was created for a navigation request.
   scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner_;
 

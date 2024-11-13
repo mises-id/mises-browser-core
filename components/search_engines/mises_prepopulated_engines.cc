@@ -18,8 +18,8 @@ const int kMisesFirstTrackedDataVersion = 6;
 
 namespace {
 
-PrepopulatedEngine MakeMisesPrepopulatedEngine(const wchar_t* const name,
-                                               const wchar_t* const keyword,
+PrepopulatedEngine MakeMisesPrepopulatedEngine(const char16_t* const name,
+                                               const char16_t* const keyword,
                                                const char* const favicon_url,
                                                const char* const search_url,
                                                const char* const encoding,
@@ -33,8 +33,8 @@ PrepopulatedEngine MakeMisesPrepopulatedEngine(const wchar_t* const name,
           type,    nullptr, nullptr,     id};
 }
 
-PrepopulatedEngine MakeGogglePrepopulatedEngine(const wchar_t* const name,
-                                               const wchar_t* const keyword,
+PrepopulatedEngine MakeGogglePrepopulatedEngine(const char16_t* const name,
+                                               const char16_t* const keyword,
                                                const char* const favicon_url,
                                                const char* const search_url,
                                                const char* const encoding,
@@ -79,8 +79,8 @@ const std::map<MisesPrepopulatedEngineID, const PrepopulatedEngine*>
 };
 
 PrepopulatedEngine ModifyEngineParams(const PrepopulatedEngine& engine,
-                                      const wchar_t* const name,
-                                      const wchar_t* const keyword,
+                                      const char16_t* const name,
+                                      const char16_t* const keyword,
                                       const char* const search_url,
                                       const char* const suggest_url,
                                       const char* const image_url,
@@ -118,8 +118,8 @@ PrepopulatedEngine ModifyEngineParams(const PrepopulatedEngine& engine,
 }  // namespace
 
 const PrepopulatedEngine mises_duckduckgo = MakeMisesPrepopulatedEngine(
-    L"DuckDuckGo",
-    L":d",
+    u"DuckDuckGo",
+    u":d",
     "https://duckduckgo.com/favicon.ico",
     "https://duckduckgo.com/?q={searchTerms}&t=mises",
     "UTF-8",
@@ -147,8 +147,8 @@ const PrepopulatedEngine duckduckgo_au_nz_ie =
 
 #if BUILDFLAG(IS_ANDROID)
 const PrepopulatedEngine duckduckgo_lite = MakeMisesPrepopulatedEngine(
-    L"DuckDuckGo Lite",
-    L":dl",
+    u"DuckDuckGo Lite",
+    u":du",
     "https://duckduckgo.com/favicon.ico",
     "https://duckduckgo.com/lite/?q={searchTerms}&t=mises",
     "UTF-8",
@@ -160,7 +160,7 @@ const PrepopulatedEngine duckduckgo_lite = MakeMisesPrepopulatedEngine(
 const PrepopulatedEngine mises_ecosia =
     ModifyEngineParams(ecosia,
                        nullptr,
-                       L":e",
+                       u":e",
                        "https://www.ecosia.org/search?tt="
 #if BUILDFLAG(IS_ANDROID)
                        "00000000"
@@ -173,8 +173,8 @@ const PrepopulatedEngine mises_ecosia =
                        PREPOPULATED_ENGINE_ID_ECOSIA);
 
 const PrepopulatedEngine mises_qwant = MakeMisesPrepopulatedEngine(
-    L"Qwant",
-    L":q",
+    u"Qwant",
+    u":q",
     "https://www.qwant.com/favicon.ico",
     "https://www.qwant.com/?q={searchTerms}&client=brz-mises",
     "UTF-8",
@@ -183,8 +183,8 @@ const PrepopulatedEngine mises_qwant = MakeMisesPrepopulatedEngine(
     PREPOPULATED_ENGINE_ID_QWANT);
 
 const PrepopulatedEngine startpage = MakeMisesPrepopulatedEngine(
-    L"Startpage",
-    L":sp",
+    u"Startpage",
+    u":sp",
     "https://www.startpage.com/favicon.ico",
     "https://www.startpage.com/do/"
     "search?q={searchTerms}&segment=startpage.mises",
@@ -196,7 +196,7 @@ const PrepopulatedEngine startpage = MakeMisesPrepopulatedEngine(
 
 const PrepopulatedEngine mises_yandex =
     ModifyEngineParams(yandex_com,
-                       L"Yandex",
+                       u"Yandex",
                        nullptr,
                        "https://yandex.ru/search/?clid="
 #if BUILDFLAG(IS_ANDROID)
@@ -211,8 +211,8 @@ const PrepopulatedEngine mises_yandex =
                        PREPOPULATED_ENGINE_ID_YANDEX);
 
 const PrepopulatedEngine mises_search = MakeGogglePrepopulatedEngine(
-    L"Google(Mises Optimized)",
-    L":m",
+    u"Google(Mises Optimized)",
+    u":m",
     google.favicon_url,
     "https://search.mises.site/?q={searchTerms}&source="
     #if BUILDFLAG(IS_ANDROID)
@@ -228,7 +228,7 @@ const PrepopulatedEngine mises_search = MakeGogglePrepopulatedEngine(
 // const PrepopulatedEngine brave_search_tor = ModifyEngineParams(
 //     brave_search,
 //     nullptr,
-//     L":search.brave4u7jddbv7cyviptqjc7jusxh72uik7zt6adtckl5f4nwy2v72qd.onion",
+//     u":search.brave4u7jddbv7cyviptqjc7jusxh72uik7zt6adtckl5f4nwy2v72qd.onion",
 //     "https://"
 //     "search.brave4u7jddbv7cyviptqjc7jusxh72uik7zt6adtckl5f4nwy2v72qd.onion/"
 //     "search?q={searchTerms}",

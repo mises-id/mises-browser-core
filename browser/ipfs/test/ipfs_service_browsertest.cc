@@ -1661,7 +1661,7 @@ IN_PROC_BROWSER_TEST_F(IpfsServiceBrowserTest, DNSResolversConfig) {
     }
     ASSERT_EQ(
         fake_ipfs_service()->ipfs_dns_resolver_->GetFirstDnsOverHttpsServer(),
-        absl::nullopt);
+        std::nullopt);
   }
 }
 

@@ -22,7 +22,7 @@
 #include "services/network/public/cpp/weak_wrapper_shared_url_loader_factory.h"
 #include "services/network/test/test_url_loader_factory.h"
 #include "testing/gtest/include/gtest/gtest.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "ui/base/l10n/l10n_util.h"
 
 namespace brave_wallet {
@@ -59,7 +59,7 @@ class WalletNotificationServiceUnitTest : public testing::Test {
         *EthTransaction::FromTxData(mojom::TxData::New(
             "0x01", "0x4a817c800", "0x5208",
             "0x3535353535353535353535353535353535353535", "0x0de0b6b3a7640000",
-            std::vector<uint8_t>(), false, absl::nullopt)));
+            std::vector<uint8_t>(), false, std::nullopt)));
     EthTxMeta meta(std::move(tx));
     meta.set_status(status);
     notification_service_->OnTransactionStatusChanged(meta.ToTransactionInfo());

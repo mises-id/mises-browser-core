@@ -135,8 +135,8 @@ EthTxManager::~EthTxManager() {
 void EthTxManager::AddUnapprovedTransaction(
     mojom::TxDataUnionPtr tx_data_union,
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   DCHECK(tx_data_union->is_eth_tx_data() ||
          tx_data_union->is_eth_tx_data_1559());
@@ -157,7 +157,7 @@ void EthTxManager::AddUnapprovedTransaction(
     mojom::TxDataPtr tx_data,
     const std::string& from,
     const url::Origin& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   if (from.empty()) {
     std::move(callback).Run(
@@ -211,7 +211,7 @@ void EthTxManager::OnGetGasPrice(const std::string& from,
                                  const std::string& value,
                                  const std::string& data,
                                  const std::string& gas_limit,
-                                 const absl::optional<std::string>& group_id,
+                                 const std::optional<std::string>& group_id,
                                  std::unique_ptr<EthTransaction> tx,
                                  AddUnapprovedTransactionCallback callback,
                                  bool sign_only,
@@ -244,8 +244,8 @@ void EthTxManager::OnGetGasPrice(const std::string& from,
 
 void EthTxManager::ContinueAddUnapprovedTransaction(
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     std::unique_ptr<EthTransaction> tx,
     AddUnapprovedTransactionCallback callback,
     bool sign_only,
@@ -294,7 +294,7 @@ void EthTxManager::AddUnapproved1559Transaction(
     mojom::TxData1559Ptr tx_data,
     const std::string& from,
     const url::Origin& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   if (from.empty()) {
     std::move(callback).Run(
@@ -351,7 +351,7 @@ void EthTxManager::OnGetGasOracleForUnapprovedTransaction(
     const std::string& value,
     const std::string& data,
     const std::string& gas_limit,
-    const absl::optional<std::string>& group_id,
+    const std::optional<std::string>& group_id,
     std::unique_ptr<Eip1559Transaction> tx,
     AddUnapprovedTransactionCallback callback,
     bool sign_only,
@@ -390,7 +390,7 @@ void EthTxManager::GetNonceForHardwareTransaction(
       GetEthTxStateManager()->GetEthTx(tx_meta_id);
   if (!meta) {
     LOG(ERROR) << "No transaction found";
-    std::move(callback).Run(absl::nullopt);
+    std::move(callback).Run(std::nullopt);
     return;
   }
   if (!meta->tx()->nonce()) {
@@ -437,7 +437,7 @@ void EthTxManager::OnGetNextNonceForHardware(
     tx_state_manager_->AddOrUpdateTx(*meta);
     VLOG(1) << __FUNCTION__
             << "GetNextNonce failed for tx with meta:" << meta->id();
-    std::move(callback).Run(absl::nullopt);
+    std::move(callback).Run(std::nullopt);
     return;
   }
   meta->tx()->set_nonce(nonce);
@@ -770,10 +770,10 @@ void EthTxManager::NotifyUnapprovedTxUpdated(TxMeta* meta) {
 }
 
 void EthTxManager::GetAllTransactionInfo(
-    const absl::optional<std::string>& from,
+    const std::optional<std::string>& from,
     GetAllTransactionInfoCallback callback) {
   if (!from) {
-    TxManager::GetAllTransactionInfo(absl::nullopt, std::move(callback));
+    TxManager::GetAllTransactionInfo(std::nullopt, std::move(callback));
     return;
   }
   auto from_address = EthAddress::FromHex(from.value());
@@ -891,7 +891,7 @@ void EthTxManager::SetNonceForUnapprovedTransaction(
   }
 
   if (nonce.empty()) {
-    tx_meta->tx()->set_nonce(absl::nullopt);
+    tx_meta->tx()->set_nonce(std::nullopt);
   } else {
     uint256_t nonce_uint;
     if (!HexValueToUint256(nonce, &nonce_uint)) {
@@ -975,8 +975,8 @@ void EthTxManager::SpeedupOrCancelTransaction(
 
 void EthTxManager::ContinueSpeedupOrCancelTransaction(
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     const std::string& gas_limit,
     std::unique_ptr<EthTransaction> tx,
     SpeedupOrCancelTransactionCallback callback,
@@ -1016,8 +1016,8 @@ void EthTxManager::ContinueSpeedupOrCancelTransaction(
 
 void EthTxManager::ContinueSpeedupOrCancel1559Transaction(
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     const std::string& gas_limit,
     std::unique_ptr<Eip1559Transaction> tx,
     SpeedupOrCancelTransactionCallback callback,

@@ -1,20 +1,20 @@
 diff --git a/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java b/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
-index 9c08778352519080499181111927bb940486229e..1fca5b4f7cb19c0aa95d6a5101e5f05ef0d5d489 100644
+index 99189bf34bc6ee57c70fa400ab0a0643131b43df..11d4ff44625c33dbb72e394adc43dddd1be5ceeb 100644
 --- a/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
 +++ b/chrome/browser/ui/android/favicon/java/src/org/chromium/chrome/browser/ui/favicon/FaviconHelper.java
-@@ -72,6 +72,7 @@ public class FaviconHelper {
+@@ -68,6 +68,7 @@ public class FaviconHelper {
          private Bitmap mDefaultLightBitmap;
  
          private int getResourceId(GURL url) {
-+            if (true) return R.drawable.default_favicon;
-             return UrlUtilities.isInternalScheme(url) ? R.drawable.chromelogo16
-                                                       : R.drawable.default_favicon;
-         }
++            if (true) return R.drawable.ic_globe_24dp;
+             return UrlUtilities.isInternalScheme(url)
+                     ? R.drawable.chromelogo16
+                     : R.drawable.ic_globe_24dp;
 @@ -100,6 +101,7 @@ public class FaviconHelper {
           */
          public Bitmap getDefaultFaviconBitmap(Context context, GURL url, boolean useDarkIcon) {
              boolean isInternal = UrlUtilities.isInternalScheme(url);
 +            isInternal = false;
-             Bitmap bitmap = isInternal ? (useDarkIcon ? mChromeDarkBitmap : mChromeLightBitmap)
-                                        : (useDarkIcon ? mDefaultDarkBitmap : mDefaultLightBitmap);
-             if (bitmap != null) return bitmap;
+             Bitmap bitmap =
+                     isInternal
+                             ? (useDarkIcon ? mChromeDarkBitmap : mChromeLightBitmap)

@@ -11,7 +11,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "cc/paint/paint_flags.h"
 #include "chrome/grit/theme_resources.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "third_party/skia/include/core/SkColor.h"
 #include "ui/base/resource/resource_bundle.h"
 #include "ui/gfx/canvas.h"
@@ -193,16 +193,16 @@ gfx::Rect MisesIconWithBadgeImageSource::GetIconAreaRect() const {
   return gfx::Rect(size());
 }
 
-absl::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicSize() {
+std::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicSize() {
   return content_image_size_;
 }
 
-absl::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicXOffset() {
+std::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicXOffset() {
   return std::floor(
       (image_left_margin_extra_ + size().width() - content_image_size_) / 2.0);
 }
 
-absl::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicYOffset() {
+std::optional<int> MisesIconWithBadgeImageSource::GetCustomGraphicYOffset() {
   return std::floor((size().height() - content_image_size_) / 2.0);
 }
 

@@ -34,7 +34,7 @@ class BraveWalletRenderFrameObserver : public content::RenderFrameObserver {
   // RenderFrameObserver implementation.
   void DidStartNavigation(
       const GURL& url,
-      absl::optional<blink::WebNavigationType> navigation_type) override;
+      std::optional<blink::WebNavigationType> navigation_type) override;
   void DidClearWindowObject() override;
 
   void DidFinishLoad() override;

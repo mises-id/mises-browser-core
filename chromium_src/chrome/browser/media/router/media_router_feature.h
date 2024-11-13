@@ -4,7 +4,7 @@
 #include "base/feature_list.h"
 #include "base/time/time.h"
 #include "build/build_config.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 
 #if BUILDFLAG(IS_ANDROID)

@@ -27,7 +27,7 @@ HDKeyEd25519::~HDKeyEd25519() = default;
 // static
 std::unique_ptr<HDKeyEd25519> HDKeyEd25519::GenerateFromSeed(
     const std::vector<uint8_t>& seed) {
-  auto master_private_key = generate_ed25519_extended_secrect_key_from_seed(
+  auto master_private_key = generate_ed25519_extended_secret_key_from_seed(
       rust::Slice<const uint8_t>{seed.data(), seed.size()});
   if (!master_private_key->is_ok()) {
     VLOG(0) << std::string(master_private_key->error_message());
@@ -40,7 +40,7 @@ std::unique_ptr<HDKeyEd25519> HDKeyEd25519::GenerateFromSeed(
 // static
 std::unique_ptr<HDKeyEd25519> HDKeyEd25519::GenerateFromPrivateKey(
     const std::vector<uint8_t>& private_key) {
-  auto master_private_key = generate_ed25519_extended_secrect_key_from_bytes(
+  auto master_private_key = generate_ed25519_extended_secret_key_from_seed(
       rust::Slice<const uint8_t>{private_key.data(), private_key.size()});
   if (!master_private_key->is_ok()) {
     VLOG(0) << std::string(master_private_key->error_message());

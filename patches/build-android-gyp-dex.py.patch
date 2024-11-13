@@ -1,5 +1,5 @@
 diff --git a/build/android/gyp/dex.py b/build/android/gyp/dex.py
-index ae87291066f3f9782ab087993ab130d70105ffa2..43934a9366e0807e8f3190606da7a1a2984d9451 100755
+index 836a19357dac5bc5ca28d5a9864fd6d09f005402..36e1bd4831ba08401580152004243da9af5bb3c3 100755
 --- a/build/android/gyp/dex.py
 +++ b/build/android/gyp/dex.py
 @@ -30,6 +30,7 @@ DEFAULT_IGNORE_WARNINGS = (
@@ -8,5 +8,5 @@ index ae87291066f3f9782ab087993ab130d70105ffa2..43934a9366e0807e8f3190606da7a1a2
      r'Running R8 version main', )
 +DEFAULT_IGNORE_WARNINGS += ( r'Expected stack map table for method with non-linear control flow.', )
  
- INTERFACE_DESUGARING_WARNINGS = (r'default or static interface methods', )
- 
+ _IGNORE_SERVICE_ENTRIES = (
+     # ServiceLoader call is used only for ProtoBuf full (non-lite).

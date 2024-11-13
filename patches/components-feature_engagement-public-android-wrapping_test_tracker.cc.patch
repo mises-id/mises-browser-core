@@ -1,0 +1,13 @@
+diff --git a/components/feature_engagement/public/android/wrapping_test_tracker.cc b/components/feature_engagement/public/android/wrapping_test_tracker.cc
+index 000db437ede41e657da9b61a6168ce709e3e0437..1cc82994ad0497b818b87051773f8ab760f39ec7 100644
+--- a/components/feature_engagement/public/android/wrapping_test_tracker.cc
++++ b/components/feature_engagement/public/android/wrapping_test_tracker.cc
+@@ -131,4 +131,8 @@ void WrappingTestTracker::SetClockForTesting(const base::Clock& clock,
+   NOTIMPLEMENTED();
+ }
+ 
++WrappingTestTracker::EventList WrappingTestTracker::ListEvents(const base::Feature& feature) const {
++    WrappingTestTracker::EventList result;
++    return result;
++}
+ }  // namespace feature_engagement

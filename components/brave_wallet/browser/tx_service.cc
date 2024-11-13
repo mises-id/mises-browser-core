@@ -124,8 +124,8 @@ void TxService::BindFilTxManagerProxy(
 void TxService::AddUnapprovedTransaction(
     mojom::TxDataUnionPtr tx_data_union,
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   auto coin_type = GetCoinTypeFromTxDataUnion(*tx_data_union);
 
@@ -159,7 +159,7 @@ void TxService::GetAllTransactionInfo(mojom::CoinType coin_type,
 
 void TxService::GetAllTransactionInfo(mojom::CoinType coin_type,
                                       GetAllTransactionInfoCallback callback) {
-  GetTxManager(coin_type)->GetAllTransactionInfo(absl::nullopt,
+  GetTxManager(coin_type)->GetAllTransactionInfo(std::nullopt,
                                                  std::move(callback));
 }
 
@@ -183,7 +183,7 @@ void TxService::OnGetAllTransactionInfo(
     size_t counter,
     mojom::CoinType coin,
     std::vector<mojom::TransactionInfoPtr> result) {
-  absl::optional<mojom::CoinType> next_coin_to_check;
+  std::optional<mojom::CoinType> next_coin_to_check;
   counter += CalculatePendingTxCount(result);
 
   auto it = ++tx_manager_map_.find(coin);
@@ -255,7 +255,7 @@ void TxService::Reset() {
 
 void TxService::RejectAllTransactions(mojom::CoinType coin_type) {
   GetTxManager(coin_type)->GetAllTransactionInfo(
-    absl::nullopt,
+    std::nullopt,
     base::BindOnce(&TxService::ContinueRejectAllTransactions,
                      weak_factory_.GetWeakPtr(), coin_type));
 }

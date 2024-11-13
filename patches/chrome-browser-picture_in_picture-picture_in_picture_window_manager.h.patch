@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/picture_in_picture/picture_in_picture_window_manager.h b/chrome/browser/picture_in_picture/picture_in_picture_window_manager.h
+index 202a8b12b0a7ef23b15417da9026455540de8119..65d0a45cfd18241ab478af2779acd708e75dca69 100644
+--- a/chrome/browser/picture_in_picture/picture_in_picture_window_manager.h
++++ b/chrome/browser/picture_in_picture/picture_in_picture_window_manager.h
+@@ -33,7 +33,7 @@ namespace display {
+ class Display;
+ }  // namespace display
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+ class PictureInPictureOcclusionTracker;
+ class ScopedDisallowPictureInPicture;
+ 
+@@ -207,6 +207,8 @@ class PictureInPictureWindowManager {
+   // Returns true if picture-in-picture is currently disabled (e.g. due to a
+   // ScopedDisallowPictureInPicture object existing).
+   bool IsPictureInPictureDisabled() const;
++#else
++  PictureInPictureOcclusionTracker* GetOcclusionTracker();
+ #endif
+ 
+   void set_window_controller_for_testing(

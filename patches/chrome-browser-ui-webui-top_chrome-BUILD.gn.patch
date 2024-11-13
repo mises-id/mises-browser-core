@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/top_chrome/BUILD.gn b/chrome/browser/ui/webui/top_chrome/BUILD.gn
+index 2d389f622556c3b08e3f1450f6b14ad658c83ab9..0bbf7c8d34ff1b576b51c305f21782d7be1db1ec 100644
+--- a/chrome/browser/ui/webui/top_chrome/BUILD.gn
++++ b/chrome/browser/ui/webui/top_chrome/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("top_chrome") {
+   sources = [

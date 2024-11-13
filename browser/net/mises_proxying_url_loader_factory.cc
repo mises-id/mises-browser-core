@@ -1,14 +1,16 @@
-/* Copyright 2019 The Brave Authors. All rights reserved.
+/* Copyright (c) 2019 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 #include "mises/browser/net/mises_proxying_url_loader_factory.h"
 
+#include <optional>
+#include <string_view>
 #include <utility>
 
-#include "base/functional/bind.h"
 #include "base/feature_list.h"
+#include "base/functional/bind.h"
 #include "base/metrics/histogram_macros.h"
 #include "base/strings/stringprintf.h"
 #include "mises/browser/net/mises_request_handler.h"
@@ -26,6 +28,7 @@
 #include "net/url_request/redirect_util.h"
 #include "net/url_request/url_request.h"
 #include "services/network/public/cpp/parsed_headers.h"
+#include "services/network/public/cpp/url_loader_factory_builder.h"
 #include "services/network/public/mojom/early_hints.mojom.h"
 #include "url/origin.h"
 
@@ -56,7 +59,7 @@ net::RedirectInfo CreateRedirectInfo(
     const network::ResourceRequest& original_request,
     const GURL& new_url,
     int response_code,
-    const absl::optional<std::string>& referrer_policy_header) {
+    const std::optional<std::string>& referrer_policy_header) {
   // Workaround for a bug in Chromium (crbug.com/1097681).
   // download_utils.cc do not set update_first_party_url_on_redirect to true
   // for new ResourceRequests, but we can mitigate it by looking at
@@ -84,11 +87,11 @@ MisesProxyingURLLoaderFactory::InProgressRequest::FollowRedirectParams::
     ~FollowRedirectParams() = default;
 
 MisesProxyingURLLoaderFactory::InProgressRequest::InProgressRequest(
-    MisesProxyingURLLoaderFactory* factory,
+    MisesProxyingURLLoaderFactory& factory,
     uint64_t request_id,
     int32_t network_service_request_id,
     int render_process_id,
-    int frame_tree_node_id,
+    content::FrameTreeNodeId frame_tree_node_id,
     uint32_t options,
     const network::ResourceRequest& request,
     content::BrowserContext* browser_context,
@@ -105,7 +108,9 @@ MisesProxyingURLLoaderFactory::InProgressRequest::InProgressRequest(
       options_(options),
       browser_context_(browser_context),
       traffic_annotation_(traffic_annotation),
-      proxied_loader_receiver_(this, std::move(loader_receiver)),
+      proxied_loader_receiver_(this,
+                               std::move(loader_receiver),
+                               navigation_response_task_runner),
       target_client_(std::move(client)),
       proxied_client_receiver_(this),
       navigation_response_task_runner_(navigation_response_task_runner),
@@ -175,7 +180,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::FollowRedirect(
     const std::vector<std::string>& removed_headers,
     const net::HttpRequestHeaders& modified_headers,
     const net::HttpRequestHeaders& modified_cors_exempt_headers,
-    const absl::optional<GURL>& new_url) {
+    const std::optional<GURL>& new_url) {
   if (new_url)
     request_.url = new_url.value();
 
@@ -222,7 +227,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::OnReceiveEarlyHints(
 void MisesProxyingURLLoaderFactory::InProgressRequest::OnReceiveResponse(
     network::mojom::URLResponseHeadPtr head,
     mojo::ScopedDataPipeConsumerHandle body,
-    absl::optional<mojo_base::BigBuffer> cached_metadata) {
+    std::optional<mojo_base::BigBuffer> cached_metadata) {
   current_response_head_ = std::move(head);
   current_response_body_ = std::move(body);
   cached_metadata_ = std::move(cached_metadata);
@@ -288,7 +293,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::
 
   net::RedirectInfo redirect_info =
       CreateRedirectInfo(request_, redirect_url_, kInternalRedirectStatusCode,
-                         absl::nullopt /* referrer_policy_header */);
+                         std::nullopt /* referrer_policy_header */);
 
   network::mojom::URLResponseHeadPtr head =
       network::mojom::URLResponseHead::New();
@@ -373,7 +378,7 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::
     write_data->producer =
         std::make_unique<mojo::DataPipeProducer>(std::move(producer));
 
-    base::StringPiece string_piece(write_data->data);
+    std::string_view string_piece(write_data->data);
     WriteData* write_data_ptr = write_data.get();
     write_data_ptr->producer->Write(
         std::make_unique<mojo::StringDataSource>(
@@ -432,12 +437,10 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::ContinueToStartRequest(
     uint32_t options = options_;
     factory_->target_factory_->CreateLoaderAndStart(
         target_loader_.BindNewPipeAndPassReceiver(
-          navigation_response_task_runner_
-        ),
+            navigation_response_task_runner_),
         network_service_request_id_, options, request_,
         proxied_client_receiver_.BindNewPipeAndPassRemote(
-          navigation_response_task_runner_
-        ),
+            navigation_response_task_runner_),
         traffic_annotation_);
   }
 
@@ -460,12 +463,13 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::ContinueToSendHeaders(
         removed_headers.begin(), removed_headers.end());
 
     for (auto& set_header : set_headers) {
-      std::string header_value;
-      if (request_.headers.GetHeader(set_header, &header_value)) {
+      std::optional<std::string> header_value =
+          request_.headers.GetHeader(set_header);
+      if (header_value) {
         pending_follow_redirect_params_->modified_headers.SetHeader(
-            set_header, header_value);
+            set_header, *header_value);
       } else {
-        NOTREACHED();
+        NOTREACHED_IN_MIGRATION();
       }
     }
 
@@ -614,6 +618,11 @@ void MisesProxyingURLLoaderFactory::InProgressRequest::OnRequestError(
     // be modified
     network::URLLoaderCompletionStatus collapse_status(status);
 
+    // if (base::FeatureList::IsEnabled(
+    //         ::brave_shields::features::kBraveAdblockCollapseBlockedElements) &&
+    //     ctx_->blocked_by == brave::kAdBlocked) {
+    //   collapse_status.should_collapse_initiator = true;
+    // }
 
     target_client_->OnComplete(collapse_status);
   }
@@ -626,9 +635,8 @@ MisesProxyingURLLoaderFactory::MisesProxyingURLLoaderFactory(
     MisesRequestHandler& request_handler,
     content::BrowserContext* browser_context,
     int render_process_id,
-    int frame_tree_node_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-    mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+    content::FrameTreeNodeId frame_tree_node_id,
+    network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<RequestIDGenerator> request_id_generator,
     DisconnectCallback on_disconnect,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner)
@@ -645,13 +653,15 @@ MisesProxyingURLLoaderFactory::MisesProxyingURLLoaderFactory(
   DCHECK(proxy_receivers_.empty());
   DCHECK(!target_factory_.is_bound());
 
+  auto [receiver, target_factory] = factory_builder.Append();
+
   target_factory_.Bind(std::move(target_factory));
   target_factory_.set_disconnect_handler(
       base::BindOnce(&MisesProxyingURLLoaderFactory::OnTargetFactoryError,
                      base::Unretained(this)));
 
-  proxy_receivers_.Add(this, std::move(receiver), 
-    navigation_response_task_runner_);
+  proxy_receivers_.Add(this, std::move(receiver),
+                       navigation_response_task_runner_);
   proxy_receivers_.set_disconnect_handler(
       base::BindRepeating(&MisesProxyingURLLoaderFactory::OnProxyBindingError,
                           base::Unretained(this)));
@@ -660,23 +670,17 @@ MisesProxyingURLLoaderFactory::MisesProxyingURLLoaderFactory(
 MisesProxyingURLLoaderFactory::~MisesProxyingURLLoaderFactory() = default;
 
 // static
-bool MisesProxyingURLLoaderFactory::MaybeProxyRequest(
+void MisesProxyingURLLoaderFactory::MaybeProxyRequest(
     content::BrowserContext* browser_context,
     content::RenderFrameHost* render_frame_host,
     int render_process_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+    network::URLLoaderFactoryBuilder& factory_builder,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
-  auto proxied_receiver = std::move(*factory_receiver);
-  mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory_remote;
-  *factory_receiver = target_factory_remote.InitWithNewPipeAndPassReceiver();
-
   ResourceContextData::StartProxying(
       browser_context, render_process_id,
-      render_frame_host ? render_frame_host->GetFrameTreeNodeId() : 0,
-      std::move(proxied_receiver), std::move(target_factory_remote),
-      navigation_response_task_runner);
-  return true;
+      render_frame_host ? render_frame_host->GetFrameTreeNodeId() : content::FrameTreeNodeId(),
+      factory_builder, navigation_response_task_runner);
 }
 
 void MisesProxyingURLLoaderFactory::CreateLoaderAndStart(
@@ -695,7 +699,7 @@ void MisesProxyingURLLoaderFactory::CreateLoaderAndStart(
   const uint64_t mises_request_id = request_id_generator_->Generate();
 
   auto result = requests_.emplace(std::make_unique<InProgressRequest>(
-      this, mises_request_id, request_id, render_process_id_,
+      *this, mises_request_id, request_id, render_process_id_,
       frame_tree_node_id_, options, request, browser_context_,
       traffic_annotation, std::move(loader_receiver), std::move(client),
       navigation_response_task_runner_));

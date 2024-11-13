@@ -50,6 +50,9 @@
   <message name="IDS_ERRORPAGES_SUGGESTION_RELOAD_REPOST_SUMMARY" desc="When a page fails to load, sometimes we suggest reloading a page.  In the case that reloading the page requires resubmitting data to a website, this is displayed in a list.">
     Press the reload button to resubmit the data needed to load the page.
   </message>
+  <message name="IDS_ERRORPAGES_SUGGESTION_RELOAD_PRIVATE_NETWORK_ACCESS" desc="When a page fails to load because of private network access checks, we suggest reloading a page to allow the request.">
+    Press the reload button to allow the connection to devices or servers on your private network.
+  </message>
   <message name="IDS_ERRORPAGES_SUGGESTION_CHECK_CONNECTION_HEADER" desc="When a page fails to load, sometimes we suggest checking the network connections.  This is a header above some details.">
     Check your Internet connection
   </message>
@@ -90,7 +93,7 @@
     </message>
   </if>
   <message name="IDS_ERRORPAGES_SUGGESTION_CAPTIVE_PORTAL_SIGNIN" desc="ChromeOS instructions for signing in to a WiFi captive portal.">
-    <ph name="BEGIN_LINK">&lt;a href="#buttons" onclick="javascript:portalSignin()"&gt;</ph>Signing in<ph name="END_LINK">&lt;/a&gt;</ph> to the WiFi network
+    <ph name="BEGIN_LINK">&lt;a href="javascript:portalSignin()"&gt;</ph>Signing in<ph name="END_LINK">&lt;/a&gt;</ph> to the WiFi network
   </message>
   <if expr="is_chromeos">
     <message name="IDS_ERRORPAGES_SUGGESTION_PROXY_DISABLE_PLATFORM" desc="ChromeOS instructions for disabling use of a proxy server.">
@@ -259,8 +262,11 @@
   <message name="IDS_ERRORPAGES_HEADING_INSECURE_CONNECTION" desc="Heading in the error page for insecure connections.">
     This site can’t provide a secure connection
   </message>
-  <message name="IDS_ERRORPAGES_SUMMARY_BAD_SSL_CLIENT_AUTH_CERT" desc="Summary in the error page for SSL client certificate authentication failure.">
+  <message name="IDS_ERRORPAGES_SUMMARY_BAD_SSL_CLIENT_AUTH_CERT" desc="Summary in the error page when the server rejected the connection due to a SSL client certificate authentication failure.">
     <ph name="HOST_NAME">&lt;strong jscontent="hostName"&gt;&lt;/strong&gt;<ex>www.whatever.com</ex></ph> didn’t accept your login certificate, or one may not have been provided.
+  </message>
+  <message name="IDS_ERRORPAGES_SUMMARY_SSL_CLIENT_AUTH_SIGNATURE_FAILED" desc="Summary in the error page when authenticating with the user's SSL client certificate failed.">
+    There was a problem using your login certificate.
   </message>
   <message name="IDS_ERRORPAGES_SUMMARY_BLOCKED_BY_EXTENSION" desc="Summary in the error page when an extension blocks a request.">
     This page has been blocked by an extension
@@ -273,9 +279,21 @@
     This content is blocked. Contact the site owner to fix the issue.
   </message>
 
+  <message name="IDS_ERRORPAGES_SUMMARY_BLOCKED_BY_PRIVATE_NETWORK_ACCESS_CHECKS" desc="Summary in the error page when the request has been blocked by private network access checks.">
+    The connection is blocked because it was initiated by a public page to connect to devices or servers on your private network. Reload this page to allow the connection.
+  </message>
+
   <message name="IDS_ERRORPAGES_HTTP_POST_WARNING" desc="The error message displayed when the user navigates back or forward to a page which would resubmit post data. They can hit reload to send POST data again and load the page.">
     This webpage requires data that you entered earlier in order to be properly displayed. You can send this data again, but by doing so you will repeat any action this page previously performed.
   </message>
+
+  <message name="IDS_ERRORPAGES_HEADING_LINKPREVIEW_NON_HTTPS_FORBIDDEN" desc="Heading in the error page when a user tries to preview non-HTTPS URL.">
+    Can't preview non-HTTPS URL
+  </message>
+  <message name="IDS_ERRORPAGES_SUMMARY_LINKPREVIEW_NON_HTTPS_FORBIDDEN" desc="Summary in the error page when a user tries to preview non-HTTPS URL.">
+    Previewing non-HTTPS URL is not allowed.
+  </message>
+
 
   <!-- Suggestions summary list messages. -->
   <message name="IDS_ERRORPAGES_SUGGESTION_LIST_HEADER" desc="Message that prefixes a list of suggestions to try when encountering a network error.">
@@ -385,6 +403,9 @@
     <message name="IDS_ERRORPAGE_DINO_GAME_DESCRIPTION" desc="Message to be spoken by a screen reader to give the user context and instructions for playing the net error dino game. Tapping the screen activates the game and causes the dinosaur to jump. Mobile platforms only.">
       Dino game. A pixelated dinosaur dodges cacti and pterodactyls as it runs across a desolate landscape. When you hear an audio cue, tap to jump over obstacles.
     </message>
+    <message name="IDS_ERRORPAGE_DINO_ARIA_LABEL" desc="Message to be spoken by a screen reader for the dino button element used to start the net error dino game.">
+    Dino game, tap to play
+    </message>
   </if>
   <if expr="not is_android and not is_ios">
     <message name="IDS_ERRORPAGES_GAME_INSTRUCTIONS" desc="Instructions on how to start playing the offline game.">
@@ -393,10 +414,10 @@
     <message name="IDS_ERRORPAGE_DINO_GAME_DESCRIPTION" desc="Message to be spoken by a screen reader to give the user context and instructions for playing the net error dino game. Pressing space activates the game and causes the dinosaur to jump. Desktop platforms only.">
       Dino game. A pixelated dinosaur dodges cacti and pterodactyls as it runs across a desolate landscape. When you hear an audio cue, press space to jump over obstacles.
     </message>
+    <message name="IDS_ERRORPAGE_DINO_ARIA_LABEL" desc="Message to be spoken by a screen reader for the dino button element used to start the net error dino game.">
+    Dino game, press space to play
+    </message>
   </if>
-  <message name="IDS_ERRORPAGE_DINO_ARIA_LABEL" desc="Message to be spoken by a screen reader to for the dino button element used to start the net error dino game.">
-    Dino game, play
-  </message>
   <message name="IDS_ERRORPAGE_DINO_GAME_START" desc="Message to be spoken by a screen reader to notify the user that the dino game has started and the dinosaur is running.">
     Game started.
   </message>

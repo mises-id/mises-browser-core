@@ -1,0 +1,19 @@
+diff --git a/chrome/browser/ui/views/autofill/payments/virtual_card_enroll_icon_view.cc b/chrome/browser/ui/views/autofill/payments/virtual_card_enroll_icon_view.cc
+index 4e0ed63ff9494e122c3f2a6af24ba0a6b53c8f10..2835828dae617b5b94789caeaf5d77a1387caa09 100644
+--- a/chrome/browser/ui/views/autofill/payments/virtual_card_enroll_icon_view.cc
++++ b/chrome/browser/ui/views/autofill/payments/virtual_card_enroll_icon_view.cc
+@@ -49,12 +49,14 @@ views::BubbleDialogDelegate* VirtualCardEnrollIconView::GetBubble() const {
+   // `SavePaymentMethodAndVirtualCardEnrollConfirmationBubbleViews` since
+   // controller hides the `VirtualCardEnrollBubbleViews` once the enrollment
+   // completes to show the confirmation bubble.
++#if !BUILDFLAG(IS_ANDROID)
+   if (controller->IsEnrollmentComplete()) {
+     return static_cast<
+         autofill::
+             SavePaymentMethodAndVirtualCardEnrollConfirmationBubbleViews*>(
+         controller->GetVirtualCardBubbleView());
+   }
++#endif
+ 
+   return static_cast<autofill::VirtualCardEnrollBubbleViews*>(
+       controller->GetVirtualCardBubbleView());

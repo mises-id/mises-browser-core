@@ -97,6 +97,7 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   bool metamask_ready_ = false;
   bool mises_ready_ = false;
   int preinstall_error_counter_ = 0;
+  std::set<std::string> pending_preinstall;
 #if BUILDFLAG(IS_ANDROID)
   std::unique_ptr<messages::MessageWrapper> message_;
 #endif

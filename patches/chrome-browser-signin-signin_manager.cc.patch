@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/signin/signin_manager.cc b/chrome/browser/signin/signin_manager.cc
+index c12b71add44992a53ae28dd9c82e5d84488b3c47..1b5c623f6958e34979173493467a771b6c4af825 100644
+--- a/chrome/browser/signin/signin_manager.cc
++++ b/chrome/browser/signin/signin_manager.cc
+@@ -259,6 +259,7 @@ CoreAccountInfo SigninManager::ComputeUnconsentedPrimaryAccountInfo() const {
+       return IsValidUnconsentedPrimaryAccount(account_info) ? account_info
+                                                             : CoreAccountInfo();
+     }
++  #if BUILDFLAG(ENABLE_DICE_SUPPORT)
+     // Cookie accounts are empty.
+     // If `kPreventSignoutIfAccountValid` is enabled, only clear primary account
+     // if the account is not valid. Allow the reconcilor to rebuild cookies.
+@@ -266,6 +267,7 @@ CoreAccountInfo SigninManager::ComputeUnconsentedPrimaryAccountInfo() const {
+       // Cookies are empty, the UPA is empty.
+       return CoreAccountInfo();
+     }
++  #endif
+   }
+ 
+   // If cookie accounts are empty and the primary account is valid allow the

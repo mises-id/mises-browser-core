@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/ui/webui/tab_search/BUILD.gn b/chrome/browser/ui/webui/tab_search/BUILD.gn
-index 48046ed8a910a82bc3d6656d8f067b7d2464518e..ab8d226bdd891b5307e0ace24948fcaee5c2380d 100644
+index 48539b48e5b5851c179430ce13ed71ddd5fb9ac7..ccee587e714ba29164912142c45f1eb8d0665860 100644
 --- a/chrome/browser/ui/webui/tab_search/BUILD.gn
 +++ b/chrome/browser/ui/webui/tab_search/BUILD.gn
 @@ -4,7 +4,7 @@
  
  import("//mojo/public/tools/bindings/mojom.gni")
  
--assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
-+#assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
+-assert(is_linux || is_chromeos || is_win || is_mac)
++#assert(is_linux || is_chromeos || is_win || is_mac)
+ assert(!is_fuchsia, "Fuchsia shouldn't use anything in //chrome")
  
  mojom("mojo_bindings") {
-   sources = [ "tab_search.mojom" ]

@@ -4,7 +4,6 @@
 
 #include "ui/views/windows_stationarity_monitor_android.h"
 
-#include "base/containers/cxx20_erase.h"
 #include "base/functional/bind.h"
 #include "base/no_destructor.h"
 #include "ui/gfx/geometry/rect.h"
@@ -32,7 +31,7 @@ WindowsStationarityMonitorAndroid* WindowsStationarityMonitorAndroid::GetInstanc
 
 void WindowsStationarityMonitorAndroid::OnWidgetDestroying(Widget* widget) {
   widget->RemoveObserver(this);
-  base::Erase(tracked_windows_, widget);
+  std::erase(tracked_windows_, widget);
   NotifyWindowStationaryStateChanged();
 }
 

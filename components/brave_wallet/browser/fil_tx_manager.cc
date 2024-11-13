@@ -47,8 +47,8 @@ FilTxManager::~FilTxManager() {
 }
 
 void FilTxManager::GetEstimatedGas(const std::string& from,
-                                   const absl::optional<url::Origin>& origin,
-                                   const absl::optional<std::string>& group_id,
+                                   const std::optional<url::Origin>& origin,
+                                   const std::optional<std::string>& group_id,
                                    std::unique_ptr<FilTransaction> tx,
                                    AddUnapprovedTransactionCallback callback) {
   const std::string gas_premium = tx->gas_premium();
@@ -67,8 +67,8 @@ void FilTxManager::GetEstimatedGas(const std::string& from,
 
 void FilTxManager::ContinueAddUnapprovedTransaction(
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     std::unique_ptr<FilTransaction> tx,
     AddUnapprovedTransactionCallback callback,
     const std::string& gas_premium,
@@ -101,8 +101,8 @@ void FilTxManager::ContinueAddUnapprovedTransaction(
 void FilTxManager::AddUnapprovedTransaction(
     mojom::TxDataUnionPtr tx_data_union,
     const std::string& from,
-    const absl::optional<url::Origin>& origin,
-    const absl::optional<std::string>& group_id,
+    const std::optional<url::Origin>& origin,
+    const std::optional<std::string>& group_id,
     AddUnapprovedTransactionCallback callback) {
   DCHECK(tx_data_union->is_fil_tx_data());
   if (!FilAddress::IsValidAddress(from)) {
@@ -215,7 +215,7 @@ void FilTxManager::OnSendFilecoinTransaction(
     const std::string& error_message) {
   std::unique_ptr<TxMeta> meta = tx_state_manager_->GetTx(tx_meta_id);
   if (!meta) {
-    NOTREACHED() << "Transaction should be found";
+    NOTREACHED_IN_MIGRATION() << "Transaction should be found";
     std::move(callback).Run(
         false,
         mojom::ProviderErrorUnion::NewFilecoinProviderError(
@@ -246,10 +246,10 @@ void FilTxManager::OnSendFilecoinTransaction(
 }
 
 void FilTxManager::GetAllTransactionInfo(
-    const absl::optional<std::string>& from,
+    const std::optional<std::string>& from,
     GetAllTransactionInfoCallback callback) {
   if (!from) {
-    TxManager::GetAllTransactionInfo(absl::nullopt, std::move(callback));
+    TxManager::GetAllTransactionInfo(std::nullopt, std::move(callback));
     return;
   }
   auto from_address = FilAddress::FromAddress(from.value());
@@ -338,7 +338,7 @@ FilTxStateManager* FilTxManager::GetFilTxStateManager() {
 
 void FilTxManager::UpdatePendingTransactions() {
   auto pending_transactions = tx_state_manager_->GetTransactionsByStatus(
-      mojom::TransactionStatus::Submitted, absl::nullopt);
+      mojom::TransactionStatus::Submitted, std::nullopt);
   for (const auto& pending_transaction : pending_transactions) {
     auto cid = pending_transaction->tx_hash();
     uint64_t seconds =

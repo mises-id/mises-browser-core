@@ -1,0 +1,13 @@
+diff --git a/chrome/common/importer/BUILD.gn b/chrome/common/importer/BUILD.gn
+index a64ef03ece1748adf2042bb21c5f82f73d7b79a4..5b465090102310e65f0474cc61f743f95ceecd51 100644
+--- a/chrome/common/importer/BUILD.gn
++++ b/chrome/common/importer/BUILD.gn
+@@ -94,7 +94,7 @@ source_set("importer") {
+     "importer_url_row.h",
+     "pstore_declarations.h",
+   ]
+-  if (is_chromeos || is_linux) {
++  if (is_android || is_chromeos || is_linux) {
+     sources += [ "firefox_importer_utils_linux.cc" ]
+   } else if (is_mac) {
+     sources += [

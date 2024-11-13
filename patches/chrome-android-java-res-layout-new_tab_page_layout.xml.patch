@@ -1,0 +1,180 @@
+diff --git a/chrome/android/java/res/layout/new_tab_page_layout.xml b/chrome/android/java/res/layout/new_tab_page_layout.xml
+index 5216462e2f03ee09f234f7e540bd0fd6ff512520..0ecce85f94ef95baed15d421ed44509f320a2a09 100644
+--- a/chrome/android/java/res/layout/new_tab_page_layout.xml
++++ b/chrome/android/java/res/layout/new_tab_page_layout.xml
+@@ -1,88 +1,113 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<!--
+-Copyright 2016 The Chromium Authors
+-Use of this source code is governed by a BSD-style license that can be
+-found in the LICENSE file.
+--->
+-<org.chromium.chrome.browser.ntp.NewTabPageLayout
++<!-- Copyright 2016 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
++<org.chromium.chrome.browser.ntp.MisesNewTabPageLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/ntp_content"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+-    android:background="@drawable/home_surface_background"
+     android:layout_gravity="center_horizontal"
+     android:orientation="vertical"
+     android:gravity="center"
+     android:paddingTop="@dimen/toolbar_height_no_shadow"
+     android:visibility="gone" >
+ 
+-    <!-- Search provider logo -->
++    <ImageView
++        android:id="@+id/bg_image_view"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:tint="@color/mises_ntp_color"
++        android:contentDescription="@null"/>
++
+     <FrameLayout
+         android:id="@+id/logo_holder"
+         android:layout_width="match_parent"
+-        android:layout_height="wrap_content">
++        android:layout_height="wrap_content"
++        android:visibility="gone">
+ 
+         <include layout="@layout/logo_view_layout"/>
+-    </FrameLayout>
+-
+-    <!-- Search box -->
+-    <include layout="@layout/fake_search_box_layout"/>
+ 
+-    <!-- Query tiles -->
+-    <FrameLayout
+-        android:id="@+id/query_tiles"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:visibility="gone"/>
+-
+-    <!-- Middle spacer -->
+-    <View
+-        android:id="@+id/ntp_middle_spacer"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_weight="0"
+-        android:visibility="invisible" />
+-
+-    <!-- Insertion point of the SiteSectionView, see NewTabPageLayout#insertSiteSection() -->
+-
+-    <!-- Site suggestion tile grid placeholder -->
+-    <ViewStub
+-        android:id="@+id/tile_grid_placeholder_stub"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_weight="1"
+-        android:inflatedId="@+id/tile_grid_placeholder"
+-        android:layout="@layout/new_tab_page_tile_grid_placeholder" />
++    </FrameLayout>
+ 
+-    <ViewStub
+-        android:id="@+id/home_modules_recycler_view_stub"
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:layout="@layout/home_modules_recycler_view_layout"
+-        android:visibility="gone" />
++        android:layout_marginStart="20dp"
++        android:layout_marginEnd="20dp"
++        android:overScrollMode="never" />
+ 
+-    <!-- Single tab card -->
+-    <ViewStub
+-        android:id="@+id/tab_switcher_module_container_stub"
++    <LinearLayout
++        android:id="@+id/ntp_main_layout"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:layout="@layout/tab_switcher_module_container" />
++        android:layout_gravity="center_horizontal"
++        android:orientation="vertical"
++        android:visibility="gone">
+ 
+-    <ViewStub
+-        android:id="@+id/search_resumption_module_container_stub"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="@dimen/search_resumption_module_margin_top"
+-        android:layout="@layout/search_resumption_module_layout" />
++        <!-- Search box -->
++        <include layout="@layout/fake_search_box_layout"/>
+ 
+-    <!-- Spacer for when there is no search provider logo. -->
+-    <View
+-        android:id="@+id/no_search_logo_spacer"
+-        android:layout_width="match_parent"
+-        android:layout_height="0dp"
+-        android:layout_weight="1"
+-        android:visibility="gone" />
+-</org.chromium.chrome.browser.ntp.NewTabPageLayout>
+\ No newline at end of file
++        <!-- Query tiles -->
++        <FrameLayout
++            android:id="@+id/query_tiles"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="16dp"
++            android:visibility="gone"/>
++
++        <!-- Middle spacer -->
++        <View
++            android:id="@+id/ntp_middle_spacer"
++            android:layout_width="0dp"
++            android:layout_height="0dp"
++            android:layout_weight="0"
++            android:visibility="invisible" />
++
++        <!-- Insertion point of the SiteSectionView, see NewTabPageLayout#insertSiteSection() -->
++
++        <!-- Site suggestion tile grid placeholder -->
++        <ViewStub
++            android:id="@+id/tile_grid_placeholder_stub"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:inflatedId="@+id/tile_grid_placeholder"
++            android:layout="@layout/new_tab_page_tile_grid_placeholder" />
++
++        <ViewStub
++            android:id="@+id/home_modules_recycler_view_stub"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:layout="@layout/home_modules_recycler_view_layout"
++            android:visibility="gone" />
++
++        <!-- Single tab card -->
++        <ViewStub
++            android:id="@+id/tab_switcher_module_container_stub"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:layout="@layout/tab_switcher_module_container" />
++
++        <ViewStub
++            android:id="@+id/search_resumption_module_container_stub"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="@dimen/search_resumption_module_margin_top"
++            android:layout="@layout/search_resumption_module_layout" />
++
++        <!-- Spacer for when there is no search provider logo. -->
++        <View
++            android:id="@+id/no_search_logo_spacer"
++            android:layout_width="match_parent"
++            android:layout_height="0dp"
++            android:layout_weight="1"
++            android:visibility="gone" />
++
++    </LinearLayout>
++
++
++</org.chromium.chrome.browser.ntp.MisesNewTabPageLayout>

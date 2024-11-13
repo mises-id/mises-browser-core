@@ -1,0 +1,13 @@
+diff --git a/content/browser/resources/BUILD.gn b/content/browser/resources/BUILD.gn
+index f4f7f831179d3b3d150f99b04bd1e7df480e6a9d..dfe14ceceb13efff6f7b341f06c44c63664693d3 100644
+--- a/content/browser/resources/BUILD.gn
++++ b/content/browser/resources/BUILD.gn
+@@ -18,7 +18,7 @@ group("resources") {
+     "service_worker:resources",
+   ]
+ 
+-  if (!is_android && !is_ios) {
++  if (is_android || !is_android && !is_ios) {
+     public_deps += [ "traces_internals:resources" ]
+   }
+ 

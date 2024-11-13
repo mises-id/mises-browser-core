@@ -1,9 +1,9 @@
 diff --git a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
-index 9da6c3e2721fba7a10287d210d85468fae102061..1bc559ca63f9af72d6fa0f30a8b9fc17fe7d80e2 100644
+index d2fe32e01cc930fff226c4e25f877e3a40f72e9d..38dccef6cb405b0390f4aade3b80e49382917ea8 100644
 --- a/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
 +++ b/chrome/browser/tabmodel/android/java/src/org/chromium/chrome/browser/tabmodel/IncognitoTabModelImpl.java
-@@ -190,6 +190,11 @@ class IncognitoTabModelImpl implements IncognitoTabModel {
-         mDelegateModel.setIndex(i, type, skipLoadingTab);
+@@ -184,6 +184,11 @@ class IncognitoTabModelImpl implements IncognitoTabModel {
+         mDelegateModel.setIndex(i, type);
      }
  
 +    @Override

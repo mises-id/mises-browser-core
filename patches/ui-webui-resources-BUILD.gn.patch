@@ -1,8 +1,8 @@
 diff --git a/ui/webui/resources/BUILD.gn b/ui/webui/resources/BUILD.gn
-index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760ddcc352da 100644
+index 17dab4ca2f900bb1a726d93630bbc974d50c4d8c..af806581716907534de3aa3108b2ca730d4f9026 100644
 --- a/ui/webui/resources/BUILD.gn
 +++ b/ui/webui/resources/BUILD.gn
-@@ -14,7 +14,7 @@ generate_grd("build_grd") {
+@@ -18,7 +18,7 @@ generate_grd("build_grd") {
    input_files = [ "test_loader.html" ]
    input_files_base_dir = rebase_path(".", "//")
  
@@ -11,7 +11,7 @@ index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760d
      # Only need to include on Linux.
      #  - Android: Roboto-Regular and Roboto-Light is already available on
      #             Android, and Roboto-Medium is not used on Android.
-@@ -44,7 +44,7 @@ generate_grd("build_grd") {
+@@ -50,7 +50,7 @@ generate_grd("build_grd") {
      "$target_gen_dir/mojo/resources.grdp",
    ]
  
@@ -20,7 +20,7 @@ index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760d
      public_deps += [
        "cr_components/app_management:build_grdp",
        "cr_components/customize_color_scheme_mode:build_grdp",
-@@ -108,7 +108,7 @@ generate_grd("build_grd") {
+@@ -119,7 +119,7 @@ generate_grd("build_grd") {
      grdp_files += [ "$target_gen_dir/cros_styles_resources.grdp" ]
    }
  
@@ -29,7 +29,7 @@ index 6af21f9088680adb0a4a07d9ae856c316aced19f..46ad1d497aed2a09f05090394774760d
      public_deps += [
        "cr_components/color_change_listener:build_grdp",
        "cr_components/page_image_service:build_grdp",
-@@ -120,6 +120,7 @@ generate_grd("build_grd") {
+@@ -131,6 +131,7 @@ generate_grd("build_grd") {
        "$root_gen_dir/ui/webui/resources/cr_components/page_image_service/resources.grdp",
      ]
    }

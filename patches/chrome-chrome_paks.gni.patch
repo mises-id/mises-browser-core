@@ -1,8 +1,8 @@
 diff --git a/chrome/chrome_paks.gni b/chrome/chrome_paks.gni
-index 54efa2d231a3bb9218a4cd57b8cab1c88dbc30b6..799c6b2c77a3b23063aa3be22e7ecc22c87401b8 100644
+index 8e6a2401aab03250cb0dfe665e5b9f759326529c..77080f468529d2ebaca8d629784360af0f9a521e 100644
 --- a/chrome/chrome_paks.gni
 +++ b/chrome/chrome_paks.gni
-@@ -147,7 +147,7 @@ template("chrome_extra_paks") {
+@@ -154,7 +154,7 @@ template("chrome_extra_paks") {
        sources += invoker.additional_paks
      }
  
@@ -11,7 +11,33 @@ index 54efa2d231a3bb9218a4cd57b8cab1c88dbc30b6..799c6b2c77a3b23063aa3be22e7ecc22
        # New paks should be added here by default.
        sources += [
          "$root_gen_dir/chrome/about_sys_resources.pak",
-@@ -379,7 +379,7 @@ template("chrome_extra_paks") {
+@@ -173,9 +173,9 @@ template("chrome_extra_paks") {
+         "$root_gen_dir/chrome/identity_internals_resources.pak",
+         "$root_gen_dir/chrome/inline_login_resources.pak",
+         "$root_gen_dir/chrome/key_value_pair_viewer_shared_resources.pak",
+-        "$root_gen_dir/chrome/lens_search_bubble_resources.pak",
+-        "$root_gen_dir/chrome/lens_shared_resources.pak",
+-        "$root_gen_dir/chrome/lens_untrusted_resources.pak",
++        #"$root_gen_dir/chrome/lens_search_bubble_resources.pak",
++        #"$root_gen_dir/chrome/lens_shared_resources.pak",
++        #"$root_gen_dir/chrome/lens_untrusted_resources.pak",
+         "$root_gen_dir/chrome/management_resources.pak",
+         "$root_gen_dir/chrome/new_tab_page_instant_resources.pak",
+         "$root_gen_dir/chrome/new_tab_page_resources.pak",
+@@ -210,9 +210,9 @@ template("chrome_extra_paks") {
+         "//chrome/browser/resources:dev_ui_paks",
+         "//chrome/browser/resources/commerce/product_specifications:resources",
+         "//chrome/browser/resources/data_sharing:resources",
+-        "//chrome/browser/resources/lens/overlay:resources",
+-        "//chrome/browser/resources/lens/overlay/search_bubble:resources",
+-        "//chrome/browser/resources/lens/shared:resources",
++        #"//chrome/browser/resources/lens/overlay:resources",
++        #"//chrome/browser/resources/lens/overlay/search_bubble:resources",
++        #"//chrome/browser/resources/lens/shared:resources",
+         "//chrome/browser/resources/search_engine_choice:resources",
+         "//content/browser/devtools:devtools_resources",
+         "//content/browser/tracing:resources",
+@@ -418,7 +418,7 @@ template("chrome_extra_paks") {
        sources += [ "$root_gen_dir/chrome/webui_js_error_resources.pak" ]
        deps += [ "//chrome/browser/resources/webui_js_error:resources" ]
      }
@@ -20,18 +46,18 @@ index 54efa2d231a3bb9218a4cd57b8cab1c88dbc30b6..799c6b2c77a3b23063aa3be22e7ecc22
        sources += [
          "$root_gen_dir/chrome/intro_resources.pak",
          "$root_gen_dir/chrome/profile_picker_resources.pak",
-@@ -417,12 +417,12 @@ template("chrome_extra_paks") {
+@@ -451,12 +451,12 @@ template("chrome_extra_paks") {
        deps += [ "//chrome/browser/resources/dlp_internals:resources" ]
      }
  
--    if (is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia) {
-+    if (is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia || is_android) {
+-    if (is_win || is_mac || is_linux || is_chromeos_lacros) {
++    if (is_win || is_mac || is_linux || is_chromeos_lacros || is_android) {
        sources += [ "$root_gen_dir/chrome/browser_switch_resources.pak" ]
        deps += [ "//chrome/browser/resources/browser_switch:resources" ]
      }
  
--    if (is_win || is_mac || is_linux || is_chromeos || is_fuchsia) {
-+    if (is_win || is_mac || is_linux || is_chromeos || is_fuchsia || is_android) {
+-    if (is_win || is_mac || is_linux || is_chromeos) {
++    if (is_win || is_mac || is_linux || is_chromeos || is_android) {
        sources += [ "$root_gen_dir/chrome/discards_resources.pak" ]
        deps += [ "//chrome/browser/resources/discards:resources" ]
      }

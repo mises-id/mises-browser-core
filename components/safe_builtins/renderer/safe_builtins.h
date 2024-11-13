@@ -3,11 +3,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef MISES_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_H_
-#define MISES_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_H_
+#ifndef BRAVE_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_H_
+#define BRAVE_COMPONENTS_SAFE_BUILTINS_RENDERER_SAFE_BUILTINS_H_
 
 #include <memory>
 
+#include "base/memory/stack_allocated.h"
 #include "v8/include/v8-forward.h"
 #include "v8/include/v8-persistent-handle.h"
 
@@ -16,6 +17,8 @@ namespace mises {
 // This is originated from extensions::SafeBuiltins
 // see //extensions/renderer/safe_builtins.h for details
 class SafeBuiltins {
+  STACK_ALLOCATED();
+
  public:
   // Creates the v8::Extension which manages SafeBuiltins instances.
   static std::unique_ptr<v8::Extension> CreateV8Extension();
@@ -28,7 +31,7 @@ class SafeBuiltins {
   ~SafeBuiltins();
 
   // We only need safe Object for scripts in
-  // //mises/components/brave_wallt/resources for now.
+  // //brave/components/brave_wallt/resources for now.
   // see //extensions/renderer/safe_builtins.h for reason of the naming.
   v8::Local<v8::Object> GetObjekt() const;
   v8::Local<v8::Object> GetFunction() const;

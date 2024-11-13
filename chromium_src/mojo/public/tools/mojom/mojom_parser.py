@@ -6,7 +6,6 @@
 import codecs
 import os.path
 
-# pylint: disable=import-error
 from mojom.parse import ast
 from mojom.parse import conditional_features
 from mojom.parse import parser
@@ -43,13 +42,13 @@ def _GetBraveDefinitionAction(brave_definition):
 
     if brave_definition.attribute_list:
         for attribute in brave_definition.attribute_list:
-            if attribute.key == 'MisesAdd':
+            if attribute.key.name == 'MisesAdd':
                 return _DEFINITION_ADD
-            if attribute.key == 'MisesExtend':
+            if attribute.key.name == 'MisesExtend':
                 return _DEFINITION_EXTEND
 
     raise ValueError(
-        "Definition should have [BraveAdd] or [BraveExtend] attribute: %s" %
+        "Definition should have [MisesAdd] or [MisesExtend] attribute: %s" %
         brave_definition.mojom_name)
 
 
@@ -122,7 +121,8 @@ def _ApplyBraveAstChanges(brave_ast, parsed_ast):
         raise ValueError(
             f"Mojo module ids are not equal while trying to patch: "
             f"{brave_ast.module.mojom_namespace} vs "
-            f"{ast.module.mojom_namespace}")
+            f"{parsed_ast.module.mojom_namespace}. "
+            "(Maybe missing an attribute?)")
 
     # Add new imports.
     for brave_import in brave_ast.import_list:

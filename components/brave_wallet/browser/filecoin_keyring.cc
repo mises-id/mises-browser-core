@@ -15,7 +15,7 @@
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/fil_address.h"
 #include "mises/components/filecoin/rs/src/lib.rs.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -35,10 +35,10 @@ bool GetBLSPublicKey(const std::vector<uint8_t>& private_key,
   return true;
 }
 
-absl::optional<mojom::FilecoinAddressProtocol> GetProtocolFromAddress(
+std::optional<mojom::FilecoinAddressProtocol> GetProtocolFromAddress(
     const std::string& address) {
   if (address.size() < 2) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   const char protocol_symbol = address[1];
   switch (protocol_symbol) {
@@ -49,15 +49,14 @@ absl::optional<mojom::FilecoinAddressProtocol> GetProtocolFromAddress(
       return mojom::FilecoinAddressProtocol::BLS;
     }
     default: {
-      NOTREACHED() << "Unknown filecoin protocol";
-      return absl::nullopt;
+      return std::nullopt;
     }
   }
 }
 
 std::string GetExportEncodedJSON(const std::string& base64_encoded_private_key,
                                  const std::string& address) {
-  absl::optional<mojom::FilecoinAddressProtocol> protocol =
+  std::optional<mojom::FilecoinAddressProtocol> protocol =
       GetProtocolFromAddress(address);
   if (!protocol) {
     return "";
@@ -91,7 +90,7 @@ bool FilecoinKeyring::DecodeImportPayload(
   if (!base::HexStringToString(payload_hex, &key_payload)) {
     return false;
   }
-  absl::optional<base::Value> records_v = base::JSONReader::Read(
+  std::optional<base::Value> records_v = base::JSONReader::Read(
       key_payload, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v || !records_v->is_dict()) {
@@ -188,14 +187,14 @@ std::string FilecoinKeyring::GetAddressInternal(HDKeyBase* hd_key_base) const {
       .EncodeAsString();
 }
 
-absl::optional<std::string> FilecoinKeyring::SignTransaction(
+std::optional<std::string> FilecoinKeyring::SignTransaction(
     const FilTransaction* tx) {
   if (!tx)
-    return absl::nullopt;
+    return std::nullopt;
   auto address = tx->from().EncodeAsString();
   HDKeyBase* hd_key = GetHDKeyFromAddress(address);
   if (!hd_key)
-    return absl::nullopt;
+    return std::nullopt;
   return tx->GetSignedTransaction(hd_key->GetPrivateKeyBytes());
 }
 

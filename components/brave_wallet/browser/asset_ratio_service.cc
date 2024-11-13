@@ -193,7 +193,7 @@ void AssetRatioService::GetBuyUrlV1(mojom::OnRampProvider provider,
     ramp_url =
         net::AppendQueryParameter(ramp_url, "fiatCurrency", currency_code);
     ramp_url = net::AppendQueryParameter(ramp_url, "hostApiKey", kRampID);
-    std::move(callback).Run(std::move(ramp_url.spec()), absl::nullopt);
+    std::move(callback).Run(std::move(ramp_url.spec()), std::nullopt);
   } else if (provider == mojom::OnRampProvider::kSardine) {
     auto internal_callback =
         base::BindOnce(&AssetRatioService::OnGetSardineAuthToken,
@@ -209,11 +209,10 @@ void AssetRatioService::GetBuyUrlV1(mojom::OnRampProvider provider,
     std::string payload;
     base::JSONWriter::Write(payload_value, &payload);
     base::flat_map<std::string, std::string> request_headers;
-    std::string base64_credentials;
     std::string credentials = base::StringPrintf(
         "%s:%s", sardine_client_id.c_str(),  // username:password
         sardine_client_secret.c_str());
-    base::Base64Encode(credentials, &base64_credentials);
+    std::string base64_credentials = base::Base64Encode(credentials);
     std::string header =
         base::StringPrintf("Basic %s", base64_credentials.c_str());
     request_headers["Authorization"] = std::move(header);
@@ -237,7 +236,7 @@ void AssetRatioService::GetBuyUrlV1(mojom::OnRampProvider provider,
     transak_url =
         net::AppendQueryParameter(transak_url, "apiKey", kTransakApiKey);
 
-    std::move(callback).Run(std::move(transak_url.spec()), absl::nullopt);
+    std::move(callback).Run(std::move(transak_url.spec()), std::nullopt);
   } else {
     std::move(callback).Run(url, "UNSUPPORTED_ONRAMP_PROVIDER");
   }
@@ -268,7 +267,7 @@ void AssetRatioService::GetSellUrl(mojom::OffRampProvider provider,
         net::AppendQueryParameter(off_ramp_url, "fiatCurrency", currency_code);
     off_ramp_url =
         net::AppendQueryParameter(off_ramp_url, "hostApiKey", kRampID);
-    std::move(callback).Run(off_ramp_url.spec(), absl::nullopt);
+    std::move(callback).Run(off_ramp_url.spec(), std::nullopt);
   } else {
     std::move(callback).Run(url, "UNSUPPORTED_OFFRAMP_PROVIDER");
   }
@@ -319,7 +318,7 @@ void AssetRatioService::OnGetSardineAuthToken(
 
   GURL sardine_buy_url = GetSardineBuyURL(chain_id, address, symbol, amount,
                                           currency_code, *auth_token);
-  std::move(callback).Run(std::move(sardine_buy_url.spec()), absl::nullopt);
+  std::move(callback).Run(std::move(sardine_buy_url.spec()), std::nullopt);
 }
 
 void AssetRatioService::OnGetPrice(std::vector<std::string> from_assets,

@@ -1,8 +1,8 @@
 diff --git a/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml b/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
-index ecf4e2bdbb3d5db59005ce0ccf7e2dd692229f60..9d2ff0a75b84acbb96af017ba9c92ac13756d6ea 100644
+index 932b5546a872d48fe39df6b0a0dd790c2f3537e1..28268377ed515f9d5fbe4f5b9b53822be5a90de8 100644
 --- a/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
 +++ b/components/browser_ui/accessibility/android/java/res/xml/accessibility_preferences.xml
-@@ -35,6 +35,11 @@ found in the LICENSE file.
+@@ -40,6 +40,11 @@ found in the LICENSE file.
          android:summary="@string/reader_for_accessibility_summary"
          android:title="@string/reader_for_accessibility_title" />
  

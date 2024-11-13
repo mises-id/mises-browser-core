@@ -10,7 +10,7 @@
 #undef ParseJSON
 
 namespace {
-constexpr base::StringPiece kMisesPinsJson = R"mises_pins_json({
+constexpr std::string_view kMisesPinsJson = R"mises_pins_json({
   "pinsets": [
     {
       "name": "mises",
@@ -123,7 +123,7 @@ constexpr base::StringPiece kMisesPinsJson = R"mises_pins_json({
     { "name": "ssl-pinning.someblog.org", "pins" : "mises"}
  ]})mises_pins_json";
 
-constexpr base::StringPiece kMisesHstsJson = R"mises_hsts_json({
+constexpr std::string_view kMisesHstsJson = R"mises_hsts_json({
   "entries": [
     // Critical endpoints that should remain unpinned so that they
     // always work.
@@ -531,10 +531,10 @@ namespace net {
 
 namespace transport_security_state {
 
-bool ParseCertificatesFile(base::StringPiece certs_input,
+bool ParseCertificatesFile(std::string_view certs_input,
                            Pinsets* pinsets,
                            base::Time* timestamp) {
-  constexpr base::StringPiece mises_certs = R"mises_certs(
+  constexpr std::string_view mises_certs = R"mises_certs(
 # Last updated: Fri Apr 14 18:29:59 UTC 2023
 PinsListTimestamp
 1681496999
@@ -876,8 +876,8 @@ tL4ndQavEi51mI38AjEAi/V3bNTIZargCyzuFJ0nN6T5U6VR5CmD1/iQMVtCnwr1
   return ParseCertificatesFile_ChromiumImpl(mises_certs, pinsets, timestamp);
 }
 
-bool ParseJSON(base::StringPiece hsts_json,
-               base::StringPiece pins_json,
+bool ParseJSON(std::string_view hsts_json,
+               std::string_view pins_json,
                TransportSecurityStateEntries* entries,
                Pinsets* pinsets) {
   Pinsets chromium_pinsets;

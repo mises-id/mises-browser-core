@@ -15,7 +15,7 @@
 #include "base/containers/flat_map.h"
 #include "base/gtest_prod_util.h"
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 

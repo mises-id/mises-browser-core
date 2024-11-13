@@ -52,7 +52,7 @@ class IPFSWebContentsLifetimeHelper
   }
 
   void NavigateTo(const content::OpenURLParams& url_params) {
-    GetWebContents().OpenURL(url_params);
+    GetWebContents().OpenURL(url_params, /*navigation_handle_callback=*/{});
   }
 
  private:
@@ -145,7 +145,7 @@ void IpfsNavigationThrottle::GetConnectedPeers() {
   ipfs_service_->GetConnectedPeers(
       base::BindOnce(&IpfsNavigationThrottle::OnGetConnectedPeers,
                      weak_ptr_factory_.GetWeakPtr()),
-      absl::nullopt);
+      std::nullopt);
 }
 
 void IpfsNavigationThrottle::OnGetConnectedPeers(

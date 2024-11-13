@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/usb/web_usb_chooser_desktop.cc b/chrome/browser/usb/web_usb_chooser_desktop.cc
+index bf4c5995135f7dc71274aebdd84cea87c6a9b2c4..cb4383c1d985c5cf5035923df20d22ae40acbe05 100644
+--- a/chrome/browser/usb/web_usb_chooser_desktop.cc
++++ b/chrome/browser/usb/web_usb_chooser_desktop.cc
+@@ -16,6 +16,8 @@ WebUsbChooserDesktop::~WebUsbChooserDesktop() = default;
+ void WebUsbChooserDesktop::ShowChooser(
+     content::RenderFrameHost* render_frame_host,
+     std::unique_ptr<UsbChooserController> controller) {
++#if defined(TOOLKIT_VIEWS)
+   closure_runner_.ReplaceClosure(chrome::ShowDeviceChooserDialog(
+       render_frame_host, std::move(controller)));
++#endif
+ }

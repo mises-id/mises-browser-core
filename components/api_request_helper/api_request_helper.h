@@ -17,7 +17,7 @@
 #include "base/time/time.h"
 #include "base/values.h"
 #include "net/traffic_annotation/network_traffic_annotation.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/gurl.h"
 
 namespace network {
@@ -77,7 +77,7 @@ struct APIRequestOptions {
   bool auto_retry_on_network_change = false;
   bool enable_cache = false;
   size_t max_body_size = -1u;
-  absl::optional<base::TimeDelta> timeout;
+  std::optional<base::TimeDelta> timeout;
 };
 
 // Anyone is welcome to use APIRequestHelper to reduce boilerplate
@@ -92,7 +92,7 @@ class APIRequestHelper {
 
   using ResultCallback = base::OnceCallback<void(APIRequestResult)>;
   using ResponseConversionCallback =
-      base::OnceCallback<absl::optional<std::string>(
+      base::OnceCallback<std::optional<std::string>(
           const std::string& raw_response)>;
 
   // Each response is expected in json format and will be validated through

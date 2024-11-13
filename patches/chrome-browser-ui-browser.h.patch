@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/browser.h b/chrome/browser/ui/browser.h
-index f6efb82abb4ff65ca617b2c88501fe91382105a9..a2fa4f36474f286001d923d8f63c63a8ab740481 100644
+index 85b6845aa871c2e7ae553f245774006a7d9b9085..ff7d3415f4fc5901faa4e1e6afd33fd72c984bd4 100644
 --- a/chrome/browser/ui/browser.h
 +++ b/chrome/browser/ui/browser.h
-@@ -48,7 +48,7 @@
+@@ -53,7 +53,7 @@
  #include "ui/gfx/geometry/rect.h"
  #include "ui/shell_dialogs/select_file_dialog.h"
  

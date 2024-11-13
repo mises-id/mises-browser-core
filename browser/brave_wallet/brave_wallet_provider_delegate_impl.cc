@@ -49,7 +49,7 @@ void OnRequestPermissions(
   // The responses array will be empty if operation failed.
   if (responses.empty()) {
     std::move(callback).Run(mojom::RequestPermissionsError::kInternal,
-                            absl::nullopt);
+                            std::nullopt);
   } else {
     std::move(callback).Run(mojom::RequestPermissionsError::kNone,
                             granted_accounts);
@@ -66,7 +66,7 @@ void OnIsAccountAllowed(
   std::move(callback).Run(allowed);
 }
 
-absl::optional<permissions::RequestType> CoinTypeToPermissionRequestType(
+std::optional<permissions::RequestType> CoinTypeToPermissionRequestType(
     mojom::CoinType coin_type) {
   switch (coin_type) {
     case mojom::CoinType::ETH:
@@ -74,11 +74,11 @@ absl::optional<permissions::RequestType> CoinTypeToPermissionRequestType(
     case mojom::CoinType::SOL:
       return permissions::RequestType::kMisesSolana;
     default:
-      return absl::nullopt;
+      return std::nullopt;
   }
 }
 
-absl::optional<std::string> CoinTypeToKeyringId(mojom::CoinType coin_type) {
+std::optional<std::string> CoinTypeToKeyringId(mojom::CoinType coin_type) {
   switch (coin_type) {
     case mojom::CoinType::ETH:
       return mojom::kDefaultKeyringId;
@@ -87,7 +87,7 @@ absl::optional<std::string> CoinTypeToKeyringId(mojom::CoinType coin_type) {
     case mojom::CoinType::FIL:
       return mojom::kFilecoinKeyringId;
     default:
-      return absl::nullopt;
+      return std::nullopt;
   }
 }
 
@@ -177,7 +177,7 @@ void BraveWalletProviderDelegateImpl::RequestPermissions(
   auto permission = CoinTypeToPermissionType(type);
   if (!request_type || !permission) {
     std::move(callback).Run(mojom::RequestPermissionsError::kInternal,
-                            absl::nullopt);
+                            std::nullopt);
     return;
   }
   // Check if there's already a permission request in progress
@@ -185,7 +185,7 @@ void BraveWalletProviderDelegateImpl::RequestPermissions(
   if (rfh && permissions::BraveWalletPermissionContext::HasRequestsInProgress(
                  rfh, *request_type)) {
     std::move(callback).Run(mojom::RequestPermissionsError::kRequestInProgress,
-                            absl::nullopt);
+                            std::nullopt);
     return;
   }
 

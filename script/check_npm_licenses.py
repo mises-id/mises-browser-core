@@ -13,7 +13,7 @@ from lib.config import SOURCE_ROOT
 
 
 EXCLUSIONS = [
-    # Already covered by brave/third_party/npm-types
+    # Already covered by mises/third_party/npm-types
     '@types/jszip',
     '@types/parse-torrent',
     '@types/webtorrent',

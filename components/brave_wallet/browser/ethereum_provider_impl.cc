@@ -59,7 +59,7 @@ base::Value::Dict GetJsonRpcRequest(const std::string& method,
 // Common logic for filtering the list of accounts based on the selected account
 std::vector<std::string> FilterAccounts(
     const std::vector<std::string>& accounts,
-    const absl::optional<std::string>& selected_account) {
+    const std::optional<std::string>& selected_account) {
   // If one of the accounts matches the selected account, then only
   // return that account.  This is for webcompat reasons.
   // Some Dapps select the first account in the list, and some the
@@ -386,7 +386,7 @@ void EthereumProviderImpl::ContinueAddAndApproveTransaction(
 
   tx_service_->AddUnapprovedTransaction(
       mojom::TxDataUnion::NewEthTxData(std::move(tx_data)), from, origin,
-      absl::nullopt,
+      std::nullopt,
       base::BindOnce(&EthereumProviderImpl::OnAddUnapprovedTransactionAdapter,
                      weak_factory_.GetWeakPtr(), std::move(callback),
                      std::move(id)));
@@ -455,7 +455,7 @@ void EthereumProviderImpl::ContinueAddAndApprove1559TransactionWithAccounts(
 
   tx_service_->AddUnapprovedTransaction(
       mojom::TxDataUnion::NewEthTxData1559(std::move(tx_data)), from, origin,
-      absl::nullopt,
+      std::nullopt,
       base::BindOnce(&EthereumProviderImpl::OnAddUnapprovedTransactionAdapter,
                      weak_factory_.GetWeakPtr(), std::move(callback),
                      std::move(id)));
@@ -517,7 +517,7 @@ void EthereumProviderImpl::SignMessage(const std::string& address,
       base::BindOnce(
           &EthereumProviderImpl::ContinueSignMessage,
           weak_factory_.GetWeakPtr(), checksum_address.ToChecksumAddress(), "",
-          message_str, std::move(message_bytes), absl::nullopt, absl::nullopt,
+          message_str, std::move(message_bytes), std::nullopt, std::nullopt,
           false, std::move(callback), std::move(id), delegate_->GetOrigin()));
 }
 
@@ -578,12 +578,12 @@ void EthereumProviderImpl::RecoverAddress(const std::string& message,
 
 void EthereumProviderImpl::EthSubscribe(
     const std::string& event_type,
-    absl::optional<base::Value::Dict> filter,
+    std::optional<base::Value::Dict> filter,
     RequestCallback callback,
     base::Value id) {
   const auto generateHexBytes = [](std::vector<std::string>& subscriptions) {
     std::vector<uint8_t> bytes(16);
-    crypto::RandBytes(&bytes.front(), bytes.size());
+    crypto::RandBytes(bytes);
     std::string hex_bytes = ToHex(bytes);
     subscriptions.push_back(hex_bytes);
     return std::tuple<bool, std::string>{subscriptions.size() == 1, hex_bytes};
@@ -644,7 +644,7 @@ bool EthereumProviderImpl::UnsubscribeBlockObserver(
 
 bool EthereumProviderImpl::UnsubscribeLogObserver(
     const std::string& subscription_id) {
-  if (base::Erase(eth_log_subscriptions_, subscription_id)) {
+  if (std::erase(eth_log_subscriptions_, subscription_id)) {
     eth_logs_tracker_.RemoveSubscriber(subscription_id);
     if (eth_log_subscriptions_.empty()) {
       eth_logs_tracker_.Stop();
@@ -770,7 +770,7 @@ void EthereumProviderImpl::ContinueDecryptWithAllowedAccounts(
     return;
   }
 
-  absl::optional<std::vector<uint8_t>> unsafe_message_bytes =
+  std::optional<std::vector<uint8_t>> unsafe_message_bytes =
       keyring_service_
           ->DecryptCipherFromX25519_XSalsa20_Poly1305ByDefaultKeyring(
               version, nonce, ephemeral_public_key, ciphertext, address);
@@ -881,8 +881,8 @@ void EthereumProviderImpl::ContinueSignMessage(
     const std::string& domain,
     const std::string& message,
     std::vector<uint8_t>&& message_to_sign,
-    const absl::optional<std::string>& domain_hash,
-    const absl::optional<std::string>& primary_hash,
+    const std::optional<std::string>& domain_hash,
+    const std::optional<std::string>& primary_hash,
     bool is_eip712,
     RequestCallback callback,
     base::Value id,
@@ -913,7 +913,7 @@ void EthereumProviderImpl::ContinueSignMessage(
 
   auto request = mojom::SignMessageRequest::New(
       MakeOriginInfo(origin), -1, address, domain, message, is_eip712,
-      domain_hash, primary_hash, absl::nullopt, mojom::CoinType::ETH);
+      domain_hash, primary_hash, std::nullopt, mojom::CoinType::ETH);
 
   brave_wallet_service_->AddSignMessageRequest(
       std::move(request),
@@ -932,7 +932,7 @@ void EthereumProviderImpl::OnSignMessageRequestProcessed(
     bool is_eip712,
     bool approved,
     mojom::ByteArrayStringUnionPtr signature,
-    const absl::optional<std::string>& error) {
+    const std::optional<std::string>& error) {
   bool reject = false;
   if (error && !error->empty()) {
     base::Value formed_response = GetProviderErrorDictionary(
@@ -1408,7 +1408,7 @@ void EthereumProviderImpl::ContinueRequestEthereumPermissionsKeyringInfo(
 #endif
     OnRequestEthereumPermissions(std::move(callback), std::move(id), method,
                                  origin, RequestPermissionsError::kNoKeyring,
-                                 absl::nullopt);
+                                 std::nullopt);
     return;
   }
 
@@ -1421,7 +1421,7 @@ void EthereumProviderImpl::ContinueRequestEthereumPermissionsKeyringInfo(
     if (pending_request_ethereum_permissions_callback_) {
       OnRequestEthereumPermissions(
           std::move(callback), std::move(id), method, origin,
-          RequestPermissionsError::kRequestInProgress, absl::nullopt);
+          RequestPermissionsError::kRequestInProgress, std::nullopt);
       return;
     }
     pending_request_ethereum_permissions_callback_ = std::move(callback);
@@ -1451,7 +1451,7 @@ void EthereumProviderImpl::ContinueRequestEthereumPermissions(
   if (!success) {
     OnRequestEthereumPermissions(std::move(callback), std::move(id), method,
                                  origin, RequestPermissionsError::kInternal,
-                                 absl::nullopt);
+                                 std::nullopt);
     return;
   }
 
@@ -1488,7 +1488,7 @@ void EthereumProviderImpl::OnRequestEthereumPermissions(
     const std::string& method,
     const url::Origin& origin,
     RequestPermissionsError error,
-    const absl::optional<std::vector<std::string>>& allowed_accounts) {
+    const std::optional<std::vector<std::string>>& allowed_accounts) {
   base::Value formed_response;
 
   bool success = error == RequestPermissionsError::kNone;
@@ -1525,7 +1525,7 @@ void EthereumProviderImpl::OnRequestEthereumPermissions(
             l10n_util::GetStringUTF8(IDS_WALLET_NO_KEYRING_ERROR));
         break;
       default:
-        NOTREACHED();
+       NOTREACHED_IN_MIGRATION();
     }
   } else if (method == kRequestPermissionsMethod) {
     formed_response =
@@ -1575,7 +1575,7 @@ void EthereumProviderImpl::ContinueGetAllowedAccounts(
 void EthereumProviderImpl::OnGetAllowedAccounts(
     bool include_accounts_when_locked,
     bool keyring_locked,
-    const absl::optional<std::string>& selected_account,
+    const std::optional<std::string>& selected_account,
     GetAllowedAccountsCallback callback,
     bool success,
     const std::vector<std::string>& accounts) {

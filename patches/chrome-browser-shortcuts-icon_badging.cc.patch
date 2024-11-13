@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/shortcuts/icon_badging.cc b/chrome/browser/shortcuts/icon_badging.cc
+index 4fda3913e3f2c9dfbd46b5a97d3d28215e32d5ac..fae431b488cb4939bcdae0f674079e8932ee554a 100644
+--- a/chrome/browser/shortcuts/icon_badging.cc
++++ b/chrome/browser/shortcuts/icon_badging.cc
+@@ -59,7 +59,7 @@ enum class BadgeSize {
+ constexpr ShortcutSize kSizesNeededForShortcutCreation[] = {
+     ShortcutSize::k16, ShortcutSize::k32, ShortcutSize::k128,
+     ShortcutSize::k256, ShortcutSize::k512};
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_ANDROID)
+ constexpr ShortcutSize kSizesNeededForShortcutCreation[] = {ShortcutSize::k32,
+                                                             ShortcutSize::k128};
+ #elif BUILDFLAG(IS_WIN)

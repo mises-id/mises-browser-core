@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/feedback/BUILD.gn b/chrome/browser/resources/feedback/BUILD.gn
-index 680a63c14c4f2ad1a195500398033affd33646a0..3cca6d90c3cc7cfdffbcfb9a7bf8a8d1d01f8602 100644
+index 8dbde1c62633ad5eaf39eeef33d3b8b2c289a8b7..8a16a220ef57c2e3939a096a2d478b7a8ec3ed3b 100644
 --- a/chrome/browser/resources/feedback/BUILD.gn
 +++ b/chrome/browser/resources/feedback/BUILD.gn
 @@ -6,7 +6,7 @@ import("//build/config/chromeos/ui_mode.gni")

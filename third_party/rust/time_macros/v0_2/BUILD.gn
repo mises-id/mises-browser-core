@@ -1,6 +1,11 @@
-# Copyright 2023 The Chromium Authors
-# Use of this source code is governed by a BSD-style license that can be
-# found in the LICENSE file.
+# Copyright (c) 2024 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# @generated from third_party/rust/chromium_crates_io/BUILD.gn.hbs by
+# tools/crates/gnrt.
+# Do not edit!
 
 import("//build/rust/cargo_crate.gni")
 
@@ -8,38 +13,32 @@ cargo_crate("lib") {
   crate_name = "time_macros"
   epoch = "0.2"
   crate_type = "proc-macro"
-
-  # Only for usage from third-party crates. Add the crate to
-  # third_party.toml to use it from first-party code.
-  visibility = [ "//mises/third_party/rust/*" ]
-  crate_root = "crate/src/lib.rs"
+  crate_root = "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/lib.rs"
   sources = [
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/date.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/datetime.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/error.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/ast.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/format_item.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/lexer.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/mod.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/component.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/mod.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/format_description/public/modifier.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/helpers/mod.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/helpers/string.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/lib.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/offset.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/quote.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/serde_format_description.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/shim.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/time.rs",
-    "//mises/third_party/rust/time_macros/v0_2/crate/src/to_tokens.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/date.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/datetime.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/error.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/ast.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/format_item.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/lexer.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/mod.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/public/component.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/public/mod.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/format_description/public/modifier.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/helpers/mod.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/helpers/string.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/lib.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/offset.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/quote.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/serde_format_description.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/time.rs",
+    "//mises/third_party/rust/chromium_crates_io/vendor/time-macros-0.2.18/src/to_tokens.rs",
   ]
   inputs = []
 
-  # Unit tests skipped. Generate with --with-tests to include them.
   build_native_rust_unit_tests = false
   edition = "2021"
-  cargo_pkg_version = "0.2.8"
+  cargo_pkg_version = "0.2.18"
   cargo_pkg_authors = "Jacob Pratt <open-source@jhpratt.dev>, Time contributors"
   cargo_pkg_name = "time-macros"
   cargo_pkg_description = "    Procedural macros for the time crate.     This crate is an implementation detail and should not be relied upon directly."
@@ -47,7 +46,12 @@ cargo_crate("lib") {
   library_configs += [ "//build/config/compiler:no_chromium_code" ]
   executable_configs -= [ "//build/config/compiler:chromium_code" ]
   executable_configs += [ "//build/config/compiler:no_chromium_code" ]
-  deps = [ "//mises/third_party/rust/time_core/v0_1:lib" ]
+  proc_macro_configs -= [ "//build/config/compiler:chromium_code" ]
+  proc_macro_configs += [ "//build/config/compiler:no_chromium_code" ]
+  deps = [
+    "//mises/third_party/rust/num_conv/v0_1:lib",
+    "//mises/third_party/rust/time_core/v0_1:lib",
+  ]
   features = [
     "formatting",
     "parsing",

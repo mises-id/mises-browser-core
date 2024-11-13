@@ -51,6 +51,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   // Overridden from internal::NativeWidgetPrivate:
   void InitNativeWidget(Widget::InitParams params) override;
   void OnWidgetInitDone() override;
+  void ReparentNativeViewImpl(gfx::NativeView new_parent) override;
   std::unique_ptr<NonClientFrameView> CreateNonClientFrameView() override;
   bool ShouldUseNativeFrame() const override;
   bool ShouldWindowContentsBeTransparent() const override;
@@ -77,7 +78,7 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   bool SetWindowTitle(const std::u16string& title) override;
   void SetWindowIcons(const gfx::ImageSkia& window_icon,
                       const gfx::ImageSkia& app_icon) override;
-  void InitModalType(ui::ModalType modal_type) override;
+  void InitModalType(ui::mojom::ModalType modal_type) override;
   gfx::Rect GetWindowBoundsInScreen() const override;
   gfx::Rect GetClientAreaBoundsInScreen() const override;
   gfx::Rect GetRestoredBounds() const override;
@@ -113,11 +114,11 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   void SetOpacity(float opacity) override;
   void SetAspectRatio(const gfx::SizeF& aspect_ratio, const gfx::Size& excluded_margin) override;
   void FlashFrame(bool flash_frame) override;
-  void RunShellDrag(View* view,
-                    std::unique_ptr<ui::OSExchangeData> data,
+  void RunShellDrag(std::unique_ptr<ui::OSExchangeData> data,
                     const gfx::Point& location,
                     int operation,
                     ui::mojom::DragEventSource source) override;
+  void CancelShellDrag(View* view) override; 
   void SchedulePaintInRect(const gfx::Rect& rect) override;
   void ScheduleLayout() override;
   void SetCursor(const ui::Cursor& cursor) override;
@@ -134,7 +135,6 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   void SetVisibilityAnimationDuration(const base::TimeDelta& duration) override;
   void SetVisibilityAnimationTransition(
       Widget::VisibilityTransition transition) override;
-  bool IsTranslucentWindowOpacitySupported() const override;
   ui::GestureRecognizer* GetGestureRecognizer() override;
   void OnSizeConstraintsChanged() override;
   std::string GetName() const override;
@@ -146,6 +146,8 @@ class VIEWS_EXPORT NativeWidgetAndroid : public internal::NativeWidgetPrivate {
   ui::GestureConsumer* GetGestureConsumer() override;
   void OnNativeViewHierarchyWillChange() override;
   void OnNativeViewHierarchyChanged() override;
+  bool SetAllowScreenshots(bool allow) override;
+  bool AreScreenshotsAllowed() override;
  protected:
   ~NativeWidgetAndroid() override;
 

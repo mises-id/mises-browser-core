@@ -1,25 +1,18 @@
 diff --git a/chrome/renderer/BUILD.gn b/chrome/renderer/BUILD.gn
-index 18b342e66f11a3c40a2243f424cc2ff7e825aad3..fbf8cae2d9d1c3df3dfd429d6553fca781aee89f 100644
+index 3a4b21b9b90ab77b3a71d2905febac21eb54ecd1..ab9a3d84d127debae3f27c49dbd98a6d78c55e6f 100644
 --- a/chrome/renderer/BUILD.gn
 +++ b/chrome/renderer/BUILD.gn
-@@ -234,6 +234,7 @@ static_library("renderer") {
-     "//v8",
-   ]
- 
-+  import("//mises/renderer/sources.gni") sources += mises_chrome_renderer_sources deps += mises_chrome_renderer_deps public_deps += mises_chrome_renderer_public_deps
-   data_deps = [ "//tools/v8_context_snapshot" ]
- 
-   configs += [ "//build/config/compiler:wexit_time_destructors" ]
-@@ -414,7 +415,7 @@ static_library("renderer") {
+@@ -381,7 +381,8 @@ static_library("renderer") {
+       "//chrome/common/wallet:mojo_bindings",
+       "//components/feed/content/renderer:feed_renderer",
      ]
-   }
- 
--  if (!is_android) {
+-  } else {
++  }
 +  if (!is_android || is_android) {
      sources += [
        "accessibility/ax_tree_distiller.cc",
        "accessibility/ax_tree_distiller.h",
-@@ -429,6 +430,12 @@ static_library("renderer") {
+@@ -402,6 +403,12 @@ static_library("renderer") {
        "searchbox/searchbox_extension.cc",
        "searchbox/searchbox_extension.h",
      ]
@@ -32,3 +25,9 @@ index 18b342e66f11a3c40a2243f424cc2ff7e825aad3..fbf8cae2d9d1c3df3dfd429d6553fca7
  
      deps += [
        "//chrome/common/accessibility:mojo_bindings",
+@@ -470,4 +477,5 @@ static_library("renderer") {
+       ]
+     }
+   }
++  import("//mises/renderer/sources.gni") sources += mises_chrome_renderer_sources deps += mises_chrome_renderer_deps public_deps += mises_chrome_renderer_public_deps deps -= mises_chrome_renderer_exception_deps
+ }

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/apps/app_service/app_icon/BUILD.gn b/chrome/browser/apps/app_service/app_icon/BUILD.gn
+index 3dc306a2b0a2b80f84f5877c9b23aaa9736f89df..1593281f6914dfe395a7c3505a4c1efd01fa6e7e 100644
+--- a/chrome/browser/apps/app_service/app_icon/BUILD.gn
++++ b/chrome/browser/apps/app_service/app_icon/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//build/config/chromeos/ui_mode.gni")
+ import("//extensions/buildflags/buildflags.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("app_icon") {
+   sources = [

@@ -23,11 +23,11 @@
 #include "base/memory/weak_ptr.h"
 #include "base/values.h"
 #include "base/logging.h"
+#include "url/origin.h"
 #include "chrome/browser/browsing_data/browsing_data_important_sites_util.h"
 #include "chrome/browser/browsing_data/chrome_browsing_data_remover_delegate.h"
 #include "chrome/browser/engagement/important_sites_util.h"
 #include "chrome/browser/history/web_history_service_factory.h"
-#include "chrome/browser/profiles/profile_android.h"
 #include "chrome/common/channel_info.h"
 #include "chrome/common/chrome_features.h"
 #include "components/sessions/content/session_tab_helper.h"
@@ -37,7 +37,6 @@
 #include "content/public/browser/browser_context.h"
 #include "extensions/browser/extension_action_manager.h"
 #include "chrome/browser/extensions/extension_action_runner.h"
-#include "chrome/browser/extensions/extension_action_icon_factory.h"
 #include "chrome/browser/extensions/extension_context_menu_model.h"
 #include "chrome/browser/ui/toolbar/toolbar_action_view_controller.h"
 #include "extensions/browser/extension_host_observer.h"
@@ -70,7 +69,6 @@
 #include "extensions/browser/extension_util.h"
 #include "extensions/browser/image_loader.h"
 #include "extensions/common/extension.h"
-#include "extensions/common/extension_icon_set.h"
 #include "extensions/common/extension_resource.h"
 #include "extensions/common/manifest_handlers/icons_handler.h"
 #include "extensions/common/manifest_handlers/incognito_info.h"
@@ -343,7 +341,7 @@ ScopedJavaLocalRef<jobject> JNI_AppMenuBridge_GetForProfile(
     const JavaParamRef<jobject>& j_profile) {
   DCHECK_CURRENTLY_ON(BrowserThread::UI);
 
-  Profile* profile = ProfileAndroid::FromProfileAndroid(j_profile);
+  Profile* profile = Profile::FromJavaObject(j_profile);
   if (!profile)
     return nullptr;
 
@@ -414,7 +412,7 @@ void AppMenuBridge::OpenDevTools(
   LOG(INFO) << "[Mises] AppMenuBridge::OpenDevTools";
   content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
   if (!DevToolsWindow::IsDevToolsWindow(web_contents))
-    DevToolsWindow::OpenDevToolsWindow(web_contents);
+    DevToolsWindow::OpenDevToolsWindow(web_contents,DevToolsOpenedByAction::kUnknown);
 }
 
 
@@ -439,6 +437,16 @@ jboolean AppMenuBridge::IsProxyEnabled(
   return 0;
 }
 
+void AppMenuBridge::MaybeGrantExtensionWebContents(const extensions::Extension* extension_ptr,content::WebContents* web_contents ) {
+    const GURL& url = web_contents->GetLastCommittedURL();
+    const url::Origin real_origin = url::Origin::Create(url);
+    if (!real_origin.opaque()) {
+      LOG(INFO) << "[Mises] Granting tab access to: " << extension_ptr->id();
+      extensions::TabHelper::FromWebContents(web_contents)
+          ->active_tab_permission_granter()
+          ->GrantIfRequested(extension_ptr);
+    }
+}
 void AppMenuBridge::GrantExtensionActiveTab(
 		JNIEnv* env, const base::android::JavaParamRef<jobject>& obj,
 		const base::android::JavaParamRef<jobject>& jweb_contents,
@@ -464,10 +472,7 @@ void AppMenuBridge::GrantExtensionActiveTab(
     if (extension_action_) {
       content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
       if (web_contents != nullptr) {
-        LOG(INFO) << "[Mises] Granting tab access to: " << extension_to_call;
-        extensions::TabHelper::FromWebContents(web_contents)
-            ->active_tab_permission_granter()
-            ->GrantIfRequested(extension_ptr);
+        MaybeGrantExtensionWebContents(extension_ptr, web_contents);
       }
     }
   }
@@ -506,10 +511,7 @@ void AppMenuBridge::CallExtension(
       content::WebContents* web_contents = content::WebContents::FromJavaWebContents(jweb_contents);
       int tabid = extensions::ExtensionAction::kDefaultTabId;
       if (web_contents != nullptr) {
-        LOG(INFO) << "[EXTENSIONS] Granting tab access to: " << extension_to_call;
-        extensions::TabHelper::FromWebContents(web_contents)
-            ->active_tab_permission_granter()
-            ->GrantIfRequested(extension_ptr);
+        MaybeGrantExtensionWebContents(extension_ptr, web_contents);
         tabid = sessions::SessionTabHelper::IdForTab(web_contents).id();
       }
 

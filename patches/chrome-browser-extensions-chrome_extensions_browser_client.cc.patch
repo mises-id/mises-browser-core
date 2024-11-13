@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/chrome_extensions_browser_client.cc b/chrome/browser/extensions/chrome_extensions_browser_client.cc
-index e5dcf13afe43186f510491afc105c674162c7b88..8b8d79e432b4c8ae3f5520f22f3326257a64674a 100644
+index 783048414d3169054595eb0524c8f7a9ca74d87b..c3db0cca1faf1d4b50b5b6064d514c7c0107a043 100644
 --- a/chrome/browser/extensions/chrome_extensions_browser_client.cc
 +++ b/chrome/browser/extensions/chrome_extensions_browser_client.cc
-@@ -115,6 +115,8 @@
+@@ -132,6 +132,8 @@
  #include "chromeos/startup/browser_params_proxy.h"
  #endif
  
@@ -11,7 +11,7 @@ index e5dcf13afe43186f510491afc105c674162c7b88..8b8d79e432b4c8ae3f5520f22f332625
  namespace extensions {
  
  namespace {
-@@ -734,6 +736,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiTabExecuteScript(
+@@ -816,6 +818,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiTabExecuteScript(
      content::BrowserContext* context,
      const ExtensionId& extension_id,
      const std::string& code) const {
@@ -19,7 +19,7 @@ index e5dcf13afe43186f510491afc105c674162c7b88..8b8d79e432b4c8ae3f5520f22f332625
    auto* telemetry_service =
        safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(
            Profile::FromBrowserContext(context));
-@@ -746,20 +749,26 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiTabExecuteScript(
+@@ -828,20 +831,26 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiTabExecuteScript(
    auto signal = std::make_unique<safe_browsing::TabsExecuteScriptSignal>(
        extension_id, code);
    telemetry_service->AddSignal(std::move(signal));
@@ -46,15 +46,31 @@ index e5dcf13afe43186f510491afc105c674162c7b88..8b8d79e432b4c8ae3f5520f22f332625
    auto* telemetry_service =
        safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(
            Profile::FromBrowserContext(context));
-@@ -772,6 +781,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiDeclarativeNetRequest(
+@@ -854,6 +863,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionApiDeclarativeNetRequest(
    auto signal = std::make_unique<safe_browsing::DeclarativeNetRequestSignal>(
        extension_id, rules);
    telemetry_service->AddSignal(std::move(signal));
 +#endif
  }
  
+ void ChromeExtensionsBrowserClient::
+@@ -862,6 +872,7 @@ void ChromeExtensionsBrowserClient::
+         const ExtensionId& extension_id,
+         const GURL& request_url,
+         const GURL& redirect_url) const {
++#if BUILDFLAG(FULL_SAFE_BROWSING)
+   auto* telemetry_service =
+       safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(
+           Profile::FromBrowserContext(context));
+@@ -878,6 +889,7 @@ void ChromeExtensionsBrowserClient::
+       CreateDeclarativeNetRequestRedirectActionSignal(extension_id, request_url,
+                                                       redirect_url);
+   telemetry_service->AddSignal(std::move(signal));
++#endif
+ }
+ 
  void ChromeExtensionsBrowserClient::NotifyExtensionRemoteHostContacted(
-@@ -784,7 +794,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionRemoteHostContacted(
+@@ -890,7 +902,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionRemoteHostContacted(
                kExtensionTelemetryInterceptRemoteHostsContactedInRenderer)) {
      return;
    }
@@ -63,7 +79,7 @@ index e5dcf13afe43186f510491afc105c674162c7b88..8b8d79e432b4c8ae3f5520f22f332625
    safe_browsing::RemoteHostInfo::ProtocolType protocol =
        safe_browsing::RemoteHostInfo::UNSPECIFIED;
    if (base::FeatureList::IsEnabled(
-@@ -809,6 +819,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionRemoteHostContacted(
+@@ -915,6 +927,7 @@ void ChromeExtensionsBrowserClient::NotifyExtensionRemoteHostContacted(
        std::make_unique<safe_browsing::RemoteHostContactedSignal>(extension_id,
                                                                   url, protocol);
    telemetry_service->AddSignal(std::move(remote_host_signal));

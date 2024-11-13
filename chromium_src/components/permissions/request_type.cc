@@ -3,9 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "components/permissions/request_type.h"
+#include <optional>
 
 #include "build/build_config.h"
+#include "components/permissions/request_type.h"
 
 #if BUILDFLAG(IS_ANDROID)
 #include "components/resources/android/theme_resources.h"
@@ -16,44 +17,35 @@
 
 #if BUILDFLAG(IS_ANDROID)
 namespace {
-constexpr auto kAndroidInfobarPermissionCookie =
-    IDR_ANDROID_INFOBAR_PERMISSION_COOKIE;
+constexpr auto kAndroidStorageAccess = IDR_ANDROID_STORAGE_ACCESS;
 }  // namespace
-#else
-namespace vector_icons {
-constexpr auto& kMicIconValue = vector_icons::kMicIcon;
-}  // namespace vector_icons
 #endif
 
 // Add Brave cases into GetIconIdAndroid.
-// kWidevine is not expected to happen here as Widevine is not enabled in
-// Android, we add this case here just to avoid build error due to unhandled
-// cases in the switch.
-//
 // TODO(jocelyn): Might need to update icon when we have ethereum.enable UI
 // support in Android.
-#define IDR_ANDROID_INFOBAR_PERMISSION_COOKIE     \
-  kAndroidInfobarPermissionCookie;                \
-  case RequestType::kWidevine:                    \
-  case RequestType::kMisesEthereum:               \
-  case RequestType::kMisesSolana:                 \
+#define IDR_ANDROID_STORAGE_ACCESS                   \
+  kAndroidStorageAccess;                             \
+  case RequestType::kWidevine:                       \
+  case RequestType::kMisesEthereum:                  \
+  case RequestType::kMisesSolana:                    \
     return IDR_ANDROID_INFOBAR_PERMISSION_COOKIE
 
 // Add Brave cases into GetIconIdDesktop.
-#define kMicIcon                                  \
-  kMicIconValue;                                  \
-  case RequestType::kWidevine:                    \
-  case RequestType::kMisesEthereum:               \
-  case RequestType::kMisesSolana:                 \
+#define kStorageAccessIcon                           \
+  kStorageAccessIcon;                                \
+  case RequestType::kWidevine:                       \
+  case RequestType::kMisesEthereum:                  \
+  case RequestType::kMisesSolana:                    \
     return vector_icons::kExtensionIcon
 
-#define MISES_PERMISSION_KEY_FOR_REQUEST_TYPE                  \
-  case permissions::RequestType::kWidevine:                    \
-    return "widevine";                                         \
-  case permissions::RequestType::kMisesEthereum:               \
-    return "mises_ethereum";                                   \
-  case permissions::RequestType::kMisesSolana:                 \
-    return "mises_solana";                                     
+#define MISES_PERMISSION_KEY_FOR_REQUEST_TYPE                     \
+  case permissions::RequestType::kWidevine:                       \
+    return "widevine";                                            \
+  case permissions::RequestType::kMisesEthereum:                  \
+    return "mises_ethereum";                                      \
+  case permissions::RequestType::kMisesSolana:                    \
+    return "mises_solana";                                        
 
 #define ContentSettingsTypeToRequestType \
   ContentSettingsTypeToRequestType_ChromiumImpl
@@ -65,12 +57,12 @@ constexpr auto& kMicIconValue = vector_icons::kMicIcon;
 
 #include "src/components/permissions/request_type.cc"
 
-#undef MISES_PERMISSION_KEY_FOR_REQUEST_TYPE
-#undef IDR_ANDROID_INFOBAR_PERMISSION_COOKIE
-#undef kMicIcon
-#undef ContentSettingsTypeToRequestType
-#undef RequestTypeToContentSettingsType
 #undef IsRequestablePermissionType
+#undef RequestTypeToContentSettingsType
+#undef ContentSettingsTypeToRequestType
+#undef MISES_PERMISSION_KEY_FOR_REQUEST_TYPE
+#undef kStorageAccessIcon
+#undef IDR_ANDROID_STORAGE_ACCESS
 
 namespace permissions {
 
@@ -81,19 +73,20 @@ RequestType ContentSettingsTypeToRequestType(
       return RequestType::kMisesEthereum;
     case ContentSettingsType::MISES_SOLANA:
       return RequestType::kMisesSolana;
-   // case ContentSettingsType::MISES_GOOGLE_SIGN_IN:
-   //   return RequestType::kMisesGoogleSignInPermission;
+    case ContentSettingsType::DEFAULT:
+      // Currently we have only one DEFAULT type that is
+      // not mapped, which is Widevine, it's used for
+      // UMA purpose only
+      return RequestType::kWidevine;
     default:
       return ContentSettingsTypeToRequestType_ChromiumImpl(
           content_settings_type);
   }
 }
 
-absl::optional<ContentSettingsType> RequestTypeToContentSettingsType(
+std::optional<ContentSettingsType> RequestTypeToContentSettingsType(
     RequestType request_type) {
   switch (request_type) {
-   // case RequestType::kMisesGoogleSignInPermission:
-   //   return ContentSettingsType::MISES_GOOGLE_SIGN_IN;
     case RequestType::kMisesEthereum:
       return ContentSettingsType::MISES_ETHEREUM;
     case RequestType::kMisesSolana:
@@ -105,7 +98,6 @@ absl::optional<ContentSettingsType> RequestTypeToContentSettingsType(
 
 bool IsRequestablePermissionType(ContentSettingsType content_settings_type) {
   switch (content_settings_type) {
-  //  case ContentSettingsType::MISES_GOOGLE_SIGN_IN:
     case ContentSettingsType::MISES_ETHEREUM:
     case ContentSettingsType::MISES_SOLANA:
       return true;
@@ -114,12 +106,10 @@ bool IsRequestablePermissionType(ContentSettingsType content_settings_type) {
   }
 }
 
-}  // namespace permissions
-
 #if BUILDFLAG(IS_ANDROID)
-namespace permissions {
 IconId GetBlockedIconId(RequestType type) {
-  return permissions::GetIconId(type);
-}
+  return GetIconIdAndroid(type);
 }
 #endif
+
+}  // namespace permissions

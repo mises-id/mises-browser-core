@@ -6,12 +6,15 @@
 #define MISES_CHROMIUM_SRC_CONTENT_PUBLIC_COMMON_URL_CONSTANTS_H_
 
 #include "src/content/public/common/url_constants.h"
+#include "content/common/content_export.h"
 
 namespace content {
-CONTENT_EXPORT extern const char kMisesUIScheme[];
-CONTENT_EXPORT extern const char kBinanceScheme[];
-CONTENT_EXPORT extern const char kGeminiScheme[];
-CONTENT_EXPORT extern const char kFTXScheme[];
+
+inline constexpr char kMisesUIScheme[] = "mises";
+inline constexpr char kBinanceScheme[] = "site.mises.binance";
+inline constexpr char kGeminiScheme[] = "site.mises.gemini";
+inline constexpr char kFTXScheme[] = "site.mises.ftx";
+
 }
 
 #endif  // MISES_CHROMIUM_SRC_CONTENT_PUBLIC_COMMON_URL_CONSTANTS_H_

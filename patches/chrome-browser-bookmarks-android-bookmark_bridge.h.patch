@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/bookmarks/android/bookmark_bridge.h b/chrome/browser/bookmarks/android/bookmark_bridge.h
+index 0d9467f4b7f5e31575c0e6ae829f04799a796ba4..995d996901528aad81184c90a00daf0bd472d17e 100644
+--- a/chrome/browser/bookmarks/android/bookmark_bridge.h
++++ b/chrome/browser/bookmarks/android/bookmark_bridge.h
+@@ -45,6 +45,7 @@ class BookmarkBridgeTest;
+ // The life cycle of the bridge is controlled by the BookmarkModel through the
+ // user data pattern. Native side of the bridge owns its Java counterpart.
+ class BookmarkBridge : public ProfileObserver,
++                       public ui::SelectFileDialog::Listener,
+                        public bookmarks::BaseBookmarkModelObserver,
+                        public PartnerBookmarksShim::Observer,
+                        public ReadingListManager::Observer,

@@ -10,7 +10,7 @@
 
 #include "base/values.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -24,7 +24,7 @@ struct SolanaMessageHeader {
   bool operator==(const SolanaMessageHeader&) const;
 
   base::Value::Dict ToValue() const;
-  static absl::optional<SolanaMessageHeader> FromValue(
+  static std::optional<SolanaMessageHeader> FromValue(
       const base::Value::Dict& value);
   mojom::SolanaMessageHeaderPtr ToMojom() const;
   static SolanaMessageHeader FromMojom(

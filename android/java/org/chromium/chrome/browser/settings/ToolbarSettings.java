@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 import android.content.DialogInterface;
 import org.chromium.chrome.R;
-import org.chromium.chrome.browser.ApplicationLifetime;
+import org.chromium.chrome.browser.lifetime.ApplicationLifetime;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
 import org.chromium.chrome.browser.MisesLocalState;

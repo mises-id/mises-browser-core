@@ -1,9 +1,9 @@
 diff --git a/components/commerce/content/browser/BUILD.gn b/components/commerce/content/browser/BUILD.gn
-index bc3d46f94a0bfc92ee8eda6c14a6ab5300dfc547..94731c41f6d767ee6385bf1355757f1a863bc130 100644
+index 795fd8bc8122cfe6cf99c0ada0d107622675e446..425303108eae239f193d53e89d21c029c28d2167 100644
 --- a/components/commerce/content/browser/BUILD.gn
 +++ b/components/commerce/content/browser/BUILD.gn
-@@ -22,7 +22,7 @@ static_library("browser") {
-   public_deps = [ "//components/commerce/core/internals" ]
+@@ -45,7 +45,7 @@ source_set("unit_tests") {
+   ]
  }
  
 -if (!is_android) {

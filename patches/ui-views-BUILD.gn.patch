@@ -1,17 +1,23 @@
 diff --git a/ui/views/BUILD.gn b/ui/views/BUILD.gn
-index d69a544d0971b776e59c0980b61961e7a0f83cac..c9c6bd152a4e4490d87df7f14ba05a0ef401f06b 100644
+index b2b1a783ac0c243ef5cf573b2e73af82b432fbf9..ee2563444d95c5168c2c7aff9eba9a718df8fd2e 100644
 --- a/ui/views/BUILD.gn
 +++ b/ui/views/BUILD.gn
-@@ -13,7 +13,7 @@ import("//testing/test.gni")
+@@ -15,10 +15,12 @@ import("//testing/test.gni")
  import("//ui/base/ui_features.gni")
  import("//ui/views/features.gni")
  
 -assert(toolkit_views)
-+# assert(toolkit_views)
++#assert(toolkit_views)
  
  config("flags") {
-   defines = [ "TOOLKIT_VIEWS=1" ]
-@@ -732,6 +732,8 @@ component("views") {
+-  defines = [ "TOOLKIT_VIEWS=1" ]
++  if (toolkit_views) {
++    defines = [ "TOOLKIT_VIEWS=1" ]
++  }
+ }
+ 
+ aggregate_vector_icons("views_vector_icons") {
+@@ -770,6 +772,8 @@ component("views") {
        "//third_party/wtl",
      ]
    }

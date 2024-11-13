@@ -16,7 +16,7 @@
 #include "base/observer_list.h"
 #include "base/observer_list_types.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 class PrefService;
 
@@ -45,8 +45,8 @@ class TxStateManager {
       PrefService* prefs);
 
   std::vector<std::unique_ptr<TxMeta>> GetTransactionsByStatus(
-      absl::optional<mojom::TransactionStatus> status,
-      absl::optional<std::string> from);
+      std::optional<mojom::TransactionStatus> status,
+      std::optional<std::string> from);
 
   class Observer : public base::CheckedObserver {
    public:

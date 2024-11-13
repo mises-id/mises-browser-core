@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc b/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-index 185ded2437fef447379f0badf700f5cd086b966c..64326acfde184a4d1df4ce764b4980a0c641e484 100644
+index 743fd86a35a106d98c8553e20a63e20127bc3f98..20c98c45f890c448de39c1a53473c242e149897e 100644
 --- a/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
 +++ b/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-@@ -684,6 +684,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui,
+@@ -519,6 +519,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui,
    }
    if (url.host_piece() == chrome::kChromeUIWebApksHost)
      return &NewWebUI<WebApksUI>;
@@ -10,7 +10,7 @@ index 185ded2437fef447379f0badf700f5cd086b966c..64326acfde184a4d1df4ce764b4980a0
  #else   // BUILDFLAG(IS_ANDROID)
    if (url.SchemeIs(content::kChromeDevToolsScheme)) {
      if (!DevToolsUIBindings::IsValidFrontendURL(url))
-@@ -988,6 +989,7 @@ void ChromeWebUIControllerFactory::GetFaviconForURL(
+@@ -789,6 +790,7 @@ void ChromeWebUIControllerFactory::GetFaviconForURL(
  
  // static
  ChromeWebUIControllerFactory* ChromeWebUIControllerFactory::GetInstance() {

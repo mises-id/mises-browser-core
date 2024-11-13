@@ -14,7 +14,7 @@
 #include "mises/components/brave_wallet/browser/json_rpc_service.h"
 #include "mises/components/brave_wallet/browser/tx_meta.h"
 #include "mises/components/brave_wallet/common/fil_address.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -51,7 +51,7 @@ std::unique_ptr<TxMeta> FilTxStateManager::ValueToTxMeta(
   const base::Value::Dict* tx = value.FindDict("tx");
   if (!tx)
     return nullptr;
-  absl::optional<FilTransaction> tx_from_value = FilTransaction::FromValue(*tx);
+  std::optional<FilTransaction> tx_from_value = FilTransaction::FromValue(*tx);
   if (!tx_from_value)
     return nullptr;
   meta->set_tx(std::make_unique<FilTransaction>(*tx_from_value));

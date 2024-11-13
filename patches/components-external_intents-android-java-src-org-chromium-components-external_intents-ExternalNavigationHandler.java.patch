@@ -1,8 +1,8 @@
 diff --git a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..705190097ce150072a508c377d36cfbd1f28e7d7 100644
+index 49a7bd07d43316412580eec71e6d3f3ada19bf77..c8feb1e4d7ae8a6472ec8ebbace5e0badc9853e6 100644
 --- a/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
 +++ b/components/external_intents/android/java/src/org/chromium/components/external_intents/ExternalNavigationHandler.java
-@@ -1639,6 +1639,11 @@ public class ExternalNavigationHandler {
+@@ -1601,6 +1601,11 @@ public class ExternalNavigationHandler {
              return OverrideUrlLoadingResult.forNoOverride();
          }
  
@@ -14,13 +14,19 @@ index b4de59ac7c4c9e754aa0a738f32a332d83f490ca..705190097ce150072a508c377d36cfbd
          if (isYoutubePairingCode(params.getUrl())) return OverrideUrlLoadingResult.forNoOverride();
  
          if (shouldStayInIncognito(params, isExternalProtocol)) {
-@@ -1692,6 +1697,11 @@ public class ExternalNavigationHandler {
+@@ -1674,6 +1679,17 @@ public class ExternalNavigationHandler {
  
          ResolveActivitySupplier resolveActivity = new ResolveActivitySupplier(targetIntent);
          if (isNavigationToSelf(params, resolvingInfos, resolveActivity, isExternalProtocol)) {
 +            if (IntentUtils.safeHasExtra(targetIntent, "org.chromium.chrome.browser.customtabs.EXTRA_UI_TYPE")) {
-+                return startActivity(targetIntent, false /*requiresIntentChooser*/, resolvingInfos, resolveActivity,
-+                    browserFallbackUrl, intentTargetUrl, params);
++                return startActivity(
++                        targetIntent,
++                        params,
++                        false,
++                        resolvingInfos,
++                        resolveActivity,
++                        browserFallbackUrl,
++                        intentTargetUrl);
 +            }
 +
              return OverrideUrlLoadingResult.forNavigateTab(intentTargetUrl, params);

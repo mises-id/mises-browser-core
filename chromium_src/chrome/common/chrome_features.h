@@ -47,8 +47,12 @@ BASE_DECLARE_FEATURE(kPreinstalledWebAppDuplicationFixer);
 #endif
 
 #if BUILDFLAG(IS_ANDROID) 
+COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kChromeAppsDeprecation);
 COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::Feature kChromeAppsDeprecation;
+BASE_DECLARE_FEATURE(kShortcutsNotApps);
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kShortcutsNotAppsRevealDesktop);
+
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::Feature kKeepForceInstalledPreinstalledApps;
 #endif
@@ -73,6 +77,13 @@ BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopPrivacySandbox);
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<base::TimeDelta>
     kHappinessTrackingSurveysForDesktopPrivacySandboxTime;
+
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kHappinessTrackingSurveysConfiguration);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string> kHappinessTrackingSurveysHostedUrl;
+
 
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kHappinessTrackingSurveysForDesktopSettings);
@@ -168,25 +179,6 @@ COMPONENT_EXPORT(CHROME_FEATURES) extern const base::Feature kOnConnectNative;
 #endif
 
 
-#if BUILDFLAG(IS_ANDROID)
-COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kSafetyCheckExtensions);
-
-COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kSafetyCheckNotificationPermissions);
-COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::FeatureParam<int>
-    kSafetyCheckNotificationPermissionsMinEnagementLimit;
-COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::FeatureParam<int>
-    kSafetyCheckNotificationPermissionsLowEnagementLimit;
-
-COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kSafetyHub);
-COMPONENT_EXPORT(CHROME_FEATURES)
-extern const base::FeatureParam<base::TimeDelta>
-    kBackgroundPasswordCheckInterval;
-#endif
 
 
 // TrustSafetySentimentSurvey
@@ -372,6 +364,12 @@ extern const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2SafetyCheckTriggerId;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubInteractionTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kTrustSafetySentimentSurveyV2SafetyHubNotificationTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
     kTrustSafetySentimentSurveyV2TrustedSurfaceTriggerId;
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>
@@ -400,13 +398,7 @@ extern const base::FeatureParam<base::TimeDelta>
 
 #if BUILDFLAG(IS_ANDROID)
 COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppDedupeInstallUrls);
-
-COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppManifestIconUpdating);
-
-COMPONENT_EXPORT(CHROME_FEATURES)
-BASE_DECLARE_FEATURE(kWebAppManifestImmediateUpdating);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconBackgroundFix);
@@ -416,6 +408,9 @@ BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconRetroactiveFix);
 
 COMPONENT_EXPORT(CHROME_FEATURES)
 BASE_DECLARE_FEATURE(kWebAppSyncGeneratedIconUpdateFix);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kWebAppUniversalInstall);
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 
@@ -457,6 +452,24 @@ extern const base::FeatureParam<std::string>
 COMPONENT_EXPORT(CHROME_FEATURES)
 extern const base::FeatureParam<std::string>
     kTrackingProtectionSentimentSurveyTreatmentDelayedTriggerId;
+#endif
+
+
+#if BUILDFLAG(IS_ANDROID)
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kSafetyHubTrustSafetySentimentSurvey);
+
+COMPONENT_EXPORT(CHROME_FEATURES)
+BASE_DECLARE_FEATURE(kSafetyHubHaTSOneOffSurvey);
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentControlTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentNotificationTriggerId;
+COMPONENT_EXPORT(CHROME_FEATURES)
+extern const base::FeatureParam<std::string>
+    kHatsSurveyTriggerSafetyHubOneOffExperimentInteractionTriggerId;
 #endif
 
 

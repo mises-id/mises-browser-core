@@ -1,0 +1,17 @@
+diff --git a/ui/base/dragdrop/os_exchange_data_provider_non_backed.h b/ui/base/dragdrop/os_exchange_data_provider_non_backed.h
+index 9baf8343719e2c7d3868f9d99f60f074f7961c73..4e3c9fbeabf122f3a1c464cc5a87fc1c258156f0 100644
+--- a/ui/base/dragdrop/os_exchange_data_provider_non_backed.h
++++ b/ui/base/dragdrop/os_exchange_data_provider_non_backed.h
+@@ -69,10 +69,11 @@ class COMPONENT_EXPORT(UI_BASE) OSExchangeDataProviderNonBacked
+                        const std::string& file_contents) override;
+   std::optional<FileContentsInfo> GetFileContents() const override;
+   bool HasFileContents() const override;
+-
++#if defined(USE_AURA)
+   void SetHtml(const std::u16string& html, const GURL& base_url) override;
+   std::optional<HtmlInfo> GetHtml() const override;
+   bool HasHtml() const override;
++#endif
+   void SetDragImage(const gfx::ImageSkia& image,
+                     const gfx::Vector2d& cursor_offset) override;
+   gfx::ImageSkia GetDragImage() const override;

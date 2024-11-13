@@ -158,7 +158,7 @@ bool EthereumKeyring::GetPublicKeyFromX25519_XSalsa20_Poly1305(
   return true;
 }
 
-absl::optional<std::vector<uint8_t>>
+std::optional<std::vector<uint8_t>>
 EthereumKeyring::DecryptCipherFromX25519_XSalsa20_Poly1305(
     const std::string& version,
     const std::vector<uint8_t>& nonce,
@@ -167,7 +167,7 @@ EthereumKeyring::DecryptCipherFromX25519_XSalsa20_Poly1305(
     const std::string& address) {
   HDKey* hd_key = static_cast<HDKey*>(GetHDKeyFromAddress(address));
   if (!hd_key)
-    return absl::nullopt;
+    return std::nullopt;
   return hd_key->DecryptCipherFromX25519_XSalsa20_Poly1305(
       version, nonce, ephemeral_public_key, ciphertext);
 }

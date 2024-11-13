@@ -31,7 +31,8 @@ DesktopBrowserFrameAndroid::~DesktopBrowserFrameAndroid() {
 // DesktopBrowserFrameAndroid, NativeBrowserFrame implementation:
 
 views::Widget::InitParams DesktopBrowserFrameAndroid::GetWidgetParams() {
-  views::Widget::InitParams params;
+  views::Widget::InitParams params(
+      views::Widget::InitParams::NATIVE_WIDGET_OWNS_WIDGET);
   return params;
 }
 
@@ -61,12 +62,12 @@ void DesktopBrowserFrameAndroid::GetWindowPlacement(
 
 content::KeyboardEventProcessingResult
 DesktopBrowserFrameAndroid::PreHandleKeyboardEvent(
-    const content::NativeWebKeyboardEvent& event) {
+    const input::NativeWebKeyboardEvent& event) {
   return content::KeyboardEventProcessingResult::NOT_HANDLED;
 }
 
 bool DesktopBrowserFrameAndroid::HandleKeyboardEvent(
-    const content::NativeWebKeyboardEvent& event) {
+    const input::NativeWebKeyboardEvent& event) {
   return false;
 }
 

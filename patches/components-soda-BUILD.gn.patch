@@ -1,5 +1,5 @@
 diff --git a/components/soda/BUILD.gn b/components/soda/BUILD.gn
-index c445d5d11d9a147db9e656bac47bb5af05315490..b7424743dba2fa4e4faa6662fc73495bb2790360 100644
+index d6b0266c0c6d143ff466c12aaf901222f1df6809..1774409b3204fc84bd2a48a3c807077a5a01c003 100644
 --- a/components/soda/BUILD.gn
 +++ b/components/soda/BUILD.gn
 @@ -6,7 +6,7 @@ import("//build/buildflag_header.gni")

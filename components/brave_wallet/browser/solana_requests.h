@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "mises/components/brave_wallet/browser/solana_transaction.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -20,7 +20,7 @@ std::string getBalance(const std::string& pubkey);
 std::string getTokenAccountBalance(const std::string& pubkey);
 std::string sendTransaction(
     const std::string& signed_tx,
-    absl::optional<SolanaTransaction::SendOptions> options);
+    std::optional<SolanaTransaction::SendOptions> options);
 std::string getLatestBlockhash();
 std::string getSignatureStatuses(const std::vector<std::string>& tx_signatures);
 std::string getAccountInfo(const std::string& pubkey);

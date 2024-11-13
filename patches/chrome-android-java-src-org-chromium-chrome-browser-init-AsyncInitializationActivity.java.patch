@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/init/AsyncInitializationActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/init/AsyncInitializationActivity.java
-index 43ac2596d5b6ede717cbaf839aefa3571865b65b..f39b378da06570afabfd1df1b2e626c89ab3f9e0 100644
+index 3c12c5a5f064f8a373d380a4b1c6e7ab4865a6aa..81084001ed53b17bfe83bd6a2998ffc093957d83 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/init/AsyncInitializationActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/init/AsyncInitializationActivity.java
-@@ -450,7 +450,7 @@ public abstract class AsyncInitializationActivity
+@@ -459,7 +459,7 @@ public abstract class AsyncInitializationActivity extends ChromeBaseAppCompatAct
       * @return Whether or not the user needs to go through First Run before using this Activity.
       */
      protected boolean requiresFirstRunToBeCompleted(Intent intent) {

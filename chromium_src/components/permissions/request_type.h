@@ -30,7 +30,7 @@ namespace permissions {
 RequestType ContentSettingsTypeToRequestType(
     ContentSettingsType content_settings_type);
 
-absl::optional<ContentSettingsType> RequestTypeToContentSettingsType(
+std::optional<ContentSettingsType> RequestTypeToContentSettingsType(
     RequestType request_type);
 
 bool IsRequestablePermissionType(ContentSettingsType content_settings_type);

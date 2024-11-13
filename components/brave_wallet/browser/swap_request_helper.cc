@@ -17,7 +17,7 @@
 
 namespace brave_wallet {
 
-absl::optional<std::string> EncodeJupiterTransactionParams(
+std::optional<std::string> EncodeJupiterTransactionParams(
     mojom::JupiterSwapParamsPtr params) {
   DCHECK(params);
   base::Value::Dict tx_params;
@@ -25,11 +25,11 @@ absl::optional<std::string> EncodeJupiterTransactionParams(
   // The code below does the following two things:
   //   - compute the ATA address that should be used to receive fees
   //   - verify if output_mint is a valid address
-  absl::optional<std::string> associated_token_account =
+  std::optional<std::string> associated_token_account =
       SolanaKeyring::GetAssociatedTokenAccount(
           params->output_mint, brave_wallet::kSolanaFeeRecipient);
   if (!associated_token_account)
-    return absl::nullopt;
+    return std::nullopt;
 
   // If the if-condition below is false, associated_token_account is unused,
   // but the originating call to SolanaKeyring::GetAssociatedTokenAccount()

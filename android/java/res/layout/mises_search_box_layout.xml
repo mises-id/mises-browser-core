@@ -7,14 +7,14 @@
       android:id="@+id/mises_search_box"
       android:layout_width="match_parent"
       android:layout_height="@dimen/ntp_search_box_height"
-      android:background="@drawable/ntp_search_box"
+      android:background="@drawable/home_surface_search_box_background"
       android:paddingStart="@dimen/fake_search_box_lateral_padding" 
       android:gravity="center_vertical"
       android:orientation="horizontal">
 
       <org.chromium.ui.widget.ChromeImageView
         android:id="@+id/mises_search_logo"
-        style="@style/LocationBarActionButtonPolish"
+        style="@style/LocationBarActionButtonForFakeSearchBox"
         android:contentDescription="@string/accessibility_toolbar_btn_mic"
         android:src="@drawable/ic_suggestion_magnifier" />
 
@@ -27,7 +27,7 @@
             android:gravity="center_vertical">
             <EditText
                 tools:ignore="Autofill,LabelFor"
-                style="@style/TextAppearance.SearchBoxText.NewTabPage"
+                style="@style/TextAppearance.FakeSearchBoxText"
                 android:id="@+id/mises_search_box_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -39,5 +39,7 @@
                 android:singleLine="true"
                 android:hint="Mises Search" />
         </RelativeLayout>
+      
+
     
 </LinearLayout>

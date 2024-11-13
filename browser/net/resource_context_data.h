@@ -59,25 +59,24 @@ class ResourceContextData : public base::SupportsUserData::Data {
   ResourceContextData& operator=(const ResourceContextData&) = delete;
   ~ResourceContextData() override;
 
-static void StartProxying(
+  static void StartProxying(
       content::BrowserContext* browser_context,
       int render_process_id,
-      int frame_tree_node_id,
-      mojo::PendingReceiver<network::mojom::URLLoaderFactory> receiver,
-      mojo::PendingRemote<network::mojom::URLLoaderFactory> target_factory,
+      content::FrameTreeNodeId frame_tree_node_id,
+      network::URLLoaderFactoryBuilder& factory_builder,
       scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner);
 
   static MisesProxyingWebSocket* StartProxyingWebSocket(
       content::ContentBrowserClient::WebSocketFactory factory,
       const GURL& url,
       const net::SiteForCookies& site_for_cookies,
-      const absl::optional<std::string>& user_agent,
+      const std::optional<std::string>& user_agent,
       mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
           handshake_client,
       content::BrowserContext* browser_context,
       int render_process_id,
       int frame_id,
-      int frame_tree_node_id,
+      content::FrameTreeNodeId frame_tree_node_id,
       const url::Origin& origin);
 
   void RemoveProxy(MisesProxyingURLLoaderFactory* proxy);

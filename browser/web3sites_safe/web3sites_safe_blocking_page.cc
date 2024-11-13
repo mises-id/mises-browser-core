@@ -96,7 +96,7 @@ void Web3sitesSafeBlockingPage::PopulateLookalikeStrins(base::Value::Dict& load_
 #if BUILDFLAG(IS_IOS)
     // On iOS, offer to close the page instead of navigating to NTP when the
     // safe URL is empty or invalid, and unable to go back.
-    absl::optional<bool> maybe_cant_go_back =
+    std::optional<bool> maybe_cant_go_back =
         load_time_data.FindBool("cant_go_back");
     if (maybe_cant_go_back && *maybe_cant_go_back) {
       load_time_data.Set(
@@ -187,7 +187,7 @@ void Web3sitesSafeBlockingPage::CommandReceived(const std::string& command) {
       controller()->Proceed();
       break;
     default:
-      NOTREACHED() << "Unsupported command: " << command;
+      NOTREACHED_IN_MIGRATION() << "Unsupported command: " << command;
       break;
   }
 }

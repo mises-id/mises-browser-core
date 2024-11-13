@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/browser_switch/BUILD.gn b/chrome/browser/resources/browser_switch/BUILD.gn
-index 07bf39c21dc8d225823dbd479756f6257a606b55..f45691b8d9f43f62deb54184eea389d75128a027 100644
+index 37dc3ba469b2c4bfea5c60c46711a80ea9a2c8c7..dac2beb657d20ed5d475f93d09cdd4513f1258d4 100644
 --- a/chrome/browser/resources/browser_switch/BUILD.gn
 +++ b/chrome/browser/resources/browser_switch/BUILD.gn
 @@ -5,7 +5,7 @@
  import("//chrome/common/features.gni")
  import("//ui/webui/resources/tools/build_webui.gni")
  
--assert(is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia)
-+#assert(is_win || is_mac || is_linux || is_chromeos_lacros || is_fuchsia)
+-assert(is_win || is_mac || is_linux || is_chromeos_lacros)
++#assert(is_win || is_mac || is_linux || is_chromeos_lacros)
  
  build_webui("build") {
    grd_prefix = "browser_switch"

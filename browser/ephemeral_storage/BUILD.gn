@@ -24,7 +24,7 @@ source_set("browser_tests") {
     ]
 
     deps += [
-      "//brave/browser",
+      "//mises/browser",
       "//mises/components/mises_component_updater/browser",
       "//mises/components/ephemeral_storage",
       "//chrome/browser",

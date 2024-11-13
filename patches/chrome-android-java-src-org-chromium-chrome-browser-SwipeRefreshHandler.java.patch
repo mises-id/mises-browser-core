@@ -1,17 +1,17 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java b/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
-index 9fa5c30608e83de37d682a7045c30f4643c7b1ff..5a368da73c3ac3c664f53aa6efbab432603f636f 100644
+index eab9f6a69e1a09fb66801465cf69503cbc92682f..530f2ab1adc9846f2ec9c1a11aa47274a7865823 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/SwipeRefreshHandler.java
-@@ -30,6 +30,8 @@ import org.chromium.ui.OverscrollAction;
- import org.chromium.ui.OverscrollRefreshHandler;
- import org.chromium.ui.base.WindowAndroid;
+@@ -42,6 +42,8 @@ import org.chromium.ui.base.WindowAndroid;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
  
 +import org.chromium.base.ContextUtils;
 +
  /**
-  * An overscroll handler implemented in terms a modified version of the Android
-  * compat library's SwipeRefreshLayout effect.
-@@ -222,6 +224,8 @@ public class SwipeRefreshHandler
+  * An overscroll handler implemented in terms a modified version of the Android compat library's
+  * SwipeRefreshLayout effect.
+@@ -293,6 +295,8 @@ public class SwipeRefreshHandler extends TabWebContentsUserData
          if (mSwipeType == OverscrollAction.PULL_TO_REFRESH) {
              mSwipeRefreshLayout.pull(yDelta);
          } else if (mSwipeType == OverscrollAction.HISTORY_NAVIGATION) {
@@ -20,7 +20,7 @@ index 9fa5c30608e83de37d682a7045c30f4643c7b1ff..5a368da73c3ac3c664f53aa6efbab432
              if (mNavigationCoordinator != null) mNavigationCoordinator.pull(xDelta, yDelta);
          }
          TraceEvent.end("SwipeRefreshHandler.pull");
-@@ -233,6 +237,8 @@ public class SwipeRefreshHandler
+@@ -304,6 +308,8 @@ public class SwipeRefreshHandler extends TabWebContentsUserData
          if (mSwipeType == OverscrollAction.PULL_TO_REFRESH) {
              mSwipeRefreshLayout.release(allowRefresh);
          } else if (mSwipeType == OverscrollAction.HISTORY_NAVIGATION) {

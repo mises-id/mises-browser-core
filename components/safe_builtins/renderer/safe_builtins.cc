@@ -70,7 +70,8 @@ const char kScript[] =
     "            ['hasOwnProperty'],\n"
     "            ['create', 'defineProperty', 'freeze',\n"
     "             'getOwnPropertyDescriptor', 'getPrototypeOf', 'keys',\n"
-    "             'assign', 'setPrototypeOf', 'defineProperties']);\n"
+    "             'assign', 'setPrototypeOf', 'defineProperties',\n"
+    "             'entries']);\n"
     "saveBuiltin(Function,\n"
     "            ['apply', 'bind', 'call']);\n"
     "saveBuiltin(Array,\n"
@@ -153,7 +154,8 @@ class ExtensionImpl : public v8::Extension {
     if (name->StringEquals(ToV8StringUnsafe(isolate, "Save"))) {
       return v8::FunctionTemplate::New(isolate, Save);
     }
-    NOTREACHED() << std::string(*v8::String::Utf8Value(isolate, name));
+    NOTREACHED_IN_MIGRATION()
+        << std::string(*v8::String::Utf8Value(isolate, name));
     return v8::Local<v8::FunctionTemplate>();
   }
 
@@ -240,4 +242,4 @@ v8::Local<v8::Object> SafeBuiltins::GetFunctionOverride() const {
 v8::Local<v8::Object> SafeBuiltins::GetArray() const {
   return Load("Array", v8::Local<v8::Context>::New(isolate_, context_));
 }
-}  //  namespace brave
+}  //  namespace mises

@@ -5,18 +5,6 @@
 
 namespace prefs {
 
-#if BUILDFLAG(IS_ANDROID)
-// Boolean that indicates whether Chrome enterprise extension request is enabled
-// or not.
-inline constexpr char kCloudExtensionRequestEnabled[] =
-    "enterprise_reporting.extension_request.enabled";
-
-// A list of extension ids represents pending extension request. The ids are
-// stored once user sent the request until the request is canceled, approved or
-// denied.
-inline constexpr char kCloudExtensionRequestIds[] =
-    "enterprise_reporting.extension_request.ids";
-#endif
 
 #if BUILDFLAG(IS_ANDROID)
 inline constexpr char kPinnedTabs[] = "pinned_tabs";
@@ -108,11 +96,15 @@ inline constexpr char kWasRestarted[] = "was.restarted";
 
 #if BUILDFLAG(IS_ANDROID)
 // Holds info for New Tab Page custom background
-inline constexpr char kNtpCustomBackgroundDict[] = "ntp.custom_background_dict";
+inline constexpr char kNtpCustomBackgroundDictDoNotUse[] = "ntp.custom_background_dict";
+inline constexpr char kNonSyncingNtpCustomBackgroundDictDoNotUse[] =
+    "ntp.custom_background_dict2";
 inline constexpr char kNtpCustomBackgroundLocalToDevice[] =
     "ntp.custom_background_local_to_device";
 inline constexpr char kNtpCustomBackgroundLocalToDeviceId[] =
     "ntp.custom_background_local_to_device_id";
+inline constexpr char kNtpCustomBackgroundInspiration[] =
+    "ntp.custom_background_inspiration";
 // Number of times the user has opened the side panel with the customize chrome
 // button.
 inline constexpr char kNtpCustomizeChromeButtonOpenCount[] =
@@ -140,6 +132,8 @@ inline constexpr char kNtpModulesFreVisible[] = "NewTabPage.ModulesFreVisible";
 inline constexpr char kNtpPromoBlocklist[] = "ntp.promo_blocklist";
 // Whether the promo is visible.
 inline constexpr char kNtpPromoVisible[] = "ntp.promo_visible";
+inline constexpr char kNtpWallpaperSearchButtonShownCount[] =
+    "NewTabPage.WallpaperSearchButtonShownCount";
 // List of ids for past wallpaper search themes.
 inline constexpr char kNtpWallpaperSearchHistory[] =
     "ntp.wallpaper_search_history";
@@ -305,6 +299,13 @@ inline constexpr char kDeviceAttributesAllowedForOrigins[] =
 #endif
 
 
+#if BUILDFLAG(IS_ANDROID) 
+// A boolean indicating whether the desktop sharing hub is enabled by enterprise
+// policy.
+inline constexpr char kDesktopSharingHubEnabled[] =
+    "sharing_hub.desktop_sharing_hub_enabled";
+#endif
+
 #if BUILDFLAG(IS_ANDROID)
 // Pref name for the last major version where the What's New page was
 // successfully shown.
@@ -324,15 +325,26 @@ inline constexpr char kLensDesktopNTPSearchEnabled[] =
 #endif
 
 #if BUILDFLAG(IS_ANDROID)
-// An integer count of how many times the user has seen the high efficiency mode
-// page action chip in the expanded size.
-inline constexpr char kHighEfficiencyChipExpandedCount[] =
+// An integer count of how many times the user has seen the memory saver mode
+// page action chip in the expanded size. While the feature was renamed to
+// "Memory Saver" the pref cannot be changed without migration.
+inline constexpr char kMemorySaverChipExpandedCount[] =
     "high_efficiency.chip_expanded_count";
 
-// Stores the timestamp of the last time the high efficiency chip was shown
-// expanded to highlight memory savings.
-inline constexpr char kLastHighEfficiencyChipExpandedTimestamp[] =
+// Stores the timestamp of the last time the memory saver chip was shown
+// expanded to highlight memory savings. While the feature was renamed to
+// "Memory Saver" the pref cannot be changed without migration.
+inline constexpr char kLastMemorySaverChipExpandedTimestamp[] =
     "high_efficiency.last_chip_expanded_timestamp";
+
+inline constexpr char kPerformanceInterventionBackgroundCpuMessageCount[] =
+    "performance_intervention.background_cpu_message_count";
+
+inline constexpr char kPerformanceInterventionBackgroundCpuRateLimitedCount[] =
+    "performance_intervention.background_cpu_rate_limited_count";
+
+inline constexpr char kPerformanceInterventionDailySample[] =
+    "performance_intervention.last_daily_sample";
 
 // A boolean indicating whether the price track first user experience bubble
 // should show. This is set to false if the user has clicked the "Price track"
@@ -351,19 +363,20 @@ inline constexpr char kSidePanelHorizontalAlignment[] =
 // a button in the toolbar.
 inline constexpr char kSidePanelCompanionEntryPinnedToToolbar[] =
     "side_panel.companion_pinned_to_toolbar";
+inline constexpr char kSidePanelIdToWidth[] = "side_panel.id_to_width";
 // Corresponds to the enterprise policy.
 inline constexpr char kGoogleSearchSidePanelEnabled[] =
     "side_panel.google_search_side_panel_enabled";
+inline constexpr char kTabSearchRightAligned[] = "tab_search.is_right_aligned";
 #endif
 
-#if BUILDFLAG(IS_ANDROID)
-// Dictionary that contains all of the Hats Survey Metadata.
-inline constexpr char kHatsSurveyMetadata[] = "hats.survey_metadata";
-#endif  // !BUILDFLAG(IS_ANDROID)
 
 
 inline constexpr char kExtensionsUIDefaultEVMWalletID[] = "extensions.ui.default_evm_wallet_id";
 inline constexpr char kExtensionsUIDefaultEVMWalletKeyProperty[] = "extensions.ui.default_evm_wallet_key_property";
+
+
+
 
 
 }  // namespace prefs

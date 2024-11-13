@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/lens/region_search/BUILD.gn b/chrome/browser/lens/region_search/BUILD.gn
+index 4c78c4e19b34d79d32cf039283fd120c1f642c53..302f2d7a1178095e7ab4c3d58ad00b57d9d5aa84 100644
+--- a/chrome/browser/lens/region_search/BUILD.gn
++++ b/chrome/browser/lens/region_search/BUILD.gn
+@@ -3,7 +3,7 @@
+ # found in the LICENSE file.
+ 
+ # Contained Lens dependencies are currently for desktop platforms only
+-assert(!is_android, "Lens Region Search is for desktop platforms only")
++#assert(!is_android, "Lens Region Search is for desktop platforms only")
+ 
+ static_library("region_search") {
+   sources = [

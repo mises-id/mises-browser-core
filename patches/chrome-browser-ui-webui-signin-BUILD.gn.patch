@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/webui/signin/BUILD.gn b/chrome/browser/ui/webui/signin/BUILD.gn
+index 9651bede83158c1cdd03e5d884e9040538b65a11..38a0aec1f0238183d27a2bd4caa99cc9e3724230 100644
+--- a/chrome/browser/ui/webui/signin/BUILD.gn
++++ b/chrome/browser/ui/webui/signin/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//build/config/chromeos/ui_mode.gni")
+ 
+-assert(!is_fuchsia && !is_android)
++#assert(!is_fuchsia && !is_android)
+ 
+ # TODO(crbug.com/364667551): complete modularization of //c/b/ui/w/signin.
+ # At the moment, it's hard to complete it at once as it pulls deps, which

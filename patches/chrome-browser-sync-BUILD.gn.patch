@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/sync/BUILD.gn b/chrome/browser/sync/BUILD.gn
+index 7b56ec68b18cd5cf985759534f64e1193e4a497a..7379b404a4ac5646ad7dabf65c8b51925c100882 100644
+--- a/chrome/browser/sync/BUILD.gn
++++ b/chrome/browser/sync/BUILD.gn
+@@ -143,7 +143,8 @@ source_set("sync") {
+       "//chrome/browser/sync/android:jni_headers",
+       "//chrome/browser/tab_group_sync:utils",
+     ]
+-  } else {
++  }# else {
++  if (true) {
+     sources += [
+       "glue/extension_data_type_controller.cc",
+       "glue/extension_data_type_controller.h",

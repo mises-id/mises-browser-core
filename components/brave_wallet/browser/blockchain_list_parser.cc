@@ -67,7 +67,7 @@ bool ParseTokenList(const std::string& json,
   //  }
   // }
 
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v || !records_v->is_dict()) {
@@ -85,14 +85,14 @@ bool ParseTokenList(const std::string& json,
       return false;
     }
 
-    absl::optional<bool> is_erc20_opt =
+    std::optional<bool> is_erc20_opt =
         blockchain_token_value->FindBool("erc20");
     if (is_erc20_opt)
       blockchain_token->is_erc20 = *is_erc20_opt;
     else
       blockchain_token->is_erc20 = false;
 
-    absl::optional<bool> is_erc721_opt =
+    std::optional<bool> is_erc721_opt =
         blockchain_token_value->FindBool("erc721");
     if (is_erc721_opt)
       blockchain_token->is_erc721 = *is_erc721_opt;
@@ -112,7 +112,7 @@ bool ParseTokenList(const std::string& json,
     ParseResultFromDict(blockchain_token_value, "logo",
                         &blockchain_token->logo);
 
-    absl::optional<int> decimals_opt =
+    std::optional<int> decimals_opt =
         blockchain_token_value->FindInt("decimals");
     if (decimals_opt)
       blockchain_token->decimals = *decimals_opt;

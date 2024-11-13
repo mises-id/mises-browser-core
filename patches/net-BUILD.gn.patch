@@ -1,12 +1,12 @@
 diff --git a/net/BUILD.gn b/net/BUILD.gn
-index e745a74d0446ea55c9e22cd7628ae0d6ac8a3982..d3a3ad395f7282ace86e22b4927caf2ed9c66d7d 100644
+index e229ec4c97bb6beeba509da8d1ab40be17d5992a..830ffe49c32b89143f85554b7b9613e0d173a5df 100644
 --- a/net/BUILD.gn
 +++ b/net/BUILD.gn
-@@ -1160,6 +1160,7 @@ component("net") {
+@@ -1161,6 +1161,7 @@ component("net") {
        "reporting/reporting_uploader.h",
      ]
    }
 +  sources += mises_net_sources
  
-   if (is_android) {
+   if (enable_device_bound_sessions) {
      sources += [

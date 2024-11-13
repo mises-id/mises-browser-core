@@ -120,7 +120,7 @@ APIRequestHelper::Ticket APIRequestHelper::Request(
   return Request(method, url, payload, payload_content_type,
                  std::move(callback),
                  APIRequestOptions(auto_retry_on_network_change, false,
-                                   max_body_size, absl::nullopt),
+                                   max_body_size, std::nullopt),
                  headers, std::move(conversion_callback));
 }
 

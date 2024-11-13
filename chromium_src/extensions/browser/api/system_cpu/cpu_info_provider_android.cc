@@ -56,7 +56,7 @@ bool CpuInfoProvider::QueryCpuTimePerProcessor(
                &sys,
                &idle);
     if (vals != 5 || pindex >= infos->size()) {
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
       return false;
     }
 

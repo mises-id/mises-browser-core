@@ -1,0 +1,13 @@
+diff --git a/services/screen_ai/public/mojom/BUILD.gn b/services/screen_ai/public/mojom/BUILD.gn
+index b86ffff74e8c0ddb9e32555f67f4d344b87401f9..92544a7233d5606c239e9776249adc9a24b87347 100644
+--- a/services/screen_ai/public/mojom/BUILD.gn
++++ b/services/screen_ai/public/mojom/BUILD.gn
+@@ -5,7 +5,7 @@
+ import("//mojo/public/tools/bindings/mojom.gni")
+ import("//services/screen_ai/buildflags/features.gni")
+ 
+-assert(enable_screen_ai_service)
++#assert(enable_screen_ai_service)
+ 
+ mojom("mojom") {
+   sources = [ "screen_ai_service.mojom" ]

@@ -1,5 +1,5 @@
 diff --git a/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn b/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
-index 293be77f6dd6646e829393f248e6eb34316c5f94..8ea1d4cd4d9a1719a00b03f028491a58601f8d5f 100644
+index cbc045f5dd8a128bc1d9fa4c50e70d96822f68a8..7016e22dbc4f52bd0ee8d6be4ea686a2ed52db88 100644
 --- a/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
 +++ b/ui/webui/resources/cr_components/theme_color_picker/BUILD.gn
 @@ -5,7 +5,7 @@

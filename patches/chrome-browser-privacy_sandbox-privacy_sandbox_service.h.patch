@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/privacy_sandbox/privacy_sandbox_service.h b/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
+index 1e4d8ff4b66229544888f64c251e6778eaac296d..6f7890bbe45df15d061caaf1cdb9fa0e64ccfd8b 100644
+--- a/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
++++ b/chrome/browser/privacy_sandbox/privacy_sandbox_service.h
+@@ -162,7 +162,7 @@ class PrivacySandboxService : public KeyedService {
+   // Functions for coordinating the display of the Privacy Sandbox prompts
+   // across multiple browser windows. Only relevant for Desktop.
+ 
+-#if !BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
+   // Informs the service that a Privacy Sandbox prompt has been opened
+   // or closed for |browser|.
+   virtual void PromptOpenedForBrowser(Browser* browser,

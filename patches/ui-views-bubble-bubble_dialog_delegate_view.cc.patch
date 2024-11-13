@@ -1,8 +1,8 @@
 diff --git a/ui/views/bubble/bubble_dialog_delegate_view.cc b/ui/views/bubble/bubble_dialog_delegate_view.cc
-index 5974f72b039dc534b9cc2867d7c5d60447ab1559..738f99ed133fe08d798743da1e3c704acdf9896f 100644
+index c30db8d521d197eaef708107cffdcb4ea7d4d9e6..355c5e186e442d5d75047230f830fa4fe98e4512 100644
 --- a/ui/views/bubble/bubble_dialog_delegate_view.cc
 +++ b/ui/views/bubble/bubble_dialog_delegate_view.cc
-@@ -634,7 +634,7 @@ void BubbleDialogDelegate::OnAnchorWidgetDestroying() {
+@@ -652,7 +652,7 @@ void BubbleDialogDelegate::OnAnchorWidgetDestroying() {
  }
  
  void BubbleDialogDelegate::OnBubbleWidgetActivationChanged(bool active) {

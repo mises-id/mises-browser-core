@@ -1,10 +1,10 @@
 diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
-index 1b1f8b01fbcf0107f3702dd01a2d64079c2b3c78..75b03b4ba2e1c6bb61af14a4bb627493c9523427 100644
+index 06988ed338551022790e41f028b9889a9ae0f910..62ff0688d670c7b24dc57f1669ebcfa985fcee0e 100644
 --- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
 +++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/WebsitePreferenceBridge.java
 @@ -396,6 +396,10 @@ public class WebsitePreferenceBridge {
-         WebsitePreferenceBridgeJni.get().setContentSettingCustomScope(browserContextHandle,
-                 contentSettingType, primaryPattern, secondaryPattern, setting);
+                 .isContentSettingGlobal(
+                         browserContextHandle, contentSettingType, primaryUrl, secondaryUrl);
      }
 +    public static void setPopupSettingForOrigin(BrowserContextHandle browserContextHandle, String origin, int contentSettingsType, boolean isIncognito) {
 +        WebsitePreferenceBridgeJni.get().setPopupSettingForOrigin(browserContextHandle, origin, contentSettingsType, isIncognito);
@@ -12,10 +12,10 @@ index 1b1f8b01fbcf0107f3702dd01a2d64079c2b3c78..75b03b4ba2e1c6bb61af14a4bb627493
 +
  
      /**
-      * Convert pattern to domain wildcard pattern. If fail to extract domain from the pattern,
-@@ -485,5 +489,7 @@ public class WebsitePreferenceBridge {
-         boolean getLocationAllowedByPolicy(BrowserContextHandle browserContextHandle);
+      * Sets the content setting for the default scope of the url that is appropriate for the given
+@@ -623,5 +627,7 @@ public class WebsitePreferenceBridge {
          String toDomainWildcardPattern(String pattern);
+ 
          String toHostOnlyPattern(String pattern);
 +        void setPopupSettingForOrigin(BrowserContextHandle browserContextHandle,
 +            String origin, int value, boolean isIncognito);

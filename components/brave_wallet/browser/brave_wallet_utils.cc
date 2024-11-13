@@ -39,7 +39,7 @@
 #include "components/prefs/scoped_user_pref_update.h"
 #include "crypto/random.h"
 #include "net/base/registry_controlled_domains/registry_controlled_domain.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "third_party/boringssl/src/include/openssl/evp.h"
 #include "url/gurl.h"
 
@@ -563,7 +563,7 @@ mojom::NetworkInfoPtr GetKnownChain(PrefService* prefs,
     }
     return nullptr;
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return nullptr;
 }
 
@@ -681,7 +681,7 @@ bool KnownChainExists(const std::string& chain_id, mojom::CoinType coin) {
       if (base::CompareCaseInsensitiveASCII(network->chain_id, chain_id) == 0)
         return true;
   } else {
-    NOTREACHED() << coin;
+    NOTREACHED_IN_MIGRATION() << coin;
   }
   return false;
 }
@@ -758,7 +758,7 @@ std::string GenerateMnemonic(size_t entropy_size) {
     return "";
 
   std::vector<uint8_t> entropy(entropy_size);
-  crypto::RandBytes(&entropy[0], entropy.size());
+  crypto::RandBytes(entropy);
 
   return GenerateMnemonicInternal(entropy.data(), entropy.size());
 }
@@ -810,7 +810,7 @@ std::unique_ptr<std::vector<uint8_t>> MnemonicToEntropy(
       entropy_size = 32;
       break;
     default:
-      NOTREACHED();
+     NOTREACHED_IN_MIGRATION();
   }
   DCHECK(IsValidEntropySize(entropy_size)) << entropy_size;
 
@@ -963,76 +963,76 @@ base::Value::Dict TransactionReceiptToValue(
   return dict;
 }
 
-absl::optional<TransactionReceipt> ValueToTransactionReceipt(
+std::optional<TransactionReceipt> ValueToTransactionReceipt(
     const base::Value::Dict& value) {
   TransactionReceipt tx_receipt;
   const std::string* transaction_hash = value.FindString("transaction_hash");
   if (!transaction_hash)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.transaction_hash = *transaction_hash;
 
   const std::string* transaction_index = value.FindString("transaction_index");
   if (!transaction_index)
-    return absl::nullopt;
+    return std::nullopt;
   uint256_t transaction_index_uint;
   if (!HexValueToUint256(*transaction_index, &transaction_index_uint))
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.transaction_index = transaction_index_uint;
 
   const std::string* block_hash = value.FindString("block_hash");
   if (!block_hash)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.block_hash = *block_hash;
 
   const std::string* block_number = value.FindString("block_number");
   if (!block_number)
-    return absl::nullopt;
+    return std::nullopt;
   uint256_t block_number_uint;
   if (!HexValueToUint256(*block_number, &block_number_uint))
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.block_number = block_number_uint;
 
   const std::string* from = value.FindString("from");
   if (!from)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.from = *from;
 
   const std::string* to = value.FindString("to");
   if (!to)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.to = *to;
 
   const std::string* cumulative_gas_used =
       value.FindString("cumulative_gas_used");
   if (!cumulative_gas_used)
-    return absl::nullopt;
+    return std::nullopt;
   uint256_t cumulative_gas_used_uint;
   if (!HexValueToUint256(*cumulative_gas_used, &cumulative_gas_used_uint))
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.cumulative_gas_used = cumulative_gas_used_uint;
 
   const std::string* gas_used = value.FindString("gas_used");
   if (!gas_used)
-    return absl::nullopt;
+    return std::nullopt;
   uint256_t gas_used_uint;
   if (!HexValueToUint256(*gas_used, &gas_used_uint))
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.gas_used = gas_used_uint;
 
   const std::string* contract_address = value.FindString("contract_address");
   if (!contract_address)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.contract_address = *contract_address;
 
   // TODO(darkdh): logs
   const std::string* logs_bloom = value.FindString("logs_bloom");
   if (!logs_bloom)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.logs_bloom = *logs_bloom;
 
-  absl::optional<bool> status = value.FindBool("status");
+  std::optional<bool> status = value.FindBool("status");
   if (!status)
-    return absl::nullopt;
+    return std::nullopt;
   tx_receipt.status = *status;
 
   return tx_receipt;
@@ -1064,7 +1064,7 @@ std::vector<mojom::NetworkInfoPtr> GetAllKnownChains(PrefService* prefs,
     return result;
   }
 
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return result;
 }
 
@@ -1208,7 +1208,7 @@ std::string GetNetworkId(PrefService* prefs,
   return base::ToLowerASCII(id);
 }
 
-absl::optional<std::string> GetChainId(PrefService* prefs,
+std::optional<std::string> GetChainId(PrefService* prefs,
                                        const mojom::CoinType& coin,
                                        const std::string& network_id) {
   std::vector<mojom::NetworkInfoPtr> networks = GetAllChains(prefs, coin);
@@ -1218,22 +1218,22 @@ absl::optional<std::string> GetChainId(PrefService* prefs,
       return network->chain_id;
     }
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
-absl::optional<std::string> GetChainIdByNetworkId(
+std::optional<std::string> GetChainIdByNetworkId(
     PrefService* prefs,
     const mojom::CoinType& coin,
     const std::string& network_id) {
   if (network_id.empty()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
   for (const auto& network : GetAllChains(prefs, coin)) {
     if (network_id == GetNetworkId(prefs, coin, network->chain_id)) {
       return network->chain_id;
     }
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 mojom::DefaultWallet GetDefaultEthereumWallet(PrefService* prefs) {
@@ -1305,7 +1305,7 @@ GURL GetUnstoppableDomainsRpcUrl(const std::string& chain_id) {
     return AddInfuraProjectId(GetInfuraURLForKnownChainId(chain_id));
   }
 
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return GURL();
 }
 
@@ -1467,11 +1467,11 @@ std::string GetPrefKeyForCoinType(mojom::CoinType coin) {
     case mojom::CoinType::SOL:
       return kSolanaPrefKey;
   }
-  NOTREACHED();
+ NOTREACHED_IN_MIGRATION();
   return "";
 }
 
-absl::optional<mojom::CoinType> GetCoinTypeFromPrefKey(const std::string& key) {
+std::optional<mojom::CoinType> GetCoinTypeFromPrefKey(const std::string& key) {
   if (key == kEthereumPrefKey) {
     return mojom::CoinType::ETH;
   } else if (key == kFilecoinPrefKey) {
@@ -1479,8 +1479,8 @@ absl::optional<mojom::CoinType> GetCoinTypeFromPrefKey(const std::string& key) {
   } else if (key == kSolanaPrefKey) {
     return mojom::CoinType::SOL;
   }
-  NOTREACHED();
-  return absl::nullopt;
+ NOTREACHED_IN_MIGRATION();
+  return std::nullopt;
 }
 
 std::string eTLDPlusOne(const url::Origin& origin) {
@@ -1512,7 +1512,7 @@ std::string GetFilecoinKeyringId(const std::string& network) {
              network == mojom::kLocalhostChainId) {
     return mojom::kFilecoinTestnetKeyringId;
   }
-  NOTREACHED() << "Unsupported chain id for filecoin " << network;
+  NOTREACHED_IN_MIGRATION() << "Unsupported chain id for filecoin " << network;
   return mojom::kFilecoinMainnet;
 }
 
@@ -1522,7 +1522,7 @@ std::string GetFilecoinChainId(const std::string& keyring_id) {
   } else if (keyring_id == mojom::kFilecoinTestnetKeyringId) {
     return mojom::kFilecoinTestnet;
   }
-  NOTREACHED() << "Unsupported keyring id for filecoin";
+  NOTREACHED_IN_MIGRATION() << "Unsupported keyring id for filecoin";
   return "";
 }
 

@@ -11,7 +11,7 @@
 #include "mises/components/brave_wallet/browser/tx_meta.h"
 #include "mises/components/brave_wallet/browser/tx_state_manager.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -22,10 +22,10 @@ NonceTracker::NonceTracker(TxStateManager* tx_state_manager,
 
 NonceTracker::~NonceTracker() = default;
 
-absl::optional<uint256_t> NonceTracker::GetFinalNonce(const std::string& from,
+std::optional<uint256_t> NonceTracker::GetFinalNonce(const std::string& from,
                                                       uint256_t network_nonce) {
   if (!nonce_lock_.Try()) {
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   auto confirmed_transactions = tx_state_manager_->GetTransactionsByStatus(

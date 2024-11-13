@@ -12,7 +12,7 @@ namespace ntp_background_images {
 
 // This list should be synced with the list of generateNTPSponsoredImages.js
 // and packageNTPSponsoredImagesComponents.js in brave-core-crx-packager.
-absl::optional<SponsoredImagesComponentData> GetSponsoredImagesComponentData(
+std::optional<SponsoredImagesComponentData> GetSponsoredImagesComponentData(
     const std::string& region) {
   if (base::FeatureList::IsEnabled(features::kBraveNTPBrandedWallpaperDemo)) {
     static const SponsoredImagesComponentData demo_data = {
@@ -4818,7 +4818,7 @@ absl::optional<SponsoredImagesComponentData> GetSponsoredImagesComponentData(
     if (data.region == region)
       return data;
   }
-  return absl::nullopt;
+  return std::nullopt;
 }
 
 }  // namespace ntp_background_images

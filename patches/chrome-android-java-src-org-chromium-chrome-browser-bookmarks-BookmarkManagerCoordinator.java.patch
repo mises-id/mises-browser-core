@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerCoordinator.java
-index 43c0955710507f864d6e1ef07896cf3a488d3c76..147af9e2f2a88e604971b1a5621f298b261158a8 100644
+index 0ef3904092a5f469eb10ebedba6d0028b0af906e..e8ab79493c605c4f3fe78d30ee2ac463f5e26802 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerCoordinator.java
 @@ -54,6 +54,7 @@ import org.chromium.ui.modaldialog.ModalDialogManager.ModalDialogType;
@@ -9,10 +9,10 @@ index 43c0955710507f864d6e1ef07896cf3a488d3c76..147af9e2f2a88e604971b1a5621f298b
 +import org.chromium.ui.base.IntentRequestTracker;
  
  /** Responsible for setting up sub-components and routing incoming/outgoing signals */
- // TODO(crbug.com/1446506): Add a new coordinator so this class doesn't own everything.
-@@ -550,4 +551,7 @@ public class BookmarkManagerCoordinator
-     public TestingDelegate getTestingDelegate() {
-         return mMediator;
+ // TODO(crbug.com/40268641): Add a new coordinator so this class doesn't own everything.
+@@ -490,4 +491,7 @@ public class BookmarkManagerCoordinator
+     public BookmarkUiPrefs getBookmarkUiPrefsForTesting() {
+         return mBookmarkUiPrefs;
      }
 +    public IntentRequestTracker intentTracker() {
 +        return mMediator.intentTracker();

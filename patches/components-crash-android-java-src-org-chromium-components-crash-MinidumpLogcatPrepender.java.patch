@@ -1,8 +1,8 @@
 diff --git a/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java b/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
-index 0d35cd25814c677f79e127d32c92ec34a8f360d6..5048e0efc33d5d01ee432ebf7fa2a14b55f5983d 100644
+index f825e634374999265caf6760a6a14607e8a190ac..dea702c2bb7eda4d7fbae9bc3f247ad2a232d7f8 100644
 --- a/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
 +++ b/components/crash/android/java/src/org/chromium/components/crash/MinidumpLogcatPrepender.java
-@@ -76,7 +76,7 @@ public class MinidumpLogcatPrepender {
+@@ -71,7 +71,7 @@ public class MinidumpLogcatPrepender {
          try {
              writer = new BufferedWriter(new FileWriter(targetFile, false));
              writer.write(boundary);

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/search/background/BUILD.gn b/chrome/browser/search/background/BUILD.gn
+index 8ed84e3db292499700cfa30cae11ae72add08008..b948d001050a3f0ee1515974c6690dbd02670ab1 100644
+--- a/chrome/browser/search/background/BUILD.gn
++++ b/chrome/browser/search/background/BUILD.gn
+@@ -2,7 +2,7 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-assert(is_win || is_mac || is_linux || is_chromeos)
++#assert(is_win || is_mac || is_linux || is_chromeos)
+ 
+ import("//third_party/protobuf/proto_library.gni")
+ 

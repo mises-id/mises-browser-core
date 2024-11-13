@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/enterprise/connectors/common.cc b/chrome/browser/enterprise/connectors/common.cc
+index 860e2d68e66daff1c4767e40c0a0ae8ddd83a747..ea943bc96da09ada128105a590fd945dbdeadc8f 100644
+--- a/chrome/browser/enterprise/connectors/common.cc
++++ b/chrome/browser/enterprise/connectors/common.cc
+@@ -293,6 +293,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
+                               content::WebContents* web_contents,
+                               base::OnceClosure keep_closure,
+                               base::OnceClosure discard_closure) {
++#if !BUILDFLAG(IS_ANDROID)
+   auto state = FinalContentAnalysisResult::FAILURE;
+   download::DownloadDangerType danger_type = download_item->GetDangerType();
+ 
+@@ -337,6 +338,7 @@ void ShowDownloadReviewDialog(const std::u16string& filename,
+       true,  // Downloads are always cloud-based for now.
+       web_contents, safe_browsing::DeepScanAccessPoint::DOWNLOAD,
+       /* file_count */ 1, state, download_item);
++#endif
+ }
+ 
+ bool IsResumableUpload(const BinaryUploadService::Request& request) {

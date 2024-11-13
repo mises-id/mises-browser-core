@@ -11,7 +11,7 @@
 #include "services/network/public/cpp/resource_request.h"
 #include "services/network/public/mojom/fetch_api.mojom-shared.h"
 #include "services/network/public/mojom/url_loader.mojom-forward.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "content/public/browser/browser_context.h"
 #include "content/public/browser/storage_partition.h"
 #include "services/network/public/cpp/simple_url_loader.h"
@@ -140,7 +140,7 @@ PluginResponseWriter::PluginResponseWriter(
   request_handler_ = std::make_unique<MisesRequestHandler>();    
   redirect_url_ = GURL();
   ctx_ = mises::MisesRequestInfo::MakeCTX(request, 0,
-                                          0, 0,
+                                          content::FrameTreeNodeId(), 0,
                                           browser_context,  nullptr);                                             
 
 }
@@ -174,7 +174,7 @@ void PluginResponseWriter::OnURLRedirect( const GURL& new_url) {
       net::SiteForCookies::FromUrl(ctx_->request_url),
       net::RedirectInfo::FirstPartyURLPolicy::UPDATE_URL_ON_REDIRECT,
       ctx_->referrer_policy, ctx_->referrer.spec(),
-      kInternalRedirectStatusCode, new_url, absl::nullopt,
+      kInternalRedirectStatusCode, new_url, std::nullopt,
       false /* insecure_scheme_was_upgraded */, false /* copy_fragment */,
       false /* is_signed_exchange_fallback_redirect */);
   client_->OnReceiveRedirect(redirect_info, std::move(response));
@@ -206,7 +206,7 @@ void PluginResponseWriter::OnURLLoaderComplete( std::unique_ptr<std::string> res
   }
 
   client_->OnReceiveResponse(std::move(response), std::move(consumer),
-                             absl::nullopt);
+                             std::nullopt);
 
   producer_ = std::make_unique<mojo::DataPipeProducer>(std::move(producer));
 
@@ -256,7 +256,7 @@ void PluginResponseWriter::
         network::ResourceRequest request;
         request.url = new_url;
         std::shared_ptr<mises::MisesRequestInfo> ctx = mises::MisesRequestInfo::MakeCTX(request, 0,
-                                        0, 1,
+                                        content::FrameTreeNodeId(), 1,
                                         ctx_->browser_context,  nullptr); 
         ctx_ = ctx;
         request_handler_->OnBeforeURLRequest(ctx_, continuation, &redirect_url_);
@@ -314,13 +314,13 @@ void CreateLoaderAndStart(
 // static
 std::unique_ptr<content::URLLoaderRequestInterceptor>
 IPFSURLLoaderRequestInterceptor::MaybeCreateInterceptor(
-    int frame_tree_node_id) {
+    content::FrameTreeNodeId frame_tree_node_id) {
   return std::make_unique<IPFSURLLoaderRequestInterceptor>(
       frame_tree_node_id);
 }
 
 IPFSURLLoaderRequestInterceptor::IPFSURLLoaderRequestInterceptor(
-    int frame_tree_node_id)
+    content::FrameTreeNodeId frame_tree_node_id)
     : frame_tree_node_id_(frame_tree_node_id) {}
 
 IPFSURLLoaderRequestInterceptor::~IPFSURLLoaderRequestInterceptor() = default;

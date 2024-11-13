@@ -10,6 +10,13 @@ BASE_FEATURE(kAccessCodeCastUI,
              base::FEATURE_ENABLED_BY_DEFAULT);
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
+BASE_FEATURE(kPressAndHoldEscToExitBrowserFullscreen,
+             "PressAndHoldEscToExitBrowserFullscreen",
+             base::FEATURE_ENABLED_BY_DEFAULT
+);
+#endif
+
 #if defined(ANDROID)
 BASE_FEATURE(kSidePanelCompanionDefaultPinned,
              "SidePanelCompanionDefaultPinned",
@@ -39,6 +46,23 @@ int GetSidePanelMinimumWidth() {
 // Enables or disables the Happiness Tracking Surveys being delivered via chrome
 // webui, rather than a separate static website.
 BASE_FEATURE(kHaTSWebUI, "HaTSWebUI", base::FEATURE_DISABLED_BY_DEFAULT);
+#endif  // !BUILDFLAG(IS_ANDROID)
+
+#if BUILDFLAG(IS_ANDROID)
+
+BASE_FEATURE(kKeyboardAndPointerLockPrompt,
+             "KeyboardAndPointerLockPrompt",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+
+BASE_FEATURE(kToolbarPinning,
+             "ToolbarPinning",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+bool IsToolbarPinningEnabled() {
+  return base::FeatureList::IsEnabled(kToolbarPinning);
+}
+
 #endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace features

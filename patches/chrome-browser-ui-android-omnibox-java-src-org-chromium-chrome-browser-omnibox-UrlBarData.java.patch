@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
-index 55048aaaf39bd0cf2b5236a261600d3280d1e9d0..7631302116198ed3a470a483229b1705f5f73eec 100644
+index 4e5cd991524ebce8a2b8f7e0a325786578065880..31eb75b48824ea66ff5d1f7b8f5f4c4aa0ede86d 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/UrlBarData.java
 @@ -42,7 +42,7 @@ public class UrlBarData {

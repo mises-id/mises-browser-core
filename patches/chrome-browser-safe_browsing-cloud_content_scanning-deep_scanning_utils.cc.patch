@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc b/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
+index bdeb81323b13ccd79431e494c5b165f125bf3342..7761e799b7fb3cecd67ea04f398601416ed106ac 100644
+--- a/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
++++ b/chrome/browser/safe_browsing/cloud_content_scanning/deep_scanning_utils.cc
+@@ -424,7 +424,11 @@ bool IsConsumerScanRequest(const BinaryUploadService::Request& request) {
+       return false;
+     }
+   }
++#if BUILDFLAG(IS_ANDROID)
++  return false;
++#else
+   return request.device_token().empty();
++#endif
+ }
+ 
+ }  // namespace safe_browsing

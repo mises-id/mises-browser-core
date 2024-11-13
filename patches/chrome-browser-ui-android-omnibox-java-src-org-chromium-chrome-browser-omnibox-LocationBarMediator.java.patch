@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
-index 5855a729f590615c465dee0b3b703859aa38b7c7..976005e356f77bedb0fea5bfcc9a63352b5be048 100644
+index 466d992e1a39c69deefd85a7740094d3ca815847..bc26618fd333160117e8296ea056901ce478c799 100644
 --- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
 +++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/LocationBarMediator.java
-@@ -79,6 +79,8 @@ import org.chromium.ui.base.PageTransition;
+@@ -83,6 +83,8 @@ import org.chromium.ui.base.PageTransition;
  import org.chromium.ui.base.WindowAndroid;
  import org.chromium.ui.interpolators.Interpolators;
  import org.chromium.url.GURL;
@@ -11,15 +11,15 @@ index 5855a729f590615c465dee0b3b703859aa38b7c7..976005e356f77bedb0fea5bfcc9a6335
  
  import java.util.ArrayList;
  import java.util.List;
-@@ -467,6 +469,7 @@ class LocationBarMediator
-             if (NativePage.isNativePageUrl(currentUrl, mLocationBarDataProvider.isIncognito())) {
+@@ -483,6 +485,7 @@ class LocationBarMediator
+             if (NativePage.isChromePageUrl(currentUrl, mLocationBarDataProvider.isOffTheRecord())) {
                  setUrlBarTextEmpty();
              } else {
 +            if (mLocationBarDataProvider.getUrlBarData() != null)
                  setUrlBarText(
                          mLocationBarDataProvider.getUrlBarData(),
                          UrlBar.ScrollType.NO_SCROLL,
-@@ -1404,6 +1407,12 @@ class LocationBarMediator
+@@ -1432,6 +1435,12 @@ class LocationBarMediator
  
      @Override
      public void loadUrlFromVoice(String url) {
@@ -29,6 +29,6 @@ index 5855a729f590615c465dee0b3b703859aa38b7c7..976005e356f77bedb0fea5bfcc9a6335
 +        if (url.startsWith("mises-extension://")) {
 +          url = UrlBarData.replaceOnce(url, "mises-extension://", "chrome-extension://");
 +        }
-         loadUrl(url, PageTransition.TYPED, 0, /* openInNewTab= */ false);
-     }
- 
+         loadUrl(
+                 new OmniboxLoadUrlParams.Builder(url, PageTransition.TYPED)
+                         .setOpenInNewTab(false)

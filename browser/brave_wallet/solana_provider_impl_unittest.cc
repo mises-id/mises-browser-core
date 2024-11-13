@@ -58,7 +58,7 @@ class TestEventsListener : public mojom::SolanaEventsListener {
   TestEventsListener() = default;
 
   void AccountChangedEvent(
-      const absl::optional<std::string>& account) override {
+      const std::optional<std::string>& account) override {
     if (account.has_value()) {
       account_ = *account;
     }
@@ -191,7 +191,7 @@ class SolanaProviderImplUnitTest : public testing::Test {
     std::vector<mojom::HardwareWalletAccountPtr> hw_accounts;
     hw_accounts.push_back(mojom::HardwareWalletAccount::New(
         address, "m/44'/501'/0'/0", "name 1", "Ledger", "device1",
-        mojom::CoinType::SOL, absl::nullopt));
+        mojom::CoinType::SOL, std::nullopt));
 
     keyring_service_->AddHardwareAccounts(std::move(hw_accounts));
   }
@@ -254,7 +254,7 @@ class SolanaProviderImplUnitTest : public testing::Test {
     run_loop.Run();
   }
 
-  std::string Connect(absl::optional<base::Value::Dict> arg,
+  std::string Connect(std::optional<base::Value::Dict> arg,
                       mojom::SolanaProviderError* error_out,
                       std::string* error_message_out) {
     std::string account;
@@ -279,13 +279,13 @@ class SolanaProviderImplUnitTest : public testing::Test {
 
   std::string SignMessage(
       const std::vector<uint8_t>& blob_msg,
-      const absl::optional<std::string>& display_encoding,
+      const std::optional<std::string>& display_encoding,
       mojom::SolanaProviderError* error_out,
       std::string* error_message_out,
       bool run_notify = false,
       bool approve = true,
       mojom::ByteArrayStringUnionPtr hw_sig = nullptr,
-      const absl::optional<std::string>& err_in = absl::nullopt) {
+      const std::optional<std::string>& err_in = std::nullopt) {
     std::string signature_out;
     base::RunLoop run_loop;
     provider_->SignMessage(
@@ -326,7 +326,7 @@ class SolanaProviderImplUnitTest : public testing::Test {
         mojom::SolanaSignTransactionParam::New(
             encoded_serialized_message,
             std::vector<mojom::SignaturePubkeyPairPtr>()),
-        absl::nullopt,
+        std::nullopt,
         base::BindLambdaForTesting([&](mojom::SolanaProviderError error,
                                        const std::string& error_message,
                                        base::Value::Dict result) {
@@ -346,7 +346,7 @@ class SolanaProviderImplUnitTest : public testing::Test {
       bool run_notify = false,
       bool approve = true,
       mojom::ByteArrayStringUnionPtr hw_sig = nullptr,
-      const absl::optional<std::string>& err_in = absl::nullopt) {
+      const std::optional<std::string>& err_in = std::nullopt) {
     std::vector<uint8_t> result_out;
     base::RunLoop run_loop;
     provider_->SignTransaction(
@@ -379,9 +379,9 @@ class SolanaProviderImplUnitTest : public testing::Test {
       const std::string& expected_error_message,
       bool run_notify = false,
       bool approve = true,
-      absl::optional<std::vector<mojom::ByteArrayStringUnionPtr>> hw_sigs =
-          absl::nullopt,
-      const absl::optional<std::string>& err_in = absl::nullopt) {
+      std::optional<std::vector<mojom::ByteArrayStringUnionPtr>> hw_sigs =
+          std::nullopt,
+      const std::optional<std::string>& err_in = std::nullopt) {
     std::vector<std::vector<uint8_t>> result_out;
     base::RunLoop run_loop;
     std::vector<mojom::SolanaSignTransactionParamPtr> params;
@@ -473,7 +473,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   std::string error_message;
   // no permission, trigger
   // permissions::BraveWalletPermissionContext::RequestPermissions failed
-  std::string account = Connect(absl::nullopt, &error, &error_message);
+  std::string account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_FALSE(IsConnected());
@@ -481,7 +481,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   GURL url("https://brave.com");
   Navigate(url);
   AddSolanaPermission(GetOrigin(), address);
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_EQ(account, address);
   EXPECT_EQ(error, mojom::SolanaProviderError::kSuccess);
   EXPECT_TRUE(error_message.empty());
@@ -493,7 +493,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   std::string pending_connect_account;
   LockWallet();
   base::RunLoop run_loop;
-  provider_->Connect(absl::nullopt, base::BindLambdaForTesting(
+  provider_->Connect(std::nullopt, base::BindLambdaForTesting(
                                         [&pending_error, &pending_error_message,
                                          &pending_connect_account, &run_loop](
                                             mojom::SolanaProviderError error,
@@ -505,7 +505,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
                                           run_loop.Quit();
                                         }));
   // Request will be rejected because it is still waiting for wallet unlock.
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kUserRejectedRequest);
   EXPECT_EQ(error_message,
@@ -528,7 +528,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   ASSERT_TRUE(map);
   map->SetContentSettingDefaultScope(
       url, url, ContentSettingsType::MISES_SOLANA, CONTENT_SETTING_BLOCK);
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kUserRejectedRequest);
   EXPECT_EQ(error_message,
@@ -537,7 +537,7 @@ TEST_F(SolanaProviderImplUnitTest, Connect) {
   // again.
   map->SetContentSettingDefaultScope(
       url, url, ContentSettingsType::MISES_SOLANA, CONTENT_SETTING_DEFAULT);
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_EQ(account, address);
   EXPECT_EQ(error, mojom::SolanaProviderError::kSuccess);
   EXPECT_TRUE(error_message.empty());
@@ -600,7 +600,7 @@ TEST_F(SolanaProviderImplUnitTest, ConnectWithNoSolanaAccount) {
   mojom::SolanaProviderError error;
   std::string error_message;
   // No wallet setup
-  std::string account = Connect(absl::nullopt, &error, &error_message);
+  std::string account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_FALSE(IsConnected());
@@ -615,7 +615,7 @@ TEST_F(SolanaProviderImplUnitTest, ConnectWithNoSolanaAccount) {
   CreateWallet();
   keyring_service_->RemoveSelectedAccountForCoin(mojom::CoinType::SOL,
                                                  mojom::kSolanaKeyringId);
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_FALSE(IsConnected());
@@ -626,7 +626,7 @@ TEST_F(SolanaProviderImplUnitTest, ConnectWithNoSolanaAccount) {
   account_creation_callback_called = false;
   SetCallbackForAccountCreationForTesting(base::BindLambdaForTesting(
       [&]() { account_creation_callback_called = true; }));
-  account = Connect(absl::nullopt, &error, &error_message);
+  account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_FALSE(IsConnected());
@@ -644,7 +644,7 @@ TEST_F(SolanaProviderImplUnitTest, Disconnect) {
 
   Navigate(GURL("https://brave.com"));
   AddSolanaPermission(GetOrigin(), address);
-  std::string account = Connect(absl::nullopt, nullptr, nullptr);
+  std::string account = Connect(std::nullopt, nullptr, nullptr);
   ASSERT_TRUE(!account.empty());
   ASSERT_TRUE(IsConnected());
 
@@ -666,14 +666,14 @@ TEST_F(SolanaProviderImplUnitTest,
   // Connect the account.
   Navigate(GURL("https://brave.com"));
   AddSolanaPermission(GetOrigin(), kHardwareAccountAddr);
-  std::string account = Connect(absl::nullopt, nullptr, nullptr);
+  std::string account = Connect(std::nullopt, nullptr, nullptr);
   ASSERT_TRUE(!account.empty());
   ASSERT_TRUE(IsConnected());
 
   // Remove selected hardware account.
   EXPECT_TRUE(RemoveHardwareAccount(kHardwareAccountAddr));
   EXPECT_TRUE(observer_->AccountChangedFired());
-  // Account is empty because GetSelectedAccount returns absl::nullopt.
+  // Account is empty because GetSelectedAccount returns std::nullopt.
   EXPECT_TRUE(observer_->GetAccount().empty());
   observer_->Reset();
 }
@@ -692,7 +692,7 @@ TEST_F(SolanaProviderImplUnitTest, AccountChangedEvent) {
   // connect the account
   Navigate(GURL("https://brave.com"));
   AddSolanaPermission(GetOrigin(), address);
-  std::string account = Connect(absl::nullopt, nullptr, nullptr);
+  std::string account = Connect(std::nullopt, nullptr, nullptr);
   ASSERT_TRUE(!account.empty());
   ASSERT_TRUE(IsConnected());
 
@@ -724,7 +724,7 @@ TEST_F(SolanaProviderImplUnitTest, NoSelectedAccount) {
   mojom::SolanaProviderError error;
   std::string error_message;
   // connect
-  std::string account = Connect(absl::nullopt, &error, &error_message);
+  std::string account = Connect(std::nullopt, &error, &error_message);
   EXPECT_TRUE(account.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_EQ(error_message, l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
@@ -741,7 +741,7 @@ TEST_F(SolanaProviderImplUnitTest, NoSelectedAccount) {
 
   // sign message
   const std::string signature =
-      SignMessage({1, 2, 3, 4}, absl::nullopt, &error, &error_message);
+      SignMessage({1, 2, 3, 4}, std::nullopt, &error, &error_message);
   EXPECT_TRUE(signature.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_EQ(error_message, l10n_util::GetStringUTF8(IDS_WALLET_INTERNAL_ERROR));
@@ -760,7 +760,7 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage) {
   // Disconnected state will be rejcted.
   ASSERT_FALSE(IsConnected());
   std::string signature =
-      SignMessage({1, 2, 3, 4}, absl::nullopt, &error, &error_message);
+      SignMessage({1, 2, 3, 4}, std::nullopt, &error, &error_message);
   EXPECT_TRUE(signature.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kUnauthorized);
   EXPECT_EQ(error_message, l10n_util::GetStringUTF8(IDS_WALLET_NOT_AUTHED));
@@ -778,17 +778,17 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage) {
        219, 42,  6,   169, 240, 137, 142, 185, 169, 6,   17,  87,  123, 6,
        42,  55,  162, 64,  120, 91,  1,   2,   2,   0,   1,   12,  2,   0,
        0,   0,   128, 150, 152, 0,   0,   0,   0,   0},
-      absl::nullopt, &error, &error_message);
+      std::nullopt, &error, &error_message);
   EXPECT_TRUE(signature.empty());
   EXPECT_EQ(error, mojom::SolanaProviderError::kUnauthorized);
   EXPECT_EQ(error_message, l10n_util::GetStringUTF8(IDS_WALLET_NOT_AUTHED));
 
   AddSolanaPermission(GetOrigin(), address);
-  Connect(absl::nullopt, &error, &error_message);
+  Connect(std::nullopt, &error, &error_message);
   ASSERT_TRUE(IsConnected());
 
   // User rejected.
-  signature = SignMessage({1, 2, 3, 4}, absl::nullopt, &error, &error_message,
+  signature = SignMessage({1, 2, 3, 4}, std::nullopt, &error, &error_message,
                           true, false /* approve */);
   EXPECT_EQ(error, mojom::SolanaProviderError::kUserRejectedRequest);
   EXPECT_EQ(error_message,
@@ -797,7 +797,7 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage) {
   // test encoding, sign message requests won't be processed so callbacks will
   // not run
   const std::vector<uint8_t> message = {66, 82, 65, 86, 69};
-  provider_->SignMessage(message, absl::nullopt, base::DoNothing());
+  provider_->SignMessage(message, std::nullopt, base::DoNothing());
   provider_->SignMessage(message, "utf8", base::DoNothing());
   provider_->SignMessage(message, "hex", base::DoNothing());
   provider_->SignMessage(message, "invalid", base::DoNothing());
@@ -825,12 +825,12 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage_Hardware) {
   Navigate(GURL("https://brave.com"));
 
   AddSolanaPermission(GetOrigin(), kHardwareAccountAddr);
-  Connect(absl::nullopt, &error, &error_message);
+  Connect(std::nullopt, &error, &error_message);
   ASSERT_TRUE(IsConnected());
 
   // User accepted.
   std::string signature =
-      SignMessage(mock_msg, absl::nullopt, &error, &error_message, true, true,
+      SignMessage(mock_msg, std::nullopt, &error, &error_message, true, true,
                   mock_hw_sig.Clone());
   EXPECT_EQ(signature, Base58Encode(mock_hw_sig->get_bytes()));
   EXPECT_EQ(error, mojom::SolanaProviderError::kSuccess);
@@ -838,13 +838,13 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage_Hardware) {
 
   // User rejected.
   signature =
-      SignMessage(mock_msg, absl::nullopt, &error, &error_message, true, false);
+      SignMessage(mock_msg, std::nullopt, &error, &error_message, true, false);
   EXPECT_EQ(error, mojom::SolanaProviderError::kUserRejectedRequest);
   EXPECT_EQ(error_message,
             l10n_util::GetStringUTF8(IDS_WALLET_USER_REJECTED_REQUEST));
 
   // Hareware signing has error.
-  signature = SignMessage(mock_msg, absl::nullopt, &error, &error_message, true,
+  signature = SignMessage(mock_msg, std::nullopt, &error, &error_message, true,
                           true, mock_hw_sig.Clone(), "error");
   EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
   EXPECT_EQ(error_message, "error");
@@ -856,7 +856,7 @@ TEST_F(SolanaProviderImplUnitTest, SignMessage_Hardware) {
   invalid_sigs.push_back(mojom::ByteArrayStringUnion::NewStr("str"));
 
   for (auto& invalid_sig : invalid_sigs) {
-    signature = SignMessage(mock_msg, absl::nullopt, &error, &error_message,
+    signature = SignMessage(mock_msg, std::nullopt, &error, &error_message,
                             true, true, std::move(invalid_sig));
     EXPECT_EQ(error, mojom::SolanaProviderError::kInternalError);
     EXPECT_EQ(error_message,
@@ -872,8 +872,8 @@ TEST_F(SolanaProviderImplUnitTest, GetDeserializedMessage) {
 
   SolanaInstruction instruction(
       mojom::kSolanaSystemProgramId,
-      {SolanaAccountMeta(address, absl::nullopt, true, true),
-       SolanaAccountMeta(address, absl::nullopt, false, true)},
+      {SolanaAccountMeta(address, std::nullopt, true, true),
+       SolanaAccountMeta(address, std::nullopt, false, true)},
       {2, 0, 0, 0, 128, 150, 152, 0, 0, 0, 0, 0});
   auto msg = SolanaMessage::CreateLegacyMessage(
       "9sHcv6xwn9YkB8nxTUGKDwPwNnmqVp5oAXxU8Fdkm4J6", 0, address,
@@ -917,7 +917,7 @@ TEST_F(SolanaProviderImplUnitTest, SignTransactionAPIs) {
   EXPECT_EQ(signed_txs, std::vector<std::vector<uint8_t>>());
 
   AddSolanaPermission(GetOrigin(), address);
-  Connect(absl::nullopt, nullptr, nullptr);
+  Connect(std::nullopt, nullptr, nullptr);
   ASSERT_TRUE(IsConnected());
 
   // Test message can't be deserialized.
@@ -941,13 +941,13 @@ TEST_F(SolanaProviderImplUnitTest, SignTransactionAPIs_Hardware) {
   SetSelectedAccount(kHardwareAccountAddr, mojom::CoinType::SOL);
   Navigate(GURL("https://brave.com"));
   AddSolanaPermission(GetOrigin(), kHardwareAccountAddr);
-  Connect(absl::nullopt, nullptr, nullptr);
+  Connect(std::nullopt, nullptr, nullptr);
   ASSERT_TRUE(IsConnected());
 
   SolanaInstruction instruction(
       mojom::kSolanaSystemProgramId,
-      {SolanaAccountMeta(kHardwareAccountAddr, absl::nullopt, true, true),
-       SolanaAccountMeta(kHardwareAccountAddr, absl::nullopt, false, true)},
+      {SolanaAccountMeta(kHardwareAccountAddr, std::nullopt, true, true),
+       SolanaAccountMeta(kHardwareAccountAddr, std::nullopt, false, true)},
       {});
   auto msg = SolanaMessage::CreateLegacyMessage(
       "9sHcv6xwn9YkB8nxTUGKDwPwNnmqVp5oAXxU8Fdkm4J6", 0, kHardwareAccountAddr,
@@ -1002,7 +1002,7 @@ TEST_F(SolanaProviderImplUnitTest, SignTransactionAPIs_Hardware) {
   EXPECT_TRUE(signed_tx.empty());
   signed_txs = SignAllTransactions({encoded_serialized_msg},
                                    mojom::SolanaProviderError::kInternalError,
-                                   "error", true, true, absl::nullopt, "error");
+                                   "error", true, true, std::nullopt, "error");
   EXPECT_TRUE(signed_txs.empty());
 
   // Invalid signatures: null signature, empty signature, non-bytes signature.

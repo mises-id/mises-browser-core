@@ -1,0 +1,14 @@
+diff --git a/components/feature_engagement/public/android/wrapping_test_tracker.h b/components/feature_engagement/public/android/wrapping_test_tracker.h
+index 7fb02724abc9fe1e3e232e57ce2837a8eb21d9e0..e84e3a086cd834dea3842f4e1c6836e231c1b263 100644
+--- a/components/feature_engagement/public/android/wrapping_test_tracker.h
++++ b/components/feature_engagement/public/android/wrapping_test_tracker.h
+@@ -54,6 +54,9 @@ class WrappingTestTracker : public Tracker {
+   void SetClockForTesting(const base::Clock& clock,
+                           base::Time initial_time) override;
+ 
++  void NotifyUsedEvent(const base::Feature& feature) override {}
++  void ClearEventData(const base::Feature& feature) override {}
++  EventList ListEvents(const base::Feature& feature) const override;
+  private:
+   base::android::ScopedJavaGlobalRef<jobject> java_tracker_;
+ };

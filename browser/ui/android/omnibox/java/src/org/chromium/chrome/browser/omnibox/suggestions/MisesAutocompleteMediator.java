@@ -11,22 +11,25 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.net.URLEncoder;
+import java.util.Optional;
 
 import org.chromium.base.Callback;
 import org.chromium.base.jank_tracker.JankTracker;
 import org.chromium.base.supplier.Supplier;
 import org.chromium.base.MisesReflectionUtil;
 import org.chromium.url.GURL;
+import org.chromium.chrome.browser.lifecycle.ActivityLifecycleDispatcher;
+import org.chromium.chrome.browser.omnibox.DeferredIMEWindowInsetApplicationCallback;
 import org.chromium.chrome.browser.omnibox.LocationBarDataProvider;
 import org.chromium.chrome.browser.omnibox.UrlBarEditingTextStateProvider;
 import org.chromium.chrome.browser.omnibox.suggestions.basic.BasicSuggestionProcessor.BookmarkState;
-import org.chromium.chrome.browser.omnibox.suggestions.history_clusters.HistoryClustersProcessor.OpenHistoryClustersDelegate;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.share.ShareDelegate;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.tabmodel.TabWindowManager;
 import org.chromium.components.user_prefs.UserPrefs;
+import org.chromium.ui.base.WindowAndroid;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.ui.modelutil.PropertyModel;
 
@@ -39,17 +42,18 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
     private static final int SUGGESTION_NOT_FOUND = -1;
     private @NonNull UrlBarEditingTextStateProvider mUrlBarEditingTextProvider;
     private boolean mNativeInitialized;
-    private AutocompleteController mAutocomplete;
-    private @Nullable Runnable mDeferredLoadAction;
+    private @NonNull Optional<AutocompleteController> mAutocomplete = Optional.empty();
+    private @NonNull Optional<Runnable> mDeferredLoadAction = Optional.empty();
 
-    private Context mContext;
-    private AutocompleteDelegate mDelegate;
+    private final @NonNull Context mContext;
+    private final @NonNull AutocompleteDelegate mDelegate;
 
-    public MisesAutocompleteMediator(@NonNull Context context,
-            @NonNull AutocompleteControllerProvider controllerProvider,
+    public MisesAutocompleteMediator(
+            @NonNull Context context,
             @NonNull AutocompleteDelegate delegate,
             @NonNull UrlBarEditingTextStateProvider textProvider,
-            @NonNull PropertyModel listPropertyModel, @NonNull Handler handler,
+            @NonNull PropertyModel listPropertyModel,
+            @NonNull Handler handler,
             @NonNull Supplier<ModalDialogManager> modalDialogManagerSupplier,
             @NonNull Supplier<Tab> activityTabSupplier,
             @Nullable Supplier<ShareDelegate> shareDelegateSupplier,
@@ -58,11 +62,31 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
             @NonNull Supplier<TabWindowManager> tabWindowManagerSupplier,
             @NonNull BookmarkState bookmarkState,
             @NonNull OmniboxActionDelegate omniboxActionDelegate,
-            @NonNull OpenHistoryClustersDelegate openHistoryClustersDelegate) {
-        super(context, controllerProvider, delegate, textProvider, listPropertyModel, handler,
-                modalDialogManagerSupplier, activityTabSupplier, shareDelegateSupplier,
-                locationBarDataProvider, bringTabToFrontCallback, tabWindowManagerSupplier,
-                bookmarkState, omniboxActionDelegate, openHistoryClustersDelegate);
+            @NonNull ActivityLifecycleDispatcher lifecycleDispatcher,
+            @NonNull OmniboxSuggestionsDropdownEmbedder embedder,
+            @NonNull WindowAndroid windowAndroid,
+            @NonNull
+                    DeferredIMEWindowInsetApplicationCallback
+                            deferredIMEWindowInsetApplicationCallback) {
+        super(
+                context,
+                delegate,
+                textProvider,
+                listPropertyModel,
+                handler,
+                modalDialogManagerSupplier,
+                activityTabSupplier,
+                shareDelegateSupplier,
+                locationBarDataProvider,
+                bringTabToFrontCallback,
+                tabWindowManagerSupplier,
+                bookmarkState,
+                omniboxActionDelegate,
+                lifecycleDispatcher,
+                embedder,
+                windowAndroid,
+                deferredIMEWindowInsetApplicationCallback);
+
         mContext = context;
         mDelegate = delegate;
     }
@@ -92,26 +116,27 @@ class MisesAutocompleteMediator extends AutocompleteMediator {
         }
         final String urlTextToLoad = urlText;
         cancelAutocompleteRequests();
-        if (mNativeInitialized && mAutocomplete != null) {
+        if (mNativeInitialized && mAutocomplete.isPresent()) {
             findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
         } else {
-            mDeferredLoadAction = () -> findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab);
+            mDeferredLoadAction =
+                    Optional.of(() -> findMatchAndLoadUrl(urlTextToLoad, eventTime, openInNewTab));
         }
     }
 
     GURL updateSuggestionUrlIfNeeded(@NonNull AutocompleteMatch suggestion, int matchIndex,
         @NonNull GURL url, boolean skipCheck) {
-        if (!mNativeInitialized || mAutocomplete == null) return url;
+        if (!mNativeInitialized || mAutocomplete.isPresent()) return url;
         if (suggestion.getType() == OmniboxSuggestionType.TILE_NAVSUGGEST) {
             return url;
         }
 
-        // TODO(mariakhomenko): Ideally we want to update match destination URL with new aqs
-        // for query in the omnibox and voice suggestions, but it's currently difficult to do.
-        GURL updatedUrl = mAutocomplete.updateMatchDestinationUrlWithQueryFormulationTime(
-                suggestion, getElapsedTimeSinceInputChange());
-
-        GURL superRet =  updatedUrl == null ? url : updatedUrl;
+        GURL superRet =  mAutocomplete
+                .map(
+                        a ->
+                                a.updateMatchDestinationUrlWithQueryFormulationTime(
+                                        suggestion, getElapsedTimeSinceInputChange()))
+                .orElse(url);
 
         String newUrl = superRet.getSpec();
         if (newUrl.startsWith("mises://"))

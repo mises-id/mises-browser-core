@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/side_panel/read_anything/BUILD.gn b/chrome/browser/resources/side_panel/read_anything/BUILD.gn
-index 7f771b193624a1254f2e2ecc448cd87bf6fb7b8a..baf6466663957b4b5ef163f851c0b0820094c33f 100644
+index d359c56e3443c7ee8b5d17688fa3dbdf77c3eefc..b17e411a4c1053f32093afe7c911eb6fb4aadeca 100644
 --- a/chrome/browser/resources/side_panel/read_anything/BUILD.gn
 +++ b/chrome/browser/resources/side_panel/read_anything/BUILD.gn
 @@ -4,7 +4,7 @@

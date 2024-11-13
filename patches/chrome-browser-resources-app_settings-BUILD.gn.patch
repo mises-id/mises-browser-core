@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/app_settings/BUILD.gn b/chrome/browser/resources/app_settings/BUILD.gn
-index b31ce66ee7abbcde190f1f89e0eb05a911b0cb64..5a432fcc1d5210acecd34309ec5aa49310f6956d 100644
+index 103136357a6af746cb30e3e6f071c5a5a9f498e1..402400c23168cf7f219179e5033adda77fc5dd18 100644
 --- a/chrome/browser/resources/app_settings/BUILD.gn
 +++ b/chrome/browser/resources/app_settings/BUILD.gn
 @@ -5,7 +5,7 @@
  import("//chrome/common/features.gni")
  import("//ui/webui/resources/tools/build_webui.gni")
  
--assert(is_win || is_mac || is_linux || is_fuchsia)
-+assert(true || is_win || is_mac || is_linux || is_fuchsia)
+-assert(is_win || is_mac || is_linux)
++assert(true || is_win || is_mac || is_linux)
+ assert(!is_fuchsia, "Fuchsia shouldn't use anything in //chrome")
  
  build_webui("build") {
-   grd_prefix = "app_settings"

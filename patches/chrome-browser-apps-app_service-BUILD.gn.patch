@@ -1,13 +1,23 @@
 diff --git a/chrome/browser/apps/app_service/BUILD.gn b/chrome/browser/apps/app_service/BUILD.gn
-index 6c90b00afcc6ff6464ae9620efbe477b8264ebb6..5378fe70da6ce892ae4cedcd9ba0bcd244e26277 100644
+index 46fa97dcba1cb47881f23466359398f6aaba5146..ee60bcd364cae024f9f8e0b0db1aa9f41c04d01f 100644
 --- a/chrome/browser/apps/app_service/BUILD.gn
 +++ b/chrome/browser/apps/app_service/BUILD.gn
-@@ -4,7 +4,7 @@
- 
+@@ -5,7 +5,7 @@
  import("//build/config/chromeos/ui_mode.gni")
+ import("//extensions/buildflags/buildflags.gni")
  
 -assert(!is_android)
 +#assert(!is_android)
  
  source_set("app_service") {
    sources = [
+@@ -564,6 +564,9 @@ source_set("unit_tests") {
+   } else {
+     sources += [ "publishers/app_publisher_unittest.cc" ]
+   }
++  if (is_android) {
++    deps -= ["//chrome/browser/apps/link_capturing:test_support"]
++  }
+ }
+ 
+ source_set("test_support") {

@@ -12,7 +12,8 @@ import org.jni_zero.CalledByNative;
 import org.jni_zero.JNINamespace;
 import org.jni_zero.NativeMethods;
 import org.chromium.content_public.browser.WebContents;
-import org.chromium.mojo.bindings.Callbacks;
+import org.chromium.base.Callback;
+import org.chromium.base.Callbacks;
 import org.chromium.chrome.browser.customtabs.CustomTabActivity;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.base.ApplicationStatus;
@@ -117,11 +118,12 @@ public class BraveWalletProviderDelegateImplHelper {
 
     public static void IsSolanaConnected(
             WebContents webContents, String account, Callbacks.Callback1<Boolean> callback) {
-        Callback<Boolean> callbackWrapper = result -> {
-            callback.call(result);
-        };
-        BraveWalletProviderDelegateImplHelperJni.get().IsSolanaConnected(
-                webContents, account, callbackWrapper);
+        Callback<Boolean> callbackWrapper =
+                result -> {
+                    callback.call(result);
+                };
+        BraveWalletProviderDelegateImplHelperJni.get()
+                .IsSolanaConnected(webContents, account, callbackWrapper);
     }
 
     public static void OnWalletPanelClosed() {

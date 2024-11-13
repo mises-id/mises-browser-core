@@ -54,7 +54,7 @@ void BraveWalletProviderDelegateBridge::RequestPermissions(
     }
     if (results == nil) {
       std::move(*callback).Run(
-          static_cast<mojom::RequestPermissionsError>(error), absl::nullopt);
+          static_cast<mojom::RequestPermissionsError>(error), std::nullopt);
       return;
     }
     std::vector<std::string> v;

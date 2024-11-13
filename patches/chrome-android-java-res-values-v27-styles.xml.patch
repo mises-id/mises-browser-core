@@ -1,7 +1,7 @@
 diff --git a/chrome/android/java/res/values-v27/styles.xml b/chrome/android/java/res/values-v27/styles.xml
 old mode 100644
 new mode 100755
-index e13accc8a28075ada8967638858290691f79790c..59d8a42028c0453b6e7fa2bc252c511f4447e5c9
+index 62a6cdef4280e93290cd42416a7bd4585376b7fc..59d8a42028c0453b6e7fa2bc252c511f4447e5c9
 --- a/chrome/android/java/res/values-v27/styles.xml
 +++ b/chrome/android/java/res/values-v27/styles.xml
 @@ -1,9 +1,7 @@
@@ -17,7 +17,7 @@ index e13accc8a28075ada8967638858290691f79790c..59d8a42028c0453b6e7fa2bc252c511f
  
  <resources>
      <style name="Theme.Chromium.WithWindowAnimation" parent="Base.Theme.Chromium.WithWindowAnimation">
-@@ -21,7 +19,7 @@ found in the LICENSE file.
+@@ -21,14 +19,10 @@ found in the LICENSE file.
          <item name="android:navigationBarDividerColor">@macro/bottom_system_nav_divider_color</item>
          <item name="android:windowLightNavigationBar">@bool/window_light_navigation_bar</item>
      </style>
@@ -26,3 +26,10 @@ index e13accc8a28075ada8967638858290691f79790c..59d8a42028c0453b6e7fa2bc252c511f
          parent="Base.Theme.Chromium.Activity.Fullscreen">
          <item name="android:navigationBarColor">@macro/bottom_system_nav_color</item>
          <item name="android:navigationBarDividerColor">@macro/bottom_system_nav_divider_color</item>
+         <item name="android:windowLightNavigationBar">@bool/window_light_navigation_bar</item>
+     </style>
+-    <style name="Theme.Chromium.SigninAndHistorySyncActivity"
+-        parent="Base.Theme.Chromium.SigninAndHistorySyncActivity">
+-        <item name="android:navigationBarDividerColor">@macro/bottom_system_nav_divider_color</item>
+-    </style>
+ </resources>

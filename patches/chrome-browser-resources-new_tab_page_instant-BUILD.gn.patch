@@ -1,13 +1,13 @@
 diff --git a/chrome/browser/resources/new_tab_page_instant/BUILD.gn b/chrome/browser/resources/new_tab_page_instant/BUILD.gn
-index 83affcf9f7d3afe870de6bbbe32e9c08994f8871..99871475d72e5247b3b89c3394ca8158ff740b97 100644
+index d63f6317c5053f093d0a40dd50f0623b3cc44796..2c4e1c7ecee1e40559da7e96255d7407a03b197f 100644
 --- a/chrome/browser/resources/new_tab_page_instant/BUILD.gn
 +++ b/chrome/browser/resources/new_tab_page_instant/BUILD.gn
 @@ -4,7 +4,7 @@
  
  import("//ui/webui/resources/tools/build_webui.gni")
  
--assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
-+# assert(is_linux || is_chromeos || is_win || is_mac || is_fuchsia)
+-assert(is_linux || is_chromeos || is_win || is_mac)
++# assert(is_linux || is_chromeos || is_win || is_mac)
+ assert(!is_fuchsia, "Fuchsia shouldn't use anything in //chrome")
  
  build_webui("build") {
-   grd_prefix = "new_tab_page_instant"

@@ -17,6 +17,7 @@
 #include "mises/grit/mises_generated_resources.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_tabstrip.h"
+#include "chrome/browser/ui/chrome_pages.h"
 #include "chrome/browser/ui/views/chrome_layout_provider.h"
 #include "chrome/common/webui_url_constants.h"
 #include "chrome/grit/generated_resources.h"
@@ -27,11 +28,16 @@
 #include "components/permissions/request_type.h"
 #include "components/strings/grit/components_strings.h"
 #include "third_party/widevine/cdm/buildflags.h"
+#include "ui/base/l10n/l10n_util.h"
+#include "ui/base/metadata/metadata_header_macros.h"
+#include "ui/base/metadata/metadata_impl_macros.h"
 #include "ui/base/models/combobox_model.h"
+#include "ui/base/models/image_model.h"
 #include "ui/gfx/text_constants.h"
 #include "ui/views/bubble/bubble_dialog_delegate_view.h"
 #include "ui/views/controls/button/checkbox.h"
 #include "ui/views/controls/combobox/combobox.h"
+#include "ui/views/controls/image_view.h"
 #include "ui/views/controls/label.h"
 #include "ui/views/controls/styled_label.h"
 #include "ui/views/layout/box_layout.h"
@@ -47,6 +53,7 @@ namespace {
 
 #if BUILDFLAG(ENABLE_WIDEVINE)
 class DontAskAgainCheckbox : public views::Checkbox {
+  METADATA_HEADER(DontAskAgainCheckbox, views::Checkbox)
  public:
   explicit DontAskAgainCheckbox(WidevinePermissionRequest* request);
   DontAskAgainCheckbox(const DontAskAgainCheckbox&) = delete;
@@ -57,6 +64,9 @@ class DontAskAgainCheckbox : public views::Checkbox {
 
   raw_ptr<WidevinePermissionRequest> request_ = nullptr;
 };
+
+BEGIN_METADATA(DontAskAgainCheckbox)
+END_METADATA
 
 DontAskAgainCheckbox::DontAskAgainCheckbox(WidevinePermissionRequest* request)
     : views::Checkbox(brave_l10n::GetLocalizedResourceUTF16String(
@@ -71,7 +81,8 @@ void DontAskAgainCheckbox::ButtonPressed() {
 
 void AddAdditionalWidevineViewControlsIfNeeded(
     views::BubbleDialogDelegateView* dialog_delegate_view,
-    const std::vector<permissions::PermissionRequest*>& requests) {
+    const std::vector<raw_ptr<permissions::PermissionRequest,
+                              VectorExperimental>>& requests) {
   if (!HasWidevinePermissionRequest(requests)) {
     return;
   }
@@ -114,13 +125,15 @@ void AddWidevineFootnoteView(
 #else
 void AddAdditionalWidevineViewControlsIfNeeded(
     views::BubbleDialogDelegateView* dialog_delegate_view,
-    const std::vector<permissions::PermissionRequest*>& requests) {}
+    const std::vector<raw_ptr<permissions::PermissionRequest,
+                              VectorExperimental>>& requests) {}
 #endif
 
 // Custom combobox, shows permission lifetime options and applies selected value
 // to all permissions currently visible in the bubble.
 class PermissionLifetimeCombobox : public views::Combobox,
                                    public ui::ComboboxModel {
+ METADATA_HEADER(PermissionLifetimeCombobox, views::Combobox)
  public:
   explicit PermissionLifetimeCombobox(
       views::BubbleDialogDelegateView& dialog_delegate_view,
@@ -163,6 +176,9 @@ class PermissionLifetimeCombobox : public views::Combobox,
   std::vector<permissions::PermissionLifetimeOption> lifetime_options_;
 };
 
+BEGIN_METADATA(PermissionLifetimeCombobox)
+END_METADATA
+
 views::View* AddPermissionLifetimeComboboxIfNeeded(
     views::BubbleDialogDelegateView* dialog_delegate_view,
     permissions::PermissionPrompt::Delegate* delegate) {
@@ -200,7 +216,8 @@ views::View* AddPermissionLifetimeComboboxIfNeeded(
 
 void AddFootnoteViewIfNeeded(
     views::BubbleDialogDelegateView* dialog_delegate_view,
-    const std::vector<permissions::PermissionRequest*>& requests,
+    const std::vector<
+        raw_ptr<permissions::PermissionRequest, VectorExperimental>>& requests,
     Browser* browser) {
 #if BUILDFLAG(ENABLE_WIDEVINE)
   // Widevine permission bubble has custom footnote.
@@ -232,10 +249,10 @@ void AddFootnoteViewIfNeeded(
 }  // namespace
 
 #define MISES_PERMISSION_PROMPT_BUBBLE_BASE_VIEW                         \
-  AddAdditionalWidevineViewControlsIfNeeded(this, delegate->Requests()); \
+  AddAdditionalWidevineViewControlsIfNeeded(this, delegate_->Requests()); \
   auto* permission_lifetime_view =                                       \
-      AddPermissionLifetimeComboboxIfNeeded(this, delegate.get());       \
-  AddFootnoteViewIfNeeded(this, delegate->Requests(), browser);          \
+      AddPermissionLifetimeComboboxIfNeeded(this, delegate_.get());       \
+  AddFootnoteViewIfNeeded(this, delegate_->Requests(), browser());          \
   if (permission_lifetime_view) {                                        \
     set_fixed_width(                                                     \
         std::max(GetPreferredSize().width(),                             \

@@ -45,9 +45,9 @@ class MisesIconWithBadgeImageSource : public IconWithBadgeImageSource {
   gfx::Rect GetIconAreaRect() const override;
   gfx::Rect GetBadgeRect(size_t badge_width) const;
 
-  absl::optional<int> GetCustomGraphicSize() override;
-  absl::optional<int> GetCustomGraphicXOffset() override;
-  absl::optional<int> GetCustomGraphicYOffset() override;
+  std::optional<int> GetCustomGraphicSize() override;
+  std::optional<int> GetCustomGraphicXOffset() override;
+  std::optional<int> GetCustomGraphicYOffset() override;
 
   bool allow_empty_text_ = false;
   size_t content_image_size_;

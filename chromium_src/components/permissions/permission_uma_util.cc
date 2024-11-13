@@ -27,11 +27,25 @@
     return RequestTypeForUma::PERMISSION_WINDOW_MANAGEMENT; \
   case RequestType::kFileSystemAccess: \
       return RequestTypeForUma::PERMISSION_FILE_SYSTEM_ACCESS; \
+  case RequestType::kCapturedSurfaceControl: \
+      return RequestTypeForUma::CAPTURED_SURFACE_CONTROL; \
+  case RequestType::kWebAppInstallation:\
+    return RequestTypeForUma::PERMISSION_WEB_APP_INSTALLATION; \
+  case RequestType::kKeyboardLock:\
+      return RequestTypeForUma::PERMISSION_KEYBOARD_LOCK;\
+  case RequestType::kPointerLock:\
+      return RequestTypeForUma::PERMISSION_POINTER_LOCK;\
   case RequestType::kWidevine:                    \
   case RequestType::kMisesEthereum:               \
   case RequestType::kMisesSolana:                 \
     return RequestTypeForUma::PERMISSION_VR;
   
+
+#define MISES_GET_UMA_VALUE_FOR_REQUESTS                              \
+  if (request_type >= RequestType::kWidevine &&                       \
+      request_type <= RequestType::kMisesSolana) { \
+    return GetUmaValueForRequestType(request_type);                   \
+  }
 
 #include "src/components/permissions/permission_uma_util.cc"
 
@@ -45,8 +59,15 @@
   case RequestType::kMisesSolana:                 \
     return RequestTypeForUma::PERMISSION_VR;
 
+#define MISES_GET_UMA_VALUE_FOR_REQUESTS                              \
+  if (request_type >= RequestType::kWidevine &&                       \
+      request_type <= RequestType::kMisesSolana) { \
+    return GetUmaValueForRequestType(request_type);                   \
+  }
+  
 #include "src/components/permissions/permission_uma_util.cc"
 
 #endif
 
+#undef MISES_GET_UMA_VALUE_FOR_REQUESTS
 #undef MISES_GET_UMA_VALUE_FOR_REQUEST_TYPE

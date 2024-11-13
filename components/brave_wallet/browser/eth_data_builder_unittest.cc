@@ -534,7 +534,7 @@ TEST(EthCallDataBuilderTest, TokensBalance) {
       TokensBalance("0x08A8fDBddc160A7d5b957256b903dCAb1aE512C5", {"invalid"}));
 
   // Single token contract address supplied
-  absl::optional<std::string> data;
+  std::optional<std::string> data;
   data = TokensBalance("0xB4B2802129071b2B9eBb8cBB01EA1E4D14B34961",
                        {"0x0D8775F648430679A709E98d2b0Cb6250d2887EF"});
   ASSERT_TRUE(data);

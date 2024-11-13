@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/search/instant_service_factory.cc b/chrome/browser/search/instant_service_factory.cc
+index 43b4aaaa8c05a9221c1a5ed6dd8fe0e4d96a5303..10eb7d9247693def0e0569cfc6136032d840583e 100644
+--- a/chrome/browser/search/instant_service_factory.cc
++++ b/chrome/browser/search/instant_service_factory.cc
+@@ -21,6 +21,9 @@ BASE_FEATURE(kProfileBasedInstantService,
+ 
+ // static
+ InstantService* InstantServiceFactory::GetForProfile(Profile* profile) {
++  if (!search::IsInstantExtendedAPIEnabled()) {
++    return nullptr;
++  }
+   DCHECK(search::IsInstantExtendedAPIEnabled());
+   TRACE_EVENT0("loading", "InstantServiceFactory::GetForProfile");
+   if (base::FeatureList::IsEnabled(kProfileBasedInstantService)) {

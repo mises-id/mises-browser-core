@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "content/public/browser/url_loader_request_interceptor.h"
+#include "content/public/browser/frame_tree_node_id.h"
 
 namespace ipfs {
 
@@ -12,10 +13,10 @@ class IPFSURLLoaderRequestInterceptor final
     : public content::URLLoaderRequestInterceptor {
  public:
   static std::unique_ptr<content::URLLoaderRequestInterceptor>
-  MaybeCreateInterceptor(int frame_tree_node_id);
+  MaybeCreateInterceptor(content::FrameTreeNodeId frame_tree_node_id);
 
   IPFSURLLoaderRequestInterceptor(
-      int frame_tree_node_id);
+      content::FrameTreeNodeId  frame_tree_node_id);
   IPFSURLLoaderRequestInterceptor(const IPFSURLLoaderRequestInterceptor&) =
       delete;
   IPFSURLLoaderRequestInterceptor& operator=(
@@ -33,7 +34,7 @@ class IPFSURLLoaderRequestInterceptor final
       content::BrowserContext* browser_context,
       const network::ResourceRequest& tentative_resource_request);
 
-  int frame_tree_node_id_;
+  content::FrameTreeNodeId  frame_tree_node_id_;
 };
 
 }  // namespace pdf

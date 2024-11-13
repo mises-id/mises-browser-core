@@ -13,7 +13,7 @@
 #include "base/observer_list_types.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
 #include "mises/components/brave_wallet/common/brave_wallet_types.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/origin.h"
 
 namespace content {

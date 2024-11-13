@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/safe_browsing/extension_telemetry/extension_web_request_reporter_impl.cc b/chrome/browser/safe_browsing/extension_telemetry/extension_web_request_reporter_impl.cc
-index ae1bc7f9ad839d42b9dbd9a15e6c56c070fc4e54..6db71f5a6997d1925b83ac6753279240cf66964b 100644
+index 5f46376b9c242481edd58b1d1097a8db316ead20..ce5007c18862b8beefcda52221c9884473bf521b 100644
 --- a/chrome/browser/safe_browsing/extension_telemetry/extension_web_request_reporter_impl.cc
 +++ b/chrome/browser/safe_browsing/extension_telemetry/extension_web_request_reporter_impl.cc
 @@ -11,11 +11,12 @@
@@ -13,7 +13,7 @@ index ae1bc7f9ad839d42b9dbd9a15e6c56c070fc4e54..6db71f5a6997d1925b83ac6753279240
  namespace {
 -
 +#if BUILDFLAG(FULL_SAFE_BROWSING)
- // TODO(crbug.com/1494413): Use EnumTraits for these methods.
+ // TODO(crbug.com/40937112): Use EnumTraits for these methods.
  safe_browsing::RemoteHostInfo::ProtocolType
  WebRequestProtocolTypeToRemoteHostInfoProtocolType(
 @@ -38,7 +39,7 @@ WebRequestContactInitatorToRemoteHostInfoContactInitiator(
@@ -33,9 +33,9 @@ index ae1bc7f9ad839d42b9dbd9a15e6c56c070fc4e54..6db71f5a6997d1925b83ac6753279240
    auto* telemetry_service =
        safe_browsing::ExtensionTelemetryServiceFactory::GetForProfile(profile_);
    if (!telemetry_service || !telemetry_service->enabled() ||
-@@ -106,6 +108,7 @@ void ExtensionWebRequestReporterImpl::SendWebRequestData(
-           : WebRequestContactInitatorToRemoteHostInfoContactInitiator(
-                 contact_initiator_type));
+@@ -101,6 +103,7 @@ void ExtensionWebRequestReporterImpl::SendWebRequestData(
+       WebRequestContactInitatorToRemoteHostInfoContactInitiator(
+           contact_initiator_type));
    telemetry_service->AddSignal(std::move(remote_host_signal));
 +#endif
  }

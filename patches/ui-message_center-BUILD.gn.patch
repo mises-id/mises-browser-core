@@ -1,5 +1,5 @@
 diff --git a/ui/message_center/BUILD.gn b/ui/message_center/BUILD.gn
-index 1dc4309115b530b90930c8f53b4bc13412e42608..a8204171a5b87b54cbce998e777dba6da2bdc8cf 100644
+index 3a1629640f09ca66c2ee0fe1f9af2fd7ba9e1e09..4143001fe2c4a73017fdf37f3bd260126fec9438 100644
 --- a/ui/message_center/BUILD.gn
 +++ b/ui/message_center/BUILD.gn
 @@ -36,7 +36,7 @@ component("message_center") {
@@ -11,7 +11,7 @@ index 1dc4309115b530b90930c8f53b4bc13412e42608..a8204171a5b87b54cbce998e777dba6d
      deps += [
        ":message_center_vector_icons",
        "//base:i18n",
-@@ -89,7 +89,7 @@ component("message_center") {
+@@ -88,7 +88,7 @@ component("message_center") {
        ]
      }
  

@@ -1,8 +1,8 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 4c66836806fcda70c76aa026549cdc9aa4cb675f..0b37e10e0d29e680e0be5ee439d46ec180ebaa59 100644
+index 4e163a30b7f987b0127cabf84a4610bfb81b9662..19cb8072aff8dbded60226ef5ae6a48b0a0fb3de 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
-@@ -3275,6 +3275,8 @@ source_set("browser") {
+@@ -3291,6 +3291,8 @@ source_set("browser") {
      }
      libs += [ "jnigraphics" ]
    } else {
@@ -11,12 +11,13 @@ index 4c66836806fcda70c76aa026549cdc9aa4cb675f..0b37e10e0d29e680e0be5ee439d46ec1
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3357,6 +3359,14 @@ source_set("browser") {
-       "picture_in_picture/document_picture_in_picture_window_controller_impl.h",
-     ]
+@@ -3390,6 +3392,15 @@ source_set("browser") {
+       deps += [ "//media/mojo/mojom:web_speech_recognition" ]
+     }
  
 +    if (is_android) {
 +      sources -= [
++        "speech/soda_speech_recognition_engine_impl.cc",
 +        "media/session/audio_focus_delegate_default.cc", 
 +        "network_sandbox.cc",
 +        "media/capture/sub_capture_target_id_web_contents_helper.cc",
@@ -24,14 +25,14 @@ index 4c66836806fcda70c76aa026549cdc9aa4cb675f..0b37e10e0d29e680e0be5ee439d46ec1
 +    }
 +
      deps += [
-       "//components/speech:speech",
-       "//components/vector_icons",
-@@ -3366,7 +3376,7 @@ source_set("browser") {
+       "//components/device_event_log",
+       "//components/soda:constants",
+@@ -3404,7 +3415,7 @@ source_set("browser") {
+     ]
    }
  
-   # Devtools frontend not included in Android and iOS
 -  if (!is_android && !is_ios) {
 +  if (is_android || !is_android && !is_ios) {
      sources += [
+       # Devtools frontend not included in Android and iOS
        "devtools/devtools_frontend_host_impl.cc",
-       "devtools/devtools_frontend_host_impl.h",

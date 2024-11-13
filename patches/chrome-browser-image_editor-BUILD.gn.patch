@@ -1,15 +1,15 @@
 diff --git a/chrome/browser/image_editor/BUILD.gn b/chrome/browser/image_editor/BUILD.gn
-index 3acbdae3dd12e4aba644d74f718fd32541d4f838..eb32837368bccd175765346d8ad6114f5d4b7a72 100644
+index 0ca82494df53cca9caa923794d679242391729f2..ea7cdf51644b0a0c3cddf56bee83b2d83b0e1cd6 100644
 --- a/chrome/browser/image_editor/BUILD.gn
 +++ b/chrome/browser/image_editor/BUILD.gn
 @@ -3,8 +3,8 @@
  # found in the LICENSE file.
  import("//build/config/ui.gni")
  
--assert(is_chromeos || is_linux || is_mac || is_win || is_fuchsia,
+-assert(is_chromeos || is_linux || is_mac || is_win,
 -       "Image Editor is for desktop plaforms only")
-+#assert(is_chromeos || is_linux || is_mac || is_win || is_fuchsia,
++#assert(is_chromeos || is_linux || is_mac || is_win,
 +#       "Image Editor is for desktop plaforms only")
+ assert(!is_fuchsia, "Fuchsia shouldn't use anything in //chrome")
  
  static_library("image_editor_component_util") {
-   sources = [

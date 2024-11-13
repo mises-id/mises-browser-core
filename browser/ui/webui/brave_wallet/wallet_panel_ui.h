@@ -12,6 +12,8 @@
 #include "mises/browser/ui/webui/brave_wallet/common_handler/wallet_handler.h"
 #include "mises/browser/ui/webui/brave_wallet/panel_handler/wallet_panel_handler.h"
 #include "mises/components/brave_wallet/common/brave_wallet.mojom.h"
+#include "chrome/browser/ui/webui/top_chrome/top_chrome_web_ui_controller.h"
+#include "chrome/browser/ui/webui/top_chrome/top_chrome_webui_config.h"
 #include "content/public/browser/web_ui_controller.h"
 #include "content/public/browser/web_ui_message_handler.h"
 
@@ -19,9 +21,7 @@
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver.h"
 
-#include "ui/webui/mojo_bubble_web_ui_controller.h"
-
-class WalletPanelUI : public ui::MojoBubbleWebUIController,
+class WalletPanelUI : public TopChromeWebUIController,
                       public brave_wallet::mojom::PanelHandlerFactory {
  public:
   explicit WalletPanelUI(content::WebUI* web_ui);
@@ -39,8 +39,8 @@ class WalletPanelUI : public ui::MojoBubbleWebUIController,
   void SetDeactivationCallback(
       base::RepeatingCallback<void(bool)> deactivation_callback);
 
-  // Allows disabling CSP on wallet panel so EvalJS could be run in main world.
-  static bool& ShouldDisableCSPForTesting();
+  static constexpr std::string GetWebUIName() { return "WalletPanel"; }
+
 
  private:
   // brave_wallet::mojom::PanelHandlerFactory:
@@ -78,6 +78,17 @@ class WalletPanelUI : public ui::MojoBubbleWebUIController,
       panel_factory_receiver_{this};
 
   WEB_UI_CONTROLLER_TYPE_DECL();
+};
+
+class WalletPanelUIConfig : public DefaultTopChromeWebUIConfig<WalletPanelUI> {
+ public:
+  WalletPanelUIConfig();
+
+  // WebUIConfig::
+  bool IsWebUIEnabled(content::BrowserContext* browser_context) override;
+
+  // TopChromeWebUIConfig::
+  bool ShouldAutoResizeHost() override;
 };
 
 #endif  // BRAVE_BROWSER_UI_WEBUI_BRAVE_WALLET_WALLET_PANEL_UI_H_

@@ -9,7 +9,7 @@
 
 namespace brave_l10n {
 
-absl::optional<std::string> MaybeGetDefaultLocaleString() {
+std::optional<std::string> MaybeGetDefaultLocaleString() {
   const NSString* const locale = [[NSLocale preferredLanguages] firstObject];
   return locale.UTF8String;
 }

@@ -21,7 +21,6 @@ bool CookieAccessDelegate::ShouldUseEphemeralStorage(
     net::CookieSettingOverrides overrides,
     const std::optional<url::Origin>& top_frame_origin) const {
   NOTREACHED() << "Should be overridden";
-  return false;
 }
 
 }  // namespace net

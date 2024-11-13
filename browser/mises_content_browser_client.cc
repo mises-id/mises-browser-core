@@ -116,6 +116,7 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 
 #include "mises/browser/ui/webui/brave_wallet/wallet_page_ui.h"
 #include "mises/browser/ui/webui/brave_wallet/wallet_panel_ui.h"
+#include "chrome/browser/ui/views/chrome_browser_main_extra_parts_views.h"
 
 
 
@@ -242,9 +243,13 @@ std::unique_ptr<content::BrowserMainParts>
 MisesContentBrowserClient::CreateBrowserMainParts(bool is_integration_test) {
   std::unique_ptr<content::BrowserMainParts> main_parts =
       ChromeContentBrowserClient::CreateBrowserMainParts(is_integration_test);
-  // ChromeBrowserMainParts* chrome_main_parts =
-  //     static_cast<ChromeBrowserMainParts*>(main_parts.get());
+#if BUILDFLAG(IS_ANDROID)
+   ChromeBrowserMainParts* chrome_main_parts =
+       static_cast<ChromeBrowserMainParts*>(main_parts.get());
   // chrome_main_parts->AddParts(std::make_unique<MisesBrowserMainExtraParts>());
+
+  chrome_main_parts->AddParts(std::make_unique<ChromeBrowserMainExtraPartsViews>());
+#endif
   return main_parts;
 }
 
@@ -372,35 +377,33 @@ bool MisesContentBrowserClient::HandleURLOverrideRewrite(
 }
 
 
-bool MisesContentBrowserClient::WillCreateURLLoaderFactory(
+void MisesContentBrowserClient::WillCreateURLLoaderFactory(
     content::BrowserContext* browser_context,
     content::RenderFrameHost* frame,
     int render_process_id,
     URLLoaderFactoryType type,
     const url::Origin& request_initiator,
+    const net::IsolationInfo& isolation_info,
     std::optional<int64_t> navigation_id,
     ukm::SourceIdObj ukm_source_id,
-    mojo::PendingReceiver<network::mojom::URLLoaderFactory>* factory_receiver,
+    network::URLLoaderFactoryBuilder& factory_builder,
     mojo::PendingRemote<network::mojom::TrustedURLLoaderHeaderClient>*
         header_client,
     bool* bypass_redirect_checks,
     bool* disable_secure_dns,
     network::mojom::URLLoaderFactoryOverridePtr* factory_override,
     scoped_refptr<base::SequencedTaskRunner> navigation_response_task_runner) {
-  bool use_proxy = false;
   // TODO(iefremov): Skip proxying for certain requests?
-  use_proxy = MisesProxyingURLLoaderFactory::MaybeProxyRequest(
+  MisesProxyingURLLoaderFactory::MaybeProxyRequest(
       browser_context, frame,
       type == URLLoaderFactoryType::kNavigation ? -1 : render_process_id,
-      factory_receiver, navigation_response_task_runner);
+      factory_builder, navigation_response_task_runner);
 
-  use_proxy |= ChromeContentBrowserClient::WillCreateURLLoaderFactory(
+  ChromeContentBrowserClient::WillCreateURLLoaderFactory(
       browser_context, frame, render_process_id, type, request_initiator,
-      std::move(navigation_id), ukm_source_id, factory_receiver, header_client,
-      bypass_redirect_checks, disable_secure_dns, factory_override,
-      navigation_response_task_runner);
-
-  return use_proxy;
+      isolation_info, std::move(navigation_id), ukm_source_id, factory_builder,
+      header_client, bypass_redirect_checks, disable_secure_dns,
+      factory_override, navigation_response_task_runner);
 }
 
 bool MisesContentBrowserClient::WillInterceptWebSocket(
@@ -413,7 +416,7 @@ void MisesContentBrowserClient::CreateWebSocket(
     content::ContentBrowserClient::WebSocketFactory factory,
     const GURL& url,
     const net::SiteForCookies& site_for_cookies,
-    const absl::optional<std::string>& user_agent,
+    const std::optional<std::string>& user_agent,
     mojo::PendingRemote<network::mojom::WebSocketHandshakeClient>
         handshake_client) {
   auto* proxy = MisesProxyingWebSocket::ProxyWebSocket(

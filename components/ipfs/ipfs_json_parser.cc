@@ -14,7 +14,7 @@
 #include "base/logging.h"
 #include "base/strings/strcat.h"
 #include "mises/components/ipfs/ipfs_utils.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace {
 
@@ -50,17 +50,17 @@ bool RemoveValueFromList(base::Value::List* root, const T& value_to_remove) {
 //   ],
 //   "Progress": "<int>"
 // }
-absl::optional<ipfs::AddPinResult> IPFSJSONParser::GetAddPinsResultFromJSON(
+std::optional<ipfs::AddPinResult> IPFSJSONParser::GetAddPinsResultFromJSON(
     const base::Value& value) {
   auto* auto_dict = value.GetIfDict();
   if (!auto_dict) {
     VLOG(1) << "Invalid response, wrong format.";
-    return absl::nullopt;
+    return std::nullopt;
   }
   const base::Value::List* pins_list = auto_dict->FindList("Pins");
   if (!pins_list) {
     VLOG(1) << "Invalid response, can not find Pins array.";
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   ipfs::AddPinResult result;
@@ -76,7 +76,7 @@ absl::optional<ipfs::AddPinResult> IPFSJSONParser::GetAddPinsResultFromJSON(
     auto* val_as_str = val.GetIfString();
     if (!val_as_str) {
       VLOG(1) << "Invalid response, wrong format.";
-      return absl::nullopt;
+      return std::nullopt;
     }
     result.pins.push_back(*val_as_str);
   }
@@ -90,24 +90,24 @@ absl::optional<ipfs::AddPinResult> IPFSJSONParser::GetAddPinsResultFromJSON(
 //     "<string>"
 //   ]
 // }
-absl::optional<ipfs::RemovePinResult>
+std::optional<ipfs::RemovePinResult>
 IPFSJSONParser::GetRemovePinsResultFromJSON(const base::Value& value) {
   auto* auto_dict = value.GetIfDict();
   if (!auto_dict) {
     VLOG(1) << "Invalid response, wrong format.";
-    return absl::nullopt;
+    return std::nullopt;
   }
   const base::Value::List* pins_list = auto_dict->FindList("Pins");
   if (!pins_list) {
     VLOG(1) << "Invalid response, can not find Pins array.";
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   ipfs::RemovePinResult result;
   for (const base::Value& val : *pins_list) {
     auto* val_as_str = val.GetIfString();
     if (!val_as_str) {
-      return absl::nullopt;
+      return std::nullopt;
     }
     result.push_back(*val_as_str);
   }
@@ -129,18 +129,18 @@ IPFSJSONParser::GetRemovePinsResultFromJSON(const base::Value& value) {
 //     "Type": "<string>"
 //   }
 // }
-absl::optional<ipfs::GetPinsResult> IPFSJSONParser::GetGetPinsResultFromJSON(
+std::optional<ipfs::GetPinsResult> IPFSJSONParser::GetGetPinsResultFromJSON(
     const base::Value& value) {
   auto* auto_dict = value.GetIfDict();
   if (!auto_dict) {
     VLOG(1) << "Invalid response, wrong format.";
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   const base::Value::Dict* keys = auto_dict->FindDict("Keys");
   if (!keys) {
     VLOG(1) << "Invalid response, can not find Keys in PinLsList dict.";
-    return absl::nullopt;
+    return std::nullopt;
   }
 
   ipfs::GetPinsResult result;
@@ -148,12 +148,12 @@ absl::optional<ipfs::GetPinsResult> IPFSJSONParser::GetGetPinsResultFromJSON(
     auto* it_dict = it.second.GetIfDict();
     if (!it_dict) {
       VLOG(1) << "Missing Type for " << it.first;
-      return absl::nullopt;
+      return std::nullopt;
     }
     const std::string* type = it_dict->FindString("Type");
     if (!type) {
       VLOG(1) << "Missing Type for " << it.first;
-      return absl::nullopt;
+      return std::nullopt;
     }
     result[it.first] = *type;
   }
@@ -182,7 +182,7 @@ absl::optional<ipfs::GetPinsResult> IPFSJSONParser::GetGetPinsResultFromJSON(
 // }
 bool IPFSJSONParser::GetPeersFromJSON(const std::string& json,
                                       std::vector<std::string>* peers) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v || !records_v->is_dict()) {
@@ -229,7 +229,7 @@ bool IPFSJSONParser::GetPeersFromJSON(const std::string& json,
 // }
 bool IPFSJSONParser::GetAddressesConfigFromJSON(const std::string& json,
                                                 ipfs::AddressesConfig* config) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {
@@ -279,7 +279,7 @@ bool IPFSJSONParser::GetAddressesConfigFromJSON(const std::string& json,
 //}
 bool IPFSJSONParser::GetRepoStatsFromJSON(const std::string& json,
                                           ipfs::RepoStats* stats) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {
@@ -325,7 +325,7 @@ bool IPFSJSONParser::GetRepoStatsFromJSON(const std::string& json,
 //}
 bool IPFSJSONParser::GetNodeInfoFromJSON(const std::string& json,
                                          ipfs::NodeInfo* info) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {
@@ -502,7 +502,7 @@ std::string IPFSJSONParser::PutNewPeerToConfigJSON(const std::string& json,
   if (!ipfs::ParsePeerConnectionString(peer, &peer_id, &address))
     return std::string();
 
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {
@@ -555,7 +555,7 @@ std::string IPFSJSONParser::PutNewPeerToConfigJSON(const std::string& json,
 // https://github.com/ipfs/go-ipfs/blob/master/docs/config.md#peering
 bool IPFSJSONParser::GetPeersFromConfigJSON(const std::string& json,
                                             std::vector<std::string>* peers) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {
@@ -605,7 +605,7 @@ std::string IPFSJSONParser::RemovePeerFromConfigJSON(
     const std::string& json,
     const std::string& peer_id,
     const std::string& peer_address) {
-  absl::optional<base::Value> records_v =
+  std::optional<base::Value> records_v =
       base::JSONReader::Read(json, base::JSON_PARSE_CHROMIUM_EXTENSIONS |
                                        base::JSONParserOptions::JSON_PARSE_RFC);
   if (!records_v) {

@@ -1,8 +1,8 @@
 diff --git a/ui/base/clipboard/BUILD.gn b/ui/base/clipboard/BUILD.gn
-index 065e8adf7863d829d7455476815e30f1e7639670..62ee5dee34daa994dd002d26338206b2ddf57cf5 100644
+index 61ecbf7d3d023064bd545d8726604d6fd4482950..4fd5a07bc5fde1d4ac97639047879d076742ad47 100644
 --- a/ui/base/clipboard/BUILD.gn
 +++ b/ui/base/clipboard/BUILD.gn
-@@ -111,7 +111,8 @@ component("clipboard") {
+@@ -110,7 +110,8 @@ component("clipboard") {
        "clipboard_android.cc",
        "clipboard_android.h",
      ]

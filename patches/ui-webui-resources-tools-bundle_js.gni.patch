@@ -1,9 +1,9 @@
 diff --git a/ui/webui/resources/tools/bundle_js.gni b/ui/webui/resources/tools/bundle_js.gni
-index 6ef57e0cd1de46342a9fc8892fb121b7b2222265..a99f79a110a21e0cd69a6b3c64b195ed4f95e6f5 100644
+index 5f158aee8fbd1820fe8bdedb41af3a9bb722ff49..993fd35887be34e6a1b198f2a961bfea0d84beba 100644
 --- a/ui/webui/resources/tools/bundle_js.gni
 +++ b/ui/webui/resources/tools/bundle_js.gni
-@@ -102,6 +102,7 @@ template("bundle_js") {
-     external_paths += [ "//resources/polymer/v3_0/|$polymer_path" ]
+@@ -124,6 +124,7 @@ template("bundle_js") {
+     external_paths += [ "//resources/lit/v3_0/|$lit_path" ]
  
      if (!is_chrome_untrusted) {
 +      mises_resources_path = rebase_path("$root_gen_dir/mises/ui/webui/resources/tsc/", root_build_dir) external_paths += [ "chrome://resources/mises/|$mises_resources_path", "//resources/mises/|$mises_resources_path" ]

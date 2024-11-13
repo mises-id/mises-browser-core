@@ -33,7 +33,7 @@
 #include "components/sync_preferences/testing_pref_service_syncable.h"
 #include "testing/gmock/include/gmock/gmock.h"
 #include "testing/gtest/include/gtest/gtest.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 #include "url/origin.h"
 
 using testing::ElementsAreArray;
@@ -482,7 +482,7 @@ TEST(BraveWalletUtilsUnitTest, TransactionReceiptAndValue) {
 
   base::Value::Dict tx_receipt_value = TransactionReceiptToValue(tx_receipt);
   auto tx_receipt_from_value = ValueToTransactionReceipt(tx_receipt_value);
-  ASSERT_NE(tx_receipt_from_value, absl::nullopt);
+  ASSERT_NE(tx_receipt_from_value, std::nullopt);
   EXPECT_EQ(tx_receipt, *tx_receipt_from_value);
 }
 

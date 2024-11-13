@@ -7,13 +7,13 @@
 #define BRAVE_COMPONENTS_L10N_COMMON_UN_M49_CODE_CONSTANTS_H_
 
 #include "base/containers/fixed_flat_set.h"
-#include "base/strings/string_piece.h"
+#include <string_view>
 
 namespace brave_l10n {
 
 // See https://en.wikipedia.org/wiki/UN_M49.
 
-constexpr auto kUnM49Codes = base::MakeFixedFlatSet<base::StringPiece>({
+constexpr auto kUnM49Codes = base::MakeFixedFlatSet<std::string_view>({
     "001",  // World
     "002",  // Africa
     "003",  // North America

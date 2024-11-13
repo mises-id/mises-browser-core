@@ -7,15 +7,17 @@
 #include "chrome/browser/media/router/discovery/access_code/access_code_cast_sink_service_factory.h"
 #include "chrome/browser/metrics/desktop_session_duration/desktop_profile_session_durations_service_factory.h"
 #include "chrome/browser/performance_manager/persistence/site_data/site_data_cache_facade_factory.h"
-#include "chrome/browser/profiles/profile_theme_update_service_factory.h"
 #include "chrome/browser/search/instant_service_factory.h"
 #include "chrome/browser/storage/storage_notification_service_factory.h"
 #include "chrome/browser/ui/global_error/global_error_service_factory.h"
 #include "chrome/browser/ui/media_router/media_router_ui_service_factory.h"
+#include "chrome/browser/ui/toolbar/pinned_toolbar/pinned_toolbar_actions_model_factory.h"
 #include "chrome/browser/usb/usb_chooser_context_factory.h"
 #include "components/commerce/core/proto/cart_db_content.pb.h"
 #include "components/commerce/core/proto/coupon_db_content.pb.h"
 #include "chrome/browser/chrome_browser_main_extra_parts.h"
+#include "components/omnibox/browser/omnibox_input_watcher.h"
+#include "components/omnibox/browser/omnibox_suggestions_watcher.h"
 
 #include "chrome/browser/profiles/chrome_browser_main_extra_parts_profiles.h"
 
@@ -40,8 +42,10 @@ void ChromeBrowserMainExtraPartsProfiles::
 
   BookmarkModelFactory::GetInstance();
   BookmarkUndoServiceFactory::GetInstance();
-  if (breadcrumbs::IsEnabled())
+  if (breadcrumbs::IsEnabled(
+          g_browser_process ? g_browser_process->local_state() : nullptr)) {
     BreadcrumbManagerKeyedServiceFactory::GetInstance();
+  }
   browser_sync::UserEventServiceFactory::GetInstance();
   // BrowsingDataHistoryObserverService::Factory::GetInstance();
   browsing_topics::BrowsingTopicsServiceFactory::GetInstance();
@@ -54,7 +58,6 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (base::FeatureList::IsEnabled(commerce::kCommerceMerchantViewer))
     MerchantViewerDataManagerFactory::GetInstance();
 #endif
-  CertificateReportingServiceFactory::GetInstance();
 
   ChromeSigninClientFactory::GetInstance();
   ClientHintsFactory::GetInstance();
@@ -98,15 +101,16 @@ void ChromeBrowserMainExtraPartsProfiles::
   if (MediaEngagementService::IsEnabled())
     MediaEngagementServiceFactory::GetInstance();
 
-  if (base::FeatureList::IsEnabled(media::kUseMediaHistoryStore))
-    media_history::MediaHistoryKeyedServiceFactory::GetInstance();
   media_router::ChromeLocalPresentationManagerFactory::GetInstance();
   media_router::ChromeMediaRouterFactory::GetInstance();
 
 
-  ModelTypeStoreServiceFactory::GetInstance();
-
   NotifierStateTrackerFactory::GetInstance();
+
+#if BUILDFLAG(IS_ANDROID) && BUILDFLAG(ENABLE_EXTENSIONS)
+  OmniboxInputWatcher::EnsureFactoryBuilt();
+  OmniboxSuggestionsWatcher::EnsureFactoryBuilt();
+#endif
 
   OptimizationGuideKeyedServiceFactory::GetInstance();
   if (optimization_guide::switches::ShouldValidateModel())
@@ -118,6 +122,7 @@ void ChromeBrowserMainExtraPartsProfiles::
       persisted_state_db::PersistedStateContentProto>::GetInstance();
 #if BUILDFLAG(IS_ANDROID)
   PinnedTabServiceFactory::GetInstance();
+  PinnedToolbarActionsModelFactory::GetInstance();
 #endif
 #if BUILDFLAG(ENABLE_PLUGINS)
   PluginPrefsFactory::GetInstance();

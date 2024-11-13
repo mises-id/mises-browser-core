@@ -1,10 +1,10 @@
 diff --git a/content/public/browser/web_contents_delegate.h b/content/public/browser/web_contents_delegate.h
-index 253f028c108b2532415b0938f47a3c22af83acb5..e05be4786ba33fe0bbf1c5e37c184ef6111c1d43 100644
+index a080fb57f00c712eb8a3a9be669413e1082ce3b3..b142ff809a10506dcb654cc06fef7a2fa8e5c0db 100644
 --- a/content/public/browser/web_contents_delegate.h
 +++ b/content/public/browser/web_contents_delegate.h
 @@ -794,7 +794,7 @@ class CONTENT_EXPORT WebContentsDelegate {
-   virtual void CancelPreviewByMojoBinderPolicy(
-       const std::string& interface_name) {}
+       const std::vector<blink::mojom::DraggableRegionPtr>& regions,
+       WebContents* contents) {}
  
 -#if !BUILDFLAG(IS_ANDROID)
 +#if true || !BUILDFLAG(IS_ANDROID)

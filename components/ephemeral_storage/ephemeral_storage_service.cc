@@ -23,6 +23,7 @@
 #include "content/public/browser/storage_partition_config.h"
 #include "net/base/features.h"
 #include "net/base/schemeful_site.h"
+#include "net/base/url_util.h"
 #include "url/origin.h"
 #include "url/url_constants.h"
 
@@ -107,9 +108,11 @@ void EphemeralStorageService::Set1PESEnabledForUrl(const GURL& url,
 }
 
 bool EphemeralStorageService::Is1PESEnabledForUrl(const GURL& url) const {
+  content_settings::SettingInfo settings_info;
   return host_content_settings_map_->GetContentSetting(
-             url, url, ContentSettingsType::COOKIES) ==
-         CONTENT_SETTING_SESSION_ONLY;
+             url, url, ContentSettingsType::COOKIES, &settings_info) ==
+             CONTENT_SETTING_SESSION_ONLY &&
+         !settings_info.primary_pattern.MatchesAllHosts();
 }
 
 void EphemeralStorageService::Enable1PESForUrlIfPossible(
@@ -119,6 +122,23 @@ void EphemeralStorageService::Enable1PESForUrlIfPossible(
       url,
       base::BindOnce(&EphemeralStorageService::OnCanEnable1PESForUrl,
                      weak_ptr_factory_.GetWeakPtr(), url, std::move(on_ready)));
+}
+
+std::optional<base::UnguessableToken> EphemeralStorageService::Get1PESToken(
+    const url::Origin& origin) {
+  const GURL url(origin.GetURL());
+  const std::string ephemeral_storage_domain =
+      net::URLToEphemeralStorageDomain(url);
+  std::optional<base::UnguessableToken> token;
+  if (Is1PESEnabledForUrl(url)) {
+    auto token_it = fpes_tokens_.find(ephemeral_storage_domain);
+    if (token_it != fpes_tokens_.end()) {
+      return token_it->second;
+    }
+    token = base::UnguessableToken::Create();
+    fpes_tokens_[ephemeral_storage_domain] = *token;
+  }
+  return token;
 }
 
 void EphemeralStorageService::OnCanEnable1PESForUrl(
@@ -139,7 +159,7 @@ bool EphemeralStorageService::IsDefaultCookieSetting(const GURL& url) const {
   for (const auto& setting : settings) {
     if (setting.primary_pattern.Matches(url) &&
         setting.secondary_pattern.Matches(url)) {
-      return setting.source == "default";
+      return setting.source == content_settings::ProviderType::kDefaultProvider;
     }
   }
 
@@ -163,6 +183,7 @@ void EphemeralStorageService::TLDEphemeralLifetimeDestroyed(
   DVLOG(1) << __func__ << " " << ephemeral_domain << " "
            << storage_partition_config;
   const TLDEphemeralAreaKey key(ephemeral_domain, storage_partition_config);
+  const bool cleanup_tld_ephemeral_area = !shields_disabled_on_one_of_hosts;
   const bool cleanup_first_party_storage_area = FirstPartyStorageAreaNotInUse(
       ephemeral_domain, shields_disabled_on_one_of_hosts);
 
@@ -173,10 +194,12 @@ void EphemeralStorageService::TLDEphemeralLifetimeDestroyed(
         FROM_HERE, tld_ephemeral_area_keep_alive_,
         base::BindOnce(&EphemeralStorageService::CleanupTLDEphemeralAreaByTimer,
                        weak_ptr_factory_.GetWeakPtr(), key,
+                       cleanup_tld_ephemeral_area,
                        cleanup_first_party_storage_area));
     tld_ephemeral_areas_to_cleanup_.emplace(key, std::move(cleanup_timer));
   } else {
-    CleanupTLDEphemeralArea(key, cleanup_first_party_storage_area);
+    CleanupTLDEphemeralArea(key, cleanup_tld_ephemeral_area,
+                            cleanup_first_party_storage_area);
   }
 }
 
@@ -193,7 +216,9 @@ void EphemeralStorageService::RemoveObserver(
 void EphemeralStorageService::FirstPartyStorageAreaInUse(
     const std::string& ephemeral_domain) {
   if (!base::FeatureList::IsEnabled(
-          net::features::kMisesForgetFirstPartyStorage)) {
+          net::features::kMisesForgetFirstPartyStorage) &&
+      !base::FeatureList::IsEnabled(
+          net::features::kThirdPartyStoragePartitioning)) {
     return;
   }
 
@@ -212,7 +237,16 @@ bool EphemeralStorageService::FirstPartyStorageAreaNotInUse(
     const std::string& ephemeral_domain,
     bool shields_disabled_on_one_of_hosts) {
   if (!base::FeatureList::IsEnabled(
-          net::features::kMisesForgetFirstPartyStorage)) {
+          net::features::kMisesForgetFirstPartyStorage) &&
+      !base::FeatureList::IsEnabled(
+          net::features::kThirdPartyStoragePartitioning)) {
+    return false;
+  }
+
+  const GURL url(GetFirstPartyStorageURL(ephemeral_domain));
+  if (base::FeatureList::IsEnabled(
+          net::features::kThirdPartyStoragePartitioning) &&
+      Is1PESEnabledForUrl(url)) {
     return false;
   }
 
@@ -222,12 +256,11 @@ bool EphemeralStorageService::FirstPartyStorageAreaNotInUse(
     return false;
   }
 
-  const GURL url(GetFirstPartyStorageURL(ephemeral_domain));
-  // if (host_content_settings_map_->GetContentSetting(
-  //         url, url, ContentSettingsType::BRAVE_REMEMBER_1P_STORAGE) !=
-  //     CONTENT_SETTING_BLOCK) {
-  //   return false;
-  // }
+  if (host_content_settings_map_->GetContentSetting(
+          url, url, ContentSettingsType::MISES_REMEMBER_1P_STORAGE) !=
+      CONTENT_SETTING_BLOCK) {
+    return false;
+  }
 
   if (!context_->IsOffTheRecord()) {
     ScopedListPrefUpdate pref_update(prefs_,
@@ -239,17 +272,23 @@ bool EphemeralStorageService::FirstPartyStorageAreaNotInUse(
 
 void EphemeralStorageService::CleanupTLDEphemeralAreaByTimer(
     const TLDEphemeralAreaKey& key,
+    bool cleanup_tld_ephemeral_area,
     bool cleanup_first_party_storage_area) {
   DVLOG(1) << __func__ << " " << key.first << " " << key.second;
   tld_ephemeral_areas_to_cleanup_.erase(key);
-  CleanupTLDEphemeralArea(key, cleanup_first_party_storage_area);
+  CleanupTLDEphemeralArea(key, cleanup_tld_ephemeral_area,
+                          cleanup_first_party_storage_area);
 }
 
 void EphemeralStorageService::CleanupTLDEphemeralArea(
     const TLDEphemeralAreaKey& key,
+    bool cleanup_tld_ephemeral_area,
     bool cleanup_first_party_storage_area) {
   DVLOG(1) << __func__ << " " << key.first << " " << key.second;
-  delegate_->CleanupTLDEphemeralArea(key);
+  if (cleanup_tld_ephemeral_area) {
+    delegate_->CleanupTLDEphemeralArea(key);
+  }
+  fpes_tokens_.erase(key.first);
   if (cleanup_first_party_storage_area) {
     CleanupFirstPartyStorageArea(key.first);
   }
@@ -321,5 +360,7 @@ size_t EphemeralStorageService::FireCleanupTimersForTesting() {
   DCHECK(first_party_storage_areas_to_cleanup_on_startup_.empty());
   return timers.size() + first_party_storage_areas_to_cleanup_count;
 }
+
+
 
 }  // namespace ephemeral_storage

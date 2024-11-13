@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/resources/privacy_sandbox/BUILD.gn b/chrome/browser/resources/privacy_sandbox/BUILD.gn
-index d03c15d8d0c8817c160377c048c53ac6c72cfc0e..010e2393cea3b413e5243e4b5c3a4dad260fc7f8 100644
+index e5f0fdc070cd9a404c3b604e018df9ac0a737e20..fb069dd0fc4df45692d7701c4dae0c8a8f7bff63 100644
 --- a/chrome/browser/resources/privacy_sandbox/BUILD.gn
 +++ b/chrome/browser/resources/privacy_sandbox/BUILD.gn
 @@ -5,7 +5,7 @@

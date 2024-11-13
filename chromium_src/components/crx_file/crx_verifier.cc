@@ -6,7 +6,7 @@
 #define MISES_CRX_CONTENT_URL_HANDLER \
   base::File file; \
   if (crx_path.IsContentUri()) { \
-    file = base::OpenContentUriForRead(crx_path); \
+    file = base::OpenContentUri(crx_path, base::File::FLAG_OPEN | base::File::FLAG_READ); \
   } else { \
     file = base::File(crx_path, base::File::FLAG_OPEN | base::File::FLAG_READ); \
   }

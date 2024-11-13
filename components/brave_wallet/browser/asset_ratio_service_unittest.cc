@@ -109,13 +109,13 @@ class AssetRatioServiceUnitTest : public testing::Test {
                        const std::string& amount,
                        const std::string& currency_code,
                        const std::string& expected_url,
-                       absl::optional<std::string> expected_error) {
+                       std::optional<std::string> expected_error) {
     base::RunLoop run_loop;
     asset_ratio_service_->GetBuyUrlV1(
         on_ramp_provider, chain_id, address, symbol, amount, currency_code,
         base::BindLambdaForTesting(
             [&](const std::string& url,
-                const absl::optional<std::string>& error) {
+                const std::optional<std::string>& error) {
               EXPECT_EQ(url, expected_url);
               EXPECT_EQ(error, expected_error);
               run_loop.Quit();
@@ -130,13 +130,13 @@ class AssetRatioServiceUnitTest : public testing::Test {
                       const std::string& amount,
                       const std::string& currency_code,
                       const std::string& expected_url,
-                      absl::optional<std::string> expected_error) {
+                      std::optional<std::string> expected_error) {
     base::RunLoop run_loop;
     asset_ratio_service_->GetSellUrl(
         off_ramp_provider, chain_id, address, symbol, amount, currency_code,
         base::BindLambdaForTesting(
             [&](const std::string& url,
-                const absl::optional<std::string>& error) {
+                const std::optional<std::string>& error) {
               EXPECT_EQ(url, expected_url);
               EXPECT_EQ(error, expected_error);
               run_loop.Quit();
@@ -161,7 +161,7 @@ TEST_F(AssetRatioServiceUnitTest, GetBuyUrlV1Ramp) {
                   "?userAddress=0xdeadbeef&swapAsset=USDC&fiatValue=55000000"
                   "&fiatCurrency=USD&hostApiKey="
                   "8yxja8782as5essk2myz3bmh4az6gpq4nte9n2gf",
-                  absl::nullopt);
+                  std::nullopt);
 }
 
 TEST_F(AssetRatioServiceUnitTest, GetBuyUrlV1Sardine) {
@@ -176,7 +176,7 @@ TEST_F(AssetRatioServiceUnitTest, GetBuyUrlV1Sardine) {
                   "amount=55000000&fiat_currency=USD&client_token=74618e17-"
                   "a537-4f5d-ab4d-9916739560b1&fixed_asset_type=USDC&fixed_"
                   "network=ethereum",
-                  absl::nullopt);
+                  std::nullopt);
 
   // Timeout yields error
   std::string error = "error";
@@ -199,7 +199,7 @@ TEST_F(AssetRatioServiceUnitTest, GetSellUrl) {
                  "&swapAmount=250"
                  "&fiatCurrency=USD&hostApiKey="
                  "8yxja8782as5essk2myz3bmh4az6gpq4nte9n2gf",
-                 absl::nullopt);
+                 std::nullopt);
 }
 
 TEST_F(AssetRatioServiceUnitTest, GetPrice) {

@@ -17,7 +17,7 @@
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/receiver.h"
 #include "mojo/public/cpp/bindings/remote.h"
-#include "third_party/abseil-cpp/absl/types/optional.h"
+#include <optional>
 
 namespace brave_wallet {
 
@@ -44,7 +44,7 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
 
   void Init(mojo::PendingRemote<mojom::SolanaEventsListener> events_listener)
       override;
-  void Connect(absl::optional<base::Value::Dict> arg,
+  void Connect(std::optional<base::Value::Dict> arg,
                ConnectCallback callback) override;
   void Disconnect() override;
   void IsConnected(IsConnectedCallback callback) override;
@@ -55,10 +55,10 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
       std::vector<mojom::SolanaSignTransactionParamPtr> params,
       SignAllTransactionsCallback callback) override;
   void SignAndSendTransaction(mojom::SolanaSignTransactionParamPtr param,
-                              absl::optional<base::Value::Dict> send_options,
+                              std::optional<base::Value::Dict> send_options,
                               SignAndSendTransactionCallback callback) override;
   void SignMessage(const std::vector<uint8_t>& blob_msg,
-                   const absl::optional<std::string>& display_encoding,
+                   const std::optional<std::string>& display_encoding,
                    SignMessageCallback callback) override;
   void Request(base::Value::Dict arg, RequestCallback callback) override;
 
@@ -76,35 +76,35 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
       const std::string& requested_account,
       ConnectCallback callback,
       RequestPermissionsError error,
-      const absl::optional<std::vector<std::string>>& allowed_accounts);
+      const std::optional<std::vector<std::string>>& allowed_accounts);
 
   void OnSignMessageRequestProcessed(const std::vector<uint8_t>& blob_msg,
                                      const std::string& account,
                                      SignMessageCallback callback,
                                      bool approved,
                                      mojom::ByteArrayStringUnionPtr signature,
-                                     const absl::optional<std::string>& error);
+                                     const std::optional<std::string>& error);
   void OnSignTransactionRequestProcessed(
       std::unique_ptr<SolanaTransaction> tx,
       const std::string& account,
       SignTransactionCallback callback,
       bool approved,
       mojom::ByteArrayStringUnionPtr signature,
-      const absl::optional<std::string>& error);
+      const std::optional<std::string>& error);
   void OnSignAllTransactionsRequestProcessed(
       const std::vector<std::unique_ptr<SolanaTransaction>>& txs,
       const std::string& account,
       SignAllTransactionsCallback callback,
       bool approved,
-      absl::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
-      const absl::optional<std::string>& error);
+      std::optional<std::vector<mojom::ByteArrayStringUnionPtr>> signatures,
+      const std::optional<std::string>& error);
   void OnAddUnapprovedTransaction(SignAndSendTransactionCallback callback,
                                   bool success,
                                   const std::string& tx_meta_id,
                                   const std::string& error_message);
 
   // Returns a pair of SolanaMessage and a raw message byte array.
-  absl::optional<std::pair<SolanaMessage, std::vector<uint8_t>>>
+  std::optional<std::pair<SolanaMessage, std::vector<uint8_t>>>
   GetDeserializedMessage(const std::string& encoded_serialized_msg,
                          const std::string& account);
 
@@ -147,7 +147,7 @@ class SolanaProviderImpl final : public mojom::SolanaProvider,
       sign_and_send_tx_callbacks_;
   // Pending callback and arg are for waiting user unlock before connect
   ConnectCallback pending_connect_callback_;
-  absl::optional<base::Value::Dict> pending_connect_arg_;
+  std::optional<base::Value::Dict> pending_connect_arg_;
 
   bool account_creation_shown_ = false;
   mojo::Remote<mojom::SolanaEventsListener> events_listener_;

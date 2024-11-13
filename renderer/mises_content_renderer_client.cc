@@ -95,10 +95,12 @@ void MisesContentRendererClient::RenderFrameCreated(
 
 }
 
-void MisesContentRendererClient::GetSupportedKeySystems(
+std::unique_ptr<media::KeySystemSupportRegistration>
+MisesContentRendererClient::GetSupportedKeySystems(
+    content::RenderFrame* render_frame,
     media::GetSupportedKeySystemsCB cb) {
-  ChromeContentRendererClient::GetSupportedKeySystems(
-      base::BindRepeating(&MaybeRemoveWidevineSupport, cb));
+  return ChromeContentRendererClient::GetSupportedKeySystems(
+      render_frame, base::BindRepeating(&MaybeRemoveWidevineSupport, cb));
 }
 
 
@@ -113,10 +115,14 @@ void MisesContentRendererClient::WillEvaluateServiceWorkerOnWorkerThread(
     v8::Local<v8::Context> v8_context,
     int64_t service_worker_version_id,
     const GURL& service_worker_scope,
-    const GURL& script_url) {
+    const GURL& script_url,
+    const blink::ServiceWorkerToken& service_worker_token) {
+  // mises_search_service_worker_holder_.WillEvaluateServiceWorkerOnWorkerThread(
+  //     context_proxy, v8_context, service_worker_version_id,
+  //     service_worker_scope, script_url);
   ChromeContentRendererClient::WillEvaluateServiceWorkerOnWorkerThread(
       context_proxy, v8_context, service_worker_version_id,
-      service_worker_scope, script_url);
+      service_worker_scope, script_url, service_worker_token);
 }
 
 void MisesContentRendererClient::WillDestroyServiceWorkerContextOnWorkerThread(

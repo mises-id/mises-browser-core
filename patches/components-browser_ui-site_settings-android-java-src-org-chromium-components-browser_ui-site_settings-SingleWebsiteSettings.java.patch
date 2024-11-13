@@ -1,8 +1,8 @@
 diff --git a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
-index a404f12fb9bd2c2ea1b09fb70dfcf389428afbb2..252ccc9327abd8aa0efb9b6f151a56eccf376e62 100644
+index 07d15e7ea2e5acec2c43bfce81fcf93063667211..10728239529e7eb7d5c91d0912784548a173bbd2 100644
 --- a/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
 +++ b/components/browser_ui/site_settings/android/java/src/org/chromium/components/browser_ui/site_settings/SingleWebsiteSettings.java
-@@ -263,7 +263,13 @@ public class SingleWebsiteSettings extends BaseSiteSettingsFragment
+@@ -266,7 +266,13 @@ public class SingleWebsiteSettings extends BaseSiteSettingsFragment
       */
      public static Bundle createFragmentArgsForSite(String url) {
          Bundle fragmentArgs = new Bundle();

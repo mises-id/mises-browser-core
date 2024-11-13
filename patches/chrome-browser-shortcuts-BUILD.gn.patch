@@ -1,0 +1,23 @@
+diff --git a/chrome/browser/shortcuts/BUILD.gn b/chrome/browser/shortcuts/BUILD.gn
+index 0ca12c152594626e61dc4ce4a1188e50fb81a1a0..0203f9d5bfab9ade5f4469a3be184ee82f720fa4 100644
+--- a/chrome/browser/shortcuts/BUILD.gn
++++ b/chrome/browser/shortcuts/BUILD.gn
+@@ -4,7 +4,7 @@
+ 
+ import("//chrome/browser/buildflags.gni")
+ 
+-assert(!is_android)
++#assert(!is_android)
+ 
+ source_set("shortcuts") {
+   public = [ "shortcut_icon_generator.h" ]
+@@ -154,6 +154,9 @@ if (!is_chromeos) {
+       "//ui/gfx:test_support",
+       "//url",
+     ]
++    if (is_android) {
++      deps -= ["//chrome/test:test_support_ui"]
++    }
+   }
+ }
+ 

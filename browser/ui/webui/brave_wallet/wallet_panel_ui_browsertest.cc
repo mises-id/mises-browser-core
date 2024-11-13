@@ -121,11 +121,6 @@ class WalletPanelUIBrowserTest : public InProcessBrowserTest {
   void SetUpOnMainThread() override {
     InProcessBrowserTest::SetUpOnMainThread();
 
-    // Disabling CSP on webui pages so EvalJS could be run in main world.
-    BraveSettingsUI::ShouldDisableCSPForTesting() = true;
-    BraveSettingsUI::ShouldExposeElementsForTesting() = true;
-    WalletPanelUI::ShouldDisableCSPForTesting() = true;
-
     auto* profile = browser()->profile();
 
     shared_url_loader_factory_ =
@@ -184,7 +179,7 @@ class WalletPanelUIBrowserTest : public InProcessBrowserTest {
                                 const std::string& chain_id) {
     url_loader_factory_.SetInterceptor(base::BindLambdaForTesting(
         [=](const network::ResourceRequest& request) {
-          base::StringPiece request_string(request.request_body->elements()
+          std::string_view request_string(request.request_body->elements()
                                                ->at(0)
                                                .As<network::DataElementBytes>()
                                                .AsStringPiece());

@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
-index 856649cbe3d004663574a7969a1479e813eb0f84..c90cc43880d70139d36dfd743ec6e61af8313bab 100644
+index f20de9eceb32ac65c94d390a3a4b0e480dafddc8..4d0bb02d5f9b6a04d3482a41425e7647ff9d2d65 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/bookmarks/BookmarkActivity.java
-@@ -22,6 +22,8 @@ import org.chromium.chrome.browser.profiles.Profile;
+@@ -22,6 +22,8 @@ import org.chromium.chrome.browser.profiles.ProfileProvider;
  import org.chromium.components.bookmarks.BookmarkId;
  import org.chromium.components.embedder_support.util.UrlConstants;
  
@@ -11,9 +11,9 @@ index 856649cbe3d004663574a7969a1479e813eb0f84..c90cc43880d70139d36dfd743ec6e61a
  /**
   * The activity that displays the bookmark UI on the phone. It keeps a {@link
   * BookmarkManagerCoordinator} inside of it and creates a snackbar manager. This activity should
-@@ -69,7 +71,9 @@ public class BookmarkActivity extends SnackbarActivity {
-             BookmarkId bookmarkId = BookmarkId.getBookmarkIdFromString(
-                     data.getStringExtra(INTENT_VISIT_BOOKMARK_ID));
+@@ -74,7 +76,9 @@ public class BookmarkActivity extends SnackbarActivity {
+                     BookmarkId.getBookmarkIdFromString(
+                             data.getStringExtra(INTENT_VISIT_BOOKMARK_ID));
              mBookmarkManagerCoordinator.openBookmark(bookmarkId);
 -        }
 +        } else {

@@ -20,7 +20,7 @@ class MisesMainDelegate : public ChromeMainDelegate {
 
   // |exe_entry_point_ticks| is the time at which the main function of the
   // executable was entered, or null if not available.
-  explicit MisesMainDelegate(base::TimeTicks exe_entry_point_ticks);
+  explicit MisesMainDelegate(const StartupTimestamps& timestamps);
   ~MisesMainDelegate() override;
 
  protected:

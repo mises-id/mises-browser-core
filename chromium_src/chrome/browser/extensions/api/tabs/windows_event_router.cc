@@ -53,7 +53,7 @@ void WindowsEventRouter::OnTabModelRemoved() {
     observed_tab_model_->RemoveObserver(this);
     observed_tab_model_ = nullptr;
 }
-void WindowsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
+void WindowsEventRouter::WillCloseTab(TabAndroid* tab) {
   LOG(INFO) << "WindowsEventRouter::WillCloseTab step - 1";
   SessionID::id_type window_id = tab->ExtensionWindowID();
   if (window_id == -1) {
@@ -61,7 +61,7 @@ void WindowsEventRouter::WillCloseTab(TabAndroid* tab, bool animate) {
     return;
   }
   Browser* browser_to_remove = nullptr;
-  for (auto* browser : *BrowserList::GetInstance()) {
+  for (Browser* browser : *BrowserList::GetInstance()) {
     if (browser->session_id().id() == window_id){
       browser_to_remove = browser;
       break;

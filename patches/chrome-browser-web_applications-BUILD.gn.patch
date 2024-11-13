@@ -1,37 +1,55 @@
 diff --git a/chrome/browser/web_applications/BUILD.gn b/chrome/browser/web_applications/BUILD.gn
-index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613ba7aadff6 100644
+index 516b15d1e93a4516731988aa1c4d86e9b3394e0d..7fa269983aa49521f53f78ccc734e5e2b5d5dd13 100644
 --- a/chrome/browser/web_applications/BUILD.gn
 +++ b/chrome/browser/web_applications/BUILD.gn
-@@ -369,6 +369,8 @@ source_set("web_applications") {
+@@ -401,6 +401,7 @@ source_set("web_applications") {
      ]
    }
  
-+  import("//mises/browser/web_applications/sources.gni") sources += mises_browser_web_applications_sources
 +
    if (is_mac) {
      sources += [
-       "app_shim_registry_mac.cc",
-@@ -973,6 +975,9 @@ source_set("web_applications_browser_tests") {
+       "os_integration/mac/app_shim_launch.h",
+@@ -619,6 +620,8 @@ source_set("web_applications") {
+     "//components/permissions:permissions",
+     "//components/services/app_service",
+   ]
++
++  import("//mises/browser/web_applications/sources.gni") sources += mises_browser_web_applications_sources deps -= mises_browser_web_applications_exception_deps
+ }
+ 
+ # This test_support library doesn't use extensions. It must not depend on
+@@ -998,6 +1001,9 @@ source_set("web_applications_unit_tests") {
+   if (enable_nacl) {
+     deps += [ "//components/nacl/browser" ]
+   }
++  if (is_android) {
++    deps -= [ "//chrome/browser/apps/link_capturing:test_support",]
++  }
+ }
+ 
+ group("unit_tests") {
+@@ -1136,6 +1142,9 @@ source_set("web_applications_browser_tests") {
        "//chromeos/startup",
      ]
    }
 +  if (is_android) {
-+    deps -= ["//chrome/test:test_support_ui"]
++    deps -= ["//chrome/test:test_support_ui", "//chrome/browser/ui/views/toolbar", "//chrome/browser/apps/link_capturing:test_support",]
 +  }
  }
  
  group("browser_tests") {
-@@ -1019,6 +1024,9 @@ source_set("app_service_browser_tests") {
-       "//chromeos/startup",
+@@ -1190,6 +1199,9 @@ source_set("app_service_browser_tests") {
+       "//chrome/browser/ui/ash/shelf",
      ]
    }
 +  if (is_android) {
-+    deps -= ["//chrome/test:test_support_ui"]
++    deps -= ["//chrome/test:test_support_ui", "//chrome/browser/apps/link_capturing:test_support",]
 +  }
  }
  
  source_set("interactive_ui_tests") {
-@@ -1044,6 +1052,9 @@ source_set("interactive_ui_tests") {
+@@ -1215,6 +1227,9 @@ source_set("interactive_ui_tests") {
      "//ui/base/idle:test_support",
      "//ui/events/devices:test_support",
    ]
@@ -39,5 +57,5 @@ index c85587554c0abd50889d59616a24de9479bf24e6..e95ee606195df3f4d15770e850c9613b
 +    deps -= ["//chrome/test:test_support_ui"]
 +  }
  
-   if (is_chromeos) {
-     sources += [ "preinstalled_web_app_window_experiment_browsertest.cc" ]
+   if (is_mac) {
+     deps += [ "//chrome/browser/apps/app_shim" ]
