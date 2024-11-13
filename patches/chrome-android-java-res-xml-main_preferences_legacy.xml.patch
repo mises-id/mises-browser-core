@@ -1,10 +1,8 @@
-diff --git a/chrome/android/java/res/xml/main_preferences.xml b/chrome/android/java/res/xml/main_preferences.xml
-old mode 100644
-new mode 100755
-index bdeccbed2b73f56284e312bfd1cfa597cbde31cc..c2ae44241e6041f8ad18f74a09c8a1445a9d4681
---- a/chrome/android/java/res/xml/main_preferences.xml
-+++ b/chrome/android/java/res/xml/main_preferences.xml
-@@ -41,6 +41,36 @@ for the previous order (main_preferences_legacy). -->
+diff --git a/chrome/android/java/res/xml/main_preferences_legacy.xml b/chrome/android/java/res/xml/main_preferences_legacy.xml
+index f60f7ccf8ab211d08f3f568ae9ae10fda647127e..2143d6da73a6e5c1fc69dd2517572731bdeca161 100644
+--- a/chrome/android/java/res/xml/main_preferences_legacy.xml
++++ b/chrome/android/java/res/xml/main_preferences_legacy.xml
+@@ -41,6 +41,36 @@ with the new order (main_preferences). -->
          android:key="basics_section"
          android:order="5"
          android:title="@string/prefs_section_basics"/>
@@ -37,14 +35,7 @@ index bdeccbed2b73f56284e312bfd1cfa597cbde31cc..c2ae44241e6041f8ad18f74a09c8a144
 +        android:icon="@drawable/ic_translate_r"
 +        android:title="@string/main_menu_translate"
 +        app:iconTint="@color/default_icon_color_tint_list"/>
-+
++        
      <org.chromium.components.browser_ui.settings.ChromeBasePreference
          android:fragment="org.chromium.chrome.browser.search_engines.settings.SearchEngineSettings"
          android:key="search_engine"
-@@ -162,5 +192,6 @@ for the previous order (main_preferences_legacy). -->
-         android:order="29"
-         android:title="@string/prefs_about_chrome"/>
- 
-+
- </PreferenceScreen>
- <!-- LINT.ThenChange(//chrome/android/java/res/xml/main_preferences_legacy.xml) -->
