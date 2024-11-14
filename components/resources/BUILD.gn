@@ -15,6 +15,9 @@ mises_grit("static_resources") {
   ]
   deps = [
     ":strings",
+    "//mises/components/web3sites_safe/content/resources:bundle_js",
+    "//mises/components/decentralized_dns/content/resources:bundle_js",
+    "//mises/components/ipfs/resources:bundle_js",
   ]
 
   defines = [
