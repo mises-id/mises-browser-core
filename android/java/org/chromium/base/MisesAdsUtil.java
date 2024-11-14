@@ -52,6 +52,8 @@ public class MisesAdsUtil {
     
     private static final String APPKEY = "yHtyiIvylOW0RjcuWvIO9mrL63X9vtcH";
 
+    private static final String APPKEY_DEBUG =  "4rUDI7Lv0rdkJIljwwhu6OJwgzyft7fr";
+
     //public static final String P_NATIVE_CAROUSEL_0 = "229";
     // public static final String P_NATIVE_CAROUSEL_1 = "232";
     // public static final String P_NATIVE_CAROUSEL_2 = "233";
@@ -226,11 +228,14 @@ public class MisesAdsUtil {
         OmAds.setGDPRConsent(true);
         Log.i(TAG, "om start init sdk " + VersionConstants.CHANNEL);
         String initHost = "https://ads.mises.site/init";
+        String appKey = APPKEY;
         if (VersionConstants.CHANNEL == Channel.DEV) {
             initHost = "https://ads.test.mises.site/init";
+            appKey = APPKEY_DEBUG;
         };
+
         InitConfiguration configuration = new InitConfiguration.Builder()
-                .appKey(APPKEY)
+                .appKey(appKey)
                 .logEnable(true)
                 .initHost(initHost)
                 .preloadAdTypes(OmAds.AD_TYPE.NONE)

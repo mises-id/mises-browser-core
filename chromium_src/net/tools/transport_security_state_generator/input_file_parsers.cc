@@ -67,6 +67,7 @@ constexpr std::string_view kMisesPinsJson = R"mises_pins_json({
     { "name": "translate.mises.site", "pins": "mises"},
     { "name": "translate-static.mises.site", "pins": "mises"},
     { "name": "variations.mises.site", "pins": "mises"},
+    { "name": "variations.test.mises.site", "pins": "mises"},
 
     // Creators
     { "name": "creators.basicattentiontoken.org", "pins": "mises"},
@@ -306,6 +307,11 @@ constexpr std::string_view kMisesHstsJson = R"mises_hsts_json({
     },
     {
       "name": "variations.mises.site",
+      "mode": "force-https",
+      "policy": "custom"
+    },
+    {
+      "name": "variations.test.mises.site",
       "mode": "force-https",
       "policy": "custom"
     },

@@ -25,6 +25,8 @@
 #include "url/gurl.h"
 #include "url/origin.h"
 
+#include "mises/components/filecoin/rs/src/lib.rs.h"
+
 namespace {
 
 // Decodes a varint from the given string piece into the given int64_t. Returns
@@ -64,8 +66,8 @@ constexpr char kExecutableRegEx[] =
 
 // Valid CID multibase prefix, "code" character
 // from https://github.com/multiformats/multibase/blob/master/multibase.csv
-const char kCIDv1Codes[] = "079fFvVtTbBcChkKzZmMuU";
-const char kCIDv0Prefix[] = "Qm";
+// const char kCIDv1Codes[] = "079fFvVtTbBcChkKzZmMuU";
+// const char kCIDv0Prefix[] = "Qm";
 
 // Ipfs codes from multicodec table
 // https://github.com/multiformats/multicodec/blob/master/table.csv
@@ -141,17 +143,11 @@ std::optional<GURL> ExtractSourceFromGatewayPath(const GURL& url) {
 
 namespace ipfs {
 
-// Simple CID validation based on multibase table.
 bool IsValidCID(const std::string& cid) {
-  if (!cid.size())
+  if (cid.empty()) {
     return false;
-  if (!std::all_of(cid.begin(), cid.end(), [loc = std::locale{}](char c) {
-        return std::isalnum(c, loc);
-      }))
-    return false;
-  if (std::string(kCIDv1Codes).find(cid.at(0)) != std::string::npos)
-    return true;
-  return base::StartsWith(cid, kCIDv0Prefix);
+  }
+  return filecoin::is_valid_cid(cid);
 }
 
 bool IsValidIPNSCID(const std::string& cid) {
@@ -397,26 +393,20 @@ bool ParseCIDAndPathFromIPFSUrl(const GURL& url,
   if (!url.SchemeIs(kIPFSScheme) && !url.SchemeIs(kIPNSScheme)) {
     return false;
   }
-  if (!url.host().empty())
+  if (url.host().empty() && url.path().find("/") != std::string::npos) {
     return false;
+  }
   DCHECK(cid);
   DCHECK(path);
-  // ipfs: or ipfs://
-  size_t offset = (url.path().substr(0, 2) == "//") ? 2 : 0;
   // In the case of a URL like ipfs://[cid]/wiki/Vincent_van_Gogh.html
-  // host is empty and path is //wiki/Vincent_van_Gogh.html
-  std::string local_cid(url.path().substr(offset));
-  // If we have a path after the CID, get at the real resource path
-  size_t pos = local_cid.find("/");
-  if (pos != std::string::npos && pos != 0) {
-    // path would be /wiki/Vincent_van_Gogh.html
-    *path = local_cid.substr(pos, local_cid.length() - pos);
-
-    // cid would be [cid]
-    *cid = local_cid.substr(0, pos);
-    return true;
+  // host is [cid] and path is /wiki/Vincent_van_Gogh.html
+  if (!url.host().empty()) {
+    *cid = url.host();
+    *path = url.path();
+  } else {
+    *cid = url.path();
+    *path = "";
   }
-  *cid = local_cid;
   return true;
 }
 
@@ -424,16 +414,15 @@ bool TranslateIPFSURI(const GURL& url,
                       GURL* new_url,
                       const GURL& gateway_url,
                       bool use_subdomain) {
+  LOG(INFO) << "TranslateIPFSURI " <<  url;
   std::string cid, path;
   if (!ParseCIDAndPathFromIPFSUrl(url, &cid, &path))
     return false;
+  
   bool ipfs_scheme = url.scheme() == kIPFSScheme;
   bool ipns_scheme = url.scheme() == kIPNSScheme;
-  if ((ipfs_scheme && std::all_of(cid.begin(), cid.end(),
-                                  [loc = std::locale{}](char c) {
-                                    return std::isalnum(c, loc);
-                                  })) ||
-      ipns_scheme) {
+  LOG(INFO) << "TranslateIPFSURI step 1" <<  ipfs_scheme << ipns_scheme;
+  if ((ipfs_scheme && IsValidCID(cid)) || ipns_scheme) {
     // new_url would be:
     // https://dweb.link/ipfs/[cid]//wiki/Vincent_van_Gogh.html
     if (new_url) {
