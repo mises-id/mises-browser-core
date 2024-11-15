@@ -215,7 +215,7 @@ android_aar_prebuilt("google_play_services_ads_lite_java") {
     
   ]
   resource_exclusion_globs = [
-    "res/xml/gma_ad_services_config.xml",
+    #"res/xml/gma_ad_services_config.xml",
   ]
 }
 android_aar_prebuilt("google_play_services_appset_java") {
