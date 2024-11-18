@@ -31,7 +31,7 @@ public class MisesTabbedActivityClassAdapter extends MisesClassVisitor {
     public MisesTabbedActivityClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        //changeSuperName(sChromeTabbedActivityClassName, sMisesActivityClassName);
+        changeSuperName(sChromeTabbedActivityClassName, sMisesActivityClassName);
 
         changeSuperName(sTabbedAppMenuPropertiesDelegateClassName,
                 sMisesAppMenuPropertiesDelegateImplClassName);
@@ -45,7 +45,7 @@ public class MisesTabbedActivityClassAdapter extends MisesClassVisitor {
         redirectConstructor(sAppMenuPropertiesDelegateImplClassName,
                 sMisesAppMenuPropertiesDelegateImplClassName);
 
-        //redirectConstructor(sChromeTabCreatorClassName, sMisesTabCreatorClassName);
+        redirectConstructor(sChromeTabCreatorClassName, sMisesTabCreatorClassName);
 
         makePublicMethod(sChromeTabbedActivityClassName, "hideOverview");
 
