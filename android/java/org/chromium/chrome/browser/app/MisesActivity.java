@@ -1,5 +1,8 @@
 package org.chromium.chrome.browser.app;
 
+
+import android.app.Activity;
+
 import org.jni_zero.JNINamespace;
 import org.jni_zero.NativeMethods;
 

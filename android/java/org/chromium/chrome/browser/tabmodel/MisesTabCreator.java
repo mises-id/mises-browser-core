@@ -17,17 +17,24 @@ import org.chromium.chrome.browser.ChromeTabbedActivity;
 import org.chromium.chrome.browser.app.MisesActivity;
 import org.chromium.chrome.browser.compositor.CompositorViewHolder;
 import org.chromium.chrome.browser.new_tab_url.DseNewTabUrlManager;
+import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.profiles.ProfileProvider;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.tab.TabDelegateFactory;
 import org.chromium.chrome.browser.tab.TabLaunchType;
+import org.chromium.chrome.browser.TabbedModeTabDelegateFactory;
 import org.chromium.components.embedder_support.util.UrlConstants;
 import org.chromium.components.user_prefs.UserPrefs;
 import org.chromium.content_public.browser.LoadUrlParams;
+import org.chromium.content_public.browser.WebContents;
 import org.chromium.ui.base.WindowAndroid;
+import org.chromium.chrome.browser.ephemeraltab.EphemeralTabCoordinator;
+import org.chromium.url.GURL;
 
 public class MisesTabCreator extends ChromeTabCreator {
+    private Supplier<TabDelegateFactory> mTabDelegateFactorySupplier;
+
     public MisesTabCreator(
             Activity activity,
             WindowAndroid nativeWindow,
@@ -48,6 +55,8 @@ public class MisesTabCreator extends ChromeTabCreator {
                 tabModelSelectorSupplier,
                 compositorViewHolderSupplier,
                 dseNewTabUrlManager);
+        mTabDelegateFactorySupplier = tabDelegateFactory;
+
     }
 
     @Override
@@ -72,6 +81,44 @@ public class MisesTabCreator extends ChromeTabCreator {
             registerPageView();
         }
         return super.createNewTab(loadUrlParams, type, parent, null);
+    }
+
+    public WebContents createExtensionPopup(LoadUrlParams loadUrlParams, Tab parent) {
+        if (!mTabDelegateFactorySupplier.hasValue()) {
+            return null;
+        }
+        TabDelegateFactory tabDelegateFactory = mTabDelegateFactorySupplier.get();
+        if (TabbedModeTabDelegateFactory.class.isInstance(tabDelegateFactory)) {
+            TabbedModeTabDelegateFactory  tabbedModeTabDelegateFactory = (TabbedModeTabDelegateFactory)tabDelegateFactory;
+            EphemeralTabCoordinator ephemeralTabCoordinator = tabbedModeTabDelegateFactory.getEphemeralTabCoordinator();
+            if (ephemeralTabCoordinator != null) {
+                Profile profile = (Profile)MisesReflectionUtil.invokeMethod(
+                        ChromeTabCreator.class,
+                        this,
+                        "getProfile");
+                ephemeralTabCoordinator.requestOpenSheet(new GURL(loadUrlParams.getUrl()), "", profile);
+                return ephemeralTabCoordinator.getWebContentsForTesting();
+            }
+        }
+        return null;
+    }
+
+    public void closeExtensionPopup(final String extensionId) {
+        if (!mTabDelegateFactorySupplier.hasValue()) {
+            return;
+        }
+        TabDelegateFactory tabDelegateFactory = mTabDelegateFactorySupplier.get();
+        if (TabbedModeTabDelegateFactory.class.isInstance(tabDelegateFactory)) {
+            TabbedModeTabDelegateFactory  tabbedModeTabDelegateFactory = (TabbedModeTabDelegateFactory)tabDelegateFactory;
+            EphemeralTabCoordinator ephemeralTabCoordinator = tabbedModeTabDelegateFactory.getEphemeralTabCoordinator();
+            if (ephemeralTabCoordinator != null && ephemeralTabCoordinator.isOpened()) {
+                GURL url = ephemeralTabCoordinator.getUrlForTesting();
+                if (url != null && url.getHost().contains(extensionId)) {
+                    ephemeralTabCoordinator.close();
+                }
+            }
+        }
+        return;
     }
 
     private void registerPageView() {

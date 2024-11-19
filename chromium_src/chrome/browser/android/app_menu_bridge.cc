@@ -275,7 +275,7 @@ void AppMenuBridge::CloseExtensionTabs(const std::string& extension_id) {
           tab_index++;
           continue;
         } 
-        if (tab->ExtensionID() != extension_id || tab->ExtensionWindowID() < 0) {
+        if (tab->ExtensionID() != extension_id || tab->ExtensionWindowID() == -1) {
           tab_index++;
           continue;
         } 
