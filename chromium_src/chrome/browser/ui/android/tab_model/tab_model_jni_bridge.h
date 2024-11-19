@@ -12,6 +12,7 @@
 #define GetActiveIndex\
   GetLastNonExtensionActiveIndex() const override;\
   void CreateForgroundTab(TabAndroid* parent, content::WebContents* web_contents) override;\
+  void CloseTabForExtension(const std::string& extension_id) override;\
   content::WebContents* CreateNewTabForExtension(const std::string& extension_id, \
                                                  const GURL& url, \
                                                  const SessionID::id_type session_window_id) override;\

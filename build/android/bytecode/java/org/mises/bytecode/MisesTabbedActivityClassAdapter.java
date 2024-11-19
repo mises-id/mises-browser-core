@@ -45,7 +45,11 @@ public class MisesTabbedActivityClassAdapter extends MisesClassVisitor {
         redirectConstructor(sAppMenuPropertiesDelegateImplClassName,
                 sMisesAppMenuPropertiesDelegateImplClassName);
 
-        //redirectConstructor(sChromeTabCreatorClassName, sMisesTabCreatorClassName);
+        redirectConstructor(sChromeTabCreatorClassName, sMisesTabCreatorClassName);
+
+        makePublicMethod(sChromeTabCreatorClassName, "getProfile");
+
+        
 
         makePublicMethod(sChromeTabbedActivityClassName, "hideOverview");
 

@@ -31,6 +31,7 @@
 #if BUILDFLAG(IS_ANDROID)
 #include "base/android/sys_utils.h"
 #endif
+#include "mises/browser/extension_web_contents_helper.h"
 
 using base::android::AttachCurrentThread;
 using base::android::ConvertUTF8ToJavaString;
@@ -296,6 +297,11 @@ void TabModelJniBridge::CreateForgroundTab(TabAndroid* parent,
       web_contents->GetJavaWebContents(), true, (int)TabModel::TabLaunchType::FROM_CHROME_UI);
 }
 
+void TabModelJniBridge::CloseTabForExtension(const std::string& extension_id) {
+  LOG(INFO) << "TabModelJniBridge::CloseTabForExtension";
+  JNIEnv* env = AttachCurrentThread();
+  Java_TabModelJniBridge_closeTabForExtension(env, java_object_.get(env), base::android::ConvertUTF8ToJavaString(env, extension_id));
+}
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
 		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
   LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension";
@@ -312,13 +318,19 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
     VLOG(0) << "Failed to create java tab";
     return NULL;
   }
-  TabAndroid* tab = TabAndroid::GetNativeTab(env, obj);
-  if (!tab) {
-    VLOG(0) << "Failed to create java tab";
-    return NULL;
-  }
+  // TabAndroid* tab = TabAndroid::GetNativeTab(env, obj);
+  // if (!tab) {
+  //   VLOG(0) << "Failed to create java tab";
+  //   return NULL;
+  // }
   if (!extension_id.empty()) {
     base::android::MisesSysUtils::LogEventFromJni("activate_extension", "id", extension_id);
   }
-  return tab->web_contents();
+  content::WebContents* web_contents = WebContents::FromJavaWebContents(obj);
+  ExtensionWebContentsHelper::CreateForWebContents(web_contents);
+  auto* helper = ExtensionWebContentsHelper::FromWebContents(web_contents);
+  if (helper) {
+    helper->SetExtensionInfo(extension_id, session_window_id);
+  }
+  return web_contents;
 }

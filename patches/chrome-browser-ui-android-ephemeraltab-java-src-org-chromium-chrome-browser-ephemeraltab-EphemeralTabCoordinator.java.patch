@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
+index 48f892a835200a54580fe0117b07cf682b870614..76c9d02f6578397b2ef5cc74b43a4775355a96a6 100644
+--- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
++++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
+@@ -106,7 +106,7 @@ public class EphemeralTabCoordinator implements View.OnLayoutChangeListener {
+      * @return {@code true} if the feature is enabled.
+      */
+     public static boolean isSupported() {
+-        return !SysUtils.isLowEndDevice();
++        return true; //!SysUtils.isLowEndDevice();
+     }
+ 
+     /** Checks if the preview tab is in open (peek) state. */

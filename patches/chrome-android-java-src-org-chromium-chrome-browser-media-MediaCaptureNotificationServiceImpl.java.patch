@@ -1,0 +1,20 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/media/MediaCaptureNotificationServiceImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/media/MediaCaptureNotificationServiceImpl.java
+index b5ec7dabd76afb47bfa82d8d6bc1d48ba0c188ca..187977d341cbb9db0a7fd336652173c3455be298 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/media/MediaCaptureNotificationServiceImpl.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/media/MediaCaptureNotificationServiceImpl.java
+@@ -13,6 +13,7 @@ import android.util.SparseIntArray;
+ import androidx.annotation.Nullable;
+ 
+ import org.chromium.base.ContextUtils;
++import org.chromium.base.IntentUtils;
+ import org.chromium.base.shared_preferences.SharedPreferencesManager;
+ import org.chromium.chrome.R;
+ import org.chromium.chrome.browser.IntentHandler;
+@@ -360,6 +361,6 @@ public class MediaCaptureNotificationServiceImpl extends MediaCaptureNotificatio
+                 ContextUtils.getApplicationContext(),
+                 notificationId,
+                 intent,
+-                PendingIntent.FLAG_UPDATE_CURRENT);
++                PendingIntent.FLAG_UPDATE_CURRENT | IntentUtils.getPendingIntentMutabilityFlag(false));
+     }
+ }

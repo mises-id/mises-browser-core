@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/TabbedModeTabDelegateFactory.java b/chrome/android/java/src/org/chromium/chrome/browser/TabbedModeTabDelegateFactory.java
-index 46793aad8a33caa5a8e128f907c6a27cdcf3eed6..1af20cb5dccaa2823eae60cf4117e278c91df4e5 100644
+index 46793aad8a33caa5a8e128f907c6a27cdcf3eed6..9da2f1fd01edb4a973c4b55fd21e49750b013814 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/TabbedModeTabDelegateFactory.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/TabbedModeTabDelegateFactory.java
 @@ -156,7 +156,7 @@ public class TabbedModeTabDelegateFactory implements TabDelegateFactory {
@@ -11,3 +11,12 @@ index 46793aad8a33caa5a8e128f907c6a27cdcf3eed6..1af20cb5dccaa2823eae60cf4117e278
      }
  
      @Override
+@@ -213,4 +213,8 @@ public class TabbedModeTabDelegateFactory implements TabDelegateFactory {
+     public void destroy() {
+         if (mNativePageFactory != null) mNativePageFactory.destroy();
+     }
++
++    public EphemeralTabCoordinator getEphemeralTabCoordinator() {
++        return mEphemeralTabCoordinatorSupplier.get();
++    }
+ }
