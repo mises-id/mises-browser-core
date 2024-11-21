@@ -25,6 +25,7 @@ class ExtensionWebContentsHelper
   // content::WebContentsObserver overrides:
   void WebContentsDestroyed() override;
 
+  std::string ExtensionId(){return extension_id_;}
 
   WEB_CONTENTS_USER_DATA_KEY_DECL();
 private:

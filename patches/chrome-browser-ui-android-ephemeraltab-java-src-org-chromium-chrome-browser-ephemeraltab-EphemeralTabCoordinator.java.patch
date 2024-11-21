@@ -1,7 +1,16 @@
 diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
-index 48f892a835200a54580fe0117b07cf682b870614..76c9d02f6578397b2ef5cc74b43a4775355a96a6 100644
+index 48f892a835200a54580fe0117b07cf682b870614..9ab3ba1c09c13437aab70237c6d186e6b2da1170 100644
 --- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
 +++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabCoordinator.java
+@@ -98,7 +98,7 @@ public class EphemeralTabCoordinator implements View.OnLayoutChangeListener {
+                 new EphemeralTabMediator(
+                         mBottomSheetController,
+                         new FaviconLoader(mContext),
+-                        (int) topControlsHeight);
++                        (int) topControlsHeight, tabProvider, tabCreator);
+     }
+ 
+     /**
 @@ -106,7 +106,7 @@ public class EphemeralTabCoordinator implements View.OnLayoutChangeListener {
       * @return {@code true} if the feature is enabled.
       */

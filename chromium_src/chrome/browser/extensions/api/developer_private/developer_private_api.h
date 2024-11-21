@@ -25,6 +25,8 @@ namespace extensions {
             void FileSelected(const ui::SelectedFileInfo& file, int index) override;
 
             void CheckFile(const base::FilePath& path);
+
+            void ShowSelectFileDialog();
         };
     }
 }

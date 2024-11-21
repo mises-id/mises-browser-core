@@ -414,14 +414,13 @@ bool TranslateIPFSURI(const GURL& url,
                       GURL* new_url,
                       const GURL& gateway_url,
                       bool use_subdomain) {
-  LOG(INFO) << "TranslateIPFSURI " <<  url;
   std::string cid, path;
   if (!ParseCIDAndPathFromIPFSUrl(url, &cid, &path))
     return false;
   
   bool ipfs_scheme = url.scheme() == kIPFSScheme;
   bool ipns_scheme = url.scheme() == kIPNSScheme;
-  LOG(INFO) << "TranslateIPFSURI step 1" <<  ipfs_scheme << ipns_scheme;
+  LOG(INFO) << "TranslateIPFSURI " <<  ipfs_scheme << ipns_scheme;
   if ((ipfs_scheme && IsValidCID(cid)) || ipns_scheme) {
     // new_url would be:
     // https://dweb.link/ipfs/[cid]//wiki/Vincent_van_Gogh.html
