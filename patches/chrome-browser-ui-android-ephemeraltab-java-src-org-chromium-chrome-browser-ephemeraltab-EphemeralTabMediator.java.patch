@@ -1,0 +1,76 @@
+diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
+index c4cbd2ccac157cf5a7664184f86d3a6f5f273f42..84133f0ee2b437e9347820dab26de1cf84839633 100644
+--- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
++++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
+@@ -28,6 +28,12 @@ import org.chromium.content_public.common.ResourceRequestBody;
+ import org.chromium.ui.widget.Toast;
+ import org.chromium.url.GURL;
+ 
++import org.chromium.base.supplier.Supplier;
++import org.chromium.chrome.browser.tab.Tab;
++import org.chromium.chrome.browser.tab.TabLaunchType;
++import org.chromium.chrome.browser.tabmodel.TabCreator;
++import org.chromium.ui.base.PageTransition;
++
+ /** Mediator class for preview tab, responsible for communicating with other objects. */
+ public class EphemeralTabMediator {
+     /** The delay (four video frames) after which the hide progress will be hidden. */
+@@ -44,15 +50,34 @@ public class EphemeralTabMediator {
+     private WebContentsDelegateAndroid mWebContentsDelegate;
+     private Profile mProfile;
+ 
++    private final Supplier<Tab> mTabProvider;
++    private final Supplier<TabCreator> mTabCreator;
++
++    private void openInNewTab(final GURL url) {   
++        mTabCreator
++                .get()
++                .createNewTab(
++                        new LoadUrlParams(url.getSpec(), PageTransition.LINK),
++                        TabLaunchType.FROM_LINK,
++                        mTabProvider.get());
++    }
++    private boolean isShowingExtension() {
++        return mWebContents != null && mWebContents.getVisibleUrl().getSpec().startsWith("chrome-extension://");
++    }
++
+     /** Constructor. */
+     public EphemeralTabMediator(
+             BottomSheetController bottomSheetController,
+             EphemeralTabCoordinator.FaviconLoader faviconLoader,
+-            int topControlsHeightDp) {
++            int topControlsHeightDp,
++            Supplier<Tab> tabProvider,
++            Supplier<TabCreator> tabCreator) {
+         mBottomSheetController = bottomSheetController;
+         mFaviconLoader = faviconLoader;
+         mTopControlsHeightDp = topControlsHeightDp;
+         mObservers = new ObserverList<EphemeralTabObserver>();
++        mTabProvider = tabProvider;
++        mTabCreator = tabCreator;
+     }
+ 
+     /** Initializes various objects for a new tab. */
+@@ -212,12 +237,22 @@ public class EphemeralTabMediator {
+                             ResourceRequestBody postData,
+                             int disposition,
+                             boolean isRendererInitiated) {
++                        if (isShowingExtension()) {
++                            //open new tab in tabs when preview tab is for extension
++                            openInNewTab(url);
++                            return;
++                        }  
+                         // We never open a separate tab when navigating in a preview tab.
+                         loadUrl(url);
+                     }
+ 
+                     @Override
+                     public boolean shouldCreateWebContents(GURL targetUrl) {
++                        if (isShowingExtension()) {
++                            //open new url in tabs when preview tab is for extension
++                            openInNewTab(targetUrl);
++                            return false;
++                        }                        
+                         loadUrl(targetUrl);
+                         return false;
+                     }

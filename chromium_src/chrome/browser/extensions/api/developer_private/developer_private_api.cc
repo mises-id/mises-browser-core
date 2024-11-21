@@ -1,9 +1,12 @@
 #include "chrome/browser/extensions/api/developer_private/developer_private_api.h"
 #include "base/threading/thread_restrictions.h"
+#include "ui/shell_dialogs/select_file_dialog.h"
 
+#define SELECT_EXISTING_FOLDER SELECT_OPEN_FILE
 #define DeveloperPrivateLoadUnpackedFunction DeveloperPrivateLoadUnpackedFunction_Chromium
 #include "src/chrome/browser/extensions/api/developer_private/developer_private_api.cc"
 #undef DeveloperPrivateLoadUnpackedFunction
+#undef SELECT_EXISTING_FOLDER
 #include "ui/shell_dialogs/selected_file_info.h"
 
 
@@ -16,6 +19,7 @@ namespace api{
 
 DeveloperPrivateLoadUnpackedFunction::DeveloperPrivateLoadUnpackedFunction() {}
 DeveloperPrivateLoadUnpackedFunction::~DeveloperPrivateLoadUnpackedFunction() {}
+
 
 
 void DeveloperPrivateLoadUnpackedFunction::CheckFile(const base::FilePath& path) {
