@@ -32,6 +32,7 @@
 #include "base/android/sys_utils.h"
 #endif
 #include "mises/browser/extension_web_contents_helper.h"
+#include "chrome/browser/ui/android/context_menu_helper.h"
 
 using base::android::AttachCurrentThread;
 using base::android::ConvertUTF8ToJavaString;
@@ -328,6 +329,7 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
   }
   content::WebContents* web_contents = WebContents::FromJavaWebContents(obj);
   ExtensionWebContentsHelper::CreateForWebContents(web_contents);
+  ContextMenuHelper::CreateForWebContents(web_contents);
   auto* helper = ExtensionWebContentsHelper::FromWebContents(web_contents);
   if (helper) {
     helper->SetExtensionInfo(extension_id, session_window_id);

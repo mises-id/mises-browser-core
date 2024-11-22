@@ -8,6 +8,14 @@ package org.chromium.chrome.browser.tabmodel;
 import android.app.Activity;
 import android.os.Build;
 
+import android.content.Intent;
+import android.graphics.Rect;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ActionMode;
+import android.view.View.OnClickListener;
+
 import androidx.annotation.Nullable;
 
 import org.chromium.base.MisesReflectionUtil;
@@ -31,6 +39,10 @@ import org.chromium.content_public.browser.WebContents;
 import org.chromium.ui.base.WindowAndroid;
 import org.chromium.chrome.browser.ephemeraltab.EphemeralTabCoordinator;
 import org.chromium.url.GURL;
+import org.chromium.content_public.browser.SelectionPopupController;
+import org.chromium.chrome.browser.selection.ChromeSelectionDropdownMenuDelegate;
+import org.chromium.content_public.browser.ActionModeCallback;
+import org.chromium.content_public.browser.ActionModeCallbackHelper;
 
 public class MisesTabCreator extends ChromeTabCreator {
     private Supplier<TabDelegateFactory> mTabDelegateFactorySupplier;
@@ -97,10 +109,58 @@ public class MisesTabCreator extends ChromeTabCreator {
                         this,
                         "getProfile");
                 ephemeralTabCoordinator.requestOpenSheet(new GURL(loadUrlParams.getUrl()), "", profile);
-                return ephemeralTabCoordinator.getWebContentsForTesting();
+                WebContents webContents =  ephemeralTabCoordinator.getWebContentsForTesting();
+                SelectionPopupController spc =
+                            SelectionPopupController.fromWebContents(webContents);
+
+                spc.setActionModeCallback(defaultActionCallback(spc));
+                spc.setDropdownMenuDelegate(new ChromeSelectionDropdownMenuDelegate());
+                return webContents;
             }
         }
         return null;
+    }
+
+    private ActionModeCallback defaultActionCallback(final SelectionPopupController spc) {
+        final ActionModeCallbackHelper helper =
+                spc.getActionModeCallbackHelper();
+
+        return new ActionModeCallback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                helper.onCreateActionMode(mode, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return helper.onPrepareActionMode(mode, menu);
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return helper.onActionItemClicked(mode, item);
+            }
+
+            @Override
+            public boolean onDropdownItemClicked(
+                    int groupId,
+                    int id,
+                    @Nullable Intent intent,
+                    @Nullable OnClickListener clickListener) {
+                return helper.onDropdownItemClicked(groupId, id, intent, clickListener);
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                helper.onDestroyActionMode();
+            }
+
+            @Override
+            public void onGetContentRect(ActionMode mode, View view, Rect outRect) {
+                helper.onGetContentRect(mode, view, outRect);
+            }
+        };
     }
 
     public void closeExtensionPopup(final String extensionId) {
