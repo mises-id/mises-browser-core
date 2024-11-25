@@ -73,6 +73,7 @@
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 
 #include "chrome/browser/extensions/updater/extension_updater.h"
+#include "extensions/common/features/feature_developer_mode_only.h"
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 namespace extensions {
@@ -517,20 +518,7 @@ void MisesComponentLoader::OnWebstoreInstallResult(
  }
 
  if (pending_preinstall.empty()) {
-  //no more pending_preinstall, do a update check now to report extension installed
-    extensions::ExtensionService* service =
-      extensions::ExtensionSystem::Get(profile_)->extension_service();
-    if (service) {
-      ExtensionUpdater* updater = service->updater();
-      if (updater) {
-        ExtensionUpdater::CheckParams params;
-        params.fetch_priority = DownloadFetchPriority::kBackground;
-        params.install_immediately = false;
-        updater->CheckNow(std::move(params));
-      }
-    }
-
-
+    OnPreInstallFinished();
  }
 }
 
@@ -708,7 +696,8 @@ void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids)
     }
   }
 }
- void MisesComponentLoader::OnNotificationHandled(int action) {
+ 
+void MisesComponentLoader::OnNotificationHandled(int action) {
   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
   if (action == 0) {
     StartPreInstall(tos_preinstalls);
@@ -719,6 +708,29 @@ void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids)
       }
   }
 
- }
+}
+
+void MisesComponentLoader::OnPreInstallFinished() {
+  //no more pending_preinstall, do a update check now to report extension installed
+  extensions::ExtensionService* service =
+    extensions::ExtensionSystem::Get(profile_)->extension_service();
+  if (service) {
+    ExtensionUpdater* updater = service->updater();
+    if (updater) {
+      ExtensionUpdater::CheckParams params;
+      params.fetch_priority = DownloadFetchPriority::kBackground;
+      params.install_immediately = false;
+      updater->CheckNow(std::move(params));
+    }
+  }
+
+  std::string defaultEVMExtensionID = preferences::features::GetMisesPreinstallDefaultEVMExtension();
+  std::string defaultEVMExtensionKeyProperty = preferences::features::GetMisesPreinstallDefaultEVMExtensionKeyProperty();
+  if (GetDefaultEVMWalletForBrowserContext(profile_).size() == 0) {
+    SetDefaultEVMWalletForBrowserContext(profile_,
+      defaultEVMExtensionID, defaultEVMExtensionKeyProperty);
+  }
+  
+}
 
 }  // namespace extensions

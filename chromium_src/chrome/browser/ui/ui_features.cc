@@ -1,7 +1,12 @@
 #include "src/chrome/browser/ui/ui_features.cc"
-
+#include "base/feature_override.h"
 
 namespace features {
+
+// this casues crash when enabled ,crash in ToolbarView::~ToolbarView() 
+OVERRIDE_FEATURE_DEFAULT_STATES({{
+    {kResponsiveToolbar, base::FEATURE_DISABLED_BY_DEFAULT},
+}});
 
 #if defined(ANDROID) 
 // Enables "Access Code Cast" UI.

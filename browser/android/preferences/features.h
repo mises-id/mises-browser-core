@@ -18,6 +18,8 @@ BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
 std::vector<std::string> GetMisesPreinstallExtensionIds();
 std::string GetMisesPreinstallExtensionTOS();
 std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds();
+std::string GetMisesPreinstallDefaultEVMExtension();
+std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty();
 
 }  // namespace features
 }  // namespace preferences
