@@ -89,6 +89,8 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
 
  void StartPreInstall(const std::vector<std::string>&  ids);
 
+ void OnPreInstallFinished();
+
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;
   std::unique_ptr<extensions::ScopedTestDialogAutoConfirm>

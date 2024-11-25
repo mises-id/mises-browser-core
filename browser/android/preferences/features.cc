@@ -31,6 +31,11 @@ const base::FeatureParam<std::string> kMisesPreinstallExtensionListWithTOS{
 const base::FeatureParam<std::string> kMisesPreinstallExtensionTOS{
     &kMisesPreinstallExtension, "TOS", ""};
 
+const base::FeatureParam<std::string> kMisesPreinstallDefaultEVMExtension{
+    &kMisesPreinstallExtension, "DefaultEVMExtension", ""};
+
+    
+
 std::vector<std::string> GetMisesPreinstallExtensionIds() {
    if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
     return std::vector<std::string>();
@@ -55,6 +60,32 @@ std::string GetMisesPreinstallExtensionTOS() {
 
    return kMisesPreinstallExtensionTOS.Get();
 }
+
+std::string GetMisesPreinstallDefaultEVMExtension() {
+   if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
+    return std::string();
+
+   std::vector<std::string> list = base::SplitString(
+      kMisesPreinstallDefaultEVMExtension.Get(), ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+   if (list.size() >= 1) {
+    return list[0];
+   }
+   return "";
+}
+
+
+std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty() {
+   if (!base::FeatureList::IsEnabled(kMisesPreinstallExtension))
+    return std::string();
+
+   std::vector<std::string> list = base::SplitString(
+      kMisesPreinstallDefaultEVMExtension.Get(), ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+   if (list.size() >= 2) {
+    return list[1];
+   }
+   return "";
+}
+
 
 
 }  // namespace features

@@ -1,5 +1,11 @@
 #include "src/extensions/common/features/feature_developer_mode_only.cc"
 
+#include "extensions/browser/renderer_startup_helper.h"
+#include "chrome/browser/profiles/profile.h"
+#include "components/prefs/pref_service.h"
+#include "chrome/common/pref_names.h"
+#include "extensions/browser/extension_util.h"
+
 
 namespace {
 
@@ -34,11 +40,34 @@ std::string GetDefaultEVMWalletKeyProperty(int context_id) {
 
 }
 
-void SetDefaultEVMWallet(int context_id, const std::string& id, const std::string& keyProperty) {
+void SetDefaultEVMWallet(int context_id, const std::string& id, const std::string& key_property) {
   DefaultEVMWallet wallet;
   wallet.id = id;
-  wallet.keyProperty = keyProperty;
+  wallet.keyProperty = key_property;
   GetDefaultEVMWalletMap()[context_id] = wallet;
+}
+
+void SetDefaultEVMWalletForBrowserContext(content::BrowserContext*  context, const std::string& id, const std::string& key_property) {
+  Profile* profile = Profile::FromBrowserContext(context);
+  if (profile) {
+    PrefService* prefs = profile->GetPrefs();
+    prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletID, id);
+    prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletKeyProperty, key_property);
+    SetDefaultEVMWallet(util::GetBrowserContextId(context), id, key_property);
+    RendererStartupHelperFactory::GetForBrowserContext(context)
+                ->OnDefaultEVMWalletChanged(id, key_property);
+  }
+}
+
+std::string GetDefaultEVMWalletForBrowserContext(content::BrowserContext*  context) {
+  Profile* profile = Profile::FromBrowserContext(context);
+  std::string id;
+  if (profile) {
+    PrefService* prefs = profile->GetPrefs();
+    id = prefs->GetString(prefs::kExtensionsUIDefaultEVMWalletID);
+  }
+
+  return id;
 }
 
 }  // namespace extensions

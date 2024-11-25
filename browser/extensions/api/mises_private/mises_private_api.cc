@@ -227,18 +227,8 @@ ExtensionFunction::ResponseAction MisesPrivateSetDefaultEVMWalletFunction::Run()
     api::mises_private::SetDefaultEVMWallet::Params::Create(args()));
   EXTENSION_FUNCTION_VALIDATE(params);
 
-  Profile* profile = Profile::FromBrowserContext(browser_context());
-
-  PrefService* prefs = profile->GetPrefs();
-
-  prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletID,
-                      params->id);
-  prefs->SetString(prefs::kExtensionsUIDefaultEVMWalletKeyProperty,
-                      params->key_property);
-  SetDefaultEVMWallet(util::GetBrowserContextId(browser_context()),
+  SetDefaultEVMWalletForBrowserContext(browser_context(),
                             params->id, params->key_property);
-  RendererStartupHelperFactory::GetForBrowserContext(browser_context())
-	            ->OnDefaultEVMWalletChanged(params->id, params->key_property);
 
 
   return RespondNow(NoArguments());
@@ -246,12 +236,8 @@ ExtensionFunction::ResponseAction MisesPrivateSetDefaultEVMWalletFunction::Run()
 
 
 ExtensionFunction::ResponseAction MisesPrivateGetDefaultEVMWalletFunction::Run() {
-  
-  Profile* profile = Profile::FromBrowserContext(browser_context());
 
-  PrefService* prefs = profile->GetPrefs();
-
-  std::string id = prefs->GetString(prefs::kExtensionsUIDefaultEVMWalletID);
+  std::string id = GetDefaultEVMWalletForBrowserContext(browser_context());
 
   return RespondNow(ArgumentList(
     api::mises_private::GetDefaultEVMWallet::Results::Create(id)));

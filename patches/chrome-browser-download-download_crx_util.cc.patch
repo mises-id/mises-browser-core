@@ -1,0 +1,27 @@
+diff --git a/chrome/browser/download/download_crx_util.cc b/chrome/browser/download/download_crx_util.cc
+index ebd4a1d64cee299256754de71e526fc18de81aff..cd087a29263311677bcd4962d22ef7e35d288f81 100644
+--- a/chrome/browser/download/download_crx_util.cc
++++ b/chrome/browser/download/download_crx_util.cc
+@@ -23,6 +23,10 @@
+ #include "extensions/common/extension_urls.h"
+ #include "extensions/common/user_script.h"
+ 
++#if BUILDFLAG(IS_ANDROID)
++#include "chrome/browser/android/tab_android.h"
++#endif
++
+ using content::BrowserThread;
+ using download::DownloadItem;
+ using extensions::WebstoreInstaller;
+@@ -61,6 +65,11 @@ std::unique_ptr<ExtensionInstallPrompt> CreateExtensionInstallPrompt(
+       }
+       web_contents = browser->tab_strip_model()->GetActiveWebContents();
+     }
++#if BUILDFLAG(IS_ANDROID)
++    if (!web_contents) {
++      web_contents = GetActiveWebContentsAndroid();
++    }
++#endif
+     return std::make_unique<ExtensionInstallPrompt>(web_contents);
+   }
+ }
