@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
+index 8205ece973eca885406ed215408a31c4bdc93151..0f6ad02e05ea7ac331d3694f24ef9112a0a08b5a 100644
+--- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
++++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
+@@ -289,6 +289,9 @@ public class EphemeralTabSheetContent implements BottomSheetContent {
+ 
+     @Override
+     public int getVerticalScrollOffset() {
++        //force allow sheet content to scroll, this makes bottom sheet not moving
++        boolean mises_enforced = true;
++        if (mises_enforced) return 1; 
+         return mWebContents == null
+                 ? 0
+                 : RenderCoordinates.fromWebContents(mWebContents).getScrollYPixInt();
