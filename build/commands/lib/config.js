@@ -342,6 +342,10 @@ Config.prototype.buildArgs = function () {
   if (!this.isMisesReleaseBuild()) {
     args.chrome_pgo_phase = 0
 
+    // Don't randomize mojom message ids. When randomization is enabled, all
+    // Mojo targets are rebuilt (~23000) on each version bump.
+    args.enable_mojom_message_id_scrambling = false
+
     if (process.platform === 'darwin' && this.targetOS != 'ios' && args.is_official_build) {
       // Currently we're using is_official_build mode in PR builds on CI. This enables dSYMs
       // by default, which slows down link phase, but also disables relocatable compilation
@@ -508,11 +512,16 @@ Config.prototype.buildArgs = function () {
     // We want it to be enabled for all configurations
     args.disable_android_lint = true
 
-    if (this.targetArch === 'arm64') {
-      // TODO: Ideally we should properly compile our rust libraries in order to
-      // be able to use default 'standard' flow integrity. For now just revert
-      // it to 'pac'.
-      args.arm_control_flow_integrity = 'pac'
+    if (this.targetArch == "arm64") {
+      // Flag use_relr_relocations is incompatible with Android 8 arm64, but
+      // makes huge optimizations on Android 9 and above.
+      // Decision is to specify android:minSdkVersion=28 for arm64 and keep
+      // 26(default) for arm32.
+      // Then:
+      //   - for Android 8 and 8.1 GP will supply arm32 bundle;
+      //   - for Android 9 and above GP will supply arm64 and we can enable all
+      //     optimizations.
+      args.default_min_sdk_version = 28
     }
 
     args.enable_pdf = false
