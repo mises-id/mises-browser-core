@@ -43,6 +43,8 @@ import org.chromium.content_public.browser.SelectionPopupController;
 import org.chromium.chrome.browser.selection.ChromeSelectionDropdownMenuDelegate;
 import org.chromium.content_public.browser.ActionModeCallback;
 import org.chromium.content_public.browser.ActionModeCallbackHelper;
+import org.chromium.chrome.browser.PersonalizeResults;
+import org.chromium.chrome.browser.ephemeraltab.EphemeralTabObserver;
 
 public class MisesTabCreator extends ChromeTabCreator {
     private Supplier<TabDelegateFactory> mTabDelegateFactorySupplier;
@@ -104,17 +106,26 @@ public class MisesTabCreator extends ChromeTabCreator {
             TabbedModeTabDelegateFactory  tabbedModeTabDelegateFactory = (TabbedModeTabDelegateFactory)tabDelegateFactory;
             EphemeralTabCoordinator ephemeralTabCoordinator = tabbedModeTabDelegateFactory.getEphemeralTabCoordinator();
             if (ephemeralTabCoordinator != null) {
+                ephemeralTabCoordinator.addObserver(new EphemeralTabObserver() {
+                    @Override
+                    public void onNavigationFinished(WebContents webContents) {
+                        PersonalizeResults.Execute(webContents.getVisibleUrl(), webContents);
+                    }
+                });
                 Profile profile = (Profile)MisesReflectionUtil.invokeMethod(
                         ChromeTabCreator.class,
                         this,
                         "getProfile");
-                ephemeralTabCoordinator.requestOpenSheet(new GURL(loadUrlParams.getUrl()), "", profile);
+                final GURL gurl = new GURL(loadUrlParams.getUrl());
+                ephemeralTabCoordinator.requestOpenSheet(gurl, "", profile);
                 WebContents webContents =  ephemeralTabCoordinator.getWebContentsForTesting();
                 SelectionPopupController spc =
                             SelectionPopupController.fromWebContents(webContents);
 
                 spc.setActionModeCallback(defaultActionCallback(spc));
                 spc.setDropdownMenuDelegate(new ChromeSelectionDropdownMenuDelegate());
+
+                
                 return webContents;
             }
         }

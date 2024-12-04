@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
-index c4cbd2ccac157cf5a7664184f86d3a6f5f273f42..84133f0ee2b437e9347820dab26de1cf84839633 100644
+index c4cbd2ccac157cf5a7664184f86d3a6f5f273f42..ccdd8d5a30dded53355271cf256fff629cdbf46e 100644
 --- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
 +++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabMediator.java
 @@ -28,6 +28,12 @@ import org.chromium.content_public.common.ResourceRequestBody;
@@ -51,7 +51,30 @@ index c4cbd2ccac157cf5a7664184f86d3a6f5f273f42..84133f0ee2b437e9347820dab26de1cf
      }
  
      /** Initializes various objects for a new tab. */
-@@ -212,12 +237,22 @@ public class EphemeralTabMediator {
+@@ -105,6 +130,14 @@ public class EphemeralTabMediator {
+         }
+     }
+ 
++    public void onNavigationFinished(WebContents webContents) {
++        RewindableIterator<EphemeralTabObserver> observersIterator =
++                mObservers.rewindableIterator();
++        while (observersIterator.hasNext()) {
++            observersIterator.next().onNavigationFinished(webContents);
++        }
++    }
++
+     /** Notify observers on title set. */
+     public void onTitleSet(EphemeralTabSheetContent sheetContent, String title) {
+         RewindableIterator<EphemeralTabObserver> observersIterator =
+@@ -174,6 +207,7 @@ public class EphemeralTabMediator {
+                         if (navigation.hasCommitted()) {
+                             mIsOnErrorPage = navigation.isErrorPage();
+                             mSheetContent.updateURL(mWebContents.get().getVisibleUrl());
++                            onNavigationFinished(mWebContents.get());
+                         } else if (navigation.isDownload()) {
+                             // Not viewable contents such as download. Show a toast and close the
+                             // tab.
+@@ -212,12 +246,22 @@ public class EphemeralTabMediator {
                              ResourceRequestBody postData,
                              int disposition,
                              boolean isRendererInitiated) {

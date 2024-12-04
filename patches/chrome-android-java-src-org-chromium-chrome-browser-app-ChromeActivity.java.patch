@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
-index 0533a68040c2ebbcfe6ee22b76cd4f78d50a09bc..e92a7123b9d3b1bfd812199c425cc9c242e2a886 100644
+index 0533a68040c2ebbcfe6ee22b76cd4f78d50a09bc..21c55cf5108d57d11bf160fda34339838390f0d3 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
 @@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
@@ -115,8 +115,8 @@ index 0533a68040c2ebbcfe6ee22b76cd4f78d50a09bc..e92a7123b9d3b1bfd812199c425cc9c2
 +                    public void onUrlUpdated(Tab tab){
 +	                     if (tab != null && !tab.isNativePage()) {
 +                            Log.i(TAG,"#onUrlUpdated: " + tab.getUrl().getPossiblyInvalidSpec());
-+	                         FixDevToolsWindow.Execute(tab);
-+                            PersonalizeResults.Execute(tab);
++	                        FixDevToolsWindow.Execute(tab);
++                            PersonalizeResults.Execute(tab.getUrl(), tab.getWebContents());
 +	                     }
 +                        mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
                      }

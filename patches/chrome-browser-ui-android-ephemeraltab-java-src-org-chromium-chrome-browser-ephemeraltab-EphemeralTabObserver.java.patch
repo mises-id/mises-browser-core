@@ -1,0 +1,20 @@
+diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabObserver.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabObserver.java
+index bbc631813202ddcd59fa423b914991f5f35ede44..ae28978cb429c78594a070871729b90d9b04cfc2 100644
+--- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabObserver.java
++++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabObserver.java
+@@ -7,6 +7,7 @@ package org.chromium.chrome.browser.ephemeraltab;
+ import android.view.ViewGroup;
+ 
+ import org.chromium.url.GURL;
++import org.chromium.content_public.browser.WebContents;
+ 
+ /** An Observer that gets notified on Ephemeral Tab events. */
+ public interface EphemeralTabObserver {
+@@ -14,5 +15,7 @@ public interface EphemeralTabObserver {
+ 
+     default void onNavigationStarted(GURL clickedUrl) {}
+ 
++    default void onNavigationFinished(WebContents webContents) {}
++
+     default void onTitleSet(EphemeralTabSheetContent sheetContent, String title) {}
+ }
