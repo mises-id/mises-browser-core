@@ -58,9 +58,20 @@
           preferences::features::kMisesPreinstallExtension),              \
   })
 
+#define MISES_PRIORITY_EXTENSION_ANDROID                                \
+  EXPAND_FEATURE_ENTRIES({                                                \
+      "mises-priority-extension",                                       \
+      "Priority extension",                                             \
+      "Enables extension priority",                                     \
+      kOsAndroid,                                                         \
+      FEATURE_VALUE_TYPE(                                                 \
+          preferences::features::kMisesPriorityExtension),              \
+  })
+
 #else
 #define MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID
 #define MISES_PREINSTALL_EXTENSION_ANDROID
+#define MISES_PRIORITY_EXTENSION_ANDROID
 
 #endif  // BUILDFLAG(IS_ANDROID)
 
@@ -121,6 +132,7 @@
   MISES_IPFS_FEATURE_ENTRIES                                                   \
   MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID                                      \
   MISES_PREINSTALL_EXTENSION_ANDROID                                           \
+  MISES_PRIORITY_EXTENSION_ANDROID                                             \
   MISES_SEARCH                                                                 \
   LAST_MISES_FEATURE_ENTRIES_ITEM  // Keep it as the last item.
 

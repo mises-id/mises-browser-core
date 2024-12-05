@@ -4,7 +4,7 @@ import org.chromium.base.Log;
 import org.chromium.url.GURL;
 import org.chromium.base.ContextUtils;
 import org.chromium.chrome.browser.profiles.Profile;
-import org.chromium.chrome.browser.tab.Tab;
+import org.chromium.content_public.browser.WebContents;
 import org.chromium.chrome.browser.tab.RequestDesktopUtils;
 import org.chromium.chrome.browser.preferences.Pref;
 
@@ -27,189 +27,192 @@ public class PersonalizeResults {
         RequestDesktopUtils.setRequestDesktopSiteContentSettingsForUrl(profile, url, true);
       }
     }
-    public static void Execute(final Tab tab) {
-       final boolean shouldRewrapText = ContextUtils.getAppSharedPreferences().getBoolean("text_rewrap", false);
-       final boolean shouldRemoveAmp = ContextUtils.getAppSharedPreferences().getBoolean("avoid_amp_websites", true);
-       if (shouldRemoveAmp && tab != null && IsSearchUrl(tab.getUrl().getSpec())) {
-          tab.getWebContents().evaluateJavaScript(AMP_SCRIPT, null);
-       }
-       if (tab != null && shouldRewrapText) {
-          tab.getWebContents().evaluateJavaScript("(function() { var pendingUpdate=false;function viewportHandler(event){if(pendingUpdate)return;pendingUpdate=true;requestAnimationFrame(()=>{pendingUpdate=false;document.getElementsByTagName('html')[0].style.maxWidth=window.visualViewport.width+'px';var miniLeft=visualViewport.offsetLeft;var miniTop = -(visualViewport.offsetTop + visualViewport.offsetTop * ((window.pageYOffset / window.innerHeight) / 2));document.getElementsByTagName('html')[0].style.transition='0s ease-in-out';if (miniLeft == 0 && miniTop == 0) { document.getElementsByTagName('html')[0].style.transform=''; } else { document.getElementsByTagName('html')[0].style.transform='translate('+miniLeft+'px, '+miniTop+'px) scale(1.0)'; } })}window.visualViewport.addEventListener('resize',viewportHandler);window.visualViewport.addEventListener('scroll', viewportHandler); })();", null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://chrome.google.com/webstore")) {
-          tab.getWebContents().evaluateJavaScript("(function() { if (!document.location.href.includes('https://chrome.google.com/webstore')) { return; } " + MAKE_USER_AGENT_WRITABLE + " window.navigator.userAgent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.24 Safari/537.36'; window.addEventListener('load', function() { if (document.location.pathname == '/webstore/unsupported') { document.location = '/webstore/'; } var node = document.createElement('style');    document.body.appendChild(node);    window.addStyleString = function(str) {        node.innerHTML = str;    }; addStyleString('div { visibility: visible !important; } '); }); })();", null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://chrome.google.com/webstore") && !ContextUtils.getAppSharedPreferences().getBoolean("cws_mobile_friendly", false)) {
-          tab.getWebContents().evaluateJavaScript("(function() { if (!document.location.href.includes('https://chrome.google.com/webstore')) { return; } window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://chrome.google.com/webstore") && ContextUtils.getAppSharedPreferences().getBoolean("cws_mobile_friendly", false)) {
-          tab.getWebContents().evaluateJavaScript(CWS_MOBILE_SCRIPT, null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://chromewebstore.google.com")) {
-          tab.getWebContents().evaluateJavaScript("(function() { if (!document.location.href.includes('https://chromewebstore.google.com')) { return; } window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://microsoftedge.microsoft.com/addons")) {
-          tab.getWebContents().evaluateJavaScript(EDGE_SCRIPT, null);
-       }
-       if (tab != null && (tab.getUrl().getSpec().startsWith("https://m.facebook.com/messenger/install")
-                       || tab.getUrl().getSpec().startsWith("https://m.facebook.com/messages"))) {
-          tab.getWebContents().evaluateJavaScript(MESSENGER_SCRIPT, null);
-       }
-       if (tab != null && tab.getUrl().getSpec().contains("messenger.com/")) {
-          tab.getWebContents().evaluateJavaScript(MESSENGER_VIEWPORT_SCRIPT, null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://m.facebook.com/")) {
-          tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://m.facebook.com/')) { return; } document.querySelector('body.touch').style = \"cursor:default\";})();", null);
-       }
-       if (tab != null && tab.getUrl().getSpec().startsWith("https://translate.google.com/translate_c")) {
-          tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://translate.google.com/translate_c')) { return; } var b=document.getElementById(\"gt-nvframe\");if(b){b.style.position='unset';document.body.style.top='0px'}else{var child=document.createElement('iframe');child.id='gt-nvframe';child.src=document.location.href.replace('/translate_c','/translate_nv');child.style.width='100%';child.style.height='93px';document.body.insertBefore(child,document.body.firstChild);var t=document.querySelector('meta[name=\"viewport\"]');if(!t){var metaTag=document.createElement('meta');metaTag.name='viewport';metaTag.content='width=device-width, initial-scale=1.0';document.body.appendChild(metaTag)}}})();", null);
-       }
-       if (tab != null && (tab.getUrl().getSpec().startsWith("chrome://")
-                       || tab.getUrl().getSpec().startsWith("chrome-extension://")
-                       || tab.getUrl().getSpec().startsWith("mises://"))) {
-          tab.getWebContents().evaluateJavaScript("(function() { if (!document.location.href.includes('chrome://') && !document.location.href.includes('chrome-extension://') && !document.location.href.includes('mises://')) { return; } " + ADAPT_TO_MOBILE_VIEWPORT + "})();", null);
-         
-       }
-       if (tab != null && ContextUtils.getAppSharedPreferences().getBoolean("accept_cookie_consent", true) && (tab.getUrl().getSpec().startsWith("http://") || tab.getUrl().getSpec().startsWith("https://"))) {
-          tab.getWebContents().evaluateJavaScript("(function(){function clickItem(elem) { elem.click(); } function acceptViaAPIs(){typeof window.__cmpui=='function'&&window.__cmpui('setAndSaveAllConsent',!0);typeof window.Didomi=='object'&&window.Didomi.setUserAgreeToAll()}window.globalObserver=null;function setupObserver(){if(!window.globalObserver){var newelem=document.createElement('style');newelem.innerHTML='.qc-cmp-showing { visibility: hidden !important; } body.didomi-popup-open { overflow: auto !important; } #didomi-host { visibility: hidden !important; }';document.body.appendChild(newelem);var MutationObserver=window.MutationObserver||window.WebKitMutationObserver;window.globalObserver=new MutationObserver(check);window.globalObserver.observe(window.document.documentElement,{childList:true,subtree:true});window.setTimeout(function(){window.globalObserver && window.globalObserver.disconnect();window.globalObserver=null},15000)}check()}function check(){window.setTimeout(function(){var listeners=[];listeners.push({selector:'#qcCmpUi',fn:acceptViaAPIs});listeners.push({selector:'#didomi-popup',fn:acceptViaAPIs});listeners.push({selector: '.accept-cookies-button,#purch-gdpr-banner__accept-button,#bbccookies-continue-button,.user-action--accept,.consent-accept,.bcpConsentOKButton,.button.accept,#footer_tc_privacy_button,button[aria-label=\"Button to collapse the message\"],.gdpr-form>.btn[value=\"Continue\"],button[on^=\"tap:\"][on$=\".accept\"],button[on^=\"tap:\"][on$=\".dismiss\"],.js-cookies-button,.app-offer__close_js,.lg-cc__button_type_action',fn: clickItem});for(var i=0,len=listeners.length,listener,elements;i<len;i++){listener=listeners[i];elements=window.document.querySelectorAll(listener.selector);for(var j=0,jLen=elements.length,element;j<jLen;j++){element=elements[j];if(!element.ready){element.ready=true;listener.fn.call(element, element)}}}},5)}window.addEventListener('DOMContentLoaded',setupObserver);check()})();", null);
-       }
-       // tronlink 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ibnejdfjmmkpcnlpebklmnkoeoihofec")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TRONLINK_EXTENSION_STYLES), null);
-       }
-       // keplr 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(KEPLR_EXTENSION_STYLES), null);
-       }
-       // hulio 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://olikokhekcibedhfkhbkmphgmopigibb")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(HULIO_EXTENSION_STYLES), null);
-       }
-       // coinhub 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://jgaaimajipbpdogpdglhaphldakikgef")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(COINHUB_EXTENSION_STYLES), null);
-       }
-       // Avana 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ajnodjmfajgabkmeididajpkoobeiofn")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(AVANA_EXTENSION_STYLES), null);
-       }
-       // Teleport Wallet 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://gkeelndblnomfmjnophbhfhcjbcnemka")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TELEPORTWALLET_EXTENSION_STYLES), null);
-       }
-       // umi 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://einhphiffjfjogeofkpclobkcgennocm")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(UMI_EXTENSION_STYLES), null);
-       }
-       // TokenPocket 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://mfgccjchihfkkindfppnaooecgfneiii")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TOKENPOCKET_EXTENSION_STYLES), null);
-       }
-       // ezdefi 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ejeemacpidnaejkhpbmfkadhgjhnolaa")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(EZDEFI_EXTENSION_STYLES), null);
-       }
-       // lilico 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://hpclkefagolihohboafpheddmmgdffjm")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(LILICO_EXTENSION_STYLES), null);
-       }
-       // xdefi 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://hmeobnfnfcmdkdcmlblgagmfpfboieaf")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(XDEFI_EXTENSION_STYLES), null);
-       }
-       // soda 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ckeekocbghailhahfmkdgffiieolpagi")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(SODA_EXTENSION_STYLES), null);
-       }
-       // traitsniper 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://acaonckckmmakfgjfkgbfeepdhmajkeg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TRAITSNIPER_EXTENSION_STYLES), null);
-       }
-       // similarweb 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(SIMILARWEB_EXTENSION_STYLES), null);
-       }
-       // Talisman 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TALISMAN_EXTENSION_STYLES), null);
-       }
-       // celo extension wallet 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://kkilomkmpmkbdnfelcpgckmpcaemjcdh")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(CELOEXTENSION_EXTENSION_STYLES), null);
-       }
-       // Cosmos Wallet 
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fcfcfllfndlomdhbehjjcoimbgofdncg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(COSMOS_EXTENSION_STYLES), null);
-       }
-       // Pontem Aptos Wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://phkbamefinggmakgklpkljjmgibohnba")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(PONTEM_EXTENSION_STYLES), null);
-       }
-       // Martian Aptos Wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://efbglgofoippbgcjepnhiblaibcnclgk")) {
-        tab.getWebContents().evaluateJavaScript("(function() {window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=device-width\") }); })();", null);
-        tab.getWebContents().evaluateJavaScript(RenderStyleContent(MARTIAN_EXTENSION_STYLES), null);
-       }
-       // StarMask
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://mfhbebgoclkghebffdldpobeajmbecfk")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(STERMASK_EXTENSION_STYLES), null);
-       }
-       // Adena
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://oefglhbffgfkcpboeackfgdagmlnihnh")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(ADENA_EXTENSION_STYLES), null);
-       }
-       // Push Protocol (Alpha)
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://lbdcbpaldalgiieffakjhiccoeebchmg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(PUSHPROTOCOL_EXTENSION_STYLES), null);
-       }
-       // coin 98
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://aeachknmefphepccionboohckonoeemg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(COIN98_EXTENSION_STYLES), null);
-       }
-       // DioWallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(DIOWALLET_EXTENSION_STYLES), null);
-       }
-       // Metamask
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(METAMASK_EXTENSION_STYLES), null);
-       }
-       // nami
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://lpfcbjknijpeeillifnkikgncikgfhdo")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(NAMI_EXTENSION_STYLES), null);
-       }
-       // bitski
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://feejiigddaafeojfddjjlmfkabimkell")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(BITSKI_STYLES), null);
-       }
-       // ever wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://cgeeodpfagjceefieflmdfphplkenlfk")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(EVER_WALLET_STYLES), null);
-       }
-       // leap cosmos wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fcfcfllfndlomdhbehjjcoimbgofdncg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(LEAP_WALLET_STYLES), null);
-       }
-       // talisman-polkadot wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(TALISMAN_WALLET_STYLES), null);
-       }
-       // talisman-polkadot wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ffnbelfdoeiohenkjibnmadjiehjhajb")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(YOROI_WALLET_STYLES), null);
-       }
-       // dioxied wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(DIOXIED_WALLET_STYLES), null);
-       }
-       // theta wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ckelpdlfgochnkdgikcgbimdcfgpkhgk")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(THETE_WALLET_STYLES), null);
-       }
-       // fetch wallet
-       if (tab != null && tab.getUrl().getSpec().startsWith("chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg")) {
-         tab.getWebContents().evaluateJavaScript(RenderStyleContent(FETCG_EXTENSION_STYLES), null);
-       }
+    public static void Execute(final GURL url, final WebContents webContents) {
+        if (url == null || webContents == null) {
+          return;
+        }
+        final boolean shouldRewrapText = ContextUtils.getAppSharedPreferences().getBoolean("text_rewrap", false);
+        final boolean shouldRemoveAmp = ContextUtils.getAppSharedPreferences().getBoolean("avoid_amp_websites", true);
+        if (shouldRemoveAmp &&  IsSearchUrl(url.getSpec())) {
+            webContents.evaluateJavaScript(AMP_SCRIPT, null);
+        }
+        if ( shouldRewrapText) {
+            webContents.evaluateJavaScript("(function() { var pendingUpdate=false;function viewportHandler(event){if(pendingUpdate)return;pendingUpdate=true;requestAnimationFrame(()=>{pendingUpdate=false;document.getElementsByTagName('html')[0].style.maxWidth=window.visualViewport.width+'px';var miniLeft=visualViewport.offsetLeft;var miniTop = -(visualViewport.offsetTop + visualViewport.offsetTop * ((window.pageYOffset / window.innerHeight) / 2));document.getElementsByTagName('html')[0].style.transition='0s ease-in-out';if (miniLeft == 0 && miniTop == 0) { document.getElementsByTagName('html')[0].style.transform=''; } else { document.getElementsByTagName('html')[0].style.transform='translate('+miniLeft+'px, '+miniTop+'px) scale(1.0)'; } })}window.visualViewport.addEventListener('resize',viewportHandler);window.visualViewport.addEventListener('scroll', viewportHandler); })();", null);
+        }
+        if (url.getSpec().startsWith("https://chrome.google.com/webstore")) {
+            webContents.evaluateJavaScript("(function() { if (!document.location.href.includes('https://chrome.google.com/webstore')) { return; } " + MAKE_USER_AGENT_WRITABLE + " window.navigator.userAgent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.24 Safari/537.36'; window.addEventListener('load', function() { if (document.location.pathname == '/webstore/unsupported') { document.location = '/webstore/'; } var node = document.createElement('style');    document.body.appendChild(node);    window.addStyleString = function(str) {        node.innerHTML = str;    }; addStyleString('div { visibility: visible !important; } '); }); })();", null);
+        }
+        if (url.getSpec().startsWith("https://chrome.google.com/webstore") && !ContextUtils.getAppSharedPreferences().getBoolean("cws_mobile_friendly", false)) {
+            webContents.evaluateJavaScript("(function() { if (!document.location.href.includes('https://chrome.google.com/webstore')) { return; } window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
+        }
+        if (url.getSpec().startsWith("https://chrome.google.com/webstore") && ContextUtils.getAppSharedPreferences().getBoolean("cws_mobile_friendly", false)) {
+            webContents.evaluateJavaScript(CWS_MOBILE_SCRIPT, null);
+        }
+        if (url.getSpec().startsWith("https://chromewebstore.google.com")) {
+            webContents.evaluateJavaScript("(function() { if (!document.location.href.includes('https://chromewebstore.google.com')) { return; } window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=1200\") }); })();", null);
+        }
+        if (url.getSpec().startsWith("https://microsoftedge.microsoft.com/addons")) {
+            webContents.evaluateJavaScript(EDGE_SCRIPT, null);
+        }
+        if ( (url.getSpec().startsWith("https://m.facebook.com/messenger/install")
+                        ||url.getSpec().startsWith("https://m.facebook.com/messages"))) {
+            webContents.evaluateJavaScript(MESSENGER_SCRIPT, null);
+        }
+        if (url.getSpec().contains("messenger.com/")) {
+            webContents.evaluateJavaScript(MESSENGER_VIEWPORT_SCRIPT, null);
+        }
+        if (url.getSpec().startsWith("https://m.facebook.com/")) {
+            webContents.evaluateJavaScript("(function(){ if (!document.location.href.includes('https://m.facebook.com/')) { return; } document.querySelector('body.touch').style = \"cursor:default\";})();", null);
+        }
+        if (url.getSpec().startsWith("https://translate.google.com/translate_c")) {
+            webContents.evaluateJavaScript("(function(){ if (!document.location.href.includes('https://translate.google.com/translate_c')) { return; } var b=document.getElementById(\"gt-nvframe\");if(b){b.style.position='unset';document.body.style.top='0px'}else{var child=document.createElement('iframe');child.id='gt-nvframe';child.src=document.location.href.replace('/translate_c','/translate_nv');child.style.width='100%';child.style.height='93px';document.body.insertBefore(child,document.body.firstChild);var t=document.querySelector('meta[name=\"viewport\"]');if(!t){var metaTag=document.createElement('meta');metaTag.name='viewport';metaTag.content='width=device-width, initial-scale=1.0';document.body.appendChild(metaTag)}}})();", null);
+        }
+        if ( (url.getSpec().startsWith("chrome://")
+                        ||url.getSpec().startsWith("chrome-extension://")
+                        ||url.getSpec().startsWith("mises://"))) {
+            webContents.evaluateJavaScript("(function() { if (!document.location.href.includes('chrome://') && !document.location.href.includes('chrome-extension://') && !document.location.href.includes('mises://')) { return; } " + ADAPT_TO_MOBILE_VIEWPORT + "})();", null);
+          
+        }
+        if ( ContextUtils.getAppSharedPreferences().getBoolean("accept_cookie_consent", true) && (url.getSpec().startsWith("http://") ||url.getSpec().startsWith("https://"))) {
+            webContents.evaluateJavaScript("(function(){function clickItem(elem) { elem.click(); } function acceptViaAPIs(){typeof window.__cmpui=='function'&&window.__cmpui('setAndSaveAllConsent',!0);typeof window.Didomi=='object'&&window.Didomi.setUserAgreeToAll()}window.globalObserver=null;function setupObserver(){if(!window.globalObserver){var newelem=document.createElement('style');newelem.innerHTML='.qc-cmp-showing { visibility: hidden !important; } body.didomi-popup-open { overflow: auto !important; } #didomi-host { visibility: hidden !important; }';document.body.appendChild(newelem);var MutationObserver=window.MutationObserver||window.WebKitMutationObserver;window.globalObserver=new MutationObserver(check);window.globalObserver.observe(window.document.documentElement,{childList:true,subtree:true});window.setTimeout(function(){window.globalObserver && window.globalObserver.disconnect();window.globalObserver=null},15000)}check()}function check(){window.setTimeout(function(){var listeners=[];listeners.push({selector:'#qcCmpUi',fn:acceptViaAPIs});listeners.push({selector:'#didomi-popup',fn:acceptViaAPIs});listeners.push({selector: '.accept-cookies-button,#purch-gdpr-banner__accept-button,#bbccookies-continue-button,.user-action--accept,.consent-accept,.bcpConsentOKButton,.button.accept,#footer_tc_privacy_button,button[aria-label=\"Button to collapse the message\"],.gdpr-form>.btn[value=\"Continue\"],button[on^=\"tap:\"][on$=\".accept\"],button[on^=\"tap:\"][on$=\".dismiss\"],.js-cookies-button,.app-offer__close_js,.lg-cc__button_type_action',fn: clickItem});for(var i=0,len=listeners.length,listener,elements;i<len;i++){listener=listeners[i];elements=window.document.querySelectorAll(listener.selector);for(var j=0,jLen=elements.length,element;j<jLen;j++){element=elements[j];if(!element.ready){element.ready=true;listener.fn.call(element, element)}}}},5)}window.addEventListener('DOMContentLoaded',setupObserver);check()})();", null);
+        }
+        // tronlink 
+        if (url.getSpec().startsWith("chrome-extension://ibnejdfjmmkpcnlpebklmnkoeoihofec")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TRONLINK_EXTENSION_STYLES), null);
+        }
+        // keplr 
+        if (url.getSpec().startsWith("chrome-extension://dmkamcknogkgcdfhhbddcghachkejeap")) {
+          webContents.evaluateJavaScript(RenderStyleContent(KEPLR_EXTENSION_STYLES), null);
+        }
+        // hulio 
+        if (url.getSpec().startsWith("chrome-extension://olikokhekcibedhfkhbkmphgmopigibb")) {
+          webContents.evaluateJavaScript(RenderStyleContent(HULIO_EXTENSION_STYLES), null);
+        }
+        // coinhub 
+        if (url.getSpec().startsWith("chrome-extension://jgaaimajipbpdogpdglhaphldakikgef")) {
+          webContents.evaluateJavaScript(RenderStyleContent(COINHUB_EXTENSION_STYLES), null);
+        }
+        // Avana 
+        if (url.getSpec().startsWith("chrome-extension://ajnodjmfajgabkmeididajpkoobeiofn")) {
+          webContents.evaluateJavaScript(RenderStyleContent(AVANA_EXTENSION_STYLES), null);
+        }
+        // Teleport Wallet 
+        if (url.getSpec().startsWith("chrome-extension://gkeelndblnomfmjnophbhfhcjbcnemka")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TELEPORTWALLET_EXTENSION_STYLES), null);
+        }
+        // umi 
+        if (url.getSpec().startsWith("chrome-extension://einhphiffjfjogeofkpclobkcgennocm")) {
+          webContents.evaluateJavaScript(RenderStyleContent(UMI_EXTENSION_STYLES), null);
+        }
+        // TokenPocket 
+        if (url.getSpec().startsWith("chrome-extension://mfgccjchihfkkindfppnaooecgfneiii")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TOKENPOCKET_EXTENSION_STYLES), null);
+        }
+        // ezdefi 
+        if (url.getSpec().startsWith("chrome-extension://ejeemacpidnaejkhpbmfkadhgjhnolaa")) {
+          webContents.evaluateJavaScript(RenderStyleContent(EZDEFI_EXTENSION_STYLES), null);
+        }
+        // lilico 
+        if (url.getSpec().startsWith("chrome-extension://hpclkefagolihohboafpheddmmgdffjm")) {
+          webContents.evaluateJavaScript(RenderStyleContent(LILICO_EXTENSION_STYLES), null);
+        }
+        // xdefi 
+        if (url.getSpec().startsWith("chrome-extension://hmeobnfnfcmdkdcmlblgagmfpfboieaf")) {
+          webContents.evaluateJavaScript(RenderStyleContent(XDEFI_EXTENSION_STYLES), null);
+        }
+        // soda 
+        if (url.getSpec().startsWith("chrome-extension://ckeekocbghailhahfmkdgffiieolpagi")) {
+          webContents.evaluateJavaScript(RenderStyleContent(SODA_EXTENSION_STYLES), null);
+        }
+        // traitsniper 
+        if (url.getSpec().startsWith("chrome-extension://acaonckckmmakfgjfkgbfeepdhmajkeg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TRAITSNIPER_EXTENSION_STYLES), null);
+        }
+        // similarweb 
+        if (url.getSpec().startsWith("chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp")) {
+          webContents.evaluateJavaScript(RenderStyleContent(SIMILARWEB_EXTENSION_STYLES), null);
+        }
+        // Talisman 
+        if (url.getSpec().startsWith("chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TALISMAN_EXTENSION_STYLES), null);
+        }
+        // celo extension wallet 
+        if (url.getSpec().startsWith("chrome-extension://kkilomkmpmkbdnfelcpgckmpcaemjcdh")) {
+          webContents.evaluateJavaScript(RenderStyleContent(CELOEXTENSION_EXTENSION_STYLES), null);
+        }
+        // Cosmos Wallet 
+        if (url.getSpec().startsWith("chrome-extension://fcfcfllfndlomdhbehjjcoimbgofdncg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(COSMOS_EXTENSION_STYLES), null);
+        }
+        // Pontem Aptos Wallet
+        if (url.getSpec().startsWith("chrome-extension://phkbamefinggmakgklpkljjmgibohnba")) {
+          webContents.evaluateJavaScript(RenderStyleContent(PONTEM_EXTENSION_STYLES), null);
+        }
+        // Martian Aptos Wallet
+        if (url.getSpec().startsWith("chrome-extension://efbglgofoippbgcjepnhiblaibcnclgk")) {
+          webContents.evaluateJavaScript("(function() {window.addEventListener('load', function() { var t=document.querySelector('meta[name=\"viewport\"]');t&&(t.content=\"initial-scale=0.1\",t.content=\"width=device-width\") }); })();", null);
+          webContents.evaluateJavaScript(RenderStyleContent(MARTIAN_EXTENSION_STYLES), null);
+        }
+        // StarMask
+        if (url.getSpec().startsWith("chrome-extension://mfhbebgoclkghebffdldpobeajmbecfk")) {
+          webContents.evaluateJavaScript(RenderStyleContent(STERMASK_EXTENSION_STYLES), null);
+        }
+        // Adena
+        if (url.getSpec().startsWith("chrome-extension://oefglhbffgfkcpboeackfgdagmlnihnh")) {
+          webContents.evaluateJavaScript(RenderStyleContent(ADENA_EXTENSION_STYLES), null);
+        }
+        // Push Protocol (Alpha)
+        if (url.getSpec().startsWith("chrome-extension://lbdcbpaldalgiieffakjhiccoeebchmg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(PUSHPROTOCOL_EXTENSION_STYLES), null);
+        }
+        // coin 98
+        if (url.getSpec().startsWith("chrome-extension://aeachknmefphepccionboohckonoeemg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(COIN98_EXTENSION_STYLES), null);
+        }
+        // DioWallet
+        if (url.getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
+          webContents.evaluateJavaScript(RenderStyleContent(DIOWALLET_EXTENSION_STYLES), null);
+        }
+        // Metamask
+        if (url.getSpec().startsWith("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn")) {
+          webContents.evaluateJavaScript(RenderStyleContent(METAMASK_EXTENSION_STYLES), null);
+        }
+        // nami
+        if (url.getSpec().startsWith("chrome-extension://lpfcbjknijpeeillifnkikgncikgfhdo")) {
+          webContents.evaluateJavaScript(RenderStyleContent(NAMI_EXTENSION_STYLES), null);
+        }
+        // bitski
+        if (url.getSpec().startsWith("chrome-extension://feejiigddaafeojfddjjlmfkabimkell")) {
+          webContents.evaluateJavaScript(RenderStyleContent(BITSKI_STYLES), null);
+        }
+        // ever wallet
+        if (url.getSpec().startsWith("chrome-extension://cgeeodpfagjceefieflmdfphplkenlfk")) {
+          webContents.evaluateJavaScript(RenderStyleContent(EVER_WALLET_STYLES), null);
+        }
+        // leap cosmos wallet
+        if (url.getSpec().startsWith("chrome-extension://fcfcfllfndlomdhbehjjcoimbgofdncg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(LEAP_WALLET_STYLES), null);
+        }
+        // talisman-polkadot wallet
+        if (url.getSpec().startsWith("chrome-extension://fijngjgcjhjmmpcmkeiomlglpeiijkld")) {
+          webContents.evaluateJavaScript(RenderStyleContent(TALISMAN_WALLET_STYLES), null);
+        }
+        // talisman-polkadot wallet
+        if (url.getSpec().startsWith("chrome-extension://ffnbelfdoeiohenkjibnmadjiehjhajb")) {
+          webContents.evaluateJavaScript(RenderStyleContent(YOROI_WALLET_STYLES), null);
+        }
+        // dioxied wallet
+        if (url.getSpec().startsWith("chrome-extension://ghdejoclpabnhidemhnfagafafcmgcfm")) {
+          webContents.evaluateJavaScript(RenderStyleContent(DIOXIED_WALLET_STYLES), null);
+        }
+        // theta wallet
+        if (url.getSpec().startsWith("chrome-extension://ckelpdlfgochnkdgikcgbimdcfgpkhgk")) {
+          webContents.evaluateJavaScript(RenderStyleContent(THETE_WALLET_STYLES), null);
+        }
+        // fetch wallet
+        if (url.getSpec().startsWith("chrome-extension://ellkdbaphhldpeajbepobaecooaoafpg")) {
+          webContents.evaluateJavaScript(RenderStyleContent(FETCG_EXTENSION_STYLES), null);
+        }
     }
 
     private static String RenderStyleContent(String STYLES) {
