@@ -1,0 +1,79 @@
+diff --git a/content/browser/renderer_host/render_process_host_impl.cc b/content/browser/renderer_host/render_process_host_impl.cc
+index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74886ef94b 100644
+--- a/content/browser/renderer_host/render_process_host_impl.cc
++++ b/content/browser/renderer_host/render_process_host_impl.cc
+@@ -218,6 +218,7 @@
+ #include "content/browser/web_database/web_database_host_impl.h"
+ #include "media/audio/android/audio_manager_android.h"
+ #include "third_party/blink/public/mojom/android_font_lookup/android_font_lookup.mojom.h"
++#include "mises/browser/android/preferences/features.h"
+ #endif
+ 
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
+@@ -965,6 +966,25 @@ class UnmatchedServiceWorkerProcessTracker
+     return tracker->TakeFreshestProcessForSite(site_instance);
+   }
+ 
++  static bool IsHighPriority(RenderProcessHost* host) {
++    BrowserContext* browser_context = host->GetBrowserContext();
++    UnmatchedServiceWorkerProcessTracker* tracker =
++        static_cast<UnmatchedServiceWorkerProcessTracker*>(
++            browser_context->GetUserData(
++                kUnmatchedServiceWorkerProcessTrackerKey));
++    if (!tracker)
++      return false;
++    
++    auto found = tracker->FindProcess(host);
++    if (found) {
++      const GURL& url = found->first.site_url();
++      std::vector<std::string> priority_extensions = preferences::features::GetMisesPriorityExtensionIds();
++      return url.has_host() && base::Contains(priority_extensions, url.host());
++      
++    }
++    return false;
++  }
++
+   UnmatchedServiceWorkerProcessTracker() = default;
+ 
+   ~UnmatchedServiceWorkerProcessTracker() override {
+@@ -1056,6 +1076,15 @@ class UnmatchedServiceWorkerProcessTracker
+     return false;
+   }
+ 
++  std::optional<SiteProcessIDPair> FindProcess(RenderProcessHost* host) const {
++    int process_id = host->GetID();
++    for (const auto& site_process_id : site_process_set_) {
++      if (site_process_id.second == process_id)
++        return site_process_id;
++    }
++    return std::nullopt;
++  }
++
+   // Use std::set because duplicates don't need to be tracked separately (eg.,
+   // service workers for the same site in the same process). It is sorted in the
+   // order of insertion.
+@@ -5214,6 +5243,15 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
+ #endif
+   );
+ 
++  if (UnmatchedServiceWorkerProcessTracker::IsHighPriority(this)) {
++    if (frame_depth_ == kMaxFrameDepthForPriority) {
++      priority.visible = true;
++      priority.frame_depth = 1;
++      priority.intersects_viewport = true;
++    }
++    
++  }
++
+   if (priority_ == priority) {
+     return;
+   }
+@@ -5226,6 +5264,8 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
+               ChromeTrackEvent::kChildProcessLauncherPriority, priority);
+   priority_ = priority;
+ 
++  //LOG(INFO) << "UpdateProcessPriority:" << (int)priority.GetProcessPriority() << "(" <<priority.visible <<", " <<priority.has_media_stream <<", "<<priority.has_foreground_service_worker <<  ", " <<priority.frame_depth <<  ", "<< ", " <<priority.intersects_viewport <<  ", "<< priority.boost_for_pending_views <<  ", "<< priority.boost_for_loading <<  ", "<< (int)priority.importance << ")" <<" For Host ID " << GetID();
++
+   // Control the background state from the browser process, otherwise the task
+   // telling the renderer to "unbackground" itself may be preempted by other
+   // tasks executing at lowered priority ahead of it or simply by not being

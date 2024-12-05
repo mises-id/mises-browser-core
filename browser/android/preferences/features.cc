@@ -87,6 +87,22 @@ std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty() {
 }
 
 
+BASE_FEATURE(kMisesPriorityExtension,
+             "MisesPriorityExtension",
+             base::FEATURE_DISABLED_BY_DEFAULT);
+
+
+const base::FeatureParam<std::string> kMisesPriorityExtensionList{
+    &kMisesPriorityExtension, "ExtensionList", ""};
+
+std::vector<std::string> GetMisesPriorityExtensionIds() {
+      if (!base::FeatureList::IsEnabled(kMisesPriorityExtension))
+    return std::vector<std::string>();
+
+   std::string list_str = kMisesPriorityExtensionList.Get();
+   return base::SplitString(
+      list_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+}
 
 }  // namespace features
 }  // namespace preferences

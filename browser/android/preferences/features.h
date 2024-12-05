@@ -15,11 +15,16 @@ BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
 
 BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
 
+
+
 std::vector<std::string> GetMisesPreinstallExtensionIds();
 std::string GetMisesPreinstallExtensionTOS();
 std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds();
 std::string GetMisesPreinstallDefaultEVMExtension();
 std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty();
+
+BASE_DECLARE_FEATURE(kMisesPriorityExtension);
+std::vector<std::string> GetMisesPriorityExtensionIds();
 
 }  // namespace features
 }  // namespace preferences
