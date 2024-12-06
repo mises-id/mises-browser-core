@@ -500,6 +500,9 @@ Config.prototype.buildArgs = function () {
     args.mises_safetynet_api_key = this.misesSafetyNetApiKey
     args.safe_browsing_mode = 2
 
+    // Required since cr126 to use Chrome password store
+    args.use_login_database_as_backend = true
+
     // Feed is not used in Mises
     args.enable_feed_v2 = false
 

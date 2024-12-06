@@ -13,6 +13,7 @@ source_set("android_browser_process") {
   deps = [
     "//base",
     "//mises/browser/android/preferences",
+    "//mises/browser/android/background_video",
     "//mises/build/android:jni_headers",
     "//mises/android/features/mises:jni_headers",
     "//mises/components/l10n/common",

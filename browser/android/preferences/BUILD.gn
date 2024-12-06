@@ -5,22 +5,18 @@
 import("//build/config/android/rules.gni")
 
 source_set("preferences") {
-  # Remove when https://github.com/brave/brave-browser/issues/10657 is resolved
-  check_includes = false
+
   sources = [
-    "background_video_playback_tab_helper.cc",
-    "background_video_playback_tab_helper.h",
     "mises_pref_service_bridge.cc",
-    "features.cc",
-    "features.h",
   ]
 
   deps = [
+    ":features",
+    "//mises/build/android:jni_headers",
     "//base",
     "//mises/common",
     "//components/content_settings/core/browser",
     "//components/prefs",
-    "//content/public/browser",
     "//net",
     "//url",
   ]
@@ -36,5 +32,15 @@ java_cpp_strings("java_pref_names_srcjar") {
 
   template =
       "//mises/browser/preferences/android/java_templates/MisesPref.java.tmpl"
+}
+
+
+source_set("features") {
+  sources = [
+    "features.cc",
+    "features.h",
+  ]
+
+  public_deps = [ "//base" ]
 }
 
