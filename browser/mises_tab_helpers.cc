@@ -16,7 +16,7 @@
 #include "third_party/widevine/cdm/buildflags.h"
 
 #if BUILDFLAG(IS_ANDROID)
-#include "mises/browser/android/preferences/background_video_playback_tab_helper.h"
+#include "mises/browser/android/background_video/background_video_playback_tab_helper.h"
 #endif
 
 #if BUILDFLAG(ENABLE_IPFS)
