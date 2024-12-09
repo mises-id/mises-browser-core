@@ -94,6 +94,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Locale;
 
 // import javax.sql.DataSource;
 
@@ -391,7 +392,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             vh.setNews(news);
             vh.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    Log.d(TAG, String.format("click news: link=%s", news.link));
+                    Log.d(TAG, String.format(Locale.getDefault(), "click news: link=%s", news.link));
                     MisesSysUtils.logEvent("ntp_news_flow_open", "url", news.link);
                     if (mTabCreator != null) {
                         mTabCreator.launchUrl(news.link, TabLaunchType.FROM_LINK);
@@ -981,31 +982,31 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             final String suffix = offset > 0 ? "ago" : "later";
             if (offset < 60) {
-                return String.format("%d second%s %s", offset, offset == 1 ? "" : "s", suffix);
+                return String.format(Locale.getDefault(), "%d second%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 60;
             if (offset < 60) {
-                return String.format("%d minute%s %s", offset, offset == 1 ? "" : "s", suffix);
+                return String.format(Locale.getDefault(), "%d minute%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 60;
             if (offset < 60) {
-                return String.format("%d hour%s %s", offset, offset == 1 ? "" : "s", suffix);
+                return String.format(Locale.getDefault(), "%d hour%s %s", offset, offset == 1 ? "" : "s", suffix);
             }
 
             offset /= 24;
-            return String.format("%d day%s %s", offset, offset == 1 ? "" : "s", suffix);
+            return String.format(Locale.getDefault(), "%d day%s %s", offset, offset == 1 ? "" : "s", suffix);
         }
 
         public void setNews(News news) {
             mtvTitle.setText(news.title);
             mtvSource.setText(news.source);
             mtvPublishedAt.setText(
-                String.format("%s", dateOffsetNowDesc(news.publishedAt)));
+                String.format(Locale.getDefault(), "%s", dateOffsetNowDesc(news.publishedAt)));
             mDatePublishedAt = news.publishedAt;
             mivImage.setVisibility(View.GONE);
-            Log.d(TAG, String.format("setNews: thumbnail=%s", news.thumbnail));
+            Log.d(TAG, String.format(Locale.getDefault(), "setNews: thumbnail=%s", news.thumbnail));
             RequestOptions options = new RequestOptions().transform(new CenterCrop(), new RoundedCorners(dpToPx(mContext, 10)));
             Glide.with(itemView.getContext())
                 .load(news.thumbnail)
@@ -1043,7 +1044,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void refreshPublishedAt() {
-            mtvPublishedAt.setText(String.format("%s", dateOffsetNowDesc(mDatePublishedAt)));
+            mtvPublishedAt.setText(String.format(Locale.getDefault(), "%s", dateOffsetNowDesc(mDatePublishedAt)));
         }
     }
 

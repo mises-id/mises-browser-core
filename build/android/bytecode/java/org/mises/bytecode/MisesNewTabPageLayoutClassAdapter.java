@@ -22,6 +22,9 @@ public class MisesNewTabPageLayoutClassAdapter extends MisesClassVisitor {
         deleteField(sMisesNewTabPageLayoutClassName, "mLogoCoordinator");
         makeProtectedField(sNewTabPageLayoutClassName, "mLogoCoordinator");
 
+        deleteField(sMisesNewTabPageLayoutClassName, "mInitialTileNum");
+        makeProtectedField(sNewTabPageLayoutClassName, "mInitialTileNum");
+
         makePublicMethod(sNewTabPageLayoutClassName, "insertSiteSectionView");
         addMethodAnnotation(
                 sMisesNewTabPageLayoutClassName, "insertSiteSectionView", "Ljava/lang/Override;");

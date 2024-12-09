@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
-index 2d676879d1de7ffff1aebc89f9cf6e1a15deac2b..98fa4b91ba8a6742850b4fc13de19b4b4f4f74e0 100644
+index 2d676879d1de7ffff1aebc89f9cf6e1a15deac2b..7b1f3edb1b1f07e9e14c7029e01c278b313b4a53 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
 @@ -100,6 +100,38 @@ import java.util.ArrayList;
@@ -483,17 +483,7 @@ index 2d676879d1de7ffff1aebc89f9cf6e1a15deac2b..98fa4b91ba8a6742850b4fc13de19b4b
          autoDarkMenuRow.setVisible(itemVisible);
          if (!itemVisible) return;
  
-@@ -1359,6 +1658,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
-         if (itemId == R.id.disable_price_tracking_menu_id) {
-             return R.color.default_icon_color_accent1_tint_list;
-         }
-+	    if (itemId == R.id.mises_wallet_id) {
-+	        return -1;
-+	    }
-         return R.color.default_icon_color_secondary_tint_list;
-     }
- 
-@@ -1388,4 +1690,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+@@ -1388,4 +1687,9 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
              BrowserUiUtils.recordModuleClickHistogram(ModuleTypeOnStartAndNtp.MENU_BUTTON);
          }
      }

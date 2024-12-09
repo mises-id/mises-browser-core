@@ -4,10 +4,40 @@
 namespace enterprise_connectors {
 
 
+RealtimeReportingClient::RealtimeReportingClient(
+    content::BrowserContext* context)
+    :context_(context) {
+
+}
+RealtimeReportingClient::~RealtimeReportingClient() = default;
+
+void RealtimeReportingClient::OnClientError(policy::CloudPolicyClient* client) {
+}
+
+std::optional<ReportingSettings>
+RealtimeReportingClient::GetReportingSettings() {
+  return std::nullopt;
+}
+std::string RealtimeReportingClient::GetProfileUserName() const{
+  return "dummy";
+}
+void RealtimeReportingClient::ReportRealtimeEvent(
+    const std::string& name,
+    const ReportingSettings& settings,
+    base::Value::Dict event) {
+}
+
+void RealtimeReportingClient::ReportPastEvent(const std::string& name,
+                                              const ReportingSettings& settings,
+                                              base::Value::Dict event,
+                                              const base::Time& time) {
+}
+
 // static
 RealtimeReportingClient* RealtimeReportingClientFactory::GetForProfile(
     content::BrowserContext* context) {
-  return nullptr;
+    return static_cast<RealtimeReportingClient*>(
+      GetInstance()->GetServiceForBrowserContext(context, true));
 }
 
 
@@ -38,7 +68,7 @@ RealtimeReportingClientFactory::~RealtimeReportingClientFactory() = default;
 
 KeyedService* RealtimeReportingClientFactory::BuildServiceInstanceFor(
     content::BrowserContext* context) const {
-  return nullptr;
+  return new RealtimeReportingClient(context);
 }
 
 bool RealtimeReportingClientFactory::ServiceIsCreatedWithBrowserContext()

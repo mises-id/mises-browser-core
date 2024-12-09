@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Locale;
 
 public class NewsFlowService {
     private static final String TAG = "NewsFlowService";
@@ -323,7 +324,7 @@ public class NewsFlowService {
         if (newsIdBefore != null) {
             builder.appendQueryParameter("before_news_id", newsIdBefore);
         }
-        Log.d(TAG, String.format("fetchNewsInPageAsync: url=%s", builder.toString()));
+        Log.d(TAG, String.format(Locale.getDefault(), "fetchNewsInPageAsync: url=%s", builder.toString()));
         HttpUtil.JsonGetAsync(
             builder.toString(),
             "",
@@ -331,7 +332,7 @@ public class NewsFlowService {
             new Callback<HttpUtil.HttpResp>() {
                 @Override
                 public final void onResult(HttpUtil.HttpResp result) {
-                    Log.d(TAG, String.format("fetchNewsInPageAsync Resp: resp.code=%d", result.code));
+                    Log.d(TAG, String.format(Locale.getDefault(), "fetchNewsInPageAsync Resp: resp.code=%d", result.code));
                     if (result.resp != null) {
                         try {
                             final JSONObject data = result.resp.getJSONObject("data");
@@ -372,7 +373,7 @@ public class NewsFlowService {
                 final Date publishedAt = DateFormat.parse(publishedAtStr);
                 News news = new News(id, title, link, thumbnail, source, publishedAt);
                 newsArray.add(news);
-                Log.d(TAG, String.format("convert json news: id=%s title=%s", id, title));
+                Log.d(TAG, String.format(Locale.getDefault(), "convert json news: id=%s title=%s", id, title));
             } catch (JSONException e) {
                 Log.e(TAG, "convert news from json error");
             } catch (ParseException e) {
@@ -418,7 +419,7 @@ public class NewsFlowService {
             mNewsArray.add(news);
         }
         // int updateSize = mNewsArray.size() - start;
-        // Log.d(TAG, String.format("updated range: start=%d size=%d", start, updateSize));
+        // Log.d(TAG, String.format(Locale.getDefault(), "updated range: start=%d size=%d", start, updateSize));
         return new Range(start, mNewsArray.size() - start);
     }
 

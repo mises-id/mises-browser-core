@@ -25,6 +25,7 @@ import java.util.TimerTask;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Arrays;
+import java.util.Locale;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
@@ -913,7 +914,7 @@ public abstract class WebSocketClient {
             for (String s : lines) {
                 String[] parts = s.split(":", 2);
                 if (parts.length == 2) {
-                    headers.put(parts[0].trim().toLowerCase(), parts[1].trim());
+                    headers.put(parts[0].trim().toLowerCase(Locale.ENGLISH), parts[1].trim());
                 } else {
                     throw new InvalidServerHandshakeException("Invalid headers format");
                 }
@@ -923,7 +924,7 @@ public abstract class WebSocketClient {
             if (upgradeValue == null) {
                 throw new InvalidServerHandshakeException("There is no header named Upgrade");
             }
-            upgradeValue = upgradeValue.toLowerCase();
+            upgradeValue = upgradeValue.toLowerCase(Locale.ENGLISH);
             if (!upgradeValue.equals("websocket")) {
                 throw new InvalidServerHandshakeException("Invalid value for header Upgrade. Expected: websocket, received: " + upgradeValue);
             }
@@ -932,7 +933,7 @@ public abstract class WebSocketClient {
             if (connectionValue == null) {
                 throw new InvalidServerHandshakeException("There is no header named Connection");
             }
-            connectionValue = connectionValue.toLowerCase();
+            connectionValue = connectionValue.toLowerCase(Locale.ENGLISH);
             if (!connectionValue.equals("upgrade")) {
                 throw new InvalidServerHandshakeException("Invalid value for header Connection. Expected: upgrade, received: " + connectionValue);
             }
