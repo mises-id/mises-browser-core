@@ -109,11 +109,13 @@ public class MisesNewTabPageLayout
     // To delete in bytecode, parent variable will be used instead.
     private ViewGroup mMvTilesContainerLayout;
     private LogoCoordinator mLogoCoordinator;
+    private Integer mInitialTileNum;
 
     // Own members.
     private final Context mContext;
     private ImageView mBgImageView;
     private Profile mProfile;
+     private boolean mIsTablet;
 
     private BitmapDrawable mImageDrawable;
 
@@ -483,6 +485,7 @@ public class MisesNewTabPageLayout
             ObservableSupplier<Integer> tabStripHeightSupplier) {
         
         // must init before super initialize
+        mIsTablet = isTablet;
         mTileGroupDelegateWrapper  = new TileGroupDelegateWrapper(tileGroupDelegate);
 
         super.initialize(
@@ -695,5 +698,24 @@ public class MisesNewTabPageLayout
 
         mShortcutTilesCoordinator.initWithNative(
             profile, mManager, tileGroupDelegate, touchEnabledDelegate);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if (mIsTablet) {
+            if (mInitialTileNum == null) {
+                // In the upstream `mMvTilesContainerLayout` is added as a view in
+                // `insertSiteSectionView`.
+                // We override `insertSiteSectionView` to add `mMvTilesContainerLayout` in our own
+                // RecyclerView to have own NTP UI.
+                // Thus upstream's NewTabPageLayout.findViewById does not see `mv_tiles_layout` and
+                // returns null.
+                mInitialTileNum =
+                        ((ViewGroup) mMvTilesContainerLayout.findViewById(R.id.mv_tiles_layout))
+                                .getChildCount();
+            }
+        }
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 }

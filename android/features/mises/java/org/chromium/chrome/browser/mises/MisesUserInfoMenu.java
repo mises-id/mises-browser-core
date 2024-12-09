@@ -16,6 +16,7 @@ import android.text.style.URLSpan;
 import android.text.Layout;
 import android.text.Html;
 import android.text.Spanned;
+import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -136,7 +137,7 @@ public class MisesUserInfoMenu extends PopupWindow implements  MisesController.M
 
     private void updateRewards() {
         final String points = MisesController.getInstance().getMisesBonusString();
-        final String text = String.format(mContext.getResources().getString(R.string.lbl_my_rewards_format), points);
+        final String text = String.format(Locale.getDefault(), mContext.getResources().getString(R.string.lbl_my_rewards_format), points);
         tvRewardPts.setText(text);
     }
     @Override

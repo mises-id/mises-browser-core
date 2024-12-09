@@ -365,11 +365,6 @@ mises_extra_java_resources = [
   "java/res/anim/left_enter.xml",
   "java/res/anim/left_exit.xml",
   "java/res/anim/rotate_anim.xml",
-  "java/res/mipmap-hdpi/ic_menu_mises_forward.png",
-  "java/res/mipmap-mdpi/ic_menu_mises_forward.png",
-  "java/res/mipmap-xhdpi/ic_menu_mises_forward.png",
-  "java/res/mipmap-xxhdpi/ic_menu_mises_forward.png",
-  "java/res/mipmap-xxxhdpi/ic_menu_mises_forward.png",
 
   "java/res/mipmap-hdpi/ic_rewards.png",
   "java/res/mipmap-mdpi/ic_rewards.png",

@@ -152,7 +152,7 @@ mises_android_output = ""
 if (is_android) {
   mises_android_output += "$root_out_dir/apks/Mises"
   if (target_android_base == "modern") {
-    #assert(target_cpu != "arm64" && target_cpu != "x64")
+    assert(target_cpu != "arm64" && target_cpu != "x64")
     mises_android_output += "Modern"
   } else if (target_cpu == "arm64" || target_cpu == "x64" ||
              target_android_base == "mono") {

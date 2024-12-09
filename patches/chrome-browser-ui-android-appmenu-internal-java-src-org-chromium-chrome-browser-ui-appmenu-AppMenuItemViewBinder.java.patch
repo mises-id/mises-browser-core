@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
-index f5502764679a6df75583f54fc55e840294b6729a..c6d463bdacb2430a9ba0d88d7cad13d52e89e939 100644
+index f5502764679a6df75583f54fc55e840294b6729a..6efdb385dac6b53d8f5bc985db79df1957451d87 100644
 --- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 +++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java
 @@ -29,6 +29,10 @@ import org.chromium.ui.modelutil.PropertyModel;
@@ -13,21 +13,14 @@ index f5502764679a6df75583f54fc55e840294b6729a..c6d463bdacb2430a9ba0d88d7cad13d5
  /** The binder to bind the app menu {@link PropertyModel} with the view. */
  class AppMenuItemViewBinder {
      /** IDs of all of the buttons in icon_row_menu_item.xml. */
-@@ -66,8 +70,8 @@ class AppMenuItemViewBinder {
-                 // If there is no color assigned to the icon, use the default color.
-                 colorResId = R.color.default_icon_color_secondary_tint_list;
-             }
--            ColorStateList tintList =
--                    AppCompatResources.getColorStateList(imageView.getContext(), colorResId);
-+            ColorStateList tintList  = null; 
-+            if (colorResId > 0) tintList = AppCompatResources.getColorStateList(imageView.getContext(), colorResId);
- 
-             if (model.get(AppMenuItemProperties.ICON_SHOW_BADGE)) {
-                 // Draw the icon with a red badge on top.
-@@ -88,6 +92,17 @@ class AppMenuItemViewBinder {
+@@ -88,6 +92,21 @@ class AppMenuItemViewBinder {
              imageView.setImageDrawable(icon);
              imageView.setVisibility(icon == null ? View.GONE : View.VISIBLE);
  
++            CharSequence title = model.get(AppMenuItemProperties.TITLE);
++            if (title != null && title.toString().contains("Mises Wallet")) {
++                tintList = null;
++            }
 +            CharSequence titleCondensed = model.get(AppMenuItemProperties.TITLE_CONDENSED);
 +            if (titleCondensed != null && titleCondensed.toString().contains("Extension: ")) {
 +                imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.DST);
@@ -36,7 +29,7 @@ index f5502764679a6df75583f54fc55e840294b6729a..c6d463bdacb2430a9ba0d88d7cad13d5
 +                imageView.setColorFilter(null);
 +            }
 +
-+            if (colorResId > 0 && titleCondensed != null && titleCondensed.toString().contains("Extension (inactive): ")) {
++            if (colorResId != 0 && titleCondensed != null && titleCondensed.toString().contains("Extension (inactive): ")) {
 +                tintList = AppCompatResources.getColorStateList(imageView.getContext(), R.color.default_text_color_disabled_list);
 +            }
              // tint the icon
