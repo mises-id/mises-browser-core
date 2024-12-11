@@ -1,0 +1,22 @@
+diff --git a/components/spellcheck/browser/spell_check_host_impl.cc b/components/spellcheck/browser/spell_check_host_impl.cc
+index c77bff349b65d42f21e759a4161c0931cb86d9cd..d3a8bc1a9cdbefa09e9d47dd18fc649b9514aa25 100644
+--- a/components/spellcheck/browser/spell_check_host_impl.cc
++++ b/components/spellcheck/browser/spell_check_host_impl.cc
+@@ -51,7 +51,7 @@ void SpellCheckHostImpl::RequestTextCheck(const std::u16string& text,
+ void SpellCheckHostImpl::CheckSpelling(const std::u16string& word,
+                                        CheckSpellingCallback callback) {
+   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+-  NOTREACHED_IN_MIGRATION();
++  //NOTREACHED_IN_MIGRATION();
+   std::move(callback).Run(false);
+ }
+ 
+@@ -59,7 +59,7 @@ void SpellCheckHostImpl::FillSuggestionList(
+     const std::u16string& word,
+     FillSuggestionListCallback callback) {
+   DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+-  NOTREACHED_IN_MIGRATION();
++  //NOTREACHED_IN_MIGRATION();
+   std::move(callback).Run({});
+ }
+ 
