@@ -16,7 +16,7 @@ source_set("extensions") {
     "updater/mises_update_client_config.cc",
     "updater/mises_update_client_config.h",
     "mises_webstore_installer.cc",
-    "mises_webstore_installer.h",
+    "mises_webstore_installer.h", 
   ]
 
   deps = [

@@ -1,20 +1,35 @@
 diff --git a/chrome/browser/extensions/extension_install_prompt.cc b/chrome/browser/extensions/extension_install_prompt.cc
-index 8929e1c3e1bafe8aa7dc678cab8ad2c0fbdc9dfb..0bdfd46f62c7b922256ccb67cecb32c0b9ebb7ef 100644
+index 8929e1c3e1bafe8aa7dc678cab8ad2c0fbdc9dfb..041839623bfa553ce1136796f6ed9b3d84a583cd 100644
 --- a/chrome/browser/extensions/extension_install_prompt.cc
 +++ b/chrome/browser/extensions/extension_install_prompt.cc
-@@ -429,6 +429,7 @@ ExtensionInstallPrompt::ExtensionInstallPrompt(content::WebContents* contents)
+@@ -428,7 +428,8 @@ ExtensionInstallPrompt::ExtensionInstallPrompt(content::WebContents* contents)
+                    : nullptr),
        extension_(nullptr),
        install_ui_(std::make_unique<ExtensionInstallUI>(profile_)),
-       show_params_(new ExtensionInstallPromptShowParams(contents)),
+-      show_params_(new ExtensionInstallPromptShowParams(contents)),
++      show_params_(contents? new ExtensionInstallPromptShowParams(contents) : nullptr),
 +      contents_(contents),
        did_call_show_dialog_(false) {}
  
  ExtensionInstallPrompt::ExtensionInstallPrompt(Profile* profile,
-@@ -582,6 +583,7 @@ void ExtensionInstallPrompt::ShowConfirmation() {
+@@ -572,7 +573,7 @@ void ExtensionInstallPrompt::ShowConfirmation() {
+ 
+   prompt_->set_icon(gfx::Image::CreateFrom1xBitmap(icon_));
+ 
+-  if (show_params_->WasParentDestroyed()) {
++  if (show_params_ && show_params_->WasParentDestroyed()) {
+     std::move(done_callback_).Run(DoneCallbackPayload(Result::ABORTED));
+     return;
+   }
+@@ -582,9 +583,10 @@ void ExtensionInstallPrompt::ShowConfirmation() {
  
    // Notify observers.
    prompt_->OnDialogOpened();
 +  MISES_EXTENSION_INSTALL_PROMPT_SHOW_CONFIRMATION
  
    // If true, auto confirm is enabled and already handled the result.
-   if (AutoConfirmPromptIfEnabled())
+-  if (AutoConfirmPromptIfEnabled())
++  if (AutoConfirmPromptIfEnabled() || !show_params_)
+     return;
+ 
+   if (show_dialog_callback_.is_null())

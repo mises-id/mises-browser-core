@@ -3,8 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef BRAVE_BROWSER_EXTENSIONS_BRAVE_COMPONENT_LOADER_H_
-#define BRAVE_BROWSER_EXTENSIONS_BRAVE_COMPONENT_LOADER_H_
+#ifndef MISES_BROWSER_EXTENSIONS_MISES_COMPONENT_LOADER_H_
+#define MISES_BROWSER_EXTENSIONS_MISES_COMPONENT_LOADER_H_
 
 #include <string>
 
