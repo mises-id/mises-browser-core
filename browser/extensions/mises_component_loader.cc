@@ -11,6 +11,7 @@
 #include "base/command_line.h"
 #include "base/feature_list.h"
 #include "base/strings/string_split.h"
+#include "ui/base/l10n/l10n_util.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/extensions/extension_service.h"
 #include "chrome/browser/profiles/profile.h"
@@ -52,13 +53,9 @@
 #endif
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
-#include "chrome/browser/extensions/webstore_install_with_prompt.h"
-#include "chrome/common/extensions/webstore_install_result.h"
-#include "extensions/browser/extension_file_task_runner.h"
-#include "content/public/browser/web_contents.h"
-#include "ui/base/l10n/l10n_util.h"
-#include "chrome/grit/generated_resources.h"
-#include "chrome/browser/extensions/webstore_installer.h"
+#include "mises/browser/extensions/mises_webstore_installer.h"
+#include "extensions/common/features/feature_developer_mode_only.h"
+#include "chrome/browser/extensions/updater/extension_updater.h"
 #endif
 
 #include "base/strings/strcat.h"
@@ -72,120 +69,6 @@
 #include "mises/browser/brave_wallet/keyring_service_factory.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
 
-#include "chrome/browser/extensions/updater/extension_updater.h"
-#include "extensions/common/features/feature_developer_mode_only.h"
-
-#if BUILDFLAG(ENABLE_EXTENSIONS)
-namespace extensions {
-
-
-// Silent installer via websotre w/o any prompt or bubble.
-class WebstoreInstallerForImporting
-    : public WebstoreStandaloneInstaller  {
- public:
-
-  WebstoreInstallerForImporting(
-      const std::string& webstore_item_id,
-      Profile* profile,
-      Callback callback)
-      : WebstoreStandaloneInstaller(webstore_item_id,
-                                    profile,
-                                    std::move(callback)),
-        dummy_web_contents_(
-            content::WebContents::Create(content::WebContents::CreateParams(profile))),
-        parent_window_(nullptr) {
-    set_install_source(WebstoreInstaller::INSTALL_SOURCE_OTHER);
-  }
-
-  content::WebContents* GetWebContents() const override{
-    return dummy_web_contents_.get();
-  }
-
-protected:
-  friend class base::RefCountedThreadSafe<WebstoreInstallerForImporting>;
-  ~WebstoreInstallerForImporting() override = default;
-
-  bool CheckRequestorAlive() const override{
-    return true;
-  }
-
-  std::unique_ptr<ExtensionInstallPrompt::Prompt>
-      CreateInstallPrompt() const override {
-    return nullptr;
-  }
-  std::unique_ptr<ExtensionInstallPrompt> CreateInstallUI() override{
-    // Create an ExtensionInstallPrompt. If the parent window is NULL, the dialog
-    // will be placed in the middle of the screen.
-    return std::make_unique<ExtensionInstallPrompt>(profile(), parent_window_);
-  }
-  bool ShouldShowPostInstallUI() const override { 
-    return false; 
-  }
-
-  void OnExtensionInstallSuccess(
-      const std::string& id) {
-    CompleteInstall(webstore_install::SUCCESS, std::string());
-  }
-
-  void OnExtensionInstallFailure(
-      const std::string& id,
-      const std::string& error,
-      WebstoreInstaller::FailureReason reason) {
-
-    webstore_install::Result install_result = webstore_install::OTHER_ERROR;
-    switch (reason) {
-      case WebstoreInstaller::FAILURE_REASON_CANCELLED:
-        install_result = webstore_install::USER_CANCELLED;
-        break;
-      case WebstoreInstaller::FAILURE_REASON_DEPENDENCY_NOT_FOUND:
-      case WebstoreInstaller::FAILURE_REASON_DEPENDENCY_NOT_SHARED_MODULE:
-        install_result = webstore_install::MISSING_DEPENDENCIES;
-        break;
-      default:
-        break;
-    }
-
-    CompleteInstall(install_result, error);
-  }
-
-  void OnInstallPromptDone(ExtensionInstallPrompt::DoneCallbackPayload payload) override {
-    if (payload.result == ExtensionInstallPrompt::Result::USER_CANCELED) {
-        CompleteInstall(webstore_install::USER_CANCELLED,
-                        webstore_install::kUserCancelledError);
-        return;
-      }
-
-      if (payload.result == ExtensionInstallPrompt::Result::ABORTED ||
-          !CheckRequestorAlive()) {
-        CompleteInstall(webstore_install::ABORTED, std::string());
-        return;
-      }
-
-      DCHECK(payload.result == ExtensionInstallPrompt::Result::ACCEPTED);
-
-      std::unique_ptr<WebstoreInstaller::Approval> approval = CreateApproval();
-
-      auto installer = base::MakeRefCounted<WebstoreInstaller>(
-          profile(), 
-          base::BindOnce(&WebstoreInstallerForImporting::OnExtensionInstallSuccess,
-                     weak_ptr_factory_.GetWeakPtr()),
-          base::BindOnce(&WebstoreInstallerForImporting::OnExtensionInstallFailure,
-                     weak_ptr_factory_.GetWeakPtr()),
-          GetWebContents(), id(), std::move(approval),
-          install_source());
-      installer->Start();
-  }
-private:
-  std::unique_ptr<content::WebContents> dummy_web_contents_;
-  gfx::NativeWindow parent_window_;
-  base::WeakPtrFactory<WebstoreInstallerForImporting> weak_ptr_factory_{this};
-};
-
-
-
-}
-
-#endif
 namespace {
 
 
@@ -624,7 +507,7 @@ void MisesComponentLoader::PreInstallExtensionFromWebStore(const std::string& ex
           base::BindOnce(
               &MisesComponentLoader::OnWebstoreInstallResult,
               weak_ptr_factory_.GetWeakPtr(), extension_id));
-  installer->BeginInstall();
+  installer->StartInstaller();
 }
 
 void MisesComponentLoader::PreInstallExtensionOnStartup() {

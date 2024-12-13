@@ -1,6 +1,7 @@
 #include "content/public/browser/javascript_dialog_manager.h"
 #include "components/javascript_dialogs/app_modal_dialog_manager.h"
 #include "chrome/browser/extensions/extension_install_prompt.h"
+#include "mises/browser/extensions/mises_webstore_installer.h"
 
 #if BUILDFLAG(IS_ANDROID)
 
@@ -39,7 +40,7 @@ class CloseDialogCallbackWrapper
 
 
 #define MISES_EXTENSION_INSTALL_PROMPT_SHOW_CONFIRMATION  \
-  if (contents_ && contents_->GetPrimaryMainFrame() != nullptr) { \
+  if (contents_ && contents_->GetPrimaryMainFrame() != nullptr && extensions::WebstoreInstallerHelper::FromWebContents(contents_) == nullptr) { \
     LOG(INFO) << "[EXTENSIONS] contents_ is not empty, displaying prompt"; \
     scoped_refptr<CloseDialogCallbackWrapper> wrapper = new CloseDialogCallbackWrapper(std::move(done_callback_)); \
     if (permissions_to_display) { \
