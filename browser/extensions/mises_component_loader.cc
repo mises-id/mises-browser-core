@@ -11,6 +11,7 @@
 #include "base/command_line.h"
 #include "base/feature_list.h"
 #include "base/strings/string_split.h"
+#include "ui/base/l10n/l10n_util.h"
 #include "chrome/browser/browser_process.h"
 #include "chrome/browser/extensions/extension_service.h"
 #include "chrome/browser/profiles/profile.h"
@@ -53,6 +54,8 @@
 
 #if BUILDFLAG(ENABLE_EXTENSIONS)
 #include "mises/browser/extensions/mises_webstore_installer.h"
+#include "extensions/common/features/feature_developer_mode_only.h"
+#include "chrome/browser/extensions/updater/extension_updater.h"
 #endif
 
 #include "base/strings/strcat.h"
@@ -65,8 +68,6 @@
 #include "components/grit/mises_components_strings.h"
 #include "mises/browser/brave_wallet/keyring_service_factory.h"
 #include "mises/components/brave_wallet/browser/keyring_service.h"
-
-#include "extensions/common/features/feature_developer_mode_only.h"
 
 namespace {
 
