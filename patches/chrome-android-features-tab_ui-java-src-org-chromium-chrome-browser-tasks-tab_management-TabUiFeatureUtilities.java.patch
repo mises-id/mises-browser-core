@@ -1,0 +1,25 @@
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabUiFeatureUtilities.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabUiFeatureUtilities.java
+index 766d8090de54f017fb9994046ae76777638cb495..c23dd6778ff7bf854edd9c55159f8d38281103d4 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabUiFeatureUtilities.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabUiFeatureUtilities.java
+@@ -15,6 +15,7 @@ import org.chromium.ui.base.DeviceFormFactor;
+ 
+ import java.util.Locale;
+ import java.util.Set;
++import org.chromium.base.ContextUtils;
+ 
+ /** A class to handle the state of flags for tab_management. */
+ public class TabUiFeatureUtilities {
+@@ -47,6 +48,12 @@ public class TabUiFeatureUtilities {
+ 
+     /** Returns whether the Grid Tab Switcher UI should use list mode. */
+     public static boolean shouldUseListMode() {
++        final String active_tabswitcher = ContextUtils.getAppSharedPreferences().getString("active_tabswitcher", "default");
++        if (active_tabswitcher.equals("list")) {
++            return true;
++        } else if (active_tabswitcher.equals("grid")) {
++            return false;
++        }
+         // Low-end forces list mode.
+         return SysUtils.isLowEndDevice() || ChromeFeatureList.sForceListTabSwitcher.isEnabled();
+     }

@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/extensions/api/extension_action/extension_action_api.cc b/chrome/browser/extensions/api/extension_action/extension_action_api.cc
+index c8fed90dc042ad15883ae6cb3fed680e98989b48..356a2969099266b104855da06376ca048e8ca4d8 100644
+--- a/chrome/browser/extensions/api/extension_action/extension_action_api.cc
++++ b/chrome/browser/extensions/api/extension_action/extension_action_api.cc
+@@ -147,7 +147,8 @@ bool OpenPopupInBrowser(Browser& browser,
+                         const Extension& extension,
+                         std::string* error,
+                         ShowPopupCallback callback) {
+-  if (!browser.SupportsWindowFeature(Browser::FEATURE_TOOLBAR) ||
++  bool mises_enforce = true;
++  if (mises_enforce || !browser.SupportsWindowFeature(Browser::FEATURE_TOOLBAR) ||
+       !browser.window()->IsToolbarVisible()) {
+     *error = "Browser window has no toolbar.";
+     return false;
