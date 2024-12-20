@@ -45,7 +45,7 @@ mises_chrome_java_deps = [
   "//mises/android/features/mises:java_resources",
 
   "//mises/third_party/open_mediation:open_mediation_sdk_java",
-  "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
+  #"//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
   #"//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
   "//mises/third_party/open_mediation:open_mediation_cardslider_java",
   

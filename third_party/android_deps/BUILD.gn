@@ -13,7 +13,7 @@ group("android_deps") {
 }
 
 android_aar_prebuilt("google_play_services_safetynet_java") {
-  aar_path = "libs/com_google_android_gms_play_services_safetynet/play-services-safetynet-15.0.1.aar"
+  aar_path = "libs/com_google_android_gms_play_services_safetynet/play-services-safetynet-18.1.0.aar"
   info_path = "libs/com_google_android_gms_play_services_safetynet/com_google_android_gms_play_services_safetynet.info"
   deps = [ "$google_play_services_package:google_play_services_base_java" ]
 }
@@ -85,7 +85,7 @@ android_aar_prebuilt("com_github_bumptech_disklrucache_java") {
 }
 
 android_aar_prebuilt("google_firebase_firebase_analytics_java") {
-  aar_path = "libs/com_google_firebase_firebase_analytics/firebase-analytics-21.4.0.aar"
+  aar_path = "libs/com_google_firebase_firebase_analytics/firebase-analytics-22.1.2.aar"
   info_path = "libs/com_google_firebase_firebase_analytics/com_google_firebase_firebase_analytics.info"
   deps = [
     ":google_play_services_measurement_api_java",
@@ -98,7 +98,7 @@ android_aar_prebuilt("google_firebase_firebase_analytics_java") {
 
 
 android_aar_prebuilt("google_android_datatransport_transport_runtime_java") {
-  aar_path = "libs/com_google_android_datatransport_transport_runtime/transport-runtime-2.2.6.aar"
+  aar_path = "libs/com_google_android_datatransport_transport_runtime/transport-runtime-3.3.0.aar"
   info_path = "libs/com_google_android_datatransport_transport_runtime/com_google_android_datatransport_transport_runtime.info"
   deps = [
     "//third_party/android_deps:google_android_datatransport_transport_api_java",
@@ -109,7 +109,7 @@ android_aar_prebuilt("google_android_datatransport_transport_runtime_java") {
 
 
 android_aar_prebuilt("google_android_datatransport_transport_backend_cct_java") {
-  aar_path = "libs/com_google_android_datatransport_transport_backend_cct/transport-backend-cct-2.3.3.aar"
+  aar_path = "libs/com_google_android_datatransport_transport_backend_cct/transport-backend-cct-3.3.0.aar"
   info_path = "libs/com_google_android_datatransport_transport_backend_cct/com_google_android_datatransport_transport_backend_cct.info"
   deps = [
     "//third_party/android_deps:google_android_datatransport_transport_api_java",
@@ -124,7 +124,7 @@ android_aar_prebuilt("google_android_datatransport_transport_backend_cct_java") 
 
 
 android_aar_prebuilt("google_firebase_firebase_crashlytics_java") {
-  aar_path = "libs/com_google_firebase_firebase_crashlytics/firebase-crashlytics-17.4.1.aar"
+  aar_path = "libs/com_google_firebase_firebase_crashlytics/firebase-crashlytics-19.3.0.aar"
   info_path = "libs/com_google_firebase_firebase_crashlytics/com_google_firebase_firebase_crashlytics.info"
   enable_bytecode_checks = false
   deps = [
@@ -251,7 +251,7 @@ android_aar_prebuilt("google_play_services_ads_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement/play-services-measurement-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement/play-services-measurement-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement/com_google_android_gms_play_services_measurement.info"
 
   # To remove visibility constraint, add this dependency to
@@ -273,7 +273,7 @@ android_aar_prebuilt("google_play_services_measurement_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_api_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement_api/play-services-measurement-api-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement_api/play-services-measurement-api-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement_api/com_google_android_gms_play_services_measurement_api.info"
 
   # To remove visibility constraint, add this dependency to
@@ -299,7 +299,7 @@ android_aar_prebuilt("google_play_services_measurement_api_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_base_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement_base/play-services-measurement-base-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement_base/play-services-measurement-base-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement_base/com_google_android_gms_play_services_measurement_base.info"
 
   # To remove visibility constraint, add this dependency to
@@ -313,7 +313,7 @@ android_aar_prebuilt("google_play_services_measurement_base_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_impl_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement_impl/play-services-measurement-impl-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement_impl/play-services-measurement-impl-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement_impl/com_google_android_gms_play_services_measurement_impl.info"
 
   # To remove visibility constraint, add this dependency to
@@ -336,7 +336,7 @@ android_aar_prebuilt("google_play_services_measurement_impl_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_sdk_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk/play-services-measurement-sdk-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk/play-services-measurement-sdk-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement_sdk/com_google_android_gms_play_services_measurement_sdk.info"
 
   # To remove visibility constraint, add this dependency to
@@ -355,7 +355,7 @@ android_aar_prebuilt("google_play_services_measurement_sdk_java") {
 
 # This is generated, do not edit. Update BuildConfigGenerator.groovy instead.
 android_aar_prebuilt("google_play_services_measurement_sdk_api_java") {
-  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk_api/play-services-measurement-sdk-api-21.3.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_measurement_sdk_api/play-services-measurement-sdk-api-22.1.2.aar"
   info_path = "libs/com_google_android_gms_play_services_measurement_sdk_api/com_google_android_gms_play_services_measurement_sdk_api.info"
 
   # To remove visibility constraint, add this dependency to
