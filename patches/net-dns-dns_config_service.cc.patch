@@ -1,0 +1,13 @@
+diff --git a/net/dns/dns_config_service.cc b/net/dns/dns_config_service.cc
+index 34c3c085b0bc116fd46323603cd483f29683a298..502e167adf3e6018e3d0fc65d52af71d3cae572e 100644
+--- a/net/dns/dns_config_service.cc
++++ b/net/dns/dns_config_service.cc
+@@ -62,7 +62,7 @@ void DnsConfigService::WatchConfig(const CallbackType& callback) {
+ 
+ void DnsConfigService::RefreshConfig() {
+   // Overridden on supported platforms.
+-  NOTREACHED_IN_MIGRATION();
++  //NOTREACHED_IN_MIGRATION();
+ }
+ 
+ DnsConfigService::Watcher::Watcher(DnsConfigService& service)

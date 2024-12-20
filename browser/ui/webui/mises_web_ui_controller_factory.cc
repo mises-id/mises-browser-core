@@ -107,6 +107,10 @@ WebUIController* NewWebUI(WebUI* web_ui, const GURL& url) {
 // tab, based on its URL. Returns NULL if the URL doesn't have WebUI associated
 // with it.
 WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* web_ui, const GURL& url) {
+  if (!url.SchemeIs(content::kMisesUIScheme) &&
+      !url.SchemeIs(content::kChromeUIScheme)) {
+    return nullptr;
+  }
   if (
 #if BUILDFLAG(ENABLE_IPFS)
       (url.host_piece() == kIPFSWebUIHost &&
