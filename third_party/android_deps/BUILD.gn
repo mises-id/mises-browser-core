@@ -96,12 +96,20 @@ android_aar_prebuilt("google_firebase_firebase_analytics_java") {
   enable_bytecode_checks = false
 }
 
+android_aar_prebuilt("google_android_datatransport_transport_api_java") {
+  aar_path = "libs/com_google_android_datatransport_transport_api/transport-api-3.2.0.aar"
+  info_path = "libs/com_google_android_datatransport_transport_api/com_google_android_datatransport_transport_api.info"
+  enable_bytecode_checks = false
+
+  deps =
+      [ "//third_party/androidx:androidx_annotation_annotation_jvm_java" ]
+}
 
 android_aar_prebuilt("google_android_datatransport_transport_runtime_java") {
   aar_path = "libs/com_google_android_datatransport_transport_runtime/transport-runtime-3.3.0.aar"
   info_path = "libs/com_google_android_datatransport_transport_runtime/com_google_android_datatransport_transport_runtime.info"
   deps = [
-    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_api_java",
   ]
 
   enable_bytecode_checks = false
@@ -112,32 +120,190 @@ android_aar_prebuilt("google_android_datatransport_transport_backend_cct_java") 
   aar_path = "libs/com_google_android_datatransport_transport_backend_cct/transport-backend-cct-3.3.0.aar"
   info_path = "libs/com_google_android_datatransport_transport_backend_cct/com_google_android_datatransport_transport_backend_cct.info"
   deps = [
-    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_api_java",
     ":google_android_datatransport_transport_runtime_java",
-    "$google_play_services_package:google_firebase_firebase_encoders_java",
-    "$google_play_services_package:google_firebase_firebase_encoders_json_java",
+    ":google_firebase_firebase_encoders_java",
+    ":google_firebase_firebase_encoders_json_java",
   ]
 
   enable_bytecode_checks = false
 }
 
 
+java_prebuilt("google_firebase_firebase_annotations_java") {
+  jar_path = "libs/com_google_firebase_firebase_annotations/firebase-annotations-16.2.0.jar"
+  output_name = "com_google_firebase_firebase_annotations"
+  supports_android = true
+  enable_bytecode_checks = false
+
+}
+
+android_aar_prebuilt("google_firebase_firebase_components_java") {
+  aar_path = "libs/com_google_firebase_firebase_components/firebase-components-18.0.0.aar"
+  info_path = "libs/com_google_firebase_firebase_components/com_google_firebase_firebase_components.info"
+  enable_bytecode_checks = false
+
+  deps = [
+    ":google_firebase_firebase_annotations_java",
+    "//third_party/androidx:androidx_annotation_annotation_jvm_java",
+  ]
+}
+
+android_aar_prebuilt("google_firebase_firebase_common_java") {
+  aar_path = "libs/com_google_firebase_firebase_common/firebase-common-21.0.0.aar"
+  info_path = "libs/com_google_firebase_firebase_common/google_firebase_firebase_common.info"
+  enable_bytecode_checks = false
+  deps = [
+        ":google_firebase_firebase_components_java",
+        "$google_play_services_package:google_play_services_basement_java",
+        "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
+java_prebuilt("google_firebase_firebase_encoders_java") {
+  jar_path = "libs/com_google_firebase_firebase_encoders/firebase-encoders-17.0.0.jar"
+  output_name = "com_google_firebase_firebase_encoders"
+  supports_android = true
+  enable_bytecode_checks = false
+
+  deps =
+      [ "//third_party/androidx:androidx_annotation_annotation_jvm_java" ]
+
+  # https://crbug.com/1412551
+  requires_android = true
+}
+
+android_aar_prebuilt("google_firebase_firebase_encoders_json_java") {
+  aar_path = "libs/com_google_firebase_firebase_encoders_json/firebase-encoders-json-18.0.1.aar"
+  info_path = "libs/com_google_firebase_firebase_encoders_json/com_google_firebase_firebase_encoders_json.info"
+  enable_bytecode_checks = false
+
+  deps = [
+    ":google_firebase_firebase_encoders_java",
+    "//third_party/androidx:androidx_annotation_annotation_jvm_java",
+  ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_installations_interop_java") {
+  aar_path = "libs/com_google_firebase_firebase_installations_interop/firebase-installations-interop-17.2.0.aar"
+  info_path = "libs/com_google_firebase_firebase_installations_interop/com_google_firebase_firebase_installations_interop.info"
+  enable_bytecode_checks = false
+
+  deps = [
+    ":google_firebase_firebase_annotations_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
+android_aar_prebuilt("google_firebase_firebase_installations_java") {
+  aar_path = "libs/com_google_firebase_firebase_installations/firebase-installations-18.0.0.aar"
+  info_path = "libs/com_google_firebase_firebase_installations/com_google_firebase_firebase_installations.info"
+  enable_bytecode_checks = false
+
+  deps = [
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_components_java",
+    ":google_firebase_firebase_installations_interop_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_measurement_connector_java") {
+  aar_path = "libs/com_google_firebase_firebase_measurement_connector/firebase-measurement-connector-20.0.1.aar"
+  info_path = "libs/com_google_firebase_firebase_measurement_connector/com_google_firebase_firebase_measurement_connector.info"
+  enable_bytecode_checks = false
+
+  deps =
+      [ "$google_play_services_package:google_play_services_basement_java" ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_config_interop_java") {
+  aar_path = "libs/com_google_firebase_firebase_config_interop/firebase-config-interop-16.0.1.aar"
+  info_path = "libs/com_google_firebase_firebase_config_interop/com_google_firebase_firebase_config_interop.info"
+  enable_bytecode_checks = false
+
+  deps = [ 
+    ":google_firebase_firebase_encoders_java",
+    ":google_firebase_firebase_encoders_json_java",
+  ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_datatransport_java") {
+  aar_path = "libs/com_google_firebase_firebase_datatransport/firebase-datatransport-19.0.0.aar"
+  info_path = "libs/com_google_firebase_firebase_datatransport/com_google_firebase_firebase_datatransport.info"
+  enable_bytecode_checks = false
+
+  deps = [ 
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_components_java",
+    ":google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_runtime_java",
+    ":google_android_datatransport_transport_backend_cct_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+  ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_session_java") {
+  aar_path = "libs/com_google_firebase_firebase_session/firebase-sessions-2.0.7.aar"
+  info_path = "libs/com_google_firebase_firebase_session/com_google_firebase_firebase_session.info"
+  enable_bytecode_checks = false
+
+  deps = [ 
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_encoders_java",
+    ":google_firebase_firebase_encoders_json_java",
+    ":google_firebase_firebase_installations_interop_java",
+    ":google_firebase_firebase_installations_java",
+    ":google_firebase_firebase_measurement_connector_java",
+    ":google_firebase_firebase_config_interop_java",
+    ":google_firebase_firebase_datatransport_java"
+  ]
+}
 
 android_aar_prebuilt("google_firebase_firebase_crashlytics_java") {
   aar_path = "libs/com_google_firebase_firebase_crashlytics/firebase-crashlytics-19.3.0.aar"
   info_path = "libs/com_google_firebase_firebase_crashlytics/com_google_firebase_firebase_crashlytics.info"
   enable_bytecode_checks = false
   deps = [
-    "//third_party/android_deps:google_android_datatransport_transport_api_java",
+    ":google_android_datatransport_transport_api_java",
     ":google_android_datatransport_transport_runtime_java",
     ":google_android_datatransport_transport_backend_cct_java",
-    "$google_play_services_package:google_firebase_firebase_common_java",
-    "$google_play_services_package:google_firebase_firebase_encoders_java",
-    "$google_play_services_package:google_firebase_firebase_encoders_json_java",
-    "$google_play_services_package:google_firebase_firebase_installations_interop_java",
-    "$google_play_services_package:google_firebase_firebase_installations_java",
-    "$google_play_services_package:google_firebase_firebase_measurement_connector_java",
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_encoders_java",
+    ":google_firebase_firebase_encoders_json_java",
+    ":google_firebase_firebase_installations_interop_java",
+    ":google_firebase_firebase_installations_java",
+    ":google_firebase_firebase_measurement_connector_java",
+    ":google_firebase_firebase_config_interop_java",
+    ":google_firebase_firebase_session_java",
     "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
+android_aar_prebuilt("google_firebase_firebase_messaging_java") {
+  aar_path = "libs/com_google_firebase_firebase_messaging/firebase-messaging-24.1.0.aar"
+  info_path = "libs/com_google_firebase_firebase_messaging/com_google_firebase_firebase_messaging.info"
+  enable_bytecode_checks = false
+  deps = [
+    ":google_android_datatransport_transport_api_java",
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_components_java",
+    ":google_firebase_firebase_encoders_java",
+    ":google_firebase_firebase_encoders_json_java",
+    ":google_firebase_firebase_installations_interop_java",
+    ":google_firebase_firebase_installations_java",
+    ":google_firebase_firebase_measurement_connector_java",
+    "$google_play_services_package:google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_cloud_messaging_java",
+    "$google_play_services_package:google_play_services_stats_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+    "//third_party/androidx:androidx_collection_collection_java",
+    "//third_party/androidx:androidx_core_core_java",
   ]
 }
 
@@ -284,10 +450,10 @@ android_aar_prebuilt("google_play_services_measurement_api_java") {
     "//third_party/androidx:*",
   ]
   deps = [
-    "$google_play_services_package:google_firebase_firebase_common_java",
-    "$google_play_services_package:google_firebase_firebase_installations_interop_java",
-    "$google_play_services_package:google_firebase_firebase_installations_java",
-    "$google_play_services_package:google_firebase_firebase_measurement_connector_java",
+    ":google_firebase_firebase_common_java",
+    ":google_firebase_firebase_installations_interop_java",
+    ":google_firebase_firebase_installations_java",
+    ":google_firebase_firebase_measurement_connector_java",
     ":google_play_services_ads_identifier_java",
     "$google_play_services_package:google_play_services_basement_java",
     ":google_play_services_measurement_base_java",
