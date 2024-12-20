@@ -32,6 +32,48 @@ android_aar_prebuilt("com_google_android_play_core_app_update_java") {
   ]
 }
 
+java_prebuilt("androidx_datastore_datastore_core_java") {
+  jar_path = "libs/androidx_datastore_datastore_core/datastore-core-1.0.0.jar"
+  supports_android = true
+  requires_android = true
+  output_name = "androidx_datastore_datastore_core"
+  enable_bytecode_checks = false
+  deps = [ 
+    "//third_party/androidx:androidx_annotation_annotation_jvm_java"
+  ]
+}
+
+android_aar_prebuilt("androidx_datastore_datastore_java") {
+  aar_path = "libs/androidx_datastore_datastore/datastore-1.0.0.aar"
+  info_path = "libs/androidx_datastore_datastore/androidx_datastore_datastore.info"
+  deps = [ 
+    ":androidx_datastore_datastore_core_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+  ]
+}
+
+
+java_prebuilt("androidx_datastore_datastore_preferences_core_java") {
+  jar_path = "libs/androidx_datastore_datastore_preferences_core/datastore-preferences-core-1.0.0.jar"
+  supports_android = true
+  requires_android = true
+  output_name = "androidx_datastore_datastore_preferences_core"
+  enable_bytecode_checks = false
+  deps = [ 
+    ":androidx_datastore_datastore_core_java",
+  ]
+}
+
+
+android_aar_prebuilt("androidx_datastore_datastore_preferences_java") {
+  aar_path = "libs/androidx_datastore_datastore_preferences/datastore-preferences-1.0.0.aar"
+  info_path = "libs/androidx_datastore_datastore_preferences/androidx_datastore_datastore_preferences.info"
+  deps = [ 
+    ":androidx_datastore_datastore_preferences_core_java",
+    ":androidx_datastore_datastore_java",
+  ]
+}
+
 
 
 android_aar_prebuilt("com_airbnb_android_java") {
@@ -184,6 +226,28 @@ android_aar_prebuilt("google_firebase_firebase_encoders_json_java") {
   ]
 }
 
+java_prebuilt("google_firebase_firebase_encoders_proto_java") {
+  jar_path = "libs/com_google_firebase_firebase_encoders_proto/firebase-encoders-proto-16.0.0.jar"
+  output_name = "com_google_firebase_firebase_encoders_proto"
+  supports_android = true
+  enable_bytecode_checks = false
+
+  deps = [
+  ]
+}
+
+android_aar_prebuilt(
+    "google_firebase_firebase_iid_interop_java") {
+  aar_path = "libs/com_google_firebase_firebase_iid_interop/firebase-iid-interop-17.1.0.aar"
+  info_path = "libs/com_google_firebase_firebase_iid_interop/com_google_firebase_firebase_iid_interop.info"
+  enable_bytecode_checks = false
+
+  deps = [
+    "$google_play_services_package:google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_tasks_java",
+  ]
+}
+
 android_aar_prebuilt(
     "google_firebase_firebase_installations_interop_java") {
   aar_path = "libs/com_google_firebase_firebase_installations_interop/firebase-installations-interop-17.2.0.aar"
@@ -195,6 +259,7 @@ android_aar_prebuilt(
     "$google_play_services_package:google_play_services_tasks_java",
   ]
 }
+
 
 android_aar_prebuilt("google_firebase_firebase_installations_java") {
   aar_path = "libs/com_google_firebase_firebase_installations/firebase-installations-18.0.0.aar"
@@ -261,7 +326,10 @@ android_aar_prebuilt(
     ":google_firebase_firebase_installations_java",
     ":google_firebase_firebase_measurement_connector_java",
     ":google_firebase_firebase_config_interop_java",
-    ":google_firebase_firebase_datatransport_java"
+    ":google_firebase_firebase_datatransport_java",
+    ":google_android_datatransport_transport_api_java",
+    ":androidx_datastore_datastore_preferences_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
   ]
 }
 
@@ -295,6 +363,8 @@ android_aar_prebuilt("google_firebase_firebase_messaging_java") {
     ":google_firebase_firebase_components_java",
     ":google_firebase_firebase_encoders_java",
     ":google_firebase_firebase_encoders_json_java",
+    ":google_firebase_firebase_encoders_proto_java",
+    ":google_firebase_firebase_iid_interop_java",
     ":google_firebase_firebase_installations_interop_java",
     ":google_firebase_firebase_installations_java",
     ":google_firebase_firebase_measurement_connector_java",
@@ -367,6 +437,7 @@ android_aar_prebuilt("androidx_work_work_runtime_java") {
     ":androidx_room_room_runtime_java",
   ]
 }
+
 
 android_aar_prebuilt("google_play_services_ads_lite_java") {
   aar_path = "libs/com_google_android_gms_play_services_ads_lite/play-services-ads-lite-22.4.0.aar"
