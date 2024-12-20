@@ -1,5 +1,5 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index 3e0a1fe57e55843795740a337a12ea7e8ef0ba3f..bbdf3933764d27f164643c14594b480adb0fd20b 100644
+index 3e0a1fe57e55843795740a337a12ea7e8ef0ba3f..b166e56e265a587ee71bc906c461755fc837cb0b 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
 @@ -194,6 +194,7 @@ if (current_toolchain == default_toolchain) {
@@ -71,7 +71,7 @@ index 3e0a1fe57e55843795740a337a12ea7e8ef0ba3f..bbdf3933764d27f164643c14594b480a
        "//components/payments/content/android:service_java",
        "//third_party/androidx:androidx_browser_browser_java",
      ]
-+    sources += mises_java_base_module_sources deps += mises_java_base_module_deps
++    sources += mises_java_base_module_sources deps -= mises_java_base_module_exception_deps deps += mises_java_base_module_deps
  
      # More deps for DFMs.
      if (dfmify_dev_ui) {
