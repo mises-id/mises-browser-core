@@ -1,6 +1,6 @@
 import("//mises/components/permissions/android/java_sources.gni")
 import("//mises/android/feed/mises_feed_java_sources.gni")
-
+import("//mises/third_party/open_mediation/buildflags.gni")
 
 kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/PersonalizeResults.java",
@@ -90,8 +90,6 @@ mises_java_base_module_exception_deps = [
 mises_java_base_module_deps = [
   "//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/open_mediation:open_mediation_sdk_java",
-  #"//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
-  #"//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
   "//mises/third_party/open_mediation:open_mediation_cardslider_java",
   "//third_party/android_deps:playcore_java",
   "//third_party/androidx:androidx_core_core_java",
@@ -99,6 +97,13 @@ mises_java_base_module_deps = [
   "//third_party/android_deps:javax_inject_javax_inject_java",
   "//mises/third_party/android_deps:google_firebase_firebase_crashlytics_java",
   "//mises/third_party/android_deps:google_firebase_firebase_analytics_java", 
-  "//mises/third_party/android_deps:google_play_services_measurement_api_java",
   "//mises/third_party/android_deps:google_firebase_firebase_messaging_java",
+  "//mises/third_party/android_deps:google_play_services_measurement_api_java",
 ]
+
+if (mises_enable_admob) {
+  mises_java_base_module_deps += [
+    "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
+    #"//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
+  ]
+}

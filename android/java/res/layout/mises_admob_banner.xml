@@ -18,7 +18,7 @@
         android:text=""
         android:textColor="#ff333333"
         android:textSize="20sp" />
-
+<!-- 
       <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/av_banner"
@@ -29,6 +29,6 @@
         android:layout_alignParentBottom="true"
         ads:adSize="MEDIUM_RECTANGLE"
         ads:adUnitId="ca-app-pub-3526707353288294/2213153929">
-    </com.google.android.gms.ads.AdView>
+    </com.google.android.gms.ads.AdView> -->
 
   </FrameLayout>

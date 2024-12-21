@@ -1,3 +1,4 @@
+import("//mises/third_party/open_mediation/buildflags.gni")
 kiwi_java_resources = [
     "java/res/drawable-hdpi/ic_clear_data.png",
     "java/res/drawable-mdpi/ic_clear_data.png",
@@ -414,7 +415,6 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/new_tab_page_layout.xml",
     "java/res/layout/mises_service_tiles_container.xml",
     "java/res/layout/mises_mv_tiles_container.xml",
-    "java/res/layout/mises_admob_banner.xml",
     "java/res/layout/mises_native_ad_container.xml",
     "java/res/layout/mises_carousel_container.xml",
     "java/res/layout/mises_search_box_layout.xml",
@@ -445,9 +445,12 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
 
     "java/res/drawable-xhdpi/ad_badge.png",
     
-
-
 ]
+
+mises_java_resources += [
+        "java/res/layout/mises_admob_banner.xml",
+]
+
 mises_base_module_resources = [ 
     "java/res_chromium_base/drawable-night/themed_app_icon.xml",
 ]
