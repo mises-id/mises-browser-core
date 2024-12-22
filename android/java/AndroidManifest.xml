@@ -58,3 +58,11 @@ firebase initialization
 <meta-data
     android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
     android:value="false"/>
+
+<provider
+    tools:replace="android:authorities"
+    android:name="com.google.firebase.provider.FirebaseInitProvider"
+    android:authorities="{{ manifest_package }}.firebaseinitprovider"
+    android:directBootAware="true"
+    android:exported="false"
+    android:initOrder="100" />

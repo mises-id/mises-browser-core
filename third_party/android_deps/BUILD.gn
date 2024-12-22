@@ -12,6 +12,21 @@ group("android_deps") {
   ]
 }
 
+
+java_prebuilt("org_jetbrains_kotlinx_kotlinx_coroutines_play_services_java") {
+  jar_path = "libs/org_jetbrains_kotlinx_kotlinx_coroutines_play_services/kotlinx-coroutines-play-services-1.7.1.jar"
+  supports_android = true
+  requires_android = true
+  output_name = "org_jetbrains_kotlinx_kotlinx_coroutines_play_services"
+  enable_bytecode_checks = false
+  deps = [ 
+    "$google_play_services_package:google_play_services_tasks_java",
+    "//third_party/android_deps:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm_java",
+    "//third_party/kotlin_stdlib:kotlin_stdlib_java",
+  ]
+}
+
+
 android_aar_prebuilt("google_play_services_safetynet_java") {
   aar_path = "libs/com_google_android_gms_play_services_safetynet/play-services-safetynet-18.1.0.aar"
   info_path = "libs/com_google_android_gms_play_services_safetynet/com_google_android_gms_play_services_safetynet.info"
@@ -350,6 +365,7 @@ android_aar_prebuilt("google_firebase_firebase_crashlytics_java") {
     ":google_firebase_firebase_config_interop_java",
     ":google_firebase_firebase_session_java",
     "$google_play_services_package:google_play_services_tasks_java",
+    ":org_jetbrains_kotlinx_kotlinx_coroutines_play_services_java",
   ]
 }
 

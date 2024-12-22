@@ -393,7 +393,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             vh.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Log.d(TAG, String.format(Locale.getDefault(), "click news: link=%s", news.link));
-                    MisesSysUtils.logEvent("ntp_news_flow_open", "url", news.link);
+                    MisesSysUtils.logEvent("ntp_news_flow_open", "url", MisesSysUtils.shortenUrl(news.link));
                     if (mTabCreator != null) {
                         mTabCreator.launchUrl(news.link, TabLaunchType.FROM_LINK);
                     }
@@ -898,7 +898,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 if (mTabCreator != null) {
                     mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
-                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", MisesSysUtils.shortenUrl(url));
                 
             }); 
             toggleLayout.setOnClickListener(view -> {
@@ -932,7 +932,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     mTabCreator.launchUrl(url, TabLaunchType.FROM_LINK);
                 }
                 
-                MisesSysUtils.logEvent("ntp_open_web3_site", "url", url);
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", MisesSysUtils.shortenUrl(url));
 
             }); 
             toggleLayout.setOnClickListener(view -> {
