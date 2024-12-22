@@ -1,5 +1,7 @@
 package org.chromium.base;
 
+import java.net.URL;
+
 import android.app.ActivityManager;
 import android.app.Activity;
 import android.content.Context;
@@ -94,6 +96,21 @@ public class MisesSysUtils {
         params.putString(key1, value1);
         FirebaseAnalytics.getInstance(context).logEvent(name, params);
         return ;
+    }
+
+    public static String shortenUrl(final String url) {
+        String ret = url;
+        try {
+            if (url.length() >= 36) { //firebase limit
+                URL java_url = new URL(url);
+                // Reconstruct the URL without the path
+                ret = java_url.getProtocol() + "://" + java_url.getHost();
+
+            }
+
+        } catch (Exception e) {
+        }
+        return ret;
     }
 
     public static void nativeOnRewardAdsResult(int code, String j_message) {

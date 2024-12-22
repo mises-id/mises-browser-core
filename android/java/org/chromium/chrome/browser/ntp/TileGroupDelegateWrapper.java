@@ -72,7 +72,7 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
 
         if (item.getData() != null) {
             final SiteSuggestion suggestion = (SiteSuggestion)item.getData();
-            MisesSysUtils.logEvent("ntp_delete_most_visited", "url", suggestion.url.getSpec());
+            MisesSysUtils.logEvent("ntp_delete_most_visited", "url", MisesSysUtils.shortenUrl(suggestion.url.getSpec()));
         }
     }
 
@@ -93,13 +93,13 @@ public class TileGroupDelegateWrapper implements TileGroup.Delegate, MostVisited
         if (item.getData() != null && item.getData() instanceof MisesSiteSuggestion) {
             final MisesSiteSuggestion suggestion = (MisesSiteSuggestion)item.getData();
             if (suggestion.extensionID != null) {
-                MisesSysUtils.logEvent("ntp_open_extension", "url", suggestion.url.getSpec());
+                MisesSysUtils.logEvent("ntp_open_extension", "url", MisesSysUtils.shortenUrl(suggestion.url.getSpec()));
             } else {
-                MisesSysUtils.logEvent("ntp_open_web3_site", "url", suggestion.url.getSpec());
+                MisesSysUtils.logEvent("ntp_open_web3_site", "url", MisesSysUtils.shortenUrl(suggestion.url.getSpec()));
             }
         } else if (item.getData() != null) {
             final SiteSuggestion suggestion = (SiteSuggestion)item.getData();
-            MisesSysUtils.logEvent("ntp_open_visited_site", "url", suggestion.url.getSpec());
+            MisesSysUtils.logEvent("ntp_open_visited_site", "url", MisesSysUtils.shortenUrl(suggestion.url.getSpec()));
         }
     }
 
