@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e0dff967b 100644
+index aeac917409efa2f452d95b17af915170c2d91153..0061d5643d8209b5392aed86494aa53042fb32dd 100644
 --- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 @@ -93,13 +93,54 @@ import java.util.ArrayList;
@@ -150,23 +150,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
              return getMeasuredWidth() - mToolbarSidePaddingForNtp;
          } else if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
              return getMeasuredWidth() - getBoundsAfterAccountingForLeftButton();
-@@ -864,6 +925,7 @@ public class ToolbarPhone extends ToolbarLayout
- 
-     @Override
-     protected void dispatchDraw(Canvas canvas) {
-+        setDurationScale(0.0f);
-         if (!mTextureCaptureMode && mToolbarBackground.getColor() != Color.TRANSPARENT) {
-             // Update to compensate for orientation changes.
-             mToolbarBackground.setBounds(0, 0, getWidth(), getHeight());
-@@ -881,6 +943,7 @@ public class ToolbarPhone extends ToolbarLayout
-         } else {
-             super.dispatchDraw(canvas);
-         }
-+        setDurationScale(0.6f);
-     }
- 
-     @Override
-@@ -889,6 +952,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -889,6 +950,7 @@ public class ToolbarPhone extends ToolbarLayout
      }
  
      private void onNtpScrollChanged(float scrollFraction) {
@@ -174,7 +158,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          mNtpSearchBoxScrollFraction = scrollFraction;
          if (mNtpSearchBoxScrollFraction > 0) {
              updateLocationBarForNtp(mVisualState, urlHasFocus());
-@@ -1031,6 +1095,10 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1031,6 +1093,10 @@ public class ToolbarPhone extends ToolbarLayout
          if (mHomeButton.getVisibility() != GONE) {
              mHomeButton.setVisibility(toolbarButtonVisibility);
          }
@@ -185,7 +169,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
  
          updateLocationBarLayoutForExpansionAnimation();
      }
-@@ -1123,7 +1191,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1123,7 +1189,7 @@ public class ToolbarPhone extends ToolbarLayout
              locationBarTranslationX = locationBarBaseTranslationX + mLocationBarNtpOffsetLeft;
          }
  
@@ -194,7 +178,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
  
          if (!mOptionalButtonAnimationRunning) {
              boolean isUrlFocusChangeInProgressWithScrollCompleted =
-@@ -1259,7 +1327,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1259,7 +1325,8 @@ public class ToolbarPhone extends ToolbarLayout
          mLocationBar.getPhoneCoordinator().setTranslationX(0);
          if (!mUrlFocusChangeInProgress) {
              mToolbarButtonsContainer.setTranslationY(0);
@@ -204,7 +188,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          }
  
          if (!mUrlFocusChangeInProgress && getToolbarShadow() != null) {
-@@ -1362,7 +1431,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1362,7 +1429,7 @@ public class ToolbarPhone extends ToolbarLayout
          mLocationBar.getPhoneCoordinator().setAlpha(relativeAlpha);
  
          // The search box on the NTP is visible if our omnibox is invisible, and vice-versa.
@@ -213,7 +197,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          if (!mForceDrawLocationBarBackground) {
              if (mActiveLocationBarBackground instanceof NtpSearchBoxDrawable) {
                  ((NtpSearchBoxDrawable) mActiveLocationBarBackground).resetBoundsToLastNonToolbar();
-@@ -1378,9 +1447,9 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1378,9 +1445,9 @@ public class ToolbarPhone extends ToolbarLayout
       */
      private void updateButtonsTranslationY() {
          int transY = mTabSwitcherState == STATIC_TAB ? Math.min(mNtpSearchBoxTranslation.y, 0) : 0;
@@ -225,7 +209,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
      }
  
      private void setAncestorsShouldClipChildren(boolean clip) {
-@@ -1401,6 +1470,7 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1401,6 +1468,7 @@ public class ToolbarPhone extends ToolbarLayout
          if (mHomeButton.getVisibility() != View.GONE) {
              drawChild(canvas, mHomeButton, SystemClock.uptimeMillis());
          }
@@ -233,7 +217,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
  
          // Draw the location/URL bar.
          if (mLocationBar.getPhoneCoordinator().getAlpha() != 0 && isLocationBarCurrentlyShown()) {
-@@ -1426,6 +1496,33 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1426,6 +1494,33 @@ public class ToolbarPhone extends ToolbarLayout
              canvas.restore();
          }
  
@@ -267,7 +251,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          // Draw the tab stack button and associated text if necessary.
          if (getTabSwitcherButtonCoordinator() != null && mUrlExpansionFraction != 1f) {
              // Draw the tab stack button image.
-@@ -1491,7 +1588,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1491,7 +1586,8 @@ public class ToolbarPhone extends ToolbarLayout
      }
  
      private boolean isChildLeft(View child) {
@@ -277,7 +261,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
      }
  
      /**
-@@ -1769,6 +1867,12 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1769,6 +1865,12 @@ public class ToolbarPhone extends ToolbarLayout
      @Override
      public void updateButtonVisibility() {
          boolean hideHomeButton = !mIsHomeButtonEnabled;
@@ -290,7 +274,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          if (hideHomeButton) {
              mHomeButton.setVisibility(View.GONE);
          } else {
-@@ -1795,6 +1899,15 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -1795,6 +1897,15 @@ public class ToolbarPhone extends ToolbarLayout
          if (mLocationBar != null) mLocationBar.updateVisualsForState();
  
          if (mLayoutUpdater != null) mLayoutUpdater.run();
@@ -306,7 +290,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
      }
  
      @Override
-@@ -2176,7 +2289,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2176,7 +2287,8 @@ public class ToolbarPhone extends ToolbarLayout
      }
  
      private void onTabCountChanged(int numberOfTabs) {
@@ -316,7 +300,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          if (getTabSwitcherButtonCoordinator() != null) {
              // In some use cases, isIncognitoBranded() will return a stale value for whether the
              // current view is in incognito. The mismatched value will result in the retrieval of
-@@ -2379,6 +2493,8 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2379,6 +2491,8 @@ public class ToolbarPhone extends ToolbarLayout
      protected boolean shouldDrawShadow() {
          // TODO(twellington): Move this shadow state information to ToolbarDataProvider and show
          // shadow when incognito NTP is scrolled.
@@ -325,7 +309,7 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
          return super.shouldDrawShadow()
                  && mTabSwitcherState == STATIC_TAB
                  && !hideShadowForIncognitoNtp()
-@@ -2936,4 +3052,261 @@ public class ToolbarPhone extends ToolbarLayout
+@@ -2936,4 +3050,254 @@ public class ToolbarPhone extends ToolbarLayout
      void setNtpSearchBoxScrollFractionForTesting(float ntpSearchBoxScrollFraction) {
          mNtpSearchBoxScrollFraction = ntpSearchBoxScrollFraction;
      }
@@ -390,13 +374,6 @@ index aeac917409efa2f452d95b17af915170c2d91153..3fe8da4373883c70ad11009938caeb0e
 +                animator.setDuration(500);
 +                animator.start();
 +            }
-+        }
-+    }
-+    private void setDurationScale(float scale) {
-+        try {
-+            ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, scale);
-+        } catch (Throwable t) {
-+
 +        }
 +    }
 +    
