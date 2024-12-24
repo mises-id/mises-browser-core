@@ -121,3 +121,7 @@
 
 -keepattributes Signature,InnerClasses,SourceFile,LineNumberTable,EnclosingMethod
 
+
+-keepclassmembers class com.android.installreferrer.api.** {
+  *;
+}

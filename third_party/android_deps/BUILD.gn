@@ -34,15 +34,17 @@ android_aar_prebuilt("google_play_services_safetynet_java") {
 }
 
 android_aar_prebuilt("com_android_installreferrer_java") {
-  aar_path = "libs/com_android_installreferrer/installreferrer-2.1.aar"
+  aar_path = "libs/com_android_installreferrer/installreferrer-2.2.aar"
   info_path =
       "libs/com_android_installreferrer/com_android_installreferrer.info"
 }
 android_aar_prebuilt("com_google_android_play_core_app_update_java") {
-  aar_path = "libs/com_google_android_play_core_app_update/app-update-2.0.1.aar"
+  aar_path = "libs/com_google_android_play_core_app_update/app-update-2.1.0.aar"
   info_path =
       "libs/com_google_android_play_core_app_update/com_google_android_play_core_app_update.info"
   deps = [
+    "$google_play_services_package:google_play_services_basement_java",
+    "$google_play_services_package:google_play_services_tasks_java",
     "//third_party/android_deps:com_google_android_play_feature_delivery_java",
   ]
 }

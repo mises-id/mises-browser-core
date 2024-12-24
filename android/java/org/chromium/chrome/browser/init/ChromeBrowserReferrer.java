@@ -80,95 +80,115 @@ import org.chromium.chrome.browser.mises.HttpUtil;
  * {@link AsyncInitializationActivity} classes should override the {@link BrowserParts}
  * interface for any additional initialization tasks for the initialization to work as intended.
  */
-public class ChromeBrowserReferrer extends BroadcastReceiver {
+public class ChromeBrowserReferrer {
   private static final String TAG = "ChromeBrowserReferrer";
-  private String readStream(InputStream is) {
-      try {
-        ByteArrayOutputStream bo = new ByteArrayOutputStream();
-        int i = is.read();
-        while (i != -1) {
-          bo.write(i);
-          i = is.read();
-        }
-        is.close();
-        return bo.toString();
-      } catch (IOException e) {
-        return "";
-      }
-    }
+  // private String readStream(InputStream is) {
+  //     try {
+  //       ByteArrayOutputStream bo = new ByteArrayOutputStream();
+  //       int i = is.read();
+  //       while (i != -1) {
+  //         bo.write(i);
+  //         i = is.read();
+  //       }
+  //       is.close();
+  //       return bo.toString();
+  //     } catch (IOException e) {
+  //       return "";
+  //     }
+  //   }
 
-    @Override
-    public void onReceive(final Context context, Intent intent) {
-      String referrer = intent.getStringExtra("referrer");
+  //   @Override
+  //   public void onReceive(final Context context, Intent intent) {
+  //     String referrer = intent.getStringExtra("referrer");
 
-      if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
-        return;
-      }
+  //     if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
+  //       return;
+  //     }
 
-      Log.i(TAG, "Received: [" + referrer + "]");
+  //     Log.i(TAG, "Received: [" + referrer + "]");
 
-      SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
-      sharedPreferencesEditor.putString("install_referrer", (String)referrer);
-      sharedPreferencesEditor.apply();
+  //     SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
+  //     sharedPreferencesEditor.putString("install_referrer", (String)referrer);
+  //     sharedPreferencesEditor.apply();
       
-      try {
-        HttpUtil.JsonGetAsync("https://update.browser.mises.site/a/install.php?ping=" + URLEncoder.encode(referrer, "UTF-8"), "", "", new Callback<HttpUtil.HttpResp>() {
-            @Override
-            public final void onResult(HttpUtil.HttpResp result) {
+  //     try {
+  //       HttpUtil.JsonGetAsync("https://update.browser.mises.site/a/install.php?ping=" + URLEncoder.encode(referrer, "UTF-8"), "", "", new Callback<HttpUtil.HttpResp>() {
+  //           @Override
+  //           public final void onResult(HttpUtil.HttpResp result) {
                 
-            }
-        });
-      } catch (UnsupportedEncodingException e) {
-        Log.e(TAG, "Received  with unsupported encoding");
+  //           }
+  //       });
+  //     } catch (UnsupportedEncodingException e) {
+  //       Log.e(TAG, "Received  with unsupported encoding");
+  //     }
+  // }
+
+  public static String getInstallReferrer(final Context context) {
+      if (context == null) {
+          return null;
       }
+      return ContextUtils.getAppSharedPreferences().getString("install_referrer", null);
   }
   public static void handleInstallReferrer(final Context context){
-    try {
-        final InstallReferrerClient referrerClient = InstallReferrerClient.newBuilder(context).build();
-        referrerClient.startConnection(new InstallReferrerStateListener() {
-          @Override
-          public void onInstallReferrerSetupFinished(int responseCode) {
-            switch (responseCode) {
-              case InstallReferrerResponse.OK:
-                // Connection established.
-                try {
-                  ReferrerDetails response = referrerClient.getInstallReferrer();
-                  String referrer = response.getInstallReferrer();
-                  if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
-                    Log.i(TAG, "Received : []");
-                  } else {
-                    Log.i(TAG, "Received : [" + referrer + "]");
+    if (ChromeBrowserReferrer.getInstallReferrer(context) != null) {
+        return;
+    }
+    Runnable runnable = new Runnable() {
+      @Override
+      public void run() {
+        try {
+            final InstallReferrerClient referrerClient = InstallReferrerClient.newBuilder(context).build();
+            referrerClient.startConnection(new InstallReferrerStateListener() {
+              @Override
+              public void onInstallReferrerSetupFinished(int responseCode) {
+                switch (responseCode) {
+                  case InstallReferrerResponse.OK:
+                    // Connection established.
+                    try {
+                      ReferrerDetails response = referrerClient.getInstallReferrer();
+                      String referrer = response.getInstallReferrer();
+                      if (referrer == null || referrer.length() == 0 || referrer.equals("")) {
+                        Log.i(TAG, "Received : []");
+                      } else {
+                        Log.i(TAG, "Received : [" + referrer + "]");
 
-                    SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
-                    sharedPreferencesEditor.putString("install_referrer", (String)referrer);
-                    sharedPreferencesEditor.apply();
-                  }
-                } catch (RemoteException e) {
-                  Log.e(TAG, "Could not getInstallReferrer: " + e.getMessage());
-                } catch (Exception e) {
-                  Log.e(TAG, e.toString());
+                        SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
+                        sharedPreferencesEditor.putString("install_referrer", (String)referrer);
+                        sharedPreferencesEditor.apply();
+                      }
+                    } catch (RemoteException e) {
+                      Log.e(TAG, "Could not getInstallReferrer: " + e.getMessage());
+                    } catch (Exception e) {
+                      Log.e(TAG, e.toString());
+                    }
+                    break;
+                  case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                    // API not available on the current Play Store app.
+                    Log.e(TAG, "Could not get: FEATURE_NOT_SUPPORTED" );
+                    break;
+                  case InstallReferrerResponse.SERVICE_UNAVAILABLE:
+                    // Connection couldn't be established.
+                    Log.e(TAG, "Could not get: SERVICE_UNAVAILABLE" );
+                    break;
                 }
                 referrerClient.endConnection();
-                break;
-              case InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
-                // API not available on the current Play Store app.
-                Log.e(TAG, "Could not get: FEATURE_NOT_SUPPORTED" );
-                break;
-              case InstallReferrerResponse.SERVICE_UNAVAILABLE:
-                // Connection couldn't be established.
-                Log.e(TAG, "Could not get: SERVICE_UNAVAILABLE" );
-                break;
-            }
-          }
+              }
 
-          @Override
-          public void onInstallReferrerServiceDisconnected() {
-              // Try to restart the connection on the next request to
-              // Google Play by calling the startConnection() method.
-          }
-        });
-    } catch (Exception e) {
-      Log.e(TAG, e.toString());
+              @Override
+              public void onInstallReferrerServiceDisconnected() {
+                  // Try to restart the connection on the next request to
+                  // Google Play by calling the startConnection() method.
+              }
+            });
+        } catch (Exception e) {
+          Log.e(TAG, e.toString());
+        }
+      }
+    };
+
+    try {
+        new Thread(runnable).start();
+    } catch (Exception ignored) {
     }
    
   }
