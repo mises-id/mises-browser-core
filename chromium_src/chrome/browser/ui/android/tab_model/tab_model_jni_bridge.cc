@@ -282,8 +282,9 @@ static jlong JNI_TabModelJniBridge_Init(JNIEnv* env,
 
 //MISES custom
 int TabModelJniBridge::GetLastNonExtensionActiveIndex() const {
-  JNIEnv* env = AttachCurrentThread();
-  return Java_TabModelJniBridge_getLastNonExtensionActiveIndex(env, java_object_.get(env));
+  // JNIEnv* env = AttachCurrentThread();
+  // return Java_TabModelJniBridge_getLastNonExtensionActiveIndex(env, java_object_.get(env));
+  return GetActiveIndex();
 }
 
 void TabModelJniBridge::CreateForgroundTab(TabAndroid* parent,
