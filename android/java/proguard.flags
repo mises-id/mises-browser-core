@@ -108,6 +108,9 @@
 -dontwarn android.adservices.**
 
 
+-keep class org.chromium.chrome.browser.MisesFirebaseMessagingService{*;}
+-keep class com.google.firebase.** { *; } 
+
 
 # SDK API
 -keep class com.openmediation.sdk.**{*;}

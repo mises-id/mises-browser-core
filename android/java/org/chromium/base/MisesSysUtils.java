@@ -101,7 +101,10 @@ public class MisesSysUtils {
     public static String shortenUrl(final String url) {
         String ret = url;
         try {
-            if (url.length() >= 36) { //firebase limit
+            if (url == null) {
+                ret = "";
+            }
+            else if (url.length() >= 36) { //firebase limit
                 URL java_url = new URL(url);
                 // Reconstruct the URL without the path
                 ret = java_url.getProtocol() + "://" + java_url.getHost();
