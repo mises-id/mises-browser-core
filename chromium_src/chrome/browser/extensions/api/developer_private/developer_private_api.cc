@@ -4,8 +4,10 @@
 
 #define SELECT_EXISTING_FOLDER SELECT_OPEN_FILE
 #define DeveloperPrivateLoadUnpackedFunction DeveloperPrivateLoadUnpackedFunction_Chromium
+#define DeveloperPrivateShowOptionsFunction DeveloperPrivateShowOptionsFunction_Chromium
 #include "src/chrome/browser/extensions/api/developer_private/developer_private_api.cc"
 #undef DeveloperPrivateLoadUnpackedFunction
+#undef DeveloperPrivateShowOptionsFunction
 #undef SELECT_EXISTING_FOLDER
 #include "ui/shell_dialogs/selected_file_info.h"
 
@@ -112,6 +114,30 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelected(const ui::SelectedFileIn
   
 }
 
+
+
+
+DeveloperPrivateShowOptionsFunction::~DeveloperPrivateShowOptionsFunction() =
+    default;
+
+ExtensionFunction::ResponseAction DeveloperPrivateShowOptionsFunction::Run() {
+  std::optional<developer::ShowOptions::Params> params =
+      developer::ShowOptions::Params::Create(args());
+  EXTENSION_FUNCTION_VALIDATE(params);
+  const Extension* extension = GetEnabledExtensionById(params->extension_id);
+  if (!extension)
+    return RespondNow(Error(kNoSuchExtensionError));
+
+  if (OptionsPageInfo::GetOptionsPage(extension).is_empty())
+    return RespondNow(Error(kNoOptionsPageForExtensionError));
+
+  content::WebContents* web_contents = GetSenderWebContents();
+  if (!web_contents)
+    return RespondNow(Error(kCouldNotFindWebContentsError));
+
+  ExtensionTabUtil::OpenOptionsPageFromAPI(extension, browser_context());
+  return RespondNow(NoArguments());
+}
 
 }  // namespace api
 

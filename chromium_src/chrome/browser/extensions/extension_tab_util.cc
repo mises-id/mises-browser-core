@@ -49,32 +49,6 @@ void CreateTabObjectAndroid(
 }
 
 
-void CreateTabListAndroid(
-    const Browser* browser,
-    const Extension* extension,
-    mojom::ContextType context,
-    base::Value::List& tab_list) {
-  TabModel *tab_strip = nullptr;
-  if (!TabModelList::models().empty())
-    tab_strip = *(TabModelList::models().begin());
-  if (tab_strip) {
-    int window_id = ExtensionTabUtil::GetWindowId(browser);
-    bool is_normal = ExtensionTabUtil::GetBrowserWindowTypeText(*browser) == tabs_constants::kWindowTypeValueNormal;
-    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
-      TabAndroid *tab_android = tab_strip->GetTabAt(i);
-      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
-      if (!tab_android || !web_contents) {
-        continue;
-      }
-      if (tab_android->ExtensionWindowID() == window_id ||
-          (is_normal && (tab_android->ExtensionWindowID() == -1))) {
-            ExtensionTabUtil::ScrubTabBehavior scrub_tab_behavior =
-              ExtensionTabUtil::GetScrubTabBehavior(extension, context, web_contents);
-                tab_list.Append(ExtensionTabUtil::CreateTabObject(web_contents, scrub_tab_behavior, extension, nullptr, i).ToValue());
-      }
-    }
-  }
-}
 
 bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index) {
   if (!TabModelList::models().empty()) {
@@ -156,5 +130,44 @@ void OpenSingleExtensionTab(
         
   }
 }
+
+
+base::Value::List ExtensionTabUtil::CreateTabList(
+    const Browser* browser,
+    const Extension* extension,
+    mojom::ContextType context) {
+  base::Value::List tab_list;
+  TabModel *tab_strip = nullptr;
+  if (!TabModelList::models().empty())
+    tab_strip = *(TabModelList::models().begin());
+  if (tab_strip) {
+    int window_id = ExtensionTabUtil::GetWindowId(browser);
+    bool is_normal = ExtensionTabUtil::GetBrowserWindowTypeText(*browser) == tabs_constants::kWindowTypeValueNormal;
+    for (int i = 0; i < tab_strip->GetTabCount(); ++i) {
+      TabAndroid *tab_android = tab_strip->GetTabAt(i);
+      WebContents* web_contents = tab_strip->GetWebContentsAt(i);
+      if (!tab_android || !web_contents) {
+        continue;
+      }
+      if (tab_android->ExtensionWindowID() == window_id ||
+          (is_normal && (tab_android->ExtensionWindowID() == -1))) {
+            ExtensionTabUtil::ScrubTabBehavior scrub_tab_behavior =
+              ExtensionTabUtil::GetScrubTabBehavior(extension, context, web_contents);
+                tab_list.Append(ExtensionTabUtil::CreateTabObject(web_contents, scrub_tab_behavior, extension, nullptr, i).ToValue());
+      }
+    }
+  }
+  return tab_list;
+}
+
+bool ExtensionTabUtil::OpenOptionsPage(const Extension* extension,
+                                       Browser* browser) {
+  if (browser == nullptr) {
+    return false;
+  }
+  return WindowControllerFromBrowser(browser)->OpenOptionsPage(extension);
+}
+
+
 #endif
 }  // namespace extensions
