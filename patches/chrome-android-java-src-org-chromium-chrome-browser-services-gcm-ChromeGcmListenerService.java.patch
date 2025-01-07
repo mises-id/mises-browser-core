@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/services/gcm/ChromeGcmListenerService.java b/chrome/android/java/src/org/chromium/chrome/browser/services/gcm/ChromeGcmListenerService.java
+index dfa3348b730ff8116e4a5f154eb692e6f362c730..a34c2265fb6dad51da5acd0dbc0dbec687e5685b 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/services/gcm/ChromeGcmListenerService.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/services/gcm/ChromeGcmListenerService.java
+@@ -16,7 +16,7 @@ import org.chromium.chrome.browser.base.SplitCompatGcmListenerService;
+ @SuppressLint("MissingFirebaseInstanceTokenRefresh")
+ public class ChromeGcmListenerService extends SplitCompatGcmListenerService {
+     private static @IdentifierNameString String sImplClassName =
+-            "org.chromium.chrome.browser.services.gcm.ChromeGcmListenerServiceImpl";
++            "org.chromium.chrome.browser.MisesFirebaseMessagingService";
+ 
+     public ChromeGcmListenerService() {
+         super(sImplClassName);

@@ -49,6 +49,8 @@ import org.chromium.chrome.browser.webapps.ChromeWebApkHost;
 import org.chromium.content_public.browser.DeviceUtils;
 import org.chromium.content_public.browser.SpeechRecognition;
 import org.chromium.net.NetworkChangeNotifier;
+import org.chromium.base.version_info.VersionConstants;
+import org.chromium.base.version_info.Channel;
 //import org.chromium.policy.CombinedPolicyProvider;
 
 import java.net.URL;
@@ -74,6 +76,7 @@ import org.chromium.net.ChromiumNetworkAdapter;
 import org.chromium.net.NetworkTrafficAnnotationTag;
 import org.chromium.base.Callback;
 import org.chromium.chrome.browser.mises.HttpUtil;
+import org.chromium.chrome.browser.MisesFirebaseMessagingService;
 
 /**
  * Application level delegate that handles start up tasks.
@@ -130,6 +133,9 @@ public class ChromeBrowserReferrer {
       return ContextUtils.getAppSharedPreferences().getString("install_referrer", null);
   }
   public static void handleInstallReferrer(final Context context){
+    if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.BETA|| VersionConstants.CHANNEL == Channel.DEFAULT) {
+      MisesFirebaseMessagingService.getToken();
+    }
     if (ChromeBrowserReferrer.getInstallReferrer(context) != null) {
         return;
     }

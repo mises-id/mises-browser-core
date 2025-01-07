@@ -66,6 +66,8 @@ mises_java_sources += [
   "//mises/android/java/org/chromium/chrome/browser/crypto_wallet/BraveWalletProviderDelegateImplHelper.java",
   "//mises/android/java/org/chromium/chrome/browser/searchwidget/SearchWidgetProviderActivity.java",
 
+  "//mises/android/java/org/chromium/chrome/browser/MisesFirebaseMessagingService.java",
+
 ]
 
 mises_java_sources += mises_feed_java_sources

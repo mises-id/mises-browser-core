@@ -29,7 +29,6 @@ android_library("public_java") {
     "java/org/chromium/chrome/browser/mises/AutoStartUpBootReceiver.java",
     "java/org/chromium/chrome/browser/mises/UIUtil.java",
     "java/org/chromium/chrome/browser/mises/HttpUtil.java",
-    #"java/org/chromium/chrome/browser/mises/MyFirebaseMessagingService.java",
 
     "java/org/chromium/chrome/browser/mises/MisesShareWin.java",
     "java/org/chromium/chrome/browser/mises/MisesWeb3SafeAlert.java",
@@ -86,6 +85,8 @@ android_library("public_java") {
     "//mises/third_party/android_deps:com_github_bumptech_glide_java",
     "//mises/third_party/android_deps:com_kirich1409_svgimageloaderplugins_java",
     "//mises/third_party/android_deps:google_play_services_measurement_api_java",
+    "//mises/third_party/android_deps:google_firebase_firebase_messaging_java",
+    "$google_play_services_package:google_play_services_tasks_java",
     "//chrome/android:base_module_java",
     "//base/version_info/android:version_constants_java",
     "//base/version_info/android:channel_enum_java"
