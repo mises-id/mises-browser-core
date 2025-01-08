@@ -14,20 +14,20 @@ public class MisesIntentHandlerClassAdapter extends MisesClassVisitor {
     public MisesIntentHandlerClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sIntentHandlerClassName, sMisesIntentHandlerClassName);
+        redirectConstructor(sIntentHandlerClassName, sMisesIntentHandlerClassName);
 
-        // makePublicMethod(sIntentHandlerClassName, "getUrlForCustomTab");
-        // changeMethodOwner(
-        //         sMisesIntentHandlerClassName, "getUrlForCustomTab", sIntentHandlerClassName);
+        makePublicMethod(sIntentHandlerClassName, "getUrlForCustomTab");
+        changeMethodOwner(
+                sMisesIntentHandlerClassName, "getUrlForCustomTab", sIntentHandlerClassName);
 
-        // makePublicMethod(sIntentHandlerClassName, "getUrlForWebapp");
-        // changeMethodOwner(sMisesIntentHandlerClassName, "getUrlForWebapp", sIntentHandlerClassName);
+        makePublicMethod(sIntentHandlerClassName, "getUrlForWebapp");
+        changeMethodOwner(sMisesIntentHandlerClassName, "getUrlForWebapp", sIntentHandlerClassName);
 
-        // makePublicMethod(sIntentHandlerClassName, "isJavascriptSchemeOrInvalidUrl");
-        // changeMethodOwner(sMisesIntentHandlerClassName, "isJavascriptSchemeOrInvalidUrl",
-        //         sIntentHandlerClassName);
+        makePublicMethod(sIntentHandlerClassName, "isJavascriptSchemeOrInvalidUrl");
+        changeMethodOwner(sMisesIntentHandlerClassName, "isJavascriptSchemeOrInvalidUrl",
+                sIntentHandlerClassName);
 
-        // changeMethodOwner(
-        //         sIntentHandlerClassName, "extractUrlFromIntent", sMisesIntentHandlerClassName);
+        changeMethodOwner(
+                sIntentHandlerClassName, "extractUrlFromIntent", sMisesIntentHandlerClassName);
     }
 }
