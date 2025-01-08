@@ -1,0 +1,13 @@
+diff --git a/components/gcm_driver/gcm_driver_android.cc b/components/gcm_driver/gcm_driver_android.cc
+index 0938865651353e73ec4efe45c16352319f8d0a19..4d9f6b8e125a986b8db11932c30fdaec7a41d907 100644
+--- a/components/gcm_driver/gcm_driver_android.cc
++++ b/components/gcm_driver/gcm_driver_android.cc
+@@ -245,7 +245,7 @@ void GCMDriverAndroid::RegisterImpl(
+ }
+ 
+ void GCMDriverAndroid::UnregisterImpl(const std::string& app_id) {
+-  NOTREACHED_IN_MIGRATION();
++  //NOTREACHED_IN_MIGRATION();
+ }
+ 
+ void GCMDriverAndroid::UnregisterWithSenderIdImpl(
