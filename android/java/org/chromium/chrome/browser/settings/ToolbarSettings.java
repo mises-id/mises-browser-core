@@ -6,6 +6,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import android.content.SharedPreferences;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
 
 import android.content.DialogInterface;
 import org.chromium.chrome.R;
@@ -19,6 +21,8 @@ import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 import org.chromium.chrome.browser.preferences.MisesPref;
 import org.chromium.chrome.browser.preferences.MisesPrefServiceBridge;
+import org.chromium.chrome.browser.tracing.settings.DeveloperSettings;
+import org.chromium.chrome.browser.MisesFirebaseMessagingService;
 
 public class ToolbarSettings extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     public static final String PREF_WIDEVINE_ENABLED = "widevine_enabled";
@@ -29,6 +33,9 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
 	               "MisesBackgroundVideoPlayback";    
     public static final String MISES_BACKGROUND_VIDEO_PLAYBACK_INTERNAL =
             "mises-background-video-playback";
+    
+    private static final String PREF_NOTIFICATION_SECTION = "notification_section";
+    private static final String PREF_NOTIFICATION_ID = "notification_id";
 
     public ToolbarSettings() {
         setHasOptionsMenu(true);		  
@@ -39,6 +46,20 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
         super.onCreate(savedInstanceState);
         getActivity().setTitle(R.string.preferences_toolbar);
         SettingsUtils.addPreferencesFromResource(this, R.xml.toolbar_preferences);
+
+        if (!DeveloperSettings.shouldShowDeveloperSettings()) {
+            PreferenceCategory category = findPreference(PREF_NOTIFICATION_SECTION);
+
+            if (category != null) {
+                PreferenceScreen screen = getPreferenceScreen();
+                screen.removePreference(category);
+            }
+        } else {
+            MisesFirebaseMessagingService.getToken(token -> {
+                Preference p = findPreference(PREF_NOTIFICATION_ID);
+                p.setSummary(token);
+            });
+        }
 
     }
 

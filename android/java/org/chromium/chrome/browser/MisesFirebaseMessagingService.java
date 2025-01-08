@@ -140,11 +140,14 @@ public class MisesFirebaseMessagingService extends ChromeGcmListenerServiceImpl 
 
     @Override
     public void onNewToken(@NonNull String token) {
-        Log.i(TAG, "Refreshed token: " + token);
+        Log.d(TAG, "Refreshed token: " + token);
 
     }
 
-    static public void getToken() {
+    public interface RunnableWithResult {
+        void run(String result);
+    }
+    static public void getToken(final RunnableWithResult callback) {
         FirebaseMessaging.getInstance().getToken()
         .addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
@@ -159,6 +162,10 @@ public class MisesFirebaseMessagingService extends ChromeGcmListenerServiceImpl 
 
                 // Log and toast
                 Log.i(TAG, "Get token: " + token);
+
+                if (callback != null) {
+                    callback.run(token);
+                }
             }
         });
     }

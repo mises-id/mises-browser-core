@@ -229,7 +229,7 @@ public class MisesAdsUtil {
         Log.i(TAG, "om start init sdk " + VersionConstants.CHANNEL);
         String initHost = "https://ads.mises.site/init";
         String appKey = APPKEY;
-        if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.DEFAULT) {
+        if (VersionConstants.CHANNEL <= Channel.DEV) {
             initHost = "https://ads.test.mises.site/init";
             appKey = APPKEY_DEBUG;
         };

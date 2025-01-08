@@ -76,7 +76,6 @@ import org.chromium.net.ChromiumNetworkAdapter;
 import org.chromium.net.NetworkTrafficAnnotationTag;
 import org.chromium.base.Callback;
 import org.chromium.chrome.browser.mises.HttpUtil;
-import org.chromium.chrome.browser.MisesFirebaseMessagingService;
 
 /**
  * Application level delegate that handles start up tasks.
@@ -133,9 +132,6 @@ public class ChromeBrowserReferrer {
       return ContextUtils.getAppSharedPreferences().getString("install_referrer", null);
   }
   public static void handleInstallReferrer(final Context context){
-    if (VersionConstants.CHANNEL == Channel.DEV || VersionConstants.CHANNEL == Channel.BETA|| VersionConstants.CHANNEL == Channel.DEFAULT) {
-      MisesFirebaseMessagingService.getToken();
-    }
     if (ChromeBrowserReferrer.getInstallReferrer(context) != null) {
         return;
     }
