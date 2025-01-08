@@ -28,4 +28,15 @@
             android:summary="@string/prefs_background_video_playback_on" />
     </PreferenceCategory>
     
+
+
+    <PreferenceCategory
+        android:key="notification_section"
+        android:title="@string/prefs_section_notification">
+       <org.chromium.chrome.browser.about_settings.LongClickCopySummaryPreference
+        android:key="notification_id"
+        android:title="@string/prefs_notification_id_title" />
+    </PreferenceCategory>
+
+
 </PreferenceScreen>

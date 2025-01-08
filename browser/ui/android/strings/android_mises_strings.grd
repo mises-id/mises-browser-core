@@ -117,7 +117,7 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
         General
       </message>
 
-      <message name="IDS_PREFS_SECTION_MEDIA" desc="Title for the general section in settings.">
+      <message name="IDS_PREFS_SECTION_MEDIA" desc="Title for the media section in settings.">
         Media
       </message>
 
@@ -133,6 +133,13 @@ This file contains all "about" strings.  It is set to NOT be translated, in tran
       </message>
       <message name="IDS_PREFS_ENABLE_WIDEVINE_SUMMARY" desc="Summary for preference that enables widevine drm.">
         Use Widevine digital rights management (DRM) to view protected media content in the browser.
+      </message>
+
+      <message name="IDS_PREFS_SECTION_NOTIFICATION" desc="Title for the notification section in settings.">
+        FCM
+      </message>
+      <message name="IDS_PREFS_NOTIFICATION_ID_TITLE" desc="Title for fcm id controls section">
+        FCM ID
       </message>
 
   </messages>
