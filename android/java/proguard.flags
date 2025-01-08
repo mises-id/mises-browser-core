@@ -59,6 +59,18 @@
     *** getProfile(...);
 }
 
+-keep class org.chromium.chrome.browser.IntentHandler {
+    public <init>(...);
+    *** getUrlForCustomTab(...);
+    *** getUrlForWebapp(...);
+    *** isJavascriptSchemeOrInvalidUrl(...);
+    *** extractUrlFromIntent(...);
+}
+
+-keep class org.chromium.chrome.browser.MisesIntentHandler {
+    public <init>(...);
+}
+
 -keep class org.chromium.chrome.browser.omnibox.suggestions.AutocompleteCoordinator {
     *** createViewProvider(...);
 }

@@ -50,7 +50,7 @@ public class MisesFirebaseMessagingService extends ChromeGcmListenerServiceImpl 
         String bundleImage = "gcm.notification.image";
         String bundleTitle = "gcm.notification.title";
         String bundleBody = "gcm.notification.body";
-        String bundleOpenUrl = "open_url";
+        String bundleOpenUrl = "mises.open_url";
         Context context = ContextUtils.getApplicationContext();
         String CHANNEL_ID = context.getString(R.string.default_fcm_channel_id);
 
