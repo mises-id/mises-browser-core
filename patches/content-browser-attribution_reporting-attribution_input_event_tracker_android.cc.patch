@@ -1,0 +1,22 @@
+diff --git a/content/browser/attribution_reporting/attribution_input_event_tracker_android.cc b/content/browser/attribution_reporting/attribution_input_event_tracker_android.cc
+index 48f7a3111a3c0e1153f0e385a81c012a84953222..c38ae8842e31f7f66a87bf5e27883aca1861d66a 100644
+--- a/content/browser/attribution_reporting/attribution_input_event_tracker_android.cc
++++ b/content/browser/attribution_reporting/attribution_input_event_tracker_android.cc
+@@ -18,6 +18,7 @@
+ #include "ui/android/event_forwarder.h"
+ #include "ui/android/view_android.h"
+ #include "ui/events/android/motion_event_android.h"
++#include "content/browser/web_contents/web_contents_view.h"
+ 
+ namespace content {
+ 
+@@ -25,6 +26,9 @@ AttributionInputEventTrackerAndroid::AttributionInputEventTrackerAndroid(
+     WebContents* web_contents) {
+   DCHECK(web_contents);
+ 
++  if (!static_cast<WebContentsImpl*>(web_contents)->GetView()->GetNativeView()) {
++    return;
++  }
+   // Lazy initialization
+   std::ignore = static_cast<WebContentsImpl*>(web_contents)
+                     ->GetWebContentsAndroid()
