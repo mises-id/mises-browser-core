@@ -1,8 +1,16 @@
 diff --git a/chrome/browser/resources/extensions/toolbar.ts b/chrome/browser/resources/extensions/toolbar.ts
-index 56556cfc51243fd89bbae76753f9eb1a21f52225..6e5a17dcd1709851b0a1f4f799b96bf4c36e7127 100644
+index 56556cfc51243fd89bbae76753f9eb1a21f52225..e7226e8f822a3c95fecfde0ae091960602791ac1 100644
 --- a/chrome/browser/resources/extensions/toolbar.ts
 +++ b/chrome/browser/resources/extensions/toolbar.ts
-@@ -62,7 +62,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -9,6 +9,7 @@ import 'chrome://resources/cr_elements/cr_hidden_style.css.js';
+ import 'chrome://resources/cr_elements/policy/cr_tooltip_icon.js';
+ import 'chrome://resources/cr_elements/cr_shared_vars.css.js';
+ import './pack_dialog.js';
++import './mises_import_dialog.js';
+ 
+ import {getToastManager} from 'chrome://resources/cr_elements/cr_toast/cr_toast_manager.js';
+ import type {CrToggleElement} from 'chrome://resources/cr_elements/cr_toggle/cr_toggle.js';
+@@ -62,7 +63,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
  
        inDevMode: {
          type: Boolean,
@@ -11,12 +19,34 @@ index 56556cfc51243fd89bbae76753f9eb1a21f52225..6e5a17dcd1709851b0a1f4f799b96bf4
          observer: 'onInDevModeChanged_',
          reflectToAttribute: true,
        },
-@@ -177,6 +177,10 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+@@ -79,6 +80,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+ 
+       expanded_: Boolean,
+       showPackDialog_: Boolean,
++      showImportDialog_: Boolean,
+ 
+       /**
+        * Prevents initiating update while update is in progress.
+@@ -98,6 +100,7 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+ 
+   private expanded_: boolean;
+   private showPackDialog_: boolean;
++  private showImportDialog_: boolean;
+   private isUpdating_: boolean;
+ 
+   override ready() {
+@@ -177,6 +180,16 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
      chrome.metricsPrivate.recordUserAction('Options_LoadUnpackedExtension');
    }
  
 +  private openExtensionsWebStore_() {
 +    window.open("https://chrome.google.com/webstore/category/extensions");
++  }
++  private onImportClick_() {
++    this.showImportDialog_ = true;
++  }
++  private onImportDialogClose_() {
++    this.showImportDialog_ = false;
 +  }
 +
    private onPackClick_() {

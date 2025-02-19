@@ -1,0 +1,46 @@
+<style include="cr-shared-style">
+  cr-input {
+    margin-top: var(--cr-form-field-bottom-spacing);
+    --cr-input-error-display: none;
+  }
+
+  cr-button[slot='suffix'] {
+    margin-inline-start: 10px;
+  }
+
+  /* Prevent focus-outline from being chopped by bottom of dialog body. */
+  cr-input {
+    margin-bottom: 4px;
+  }
+</style>
+<cr-dialog id="dialog" close-text="$i18n{close}">
+  <div slot="title">Import Extensions</div>
+  <div slot="body">
+    <div>This helps you migrate the extensions that you installed in other browser such as kiwi or chrome. First open kiwi or chrome, visit url chrome://extensions-internals/ ,then long press to select all and copy all the json data, finally paste them to belowing text input box. P.S. This can also be used to backup and recover your mises browser extension list.</div>
+    <cr-input id="link" label="Link to open in other browser"
+      value="chrome://extensions-internals/" readonly>
+      <cr-button id="copy" on-click="copyLink_"
+          slot="suffix">
+          Copy
+      </cr-button>
+    </cr-input>
+
+    <cr-input id="json" label="Paste json data here"
+        type="text"
+        value="{{json_}}" autofocus>
+    </cr-input>
+
+    <template is="dom-if" if="[[lastResponse_]]" restamp>
+      <span>[[lastResponse_.message]]</span>
+    </template>
+  </div>
+  <div slot="button-container">
+    <cr-button class="cancel-button" on-click="onCancelClick_">
+      $i18n{cancel}
+    </cr-button>
+    <cr-button class="action-button" on-click="onConfirmClick_"
+        disabled="[[shouldDisableImport_(importing_, json_)]]">
+        Import extensions from json
+    </cr-button>
+  </div>
+</cr-dialog>
