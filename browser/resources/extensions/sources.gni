@@ -7,6 +7,7 @@ mises_extensions_ts_definitions = [
     "//mises/browser/resources/extensions/mises_private.d.ts",
 ]
 mises_extensions_web_component_files = [ 
+    "mises_import_dialog.ts",
     "mises_open_web_store_footer.ts",
     "mises_default_extension_setting.ts"
 ]

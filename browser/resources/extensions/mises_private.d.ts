@@ -5,5 +5,6 @@
       export function recordEvent(params: string): void;
       export function setDefaultEVMWallet(id: string, keyProperty: string): void;
       export function getDefaultEVMWallet(): Promise<string>;
+      export function installExtensionById(id: string): Promise<string>;
     }
   }

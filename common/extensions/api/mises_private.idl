@@ -16,6 +16,7 @@ namespace misesPrivate {
   callback NotifyPhishingDetectedCallback = void(Web3SafeAction action);
   callback FetchJsonCallback = void(DOMString json);
   callback GetDefaultEVMWalletCallback = void(DOMString id);
+  callback InstallExtensionCallback = void(DOMString msg);
   interface Functions {
     // set mises id
     static void setMisesId(DOMString id);
@@ -28,5 +29,6 @@ namespace misesPrivate {
         optional FetchJsonCallback callback);
     static void setDefaultEVMWallet(DOMString id, DOMString keyProperty);
     [supportsPromises] static void getDefaultEVMWallet(optional GetDefaultEVMWalletCallback callback);
+    [supportsPromises] static void installExtensionById(DOMString id, optional InstallExtensionCallback callback);
   };
 };

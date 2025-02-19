@@ -90,7 +90,7 @@ WebstoreInstallerForImporting::WebstoreInstallerForImporting(
       base::BindOnce(
         &WebstoreInstallerForImporting::CheckWebStoreInstallStarted,
         weak_ptr_factory_.GetWeakPtr()),
-      base::Seconds(10));
+      base::Seconds(30));
   }
 
   bool WebstoreInstallerForImporting::CheckRequestorAlive() const{

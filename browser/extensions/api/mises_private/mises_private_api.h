@@ -18,6 +18,7 @@
 #include "extensions/browser/extension_function.h"
 #include "mises/common/extensions/api/mises_private.h"
 #include "components/value_store/value_store.h"
+#include "chrome/common/extensions/webstore_install_result.h"
 
 namespace extensions {
 namespace api {
@@ -31,6 +32,27 @@ protected:
   ~MisesPrivateSetMisesIdFunction() override = default;
 
   ExtensionFunction::ResponseAction Run() override;
+};
+
+class MisesPrivateInstallExtensionByIdFunction : public ExtensionFunction
+{
+public:
+  DECLARE_EXTENSION_FUNCTION("misesPrivate.installExtensionById",
+                             UNKNOWN)
+  MisesPrivateInstallExtensionByIdFunction();
+  MisesPrivateInstallExtensionByIdFunction( const MisesPrivateInstallExtensionByIdFunction&) = delete;
+  MisesPrivateInstallExtensionByIdFunction& operator=( const MisesPrivateInstallExtensionByIdFunction&) = delete;
+protected:
+  ~MisesPrivateInstallExtensionByIdFunction() override;
+
+  ExtensionFunction::ResponseAction Run() override;
+private:
+  void OnWebstoreInstallResult(
+    bool success,
+    const std::string& error,
+    extensions::webstore_install::Result result);
+
+  base::WeakPtrFactory<MisesPrivateInstallExtensionByIdFunction> weak_ptr_factory_{this};
 };
 
 class MisesPrivateGetInstallReferrerFunction : public ExtensionFunction

@@ -36,6 +36,7 @@
 #include "content/public/browser/browser_context.h"
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/browser_thread.h"
+#include "mises/browser/extensions/mises_webstore_installer.h"
 
 
 namespace {
@@ -82,6 +83,40 @@ ExtensionFunction::ResponseAction MisesPrivateSetMisesIdFunction::Run() {
   }
   return RespondNow(NoArguments());
 }
+
+MisesPrivateInstallExtensionByIdFunction::MisesPrivateInstallExtensionByIdFunction() {
+}
+MisesPrivateInstallExtensionByIdFunction::~MisesPrivateInstallExtensionByIdFunction() {
+}
+
+
+ExtensionFunction::ResponseAction MisesPrivateInstallExtensionByIdFunction::Run() {
+  std::optional<api::mises_private::InstallExtensionById::Params> params(
+    api::mises_private::InstallExtensionById::Params::Create(args()));
+  EXTENSION_FUNCTION_VALIDATE(params);
+  LOG(INFO) << "MisesPrivate InstallExtensionById :" << params->id;
+  Profile* profile = Profile::FromBrowserContext(browser_context());
+  scoped_refptr<WebstoreInstallerForImporting> installer =
+  new WebstoreInstallerForImporting(
+    params->id, profile,
+      base::BindOnce(
+          &MisesPrivateInstallExtensionByIdFunction::OnWebstoreInstallResult,
+          weak_ptr_factory_.GetWeakPtr()));
+  installer->StartInstaller();
+  AddRef();
+  return RespondLater();
+}
+
+void MisesPrivateInstallExtensionByIdFunction::OnWebstoreInstallResult(
+  bool success,
+  const std::string& error,
+  extensions::webstore_install::Result result) {
+
+  Respond(ArgumentList(api::mises_private::InstallExtensionById::Results::Create(error)));
+  Release();
+}
+
+
 
 ExtensionFunction::ResponseAction MisesPrivateGetInstallReferrerFunction::Run() {
   std::string referrerString;
