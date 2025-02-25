@@ -1,3 +1,9 @@
+# Mises Browser Official Repo
+Mises Browser is a pioneering mobile Web3 browser that combines speed, security, and support for browser extensions. Designed to enhance the mobile Web3 experience, it enables seamless interaction with decentralized applications (DApps) directly from your smartphone.
+
+[![Mises Browser Introduction](https://img.youtube.com/vi/SgOEfqzf3Bc/0.jpg)](https://www.youtube.com/watch?v=SgOEfqzf3Bc)
+
+
 # Build Environment Setup Guide  
 
 ## Prerequisites  
