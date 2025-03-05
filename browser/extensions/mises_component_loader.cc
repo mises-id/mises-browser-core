@@ -29,7 +29,7 @@
 #include "extensions/common/constants.h"
 #include "extensions/common/mojom/manifest.mojom.h"
 
-#include "mises/components/mises_extension/grit/mises_wallet.h"
+#include "mises/components/mises_extension/grit/mises_extension.h"
 #include "extensions/browser/api/storage/storage_frontend.h"
 #include "extensions/browser/api/storage/settings_namespace.h"
 #include "extensions/browser/extension_registry.h"
@@ -545,10 +545,9 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
 
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
   if (!mises_extension) {
-    base::FilePath miseswallet_extension_path(FILE_PATH_LITERAL(""));
-    miseswallet_extension_path =
-        miseswallet_extension_path.Append(FILE_PATH_LITERAL("mises_wallet"));
-    Add(IDR_MISES_WALLET_MANIFEST_JSON, miseswallet_extension_path);
+    base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
+    mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_extension"));
+    Add(IDR_MISES_SAFE_MANIFEST_JSON, mises_extension_path);
   }
 
 

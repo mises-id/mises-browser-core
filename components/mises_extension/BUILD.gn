@@ -41,27 +41,37 @@ action("web_discovery_project_resources") {
 }
 
 mises_grit("static_resources") {
-  source = "extension/resources.grd"
+  source = "resources.grd"
 
   outputs = [
-    "grit/mises_wallet.h",
-    "grit/mises_wallet_resources_map.cc",
-    "grit/mises_wallet_resources_map.h",
-    "mises_wallet_static.pak",
+    "grit/mises_extension.h",
+    "grit/mises_extension_resources_map.cc",
+    "grit/mises_extension_resources_map.h",
+    "mises_extension_static.pak",
   ]
 
   deps = [
   ]
 }
 
+pack_web_resources("generated_resources") {
+  resource_name = "mises_safe"
+  output_dir = "$root_gen_dir/mises/components/mises_extension"
+
+  # Need wepack and GRD generation first
+  deps = [ "extension/mises_safe:generate_mises_safe" ]
+}
+
 repack("resources") {
   deps = [
+    ":generated_resources",
     ":static_resources",
   ]
 
   sources = [
-    "$root_gen_dir/mises/components/mises_extension/mises_wallet_static.pak",
+    #"$root_gen_dir/mises/components/mises_extension/mises_safe_static.pak",
+    "$root_gen_dir/mises/components/mises_extension/mises_safe_generated.pak",
   ]
 
-  output = "$root_gen_dir/mises/components/mises_extension/mises_wallet_resources.pak"
+  output = "$root_gen_dir/mises/components/mises_extension/mises_extension_resources.pak"
 }

@@ -14,6 +14,41 @@ type RequestIdleCallbackDeadline = {
   timeRemaining: (() => number)
 }
 
+
+interface RequestArguments {
+  method: string;
+  params?: unknown[] | object;
+}
+
+interface EthereumProvider {
+  isMetaMask?: boolean;
+  request: (args: RequestArguments) => Promise<unknown>;
+  on(event: string, listener: (...args: any[]) => void): void;
+  removeListener(event: string, listener: (...args: any[]) => void): void;
+  enable(): Promise<string[]>;
+  selectedAddress: string | null;
+  networkVersion: string | null;
+  chainId: string | null;
+  isConnected(): boolean;
+  // Add legacy methods
+  sendAsync(payload: { method: string; params?: any[] }, callback: (error: Error | null, result?: any) => void): void;
+  send(payload: { method: string; params?: any[] }, callback?: (error: Error | null, result?: any) => void): void;
+}
+
+interface Web3Provider {
+  currentProvider: any;
+  eth: {
+    accounts: string[];
+    defaultAccount: string | null;
+    defaultBlock: string | number;
+    getAccounts(): Promise<string[]>;
+    getBalance(address: string): Promise<string>;
+    sendTransaction(txData: any): Promise<string>;
+  };
+  version: string;
+}
+
+
 declare global {
   interface Window {
     // Typescript doesn't include requestIdleCallback as it's non-standard.
@@ -24,7 +59,8 @@ declare global {
     ) => RequestIdleCallbackHandle)
     cancelIdleCallback: ((handle: RequestIdleCallbackHandle) => void)
     alreadyInserted: boolean
-    web3: any
+    ethereum?: EthereumProvider;
+    web3?: Web3Provider;
     content_cosmetic: {
       cosmeticStyleSheet: CSSStyleSheet
       allSelectorsToRules: Map<string, number>
