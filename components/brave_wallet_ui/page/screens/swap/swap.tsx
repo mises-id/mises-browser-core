@@ -7,7 +7,7 @@ import * as React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { Swap as SwapInterface } from '@brave/swap-interface'
-import '@brave/swap-interface/dist/style.css'
+//import '@brave/swap-interface/dist/style.css'
 
 // Utils
 import { getLocale } from '$web-common/locale'

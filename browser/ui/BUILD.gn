@@ -158,7 +158,7 @@ source_set("ui") {
   if (enable_extensions && toolkit_views) {
     sources += [
       "views/location_bar/mises_location_bar_view.cc",
-      "views/location_bar/msies_location_bar_view.h",
+      "views/location_bar/mises_location_bar_view.h",
     ]
 
     if (enable_extensions) {

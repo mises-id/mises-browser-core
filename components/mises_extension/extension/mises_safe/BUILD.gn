@@ -1,0 +1,29 @@
+import("//mises/components/common/typescript.gni")
+
+transpile_web_ui("mises_safe") {
+  entry_points = [
+    [
+      "mises_safe_content_scripts",
+      rebase_path("content-scripts.ts"),
+    ],
+    [
+      "mises_safe_background",
+      rebase_path("background/background.ts"),
+    ],
+    [
+      "mises_safe_injected",
+      rebase_path("injected-script.ts"),
+    ],
+  ]
+
+  # For explanation of "chromeapp", see:
+  # https://github.com/brave/brave-browser/issues/5587
+  webpack_aliases = [ "chromeapp" ]
+  resource_name = "mises_safe"
+
+  # Must match the relative path from the static GRD to the manifest.json
+  # plus any other relative path we want these files to live in the extension
+  resource_path_prefix = "mises_safe/out"
+
+  public_asset_path = "/out/"
+}

@@ -5,12 +5,12 @@
 
 #include "chrome/browser/extensions/chrome_component_extension_resource_manager.h"
 
-#include "mises/components/mises_extension/grit/mises_wallet_resources_map.h"
+#include "mises/components/mises_extension/grit/mises_extension_resources_map.h"
 
 
 
 #define MISES_CHROME_COMPONENT_EXTENSION_RESOURCE_MANAGER_DATA_DATA  \
-  AddComponentResourceEntries(kMisesWallet, kMisesWalletSize);       
+  AddComponentResourceEntries(kMisesExtension, kMisesExtensionSize);       
 
 #include "src/chrome/browser/extensions/chrome_component_extension_resource_manager.cc"
 #undef MISES_CHROME_COMPONENT_EXTENSION_RESOURCE_MANAGER_DATA_DATA
