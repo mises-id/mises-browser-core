@@ -1,5 +1,3 @@
-// proxy scripts 发送和监听消息
-
 class ProxyClient {
   eventListener: {
     addMessageListener: (fn: any) => void;

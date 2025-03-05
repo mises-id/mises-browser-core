@@ -546,7 +546,7 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
   if (!mises_extension) {
     base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
-    mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_extension"));
+    mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_safe"));
     Add(IDR_MISES_SAFE_MANIFEST_JSON, mises_extension_path);
   }
 

@@ -54,7 +54,7 @@
     "includes": [63170],
   },
 
-  "mises/components/mises_extension/resources.grd": {
+  "mises/components/mises_extension/extension/resources.grd": {
     "includes": [63270],
   },
 

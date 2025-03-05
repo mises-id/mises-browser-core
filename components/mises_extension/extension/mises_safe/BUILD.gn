@@ -1,6 +1,6 @@
 import("//mises/components/common/typescript.gni")
 
-transpile_web_ui("generate_mises_safe") {
+transpile_web_ui("mises_safe") {
   entry_points = [
     [
       "mises_safe_content_scripts",
@@ -23,7 +23,7 @@ transpile_web_ui("generate_mises_safe") {
 
   # Must match the relative path from the static GRD to the manifest.json
   # plus any other relative path we want these files to live in the extension
-  resource_path_prefix = "mises_extension/extension/mises_safe/out"
+  resource_path_prefix = "mises_safe/out"
 
   public_asset_path = "/out/"
 }

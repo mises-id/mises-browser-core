@@ -41,7 +41,7 @@ action("web_discovery_project_resources") {
 }
 
 mises_grit("static_resources") {
-  source = "resources.grd"
+  source = "extension/resources.grd"
 
   outputs = [
     "grit/mises_extension.h",
@@ -51,6 +51,7 @@ mises_grit("static_resources") {
   ]
 
   deps = [
+    "extension/mises_safe"
   ]
 }
 
@@ -59,7 +60,9 @@ pack_web_resources("generated_resources") {
   output_dir = "$root_gen_dir/mises/components/mises_extension"
 
   # Need wepack and GRD generation first
-  deps = [ "extension/mises_safe:generate_mises_safe" ]
+  deps = [ 
+    "extension/mises_safe" 
+  ]
 }
 
 repack("resources") {
@@ -69,7 +72,7 @@ repack("resources") {
   ]
 
   sources = [
-    #"$root_gen_dir/mises/components/mises_extension/mises_safe_static.pak",
+    "$root_gen_dir/mises/components/mises_extension/mises_extension_static.pak",
     "$root_gen_dir/mises/components/mises_extension/mises_safe_generated.pak",
   ]
 

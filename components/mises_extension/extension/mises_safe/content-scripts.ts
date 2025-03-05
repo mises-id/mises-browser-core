@@ -11,9 +11,7 @@ const postMsg = (id: any, res: unknown) => {
 
 const initPostMsgClient = async () => {
   window.addEventListener("message", async (e) => {
-    // 监听 message 事件
     if (e.origin !== window.location.origin) {
-      // 验证消息来源地址
       return;
     }
     if (!e.data || e.data.type !== "mises-proxy-request") {

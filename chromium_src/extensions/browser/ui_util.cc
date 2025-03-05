@@ -10,11 +10,18 @@ namespace ui_util {
 
 bool ShouldDisplayInExtensionSettings(Manifest::Type type,
                                       mojom::ManifestLocation location) {
-
+  //for test mises_extension_id
+  if (Manifest::IsComponentLocation(location)) {
+    return true;
+  }
   return ShouldDisplayInExtensionSettings_Chromium(type, location);
 }
 
 bool ShouldDisplayInExtensionSettings(const Extension& extension) {
+  //for test mises_extension_id
+  if (Manifest::IsComponentLocation(extension.location())) {
+    return true;
+  }
   return ShouldDisplayInExtensionSettings_Chromium(extension.GetType(),
                                           extension.location());
 }
