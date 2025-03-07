@@ -48,8 +48,18 @@ module.exports = async function (env, argv) {
 
   // Webpack config object
   const resolve = {
-    extensions: ['.js', '.tsx', '.ts', '.json'],
-    symlinks: false, // If symlinks are used, don't use different IDs for them
+    extensions: [
+      ".web.tsx", //this is important for react-native-web
+      ".web.ts", //this is important for react-native-web
+      ".web.jsx", //this is important for react-native-web
+      ".jsx",
+      ".web.js", //this is important for react-native-web
+      ".js",
+      ".tsx",
+      ".ts",
+      ".json",
+    ],
+    // symlinks: false, // this must enable or there will be error invalid hook on ThemeProvider
     alias: pathMap,
     modules: ['node_modules'],
     fallback
@@ -133,6 +143,10 @@ module.exports = async function (env, argv) {
       ...Object.keys(pathMap)
         .filter(p => p.startsWith('chrome://'))
         .map(p => prefixReplacer(p, pathMap[p])),
+      
+      new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV !== "production",
+      })
     ],
     module: {
       rules: [
@@ -219,6 +233,7 @@ module.exports = async function (env, argv) {
             /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
             /node_modules(.*[/\\])+react-native-reanimated/,
             /node_modules(.*[/\\])+react-native-animatable/,
+            /node_modules(.*[/\\])+react-native-gesture-handler/,
             /node_modules(.*[/\\])+metro-runtime/,
           ],
           use: {

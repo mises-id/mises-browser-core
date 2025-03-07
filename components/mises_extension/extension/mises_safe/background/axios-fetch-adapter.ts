@@ -1,10 +1,10 @@
 
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import * as buildURL from "axios/lib/helpers/buildURL";
+const buildURL = require("axios/lib/helpers/buildURL");
 
-import * as combineURLs from "axios/lib/helpers/combineURLs";
-import * as isAbsoluteURL from "axios/lib/helpers/isAbsoluteURL";
+const combineURLs = require( "axios/lib/helpers/combineURLs");
+const isAbsoluteURL  = require("axios/lib/helpers/isAbsoluteURL");
 
 export function buildFullPath(requestedURL: string, baseURL?: string): string {
   if (requestedURL && baseURL && !isAbsoluteURL(requestedURL)) {
