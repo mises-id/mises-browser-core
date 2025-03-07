@@ -49,6 +49,11 @@
     "includes": [63070],
   },
 
+  "<(SHARED_INTERMEDIATE_DIR)/mises/web-ui-mises_safe/mises_safe.grd": {
+    "META": {"sizes": {"includes": [200]}},
+    "includes": [63170],
+  },
+
   "mises/components/mises_extension/extension/resources.grd": {
     "includes": [63270],
   },

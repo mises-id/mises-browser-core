@@ -9,7 +9,7 @@
 #include "src/chrome/browser/extensions/component_extensions_allowlist/allowlist.cc"
 #undef IsComponentExtensionAllowlisted
 
-#include "mises/components/mises_extension/grit/mises_wallet.h"
+#include "mises/components/mises_extension/grit/mises_extension.h"
 #include "components/grit/mises_components_resources.h"
 #include "extensions/common/constants.h"
 
@@ -34,7 +34,7 @@ namespace extensions {
     switch (manifest_resource_id) {
       // Please keep the list in alphabetical order.
       //case IDR_METAMASK_MANIFEST_JSON:
-      case IDR_MISES_WALLET_MANIFEST_JSON:
+      case IDR_MISES_SAFE_MANIFEST_JSON:
         return true;
     }
 
