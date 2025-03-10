@@ -84,6 +84,7 @@ public class MisesClassAdapter {
         chain = new MisesVariationsSeedFetcherClassAdapter(chain);
         chain = new MisesWebsiteClassAdapter(chain);
         chain = new MisesWebsitePermissionsFetcherClassAdapter(chain);
+        chain = new MisesBottomSheetControllerImplClassAdapter(chain);
         return chain;
     }
 }

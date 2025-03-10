@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+
+    <com.openmediation.sdk.nativead.AdIconView
+        android:id="@+id/ad_icon_media"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/ad_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/ad_icon_media"
+        android:text="title"/>
+
+    <TextView
+        android:id="@+id/ad_desc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/ad_title"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/ad_icon_media"
+        android:text="desc" />
+
+    <Button
+        android:id="@+id/ad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="calltoaction"
+        android:textAllCaps="false" />
+
+    <ImageView
+        android:id="@+id/ad_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ad_badge" />
+</RelativeLayout>

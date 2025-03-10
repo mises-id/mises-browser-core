@@ -1,0 +1,15 @@
+
+import("//build/config/android/rules.gni")
+
+
+android_aar_prebuilt("audience_network_sdk_java") {
+  aar_path = "audience-network-sdk-6.19.0.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "audience_network_sdk.info"
+  deps = [
+    "$google_play_services_package:google_play_services_basement_java",
+  ]
+  enable_bytecode_checks = false
+}
+

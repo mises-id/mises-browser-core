@@ -23,6 +23,7 @@ mises_chrome_java_deps = [
   "//mises/browser/ui/android/omnibox:java",
   #"//mises/browser/ui/android/theme:java",
   #"//mises/components/browser_ui/site_settings/android:java",
+  "//mises/components/browser_ui/bottomsheet/android:java",
   "//mises/components/variations/android:java",
   "//mises/third_party/android_deps:com_airbnb_android_java",
   #"//mises/third_party/android_deps:com_android_billingclient_java",
@@ -58,7 +59,16 @@ if (mises_enable_admob) {
   mises_chrome_java_deps += [
     "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
     "//mises/third_party/android_deps:google_play_services_ads_lite_java",
-    #"//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
+  ]
+}
+if (mises_enable_facebook) {
+  mises_java_base_module_deps += [
+    "//mises/third_party/open_mediation:open_mediation_facebook_adaptor_java",
+  ]
+}
+if (mises_enable_mintegral) {
+  mises_java_base_module_deps += [
+    "//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
   ]
 }
 

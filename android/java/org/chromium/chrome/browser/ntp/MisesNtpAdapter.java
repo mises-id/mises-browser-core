@@ -476,7 +476,7 @@ public class MisesNtpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 continue;
             }
             // for TikTok and TencentAd in China traffic
-            NativeAd.setDisplayParams(placementId, 320, 0);
+            NativeAd.setDisplayParams(placementId, 320, 160);// heigh == 0 will switch to native banner
             NativeAd.loadAd(placementId);
         }
     }

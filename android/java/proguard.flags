@@ -75,6 +75,12 @@
     *** createViewProvider(...);
 }
 
+
+-keep class org.chromium.components.browser_ui.bottomsheet.BottomSheetControllerImpl {
+    *** mBottomSheetContainer;
+    *** initializeSheet(...);
+}
+
 -keep class org.chromium.components.browser_ui.site_settings.ContentSettingsResources {
     *** getResourceItem(...);
 }

@@ -107,6 +107,15 @@ mises_java_base_module_deps = [
 if (mises_enable_admob) {
   mises_java_base_module_deps += [
     "//mises/third_party/open_mediation:open_mediation_admob_adaptor_java",
-    #"//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
+  ]
+}
+if (mises_enable_facebook) {
+  mises_java_base_module_deps += [
+    "//mises/third_party/open_mediation:open_mediation_facebook_adaptor_java",
+  ]
+}
+if (mises_enable_mintegral) {
+  mises_java_base_module_deps += [
+    "//mises/third_party/open_mediation:open_mediation_mintegral_adaptor_java",
   ]
 }

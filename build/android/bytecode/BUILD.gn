@@ -85,6 +85,7 @@ java_binary("java_bytecode_rewriter") {
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesVariationsSeedFetcherClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesWebsiteClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesWebsitePermissionsFetcherClassAdapter.java",
+    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesBottomSheetControllerImplClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/ByteCodeProcessor.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/ClassPathValidator.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/ThreadAssertionClassAdapter.java",
