@@ -146,9 +146,9 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         public void onNativeAdLoaded(String placementId, AdInfo info) {
             Log.d(TAG, "onNativeAdLoaded, placementId: " + placementId + ", AdInfo : " + info);
             if (!mLoadedPlacmentIds.contains(placementId)) {
+                mLoadedPlacmentIds.add(placementId);
                 displayNativeBanner(placementId, info);
             }
-            mLoadedPlacmentIds.add(placementId);
         }
 
         @Override
@@ -169,6 +169,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
 
     private void displayNativeBanner(final String placementId, AdInfo info) {
         if (mBottomSheetContainer == null || mBottomSheetContainer.getVisibility() == View.GONE) {
+            cleanNativeAd(placementId);
             return;
         }
         Context context = mBottomSheetContainer.getContext();
@@ -221,15 +222,22 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
                                 ((ViewGroup) nativeAdView.getParent()).removeView(nativeAdView); // Remove container
                             }
                             bottomSheet.removeObserver(this);
+                            cleanNativeAd(placementId);
                             
-                            mLoadedPlacmentIds.remove(placementId);
                         }
                     }
                 );
+            } else {
+                cleanNativeAd(placementId);
             }
         }
 
              
+    }
+
+    private void cleanNativeAd(final String placementId) {
+        mLoadedPlacmentIds.remove(placementId);
+        removeNativeAdListener();
     }
     
     private void addNativeAdListener() {
@@ -249,6 +257,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
 
         for (final String placementId : mBannerPlacmentIds) {
             if (mLoadedPlacmentIds.contains(placementId)) {
+                Log.d(TAG, "skiping loaded placement " + placementId);
                 continue;
             }
             // for TikTok and TencentAd in China traffic

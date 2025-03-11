@@ -1,5 +1,5 @@
 declare_args() {
-  mises_enable_admob = false
+  mises_enable_admob = true
   mises_enable_mintegral = false
   mises_enable_facebook = true
 }
