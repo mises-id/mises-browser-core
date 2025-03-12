@@ -200,8 +200,8 @@ public class MisesAdsUtil {
                 throw new RuntimeException("not support com.android.chrome as webview in android 7-9");
             }
         };
-        final WebView dummyWebView = new WebView(ctx);
-        dummyWebView.destroy();
+        // final WebView dummyWebView = new WebView(ctx);
+        // dummyWebView.destroy();
     }
 
 

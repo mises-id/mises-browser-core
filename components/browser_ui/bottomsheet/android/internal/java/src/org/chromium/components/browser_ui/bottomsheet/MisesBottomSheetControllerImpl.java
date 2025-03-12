@@ -261,7 +261,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
                 continue;
             }
             // for TikTok and TencentAd in China traffic
-            NativeAd.setDisplayParams(placementId, 320, 0);// heigh == 0 will switch to native banner
+            NativeAd.setDisplayParams(placementId, 320, 70);// heigh == 0 will switch to native banner
             NativeAd.loadAd(placementId);
         }
     }
