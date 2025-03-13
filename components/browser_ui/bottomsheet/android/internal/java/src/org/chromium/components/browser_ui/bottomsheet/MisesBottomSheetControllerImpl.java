@@ -184,7 +184,6 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             //MediaView mediaView = adView.findViewById(R.id.ad_media);
             NativeAdView nativeAdView = new NativeAdView(context);
             AdIconView adIconView = adView.findViewById(R.id.ad_icon_media);
-            ImageView badgeView = adView.findViewById(R.id.ad_badge);
 
             nativeAdView.addView(adView);
             nativeAdView.setTitleView(title);

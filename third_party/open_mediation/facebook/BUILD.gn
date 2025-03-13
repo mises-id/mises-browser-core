@@ -9,7 +9,31 @@ android_aar_prebuilt("audience_network_sdk_java") {
   info_path = "audience_network_sdk.info"
   deps = [
     "$google_play_services_package:google_play_services_basement_java",
+    ":infer_annotation_java"
   ]
   enable_bytecode_checks = false
 }
+
+java_prebuilt("infer_annotation_java") {
+  jar_path = "infer-annotation-0.18.0.jar"
+  supports_android = true
+  requires_android = true
+  output_name = "com_facebook_infer_annotation_java"
+  enable_bytecode_checks = false
+  deps = [ 
+    ":kotlin_annotation_jvm_java"
+  ]
+}
+
+
+java_prebuilt("kotlin_annotation_jvm_java") {
+  jar_path = "kotlin-annotations-jvm-1.3.72.jar"
+  supports_android = true
+  requires_android = true
+  output_name = "org_jetbrains_kotlin_kotlin_annotation_jvm_java"
+  enable_bytecode_checks = false
+  deps = [ 
+  ]
+}
+
 

@@ -247,8 +247,8 @@ public class MisesAdsUtil {
                 Log.i(TAG, "init success");
                 if (VersionConstants.CHANNEL <= Channel.DEV) {
                     
-                    OmAds.setTestMode("FacebookAdapter", "026a6b60-ce21-4de7-a781-9a8436f5de71");
-                    OmAds.setTestMode("FacebookAdapter", "55709546-607c-4db5-aad9-21c34a3665db");
+                    //OmAds.setTestMode("FacebookAdapter", "026a6b60-ce21-4de7-a781-9a8436f5de71");
+                    //OmAds.setTestMode("FacebookAdapter", "55709546-607c-4db5-aad9-21c34a3665db");
                 }
                 setStatus(AdsStatus.INITIALIZED);
                 RewardedVideoAd.addAdListener(mRewardedVideoListener);

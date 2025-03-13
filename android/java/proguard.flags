@@ -146,3 +146,6 @@
 -keepclassmembers class com.android.installreferrer.api.** {
   *;
 }
+
+-keep class com.facebook.** { *; } 
+-keep class com.facebook.ads.** { *; }

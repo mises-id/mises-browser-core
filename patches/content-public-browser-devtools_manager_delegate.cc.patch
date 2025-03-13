@@ -1,0 +1,13 @@
+diff --git a/content/public/browser/devtools_manager_delegate.cc b/content/public/browser/devtools_manager_delegate.cc
+index d92a6db1baea6e1fdfd46d60692da2df6ce2243c..1d2864cb78a5c766f8bdbb4440da5b2400da0eb2 100644
+--- a/content/public/browser/devtools_manager_delegate.cc
++++ b/content/public/browser/devtools_manager_delegate.cc
+@@ -75,7 +75,7 @@ std::string DevToolsManagerDelegate::GetDiscoveryPageHTML() {
+ }
+ 
+ bool DevToolsManagerDelegate::HasBundledFrontendResources() {
+-  return false;
++  return true;
+ }
+ 
+ bool DevToolsManagerDelegate::IsBrowserTargetDiscoverable() {

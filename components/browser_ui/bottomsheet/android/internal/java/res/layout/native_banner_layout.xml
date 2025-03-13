@@ -13,23 +13,35 @@
 
     <TextView
         android:id="@+id/ad_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
+
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_toRightOf="@id/ad_icon_media"
-        android:text="title"/>
+        android:layout_toLeftOf="@id/ad_btn"
+        android:maxLines="1"
+        android:textColor="?android:attr/textColorPrimary"
+        android:text="title"
+        android:textSize="13sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/ad_desc"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/ad_title"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_toRightOf="@id/ad_icon_media"
-        android:text="desc" />
+        android:layout_toLeftOf="@id/ad_btn"
+        android:textColor="?android:attr/textColorSecondary"
+        android:alpha="0.8"
+        android:text="desc" 
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/ad_btn"
@@ -38,12 +50,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:text="calltoaction"
-        android:textAllCaps="false" />
+        android:textAllCaps="false" 
+        android:textSize="12sp"/>
 
-    <ImageView
-        android:id="@+id/ad_badge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/ad_badge" />
 </RelativeLayout>
