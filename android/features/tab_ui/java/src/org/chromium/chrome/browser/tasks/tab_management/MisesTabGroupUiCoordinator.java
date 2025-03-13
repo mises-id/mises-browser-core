@@ -96,7 +96,7 @@ public class MisesTabGroupUiCoordinator extends TabGroupUiCoordinator {
                 assert mainContent != null : "Something has changed in upstream!";
                 if (mainContent != null) {
                     mainContent.setBackgroundColor(
-                            activity.getResources().getColor(R.color.dialog_bg_color_baseline));
+                            activity.getResources().getColor(R.color.default_bg_color_baseline));
                 }
             }
         };

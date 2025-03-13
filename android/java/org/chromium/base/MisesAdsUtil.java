@@ -200,8 +200,8 @@ public class MisesAdsUtil {
                 throw new RuntimeException("not support com.android.chrome as webview in android 7-9");
             }
         };
-        final WebView dummyWebView = new WebView(ctx);
-        dummyWebView.destroy();
+        // final WebView dummyWebView = new WebView(ctx);
+        // dummyWebView.destroy();
     }
 
 
@@ -245,6 +245,11 @@ public class MisesAdsUtil {
             @Override
             public void onSuccess() {
                 Log.i(TAG, "init success");
+                if (VersionConstants.CHANNEL <= Channel.DEV) {
+                    
+                    //OmAds.setTestMode("FacebookAdapter", "026a6b60-ce21-4de7-a781-9a8436f5de71");
+                    //OmAds.setTestMode("FacebookAdapter", "55709546-607c-4db5-aad9-21c34a3665db");
+                }
                 setStatus(AdsStatus.INITIALIZED);
                 RewardedVideoAd.addAdListener(mRewardedVideoListener);
             }

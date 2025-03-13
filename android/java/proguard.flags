@@ -75,6 +75,12 @@
     *** createViewProvider(...);
 }
 
+
+-keep class org.chromium.components.browser_ui.bottomsheet.BottomSheetControllerImpl {
+    *** mBottomSheetContainer;
+    *** initializeSheet(...);
+}
+
 -keep class org.chromium.components.browser_ui.site_settings.ContentSettingsResources {
     *** getResourceItem(...);
 }
@@ -140,3 +146,6 @@
 -keepclassmembers class com.android.installreferrer.api.** {
   *;
 }
+
+-keep class com.facebook.** { *; } 
+-keep class com.facebook.ads.** { *; }

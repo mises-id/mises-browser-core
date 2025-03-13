@@ -26,6 +26,17 @@ android_aar_prebuilt("open_mediation_admob_adaptor_java") {
   ]
 }
 
+android_aar_prebuilt("open_mediation_facebook_adaptor_java") {
+  aar_path = "facebook.aar"
+  extract_native_libraries = true
+  ignore_manifest = true
+  info_path = "open_mediation_facebook_adaptor.info"
+  deps = [
+    "//mises/third_party/open_mediation:open_mediation_sdk_java",
+    "//mises/third_party/open_mediation/facebook:audience_network_sdk_java",
+  ]
+}
+
 android_aar_prebuilt("open_mediation_mintegral_adaptor_java") {
   aar_path = "mintegral.aar"
   extract_native_libraries = true
