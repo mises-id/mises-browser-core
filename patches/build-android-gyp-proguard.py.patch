@@ -6,7 +6,7 @@ index 5dd433ae0bd92209bd0275e19e710c310e6e8793..2f4ed808ddc82fd3c71ed3898170b6de
      # We are following up in b/290389974
      r'AppSearchDocumentClassMap\.class:.*Could not inline ServiceLoader\.load',
  )
-+_IGNORE_WARNINGS += ( r'InnerClasses attribute has entries missing a corresponding EnclosingMethod attribute. Such InnerClasses attribute entries are ignored.', r'google_play_services_ads_java', r'google_play_services_measurement_java', r'Missing class com.android.org.conscrypt.SSLParametersImpl', r'Missing class org.apache.harmony.xnet.provider.jsse.SSLParametersImpl')
++_IGNORE_WARNINGS += ( r'InnerClasses attribute has entries missing a corresponding EnclosingMethod attribute. Such InnerClasses attribute entries are ignored.', r'google_play_services_ads_java', r'google_play_services_ads_lite_java', r'google_play_services_measurement_java', r'Missing class com.android.org.conscrypt.SSLParametersImpl', r'Missing class org.apache.harmony.xnet.provider.jsse.SSLParametersImpl')
  
  _BLOCKLISTED_EXPECTATION_PATHS = [
      # A separate expectation file is created for these files.
