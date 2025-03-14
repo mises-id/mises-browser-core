@@ -97,6 +97,21 @@ public class MisesTabCreator extends ChromeTabCreator {
         return super.createNewTab(loadUrlParams, type, parent, null);
     }
 
+    public WebContents getExtensionPopup() {
+        if (!mTabDelegateFactorySupplier.hasValue()) {
+            return null;
+        }
+        TabDelegateFactory tabDelegateFactory = mTabDelegateFactorySupplier.get();
+        if (TabbedModeTabDelegateFactory.class.isInstance(tabDelegateFactory)) {
+            TabbedModeTabDelegateFactory  tabbedModeTabDelegateFactory = (TabbedModeTabDelegateFactory)tabDelegateFactory;
+            EphemeralTabCoordinator ephemeralTabCoordinator = tabbedModeTabDelegateFactory.getEphemeralTabCoordinator();
+            if (ephemeralTabCoordinator != null && ephemeralTabCoordinator.isOpened()) {                
+                return ephemeralTabCoordinator.getWebContentsForTesting();
+            }
+        }
+        return null;
+    }
+
     public WebContents createExtensionPopup(LoadUrlParams loadUrlParams, Tab parent) {
         if (!mTabDelegateFactorySupplier.hasValue()) {
             return null;

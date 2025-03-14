@@ -53,10 +53,10 @@ void CreateTabObjectAndroid(
 bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index) {
   if (!TabModelList::models().empty()) {
     TabModel * my_tab_strip = *(TabModelList::models().begin());
-    //LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check profile " << profile << " target_model " << my_tab_strip << " target_profile " << my_tab_strip->GetProfile();
+    //LOG(INFO) << "ExtensionTabUtil::GetTabById " << tab_id << " target_model " << my_tab_strip << " target_profile " << my_tab_strip->GetProfile();
     for (int i = 0; i < my_tab_strip->GetTabCount(); ++i) {
       WebContents* target_contents = my_tab_strip->GetWebContentsAt(i);
-      //LOG(INFO) << "ExtensionTabUtil::GetTabById" << "check model tab " << sessions::SessionTabHelper::IdForTab(target_contents).id();
+      //LOG(INFO) << "ExtensionTabUtil::GetTabById check model tab " << sessions::SessionTabHelper::IdForTab(target_contents).id();
       if (sessions::SessionTabHelper::IdForTab(target_contents).id() == tab_id) {
         if (contents)
           *contents = target_contents;
@@ -65,6 +65,15 @@ bool GetTabByIdAndroid(int tab_id, WebContents** contents, int* tab_index) {
         return true;
       }
     }
+    WebContents* target_contents  = my_tab_strip->GetExtensionPopup();
+    if (target_contents && sessions::SessionTabHelper::IdForTab(target_contents).id() == tab_id) {
+      if (contents)
+      *contents = target_contents;
+      if (tab_index)   
+        *tab_index = -1;
+      return true;
+    }
+
   }
   return false;
 }

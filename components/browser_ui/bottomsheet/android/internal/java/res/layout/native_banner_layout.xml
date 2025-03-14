@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="70dp">
 
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ad_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="0dp"
+        android:elevation="0dp">
     <com.openmediation.sdk.nativead.AdIconView
         android:id="@+id/ad_icon_media"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/ad_title"
@@ -18,9 +27,9 @@
 
         android:layout_alignParentTop="true"
 
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_toRightOf="@id/ad_icon_media"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="1dp"
+        android:layout_toRightOf="@id/ad_card"
         android:layout_toLeftOf="@id/ad_btn"
         android:maxLines="1"
         android:textColor="?android:attr/textColorPrimary"
@@ -34,9 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_below="@id/ad_title"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_toRightOf="@id/ad_icon_media"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="1dp"
+        android:layout_toRightOf="@id/ad_card"
         android:layout_toLeftOf="@id/ad_btn"
         android:textColor="?android:attr/textColorSecondary"
         android:alpha="0.8"

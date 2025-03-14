@@ -1,5 +1,5 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index 5dd433ae0bd92209bd0275e19e710c310e6e8793..2f4ed808ddc82fd3c71ed3898170b6de0fe91c81 100755
+index 5dd433ae0bd92209bd0275e19e710c310e6e8793..2bab2011dbc6036bb67c065e6f01293c6e0e3c02 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
 @@ -80,6 +80,7 @@ _IGNORE_WARNINGS = (

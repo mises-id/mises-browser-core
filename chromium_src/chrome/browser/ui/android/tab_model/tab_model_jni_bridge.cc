@@ -299,6 +299,16 @@ void TabModelJniBridge::CreateForgroundTab(TabAndroid* parent,
       web_contents->GetJavaWebContents(), true, (int)TabModel::TabLaunchType::FROM_CHROME_UI);
 }
 
+content::WebContents* TabModelJniBridge::GetExtensionPopup(){
+  JNIEnv* env = AttachCurrentThread();
+  ScopedJavaLocalRef<jobject> obj = Java_TabModelJniBridge_getExtensionPopup(env, java_object_.get(env));
+  if (obj.is_null()) {
+    return NULL;
+  }
+  content::WebContents* web_contents = WebContents::FromJavaWebContents(obj);
+  return web_contents;
+}
+
 void TabModelJniBridge::CloseTabForExtension(const std::string& extension_id) {
   LOG(INFO) << "TabModelJniBridge::CloseTabForExtension";
   JNIEnv* env = AttachCurrentThread();
