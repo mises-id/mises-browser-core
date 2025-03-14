@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
-index 8297746bf51ca28a72cf062dde00a2f606c77cb6..4d6600a28419acb621464e0e264a2a5ff9515ec6 100644
+index 8297746bf51ca28a72cf062dde00a2f606c77cb6..dfb195478b74f05d5a13b1f951fb26673b1e676b 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabmodel/TabModelJniBridge.java
 @@ -16,12 +16,14 @@ import org.chromium.chrome.browser.flags.ActivityType;
@@ -26,7 +26,7 @@ index 8297746bf51ca28a72cf062dde00a2f606c77cb6..4d6600a28419acb621464e0e264a2a5f
  
      @CalledByNative
      protected abstract void openNewTab(
-@@ -173,7 +175,20 @@ public abstract class TabModelJniBridge implements TabModel {
+@@ -173,7 +175,25 @@ public abstract class TabModelJniBridge implements TabModel {
      @CalledByNative
      protected Tab createNewTabForDevTools(GURL url) {
          return getTabCreator(/* incognito= */ false)
@@ -45,6 +45,11 @@ index 8297746bf51ca28a72cf062dde00a2f606c77cb6..4d6600a28419acb621464e0e264a2a5f
 +    protected void closeTabForExtension(final String extensionId) {
 +        ((MisesTabCreator)getTabCreator(/*incognito=*/false))
 +                .closeExtensionPopup(extensionId);
++    }
++
++    @CalledByNative
++    protected WebContents getExtensionPopup() {
++        return ((MisesTabCreator)getTabCreator(/*incognito=*/false)).getExtensionPopup();
      }
  
      /** Returns whether supplied Tab instance has been grouped together with other Tabs. */
