@@ -181,7 +181,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             desc.setText(info.getDesc());
             Button btn = adView.findViewById(R.id.ad_btn);
             btn.setText(info.getCallToActionText());
-            //MediaView mediaView = adView.findViewById(R.id.ad_media);
+            MediaView mediaView = adView.findViewById(R.id.ad_media);
             NativeAdView nativeAdView = new NativeAdView(context);
             AdIconView adIconView = adView.findViewById(R.id.ad_icon_media);
 
@@ -190,7 +190,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             nativeAdView.setDescView(desc);
             nativeAdView.setAdIconView(adIconView);
             nativeAdView.setCallToActionView(btn);
-            //nativeAdView.setMediaView(mediaView);
+            nativeAdView.setMediaView(mediaView);
 
             nativeAdView.setBackgroundColor(
                             context.getColor(R.color.dialog_bg_color_baseline));
