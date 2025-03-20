@@ -44,7 +44,7 @@ class DummyImportDialogDelegate implements ImportDialogDelegate {
           progress( {
             message: extension.name + ' ' + (res == '' ? 'installed' : 'install failed: ' + res)
           })
-          await delay(5000);
+          await delay(2000);
         }
       };
       return Promise.resolve({

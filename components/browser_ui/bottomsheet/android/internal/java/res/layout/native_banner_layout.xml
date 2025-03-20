@@ -11,6 +11,12 @@
         app:cardCornerRadius="10dp"
         android:layout_margin="0dp"
         android:elevation="0dp">
+    <com.openmediation.sdk.nativead.MediaView
+        android:id="@+id/ad_media"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
     <com.openmediation.sdk.nativead.AdIconView
         android:id="@+id/ad_icon_media"
         android:layout_width="50dp"

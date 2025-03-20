@@ -37,6 +37,8 @@
 #include "content/public/browser/browser_task_traits.h"
 #include "content/public/browser/browser_thread.h"
 #include "mises/browser/extensions/mises_webstore_installer.h"
+#include "extensions/browser/extension_registry.h"
+#include "extensions/browser/extension_system.h"
 
 
 namespace {
@@ -96,6 +98,12 @@ ExtensionFunction::ResponseAction MisesPrivateInstallExtensionByIdFunction::Run(
   EXTENSION_FUNCTION_VALIDATE(params);
   LOG(INFO) << "MisesPrivate InstallExtensionById :" << params->id;
   Profile* profile = Profile::FromBrowserContext(browser_context());
+  extensions::ExtensionRegistry* registry = extensions::ExtensionRegistry::Get(
+    static_cast<content::BrowserContext*>(profile));
+  if (registry && registry->GetInstalledExtension(params->id)) {
+    return RespondNow(ArgumentList(api::mises_private::InstallExtensionById::Results::Create("")));
+  }
+
   scoped_refptr<WebstoreInstallerForImporting> installer =
   new WebstoreInstallerForImporting(
     params->id, profile,
