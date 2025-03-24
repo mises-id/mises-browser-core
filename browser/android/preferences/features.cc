@@ -104,5 +104,15 @@ std::vector<std::string> GetMisesPriorityExtensionIds() {
       list_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
 }
 
+
+BASE_FEATURE(kMisesAllowExtensionIsolation,
+   "MisesAllowExtensionIsolation",
+   base::FEATURE_DISABLED_BY_DEFAULT);
+   
+bool IsMisesAllowExtensionIsolation() {
+   return base::FeatureList::IsEnabled(kMisesAllowExtensionIsolation);
+}
+
+
 }  // namespace features
 }  // namespace preferences
