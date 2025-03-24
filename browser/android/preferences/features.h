@@ -6,25 +6,30 @@
 #ifndef MISES_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
 #define MISES_BROWSER_ANDROID_PREFERENCES_FEATURES_H_
 
+#include "base/base_export.h"
 #include "base/feature_list.h"
 
 namespace preferences {
 namespace features {
   
-BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
+BASE_EXPORT BASE_DECLARE_FEATURE(kMisesBackgroundVideoPlayback);
 
-BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
+BASE_EXPORT BASE_DECLARE_FEATURE(kMisesPreinstallExtension);
 
 
 
-std::vector<std::string> GetMisesPreinstallExtensionIds();
-std::string GetMisesPreinstallExtensionTOS();
-std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds();
-std::string GetMisesPreinstallDefaultEVMExtension();
-std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty();
+BASE_EXPORT std::vector<std::string> GetMisesPreinstallExtensionIds();
+BASE_EXPORT std::string GetMisesPreinstallExtensionTOS();
+BASE_EXPORT std::vector<std::string> GetMisesPreinstallExtensionWithTOSIds();
+BASE_EXPORT std::string GetMisesPreinstallDefaultEVMExtension();
+BASE_EXPORT std::string GetMisesPreinstallDefaultEVMExtensionKeyProperty();
 
-BASE_DECLARE_FEATURE(kMisesPriorityExtension);
-std::vector<std::string> GetMisesPriorityExtensionIds();
+BASE_EXPORT BASE_DECLARE_FEATURE(kMisesPriorityExtension);
+BASE_EXPORT std::vector<std::string> GetMisesPriorityExtensionIds();
+
+BASE_EXPORT BASE_DECLARE_FEATURE(kMisesAllowExtensionIsolation);
+BASE_EXPORT bool IsMisesAllowExtensionIsolation();
+
 
 }  // namespace features
 }  // namespace preferences

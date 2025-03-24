@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/chrome_content_browser_client.cc b/chrome/browser/chrome_content_browser_client.cc
-index e5ce608907f720786fa3683b6492c2249e2ce125..f697c018e13875afbb9aff24238b5dbdc0371219 100644
+index e5ce608907f720786fa3683b6492c2249e2ce125..906d265a70f63f6944709357ffc58cca926e8b7c 100644
 --- a/chrome/browser/chrome_content_browser_client.cc
 +++ b/chrome/browser/chrome_content_browser_client.cc
 @@ -1626,7 +1626,7 @@ void ChromeContentBrowserClient::RegisterProfilePrefs(
@@ -29,19 +29,7 @@ index e5ce608907f720786fa3683b6492c2249e2ce125..f697c018e13875afbb9aff24238b5dbd
    // Extensions are exempt from manifest policy enforcement and retain the
    // default frame permissions policy.
    if (app_origin.scheme() == extensions::kExtensionScheme) {
-@@ -2512,6 +2512,11 @@ bool ChromeContentBrowserClient::ShouldTryToUseExistingProcessHost(
-   if (IsTopChromeWebUIURL(url)) {
-     return true;
-   }
-+#if BUILDFLAG(ENABLE_EXTENSIONS_CORE)
-+  if (url.scheme() == extensions::kExtensionScheme) {
-+    return true;
-+  }
-+#endif
- 
-   return false;
- }
-@@ -6751,6 +6756,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
+@@ -6751,6 +6751,16 @@ ChromeContentBrowserClient::WillCreateURLLoaderRequestInterceptors(
      }
    }
  

@@ -24,10 +24,6 @@ namespace windows = extensions::api::windows;
 #if BUILDFLAG(IS_ANDROID)
 void WindowsEventRouter::OnTabModelAdded() {
   LOG(INFO) << "WindowsEventRouter::OnTabModelAdded ";
-  // add a dummuy browser for extension api
-  if (BrowserList::GetInstance()->size() == 0) {
-    Browser::Create(Browser::CreateParams(profile_, false));
-  }
   if (!observed_tab_model_) {
     TabModel* model = *(TabModelList::models().begin());
     observed_tab_model_ = model;
@@ -39,6 +35,10 @@ void WindowsEventRouter::OnTabModelAdded() {
 void WindowsEventRouter::DidAddTab(TabAndroid* tab,
                                  TabModel::TabLaunchType type) {
   LOG(INFO) << "WindowsEventRouter::DidAddTab";
+  //add a dummuy browser for extension api
+  if (BrowserList::GetInstance()->size() == 0) {
+    Browser::Create(Browser::CreateParams(profile_, false));
+  }
 }
 
 void WindowsEventRouter::OnTabModelRemoved() {

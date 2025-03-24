@@ -1,0 +1,15 @@
+diff --git a/content/browser/site_instance_impl.cc b/content/browser/site_instance_impl.cc
+index 05814643c905cf14068de87d47914b5fd315264e..f0c4db530d7d3a4a73a5f7da15e7c782cfc593c5 100644
+--- a/content/browser/site_instance_impl.cc
++++ b/content/browser/site_instance_impl.cc
+@@ -1372,6 +1372,10 @@ bool SiteInstanceImpl::CanBePlacedInDefaultSiteInstance(
+   if (!ShouldAssignSiteForURL(url))
+     return false;
+ 
++
++  if (url.SchemeIs("chrome-extension"))
++    return false;
++
+   // Allow the default SiteInstance to be used for sites that don't need to be
+   // isolated in their own process.
+   return !site_info.RequiresDedicatedProcess(isolation_context);
