@@ -18,6 +18,7 @@ android_library("java") {
     "//mises/third_party/open_mediation:open_mediation_sdk_java",
     "//chrome/android:base_module_java",
     "//mises/android/features/mises:public_java",
+    "//chrome/browser/ui/android/ephemeraltab:java"
   ]
   resources_package = "org.chromium.components.browser_ui.bottomsheet"
 }
