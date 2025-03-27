@@ -57,6 +57,7 @@ import com.openmediation.sdk.utils.error.Error;
 import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
 
+import org.chromium.chrome.browser.ephemeraltab.EphemeralTabSheetContent;
 import org.chromium.components.browser_ui.bottomsheet.R;
 
 
@@ -167,8 +168,24 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         }
     };
 
+    private boolean isExtensionPopup(final BottomSheet bottomSheet) {
+        BottomSheetContent content = bottomSheet.getCurrentSheetContent();
+        if (content != null && (content instanceof EphemeralTabSheetContent) && 
+            content.getContentView() != null && (content.getContentView().getVisibility() == View.VISIBLE)) {
+            return true;
+        }
+
+        return false;
+        
+    }
+
     private void displayNativeBanner(final String placementId, AdInfo info) {
         if (mBottomSheetContainer == null || mBottomSheetContainer.getVisibility() == View.GONE) {
+            cleanNativeAd(placementId);
+            return;
+        }
+        BottomSheet bottomSheet = mBottomSheetContainer.findViewById(R.id.bottom_sheet);
+        if (bottomSheet == null || !isExtensionPopup(bottomSheet)) {
             cleanNativeAd(placementId);
             return;
         }
@@ -207,28 +224,23 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             flp.gravity = Gravity.TOP;
             //container.addView(nativeAdView, flp);
             //RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            
-            BottomSheet bottomSheet = mBottomSheetContainer.findViewById(R.id.bottom_sheet);
-            if (bottomSheet != null) {
-                mBottomSheetContainer.addView(nativeAdView, flp);
-                bottomSheet.addObserver(
-                    new EmptyBottomSheetObserver() {
-                        @Override
-                        public void onSheetClosed(@StateChangeReason int reason) {
-                            Log.d(TAG, "BottomSheet.onSheetClosed");
-                            if (nativeAdView.getParent() != null) {
-                                
-                                ((ViewGroup) nativeAdView.getParent()).removeView(nativeAdView); // Remove container
-                            }
-                            bottomSheet.removeObserver(this);
-                            cleanNativeAd(placementId);
+        
+            mBottomSheetContainer.addView(nativeAdView, flp);
+            bottomSheet.addObserver(
+                new EmptyBottomSheetObserver() {
+                    @Override
+                    public void onSheetClosed(@StateChangeReason int reason) {
+                        Log.d(TAG, "BottomSheet.onSheetClosed");
+                        if (nativeAdView.getParent() != null) {
                             
+                            ((ViewGroup) nativeAdView.getParent()).removeView(nativeAdView); // Remove container
                         }
+                        bottomSheet.removeObserver(this);
+                        cleanNativeAd(placementId);
+                        
                     }
-                );
-            } else {
-                cleanNativeAd(placementId);
-            }
+                }
+            );
         }
 
              
