@@ -25,13 +25,5 @@ public class MisesBottomSheetControllerImplClassAdapter extends MisesClassVisito
                 "Ljava/lang/Override;");
         makePublicMethod(sBottomSheetControllerImpClassName, " initializeSheet");
 
-        // deleteField(sMisesBottomControlsMediatorClassName, "mBottomControlsHeight");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mBottomControlsHeight");
-
-        // deleteField(sMisesBottomControlsMediatorClassName, "mModel");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mModel");
-
-        // deleteField(sMisesBottomControlsMediatorClassName, "mBrowserControlsSizer");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mBrowserControlsSizer");
     }
 }

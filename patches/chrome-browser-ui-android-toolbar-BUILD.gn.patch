@@ -1,8 +1,16 @@
 diff --git a/chrome/browser/ui/android/toolbar/BUILD.gn b/chrome/browser/ui/android/toolbar/BUILD.gn
-index 1f40d76224d521b64894ec51167ee6d2f9eea30e..9d121f873abd09d754046e57e55f57acc5de5479 100644
+index 1f40d76224d521b64894ec51167ee6d2f9eea30e..de3180ca10da2fa0cd54299417873b83d6c4448d 100644
 --- a/chrome/browser/ui/android/toolbar/BUILD.gn
 +++ b/chrome/browser/ui/android/toolbar/BUILD.gn
-@@ -193,6 +193,15 @@ android_library("java") {
+@@ -107,6 +107,7 @@ android_library("java") {
+     "java/src/org/chromium/chrome/browser/toolbar/top/tab_strip/HeightTransitionHandler.java",
+     "java/src/org/chromium/chrome/browser/toolbar/top/tab_strip/TabStripTransitionCoordinator.java",
+   ]
++  sources += mises_browser_ui_android_toolbar_sources
+ 
+   deps = [
+     ":java_resources",
+@@ -193,6 +194,15 @@ android_library("java") {
    ]
  
    resources_package = "org.chromium.chrome.browser.toolbar"
@@ -18,7 +26,7 @@ index 1f40d76224d521b64894ec51167ee6d2f9eea30e..9d121f873abd09d754046e57e55f57ac
  }
  
  generate_jni("jni_headers") {
-@@ -289,7 +298,7 @@ android_resources("java_resources") {
+@@ -289,7 +299,7 @@ android_resources("java_resources") {
      "java/res/xml/adaptive_toolbar_preference.xml",
      "java/res/xml/address_bar_settings.xml",
    ]

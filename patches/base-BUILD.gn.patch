@@ -1,5 +1,5 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index 9247e9b3f4c92e6f573898049bca784cccb4b19c..b76e81cdd1b11d91d9ddf035fb03f0636f7cb69c 100644
+index 9247e9b3f4c92e6f573898049bca784cccb4b19c..2906488ab6d87af1792ca2879ea33ce36acdc7f4 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
 @@ -4245,7 +4245,6 @@ if (is_android || is_robolectric) {
@@ -19,3 +19,11 @@ index 9247e9b3f4c92e6f573898049bca784cccb4b19c..b76e81cdd1b11d91d9ddf035fb03f063
      if (use_clang_profiling) {
        sources += [
          "test/android/javatests/src/org/chromium/base/test/ClangProfiler.java",
+@@ -4871,6 +4870,7 @@ if (is_android) {
+       "android/java/src/org/chromium/base/shared_preferences/SharedPreferencesManager.java",
+       "android/java/src/org/chromium/base/shared_preferences/StrictPreferenceKeyChecker.java",
+     ]
++    sources += mises_base_shared_preferences_java_sources
+   }
+ 
+   android_library("base_cached_flags_java") {

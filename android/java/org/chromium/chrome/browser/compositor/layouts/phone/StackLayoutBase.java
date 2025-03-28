@@ -544,7 +544,7 @@ public abstract class StackLayoutBase
 
     @Override
     public void attachViews(ViewGroup container) {
-        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) ) {
+        if (BottomToolbarConfiguration.isBottomToolbarEnabled()) ) {
             // In practice, the "container view" is used for animation. When Duet is enabled, the
             // container is placed behind the bottom toolbar since it is persistent.
             ViewGroup compositorViewHolder = container.findViewById(R.id.compositor_view_holder);

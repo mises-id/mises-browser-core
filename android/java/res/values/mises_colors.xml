@@ -13,4 +13,18 @@
    <color name="brave_tab_view_card_selected_bg">@color/baseline_primary_80</color>
    <color name="light_background_color">@color/default_bg_color_baseline</color>
    <color name="resizing_background_color">@color/default_bg_color_baseline</color>
+
+   <color name="bookmark_menu_text_color">#484B4E</color>
+   <color name="bookmark_menu_bg_color">@android:color/white</color>
+   <color name="bookmark_import_export_toast_bg_color">@android:color/white</color>
+   <color name="bookmark_import_export_dialog_title_color">#1C1E26</color>
+   <color name="bookmark_import_export_dialog_secondary_color">#666D89</color>
+   <color name="bookmark_import_export_dialog_button_color">#423EEE</color>
+
+   <color name="location_bar_background_color_for_ntp">#f2f2f2</color>
+   <color name="toolbar_background_color_for_ntp">@android:color/white</color>
+
+   <color name="new_tab_menu_text_dark_color">@android:color/white</color>
+   <color name="new_tab_menu_bg_dark_color">@color/modern_grey_800</color>
+
 </resources>

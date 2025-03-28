@@ -70,6 +70,7 @@ public class MisesClassAdapter {
         chain = new MisesSiteSettingsDelegateClassAdapter(chain);
         chain = new MisesSiteSettingsPreferencesBaseClassAdapter(chain);
         chain = new MisesStatusMediatorClassAdapter(chain);
+        chain = new MisesStrictPreferenceKeyCheckerClassAdapter(chain);
         chain = new MisesTabGroupUiCoordinatorClassAdapter(chain);
         chain = new MisesTabSwitcherModeTTCoordinatorClassAdapter(chain);
         chain = new MisesTabSwitcherModeTopToolbarClassAdapter(chain);

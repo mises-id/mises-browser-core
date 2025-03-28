@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 The Mises Authors. All rights reserved.
+/* Copyright (c) 2020 The Brave Authors. All rights reserved.
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -15,104 +15,89 @@ public class MisesToolbarManagerClassAdapter extends MisesClassVisitor {
     public MisesToolbarManagerClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sToolbarManagerClassName, sMisesToolbarManagerClassName);
+        redirectConstructor(sToolbarManagerClassName, sMisesToolbarManagerClassName);
 
-        // deleteField(sMisesToolbarManagerClassName, "mBottomControlsCoordinatorSupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mBottomControlsCoordinatorSupplier");
+        deleteField(sMisesToolbarManagerClassName, "mBottomControlsCoordinatorSupplier");
+        makeProtectedField(sToolbarManagerClassName, "mBottomControlsCoordinatorSupplier");
 
-        // deleteField(sMisesToolbarManagerClassName, "mCallbackController");
-        // makeProtectedField(sToolbarManagerClassName, "mCallbackController");
+        deleteField(sMisesToolbarManagerClassName, "mCallbackController");
+        makeProtectedField(sToolbarManagerClassName, "mCallbackController");
 
-        // deleteField(sMisesToolbarManagerClassName, "mBrowserControlsSizer");
-        // makeProtectedField(sToolbarManagerClassName, "mBrowserControlsSizer");
+        deleteField(sMisesToolbarManagerClassName, "mBottomControlsStacker");
+        makeProtectedField(sToolbarManagerClassName, "mBottomControlsStacker");
 
-        // deleteField(sMisesToolbarManagerClassName, "mFullscreenManager");
-        // makeProtectedField(sToolbarManagerClassName, "mFullscreenManager");
+        deleteField(sMisesToolbarManagerClassName, "mFullscreenManager");
+        makeProtectedField(sToolbarManagerClassName, "mFullscreenManager");
 
-        // deleteField(sMisesToolbarManagerClassName, "mActivityTabProvider");
-        // makeProtectedField(sToolbarManagerClassName, "mActivityTabProvider");
+        deleteField(sMisesToolbarManagerClassName, "mActivityTabProvider");
+        makeProtectedField(sToolbarManagerClassName, "mActivityTabProvider");
 
-        // deleteField(sMisesToolbarManagerClassName, "mAppThemeColorProvider");
-        // makeProtectedField(sToolbarManagerClassName, "mAppThemeColorProvider");
+        deleteField(sMisesToolbarManagerClassName, "mAppThemeColorProvider");
+        makeProtectedField(sToolbarManagerClassName, "mAppThemeColorProvider");
 
-        // deleteField(sMisesToolbarManagerClassName, "mShareDelegateSupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mShareDelegateSupplier");
+        deleteField(sMisesToolbarManagerClassName, "mScrimCoordinator");
+        makeProtectedField(sToolbarManagerClassName, "mScrimCoordinator");
 
-        // deleteField(sMisesToolbarManagerClassName, "mScrimCoordinator");
-        // makeProtectedField(sToolbarManagerClassName, "mScrimCoordinator");
+        deleteField(sMisesToolbarManagerClassName, "mMenuButtonCoordinator");
+        makeProtectedField(sToolbarManagerClassName, "mMenuButtonCoordinator");
 
-        // deleteField(sMisesToolbarManagerClassName, "mShowStartSurfaceSupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mShowStartSurfaceSupplier");
+        deleteField(sMisesToolbarManagerClassName, "mToolbarTabController");
+        makeProtectedField(sToolbarManagerClassName, "mToolbarTabController");
 
-        // deleteField(sMisesToolbarManagerClassName, "mMenuButtonCoordinator");
-        // makeProtectedField(sToolbarManagerClassName, "mMenuButtonCoordinator");
+        deleteField(sMisesToolbarManagerClassName, "mLocationBar");
+        makeProtectedField(sToolbarManagerClassName, "mLocationBar");
 
-        // deleteField(sMisesToolbarManagerClassName, "mToolbarTabController");
-        // makeProtectedField(sToolbarManagerClassName, "mToolbarTabController");
+        deleteField(sMisesToolbarManagerClassName, "mActionModeController");
+        makeProtectedField(sToolbarManagerClassName, "mActionModeController");
 
-        // deleteField(sMisesToolbarManagerClassName, "mLocationBar");
-        // makeProtectedField(sToolbarManagerClassName, "mLocationBar");
+        deleteField(sMisesToolbarManagerClassName, "mLocationBarModel");
+        makeProtectedField(sToolbarManagerClassName, "mLocationBarModel");
 
-        // deleteField(sMisesToolbarManagerClassName, "mActionModeController");
-        // makeProtectedField(sToolbarManagerClassName, "mActionModeController");
+        deleteField(sMisesToolbarManagerClassName, "mToolbar");
+        makeProtectedField(sToolbarManagerClassName, "mToolbar");
 
-        // deleteField(sMisesToolbarManagerClassName, "mLocationBarModel");
-        // makeProtectedField(sToolbarManagerClassName, "mLocationBarModel");
+        deleteField(sMisesToolbarManagerClassName, "mBookmarkModelSupplier");
+        makeProtectedField(sToolbarManagerClassName, "mBookmarkModelSupplier");
 
-        // deleteField(sMisesToolbarManagerClassName, "mToolbar");
-        // makeProtectedField(sToolbarManagerClassName, "mToolbar");
+        deleteField(sMisesToolbarManagerClassName, "mLayoutManager");
+        makeProtectedField(sToolbarManagerClassName, "mLayoutManager");
 
-        // deleteField(sMisesToolbarManagerClassName, "mBookmarkModelSupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mBookmarkModelSupplier");
+        deleteField(sMisesToolbarManagerClassName, "mOverlayPanelVisibilitySupplier");
+        makeProtectedField(sToolbarManagerClassName, "mOverlayPanelVisibilitySupplier");
 
-        // deleteField(sMisesToolbarManagerClassName, "mLayoutManager");
-        // makeProtectedField(sToolbarManagerClassName, "mLayoutManager");
+        deleteField(sMisesToolbarManagerClassName, "mTabModelSelector");
+        makeProtectedField(sToolbarManagerClassName, "mTabModelSelector");
 
-        // deleteField(sMisesToolbarManagerClassName, "mOverlayPanelVisibilitySupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mOverlayPanelVisibilitySupplier");
+        deleteField(sMisesToolbarManagerClassName, "mIncognitoStateProvider");
+        makeProtectedField(sToolbarManagerClassName, "mIncognitoStateProvider");
 
-        // deleteField(sMisesToolbarManagerClassName, "mTabModelSelector");
-        // makeProtectedField(sToolbarManagerClassName, "mTabModelSelector");
+        deleteField(sMisesToolbarManagerClassName, "mBottomSheetController");
+        makeProtectedField(sToolbarManagerClassName, "mBottomSheetController");
 
-        // deleteField(sMisesToolbarManagerClassName, "mIncognitoStateProvider");
-        // makeProtectedField(sToolbarManagerClassName, "mIncognitoStateProvider");
+        deleteField(sMisesToolbarManagerClassName, "mTabContentManager");
+        makeProtectedField(sToolbarManagerClassName, "mTabContentManager");
 
-        // deleteField(sMisesToolbarManagerClassName, "mTabCountProvider");
-        // makeProtectedField(sToolbarManagerClassName, "mTabCountProvider");
+        deleteField(sMisesToolbarManagerClassName, "mTabCreatorManager");
+        makeProtectedField(sToolbarManagerClassName, "mTabCreatorManager");
 
-        // deleteField(sMisesToolbarManagerClassName, "mTabGroupUi");
-        // makeProtectedField(sToolbarManagerClassName, "mTabGroupUi");
+        deleteField(sMisesToolbarManagerClassName, "mModalDialogManagerSupplier");
+        makeProtectedField(sToolbarManagerClassName, "mModalDialogManagerSupplier");
 
-        // deleteField(sMisesToolbarManagerClassName, "mBottomSheetController");
-        // makeProtectedField(sToolbarManagerClassName, "mBottomSheetController");
+        deleteField(sMisesToolbarManagerClassName, "mTabObscuringHandler");
+        makeProtectedField(sToolbarManagerClassName, "mTabObscuringHandler");
 
-        // deleteField(sMisesToolbarManagerClassName, "mActivityLifecycleDispatcher");
-        // makeProtectedField(sToolbarManagerClassName, "mActivityLifecycleDispatcher");
+        deleteField(sMisesToolbarManagerClassName, "mReadAloudControllerSupplier");
+        makeProtectedField(sToolbarManagerClassName, "mReadAloudControllerSupplier");
 
-        // deleteField(sMisesToolbarManagerClassName, "mIsWarmOnResumeSupplier");
-        // makeProtectedField(sToolbarManagerClassName, "mIsWarmOnResumeSupplier");
+        makePublicMethod(sToolbarManagerClassName, "onOrientationChange");
+        addMethodAnnotation(
+                sMisesToolbarManagerClassName, "onOrientationChange", "Ljava/lang/Override;");
 
-        // deleteField(sMisesToolbarManagerClassName, "mTabContentManager");
-        // makeProtectedField(sToolbarManagerClassName, "mTabContentManager");
+        makePublicMethod(sToolbarManagerClassName, "updateBookmarkButtonStatus");
+        addMethodAnnotation(sMisesToolbarManagerClassName, "updateBookmarkButtonStatus",
+                "Ljava/lang/Override;");
 
-        // deleteField(sMisesToolbarManagerClassName, "mTabCreatorManager");
-        // makeProtectedField(sToolbarManagerClassName, "mTabCreatorManager");
-
-        // deleteField(sMisesToolbarManagerClassName, "mSnackbarManager");
-        // makeProtectedField(sToolbarManagerClassName, "mSnackbarManager");
-
-        // deleteField(sMisesToolbarManagerClassName, "mTabObscuringHandler");
-        // makeProtectedField(sToolbarManagerClassName, "mTabObscuringHandler");
-
-        // makePublicMethod(sToolbarManagerClassName, "onOrientationChange");
-        // addMethodAnnotation(
-        //         sMisesToolbarManagerClassName, "onOrientationChange", "Ljava/lang/Override;");
-
-        // makePublicMethod(sToolbarManagerClassName, "updateBookmarkButtonStatus");
-        // addMethodAnnotation(sMisesToolbarManagerClassName, "updateBookmarkButtonStatus",
-        //         "Ljava/lang/Override;");
-
-        // makePublicMethod(sToolbarManagerClassName, "updateReloadState");
-        // deleteMethod(sMisesToolbarManagerClassName, "updateReloadState");
+        makePublicMethod(sToolbarManagerClassName, "updateReloadState");
+        deleteMethod(sMisesToolbarManagerClassName, "updateReloadState");
     }
 }

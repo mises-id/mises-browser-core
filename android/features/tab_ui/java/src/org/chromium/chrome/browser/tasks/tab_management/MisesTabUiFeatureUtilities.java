@@ -8,7 +8,6 @@ package org.chromium.chrome.browser.tasks.tab_management;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import org.chromium.chrome.browser.flags.CachedFeatureFlags;
 import org.chromium.base.shared_preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 
@@ -16,16 +15,11 @@ public class MisesTabUiFeatureUtilities {
     private static final String TAB_GROUP_AUTO_CREATION_PREFERENCE =
             "Chrome.Flags.FieldTrialParamCached.TabGridLayoutAndroid:enable_tab_group_auto_creation";
 
-    @SuppressLint("VisibleForTests")
-    public static void maybeOverrideEnableTabGroupAutoCreationPreference(Context context) {
-        if (TabUiFeatureUtilities.isTabGroupsAndroidEnabled(context)) {
-            // Override it to make "Open in new tab" menu option in the context menu available if
-            // applicable.
-            SharedPreferencesManager sharedPreferencesManager = ChromeSharedPreferences.getInstance();
-            sharedPreferencesManager.writeBoolean(
-                    TAB_GROUP_AUTO_CREATION_PREFERENCE, true);
-            CachedFeatureFlags.resetFlagsForTesting();
-        }
+
+    public static boolean isMisesTabGroupsEnabled() {
+        return false;
+        // return ChromeSharedPreferences.getInstance()
+        //         .readBoolean(BravePreferenceKeys.MISES_TAB_GROUPS_ENABLED, true);
     }
 
 }

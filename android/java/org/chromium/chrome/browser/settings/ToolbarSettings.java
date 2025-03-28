@@ -11,6 +11,8 @@ import androidx.preference.PreferenceScreen;
 
 import android.content.DialogInterface;
 import org.chromium.chrome.R;
+import org.chromium.base.ContextUtils;
+import org.chromium.base.MisesPreferenceKeys;
 import org.chromium.chrome.browser.lifetime.ApplicationLifetime;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 import org.chromium.chrome.browser.flags.ChromeFeatureList;
@@ -23,10 +25,11 @@ import org.chromium.chrome.browser.preferences.MisesPref;
 import org.chromium.chrome.browser.preferences.MisesPrefServiceBridge;
 import org.chromium.chrome.browser.tracing.settings.DeveloperSettings;
 import org.chromium.chrome.browser.MisesFirebaseMessagingService;
+import org.chromium.ui.base.DeviceFormFactor;
 
 public class ToolbarSettings extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
     public static final String PREF_WIDEVINE_ENABLED = "widevine_enabled";
-    private static final String PREF_ENABLE_BOTTOM_TOOLBAR = "enable_bottom_toolbar";
+    private static final String PREF_ENABLE_BOTTOM_TOOLBAR = MisesPreferenceKeys.MISES_BOTTOM_TOOLBAR_ENABLED_KEY;
     public static final String PREF_BACKGROUND_VIDEO_PLAYBACK = "background_video_playback";
     
     public static final String MISES_BACKGROUND_VIDEO_PLAYBACK =
@@ -47,6 +50,13 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
         getActivity().setTitle(R.string.preferences_toolbar);
         SettingsUtils.addPreferencesFromResource(this, R.xml.toolbar_preferences);
 
+        boolean isTablet =
+        DeviceFormFactor.isNonMultiDisplayContextOnTablet(
+                ContextUtils.getApplicationContext());
+        if (isTablet) {
+            removePreferenceIfPresent(PREF_ENABLE_BOTTOM_TOOLBAR);
+        }
+
         if (!DeveloperSettings.shouldShowDeveloperSettings()) {
             PreferenceCategory category = findPreference(PREF_NOTIFICATION_SECTION);
 
@@ -61,6 +71,10 @@ public class ToolbarSettings extends PreferenceFragmentCompat implements Prefere
             });
         }
 
+    }
+    private void removePreferenceIfPresent(String key) {
+        Preference preference = getPreferenceScreen().findPreference(key);
+        if (preference != null) getPreferenceScreen().removePreference(preference);
     }
 
     @Override

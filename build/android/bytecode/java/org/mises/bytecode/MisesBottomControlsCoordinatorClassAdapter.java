@@ -16,7 +16,7 @@ public class MisesBottomControlsCoordinatorClassAdapter extends MisesClassVisito
     public MisesBottomControlsCoordinatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // deleteField(sMisesBottomControlsCoordinatorClassName, "mMediator");
-        // makeProtectedField(sBottomControlsCoordinatorClassName, "mMediator");
+        deleteField(sMisesBottomControlsCoordinatorClassName, "mMediator");
+        makeProtectedField(sBottomControlsCoordinatorClassName, "mMediator");
     }
 }

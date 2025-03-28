@@ -70,6 +70,7 @@ java_binary("java_bytecode_rewriter") {
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesSiteSettingsDelegateClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesSiteSettingsPreferencesBaseClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesStatusMediatorClassAdapter.java",
+    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesStrictPreferenceKeyCheckerClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabGroupUiCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabSwitcherModeTTCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabSwitcherModeTopToolbarClassAdapter.java",

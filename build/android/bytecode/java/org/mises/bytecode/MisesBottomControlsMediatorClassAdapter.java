@@ -16,16 +16,16 @@ public class MisesBottomControlsMediatorClassAdapter extends MisesClassVisitor {
     public MisesBottomControlsMediatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(
-        //         sBottomControlsMediatorClassName, sMisesBottomControlsMediatorClassName);
+        redirectConstructor(
+                sBottomControlsMediatorClassName, sMisesBottomControlsMediatorClassName);
 
-        // deleteField(sMisesBottomControlsMediatorClassName, "mBottomControlsHeight");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mBottomControlsHeight");
+        deleteField(sMisesBottomControlsMediatorClassName, "mBottomControlsHeight");
+        makeProtectedField(sBottomControlsMediatorClassName, "mBottomControlsHeight");
 
-        // deleteField(sMisesBottomControlsMediatorClassName, "mModel");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mModel");
+        deleteField(sMisesBottomControlsMediatorClassName, "mModel");
+        makeProtectedField(sBottomControlsMediatorClassName, "mModel");
 
-        // deleteField(sMisesBottomControlsMediatorClassName, "mBrowserControlsSizer");
-        // makeProtectedField(sBottomControlsMediatorClassName, "mBrowserControlsSizer");
+        deleteField(sMisesBottomControlsMediatorClassName, "mBottomControlsStacker");
+        makeProtectedField(sBottomControlsMediatorClassName, "mBottomControlsStacker");
     }
 }

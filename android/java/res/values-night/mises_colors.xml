@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 The Brave Authors. All rights reserved.
+     This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this file,
+     You can obtain one at http://mozilla.org/MPL/2.0/
+-->
+
+<resources>
+
+    <color name="bookmark_menu_text_color">#C2C4CF</color>
+    <color name="bookmark_menu_bg_color">#2E3039</color>
+    <color name="bookmark_import_export_toast_bg_color">#1E2025</color>
+    <color name="bookmark_import_export_dialog_title_color">#EDEEF1</color>
+    <color name="bookmark_import_export_dialog_secondary_color">#878DA6</color>
+    <color name="bookmark_import_export_dialog_button_color">#AAA8F7</color>
+
+    
+    <color name="location_bar_background_color_for_ntp">#383839</color>
+    <color name="toolbar_background_color_for_ntp">#1f1f1f</color>
+
+</resources>

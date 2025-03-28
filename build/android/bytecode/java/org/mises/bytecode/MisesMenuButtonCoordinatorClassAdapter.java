@@ -16,6 +16,6 @@ public class MisesMenuButtonCoordinatorClassAdapter extends MisesClassVisitor {
     public MisesMenuButtonCoordinatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        //redirectConstructor(sMenuButtonCoordinator, sMisesMenuButtonCoordinator);
+        redirectConstructor(sMenuButtonCoordinator, sMisesMenuButtonCoordinator);
     }
 }

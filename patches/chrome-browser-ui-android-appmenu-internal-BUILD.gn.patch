@@ -1,8 +1,16 @@
 diff --git a/chrome/browser/ui/android/appmenu/internal/BUILD.gn b/chrome/browser/ui/android/appmenu/internal/BUILD.gn
-index 00ca9a9e250635402df26382f9d7b4b6bf36084b..b376c03af9520284712589685e43d42fe31b0a4c 100644
+index 00ca9a9e250635402df26382f9d7b4b6bf36084b..790f9441159620f30bf850352a0d525751701925 100644
 --- a/chrome/browser/ui/android/appmenu/internal/BUILD.gn
 +++ b/chrome/browser/ui/android/appmenu/internal/BUILD.gn
-@@ -35,6 +35,12 @@ android_library("java") {
+@@ -21,6 +21,7 @@ android_library("java") {
+     "java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemIcon.java",
+     "java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuItemViewBinder.java",
+   ]
++  sources += mises_browser_ui_android_appmenu_internal_sources
+ 
+   deps = [
+     ":java_resources",
+@@ -35,6 +36,12 @@ android_library("java") {
      "//third_party/androidx:androidx_core_core_java",
      "//ui/android:ui_java",
    ]
