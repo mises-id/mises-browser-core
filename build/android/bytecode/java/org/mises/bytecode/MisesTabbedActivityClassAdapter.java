@@ -31,7 +31,7 @@ public class MisesTabbedActivityClassAdapter extends MisesClassVisitor {
     public MisesTabbedActivityClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        changeSuperName(sChromeTabbedActivityClassName, sMisesActivityClassName);
+        //changeSuperName(sChromeTabbedActivityClassName, sMisesActivityClassName);
 
         changeSuperName(sTabbedAppMenuPropertiesDelegateClassName,
                 sMisesAppMenuPropertiesDelegateImplClassName);

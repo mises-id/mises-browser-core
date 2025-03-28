@@ -55,15 +55,12 @@
 
 # Add methods for invocation below
 -keep class org.chromium.chrome.browser.ChromeTabbedActivity {
+    *** mLayoutManager;
+    *** mMultiInstanceManager;
     *** hideOverview(...);
+    *** maybeHandleUrlIntent(...);
     *** getProfile(...);
 }
-
--keep class org.chromium.chrome.browser.app.ChromeActivity {
-    *** mBrowserControlsManagerSupplier;
-}
-
--keep class org.chromium.chrome.browser.app.MisesActivity
 
 -keep class org.chromium.chrome.browser.IntentHandler {
     public <init>(...);
@@ -121,15 +118,6 @@
 }
 
 
--keep class org.chromium.base.shared_preferences.StrictPreferenceKeyChecker {
-    <init>(...);
-    *** isKeyInUse(...);
-}
-
--keep class org.chromium.base.shared_preferences.MisesStrictPreferenceKeyChecker {
-    <init>(...);
-}
-
 
 
 -keep class org.chromium.chrome.browser.ui.appmenu.AppMenu {
@@ -181,6 +169,11 @@
     *** onOrientationChange(...);
     *** updateBookmarkButtonStatus(...);
     *** updateReloadState(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.top.ToolbarPhone {
+    *** mLocationBarBackgroundColorForNtp;
+    *** mToolbarBackgroundColorForNtp;
 }
 
 -keep class org.chromium.chrome.browser.toolbar.top.TopToolbarCoordinator {

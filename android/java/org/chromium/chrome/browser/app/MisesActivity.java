@@ -17,6 +17,7 @@ import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.UnownedUserDataSupplier;
 
 import org.chromium.chrome.browser.ChromeTabbedActivity;
+import org.chromium.chrome.browser.dependency_injection.ChromeActivityComponent;
 import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.tab.Tab;
@@ -26,12 +27,13 @@ import org.chromium.chrome.browser.tabmodel.TabModel;
 import org.chromium.chrome.browser.tabmodel.TabModelUtils;
 import org.chromium.chrome.browser.bookmarks.TabBookmarker;
 import org.chromium.chrome.browser.fullscreen.BrowserControlsManager;
+import org.chromium.chrome.browser.tabmodel.MismatchedIndicesHandler;
 
 
 
-/** Brave's extension for ChromeActivity */
+/** Mises's extension for ChromeActivity */
 @JNINamespace("chrome::android")
-public abstract class MisesActivity extends ChromeActivity {
+public abstract class MisesActivity extends ChromeActivity<ChromeActivityComponent> implements MismatchedIndicesHandler {
     public boolean mComesFromNewTab;
 
     private UnownedUserDataSupplier<BrowserControlsManager> mBrowserControlsManagerSupplier;
