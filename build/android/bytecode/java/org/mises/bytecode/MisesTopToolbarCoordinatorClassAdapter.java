@@ -16,12 +16,12 @@ public class MisesTopToolbarCoordinatorClassAdapter extends MisesClassVisitor {
     public MisesTopToolbarCoordinatorClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sTopToolbarCoordinatorClassName, sMisesTopToolbarCoordinatorClassName);
+        redirectConstructor(sTopToolbarCoordinatorClassName, sMisesTopToolbarCoordinatorClassName);
 
-        // deleteField(sMisesTopToolbarCoordinatorClassName, "mTabSwitcherModeCoordinator");
-        // makeProtectedField(sTopToolbarCoordinatorClassName, "mTabSwitcherModeCoordinator");
+        deleteField(sMisesTopToolbarCoordinatorClassName, "mTabSwitcherModeCoordinator");
+        makeProtectedField(sTopToolbarCoordinatorClassName, "mTabSwitcherModeCoordinator");
 
-        // deleteField(sMisesTopToolbarCoordinatorClassName, "mOptionalButtonController");
-        // makeProtectedField(sTopToolbarCoordinatorClassName, "mOptionalButtonController");
+        deleteField(sMisesTopToolbarCoordinatorClassName, "mOptionalButtonController");
+        makeProtectedField(sTopToolbarCoordinatorClassName, "mOptionalButtonController");
     }
 }

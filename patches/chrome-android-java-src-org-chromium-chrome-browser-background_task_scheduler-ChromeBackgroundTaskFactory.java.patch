@@ -1,0 +1,12 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/background_task_scheduler/ChromeBackgroundTaskFactory.java b/chrome/android/java/src/org/chromium/chrome/browser/background_task_scheduler/ChromeBackgroundTaskFactory.java
+index ddffe82981bf5c9c82c19acd1c8e6b500115bec6..1ecb7ac8bbbfafab7d39122cc55517c9e823a86f 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/background_task_scheduler/ChromeBackgroundTaskFactory.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/background_task_scheduler/ChromeBackgroundTaskFactory.java
+@@ -54,6 +54,7 @@ public class ChromeBackgroundTaskFactory implements BackgroundTaskFactory {
+     }
+ 
+     private BackgroundTask createBackgroundTaskFromTaskId(int taskId) {
++        Log.i(TAG, "createBackgroundTaskFromTaskId " + taskId);
+         switch (taskId) {
+             case TaskIds.OMAHA_JOB_ID:
+                 return new OmahaService();

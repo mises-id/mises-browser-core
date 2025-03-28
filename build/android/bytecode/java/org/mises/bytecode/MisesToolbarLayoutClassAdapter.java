@@ -17,12 +17,13 @@ public class MisesToolbarLayoutClassAdapter extends MisesClassVisitor {
 
     public MisesToolbarLayoutClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        // changeSuperName(sCustomTabToolbarClassName, sMisesToolbarLayoutClassName);
+        changeSuperName(sCustomTabToolbarClassName, sMisesToolbarLayoutClassName);
 
-        // changeSuperName(sToolbarPhoneClassName, sMisesToolbarLayoutClassName);
+        changeSuperName(sToolbarPhoneClassName, sMisesToolbarLayoutClassName);
 
-        // changeSuperName(sToolbarTabletClassName, sMisesToolbarLayoutClassName);
+        changeSuperName(sToolbarTabletClassName, sMisesToolbarLayoutClassName);
 
-        // deleteMethod(sToolbarPhoneClassName, "onHomeButtonUpdate");
+        deleteMethod(sToolbarPhoneClassName, "onHomeButtonUpdate");
     }
 }
+

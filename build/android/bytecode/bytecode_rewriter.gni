@@ -1,6 +1,7 @@
 import("//build/config/python.gni")
 
 mises_bytecode_jars = [
+  "obj/base/base_shared_preferences_java.javac.jar",
   "obj/mises/android/features/tab_ui/java.javac.jar",
   "obj/mises/android/java/org/chromium/chrome/browser/search_engines/java.javac.jar",
   "obj/mises/browser/notifications/java.javac.jar",
@@ -19,6 +20,8 @@ mises_bytecode_jars = [
   "obj/chrome/browser/safe_browsing/android/java.javac.jar",
   "obj/chrome/browser/search_engines/android/java.javac.jar",
   "obj/chrome/browser/site_settings/android/java.javac.jar",
+  "obj/chrome/browser/tab_group/java.javac.jar",
+  "obj/chrome/browser/tab_ui/android/java.javac.jar",
   "obj/chrome/browser/ui/android/appmenu/internal/java.javac.jar",
   "obj/chrome/browser/ui/android/logo/java.javac.jar",
   "obj/chrome/browser/ui/android/omnibox/java.javac.jar",

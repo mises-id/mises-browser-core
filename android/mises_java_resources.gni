@@ -355,6 +355,12 @@ mises_extra_java_resources = [
   "java/res/layout/mises_user_info_menu.xml",
 
   "java/res/drawable/reward_border.xml",
+  "java/res/drawable/bookmark_menu_bg.xml",
+  "java/res/drawable/ic_search_21dp.xml",
+  "java/res/drawable/ic_bookmark_menu_add.xml",
+  "java/res/drawable/ic_bookmark_menu_delete.xml",
+  "java/res/drawable/ic_bookmark_menu_edit.xml",
+  "java/res/drawable/ic_bookmark_menu_view.xml",
 
   "java/res/drawable/mises_share_cancel_bg.xml",
   "java/res/drawable/mises_share_confirm_bg.xml",
@@ -380,11 +386,24 @@ mises_extra_java_resources = [
   "java/res/mipmap-xxxhdpi/ic_swap.png",
 
   
-
+  "java/res/drawable-hdpi/btn_bookmark.png",
+  "java/res/drawable-hdpi/btn_bookmark_fill.png",
+  "java/res/drawable-mdpi/btn_bookmark.png",
+  "java/res/drawable-mdpi/btn_bookmark_fill.png",
+  "java/res/drawable-xhdpi/btn_bookmark.png",
+  "java/res/drawable-xhdpi/btn_bookmark_fill.png",
+  "java/res/drawable-xxhdpi/btn_bookmark.png",
+  "java/res/drawable-xxhdpi/btn_bookmark_fill.png",
+  "java/res/drawable-xxxhdpi/btn_bookmark.png",
+  "java/res/drawable-xxxhdpi/btn_bookmark_fill.png",
 ]
 
 mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
 
+    "java/res/values-night/mises_colors.xml",
+
+    "java/res/values/mises_dimens.xml",
+    "java/res/values/mises_styles.xml",
     "java/res/values/channel_constants.xml",
     "java/res/values/mises_colors.xml",
     "java/res/values-v21/mises_styles.xml",
@@ -426,6 +445,21 @@ mises_java_resources = mises_extra_java_resources + kiwi_java_resources + [
     "java/res/layout/carousel_ad_view.xml",
     "java/res/layout/mises_suggestions_tile_view.xml",
     "java/res/layout/widevine_permission_request_custom_view.xml",
+
+    "java/res/layout/bottom_toolbar.xml",
+    "java/res/layout/bottom_toolbar_browsing.xml",
+    "java/res/layout/bottom_toolbar_menu_button.xml",
+    "java/res/layout/bottom_toolbar_tab_switcher.xml",
+
+    "java/res/layout/mises_bookmark_toolbar.xml",
+    "java/res/layout/mises_bottom_new_tab_button.xml",
+
+    "java/res/layout/toolbar_space.xml",
+
+    
+
+    "java/res/menu/bookmark_tab_menu.xml",
+    "java/res/menu/new_tab_menu.xml",
 
 
     "java/res/drawable-hdpi/ic_menu_mises_forward.png",

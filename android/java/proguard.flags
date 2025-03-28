@@ -55,7 +55,10 @@
 
 # Add methods for invocation below
 -keep class org.chromium.chrome.browser.ChromeTabbedActivity {
+    *** mLayoutManager;
+    *** mMultiInstanceManager;
     *** hideOverview(...);
+    *** maybeHandleUrlIntent(...);
     *** getProfile(...);
 }
 
@@ -112,6 +115,97 @@
 
 -keep class org.chromium.chrome.browser.tab.TabHelpers {
     *** initTabHelpers(...);
+}
+
+
+
+
+-keep class org.chromium.chrome.browser.ui.appmenu.AppMenu {
+    public <init>(...);
+    *** getPopupPosition(...);
+    *** runMenuItemEnterAnimations(...);
+}
+
+-keep class org.chromium.chrome.browser.ui.appmenu.MisesAppMenu {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.bottom.BottomControlsCoordinator {
+    *** mMediator;
+}
+
+-keep class org.chromium.chrome.browser.toolbar.MisesToolbarManager {
+    public <init>(...);
+}
+
+
+-keep class org.chromium.chrome.browser.toolbar.ToolbarManager {
+    public <init>(...);
+    *** mBottomControlsCoordinatorSupplier;
+    *** mCallbackController;
+    *** mBottomControlsStacker;
+    *** mFullscreenManager;
+    *** mActivityTabProvider;
+    *** mAppThemeColorProvider;
+    *** mScrimCoordinator;
+    *** mMenuButtonCoordinator;
+    *** mToolbarTabController;
+    *** mLocationBar;
+    *** mActionModeController;
+    *** mLocationBarModel;
+    *** mToolbar;
+    *** mBookmarkModelSupplier;
+    *** mLayoutManager;
+    *** mOverlayPanelVisibilitySupplier;
+    *** mTabModelSelector;
+    *** mIncognitoStateProvider;
+    *** mTabGroupUi;
+    *** mBottomSheetController;
+    *** mTabContentManager;
+    *** mTabCreatorManager;
+    *** mModalDialogManagerSupplier;
+    *** mTabObscuringHandler;
+    *** mReadAloudControllerSupplier;
+    *** onOrientationChange(...);
+    *** updateBookmarkButtonStatus(...);
+    *** updateReloadState(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.top.ToolbarPhone {
+    *** mLocationBarBackgroundColorForNtp;
+    *** mToolbarBackgroundColorForNtp;
+}
+
+-keep class org.chromium.chrome.browser.toolbar.top.TopToolbarCoordinator {
+    *** mOptionalButtonController;
+    *** mToolbarColorObserverManager;
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.top.MisesTopToolbarCoordinator {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.top.MisesToolbarLayoutImpl
+
+
+-keep class org.chromium.chrome.browser.toolbar.menu_button.MenuButtonCoordinator {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.menu_button.MisesMenuButtonCoordinator {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.bottom.BottomControlsMediator {
+    <init>(...);
+    *** mBottomControlsHeight;
+    *** mModel;
+    *** mBottomControlsStacker;
+}
+
+-keep class org.chromium.chrome.browser.toolbar.bottom.MisesBottomControlsMediator {
+    <init>(...);
 }
 
 # -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken

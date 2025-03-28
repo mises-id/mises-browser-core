@@ -15,12 +15,12 @@ public class MisesAppMenuClassAdapter extends MisesClassVisitor {
     public MisesAppMenuClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // redirectConstructor(sAppMenuClassName, sMisesAppMenuClassName);
+        redirectConstructor(sAppMenuClassName, sMisesAppMenuClassName);
 
-        // changeMethodOwner(sAppMenuClassName, "getPopupPosition", sMisesAppMenuClassName);
+        changeMethodOwner(sAppMenuClassName, "getPopupPosition", sMisesAppMenuClassName);
 
-        // makePublicMethod(sAppMenuClassName, "runMenuItemEnterAnimations");
-        // addMethodAnnotation(
-        //         sMisesAppMenuClassName, "runMenuItemEnterAnimations", "Ljava/lang/Override;");
+        makePublicMethod(sAppMenuClassName, "runMenuItemEnterAnimations");
+        addMethodAnnotation(
+                sMisesAppMenuClassName, "runMenuItemEnterAnimations", "Ljava/lang/Override;");
     }
 }

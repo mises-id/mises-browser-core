@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 62e385ccf7cdf3b06c40899ed6d8ca30a2fae838..ed140f6abb1ce4e7ecce6a66d3d94e84b8826c06 100644
+index 62e385ccf7cdf3b06c40899ed6d8ca30a2fae838..8f3b4ae6e4e631a5ecfe37c12be87ef84bd6d57b 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-@@ -273,6 +273,22 @@ import java.util.Set;
+@@ -273,12 +273,28 @@ import java.util.Set;
  import java.util.concurrent.atomic.AtomicBoolean;
  import java.util.function.DoubleConsumer;
  
@@ -21,10 +21,18 @@ index 62e385ccf7cdf3b06c40899ed6d8ca30a2fae838..ed140f6abb1ce4e7ecce6a66d3d94e84
 +import org.chromium.chrome.browser.mises.UIUtil;
 +import org.chromium.chrome.browser.feed.FeedFeatures;
 +import org.chromium.base.MisesSysUtils;
++import org.chromium.chrome.browser.app.MisesActivity;
 +
  /**
   * This is the main activity for ChromeMobile when not running in document mode. All the tabs are
   * accessible via a chrome specific tab switching UI.
+  */
+-public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent>
+-        implements MismatchedIndicesHandler {
++public class ChromeTabbedActivity extends MisesActivity {
+     private static final String TAG = "ChromeTabbedActivity";
+ 
+     protected static final String WINDOW_INDEX = "window_index";
 @@ -292,7 +308,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
      // Maximum delay for initial tab creation. This is for homepage and NTP, not previous tabs
      // restore. This is needed because we do not know when reading PartnerBrowserCustomizations

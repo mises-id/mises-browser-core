@@ -14,7 +14,7 @@ public class MisesActivityClassAdapter extends MisesClassVisitor {
     public MisesActivityClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        // deleteField(sMisesActivityClassName, "mBrowserControlsManagerSupplier");
-        // makeProtectedField(sChromeActivityClassName, "mBrowserControlsManagerSupplier");
+        deleteField(sMisesActivityClassName, "mBrowserControlsManagerSupplier");
+        makeProtectedField(sChromeActivityClassName, "mBrowserControlsManagerSupplier");
     }
 }

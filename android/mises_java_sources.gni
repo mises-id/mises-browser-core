@@ -1,6 +1,8 @@
+import("//mises/base/mises_base_shared_preferences_java.gni")
 import("//mises/components/permissions/android/java_sources.gni")
 import("//mises/android/feed/mises_feed_java_sources.gni")
 import("//mises/third_party/open_mediation/buildflags.gni")
+import("//mises/android/features/tab_ui/mises_tab_management_java_sources.gni")
 
 kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/PersonalizeResults.java",
@@ -51,6 +53,37 @@ mises_java_sources = kiwi_java_sources + [
   #"//mises/android/java/org/chromium/chrome/browser/crypto_wallet/permission/BravePermissionAccountsListAdapter.java",
   #"//misesandroid/java/org/chromium/chrome/browser/crypto_wallet/util/AccountsPermissionsHelper.java",
 
+
+
+  "//mises/android/java/org/chromium/chrome/browser/util/TabUtils.java",
+  "//mises/android/java/org/chromium/chrome/browser/util/MisesTouchUtils.java",
+  "//mises/android/java/org/chromium/chrome/browser/util/TouchDelegateComposite.java",
+  
+  
+
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/MisesHomeButton.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/MisesToolbarManager.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BookmarksButton.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BottomToolbarConfiguration.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BottomToolbarCoordinator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BottomToolbarNewTabButton.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BottomToolbarVariationManager.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/MisesBottomControlsCoordinator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/MisesScrollingBottomViewResourceFrameLayout.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BrowsingModeBottomToolbarCoordinator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BrowsingModeBottomToolbarLinearLayout.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BrowsingModeBottomToolbarMediator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BrowsingModeBottomToolbarModel.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/BrowsingModeBottomToolbarViewBinder.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/SearchAccelerator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/TabSwitcherBottomToolbarCoordinator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/TabSwitcherBottomToolbarMediator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/TabSwitcherBottomToolbarModel.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/bottom/TabSwitcherBottomToolbarViewBinder.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/menu_button/MisesMenuButtonCoordinator.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/top/MisesToolbarLayoutImpl.java",
+  "//mises/android/java/org/chromium/chrome/browser/toolbar/top/MisesTopToolbarCoordinator.java",
+
 ]
 
 mises_java_sources += [
@@ -73,12 +106,20 @@ mises_java_sources += [
 
 mises_java_sources += mises_feed_java_sources
 
+mises_java_sources += mises_public_tab_management_java_sources
+
 mises_browser_ui_android_appmenu_internal_sources = [
+  "//mises/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/MisesAppMenu.java"
 ]
 mises_browser_ui_android_toolbar_sources = [
+  "//mises/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/MisesBottomControlsMediator.java",
+  "//mises/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/BottomTabSwitcherActionMenuCoordinator.java",
+  "//mises/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/MisesToolbarLayout.java",
+
 ]
 mises_java_base_sources = [
   "//mises/android/java/org/chromium/base/MisesReflectionUtil.java",
+  "//mises/android/java/org/chromium/base/MisesPreferenceKeys.java",
   "//mises/android/java/org/chromium/base/Callbacks.java",
 ]
 mises_java_base_module_sources = [
