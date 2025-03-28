@@ -59,6 +59,12 @@
     *** getProfile(...);
 }
 
+-keep class org.chromium.chrome.browser.app.ChromeActivity {
+    *** mBrowserControlsManagerSupplier;
+}
+
+-keep class org.chromium.chrome.browser.app.MisesActivity
+
 -keep class org.chromium.chrome.browser.IntentHandler {
     public <init>(...);
     *** getUrlForCustomTab(...);

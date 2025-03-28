@@ -58,14 +58,13 @@
     <include layout="@layout/toolbar_space" />
 
     <org.chromium.ui.widget.ChromeImageButton
-           android:id="@+id/mises_extension_button"
-	        style="@style/ToolbarHoverableButton"
-	        android:paddingStart="8dp"
-            android:layout_gravity="top"
-            android:src="@drawable/btn_extension"
-            android:visibility="gone"
-            app:tint="@color/default_icon_color_tint_list"
-            android:contentDescription="@null" />
+        android:id="@+id/mises_extension_button"
+        style="@style/SplitToolbarButton"
+        android:layout_gravity="center"
+        android:src="@drawable/btn_extension"
+        android:visibility="gone"
+        app:tint="@color/default_icon_color_tint_list"
+        android:contentDescription="@null" />
 
     <include layout="@layout/toolbar_space" />
 

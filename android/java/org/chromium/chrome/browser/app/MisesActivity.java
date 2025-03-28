@@ -13,6 +13,8 @@ import org.jni_zero.JNINamespace;
 import org.jni_zero.NativeMethods;
 
 import org.chromium.base.ApplicationStatus;
+import org.chromium.base.supplier.ObservableSupplier;
+import org.chromium.base.supplier.UnownedUserDataSupplier;
 
 import org.chromium.chrome.browser.ChromeTabbedActivity;
 import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
@@ -23,6 +25,7 @@ import org.chromium.chrome.browser.tab.TabLaunchType;
 import org.chromium.chrome.browser.tabmodel.TabModel;
 import org.chromium.chrome.browser.tabmodel.TabModelUtils;
 import org.chromium.chrome.browser.bookmarks.TabBookmarker;
+import org.chromium.chrome.browser.fullscreen.BrowserControlsManager;
 
 
 
@@ -31,6 +34,7 @@ import org.chromium.chrome.browser.bookmarks.TabBookmarker;
 public abstract class MisesActivity extends ChromeActivity {
     public boolean mComesFromNewTab;
 
+    private UnownedUserDataSupplier<BrowserControlsManager> mBrowserControlsManagerSupplier;
 
     /** Serves as a general exception for failed attempts to get MisesActivity. */
     public static class MisesActivityNotFoundException extends Exception {

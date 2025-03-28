@@ -299,11 +299,7 @@ public class MisesToolbarManager extends ToolbarManager {
                                             ((ChromeActivity) mActivity)
                                                     .onOptionsItemSelected(id, null),
                                     mProfileSupplier.get(),
-                                    mTabModelSelectorSupplier,
-                                    new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {}
-                                    }),
+                                    mTabModelSelectorSupplier),
                             mActivityTabProvider,
                             mToolbarTabController::openHomepage,
                             mCallbackController.makeCancelable(

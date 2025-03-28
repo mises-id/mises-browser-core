@@ -27,11 +27,11 @@ public class BottomTabSwitcherActionMenuCoordinator extends TabSwitcherActionMen
     public static OnLongClickListener createOnLongClickListener(
             Callback<Integer> onItemClicked,
             Profile profile,
-            ObservableSupplier<TabModelSelector> tabModelSelectorSupplier, OnClickListener newTabClickHandler) {
+            ObservableSupplier<TabModelSelector> tabModelSelectorSupplier) {
         return createOnLongClickListener(
                 new BottomTabSwitcherActionMenuCoordinator(profile, tabModelSelectorSupplier),
                 profile,
-                onItemClicked, newTabClickHandler);
+                onItemClicked);
     }
 
     @Override

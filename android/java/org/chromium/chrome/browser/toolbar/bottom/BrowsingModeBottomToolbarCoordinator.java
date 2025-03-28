@@ -43,7 +43,7 @@ import org.chromium.chrome.browser.ui.appmenu.AppMenuDelegate;
  * being scrolled off-screen. The Android version does not draw unless the controls offset is 0.
  */
 public class BrowsingModeBottomToolbarCoordinator {
-    private static final String TAG = "BrowsingMode";
+    private static final String TAG = "BrowsingModeBottomToolbar";
 
     /** The mediator that handles events from outside the browsing mode bottom toolbar. */
     private final BrowsingModeBottomToolbarMediator mMediator;
@@ -251,7 +251,7 @@ public class BrowsingModeBottomToolbarCoordinator {
 
                     OnClickListener extensionButtonListener =
                     v -> {
-
+                        Log.v(TAG, "ExtensionButton clicked");
                         try {
                             MisesActivity activity = MisesActivity.getMisesActivity();
                             if (activity == null) {
