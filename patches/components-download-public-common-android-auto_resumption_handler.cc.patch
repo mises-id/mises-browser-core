@@ -1,0 +1,15 @@
+diff --git a/components/download/public/common/android/auto_resumption_handler.cc b/components/download/public/common/android/auto_resumption_handler.cc
+index 8bcce830436c56998e16244bf6cfb080cc1072bc..0ea91ad73049d52834d068453efe9372d8965545 100644
+--- a/components/download/public/common/android/auto_resumption_handler.cc
++++ b/components/download/public/common/android/auto_resumption_handler.cc
+@@ -362,6 +362,10 @@ bool AutoResumptionHandler::IsAutoResumableDownload(
+   if (!item || item->IsDangerous())
+     return false;
+ 
++  if (item->GetMimeType() == "application/x-chrome-extension") {
++    return false;
++  }
++
+   // Ignore downloads started a while ago.
+   if (clock_->Now() - item->GetStartTime() > kAutoResumptionExpireInterval) {
+     return false;
