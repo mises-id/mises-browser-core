@@ -1,0 +1,32 @@
+diff --git a/base/android/java/src/org/chromium/base/ContentUriUtils.java b/base/android/java/src/org/chromium/base/ContentUriUtils.java
+index c4483925e4b5b4c364777bc07522105782cfe1ee..6bc54acf619e127e5750b9dd046bda9acbc7ec74 100644
+--- a/base/android/java/src/org/chromium/base/ContentUriUtils.java
++++ b/base/android/java/src/org/chromium/base/ContentUriUtils.java
+@@ -15,6 +15,7 @@ import android.provider.MediaStore;
+ import android.text.TextUtils;
+ import android.webkit.MimeTypeMap;
+ 
++
+ import androidx.annotation.Nullable;
+ 
+ import org.jni_zero.CalledByNative;
+@@ -156,6 +157,8 @@ public abstract class ContentUriUtils {
+      */
+     public static String getDisplayName(Uri uri, Context context, String columnField) {
+         if (uri == null) return "";
++
++
+         ContentResolver contentResolver = context.getContentResolver();
+         try (Cursor cursor = contentResolver.query(uri, null, null, null, null)) {
+             if (cursor != null && cursor.getCount() >= 1) {
+@@ -185,6 +188,10 @@ public abstract class ContentUriUtils {
+             // Some android models don't handle the provider call correctly.
+             // see crbug.com/345393
+             return "";
++        } catch (UnsupportedOperationException e) {
++            // Fails for URIs such as a directory tree URI without a document ID.
++            Log.w(TAG, "Cannot get display name for %s", uri, e);
++            return "";
+         }
+         return "";
+     }

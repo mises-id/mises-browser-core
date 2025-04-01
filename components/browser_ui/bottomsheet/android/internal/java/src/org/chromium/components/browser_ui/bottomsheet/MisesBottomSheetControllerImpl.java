@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,8 +44,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.openmediation.sdk.nativead.AdIconView;
 import com.openmediation.sdk.nativead.AdInfo;
@@ -67,7 +68,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
     
 
     private List<String> mBannerPlacmentIds;
-    private Set<String> mLoadedPlacmentIds;
+    private Map<String, AdInfo> mLoadedPlacmentIds;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     private ViewGroup mBottomSheetContainer;
@@ -84,7 +85,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         super(scrim, initializedCallback, window, keyboardDelegate, root, alwaysFullWidth, edgeToEdgeBottomInsetSupplier);
         Log.d(TAG, "construct");
         mBannerPlacmentIds = new ArrayList<>();
-        mLoadedPlacmentIds = new HashSet<>();
+        mLoadedPlacmentIds = new HashMap<>();
         
     }
 
@@ -130,6 +131,10 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
 
     private void maybeInitBannerAd() {
       Log.d(TAG, "maybeInitBannerAd");
+      if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)  {
+        //do not support android api level 28 and lower, crash
+        return;
+      }
       if (MisesAdsUtil.getInstance().isInitSucess()) {
           mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_popup");
           loadNativeAd();
@@ -146,15 +151,16 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         @Override
         public void onNativeAdLoaded(String placementId, AdInfo info) {
             Log.d(TAG, "onNativeAdLoaded, placementId: " + placementId + ", AdInfo : " + info);
-            if (!mLoadedPlacmentIds.contains(placementId)) {
-                mLoadedPlacmentIds.add(placementId);
-                displayNativeBanner(placementId, info);
+            if (!mLoadedPlacmentIds.containsKey(placementId)) {
+                mLoadedPlacmentIds.put(placementId, info);
             }
+            displayNativeBanner(placementId);
         }
 
         @Override
         public void onNativeAdLoadFailed(String placementId, Error error) {
             Log.d(TAG, "onNativeAdLoadFailed, placementId: " + placementId + ", error : " + error);
+            removeNativeAdListener();
         }
 
         @Override
@@ -179,14 +185,21 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         
     }
 
-    private void displayNativeBanner(final String placementId, AdInfo info) {
+    private void displayNativeBanner(final String placementId) {
+        Log.v(TAG, "displayNativeBanner");
+        final AdInfo info = mLoadedPlacmentIds.get(placementId);
+        if (info == null) {
+            Log.v(TAG, "displayNativeBanner fail, no ad info");
+            removeNativeAdListener();
+            return;
+        }
         if (mBottomSheetContainer == null || mBottomSheetContainer.getVisibility() == View.GONE) {
-            cleanNativeAd(placementId);
+            removeNativeAdListener();
             return;
         }
         BottomSheet bottomSheet = mBottomSheetContainer.findViewById(R.id.bottom_sheet);
         if (bottomSheet == null || !isExtensionPopup(bottomSheet)) {
-            cleanNativeAd(placementId);
+            removeNativeAdListener();
             return;
         }
         Context context = mBottomSheetContainer.getContext();
@@ -267,8 +280,9 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         addNativeAdListener();
 
         for (final String placementId : mBannerPlacmentIds) {
-            if (mLoadedPlacmentIds.contains(placementId)) {
+            if (mLoadedPlacmentIds.containsKey(placementId)) {
                 Log.d(TAG, "skiping loaded placement " + placementId);
+                displayNativeBanner(placementId);
                 continue;
             }
             // for TikTok and TencentAd in China traffic
