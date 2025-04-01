@@ -1,0 +1,12 @@
+diff --git a/components/webapps/browser/android/java/src/org/chromium/components/webapps/pwa_universal_install/PwaUniversalInstallBottomSheetCoordinator.java b/components/webapps/browser/android/java/src/org/chromium/components/webapps/pwa_universal_install/PwaUniversalInstallBottomSheetCoordinator.java
+index fb4bd9eff3044a157d8a857cc32ecb5b9684f8aa..56fe315fff25fe856762398ccf761aadb0aa8707 100644
+--- a/components/webapps/browser/android/java/src/org/chromium/components/webapps/pwa_universal_install/PwaUniversalInstallBottomSheetCoordinator.java
++++ b/components/webapps/browser/android/java/src/org/chromium/components/webapps/pwa_universal_install/PwaUniversalInstallBottomSheetCoordinator.java
+@@ -207,6 +207,7 @@ public class PwaUniversalInstallBottomSheetCoordinator {
+     }
+ 
+     private void onAddShortcutClicked() {
++        if (mAppType == null) return;
+         RecordHistogram.recordEnumeratedHistogram(
+                 "WebApk.UniversalInstall.DialogAction",
+                 mAppType == AppType.SHORTCUT ? CREATE_SHORTCUT : CREATE_SHORTCUT_TO_APP,

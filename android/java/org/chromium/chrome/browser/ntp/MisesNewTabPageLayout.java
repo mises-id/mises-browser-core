@@ -344,16 +344,29 @@ public class MisesNewTabPageLayout
         }
 
         @Override
+        public void getDecoratedBoundsWithMargins(View view, Rect outBounds) {
+            try {
+                super.getDecoratedBoundsWithMargins(view, outBounds);
+            } catch (ClassCastException e) {
+                Log.e(TAG, "ClassCastException in RecyclerView.getDecoratedBoundsWithMargins: ", e);
+                assert false;
+            }
+        }
+    
+        @Override
         public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
             try {
                 super.onLayoutChildren(recycler, state);
             } catch (IndexOutOfBoundsException e) {
-                Log.e(TAG, "IndexOutOfBoundsException in RecyclerView: ", e);
+                Log.e(TAG, "IndexOutOfBoundsException in RecyclerView.onLayoutChildren: ", e);
                 assert false;
             } catch (ClassCastException e) {
-                Log.e(TAG, "ClassCastException in RecyclerView: ", e);
+                Log.e(TAG, "ClassCastException in RecyclerView.onLayoutChildren: ", e);
                 assert false;
-            }
+            } catch (IllegalStateException e) {
+                Log.e(TAG, "IllegalStateException in RecyclerView.onLayoutChildren: ", e);
+                assert false;
+            } 
         }
     }
 

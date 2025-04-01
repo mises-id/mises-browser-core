@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/chrome_content_browser_client_extensions_part.cc b/chrome/browser/extensions/chrome_content_browser_client_extensions_part.cc
-index 94fc2c99daeb44a1fd0d841e9e8a174e882057a8..6542befabe6275d3dc9c8b7678db7dc2928e7218 100644
+index 94fc2c99daeb44a1fd0d841e9e8a174e882057a8..7ac6d7e46697f19f69ed8e2814c30ee09ecd0dad 100644
 --- a/chrome/browser/extensions/chrome_content_browser_client_extensions_part.cc
 +++ b/chrome/browser/extensions/chrome_content_browser_client_extensions_part.cc
 @@ -336,6 +336,11 @@ bool ChromeContentBrowserClientExtensionsPart::DoesSiteRequireDedicatedProcess(
@@ -14,15 +14,7 @@ index 94fc2c99daeb44a1fd0d841e9e8a174e882057a8..6542befabe6275d3dc9c8b7678db7dc2
    // Isolate all extensions.
    return extension != nullptr;
  }
-@@ -380,6 +385,7 @@ bool ChromeContentBrowserClientExtensionsPart::CanCommitURL(
-     content::RenderProcessHost* process_host,
-     const GURL& url) {
-   DCHECK_CURRENTLY_ON(BrowserThread::UI);
-+  LOG(INFO) << "CanCommitURL(" << process_host->GetID() << "," << url << ")";
- 
-   // Enforce that extension URLs commit in the correct extension process where
-   // possible, accounting for many exceptions to the rule.
-@@ -403,10 +409,17 @@ bool ChromeContentBrowserClientExtensionsPart::CanCommitURL(
+@@ -403,10 +408,17 @@ bool ChromeContentBrowserClientExtensionsPart::CanCommitURL(
    // commit. This accounts for cases where an extension might have multiple
    // processes, such as incognito split mode.
    ProcessMap* process_map = ProcessMap::Get(process_host->GetBrowserContext());
@@ -42,15 +34,7 @@ index 94fc2c99daeb44a1fd0d841e9e8a174e882057a8..6542befabe6275d3dc9c8b7678db7dc2
    // If an extension URL is listed as sandboxed in the manifest, its process
    // won't be in the process map. Instead, allow it here and rely on the
    // ChildProcessSecurityPolicy::CanAccessDataForOrigin check (which occurs
-@@ -453,6 +466,7 @@ bool ChromeContentBrowserClientExtensionsPart::IsSuitableHost(
-     content::RenderProcessHost* process_host,
-     const GURL& site_url) {
-   DCHECK(profile);
-+  LOG(INFO) << "IsSuitableHost(" << process_host->GetID() << "," << site_url << ")";
- 
-   ExtensionRegistry* registry = ExtensionRegistry::Get(profile);
-   ProcessMap* process_map = ProcessMap::Get(profile);
-@@ -473,11 +487,19 @@ bool ChromeContentBrowserClientExtensionsPart::IsSuitableHost(
+@@ -473,11 +485,19 @@ bool ChromeContentBrowserClientExtensionsPart::IsSuitableHost(
    // SiteInstances for both extensions and hosted apps.
    const Extension* extension =
        GetEnabledExtensionFromSiteURL(profile, site_url);
