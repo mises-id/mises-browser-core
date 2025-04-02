@@ -73,20 +73,22 @@ public abstract class MisesActivity extends ChromeActivity<ChromeActivityCompone
     }
 
     public void updateBottomSheetPosition(int orientation) {
-        if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
-            // Ensure the bottom sheet's container is adjusted to the height of the bottom toolbar.
-            ViewGroup sheetContainer = findViewById(R.id.sheet_container);
-            assert sheetContainer != null;
+        //do not adjust bottom sheet because of space for ads
 
-            if (sheetContainer != null) {
-                CoordinatorLayout.LayoutParams params =
-                        (CoordinatorLayout.LayoutParams) sheetContainer.getLayoutParams();
-                params.bottomMargin = orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? 0
-                        : getResources().getDimensionPixelSize(R.dimen.bottom_controls_height);
-                sheetContainer.setLayoutParams(params);
-            }
-        }
+        // if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
+        //     // Ensure the bottom sheet's container is adjusted to the height of the bottom toolbar.
+        //     ViewGroup sheetContainer = findViewById(R.id.sheet_container);
+        //     assert sheetContainer != null;
+
+        //     if (sheetContainer != null) {
+        //         CoordinatorLayout.LayoutParams params =
+        //                 (CoordinatorLayout.LayoutParams) sheetContainer.getLayoutParams();
+        //         params.bottomMargin = orientation == Configuration.ORIENTATION_LANDSCAPE
+        //                 ? 0
+        //                 : getResources().getDimensionPixelSize(R.dimen.bottom_controls_height);
+        //         sheetContainer.setLayoutParams(params);
+        //     }
+        // }
     }
 
     public void addOrEditBookmark(final Tab tabToBookmark) {
