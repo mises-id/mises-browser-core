@@ -111,8 +111,8 @@ BASE_FEATURE(kMisesAllowExtensionIsolation,
    base::FEATURE_DISABLED_BY_DEFAULT);
    
 bool IsMisesAllowExtensionIsolation() {
-   //enable isolation for 4GB and above
-   if (base::SysInfo::AmountOfPhysicalMemoryMB() >= 4 * 1024) {
+   //enable isolation for 3GB and above
+   if (base::SysInfo::AmountOfPhysicalMemoryMB() >= 3 * 1024) {
       return true;
    }
    
