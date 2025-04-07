@@ -15,6 +15,7 @@ import org.chromium.base.MisesPreferenceKeys;
 import org.chromium.base.ContextUtils;
 import org.chromium.base.supplier.OneshotSupplier;
 import org.chromium.base.supplier.Supplier;
+import org.chromium.base.Log;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.browser_controls.BrowserStateBrowserControlsVisibilityDelegate;
 import org.chromium.chrome.browser.theme.ThemeColorProvider;
@@ -26,6 +27,7 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor;
 
 public class MisesMenuButtonCoordinator extends MenuButtonCoordinator {
     private Activity mActivity;
+    private static final String TAG = "MisesMenuButtonCoordinator";
 
     public MisesMenuButtonCoordinator(
             OneshotSupplier<AppMenuCoordinator> appMenuCoordinatorSupplier,

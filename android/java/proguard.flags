@@ -208,6 +208,15 @@
     <init>(...);
 }
 
+-keep class org.chromium.chrome.browser.hub.HubManagerImpl {
+    *** ensureHubCoordinatorIsInitialized(...);
+}
+
+-keep class org.chromium.chrome.browser.tabbed_mode.TabbedNavigationBarColorController {
+    *** getNavigationBarColor(...);
+}
+
+
 # -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
 # -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 

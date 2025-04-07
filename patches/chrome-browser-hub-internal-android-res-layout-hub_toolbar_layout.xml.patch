@@ -1,0 +1,19 @@
+diff --git a/chrome/browser/hub/internal/android/res/layout/hub_toolbar_layout.xml b/chrome/browser/hub/internal/android/res/layout/hub_toolbar_layout.xml
+index e0f026580de26d11da968a6598f1903661e078f5..94e88bacd4a645d43987fe3659a7e50b1c37d2cf 100644
+--- a/chrome/browser/hub/internal/android/res/layout/hub_toolbar_layout.xml
++++ b/chrome/browser/hub/internal/android/res/layout/hub_toolbar_layout.xml
+@@ -4,7 +4,7 @@ Copyright 2023 The Chromium Authors
+ Use of this source code is governed by a BSD-style license that can be
+ found in the LICENSE file.
+ -->
+-<org.chromium.chrome.browser.hub.HubToolbarView
++<org.chromium.chrome.browser.hub.MisesHubToolbarView
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   android:id="@+id/hub_toolbar"
+@@ -50,4 +50,4 @@ found in the LICENSE file.
+     </FrameLayout>
+ 
+   </FrameLayout>
+-</org.chromium.chrome.browser.hub.HubToolbarView>
++</org.chromium.chrome.browser.hub.MisesHubToolbarView>

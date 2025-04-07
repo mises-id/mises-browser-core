@@ -33,6 +33,7 @@ public class MisesClassAdapter {
         chain = new MisesFourStateCookieSettingsPreferenceBaseClassAdapter(chain);
         chain = new MisesFreIntentCreatorClassAdapter(chain);
         chain = new MisesHomepageManagerClassAdapter(chain);
+        chain = new MisesHubManagerImplClassAdapter(chain);
         chain = new MisesIncognitoToggleTabLayoutClassAdapter(chain);
         chain = new MisesIntentHandlerClassAdapter(chain);
         chain = new MisesLaunchIntentDispatcherClassAdapter(chain);
@@ -76,6 +77,8 @@ public class MisesClassAdapter {
         chain = new MisesTabSwitcherModeTopToolbarClassAdapter(chain);
         chain = new MisesTabUiThemeProviderClassAdapter(chain);
         chain = new MisesTabbedActivityClassAdapter(chain);
+        chain = new MisesTabbedNavigationBarColorControllerBaseClassAdapter(chain);
+        chain = new MisesTabbedRootUiCoordinatorClassAdapter(chain);
         chain = new MisesTemplateUrlServiceFactoryClassAdapter(chain);
         chain = new MisesThemeUtilsClassAdapter(chain);
         chain = new MisesTileViewClassAdapter(chain);

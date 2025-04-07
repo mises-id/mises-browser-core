@@ -57,6 +57,9 @@ public class BottomToolbarConfiguration {
 
             break;
         }
+        if (currentActivity == null) {
+            return true;
+        }
         Display screensize = currentActivity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         screensize.getSize(size);

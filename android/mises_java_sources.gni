@@ -3,6 +3,7 @@ import("//mises/components/permissions/android/java_sources.gni")
 import("//mises/android/feed/mises_feed_java_sources.gni")
 import("//mises/third_party/open_mediation/buildflags.gni")
 import("//mises/android/features/tab_ui/mises_tab_management_java_sources.gni")
+import("//mises/browser/hub/internal/android/java/java_sources.gni")
 
 kiwi_java_sources = [
   "//mises/android/java/org/chromium/chrome/browser/PersonalizeResults.java",
@@ -90,6 +91,8 @@ mises_java_sources += [
   #"//mises/android/java/org/chromium/chrome/browser/ntp_background_images/NTPBackgroundImagesBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/app/MisesActivity.java",
   "//mises/android/java/org/chromium/chrome/browser/tabmodel/MisesTabCreator.java",
+  "//mises/android/java/org/chromium/chrome/browser/tabbed_mode/MisesTabbedNavigationBarColorControllerBase.java",
+  "//mises/android/java/org/chromium/chrome/browser/tabbed_mode/MisesTabbedRootUiCoordinator.java",
   "//mises/android/java/org/chromium/chrome/browser/notifications/MisesNotificationPlatformBridge.java",
   "//mises/android/java/org/chromium/chrome/browser/MisesFeatureUtil.java",
   "//mises/android/java/org/chromium/chrome/browser/MisesRelaunchUtils.java",

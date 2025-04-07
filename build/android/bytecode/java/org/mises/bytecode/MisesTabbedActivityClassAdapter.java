@@ -51,8 +51,8 @@ public class MisesTabbedActivityClassAdapter extends MisesClassVisitor {
 
         
 
-        makePublicMethod(sChromeTabbedActivityClassName, "hideOverview");
+        //makePublicMethod(sChromeTabbedActivityClassName, "hideOverview");
 
-        deleteMethod(sChromeTabbedActivityClassName, "supportsDynamicColors");
+        //deleteMethod(sChromeTabbedActivityClassName, "supportsDynamicColors");
     }
 }
