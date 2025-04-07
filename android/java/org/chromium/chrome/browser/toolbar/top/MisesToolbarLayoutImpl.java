@@ -88,7 +88,6 @@ import org.chromium.ui.widget.ChromeImageButton;
 import org.chromium.url.GURL;
 import org.chromium.url.mojom.Url;
 
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,9 +111,12 @@ public abstract class MisesToolbarLayoutImpl extends ToolbarLayout
     public MisesToolbarLayoutImpl(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mIsBottomToolbarVisible =
+        if (context instanceof CustomTabActivity) {
+            mIsBottomToolbarVisible =
                 BottomToolbarConfiguration.isBottomToolbarEnabled()
                         && MisesMenuButtonCoordinator.isMenuFromBottom();
+        }
+
     }
 
 

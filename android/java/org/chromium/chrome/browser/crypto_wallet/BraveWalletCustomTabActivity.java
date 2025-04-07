@@ -28,7 +28,6 @@ import org.chromium.chrome.browser.LaunchIntentDispatcher;
 import org.chromium.ui.util.ColorUtils;
 import org.chromium.chrome.browser.customtabs.CustomTabActivity;
 import org.chromium.chrome.browser.customtabs.CustomTabIntentDataProvider;
-import org.chromium.chrome.browser.customtabs.CustomTabActivity;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.base.ApplicationStatus;
 import org.chromium.chrome.browser.tab.Tab;
