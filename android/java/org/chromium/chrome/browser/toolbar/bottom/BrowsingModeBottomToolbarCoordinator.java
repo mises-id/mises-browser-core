@@ -63,7 +63,7 @@ public class BrowsingModeBottomToolbarCoordinator {
     /** The tab switcher button view that lives in the bottom toolbar. */
     private final TabSwitcherButtonView mTabSwitcherButtonView;
 
-    private final ChromeImageButton mExtensionButton;
+    private final MisesHomeButton mExtensionButton;
 
     /** The view group that includes all views shown on browsing mode */
     private final BrowsingModeBottomToolbarLinearLayout mToolbarRoot;
@@ -208,6 +208,12 @@ public class BrowsingModeBottomToolbarCoordinator {
                     mThemeColorProvider.getTint(),
                     mThemeColorProvider.getBrandedColorScheme());
         }
+
+        mExtensionButton.setThemeColorProvider(themeColorProvider);
+        mExtensionButton.onTintChanged(
+                mThemeColorProvider.getTint(),
+                mThemeColorProvider.getTint(),
+                mThemeColorProvider.getBrandedColorScheme());
 
         if (BottomToolbarVariationManager.isHomeButtonOnBottom()) {
             mMisesHomeButton.setThemeColorProvider(themeColorProvider);

@@ -75,6 +75,7 @@ public class MisesClassAdapter {
         chain = new MisesTabGroupUiCoordinatorClassAdapter(chain);
         chain = new MisesTabSwitcherModeTTCoordinatorClassAdapter(chain);
         chain = new MisesTabSwitcherModeTopToolbarClassAdapter(chain);
+        chain = new MisesTabSwitcherPaneBaseClassAdapter(chain);
         chain = new MisesTabUiThemeProviderClassAdapter(chain);
         chain = new MisesTabbedActivityClassAdapter(chain);
         chain = new MisesTabbedNavigationBarColorControllerBaseClassAdapter(chain);
