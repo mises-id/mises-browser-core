@@ -57,10 +57,11 @@
     <!-- <include layout="@layout/toolbar_space" /> -->
     <include layout="@layout/toolbar_space" />
 
-    <org.chromium.ui.widget.ChromeImageButton
+    <org.chromium.chrome.browser.toolbar.MisesHomeButton
         android:id="@+id/mises_extension_button"
         style="@style/SplitToolbarButton"
         android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/btn_extension"
         android:visibility="gone"
         app:tint="@color/default_icon_color_tint_list"

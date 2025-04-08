@@ -75,6 +75,7 @@ java_binary("java_bytecode_rewriter") {
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabGroupUiCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabSwitcherModeTTCoordinatorClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabSwitcherModeTopToolbarClassAdapter.java",
+    "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabSwitcherPaneBaseClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabUiThemeProviderClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabbedActivityClassAdapter.java",
     "//mises/build/android/bytecode/java/org/mises/bytecode/MisesTabbedNavigationBarColorControllerBaseClassAdapter.java",

@@ -4,5 +4,6 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/.
 
 mises_public_tab_management_java_sources = [
+  "//mises/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/MisesTabSwitcherPaneBase.java",
   "//mises/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/MisesTabUiFeatureUtilities.java",
 ]
