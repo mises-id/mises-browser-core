@@ -1,6 +1,7 @@
 package org.chromium.components.browser_ui.bottomsheet;
 
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,9 +58,17 @@ import com.openmediation.sdk.utils.error.Error;
 
 import org.chromium.base.MisesAdsUtil;
 import org.chromium.base.MisesSysUtils;
+import org.chromium.base.GoogleMobileAdsConsentManager;
 
 import org.chromium.chrome.browser.ephemeraltab.EphemeralTabSheetContent;
 import org.chromium.components.browser_ui.bottomsheet.R;
+
+import com.google.android.gms.ads.AdInspectorError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnAdInspectorClosedListener;
+import org.chromium.base.version_info.Channel;
+import org.chromium.base.version_info.VersionConstants;
+import org.chromium.base.version_info.VersionInfo;
 
 
 class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
@@ -73,6 +82,9 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
 
     private ViewGroup mBottomSheetContainer;
     View mNativeBannerView;
+
+    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
+    
 
     public MisesBottomSheetControllerImpl(
             final Supplier<ScrimCoordinator> scrim,
@@ -89,29 +101,6 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         
     }
 
-    protected void initializeSheet(
-        Callback<View> initializedCallback,
-        Window window,
-        KeyboardVisibilityDelegate keyboardDelegate,
-        Supplier<ViewGroup> root) {
-        Log.d(TAG, "initializeSheet");
-        MisesReflectionUtil.invokeMethod(
-            BottomSheetControllerImpl.class,
-            this,
-            "initializeSheet",
-            Callback.class,
-            initializedCallback,
-            Window.class,
-            window,
-            KeyboardVisibilityDelegate.class,
-            keyboardDelegate,
-            Supplier.class,
-            root
-        );
-
-
-    }
-    
     @Override
     public boolean requestShowContent(BottomSheetContent content, boolean animate) {
         boolean ret  = super.requestShowContent(content, animate);
@@ -137,7 +126,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
       }
       if (MisesAdsUtil.getInstance().isInitSucess()) {
           mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_popup");
-          loadNativeAd();
+          maybeLoadNativeAd();
       } else {
           mHandler.postDelayed( () -> {
               maybeInitBannerAd();
@@ -171,6 +160,18 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         @Override
         public void onNativeAdClicked(String placementId, AdInfo info) {
             Log.d(TAG, "onNativeAdClicked, placementId: " + placementId + ", info : " + info);
+            if (VersionConstants.CHANNEL <= Channel.DEV) {
+                if (mBottomSheetContainer == null || mBottomSheetContainer.getVisibility() == View.GONE) {
+           
+                    return;
+                }
+                MobileAds.openAdInspector(mBottomSheetContainer.getContext(), new OnAdInspectorClosedListener() {
+                    @Override
+                    public void onAdInspectorClosed(@Nullable AdInspectorError error) {
+                        // Error will be non-null if ad inspector closed due to an error.
+                    }
+                });
+            }
         }
     };
 
@@ -272,6 +273,48 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
     private void removeNativeAdListener() {
         for (final String placementId : mBannerPlacmentIds) {
             NativeAd.removeAdListener(placementId, mNativeAdListener);
+        }
+    }
+    private void maybeLoadNativeAd() {
+        if (mBottomSheetContainer == null) {
+            return;
+        }
+        Context context = mBottomSheetContainer.getContext();
+
+        Activity activity = null;
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+        }
+        if (activity == null) {
+            return;
+        }
+        if (googleMobileAdsConsentManager == null) {
+            googleMobileAdsConsentManager =
+                GoogleMobileAdsConsentManager.getInstance(activity.getApplicationContext());
+        }
+
+
+
+        // This sample attempts to load ads using consent obtained in the previous session.
+        if (googleMobileAdsConsentManager.canRequestAds()) {
+            loadNativeAd();
+        } else {
+            googleMobileAdsConsentManager.gatherConsent(
+                activity,
+                consentError -> {
+                    if (consentError != null) {
+                        // Consent not obtained in current session.
+                        Log.w(
+                                TAG,
+                                String.format("%s: %s", consentError.getErrorCode(), consentError.getMessage()));
+                    }
+
+                    if (googleMobileAdsConsentManager.canRequestAds()) {
+                        loadNativeAd();
+                    }
+
+                }
+            );
         }
     }
     private void loadNativeAd() {

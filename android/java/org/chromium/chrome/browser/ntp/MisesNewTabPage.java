@@ -10,13 +10,15 @@ import android.view.LayoutInflater;
 import android.graphics.Point;
 import android.graphics.Rect;
 import androidx.annotation.Nullable;
-
+import android.view.View;
+import android.view.ViewGroup;
 
 import org.chromium.base.Log;
 import org.chromium.base.jank_tracker.JankTracker;
 import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.OneshotSupplier;
 import org.chromium.base.supplier.Supplier;
+import org.chromium.base.MisesReflectionUtil;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.browser_controls.BrowserControlsStateProvider;
 import org.chromium.chrome.browser.feed.FeedFeatures;
@@ -45,6 +47,7 @@ import org.chromium.ui.base.WindowAndroid;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 import org.chromium.base.MisesSysUtils;
 import org.chromium.chrome.browser.feed.MisesFeedSurfaceCoordinator;
+import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
 
 public class MisesNewTabPage extends NewTabPage {
     private static final String TAG = "MisesNewTabPage";
@@ -162,7 +165,38 @@ public class MisesNewTabPage extends NewTabPage {
         mSearchProviderHasLogo = true;
         Log.d(TAG, "updateSearchProviderHasLogo");
     }
+    private int getToolbarExtraYOffset() {
+        assert (false);
+        return 0;
+    }
     
+    public void updateMargins() {
+        Log.d(TAG, "updateMargins");
+                View view = getView();
+        ViewGroup.MarginLayoutParams layoutParams =
+                ((ViewGroup.MarginLayoutParams) view.getLayoutParams());
+        if (layoutParams == null) return;
+        final int topControlsDistanceToRest =
+                mBrowserControlsStateProvider.getContentOffset()
+                        - mBrowserControlsStateProvider.getTopControlsHeight();
+        final int topMargin = getToolbarExtraYOffset() + topControlsDistanceToRest;
+
+        int bottomMargin =
+                mBrowserControlsStateProvider.getBottomControlsHeight()
+                        - mBrowserControlsStateProvider.getBottomControlOffset();
+
+        if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
+            bottomMargin = 0;
+        }
+
+        if (topMargin != layoutParams.topMargin || bottomMargin != layoutParams.bottomMargin) {
+            layoutParams.topMargin = topMargin;
+            layoutParams.bottomMargin = bottomMargin;
+            view.setLayoutParams(layoutParams);
+        }
+
+
+    }
     // @Override
     // public void getSearchBoxBounds(Rect bounds, Point translation) {
     //     super.getSearchBoxBounds(bounds, translation);

@@ -1,8 +1,27 @@
 diff --git a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
-index 8205ece973eca885406ed215408a31c4bdc93151..0f6ad02e05ea7ac331d3694f24ef9112a0a08b5a 100644
+index 8205ece973eca885406ed215408a31c4bdc93151..d85c2dc30b9ec70e9e24081572c72e3bd965ade0 100644
 --- a/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
 +++ b/chrome/browser/ui/android/ephemeraltab/java/src/org/chromium/chrome/browser/ephemeraltab/EphemeralTabSheetContent.java
-@@ -289,6 +289,9 @@ public class EphemeralTabSheetContent implements BottomSheetContent {
+@@ -40,6 +40,7 @@ import org.chromium.ui.base.IntentRequestTracker;
+ import org.chromium.ui.base.ViewUtils;
+ import org.chromium.ui.base.WindowAndroid;
+ import org.chromium.url.GURL;
++import static org.chromium.ui.base.ViewUtils.dpToPx;
+ 
+ /**
+  * Represents ephemeral tab content and the toolbar, which can be included inside the bottom sheet.
+@@ -200,6 +201,10 @@ public class EphemeralTabSheetContent implements BottomSheetContent {
+         // This sheet should never be taller than the tab height for it to function correctly.
+         // We scale it by |FULL_HEIGHT_RATIO| to make the size equal to that of
+         // ThinWebView and so it can leave a portion of the page below it visible.
++        int adHeight = dpToPx(mContext, 70.0f);
++        if ((int) (maxViewHeight * FULL_HEIGHT_RATIO)  +  adHeight > maxViewHeight) {
++            return maxViewHeight - adHeight;
++        }
+         return (int) (maxViewHeight * FULL_HEIGHT_RATIO);
+     }
+ 
+@@ -289,6 +294,9 @@ public class EphemeralTabSheetContent implements BottomSheetContent {
  
      @Override
      public int getVerticalScrollOffset() {

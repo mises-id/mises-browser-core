@@ -49,7 +49,7 @@ firebase initialization
 
 <meta-data 
     android:name="com.google.android.gms.ads.APPLICATION_ID"
-    android:value="ca-app-pub-3526707353288294~6999474883"/>
+    android:value="ca-app-pub-5392438536247908~3978592971"/>
 
 <provider
     tools:replace="android:authorities"

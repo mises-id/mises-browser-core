@@ -21,8 +21,10 @@ android_aar_prebuilt("open_mediation_admob_adaptor_java") {
   deps = [
     "//mises/third_party/open_mediation:open_mediation_sdk_java",
     "//mises/third_party/android_deps:google_firebase_firebase_analytics_java",
-    #"//mises/third_party/android_deps:google_play_services_ads_java",
-    "//mises/third_party/android_deps:google_play_services_ads_lite_java",
+    "//mises/third_party/android_deps:google_play_services_ads_java",
+    #"//mises/third_party/android_deps:google_play_services_ads_lite_java",
+    "//mises/third_party/open_mediation/admob:google_ads_mediation_facebook_java",
+    "//mises/third_party/open_mediation/admob:google_user_messaging_platform_java",
   ]
 }
 

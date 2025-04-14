@@ -493,7 +493,7 @@ android_aar_prebuilt("google_play_services_appset_java") {
 
 }
 android_aar_prebuilt("google_play_services_ads_java") {
-  aar_path = "libs/com_google_android_gms_play_services_ads/play-services-ads-22.4.0.aar"
+  aar_path = "libs/com_google_android_gms_play_services_ads/play-services-ads-24.0.0.aar"
   info_path = "libs/com_google_android_gms_play_services_ads/com_google_android_gms_play_services_ads.info"
 
 

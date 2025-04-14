@@ -1,0 +1,32 @@
+
+import("//build/config/android/rules.gni")
+
+
+android_aar_prebuilt("google_ads_mediation_facebook_java") {
+  aar_path = "facebook-6.19.0.0.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  enable_bytecode_checks = false
+  info_path = "google_ads_mediation_facebook.info"
+  deps = [
+    "$google_play_services_package:google_play_services_basement_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+    "//third_party/kotlin_stdlib:kotlin_stdlib_java",
+    "//mises/third_party/android_deps:google_play_services_ads_java",
+    "//mises/third_party/open_mediation/facebook:audience_network_sdk_java",
+  ]
+}
+
+
+
+android_aar_prebuilt("google_user_messaging_platform_java") {
+  aar_path = "user-messaging-platform-3.1.0.aar"
+  extract_native_libraries = true
+  ignore_manifest = false
+  info_path = "google_user_messaging_platform.info"
+  deps = [
+    "$google_play_services_package:google_play_services_basement_java",
+    "//third_party/androidx:androidx_annotation_annotation_java",
+  ]
+  enable_bytecode_checks = false
+}

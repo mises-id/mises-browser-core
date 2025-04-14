@@ -43,5 +43,14 @@ public class MisesNewTabPageClassAdapter extends MisesClassVisitor {
         makePublicMethod(sNewTabPageClassName, "updateSearchProviderHasLogo");
         addMethodAnnotation(
                 sMisesNewTabPageClassName, "updateSearchProviderHasLogo", "Ljava/lang/Override;");
+        
+
+        makePublicMethod(sNewTabPageClassName, "updateMargins");
+        addMethodAnnotation(
+                sMisesNewTabPageClassName, "updateMargins", "Ljava/lang/Override;");
+
+
+        deleteMethod(sMisesNewTabPageClassName, "getToolbarExtraYOffset");
+        makePublicMethod(sNewTabPageClassName, "getToolbarExtraYOffset");
     }
 }
