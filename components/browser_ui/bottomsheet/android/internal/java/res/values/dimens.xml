@@ -6,7 +6,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="extesnion_popup_ads_banner_height">70dp</dimen>
-    <dimen name="extesnion_popup_ads_banner_padding_v">2dp</dimen>
-    <dimen name="extesnion_popup_ads_banner_padding_h">2dp</dimen>
+    <dimen name="extesnion_popup_ads_banner_padding_v">1dp</dimen>
+    <dimen name="extesnion_popup_ads_banner_padding_h">1dp</dimen>
     
 </resources>

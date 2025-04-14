@@ -18,12 +18,6 @@ public class MisesBottomSheetControllerImplClassAdapter extends MisesClassVisito
         deleteField(sMisesBottomSheetControllerImpClassName, "mBottomSheetContainer");
         makeProtectedField(sBottomSheetControllerImpClassName, "mBottomSheetContainer");
 
-        //deleteMethod(sMisesBottomSheetControllerImpClassName, "initializeSheet");
-        addMethodAnnotation(
-                sMisesBottomSheetControllerImpClassName,
-                "initializeSheet",
-                "Ljava/lang/Override;");
-        makePublicMethod(sBottomSheetControllerImpClassName, " initializeSheet");
 
     }
 }

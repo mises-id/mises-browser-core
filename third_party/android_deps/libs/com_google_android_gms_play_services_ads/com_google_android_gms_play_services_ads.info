@@ -12,6 +12,10 @@ manifest_package = "com.google.android.gms.ads.impl"
 resources = [
   "res/drawable/admob_close_button_black_circle_white_cross.xml",
   "res/drawable/admob_close_button_white_circle_black_cross.xml",
+  "res/drawable/admob_close_button_white_cross.xml",
+  "res/drawable/offline_dialog_background.xml",
+  "res/drawable/offline_dialog_default_icon_42dp.xml",
+  "res/layout/offline_ads_dialog.xml",
   "res/values-af/values.xml",
   "res/values-am/values.xml",
   "res/values-ar/values.xml",

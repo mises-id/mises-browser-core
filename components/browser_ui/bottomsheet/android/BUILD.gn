@@ -7,6 +7,11 @@ android_library("java") {
   deps = [
     ":java_resources",
     "//base:base_java",
+    "//base/version_info/android:version_constants_java",
+    "//base/version_info/android:channel_enum_java",
+    "//mises/third_party/android_deps:google_play_services_ads_lite_java",
+
+
     "//build/android:build_java",
     "//components/browser_ui/bottomsheet/android/internal:java",
     "//components/browser_ui/bottomsheet/android:java",
@@ -16,9 +21,11 @@ android_library("java") {
     "//third_party/androidx:androidx_annotation_annotation_java",
     "//third_party/androidx:androidx_preference_preference_java",
     "//mises/third_party/open_mediation:open_mediation_sdk_java",
+    "//mises/third_party/open_mediation/admob:google_user_messaging_platform_java",
     "//chrome/android:base_module_java",
     "//mises/android/features/mises:public_java",
-    "//chrome/browser/ui/android/ephemeraltab:java"
+    "//chrome/browser/ui/android/ephemeraltab:java",
+    
   ]
   resources_package = "org.chromium.components.browser_ui.bottomsheet"
 }

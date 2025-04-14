@@ -2,7 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="@dimen/extesnion_popup_ads_banner_height">
+
+    <RelativeLayout
+        android:id="@+id/ad_media_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <com.openmediation.sdk.nativead.MediaView
+            android:id="@+id/ad_media"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/ad_card"
@@ -10,19 +22,13 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="0dp"
-        android:elevation="0dp">
-    <com.openmediation.sdk.nativead.MediaView
-        android:id="@+id/ad_media"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
-    <com.openmediation.sdk.nativead.AdIconView
-        android:id="@+id/ad_icon_media"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        android:elevation="0dp"
+        android:layout_below="@id/ad_media_container"
+        android:layout_alignParentLeft="true">
+        <com.openmediation.sdk.nativead.AdIconView
+            android:id="@+id/ad_icon_media"
+            android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -31,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/ad_media_container"
 
         android:layout_marginLeft="5dp"
         android:layout_marginRight="1dp"
@@ -62,7 +68,7 @@
         android:id="@+id/ad_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/ad_media_container"
         android:layout_alignParentRight="true"
         android:text="calltoaction"
         android:textAllCaps="false" 

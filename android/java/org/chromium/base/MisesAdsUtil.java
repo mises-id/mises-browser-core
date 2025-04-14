@@ -246,7 +246,8 @@ public class MisesAdsUtil {
             public void onSuccess() {
                 Log.i(TAG, "init success");
                 if (VersionConstants.CHANNEL <= Channel.DEV) {
-                    
+                    OmAds.setTestMode("AdMobAdapter", "7C6221C0BF81BF12ACAD4E9B5730EB05");
+                    //OmAds.setTestMode("FacebookAdapter", "833449c1-56bc-43b2-95bc-c1a34de4eddc");
                     //OmAds.setTestMode("FacebookAdapter", "026a6b60-ce21-4de7-a781-9a8436f5de71");
                     //OmAds.setTestMode("FacebookAdapter", "55709546-607c-4db5-aad9-21c34a3665db");
                 }

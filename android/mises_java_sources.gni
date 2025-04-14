@@ -128,6 +128,7 @@ mises_java_base_sources = [
 mises_java_base_module_sources = [
   "//mises/android/features/mises/java/org/chromium/chrome/browser/mises/MisesLCDService.java",
   "//mises/android/java/org/chromium/base/MisesAdsUtil.java",
+  "//mises/android/java/org/chromium/base/GoogleMobileAdsConsentManager.java",
   
 ]
 
@@ -136,6 +137,7 @@ mises_java_base_module_exception_deps = [
 ]
 mises_java_base_module_deps = [
   "//mises/third_party/android_deps:com_wireguard_android_java",
+  "//mises/third_party/open_mediation/admob:google_user_messaging_platform_java",
   "//mises/third_party/open_mediation:open_mediation_sdk_java",
   "//mises/third_party/open_mediation:open_mediation_cardslider_java",
   "//third_party/android_deps:playcore_java",
