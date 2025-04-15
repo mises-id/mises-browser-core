@@ -34,6 +34,7 @@ android_resources("java_resources") {
   sources = [ 
     "internal/java/res/layout/native_banner_layout.xml",
     "internal/java/res/values/dimens.xml",
+    "internal/java/res/drawable/ad_btn_background.xml",
   ]
   deps = [ 
     "//components/browser_ui/strings/android:browser_ui_strings_grd",

@@ -125,7 +125,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         return;
       }
       if (MisesAdsUtil.getInstance().isInitSucess()) {
-          mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_popup");
+          mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_popup_med");
           maybeLoadNativeAd();
       } else {
           mHandler.postDelayed( () -> {
@@ -210,11 +210,13 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             title.setText(info.getTitle());
             TextView desc = adView.findViewById(R.id.ad_desc);
             desc.setText(info.getDesc());
-            Button btn = adView.findViewById(R.id.ad_btn);
-            btn.setText(info.getCallToActionText());
+            View btn = adView.findViewById(R.id.ad_btn);
+            TextView btnText = adView.findViewById(R.id.ad_btn_text);
+            btnText.setText(info.getCallToActionText());
             MediaView mediaView = adView.findViewById(R.id.ad_media);
             NativeAdView nativeAdView = new NativeAdView(context);
             AdIconView adIconView = adView.findViewById(R.id.ad_icon_media);
+            TextView advertiserView = adView.findViewById(R.id.ad_advertiser);
 
             nativeAdView.addView(adView);
             nativeAdView.setTitleView(title);
@@ -222,6 +224,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
             nativeAdView.setAdIconView(adIconView);
             nativeAdView.setCallToActionView(btn);
             nativeAdView.setMediaView(mediaView);
+            nativeAdView.setAdvertiserView(advertiserView);
 
             nativeAdView.setBackgroundColor(
                             context.getColor(R.color.dialog_bg_color_baseline));

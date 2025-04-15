@@ -4,17 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/extesnion_popup_ads_banner_height">
 
-    <RelativeLayout
-        android:id="@+id/ad_media_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
 
-        <com.openmediation.sdk.nativead.MediaView
-            android:id="@+id/ad_media"
-            android:layout_width="match_parent"
-            android:layout_height="130dp" />
-    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/ad_card"
@@ -23,29 +13,50 @@
         app:cardCornerRadius="10dp"
         android:layout_margin="0dp"
         android:elevation="0dp"
-        android:layout_below="@id/ad_media_container"
         android:layout_alignParentLeft="true">
+
+        <com.openmediation.sdk.nativead.MediaView
+            android:id="@+id/ad_media"
+            android:layout_width="100dp"
+            android:layout_height="50dp" 
+            android:visibility="gone"/>
         <com.openmediation.sdk.nativead.AdIconView
             android:id="@+id/ad_icon_media"
             android:layout_width="50dp"
-        android:layout_height="50dp"/>
+            android:layout_height="50dp"
+        />
 
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/ad_advertiser"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
+        android:alpha="0.8"
+        android:textSize="11sp"
+        android:maxLines="1"
+        android:text="" />
+
+    <TextView
         android:id="@+id/ad_title"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/ad_media_container"
-
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginRight="30dp"
         android:layout_toRightOf="@id/ad_card"
-        android:layout_toLeftOf="@id/ad_btn"
+        android:layout_alignParentRight="true"
+
         android:maxLines="1"
         android:textColor="?android:attr/textColorPrimary"
         android:text="title"
+        android:alpha="0.95"
         android:textSize="13sp"
         android:textStyle="bold"/>
 
@@ -56,22 +67,41 @@
         android:layout_marginTop="2dp"
         android:layout_below="@id/ad_title"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginRight="2dp"
         android:layout_toRightOf="@id/ad_card"
         android:layout_toLeftOf="@id/ad_btn"
         android:textColor="?android:attr/textColorSecondary"
         android:alpha="0.8"
         android:text="desc" 
-        android:textSize="12sp"/>
+        android:textSize="11sp"/>
 
-    <Button
+
+
+    <RelativeLayout
         android:id="@+id/ad_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ad_media_container"
+        android:layout_height="30dp"
+        android:clickable="true"
+        android:background="@drawable/ad_btn_background"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="calltoaction"
-        android:textAllCaps="false" 
-        android:textSize="12sp"/>
+        android:layout_marginRight="2dp">
+
+
+
+        <TextView
+            android:id="@+id/ad_btn_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="Call To Action"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
