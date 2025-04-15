@@ -250,5 +250,15 @@
   *;
 }
 
--keep class com.facebook.** { *; } 
+# Facebook Audience Network Mediation Adapter
+-keep class com.google.ads.mediation.facebook.** { *; }
+
+# Facebook Audience Network SDK core
 -keep class com.facebook.ads.** { *; }
+
+# Required to avoid reflection issues
+-keep class com.facebook.** { *; }
+
+# Optional: If using Facebook bidding / native ads / custom events
+-keep class com.facebook.internal.** { *; }
+-keep class com.facebook.appevents.** { *; }
