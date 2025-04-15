@@ -259,6 +259,3 @@
 # Required to avoid reflection issues
 -keep class com.facebook.** { *; }
 
-# Optional: If using Facebook bidding / native ads / custom events
--keep class com.facebook.internal.** { *; }
--keep class com.facebook.appevents.** { *; }
