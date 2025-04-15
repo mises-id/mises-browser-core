@@ -73,7 +73,10 @@
         android:textColor="?android:attr/textColorSecondary"
         android:alpha="0.8"
         android:text="desc" 
-        android:textSize="11sp"/>
+        android:textSize="11sp"
+        android:maxLines="3"
+        android:minLines="3"
+        android:ellipsize="end"/>
 
 
 

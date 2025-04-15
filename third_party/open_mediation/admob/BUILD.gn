@@ -12,7 +12,8 @@ android_aar_prebuilt("google_ads_mediation_facebook_java") {
     "$google_play_services_package:google_play_services_basement_java",
     "//third_party/androidx:androidx_annotation_annotation_java",
     "//third_party/kotlin_stdlib:kotlin_stdlib_java",
-    "//mises/third_party/android_deps:google_play_services_ads_java",
+    #"//mises/third_party/android_deps:google_play_services_ads_java",
+    "//mises/third_party/android_deps:google_play_services_ads_lite_java",
     "//mises/third_party/open_mediation/facebook:audience_network_sdk_java",
   ]
 }
