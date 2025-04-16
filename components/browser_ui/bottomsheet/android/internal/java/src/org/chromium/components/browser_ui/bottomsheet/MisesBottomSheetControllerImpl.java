@@ -125,7 +125,7 @@ class MisesBottomSheetControllerImpl extends BottomSheetControllerImpl {
         return;
       }
       if (MisesAdsUtil.getInstance().isInitSucess()) {
-          mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_popup_med");
+          mBannerPlacmentIds = NativeAd.getCachedPlacementIds("extension_med_popup");
           maybeLoadNativeAd();
       } else {
           mHandler.postDelayed( () -> {

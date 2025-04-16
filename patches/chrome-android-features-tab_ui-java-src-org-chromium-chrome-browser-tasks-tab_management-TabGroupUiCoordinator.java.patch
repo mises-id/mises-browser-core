@@ -1,0 +1,22 @@
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiCoordinator.java
+index f24da9f60fa370761e77c18b0b68a9e14ee8ebd3..4d5b513eff4cc353a9a2530d3181d90787913a2d 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiCoordinator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGroupUiCoordinator.java
+@@ -320,11 +320,15 @@ public class TabGroupUiCoordinator implements TabGroupUiMediator.ResetHandler, T
+         // Early return if the component hasn't initialized yet.
+         if (mActivity == null) return;
+ 
+-        mTabStripCoordinator.onDestroy();
++        if (mTabStripCoordinator != null) {
++            mTabStripCoordinator.onDestroy();
++        }
+         if (mTabGridDialogCoordinator != null) {
+             mTabGridDialogCoordinator.destroy();
+         }
+-        mModelChangeProcessor.destroy();
++        if (mModelChangeProcessor != null) {
++            mModelChangeProcessor.destroy();
++        }
+         if (mMediator != null) {
+             mMediator.destroy();
+         }
