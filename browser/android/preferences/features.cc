@@ -115,8 +115,7 @@ bool IsMisesAllowExtensionIsolation() {
    if (base::SysInfo::AmountOfPhysicalMemoryMB() >= 3 * 1024) {
       return true;
    }
-   return true;
-   //return base::FeatureList::IsEnabled(kMisesAllowExtensionIsolation);
+   return base::FeatureList::IsEnabled(kMisesAllowExtensionIsolation);
 }
 
 
