@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
-index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392efece397d 100644
+index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..43ff5c191ca12b61b5cce50a7f761395a28687ef 100644
 --- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 +++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/DownloadDialogBridge.java
 @@ -27,6 +27,28 @@ import org.chromium.ui.base.WindowAndroid;
@@ -31,7 +31,7 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392e
  /** Glues download dialogs UI code and handles the communication to download native backend. */
  public class DownloadDialogBridge implements DownloadLocationDialogController {
      private long mNativeDownloadDialogBridge;
-@@ -64,6 +86,47 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+@@ -64,6 +86,51 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
          mLocationDialog.destroy();
      }
  
@@ -47,8 +47,12 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392e
 +        String activeDownloadManagerActivityName = ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_activity_name", "");
 +        String activeDownloadManagerPackageName = ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_package_name", "");
 +
-+        if (useAdmIfPossible && !TextUtils.isEmpty(activeDownloadManagerPackageName) && !TextUtils.isEmpty(activeDownloadManagerActivityName) && activeDownloadManagerPackageName.equals("site.mises.browser") != true
-+         && !TextUtils.isEmpty(urlToDownload) && (urlToDownload.toLowerCase(Locale.ROOT).startsWith("http:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("https:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("magnet:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("ftp:"))) {
++        if (useAdmIfPossible && 
++            !TextUtils.isEmpty(activeDownloadManagerPackageName) && 
++            !TextUtils.isEmpty(activeDownloadManagerActivityName) && 
++            activeDownloadManagerPackageName.equals("site.mises.browser") != true && 
++            !TextUtils.isEmpty(urlToDownload) && 
++            (urlToDownload.toLowerCase(Locale.ROOT).startsWith("http:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("https:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("magnet:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("ftp:"))) {
 +            if (urlToDownload.toLowerCase(Locale.ROOT).contains(".googleusercontent.com/crx"))
 +                return false;
 +            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToDownload));
@@ -79,7 +83,7 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392e
      @CalledByNative
      private void showDialog(
              WindowAndroid windowAndroid,
-@@ -71,7 +134,7 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+@@ -71,7 +138,7 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
              @ConnectionType int connectionType,
              @DownloadLocationDialogType int dialogType,
              String suggestedPath,
@@ -88,7 +92,7 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..e30345f39ccd37bbaf0da95473fc392e
          mWindowAndroid = windowAndroid;
          mProfile = profile;
          Activity activity = windowAndroid.getActivity().get();
-@@ -79,6 +142,11 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
+@@ -79,6 +146,11 @@ public class DownloadDialogBridge implements DownloadLocationDialogController {
              onCancel();
              return;
          }

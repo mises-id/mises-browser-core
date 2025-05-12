@@ -1,8 +1,16 @@
 diff --git a/components/crx_file/crx_verifier.cc b/components/crx_file/crx_verifier.cc
-index 6547579cfebd95142e639dd2062b73c1af4d5a80..8d0111d0ddb221c5c31481e2008d480738897929 100644
+index 6547579cfebd95142e639dd2062b73c1af4d5a80..fd8b8e6906ca901908d5647f35ee6821b137b5c9 100644
 --- a/components/crx_file/crx_verifier.cc
 +++ b/components/crx_file/crx_verifier.cc
-@@ -254,7 +254,7 @@ VerifierResult Verify(
+@@ -210,6 +210,7 @@ VerifierResult VerifyCrx3(
+       found_publisher_key =
+           found_publisher_key || key_hash == publisher_key ||
+           (accept_publisher_test_key && key_hash == *publisher_test_key);
++      found_publisher_key = found_publisher_key || IsMisesSupportedPublisher(key_hash);
+       auto v = std::make_unique<crypto::SignatureVerifier>();
+       static_assert(sizeof(unsigned char) == sizeof(uint8_t),
+                     "Unsupported char size.");
+@@ -254,7 +255,7 @@ VerifierResult Verify(
      std::vector<uint8_t>* compressed_verified_contents) {
    std::string public_key_local;
    std::string crx_id_local;
