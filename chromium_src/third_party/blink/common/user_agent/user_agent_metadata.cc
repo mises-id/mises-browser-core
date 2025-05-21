@@ -44,7 +44,7 @@ void UpdateUserAgentMetadataFingerprint(blink::UserAgentMetadata* metadata) {
       }
     } else if (custom_brand == "Edge") {
       display_brand = "Microsoft Edge";
-      version = custom_version.empty() ? "131.0.2903.86" : custom_version;
+      version = custom_version.empty() ? "130.0.6723.91" : custom_version;
     } else if (custom_brand == "Opera") {
       display_brand = "Opera";
       version = custom_version.empty() ? "116.0.0.0" : custom_version;
@@ -108,7 +108,7 @@ std::string GetUserAgentFingerprintBrandInfo() {
   if (brand == "Chrome") {
     return "";
   } else if (brand == "Edge") {
-    return " Edg/" + (version.empty() ? "131.0.2903.86" : version);
+    return " Edg/" + (version.empty() ? "130.0.6723.91" : version);
   } else if (brand == "Opera") {
     return " OPR/" + (version.empty() ? "116.0.0.0" : version);
   } else if (brand == "Vivaldi") {

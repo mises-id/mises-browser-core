@@ -1,8 +1,16 @@
 diff --git a/third_party/blink/renderer/modules/BUILD.gn b/third_party/blink/renderer/modules/BUILD.gn
-index c5bd977747bcdb03320dabe554c62010a654afe1..b371698b34a1bee2fb5a6c9c06db2b70e4759c2b 100644
+index c5bd977747bcdb03320dabe554c62010a654afe1..df6752ba58b7b76f7cbc5f9fc174b5700a1b2f75 100644
 --- a/third_party/blink/renderer/modules/BUILD.gn
 +++ b/third_party/blink/renderer/modules/BUILD.gn
-@@ -207,6 +207,7 @@ component("modules") {
+@@ -20,6 +20,7 @@ if (is_ios) {
+ }
+ 
+ visibility = [ "//third_party/blink/renderer/*" ]
++visibility += mises_blink_renderer_modules_visibility
+ 
+ config("modules_implementation") {
+   defines = [ "BLINK_MODULES_IMPLEMENTATION=1" ]
+@@ -207,6 +208,7 @@ component("modules") {
      "//third_party/zlib",
      "//tools/v8_context_snapshot:buildflags",
    ]

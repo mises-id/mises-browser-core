@@ -1,5 +1,5 @@
 diff --git a/third_party/blink/renderer/core/frame/navigator.cc b/third_party/blink/renderer/core/frame/navigator.cc
-index a8591113e53e487c62c60c86f348b37a86337c75..072c3a6fa41b79d417772edf9bbbbb49cccbdb8a 100644
+index a8591113e53e487c62c60c86f348b37a86337c75..eb02f8cbb39a49759253e970e65e4eaecf33bddf 100644
 --- a/third_party/blink/renderer/core/frame/navigator.cc
 +++ b/third_party/blink/renderer/core/frame/navigator.cc
 @@ -37,6 +37,9 @@
@@ -12,7 +12,25 @@ index a8591113e53e487c62c60c86f348b37a86337c75..072c3a6fa41b79d417772edf9bbbbb49
  namespace blink {
  
  Navigator::Navigator(ExecutionContext* context) : NavigatorBase(context) {}
-@@ -82,6 +85,8 @@ bool Navigator::cookieEnabled() const {
+@@ -58,6 +61,17 @@ String Navigator::vendorSub() const {
+ }
+ 
+ String Navigator::platform() const {
++  const base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
++  if (command_line->HasSwitch(switches::kFingerprintPlatform)) {
++    std::string custom_platform = base::ToLowerASCII(command_line->GetSwitchValueASCII(switches::kFingerprintPlatform));
++    if (custom_platform == "windows") {
++      return "Win32";
++    } else if (custom_platform == "linux") {
++      return "Linux x86_64";
++    } else if (custom_platform == "macos") {
++      return "MacIntel";
++    }
++  }
+   // TODO(955620): Consider changing devtools overrides to only allow overriding
+   // the platform with a frozen platform to distinguish between
+   // mobile and desktop when ReduceUserAgent is enabled.
+@@ -82,6 +96,8 @@ bool Navigator::cookieEnabled() const {
  }
  
  bool Navigator::webdriver() const {

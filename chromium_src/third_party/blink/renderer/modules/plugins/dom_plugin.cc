@@ -42,7 +42,7 @@ namespace blink {
       if (!command_line->HasSwitch(switches::kFingerprintPlatform))
         return 0;
 
-      std::string fingerprint_str = command_line->GetSwitchValueASCII(switches::kFingerprintPlatform);
+      std::string fingerprint_str = command_line->GetSwitchValueASCII(switches::kFingerprint);
       uint64_t fingerprint;
       if (!base::StringToUint64(fingerprint_str, &fingerprint))
         return 0;
@@ -51,10 +51,10 @@ namespace blink {
     }
 
     uint64_t HashString(const String& str) {
-      uint64_t hash = 14695981039346656037ull;  // FNV-1a hash
+      uint64_t hash = 2166136261u;  // FNV-1a hash
       for (char c : str.Utf8()) {
         hash ^= c;
-        hash *= 1099511628211ull;
+        hash *= 16777619u;
       }
       return hash;
     }
@@ -82,7 +82,13 @@ namespace blink {
       return result.ToString();
     }
     String GetRandomPluginDescription(uint64_t seed) {
-      return "internal-pdf-viewer";
+      std::mt19937_64 prng(seed);
+      std::vector<String> desc{
+        "Portable Document Format", 
+        "internal-pdf-viewer"
+      };
+      
+      return desc[prng() % desc.size()];
     }
 
   } //namespace

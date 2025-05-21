@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/renderer/core/loader/frame_fetch_context.cc b/third_party/blink/renderer/core/loader/frame_fetch_context.cc
+index 60c95eae422cee677442f6c6701a420a948bcff2..2e1576d248e54b484f20b09b9b2e03e26d51f35b 100644
+--- a/third_party/blink/renderer/core/loader/frame_fetch_context.cc
++++ b/third_party/blink/renderer/core/loader/frame_fetch_context.cc
+@@ -611,6 +611,7 @@ void FrameFetchContext::AddClientHintsIfNecessary(
+ 
+   // Only send User Agent hints if the info is available
+   if (ua) {
++    UpdateUserAgentMetadataFingerprint(&ua.value());
+     // ShouldSendClientHint is called to make sure UA is controlled by
+     // Permissions Policy.
+     if (ShouldSendClientHint(*policy, resource_origin, is_1p_origin,
