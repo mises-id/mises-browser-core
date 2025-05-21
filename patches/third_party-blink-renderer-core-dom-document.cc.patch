@@ -1,0 +1,58 @@
+diff --git a/third_party/blink/renderer/core/dom/document.cc b/third_party/blink/renderer/core/dom/document.cc
+index 0beb27cee77fdbf0241b1c54bd6f569c49cdb0dc..2bcc1b5aae7a2d4c0329571cd1f32d83b5a80c34 100644
+--- a/third_party/blink/renderer/core/dom/document.cc
++++ b/third_party/blink/renderer/core/dom/document.cc
+@@ -45,6 +45,7 @@
+ #include "base/i18n/time_formatting.h"
+ #include "base/metrics/histogram_functions.h"
+ #include "base/notreached.h"
++#include "base/rand_util.h"
+ #include "base/ranges/algorithm.h"
+ #include "base/task/single_thread_task_runner.h"
+ #include "base/time/time.h"
+@@ -389,6 +390,9 @@
+ #include "third_party/blink/renderer/platform/wtf/text/string_buffer.h"
+ #include "third_party/blink/renderer/platform/wtf/text/text_encoding_registry.h"
+ 
++#include "base/command_line.h"
++#include "components/ungoogled/ungoogled_switches.h"
++
+ #ifndef NDEBUG
+ using WeakDocumentSet = blink::HeapHashSet<blink::WeakMember<blink::Document>>;
+ static WeakDocumentSet& LiveDocumentSet();
+@@ -861,6 +865,35 @@ Document::Document(const DocumentInit& initializer,
+   TRACE_EVENT_WITH_FLOW0("blink", "Document::Document", TRACE_ID_LOCAL(this),
+                          TRACE_EVENT_FLAG_FLOW_OUT);
+   DCHECK(agent_);
++  if (RuntimeEnabledFeatures::FingerprintingClientRectsNoiseEnabled()) {
++    const base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
++    if (command_line->HasSwitch(switches::kFingerprint)) {
++      std::string seed_str = command_line->GetSwitchValueASCII(switches::kFingerprint);
++      uint32_t seed = static_cast<uint32_t>(std::stoul(seed_str));
++
++      // FNV-1a hash
++      constexpr uint32_t FNV_PRIME = 16777619u;
++      constexpr uint32_t FNV_OFFSET = 2166136261u;
++
++      uint32_t hash_val_x = FNV_OFFSET;
++      hash_val_x ^= seed;
++      hash_val_x *= FNV_PRIME;
++      hash_val_x ^= (seed >> 16);
++      hash_val_x *= FNV_PRIME;
++
++      uint32_t hash_val_y = FNV_OFFSET;
++      hash_val_y ^= ~seed;  
++      hash_val_y *= FNV_PRIME;
++      hash_val_y ^= (~seed >> 16);
++      hash_val_y *= FNV_PRIME;
++
++      double norm_x = (hash_val_x & 0xFFFFFFFF) / 4294967295.0 - 0.5;
++      double norm_y = (hash_val_y & 0xFFFFFFFF) / 4294967295.0 - 0.5;
++
++      noise_factor_x_ = 1.0 + norm_x * 0.000003;
++      noise_factor_y_ = 1.0 + norm_y * 0.000003;
++    }
++  }
+   if (base::FeatureList::IsEnabled(features::kDelayAsyncScriptExecution) &&
+       features::kDelayAsyncScriptExecutionDelayByDefaultParam.Get()) {
+     script_runner_delayer_->Activate();

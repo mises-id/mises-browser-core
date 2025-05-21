@@ -68,6 +68,7 @@ mises_chrome_browser_deps = [
   "//mises/components/brave_wallet/common",
   "//mises/components/brave_wallet/common:mojom",
   "//mises/components/version_info",
+  "//mises/components/ungoogled:ungoogled_switches",
   "//mises/browser/ui",
   "//mises/third_party/blink/renderer",
   "//chrome/browser:browser_process",

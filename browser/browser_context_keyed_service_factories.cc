@@ -10,6 +10,7 @@
 #include "mises/browser/brave_wallet/tx_service_factory.h"
 #include "mises/browser/brave_wallet/brave_wallet_ipfs_service_factory.h"
 #include "mises/browser/permissions/permission_lifetime_manager_factory.h"
+#include "mises/browser/brave_wallet/notifications/wallet_notification_service_factory.h"
 
 
 
@@ -53,7 +54,9 @@ void EnsureMisesBrowserContextKeyedServiceFactoriesBuilt() {
   brave_wallet::SwapServiceFactory::GetInstance();
   brave_wallet::TxServiceFactory::GetInstance();
   brave_wallet::BraveWalletServiceFactory::GetInstance();
-
+#if !BUILDFLAG(IS_ANDROID)
+  brave_wallet::WalletNotificationServiceFactory::GetInstance();
+#endif
   EphemeralStorageServiceFactory::GetInstance();  
   PermissionLifetimeManagerFactory::GetInstance();
 

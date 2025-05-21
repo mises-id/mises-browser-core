@@ -86,7 +86,7 @@ class RealboxHandler : public SearchboxHandler {
 };
 #else
 
-#include "srcchrome/browser/ui/webui/searchbox/realbox_handler.h"
+#include "src/chrome/browser/ui/webui/searchbox/realbox_handler.h"
 
 
 #endif

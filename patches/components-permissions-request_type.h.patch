@@ -1,5 +1,5 @@
 diff --git a/components/permissions/request_type.h b/components/permissions/request_type.h
-index 97aafc80d1013f5c6ec86de2519a27a568fcd8c7..388fcfbb61a7cf1f4de365afcb72d5714ea780ac 100644
+index 97aafc80d1013f5c6ec86de2519a27a568fcd8c7..e0553c71322cbc5ecdf4a40f9a5e6225d272975c 100644
 --- a/components/permissions/request_type.h
 +++ b/components/permissions/request_type.h
 @@ -23,24 +23,24 @@ namespace permissions {
@@ -36,7 +36,7 @@ index 97aafc80d1013f5c6ec86de2519a27a568fcd8c7..388fcfbb61a7cf1f4de365afcb72d571
  #endif
    kNotifications,
 -#if !BUILDFLAG(IS_ANDROID)
-+#if !true || BUILDFLAG(IS_ANDROID)
++#if true || !BUILDFLAG(IS_ANDROID)
    kKeyboardLock,
    kPointerLock,
  #endif

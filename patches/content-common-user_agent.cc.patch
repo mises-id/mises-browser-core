@@ -1,0 +1,20 @@
+diff --git a/content/common/user_agent.cc b/content/common/user_agent.cc
+index 070658460eb74513b83e746f20d80af5b79a2df3..1e2d75238b89e3a49898c228e1e148873e70c3bf 100644
+--- a/content/common/user_agent.cc
++++ b/content/common/user_agent.cc
+@@ -41,6 +41,7 @@ const char kFrozenUserAgentTemplate[] =
+     "Safari/537.36";
+ 
+ std::string GetUserAgentPlatform() {
++  std::string fp = GetFingerprintUserAgentPlatform(); if (fp != "") return fp;
+ #if BUILDFLAG(IS_WIN)
+   return "";
+ #elif BUILDFLAG(IS_MAC)
+@@ -61,6 +62,7 @@ std::string GetUserAgentPlatform() {
+ }
+ 
+ std::string GetUnifiedPlatform() {
++  std::string fp = GetFingerprintUnifiedPlatform(); if (fp != "") return fp;
+ #if BUILDFLAG(IS_ANDROID)
+   return "Linux; Android 10; K";
+ #elif BUILDFLAG(IS_CHROMEOS)

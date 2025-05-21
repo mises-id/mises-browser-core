@@ -177,5 +177,8 @@ ToastController* BrowserWindowFeatures::toast_controller() {
 BrowserWindowFeatures::BrowserWindowFeatures() = default;
 
 
+#if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/toasts/api/toast_registry.h"
+
 ToastService::~ToastService() = default;
+#endif

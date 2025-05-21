@@ -1,0 +1,20 @@
+diff --git a/third_party/blink/renderer/platform/exported/web_runtime_features.cc b/third_party/blink/renderer/platform/exported/web_runtime_features.cc
+index 9a3bc82c664b5095652ab3c905de46c554fc8454..e9eb7694ac9f52a1ac002b220026c3f0e540085c 100644
+--- a/third_party/blink/renderer/platform/exported/web_runtime_features.cc
++++ b/third_party/blink/renderer/platform/exported/web_runtime_features.cc
+@@ -68,4 +68,15 @@ void WebRuntimeFeatures::EnableFluentScrollbars(bool enable) {
+ void WebRuntimeFeatures::EnableFluentOverlayScrollbars(bool enable) {
+   RuntimeEnabledFeatures::SetFluentOverlayScrollbarsEnabled(enable);
+ }
++
++void WebRuntimeFeatures::EnableFingerprintingClientRectsNoise(bool enable) {
++  RuntimeEnabledFeatures::SetFingerprintingClientRectsNoiseEnabled(enable);
++}
++void WebRuntimeFeatures::EnableFingerprintingCanvasMeasureTextNoise(bool enable) {
++  RuntimeEnabledFeatures::SetFingerprintingCanvasMeasureTextNoiseEnabled(enable);
++}
++void WebRuntimeFeatures::EnableFingerprintingCanvasImageDataNoise(bool enable) {
++  RuntimeEnabledFeatures::SetFingerprintingCanvasImageDataNoiseEnabled(enable);
++}
++
+ }  // namespace blink

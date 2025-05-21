@@ -1,6 +1,6 @@
 #include "src/chrome/browser/extensions/api/safe_browsing_private/safe_browsing_private_event_router.cc"
 
-
+#if BUILDFLAG(IS_ANDROID)
 namespace enterprise_connectors {
 
 
@@ -81,3 +81,4 @@ bool RealtimeReportingClientFactory::ServiceIsNULLWhileTesting() const {
 }
 
 }
+#endif

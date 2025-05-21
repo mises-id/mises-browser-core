@@ -48,6 +48,7 @@ void SetDefaultEVMWallet(int context_id, const std::string& id, const std::strin
 }
 
 void SetDefaultEVMWalletForBrowserContext(content::BrowserContext*  context, const std::string& id, const std::string& key_property) {
+#if BUILDFLAG(IS_ANDROID)
   Profile* profile = Profile::FromBrowserContext(context);
   if (profile) {
     PrefService* prefs = profile->GetPrefs();
@@ -57,16 +58,18 @@ void SetDefaultEVMWalletForBrowserContext(content::BrowserContext*  context, con
     RendererStartupHelperFactory::GetForBrowserContext(context)
                 ->OnDefaultEVMWalletChanged(id, key_property);
   }
+#endif
 }
 
 std::string GetDefaultEVMWalletForBrowserContext(content::BrowserContext*  context) {
-  Profile* profile = Profile::FromBrowserContext(context);
   std::string id;
+#if BUILDFLAG(IS_ANDROID)
+  Profile* profile = Profile::FromBrowserContext(context);
   if (profile) {
     PrefService* prefs = profile->GetPrefs();
     id = prefs->GetString(prefs::kExtensionsUIDefaultEVMWalletID);
   }
-
+#endif
   return id;
 }
 

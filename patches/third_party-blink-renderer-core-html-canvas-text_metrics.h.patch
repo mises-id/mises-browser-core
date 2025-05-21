@@ -1,0 +1,13 @@
+diff --git a/third_party/blink/renderer/core/html/canvas/text_metrics.h b/third_party/blink/renderer/core/html/canvas/text_metrics.h
+index 0df132e6436326739f3d4d127f039490f8bd49ee..36a9e5cef8f4c6ce625ca8a0279fa643b871667c 100644
+--- a/third_party/blink/renderer/core/html/canvas/text_metrics.h
++++ b/third_party/blink/renderer/core/html/canvas/text_metrics.h
+@@ -93,6 +93,8 @@ class CORE_EXPORT TextMetrics final : public ScriptWrappable {
+     float x_position_;
+   };
+ 
++ void Shuffle(const double factor);
++
+  private:
+   void Update(const Font&,
+               const TextDirection&,

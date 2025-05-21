@@ -47,7 +47,9 @@ base::LazyInstance<MisesContentBrowserClient>::DestructorAtExit
     g_mises_content_browser_client = LAZY_INSTANCE_INITIALIZER;
 #endif
 
+#if BUILDFLAG(IS_ANDROID)
 MisesMainDelegate::MisesMainDelegate() : ChromeMainDelegate() {}
+#endif
 
 MisesMainDelegate::MisesMainDelegate(const StartupTimestamps& timestamps)
     : ChromeMainDelegate(timestamps) {}

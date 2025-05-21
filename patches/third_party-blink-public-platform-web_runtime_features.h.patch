@@ -1,0 +1,15 @@
+diff --git a/third_party/blink/public/platform/web_runtime_features.h b/third_party/blink/public/platform/web_runtime_features.h
+index 728246a9204505659f705c8b8faa5f10d3d7820a..08df8bd08fe250c14acb33dcc22babc9c6178694 100644
+--- a/third_party/blink/public/platform/web_runtime_features.h
++++ b/third_party/blink/public/platform/web_runtime_features.h
+@@ -69,6 +69,10 @@ class BLINK_PLATFORM_EXPORT WebRuntimeFeatures : public WebRuntimeFeaturesBase {
+   static void EnableFluentScrollbars(bool);
+   static void EnableFluentOverlayScrollbars(bool);
+ 
++  static void EnableFingerprintingClientRectsNoise(bool);
++  static void EnableFingerprintingCanvasMeasureTextNoise(bool);
++  static void EnableFingerprintingCanvasImageDataNoise(bool);
++
+   WebRuntimeFeatures() = delete;
+ };
+ 

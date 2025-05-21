@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/renderer/platform/BUILD.gn b/third_party/blink/renderer/platform/BUILD.gn
+index 5b8e391fd8998614fca3c5224e53227e250a4bce..e24f6d2988ba4dc35511920bc1455f1b91042191 100644
+--- a/third_party/blink/renderer/platform/BUILD.gn
++++ b/third_party/blink/renderer/platform/BUILD.gn
+@@ -1772,6 +1772,7 @@ component("platform") {
+     "//media/capture/mojom:video_capture",
+     "//media/mojo/clients:clients",
+     "//media/webrtc:webrtc",
++    "//mises/components/ungoogled:ungoogled_switches",
+     "//mojo/public/cpp/bindings:wtf_support",
+     "//services/metrics/public/cpp:ukm_builders",
+     "//services/network/public/mojom:mojom_shared",

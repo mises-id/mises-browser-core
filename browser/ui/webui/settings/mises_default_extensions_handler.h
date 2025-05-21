@@ -83,7 +83,7 @@ class MisesDefaultExtensionsHandler : public settings::SettingsPageUIHandler
   scoped_refptr<ui::SelectFileDialog> select_file_dialog_;
 #endif
 
-  Profile* profile_ = nullptr;
+  raw_ptr<Profile> profile_ = nullptr;
   PrefChangeRegistrar pref_change_registrar_;
 #if BUILDFLAG(ENABLE_IPFS)
   base::ScopedObservation<ipfs::IpfsService, ipfs::IpfsServiceObserver>

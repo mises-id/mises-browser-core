@@ -23,16 +23,6 @@
 // This file provides definitions of desktop browser dialog-creation methods for
 // all toolkit-views platforms.
 
-// static
-#if !BUILDFLAG(IS_ANDROID)
-std::unique_ptr<LoginHandler> LoginHandler::Create(
-    const net::AuthChallengeInfo& auth_info,
-    content::WebContents* web_contents,
-    LoginAuthRequiredCallback auth_required_callback) {
-  return chrome::CreateLoginHandlerViews(auth_info, web_contents,
-                                         std::move(auth_required_callback));
-}
-#endif
 
 // static
 void BookmarkEditor::Show(gfx::NativeWindow parent_window,

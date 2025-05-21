@@ -17,6 +17,7 @@ class WebContents;
 }  // namespace content
 
 class IPFSLocationView : public views::View {
+  METADATA_HEADER(IPFSLocationView, views::View)
  public:
   explicit IPFSLocationView(Profile* profile);
   ~IPFSLocationView() override;
@@ -26,7 +27,7 @@ class IPFSLocationView : public views::View {
   views::LabelButton* GetButton() { return button_; }
 
  private:
-  views::LabelButton* button_ = nullptr;
+  raw_ptr<views::LabelButton> button_ = nullptr;
 
   IPFSLocationView(const IPFSLocationView&) = delete;
   IPFSLocationView& operator=(const IPFSLocationView&) = delete;

@@ -309,9 +309,13 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 }
 
 bool MisesComponentLoader::IsPreinstallExtension(const std::string& extension_id) {
+#if BUILDFLAG(IS_ANDROID)
   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
   return base::Contains(preinstalls, extension_id) ||  base::Contains(tos_preinstalls, extension_id);
+#else
+  return false;
+#endif
 }
 
 bool  MisesComponentLoader::IsIgnoredPreinstallExtension(const std::string& extension_id) {
@@ -331,7 +335,9 @@ void  MisesComponentLoader::AddIgnoredPreinstallExtension(const std::string& ext
   if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
     std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
     profile_prefs_->SetString(kIgnoredPreinstallExtensionIds, ignored_str + "," + extension_id);
+#if BUILDFLAG(IS_ANDROID)
     base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "ignor", "id", extension_id);
+#endif
   }
   return ;
 }
@@ -515,9 +521,12 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
 
   ExtensionRegistry::Get(profile_)->AddObserver(this);
 
+  #if BUILDFLAG(IS_ANDROID)
+  
   extensions::ExtensionRegistry* registry =
       extensions::ExtensionRegistry::Get(profile_);
   
+
   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
   StartPreInstall(preinstalls);
 
@@ -543,13 +552,14 @@ void MisesComponentLoader::PreInstallExtensionOnStartup() {
       );
   }
 
+
   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
   if (!mises_extension) {
     base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
     mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_safe"));
     Add(IDR_MISES_SAFE_MANIFEST_JSON, mises_extension_path);
   }
-
+#endif
 
 }
 
@@ -580,6 +590,7 @@ void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids)
 }
  
 void MisesComponentLoader::OnNotificationHandled(int action) {
+#if BUILDFLAG(IS_ANDROID)
   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
   if (action == 0) {
     StartPreInstall(tos_preinstalls);
@@ -589,6 +600,7 @@ void MisesComponentLoader::OnNotificationHandled(int action) {
         AddIgnoredPreinstallExtension(extension_id);
       }
   }
+#endif
 
 }
 
@@ -605,13 +617,14 @@ void MisesComponentLoader::OnPreInstallFinished() {
       updater->CheckNow(std::move(params));
     }
   }
-
+#if BUILDFLAG(IS_ANDROID)
   std::string defaultEVMExtensionID = preferences::features::GetMisesPreinstallDefaultEVMExtension();
   std::string defaultEVMExtensionKeyProperty = preferences::features::GetMisesPreinstallDefaultEVMExtensionKeyProperty();
   if (GetDefaultEVMWalletForBrowserContext(profile_).size() == 0) {
     SetDefaultEVMWalletForBrowserContext(profile_,
       defaultEVMExtensionID, defaultEVMExtensionKeyProperty);
   }
+#endif
   
 }
 

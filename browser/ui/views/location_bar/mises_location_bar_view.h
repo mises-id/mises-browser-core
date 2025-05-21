@@ -23,6 +23,7 @@ class IPFSLocationView;
 // The purposes of this subclass are to:
 // - Add the BraveActionsContainer to the location bar
 class MisesLocationBarView : public LocationBarView {
+  METADATA_HEADER(MisesLocationBarView, LocationBarView)
  public:
   using LocationBarView::LocationBarView;
 
@@ -43,7 +44,8 @@ class MisesLocationBarView : public LocationBarView {
                                      on_icon_fetched) const override;
 
   // views::View:
-  gfx::Size CalculatePreferredSize() const override;
+  gfx::Size CalculatePreferredSize(
+    const views::SizeBounds& available_size) const override;
   void OnThemeChanged() override;
   void ChildPreferredSizeChanged(views::View* child) override;
 

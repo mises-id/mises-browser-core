@@ -10,6 +10,7 @@
 #include "components/flags_ui/flags_state.h"
 #include "components/omnibox/common/omnibox_features.h"
 #include "components/translate/core/browser/translate_prefs.h"
+#include "components/ungoogled/ungoogled_switches.h"
 #include "net/base/features.h"
 #include "third_party/blink/public/common/features.h"
 
@@ -69,6 +70,7 @@
   })
 
 #else
+#define MISES_SEARCH
 #define MISES_BACKGROUND_VIDEO_PLAYBACK_ANDROID
 #define MISES_PREINSTALL_EXTENSION_ANDROID
 #define MISES_PRIORITY_EXTENSION_ANDROID
@@ -84,6 +86,26 @@
                    FEATURE_VALUE_TYPE(ipfs::features::kIpfsFeature), \
                })
 
+
+#define MISES_FINGER_PRINTING_FEATURE_ENTRIES  \
+  EXPAND_FEATURE_ENTRIES({                              \
+    "fingerprinting-canvas-image-data-noise", \
+    "Enable Canvas image data fingerprint deception", \
+    "Slightly modifies at most 10 pixels in Canvas image data extracted via JS APIs. ungoogled-chromium flag, Bromite feature.",\
+    kOsAll, SINGLE_VALUE_TYPE(switches::kFingerprintingCanvasImageDataNoise), \
+  }) \
+  EXPAND_FEATURE_ENTRIES({  \
+    "fingerprinting-client-rects-noise",\
+    "Enable get*ClientRects() fingerprint deception",\
+    "Scale the output values of Range::getClientRects() and Element::getBoundingClientRect() with a randomly selected factor in the range -0.0003% to 0.0003%, which are recomputed on every document initialization. ungoogled-chromium flag, Bromite feature.",\
+    kOsAll, SINGLE_VALUE_TYPE(switches::kFingerprintingClientRectsNoise), \
+  }) \
+  EXPAND_FEATURE_ENTRIES({  \
+    "fingerprinting-canvas-measuretext-noise",\
+    "Enable Canvas::measureText() fingerprint deception",\
+    "Scale the output values of Canvas::measureText() with a randomly selected factor in the range -0.0003% to 0.0003%, which are recomputed on every document initialization. ungoogled-chromium flag, Bromite feature.",\
+    kOsAll, SINGLE_VALUE_TYPE(switches::kFingerprintingCanvasMeasureTextNoise), \
+  }) 
 
 // Keep the last item empty.
 #define LAST_MISES_FEATURE_ENTRIES_ITEM
@@ -134,6 +156,7 @@
   MISES_PREINSTALL_EXTENSION_ANDROID                                           \
   MISES_PRIORITY_EXTENSION_ANDROID                                             \
   MISES_SEARCH                                                                 \
+  MISES_FINGER_PRINTING_FEATURE_ENTRIES                                        \
   LAST_MISES_FEATURE_ENTRIES_ITEM  // Keep it as the last item.
 
 namespace flags_ui {

@@ -551,6 +551,14 @@
     </message>
   </if>
   <!-- Used on Desktop: -->
+  <if expr="not is_android and not is_ios">
+    <message name="IDS_AUTOFILL_SAVE_ADDRESS_PROMPT_EDIT_BUTTON_TOOLTIP" desc="Tooltip of the Edit button in the prompt that offers the user to save a new address.">
+      Edit address
+    </message>
+    <message name="IDS_AUTOFILL_EDIT_ADDRESS_DIALOG_TITLE" desc="Title shown at the top of dialog that edits an address before saving it">
+      Edit address
+    </message>
+  </if>
   <if expr="is_android or not is_android and not is_ios">
     <message name="IDS_AUTOFILL_SAVE_ADDRESS_PROMPT_TITLE" desc="Title shown at the top of prompt that offers the user to save a new address.">
       Save address?

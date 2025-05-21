@@ -1,0 +1,23 @@
+diff --git a/third_party/blink/renderer/core/frame/navigator.cc b/third_party/blink/renderer/core/frame/navigator.cc
+index a8591113e53e487c62c60c86f348b37a86337c75..072c3a6fa41b79d417772edf9bbbbb49cccbdb8a 100644
+--- a/third_party/blink/renderer/core/frame/navigator.cc
++++ b/third_party/blink/renderer/core/frame/navigator.cc
+@@ -37,6 +37,9 @@
+ #include "third_party/blink/renderer/platform/instrumentation/memory_pressure_listener.h"
+ #include "third_party/blink/renderer/platform/language.h"
+ 
++#include "base/command_line.h"
++#include "mises/components/ungoogled/ungoogled_switches.h"
++
+ namespace blink {
+ 
+ Navigator::Navigator(ExecutionContext* context) : NavigatorBase(context) {}
+@@ -82,6 +85,8 @@ bool Navigator::cookieEnabled() const {
+ }
+ 
+ bool Navigator::webdriver() const {
++  const base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
++  if (command_line->HasSwitch(switches::kFingerprint)) return false;
+   if (RuntimeEnabledFeatures::AutomationControlledEnabled())
+     return true;
+ 
