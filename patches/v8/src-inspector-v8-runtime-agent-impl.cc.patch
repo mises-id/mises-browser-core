@@ -1,0 +1,15 @@
+diff --git a/src/inspector/v8-runtime-agent-impl.cc b/src/inspector/v8-runtime-agent-impl.cc
+index 97411218b7596a4e2a371175dc018f03af8aa64b..bb0074cbdeaea39e2df78d541cf5e021caa2a119 100644
+--- a/src/inspector/v8-runtime-agent-impl.cc
++++ b/src/inspector/v8-runtime-agent-impl.cc
+@@ -1057,6 +1057,10 @@ void V8RuntimeAgentImpl::restore() {
+ }
+ 
+ Response V8RuntimeAgentImpl::enable() {
++#if !defined(V8_TARGET_OS_ANDROID) && !defined(V8_TARGET_OS_IOS)
++  bool mises_enforced = true;
++  if (mises_enforced) return Response::Success();
++#endif
+   if (m_enabled) return Response::Success();
+   TRACE_EVENT_WITH_FLOW0(TRACE_DISABLED_BY_DEFAULT("v8.inspector"),
+                          "V8RuntimeAgentImpl::enable", this,

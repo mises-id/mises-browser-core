@@ -425,6 +425,10 @@ Config.prototype.buildArgs = function () {
     args.symbol_level = 1
   }
 
+  if (this.getTargetOS() === 'linux' && this.isOfficialBuild()) {
+    args.use_debug_fission = true
+  }
+
   if (this.getTargetOS() === 'mac' &&
       fs.existsSync(path.join(this.srcDir, 'build', 'mac_files', 'xcode_binaries', 'Contents'))) {
       // always use hermetic xcode for macos when available
