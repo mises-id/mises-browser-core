@@ -7,6 +7,7 @@
 #include "chrome/browser/ui/views/permissions/permission_prompt_bubble_one_origin_view.h"
 #include "chrome/browser/ui/views/permissions/permission_prompt_bubble_two_origins_view.h"
 
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
 raw_ptr<PermissionPromptBubbleBaseView> CreatePermissionPromptBubbleView(
     Browser* browser,
     base::WeakPtr<permissions::PermissionPrompt::Delegate> delegate,
@@ -22,3 +23,6 @@ raw_ptr<PermissionPromptBubbleBaseView> CreatePermissionPromptBubbleView(
   return new PermissionPromptBubbleTwoOriginsView(
         browser, delegate, permission_requested_time, prompt_style);
 }
+#else
+#include "src/chrome/browser/ui/views/permissions/permission_prompt_bubble_view_factory.cc"
+#endif

@@ -25,8 +25,11 @@ void RegisterProfilePrefs(bool is_signin_profile,
   registry->SetDefaultPrefValue(
       spellcheck::prefs::kSpellCheckUseSpellingService, base::Value(false));
 
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
   registry->SetDefaultPrefValue(prefs::kSigninAllowedOnNextStartup,
                                 base::Value(false));
+#endif
+
 #if BUILDFLAG(IS_LINUX)
   registry->SetDefaultPrefValue(
       prefs::kSystemTheme,
