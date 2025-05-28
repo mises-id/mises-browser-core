@@ -10,6 +10,7 @@
 #include "base/strings/string_util.h"
 #include "base/strings/utf_string_conversions.h"
 
+#include "components/omnibox/browser/autocomplete_match.h"
 #include "components/omnibox/browser/autocomplete_input.h"
 #include "components/omnibox/browser/history_provider.h"
 #include "components/omnibox/browser/autocomplete_result.h"
@@ -94,9 +95,9 @@ void MisesProvider::DoAutocomplete(const AutocompleteInput &input){
       //relevance
       match.relevance = kRelevance + relevance + mises_match.relevance;
       match.destination_url = mises_match.destination_url;
-      match.contents = contents_;
+      match.contents = AutocompleteMatch::SanitizeString(contents_);
       match.contents_class = contents_class_;
-      match.description = description_;
+      match.description = AutocompleteMatch::SanitizeString(description_);
       match.description_class = description_class_;
       match.allowed_to_be_default_match = false;
       match.image_url = mises_match.image_url;
@@ -234,7 +235,7 @@ void MisesProvider::OnURLLoadComplete(const network::SimpleURLLoader* source,
         match.type = AutocompleteMatchType::SEARCH_SUGGEST_ENTITY;
         match.relevance = *search_score;
         match.destination_url = GURL(*url);
-        match.contents = base::UTF8ToUTF16(*content);
+        match.contents = AutocompleteMatch::SanitizeString(base::UTF8ToUTF16(*content));
         match.fill_into_edit = base::ASCIIToUTF16(*domain_name);
         //match.description = base::ASCIIToUTF16(*desc);
         match.image_url = GURL(*logo);
@@ -284,7 +285,7 @@ void MisesProvider::AddMatch(const std::u16string& match_string,
   //relevance
   match.relevance = relevance;
   match.destination_url = GURL(kScheme + match_string);
-  match.contents = match_string;
+  match.contents = AutocompleteMatch::SanitizeString(match_string);
   match.contents_class = styles;
   match.allowed_to_be_default_match = true;
   matches_.push_back(match);
