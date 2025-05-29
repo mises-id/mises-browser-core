@@ -17,12 +17,12 @@
 
 
 namespace browser_sync {
+#if BUILDFLAG(IS_ANDROID)
 namespace {
 
 const auto& MisesSyncablePreferences() {
   static const auto kMisesSyncablePrefsAllowList = base::MakeFixedFlatMap<
       std::string_view, sync_preferences::SyncablePrefMetadata>({
-#if BUILDFLAG(IS_ANDROID)
      {prefs::kAccessibilityReadAnythingFontName,
      {syncable_prefs_ids::kAccessibilityReadAnythingFontName,
       syncer::PREFERENCES, sync_preferences::PrefSensitivity::kNone,
@@ -135,19 +135,21 @@ const auto& MisesSyncablePreferences() {
      {syncable_prefs_ids::kPinnedChromeLabsMigrationComplete,
       syncer::PREFERENCES, sync_preferences::PrefSensitivity::kNone,
       sync_preferences::MergeBehavior::kNone}},
-#endif
   });
   return kMisesSyncablePrefsAllowList;
 }
 }  // namespace
+#endif
 
 std::optional<sync_preferences::SyncablePrefMetadata>
 ChromeSyncablePrefsDatabase::GetSyncablePrefMetadata(
     std::string_view pref_name) const {
+#if BUILDFLAG(IS_ANDROID)
   const auto it = MisesSyncablePreferences().find(pref_name);
   if (it != MisesSyncablePreferences().end()) {
     return it->second;
   }
+#endif
   return GetSyncablePrefMetadata_ChromiumImpl(pref_name);
 }
 

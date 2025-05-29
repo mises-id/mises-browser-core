@@ -99,13 +99,10 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
   //TaskModuleService::RegisterProfilePrefs(registry);
   UnifiedAutoplayConfig::RegisterProfilePrefs(registry);
   RegisterSessionServiceLogProfilePrefs(registry);
-#endif
 
-#if BUILDFLAG(IS_ANDROID) 
   preinstalled_apps::RegisterProfilePrefs(registry);
-#endif
 
-#if BUILDFLAG(IS_ANDROID)
+
   registry->RegisterBooleanPref(
       prefs::kLensRegionSearchEnabled, true,
       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
@@ -122,12 +119,10 @@ void MisesRegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry) {
 
   registry->RegisterBooleanPref(prefs::kShowCastIconInToolbar, false);
 
-#endif
 
   feed::prefs::RegisterFeedSharedProfilePrefs(registry);
   feed::RegisterProfilePrefs(registry);
 
-#if BUILDFLAG(IS_ANDROID)
   web_app::UserUninstalledPreinstalledWebAppPrefs::RegisterProfilePrefs(registry);
   web_app::PreinstalledWebAppManager::RegisterProfilePrefs(registry);
   web_app::WebAppPolicyManager::RegisterProfilePrefs(registry);

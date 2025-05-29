@@ -1,0 +1,29 @@
+diff --git a/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc b/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc
+index 4f2067d37ed743e09cbfe1fb58189c8b2c3700b0..14d3e77e8a226b1d266b8da90e0cf6e108245f76 100644
+--- a/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc
++++ b/third_party/blink/renderer/modules/webgl/webgl_rendering_context_base.cc
+@@ -145,6 +145,8 @@
+ #include "third_party/skia/include/core/SkImage.h"
+ #include "ui/gfx/geometry/size.h"
+ 
++#include "mises/third_party/blink/renderer/modules/webgl/gpu_fingerprint.h"
++
+ // Populates parameters from texImage2D except for border, width, height, and
+ // depth (which are not present for all texImage2D functions).
+ #define POPULATE_TEX_IMAGE_2D_PARAMS(params, src_type) \
+@@ -3829,6 +3831,7 @@ ScriptValue WebGLRenderingContextBase::getParameter(ScriptState* script_state,
+           "invalid parameter name, OES_standard_derivatives not enabled");
+       return ScriptValue::CreateNull(script_state->GetIsolate());
+     case WebGLDebugRendererInfo::kUnmaskedRendererWebgl:
++      if (GLFingerprintEnabled()) return WebGLAny(script_state, String(GetGLRendererStringForFingerprint()));
+       if (ExtensionEnabled(kWebGLDebugRendererInfoName)) {
+         if (IdentifiabilityStudySettings::Get()->ShouldSampleType(
+                 blink::IdentifiableSurface::Type::kWebGLParameter)) {
+@@ -3844,6 +3847,7 @@ ScriptValue WebGLRenderingContextBase::getParameter(ScriptState* script_state,
+           "invalid parameter name, WEBGL_debug_renderer_info not enabled");
+       return ScriptValue::CreateNull(script_state->GetIsolate());
+     case WebGLDebugRendererInfo::kUnmaskedVendorWebgl:
++      if (GLFingerprintEnabled()) return WebGLAny(script_state, String(GetGLVendorStringForFingerprint()));
+       if (ExtensionEnabled(kWebGLDebugRendererInfoName)) {
+         if (IdentifiabilityStudySettings::Get()->ShouldSampleType(
+                 blink::IdentifiableSurface::Type::kWebGLParameter)) {

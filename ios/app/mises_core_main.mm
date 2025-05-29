@@ -318,7 +318,7 @@ const BraveCoreLogSeverity BraveCoreLogSeverityVerbose =
     (component_updater::ComponentUpdateService*)cus {
   mises_component_updater::MisesOnDemandUpdater::GetInstance()
       ->RegisterOnDemandUpdateCallback(
-          base::BindRepeating(&component_updater::BraveOnDemandUpdate));
+          base::BindRepeating(&component_updater::MisesOnDemandUpdate));
 
   RegisterSafetyTipsComponent(cus);
   brave_wallet::RegisterWalletDataFilesComponent(cus);

@@ -1,0 +1,25 @@
+diff --git a/content/child/runtime_features.cc b/content/child/runtime_features.cc
+index bb432a6066d2a78b808232e1ffa2955bf0bb7e00..df9fd8cab5ba5434a67f9d2fdbfd89f38be3670f 100644
+--- a/content/child/runtime_features.cc
++++ b/content/child/runtime_features.cc
+@@ -54,6 +54,7 @@
+ #if BUILDFLAG(ENABLE_VR)
+ #include "device/vr/public/cpp/features.h"
+ #endif
++#include "components/ungoogled/ungoogled_switches.h"
+ 
+ using blink::WebRuntimeFeatures;
+ 
+@@ -494,6 +495,12 @@ void SetRuntimeFeaturesFromCommandLine(const base::CommandLine& command_line) {
+        switches::kEnableWebGPUDeveloperFeatures, true},
+       {wrf::EnableWebGPUExperimentalFeatures, switches::kEnableUnsafeWebGPU,
+        true},
++      {wrf::EnableFingerprintingClientRectsNoise,
++       switches::kFingerprintingClientRectsNoise, true},
++      {wrf::EnableFingerprintingCanvasMeasureTextNoise,
++       switches::kFingerprintingCanvasMeasureTextNoise, true},
++      {wrf::EnableFingerprintingCanvasImageDataNoise,
++       switches::kFingerprintingCanvasImageDataNoise, true},
+   };
+ 
+   for (const auto& mapping : switchToFeatureMapping) {

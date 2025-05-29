@@ -1,5 +1,5 @@
 diff --git a/chrome/common/extensions/chrome_extensions_client.cc b/chrome/common/extensions/chrome_extensions_client.cc
-index 44a7d91683b7a2ce15af86a92aaed3f72511b06f..759cf5e380b4f4c5844da650662b349a115b2186 100644
+index 44a7d91683b7a2ce15af86a92aaed3f72511b06f..c06f72176b03f9d48ee5bc7f217768fac99e52e1 100644
 --- a/chrome/common/extensions/chrome_extensions_client.cc
 +++ b/chrome/common/extensions/chrome_extensions_client.cc
 @@ -38,6 +38,7 @@
@@ -10,11 +10,13 @@ index 44a7d91683b7a2ce15af86a92aaed3f72511b06f..759cf5e380b4f4c5844da650662b349a
  
  namespace extensions {
  
-@@ -54,6 +55,7 @@ const char kExtensionBlocklistHttpsUrlPrefix[] =
+@@ -54,6 +55,9 @@ const char kExtensionBlocklistHttpsUrlPrefix[] =
  ChromeExtensionsClient::ChromeExtensionsClient() {
    AddAPIProvider(std::make_unique<ChromeExtensionsAPIProvider>());
    AddAPIProvider(std::make_unique<CoreExtensionsAPIProvider>());
++#if BUILDFLAG(IS_ANDROID)
 +  AddAPIProvider(std::make_unique<MisesExtensionsAPIProvider>());
++#endif
  }
  
  ChromeExtensionsClient::~ChromeExtensionsClient() {

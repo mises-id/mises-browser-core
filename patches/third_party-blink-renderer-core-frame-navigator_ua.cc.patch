@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/renderer/core/frame/navigator_ua.cc b/third_party/blink/renderer/core/frame/navigator_ua.cc
+index 6275dbfa196ca0211b89205289fa42d5cd348e3c..eaee157e084b8cf8fbcd7f6528c898561a8db9e0 100644
+--- a/third_party/blink/renderer/core/frame/navigator_ua.cc
++++ b/third_party/blink/renderer/core/frame/navigator_ua.cc
+@@ -16,6 +16,7 @@ NavigatorUAData* NavigatorUA::userAgentData() {
+       MakeGarbageCollected<NavigatorUAData>(GetUAExecutionContext());
+ 
+   UserAgentMetadata metadata = GetUserAgentMetadata();
++  UpdateUserAgentMetadataFingerprint(&metadata);
+   ua_data->SetBrandVersionList(metadata.brand_version_list);
+   ua_data->SetMobile(metadata.mobile);
+   ua_data->SetPlatform(String::FromUTF8(metadata.platform),

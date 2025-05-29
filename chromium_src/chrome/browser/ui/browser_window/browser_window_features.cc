@@ -32,6 +32,7 @@
 #include "components/commerce/core/commerce_feature_list.h"
 #include "components/profile_metrics/browser_profile_type.h"
 #include "components/saved_tab_groups/features.h"
+#include "components/lens/lens_features.h"
 
 namespace {
 
@@ -99,8 +100,10 @@ void BrowserWindowFeatures::Init(BrowserWindowInterface* browser) {
   // The LensOverlayEntryPointController is constructed for all browser types
   // but is only initialized for normal browser windows. This simplifies the
   // logic for code shared by both normal and non-normal windows.
-  // lens_overlay_entry_point_controller_ =
-  //     std::make_unique<lens::LensOverlayEntryPointController>();
+#if !BUILDFLAG(IS_ANDROID)
+  lens_overlay_entry_point_controller_ =
+      std::make_unique<lens::LensOverlayEntryPointController>();
+#endif
 
   tab_strip_model_ = browser->GetTabStripModel();
 }
@@ -120,10 +123,12 @@ void BrowserWindowFeatures::InitPostWindowConstruction(Browser* browser) {
     // browser to properly determine if the lens overlay is enabled.
     // Cannot be in Init since needs to listen to the fullscreen controller
     // which is initialized after Init.
-    // if (lens::features::IsLensOverlayEnabled()) {
-    //   lens_overlay_entry_point_controller_->Initialize(
-    //       browser, browser->command_controller());
-    // }
+#if !BUILDFLAG(IS_ANDROID)
+    if (lens::features::IsLensOverlayEnabled()) {
+      lens_overlay_entry_point_controller_->Initialize(
+          browser, browser->command_controller());
+    }
+#endif
 
     auto* experiment_manager =
         extensions::ManifestV2ExperimentManager::Get(browser->profile());
@@ -177,5 +182,8 @@ ToastController* BrowserWindowFeatures::toast_controller() {
 BrowserWindowFeatures::BrowserWindowFeatures() = default;
 
 
+#if BUILDFLAG(IS_ANDROID)
 #include "chrome/browser/ui/toasts/api/toast_registry.h"
+
 ToastService::~ToastService() = default;
+#endif

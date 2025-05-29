@@ -1,16 +1,18 @@
 diff --git a/content/browser/renderer_host/render_process_host_impl.cc b/content/browser/renderer_host/render_process_host_impl.cc
-index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74886ef94b 100644
+index 9e5567aec56dc43ca39356fdebc05df4b9958b50..8d193a0fbec8d5591b27ee46307c5199dd707194 100644
 --- a/content/browser/renderer_host/render_process_host_impl.cc
 +++ b/content/browser/renderer_host/render_process_host_impl.cc
-@@ -218,6 +218,7 @@
+@@ -218,7 +218,9 @@
  #include "content/browser/web_database/web_database_host_impl.h"
  #include "media/audio/android/audio_manager_android.h"
  #include "third_party/blink/public/mojom/android_font_lookup/android_font_lookup.mojom.h"
 +#include "mises/browser/android/preferences/features.h"
  #endif
++#include "mises/components/ungoogled/ungoogled_switches.h"
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-@@ -965,6 +966,25 @@ class UnmatchedServiceWorkerProcessTracker
+ #include <sys/resource.h>
+@@ -965,6 +967,26 @@ class UnmatchedServiceWorkerProcessTracker
      return tracker->TakeFreshestProcessForSite(site_instance);
    }
  
@@ -25,10 +27,11 @@ index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74
 +    
 +    auto found = tracker->FindProcess(host);
 +    if (found) {
++#if BUILDFLAG(IS_ANDROID)
 +      const GURL& url = found->first.site_url();
 +      std::vector<std::string> priority_extensions = preferences::features::GetMisesPriorityExtensionIds();
 +      return url.has_host() && base::Contains(priority_extensions, url.host());
-+      
++#endif
 +    }
 +    return false;
 +  }
@@ -36,7 +39,7 @@ index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74
    UnmatchedServiceWorkerProcessTracker() = default;
  
    ~UnmatchedServiceWorkerProcessTracker() override {
-@@ -1056,6 +1076,15 @@ class UnmatchedServiceWorkerProcessTracker
+@@ -1056,6 +1078,15 @@ class UnmatchedServiceWorkerProcessTracker
      return false;
    }
  
@@ -52,7 +55,23 @@ index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74
    // Use std::set because duplicates don't need to be tracked separately (eg.,
    // service workers for the same site in the same process). It is sorted in the
    // order of insertion.
-@@ -5214,6 +5243,15 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
+@@ -3370,6 +3401,15 @@ void RenderProcessHostImpl::PropagateBrowserCommandLineToRenderer(
+     switches::kEnableWebGLImageChromium,
+     switches::kEnableWebGPUDeveloperFeatures,
+     switches::kFileUrlPathAlias,
++    switches::kFingerprintingClientRectsNoise,
++    switches::kFingerprintingCanvasMeasureTextNoise,
++    switches::kFingerprintingCanvasImageDataNoise,
++    switches::kFingerprint,
++    switches::kFingerprintPlatform,
++    switches::kFingerprintPlatformVersion,
++    switches::kFingerprintBrand,
++    switches::kFingerprintBrandVersion,
++    switches::kFingerprintHardwareConcurrency,
+     switches::kForceDeviceScaleFactor,
+     switches::kForceDisplayColorProfile,
+     switches::kForceGpuMemAvailableMb,
+@@ -5214,6 +5254,15 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
  #endif
    );
  
@@ -68,7 +87,7 @@ index 9e5567aec56dc43ca39356fdebc05df4b9958b50..5404983b69e6a856f28d049371ed8d74
    if (priority_ == priority) {
      return;
    }
-@@ -5226,6 +5264,8 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
+@@ -5226,6 +5275,8 @@ void RenderProcessHostImpl::UpdateProcessPriority() {
                ChromeTrackEvent::kChildProcessLauncherPriority, priority);
    priority_ = priority;
  

@@ -7,11 +7,7 @@
 
 #include "base/strings/strcat.h"
 
-namespace {
 
-constexpr char kMisesBrandNameForCHUA[] = "Mises";
-
-}  // namespace
 
 // Chromium uses `version_info::GetProductName()` to get the browser's "brand"
 // name, but on MacOS we use different names for different channels (adding Beta
@@ -20,11 +16,23 @@ constexpr char kMisesBrandNameForCHUA[] = "Mises";
 // IDS_PRODUCT_NAME from app/chromium_strings.grd (brave_strings.grd) in
 // constructing the UA in brave/browser/brave_content_browser_client.cc, but we
 // can't use it here in the //components.
-#define MISES_GET_USER_AGENT_BRAND_LIST brand = kMisesBrandNameForCHUA;
+#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
 
-#define MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE \
-  base::StrCat({major_version, ".0.0.0"})
+
+#define MISES_GET_USER_AGENT_BRAND_LIST \
+  brand = "Mises";\
+  brand_version = output_version_type == blink::UserAgentBrandVersionType::kFullVersion ? base::StrCat({major_version, ".0.0.0"}) : major_version;
+
+#else
+
+#define MISES_GET_USER_AGENT_BRAND_LIST \
+  brand = blink::GetUserAgentFingerprintBrandName();\
+  brand_version = output_version_type == blink::UserAgentBrandVersionType::kFullVersion ? blink::GetUserAgentFingerprintBrandFullVersion() : blink::GetUserAgentFingerprintBrandMajorVersion();
+
+
+#endif
 
 #include "src/components/embedder_support/user_agent_utils.cc"
-#undef MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE
 #undef MISES_GET_USER_AGENT_BRAND_LIST
+
+

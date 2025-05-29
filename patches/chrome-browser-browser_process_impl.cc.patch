@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/browser_process_impl.cc b/chrome/browser/browser_process_impl.cc
-index 4de58876a9947e511bc67f9a92fcaf3d00e08f29..eaaf575cc22a526ea218a4cfcddfe639b2718c50 100644
+index 4de58876a9947e511bc67f9a92fcaf3d00e08f29..0d7414a3a148b9860336f4f770522e4300b392db 100644
 --- a/chrome/browser/browser_process_impl.cc
 +++ b/chrome/browser/browser_process_impl.cc
 @@ -176,7 +176,8 @@
@@ -12,15 +12,6 @@ index 4de58876a9947e511bc67f9a92fcaf3d00e08f29..eaaf575cc22a526ea218a4cfcddfe639
  #include "chrome/browser/devtools/devtools_auto_opener.h"
  #include "chrome/browser/gcm/gcm_product_util.h"
  #include "chrome/browser/hid/hid_system_tray_icon.h"
-@@ -188,7 +189,7 @@
- #include "chrome/browser/ui/browser_list.h"
- #include "chrome/browser/usb/usb_system_tray_icon.h"
- #include "chrome/browser/web_applications/isolated_web_apps/iwa_identity_validator.h"
--#include "chrome/browser/webapps/webapps_client_desktop.h"
-+//#include "chrome/browser/webapps/webapps_client_desktop.h"
- #include "components/gcm_driver/gcm_client_factory.h"
- #include "components/gcm_driver/gcm_desktop_utils.h"
- #include "components/keep_alive_registry/keep_alive_registry.h"
 @@ -211,6 +212,7 @@
  #include "components/storage_monitor/storage_monitor.h"
  #include "extensions/common/context_data.h"

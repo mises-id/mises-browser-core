@@ -1,0 +1,25 @@
+diff --git a/third_party/blink/renderer/core/dom/document.h b/third_party/blink/renderer/core/dom/document.h
+index 642049e815f8b7f4359bd1abacc80d8ea008e976..22db901dd68e636c8473466f95109a8e99435e67 100644
+--- a/third_party/blink/renderer/core/dom/document.h
++++ b/third_party/blink/renderer/core/dom/document.h
+@@ -548,6 +548,10 @@ class CORE_EXPORT Document : public ContainerNode,
+     has_xml_declaration_ = has_xml_declaration ? 1 : 0;
+   }
+ 
++  // Values for get*ClientRect fingerprint deception
++  double GetNoiseFactorX() {return noise_factor_x_;}
++  double GetNoiseFactorY() {return noise_factor_y_;}
++
+   AtomicString visibilityState() const;
+   bool IsPageVisible() const;
+   bool hidden() const;
+@@ -2556,6 +2560,9 @@ class CORE_EXPORT Document : public ContainerNode,
+ 
+   base::ElapsedTimer start_time_;
+ 
++  double noise_factor_x_ = 1;
++  double noise_factor_y_ = 1;
++
+   Member<ScriptRunner> script_runner_;
+   Member<ScriptRunnerDelayer> script_runner_delayer_;
+ 

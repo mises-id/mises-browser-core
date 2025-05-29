@@ -333,7 +333,7 @@ void MisesDefaultExtensionsHandler::FileSelected(const ui::SelectedFileInfo& fil
                        weak_ptr_factory_.GetWeakPtr()));
   } else if (dialog_type_ == ui::SelectFileDialog::SELECT_SAVEAS_FILE) {
     service->ExportKey(
-        dialog_key_, path,
+        dialog_key_, file.path(),
         base::BindOnce(&MisesDefaultExtensionsHandler::OnKeyExported,
                        weak_ptr_factory_.GetWeakPtr(), dialog_key_));
   }

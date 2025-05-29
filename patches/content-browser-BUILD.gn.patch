@@ -1,5 +1,5 @@
 diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
-index 4e163a30b7f987b0127cabf84a4610bfb81b9662..18e809668f73876a0f2b2539a81bb6ccd12c2243 100644
+index 4e163a30b7f987b0127cabf84a4610bfb81b9662..9214530a166616291c7d1bd5bc344546e2722f74 100644
 --- a/content/browser/BUILD.gn
 +++ b/content/browser/BUILD.gn
 @@ -3291,6 +3291,8 @@ source_set("browser") {
@@ -11,7 +11,7 @@ index 4e163a30b7f987b0127cabf84a4610bfb81b9662..18e809668f73876a0f2b2539a81bb6cc
      # Not Android.
      sources += [
        # The WebAuthn devtools protocol API is not supported in Android yet.
-@@ -3390,6 +3392,18 @@ source_set("browser") {
+@@ -3390,6 +3392,22 @@ source_set("browser") {
        deps += [ "//media/mojo/mojom:web_speech_recognition" ]
      }
  
@@ -25,12 +25,16 @@ index 4e163a30b7f987b0127cabf84a4610bfb81b9662..18e809668f73876a0f2b2539a81bb6cc
 +      deps += [
 +        "//mises/browser/android/preferences:features"
 +      ]
++    } else {
++      deps += [
++        "//mises/components/ungoogled:ungoogled_switches"
++      ]
 +    }
 +
      deps += [
        "//components/device_event_log",
        "//components/soda:constants",
-@@ -3404,7 +3418,7 @@ source_set("browser") {
+@@ -3404,7 +3422,7 @@ source_set("browser") {
      ]
    }
  

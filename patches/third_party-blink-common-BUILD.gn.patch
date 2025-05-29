@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/common/BUILD.gn b/third_party/blink/common/BUILD.gn
+index 7af334c847ae03daefecbbd546dc95d5a2eeda01..ef6637cdcdb1a064c5d03f8fbe39cd5342bb01cf 100644
+--- a/third_party/blink/common/BUILD.gn
++++ b/third_party/blink/common/BUILD.gn
+@@ -334,6 +334,7 @@ source_set("common") {
+     "//build:chromeos_buildflags",
+     "//media/capture:capture_base",
+     "//media/capture/mojom:video_capture_mojom_support",
++    "//mises/components/ungoogled:ungoogled_switches",
+     "//mojo/public/cpp/system",
+     "//net",
+     "//services/metrics/public/cpp:metrics_cpp",

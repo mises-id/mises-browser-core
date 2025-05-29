@@ -11,8 +11,8 @@
 
 // clang-format off
 #define MISES_CONTENT_SETTINGS_TYPE_GROUP_NAMES_LIST               \
-  {ContentSettingsType::MISES_ETHEREUM, nullptr},                  \
-  {ContentSettingsType::MISES_SOLANA, nullptr},                    \
+  {ContentSettingsType::MISES_ETHEREUM, "ethereum"},                  \
+  {ContentSettingsType::MISES_SOLANA, "solana"},                    \
   {ContentSettingsType::MISES_REMEMBER_1P_STORAGE, nullptr},                 
 // clang-format on
 

@@ -1,0 +1,13 @@
+diff --git a/headless/lib/browser/headless_browser_impl.cc b/headless/lib/browser/headless_browser_impl.cc
+index 5f77dc7d3f21227a96186e260976e4ee22d38b8b..07b5b98feb53de52962f3c1c8165c978b378eae3 100644
+--- a/headless/lib/browser/headless_browser_impl.cc
++++ b/headless/lib/browser/headless_browser_impl.cc
+@@ -54,7 +54,7 @@ namespace headless {
+ 
+ namespace {
+ // Product name for building the default user agent string.
+-const char kHeadlessProductName[] = "HeadlessChrome";
++const char kHeadlessProductName[] = "Chrome";
+ constexpr gfx::Size kDefaultWindowSize(800, 600);
+ 
+ constexpr gfx::FontRenderParams::Hinting kDefaultFontRenderHinting =

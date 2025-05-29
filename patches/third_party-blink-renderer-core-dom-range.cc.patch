@@ -1,0 +1,29 @@
+diff --git a/third_party/blink/renderer/core/dom/range.cc b/third_party/blink/renderer/core/dom/range.cc
+index 3ac418ff82989eeb5eeea99b3a4228f84e210f3c..8869713641d01c729cc28511eb258d0318cf3a7a 100644
+--- a/third_party/blink/renderer/core/dom/range.cc
++++ b/third_party/blink/renderer/core/dom/range.cc
+@@ -1649,6 +1649,12 @@ DOMRectList* Range::getClientRects() const {
+   Vector<gfx::QuadF> quads;
+   GetBorderAndTextQuads(quads);
+ 
++  if (RuntimeEnabledFeatures::FingerprintingClientRectsNoiseEnabled()) {
++    for (gfx::QuadF& quad : quads) {
++      quad.Scale(owner_document_->GetNoiseFactorX(), owner_document_->GetNoiseFactorY());
++    }
++  }
++
+   return MakeGarbageCollected<DOMRectList>(quads);
+ }
+ 
+@@ -1656,6 +1662,11 @@ DOMRect* Range::getBoundingClientRect() const {
+   // TODO(crbug.com/1499981): This should be removed once synchronized scrolling
+   // impact is understood.
+   SyncScrollAttemptHeuristic::DidAccessScrollOffset();
++  if (RuntimeEnabledFeatures::FingerprintingClientRectsNoiseEnabled()) {
++    auto rect = BoundingRect();
++    rect.Scale(owner_document_->GetNoiseFactorX(), owner_document_->GetNoiseFactorY());
++    return DOMRect::FromRectF(rect);
++  }
+   return DOMRect::FromRectF(BoundingRect());
+ }
+ 

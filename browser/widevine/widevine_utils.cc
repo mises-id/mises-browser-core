@@ -15,6 +15,7 @@
 #include "mises/components/constants/pref_names.h"
 #include "mises/components/widevine/constants.h"
 #include "mises/components/widevine/static_buildflags.h"
+#include "mises/components/mises_component_updater/browser/mises_on_demand_updater.h"
 #include "mises/grit/mises_generated_resources.h"
 #include "build/build_config.h"
 #include "chrome/browser/browser_process.h"
@@ -77,7 +78,7 @@ void ClearWidevinePrefs(PrefService* prefs) {
 
 #if BUILDFLAG(ENABLE_WIDEVINE_CDM_COMPONENT)
 void InstallWidevineOnceRegistered() {
-  component_updater::BraveOnDemandUpdate(kWidevineComponentId);
+  mises_component_updater::MisesOnDemandUpdater::GetInstance()->OnDemandUpdate(kWidevineComponentId);
 }
 #endif
 }  // namespace

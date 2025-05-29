@@ -1,0 +1,24 @@
+diff --git a/third_party/blink/renderer/platform/graphics/image_data_buffer.cc b/third_party/blink/renderer/platform/graphics/image_data_buffer.cc
+index 80d0236074ec7b755d448c297140d3b4b4e61461..2d878797104f384a2b7b21c7041b63bbcc33bdbe 100644
+--- a/third_party/blink/renderer/platform/graphics/image_data_buffer.cc
++++ b/third_party/blink/renderer/platform/graphics/image_data_buffer.cc
+@@ -45,6 +45,7 @@
+ #include "third_party/skia/include/core/SkSurface.h"
+ #include "third_party/skia/include/core/SkSwizzle.h"
+ #include "third_party/skia/include/encode/SkJpegEncoder.h"
++#include "third_party/blink/renderer/platform/runtime_enabled_features.h"
+ 
+ namespace blink {
+ 
+@@ -145,6 +146,11 @@ bool ImageDataBuffer::EncodeImageInternal(const ImageEncodingMimeType mime_type,
+                                           const SkPixmap& pixmap) const {
+   DCHECK(is_valid_);
+ 
++  if (RuntimeEnabledFeatures::FingerprintingCanvasImageDataNoiseEnabled()) {
++    // shuffle subchannel color data within the pixmap
++    blink::ShuffleSubchannelColorData(pixmap_.writable_addr(), pixmap_.info(), 0, 0);
++  }
++  
+   if (mime_type == kMimeTypeJpeg) {
+     SkJpegEncoder::Options options;
+     options.fQuality = ImageEncoder::ComputeJpegQuality(quality);

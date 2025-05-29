@@ -1,0 +1,13 @@
+diff --git a/headless/lib/browser/headless_browser_main_parts_posix.cc b/headless/lib/browser/headless_browser_main_parts_posix.cc
+index 48234689fd5c21655e93b5cb7e656a1cf978f29c..58e46b66483eeef0a43cdee9b94229f17704711d 100644
+--- a/headless/lib/browser/headless_browser_main_parts_posix.cc
++++ b/headless/lib/browser/headless_browser_main_parts_posix.cc
+@@ -162,7 +162,7 @@ class BrowserShutdownHandler {
+ }  // namespace
+ 
+ #if BUILDFLAG(IS_LINUX)
+-constexpr char kProductName[] = "HeadlessChrome";
++constexpr char kProductName[] = "Chrome";
+ #endif
+ 
+ void HeadlessBrowserMainParts::PostCreateMainMessageLoop() {

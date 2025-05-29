@@ -1,8 +1,24 @@
 diff --git a/third_party/blink/renderer/platform/runtime_enabled_features.json5 b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-index 46369bcb300556a63ea7394943af693d84ff8063..e0e739e8e36b1e5a2aa3e2e9a4a16a655b43853d 100644
+index 46369bcb300556a63ea7394943af693d84ff8063..6b22f7a2822e3f5840ba45b9f579f05fe83bceb8 100644
 --- a/third_party/blink/renderer/platform/runtime_enabled_features.json5
 +++ b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-@@ -4731,7 +4731,7 @@
+@@ -1990,6 +1990,15 @@
+       name: "FindTextInReadonlyTextInput",
+       status: "experimental",
+     },
++    {
++      name: "FingerprintingClientRectsNoise",
++    },
++    {
++      name: "FingerprintingCanvasMeasureTextNoise",
++    },
++    {
++      name: "FingerprintingCanvasImageDataNoise",
++    },
+     {
+       name: "Fledge",
+       status: "stable",
+@@ -4731,7 +4740,7 @@
      },
      {
        name: "WebHID",

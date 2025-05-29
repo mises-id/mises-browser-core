@@ -1,0 +1,11 @@
+diff --git a/third_party/blink/renderer/modules/webgl/BUILD.gn b/third_party/blink/renderer/modules/webgl/BUILD.gn
+index d88e4531fcca866d4882f647f8ed170c3e79ccc5..711b32d0d5ff3542be8ba966d689b3139d9c853b 100644
+--- a/third_party/blink/renderer/modules/webgl/BUILD.gn
++++ b/third_party/blink/renderer/modules/webgl/BUILD.gn
+@@ -197,5 +197,6 @@ blink_modules_sources("webgl") {
+     "//third_party/blink/renderer/modules/xr:xr",
+   ]
+   deps += [ "//third_party/blink/renderer/modules/webcodecs:webcodecs" ]
++  deps += [ "//mises/third_party/blink/renderer/modules/webgl:webgl"]
+   allow_circular_includes_from = deps
+ }

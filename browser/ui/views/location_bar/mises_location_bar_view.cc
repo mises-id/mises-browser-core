@@ -39,6 +39,8 @@
 #include "mises/components/ipfs/ipfs_constants.h"
 #include "mises/components/ipfs/ipfs_utils.h"
 #endif
+#include "ui/base/metadata/metadata_header_macros.h"
+#include "ui/base/metadata/metadata_impl_macros.h"
 
 namespace {
 
@@ -73,8 +75,9 @@ void MisesLocationBarView::Init() {
   Update(nullptr);
 
   // Stop slide animation for all content settings views icon.
-  for (auto* content_setting_view : content_setting_views_)
+  for (ContentSettingImageView* content_setting_view : content_setting_views_) {
     content_setting_view->disable_animation();
+  }
 }
 
 bool MisesLocationBarView::ShouldShowIPFSLocationView() const {
@@ -148,8 +151,8 @@ std::vector<views::View*> MisesLocationBarView::GetTrailingViews() {
   return views;
 }
 
-gfx::Size MisesLocationBarView::CalculatePreferredSize() const {
-  gfx::Size min_size = LocationBarView::CalculatePreferredSize();
+gfx::Size MisesLocationBarView::CalculatePreferredSize(const views::SizeBounds& available_size) const {
+  gfx::Size min_size = LocationBarView::CalculatePreferredSize(available_size);
 
 #if BUILDFLAG(ENABLE_IPFS)
   if (ipfs_location_view_ && ipfs_location_view_->GetVisible()) {
@@ -174,8 +177,6 @@ void MisesLocationBarView::OnThemeChanged() {
 
 void MisesLocationBarView::ChildPreferredSizeChanged(views::View* child) {
   LocationBarView::ChildPreferredSizeChanged(child);
-
-  Layout();
 }
 
 int MisesLocationBarView::GetBorderRadius() const {
@@ -189,3 +190,6 @@ SkPath MisesLocationBarView::GetFocusRingHighlightPath() const {
                                radius);
 }
 
+
+BEGIN_METADATA(MisesLocationBarView)
+END_METADATA

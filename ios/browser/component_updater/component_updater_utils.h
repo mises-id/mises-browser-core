@@ -10,7 +10,7 @@
 
 namespace component_updater {
 
-void BraveOnDemandUpdate(const std::string& component_id);
+void MisesOnDemandUpdate(const std::string& component_id);
 
 }  // namespace component_updater
 

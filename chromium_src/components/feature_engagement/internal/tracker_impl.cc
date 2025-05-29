@@ -61,7 +61,8 @@ Tracker::EventList TrackerImpl::ListEvents(const base::Feature& feature) const {
   }
   return result;
 }
+#endif  // !BUILDFLAG(IS_ANDROID)
 
 }  // namespace
 
-#endif  // !BUILDFLAG(IS_ANDROID)
+

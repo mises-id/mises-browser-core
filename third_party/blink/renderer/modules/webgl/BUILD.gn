@@ -1,0 +1,11 @@
+import("//third_party/blink/renderer/modules/modules.gni")
+
+
+blink_modules_sources("webgl") {
+  sources = [
+    "gpu_info.cc",
+    "gpu_info.h",
+    "gpu_fingerprint.cc",
+    "gpu_fingerprint.h",
+  ]
+}

@@ -1,0 +1,12 @@
+diff --git a/third_party/blink/renderer/platform/fonts/font_cache.cc b/third_party/blink/renderer/platform/fonts/font_cache.cc
+index b078fcd18e5bdddeb750571f7e38b3af7315b4b7..ffee0423cd1bc0ed7f7517fdaa2a417fdc6a1685 100644
+--- a/third_party/blink/renderer/platform/fonts/font_cache.cc
++++ b/third_party/blink/renderer/platform/fonts/font_cache.cc
+@@ -153,6 +153,7 @@ const FontPlatformData* FontCache::GetFontPlatformData(
+     platform_init_ = true;
+     PlatformInit();
+   }
++  if (!(MisesGetFontPlatformData(creation_params))) return nullptr;
+ 
+ #if !BUILDFLAG(IS_MAC)
+   if (creation_params.CreationType() == kCreateFontByFamily &&

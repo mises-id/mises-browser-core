@@ -36,6 +36,8 @@
 #include "ui/views/layout/box_layout.h"
 #include "ui/views/painter.h"
 #include "ui/views/view.h"
+#include "ui/base/metadata/metadata_header_macros.h"
+#include "ui/base/metadata/metadata_impl_macros.h"
 
 namespace {
 
@@ -99,8 +101,8 @@ class IPFSLocationButtonView : public views::LabelButton {
 
  private:
   // views::View
-  void Layout() override {
-    views::LabelButton::Layout();
+  void Layout(PassKey) override {
+    LayoutSuperclass<views::LabelButton>(this);
     UpdateBorder();
   }
 
@@ -152,6 +154,9 @@ void IPFSLocationView::Update(content::WebContents* web_contents) {
     return;
   auto ipfs_resolved_url = helper->GetIPFSResolvedURL();
   SetVisible(ipfs_resolved_url.is_valid());
-  reinterpret_cast<IPFSLocationButtonView*>(button_)->SetIPFSLocation(
+  reinterpret_cast<IPFSLocationButtonView*>(button_.get())->SetIPFSLocation(
       ipfs_resolved_url);
 }
+
+BEGIN_METADATA(IPFSLocationView)
+END_METADATA
