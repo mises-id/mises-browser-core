@@ -18,27 +18,21 @@
 // can't use it here in the //components.
 #if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_IOS)
 
-namespace {
 
-constexpr char kMisesBrandNameForCHUA[] = "Mises";
-
-}  // namespace
-
-#define MISES_GET_USER_AGENT_BRAND_LIST brand = kMisesBrandNameForCHUA;
-
-#define MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE \
-  base::StrCat({major_version, ".0.0.0"})
+#define MISES_GET_USER_AGENT_BRAND_LIST \
+  brand = "Mises";\
+  brand_version = output_version_type == blink::UserAgentBrandVersionType::kFullVersion ? base::StrCat({major_version, ".0.0.0"}) : major_version;
 
 #else
 
-#define MISES_GET_USER_AGENT_BRAND_LIST brand = "Google Chrome";
+#define MISES_GET_USER_AGENT_BRAND_LIST \
+  brand = blink::GetUserAgentFingerprintBrandName();\
+  brand_version = output_version_type == blink::UserAgentBrandVersionType::kFullVersion ? blink::GetUserAgentFingerprintBrandFullVersion() : blink::GetUserAgentFingerprintBrandMajorVersion();
 
-#define MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE full_version
 
 #endif
 
 #include "src/components/embedder_support/user_agent_utils.cc"
-#undef MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE
 #undef MISES_GET_USER_AGENT_BRAND_LIST
 
 

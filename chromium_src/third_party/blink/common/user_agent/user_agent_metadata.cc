@@ -93,31 +93,58 @@ void UpdateUserAgentMetadataFingerprint(blink::UserAgentMetadata* metadata) {
   }
 }
 
-std::string GetUserAgentFingerprintBrandInfo() {
+std::string GetUserAgentFingerprintBrandName() {
   const base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
 
   if (!command_line->HasSwitch(switches::kFingerprintBrand)) {
-    return "";
+    return "Google Chrome";
+  }
+
+  std::string brand = command_line->GetSwitchValueASCII(switches::kFingerprintBrand);
+  if (brand == "Chrome") {
+    return "Google Chrome";
+  } else if (brand == "Edge") {
+    return "Edg";
+  } else if (brand == "Opera") {
+    return "OPR";
+  } else if (brand == "Vivaldi") {
+    return "Vivaldi";
+  }
+
+  return brand;
+}
+
+std::string GetUserAgentFingerprintBrandFullVersion() {
+  const base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
+
+  if (!command_line->HasSwitch(switches::kFingerprintBrand)) {
+    return "130.0.6723.91";
   }
 
   std::string brand = command_line->GetSwitchValueASCII(switches::kFingerprintBrand);
   std::string version = command_line->HasSwitch(switches::kFingerprintBrandVersion)
       ? command_line->GetSwitchValueASCII(switches::kFingerprintBrandVersion)
-      : "";
+      : "130.0.6723.91";
 
   if (brand == "Chrome") {
-    return "";
+    return "130.0.6723.91";
   } else if (brand == "Edge") {
-    return " Edg/" + (version.empty() ? "130.0.6723.91" : version);
+    return (version.empty() ? "130.0.6723.91" : version);
   } else if (brand == "Opera") {
-    return " OPR/" + (version.empty() ? "116.0.0.0" : version);
+    return (version.empty() ? "116.0.0.0" : version);
   } else if (brand == "Vivaldi") {
-    return " Vivaldi/" + (version.empty() ? "7.0.3495.29" : version);
-  } else if (!brand.empty()) {
-    return " " + brand + "/" + (version.empty() ? brand : version);
+    return (version.empty() ? "7.0.3495.29" : version);
   }
 
-  return "";
+  return version;
+}
+
+
+std::string GetUserAgentFingerprintBrandMajorVersion() {
+  std::string full_version = GetUserAgentFingerprintBrandFullVersion();
+  size_t dot_pos = full_version.find('.');
+  std::string major = (dot_pos != std::string::npos) ? full_version.substr(0, dot_pos) : full_version;
+  return major;
 }
 
  }  // namespace blink

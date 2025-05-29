@@ -1,25 +1,17 @@
 diff --git a/components/embedder_support/user_agent_utils.cc b/components/embedder_support/user_agent_utils.cc
-index 0d9ed98759c4bc39ae06b1c554079b6e12d3463d..2356760f9f97d2dd4453b3510741755757ed5af6 100644
+index 0d9ed98759c4bc39ae06b1c554079b6e12d3463d..eaa4d8360c21a995f8e0779aec85e004ab11b671 100644
 --- a/components/embedder_support/user_agent_utils.cc
 +++ b/components/embedder_support/user_agent_utils.cc
-@@ -190,6 +190,7 @@ const blink::UserAgentBrandList GetUserAgentBrandList(
- #if !BUILDFLAG(CHROMIUM_BRANDING)
-   brand = version_info::GetProductName();
- #endif
-+  MISES_GET_USER_AGENT_BRAND_LIST
-   std::optional<std::string> maybe_brand_override =
-       base::GetFieldTrialParamValueByFeature(features::kGreaseUACH,
-                                              "brand_override");
-@@ -203,7 +204,7 @@ const blink::UserAgentBrandList GetUserAgentBrandList(
- 
-   std::string brand_version =
+@@ -205,7 +205,7 @@ const blink::UserAgentBrandList GetUserAgentBrandList(
        output_version_type == blink::UserAgentBrandVersionType::kFullVersion
--          ? full_version
-+          ? MISES_BRAND_VERSION_OVERRIDE_FOR_FULL_BRAND_VERSION_TYPE
+           ? full_version
            : major_version;
- 
+-
++  MISES_GET_USER_AGENT_BRAND_LIST
    return GenerateBrandVersionList(major_version_number, brand, brand_version,
-@@ -266,7 +267,7 @@ std::string GetUserAgentInternal(
+                                   maybe_brand_override, maybe_version_override,
+                                   enable_updated_grease_by_policy,
+@@ -266,7 +266,7 @@ std::string GetUserAgentInternal(
      UserAgentReductionEnterprisePolicyState user_agent_reduction) {
    std::string product = GetProductAndVersion(user_agent_reduction);
    if (base::CommandLine::ForCurrentProcess()->HasSwitch(kHeadless)) {
@@ -28,12 +20,3 @@ index 0d9ed98759c4bc39ae06b1c554079b6e12d3463d..2356760f9f97d2dd4453b35107417557
    }
  
  #if BUILDFLAG(IS_ANDROID)
-@@ -303,7 +304,7 @@ std::string GetUserAgent(
-     return custom_ua.value();
-   }
- 
--  return GetUserAgentInternal(user_agent_reduction);
-+  return GetUserAgentInternal(user_agent_reduction) + blink::GetUserAgentFingerprintBrandInfo();
- }
- 
- // Generate a pseudo-random permutation of the following brand/version pairs:

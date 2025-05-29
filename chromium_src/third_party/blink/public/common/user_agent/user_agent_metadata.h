@@ -12,6 +12,8 @@
 namespace blink {
   BLINK_COMMON_EXPORT void UpdateUserAgentMetadataFingerprint(UserAgentMetadata* metadata);
   
-  BLINK_COMMON_EXPORT std::string GetUserAgentFingerprintBrandInfo();
+  BLINK_COMMON_EXPORT std::string GetUserAgentFingerprintBrandName();
+  BLINK_COMMON_EXPORT std::string GetUserAgentFingerprintBrandMajorVersion();
+  BLINK_COMMON_EXPORT std::string GetUserAgentFingerprintBrandFullVersion();
 }
 #endif
