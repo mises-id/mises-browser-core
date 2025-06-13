@@ -31,7 +31,7 @@ const std::string k_install_script = R"(
     };
     const interval = setInterval(() => {
       const buttons = Array.from(document.querySelectorAll('button'));
-      const targetButton = buttons.find(button => button.innerText.trim().toLowerCase() === 'add to chrome');
+      const targetButton = buttons.find(button => button.innerText.trim().toLowerCase().includes('chrome'));
 
       if (targetButton && !targetButton.disabled) {
         targetButton.click();
