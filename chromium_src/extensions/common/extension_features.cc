@@ -9,7 +9,9 @@ namespace extensions_features {
 #if BUILDFLAG(IS_IOS) || BUILDFLAG(IS_ANDROID)
 OVERRIDE_FEATURE_DEFAULT_STATES({{
     {kExtensionsZipFileInstalledInProfileDir, base::FEATURE_DISABLED_BY_DEFAULT},
+    {kUseItemSnippetsAPI, base::FEATURE_ENABLED_BY_DEFAULT},
 }});
+
 #endif
 
 
