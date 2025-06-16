@@ -33,6 +33,12 @@
 #endif
 #include "mises/browser/extension_web_contents_helper.h"
 #include "chrome/browser/ui/android/context_menu_helper.h"
+#include "chrome/browser/ui/browser.h"
+#include "chrome/browser/ui/browser_list.h"
+#include "chrome/browser/ui/browser_window.h"
+#include "chrome/browser/ui/browser_window/public/browser_window_features.h"
+#include "chrome/browser/extensions/api/tabs/windows_event_router.h"
+#include "chrome/browser/extensions/browser_extension_window_controller.h"
 
 using base::android::AttachCurrentThread;
 using base::android::ConvertUTF8ToJavaString;
@@ -313,6 +319,16 @@ void TabModelJniBridge::CloseTabForExtension(const std::string& extension_id) {
   LOG(INFO) << "TabModelJniBridge::CloseTabForExtension";
   JNIEnv* env = AttachCurrentThread();
   Java_TabModelJniBridge_closeTabForExtension(env, java_object_.get(env), base::android::ConvertUTF8ToJavaString(env, extension_id));
+
+  //send a chrome.windows.OnFocusChanged event
+  auto *profile = GetProfile();
+  if (profile) {
+    auto * tabs_window_api = extensions::TabsWindowsAPI::Get(profile);
+    if (tabs_window_api) {
+      LOG(INFO) << "TabModelJniBridge::CloseTabForExtension:" << "OnActiveWindowChanged ";
+      tabs_window_api->windows_event_router()->OnActiveWindowChanged(nullptr);
+    }
+  }
 }
 content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
 		const std::string& extension_id, const GURL& url, const SessionID::id_type session_window_id){
@@ -345,5 +361,26 @@ content::WebContents* TabModelJniBridge::CreateNewTabForExtension(
   if (helper) {
     helper->SetExtensionInfo(extension_id, session_window_id);
   }
+
+  //send a chrome.windows.OnFocusChanged event
+  auto *profile = GetProfile();
+  if (profile) {
+    auto * tabs_window_api = extensions::TabsWindowsAPI::Get(profile);
+    if (tabs_window_api) {
+      Browser* browser_to_activate = nullptr;
+      for (Browser* browser : *BrowserList::GetInstance()) {
+        if (browser->session_id().id() == session_window_id || session_window_id == 0){
+          browser_to_activate = browser;
+          break;
+        }
+      }
+      
+      auto * controller = browser_to_activate ? browser_to_activate->extension_window_controller() : nullptr;
+      LOG(INFO) << "TabModelJniBridge::CreateNewTabForExtension:" << "OnActiveWindowChanged " << controller;
+      tabs_window_api->windows_event_router()->OnActiveWindowChanged(controller);
+    }
+  }
+  
+
   return web_contents;
 }
