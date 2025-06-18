@@ -6,8 +6,10 @@ import android.content.res.Configuration;
 import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.startup.AppInitializer;
+import androidx.work.WorkManagerInitializer;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import android.content.Context;
 
 import org.jni_zero.JNINamespace;
 import org.jni_zero.NativeMethods;
@@ -15,6 +17,7 @@ import org.jni_zero.NativeMethods;
 import org.chromium.base.ApplicationStatus;
 import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.base.supplier.UnownedUserDataSupplier;
+import org.chromium.base.ContextUtils;
 
 import org.chromium.chrome.browser.ChromeTabbedActivity;
 import org.chromium.chrome.browser.dependency_injection.ChromeActivityComponent;
@@ -130,5 +133,13 @@ public abstract class MisesActivity extends ChromeActivity<ChromeActivityCompone
 
     public void setComesFromNewTab(boolean comesFromNewTab) {
         this.mComesFromNewTab = comesFromNewTab;
+    }
+    @Override
+    public void finishNativeInitialization() {
+        super.finishNativeInitialization();
+        Context app = ContextUtils.getApplicationContext();
+        if (app != null) {
+             AppInitializer.getInstance(app).initializeComponent(WorkManagerInitializer.class);
+        }
     }
 }

@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/tab_group_sync/android/java/src/org/chromium/chrome/browser/tab_group_sync/TabGroupSyncFeatures.java b/chrome/browser/tab_group_sync/android/java/src/org/chromium/chrome/browser/tab_group_sync/TabGroupSyncFeatures.java
+index 431e39108d2a54ed43e183cdc6be68b6851c02a8..0952d0019f31e7abc49c0bade3ee3890e871a7d0 100644
+--- a/chrome/browser/tab_group_sync/android/java/src/org/chromium/chrome/browser/tab_group_sync/TabGroupSyncFeatures.java
++++ b/chrome/browser/tab_group_sync/android/java/src/org/chromium/chrome/browser/tab_group_sync/TabGroupSyncFeatures.java
+@@ -15,7 +15,7 @@ import org.chromium.chrome.browser.profiles.Profile;
+ public final class TabGroupSyncFeatures {
+     /** Whether tab group sync is enabled. */
+     public static boolean isTabGroupSyncEnabled(Profile profile) {
+-        if (profile.isOffTheRecord()) return false;
++        if (profile == null || profile.isOffTheRecord()) return false;
+         return TabGroupSyncFeaturesJni.get().isTabGroupSyncEnabled(profile);
+     }
+ 

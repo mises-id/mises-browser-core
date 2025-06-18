@@ -447,6 +447,17 @@ android_aar_prebuilt("androidx_room_room_runtime_java") {
   info_path = "libs/androidx_room_room_runtime/androidx_room_room_runtime.info"
 }
 
+
+android_aar_prebuilt("androidx_room_room_ktx_java") {
+  aar_path = "libs/androidx_room_room_ktx/room-ktx-2.6.1.aar"
+  deps = [
+    ":androidx_room_room_common_java",
+    ":androidx_room_room_runtime_java",
+    "//third_party/android_deps:org_jetbrains_kotlinx_kotlinx_coroutines_android_java",
+  ]
+  info_path = "libs/androidx_room_room_ktx/androidx_room_room_ktx.info"
+}
+
 android_aar_prebuilt("androidx_sqlite_sqlite_java") {
   aar_path = "libs/androidx_sqlite_sqlite/sqlite-2.4.0.aar"
   info_path = "libs/androidx_sqlite_sqlite/androidx_sqlite_sqlite.info"
@@ -462,8 +473,13 @@ android_aar_prebuilt("androidx_work_work_runtime_java") {
   info_path = "libs/androidx_work_work_runtime/androidx_work_work_runtime.info"
   deps = [ 
     "//third_party/androidx:androidx_lifecycle_lifecycle_service_java",
+    "//third_party/androidx:androidx_startup_startup_runtime_java",
+    "//third_party/androidx:androidx_lifecycle_lifecycle_livedata_java",
+    "//third_party/androidx:androidx_core_core_java",
+    "//third_party/androidx:androidx_annotation_annotation_experimental_java",
     ":androidx_room_room_common_java",
     ":androidx_room_room_runtime_java",
+    ":androidx_room_room_ktx_java",
   ]
 }
 

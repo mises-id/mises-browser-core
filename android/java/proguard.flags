@@ -259,3 +259,5 @@
 # Required to avoid reflection issues
 -keep class com.facebook.** { *; }
 
+-keep class androidx.work.** { *; }
+-dontwarn androidx.work.impl.**

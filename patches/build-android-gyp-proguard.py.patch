@@ -1,12 +1,12 @@
 diff --git a/build/android/gyp/proguard.py b/build/android/gyp/proguard.py
-index 5dd433ae0bd92209bd0275e19e710c310e6e8793..2bab2011dbc6036bb67c065e6f01293c6e0e3c02 100755
+index 5dd433ae0bd92209bd0275e19e710c310e6e8793..47b5b8124c9c6869208590b7ac43611ad8b1373f 100755
 --- a/build/android/gyp/proguard.py
 +++ b/build/android/gyp/proguard.py
 @@ -80,6 +80,7 @@ _IGNORE_WARNINGS = (
      # We are following up in b/290389974
      r'AppSearchDocumentClassMap\.class:.*Could not inline ServiceLoader\.load',
  )
-+_IGNORE_WARNINGS += ( r'InnerClasses attribute has entries missing a corresponding EnclosingMethod attribute. Such InnerClasses attribute entries are ignored.', r'google_play_services_ads_java', r'google_play_services_ads_lite_java', r'google_play_services_measurement_java', r'Missing class com.android.org.conscrypt.SSLParametersImpl', r'Missing class org.apache.harmony.xnet.provider.jsse.SSLParametersImpl')
++_IGNORE_WARNINGS += ( r'InnerClasses attribute has entries missing a corresponding EnclosingMethod attribute. Such InnerClasses attribute entries are ignored.', r'google_play_services_ads_java', r'google_play_services_ads_lite_java', r'google_play_services_measurement_java', r'androidx_work_work_runtime_java', r'Missing class com.android.org.conscrypt.SSLParametersImpl', r'Missing class org.apache.harmony.xnet.provider.jsse.SSLParametersImpl')
  
  _BLOCKLISTED_EXPECTATION_PATHS = [
      # A separate expectation file is created for these files.
