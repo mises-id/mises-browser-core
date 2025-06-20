@@ -6,8 +6,6 @@ import android.content.res.Configuration;
 import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.startup.AppInitializer;
-import androidx.work.WorkManagerInitializer;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.content.Context;
 
@@ -137,9 +135,5 @@ public abstract class MisesActivity extends ChromeActivity<ChromeActivityCompone
     @Override
     public void finishNativeInitialization() {
         super.finishNativeInitialization();
-        Context app = ContextUtils.getApplicationContext();
-        if (app != null) {
-             AppInitializer.getInstance(app).initializeComponent(WorkManagerInitializer.class);
-        }
     }
 }

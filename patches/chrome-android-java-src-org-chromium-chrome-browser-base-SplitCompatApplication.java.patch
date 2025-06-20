@@ -1,0 +1,23 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/base/SplitCompatApplication.java b/chrome/android/java/src/org/chromium/chrome/browser/base/SplitCompatApplication.java
+index 12366697f22eab204bdb42dd1bf1aa64c3ea140a..81ec443526d120c24c43f1d3addb025e45801434 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/base/SplitCompatApplication.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/base/SplitCompatApplication.java
+@@ -58,7 +58,7 @@ import org.chromium.ui.base.ResourceBundle;
+  * This is the base class of all Chrome applications. Logic specific to isolated splits should go in
+  * {@link SplitChromeApplication}.
+  */
+-public class SplitCompatApplication extends Application {
++public class SplitCompatApplication extends Application implements androidx.work.Configuration.Provider {
+     public static final String CHROME_SPLIT_NAME = "chrome";
+     private static final String TAG = "SplitCompatApp";
+     private static final String COMMAND_LINE_FILE = "chrome-command-line";
+@@ -388,4 +388,9 @@ public class SplitCompatApplication extends Application {
+             throw new RuntimeException("App out of date, getResources() null, closing app.");
+         }
+     }
++    
++    @Override
++    public androidx.work.Configuration getWorkManagerConfiguration() {
++        return new androidx.work.Configuration.Builder().build();
++    }
+ }
