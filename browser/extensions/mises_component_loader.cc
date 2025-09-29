@@ -112,7 +112,7 @@ std::unique_ptr<message_center::Notification> CreateMessageCenterNotification(
 
 #endif
 
-const static int kPreinstallMaxError = 3;
+//const static int kPreinstallMaxError = 3;
 
 
 }  // namespace
