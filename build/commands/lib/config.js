@@ -530,6 +530,7 @@ Config.prototype.buildArgs = function () {
       //     optimizations.
       args.default_min_sdk_version = 28
     }
+    args.default_target_sdk_version = 35
 
     args.enable_pdf = false
     args.enable_plugins = false
