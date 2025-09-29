@@ -480,7 +480,7 @@ Config.prototype.buildArgs = function () {
       args.chrome_public_manifest_package = 'site.mises.browser_default'
     } else if (this.channel === '') {
       args.android_channel = 'stable'
-      args.chrome_public_manifest_package = 'site.mises.browser'
+      args.chrome_public_manifest_package = 'site.mises.browser_stable'
     } else if (this.channel === 'beta') {
       args.chrome_public_manifest_package = 'site.mises.browser_beta'
       args.exclude_unwind_tables = false

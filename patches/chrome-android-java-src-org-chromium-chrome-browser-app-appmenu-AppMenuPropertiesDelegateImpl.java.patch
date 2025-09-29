@@ -153,7 +153,7 @@ index 2d676879d1de7ffff1aebc89f9cf6e1a15deac2b..7b1f3edb1b1f07e9e14c7029e01c278b
 +                || ContextUtils.getApplicationContext() == null) {
 +            return false;
 +        }
-+        return resolveInfo.activityInfo.packageName.equals("site.mises.browser");
++        return resolveInfo.activityInfo.packageName.equals("site.mises.browser_stable");
 +    }
 +
 +    private void prepareExtensionMenu(

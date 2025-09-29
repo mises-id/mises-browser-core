@@ -47,11 +47,11 @@ void MisesBrowserMainParts::PostProfileInit(Profile* profile,
     command_line->AppendSwitch(switches::kDisableBackgroundMediaSuspend);
   }
 #endif
-  extensions::ExtensionService* service =
-      extensions::ExtensionSystem::Get(profile)->extension_service();
-  if (service) {
-    extensions::ComponentLoader* loader = service->component_loader();
-    static_cast<extensions::MisesComponentLoader*>(loader)
-        ->PreInstallExtensionOnStartup();
-  }
+  // extensions::ExtensionService* service =
+  //     extensions::ExtensionSystem::Get(profile)->extension_service();
+  // if (service) {
+  //   extensions::ComponentLoader* loader = service->component_loader();
+  //   static_cast<extensions::MisesComponentLoader*>(loader)
+  //       ->PreInstallExtensionOnStartup();
+  // }
 }

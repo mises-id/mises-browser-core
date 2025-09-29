@@ -108,7 +108,7 @@ public class MisesLCDServiceImpl extends MisesLCDService.Impl  {
 	    } catch (SecurityException e) {
 	    }
         Intent newintent = new Intent();
-        newintent.setClassName("site.mises.browser", "org.chromium.chrome.browser.ChromeTabbedActivity");
+        newintent.setClassName("site.mises.browser_stable", "org.chromium.chrome.browser.ChromeTabbedActivity");
         newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
         getService().startActivity(newintent);
 

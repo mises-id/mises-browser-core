@@ -48,12 +48,12 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void AddExtension(const std::string& id,
       const std::string& name, const std::string& public_key);
 
-  void PreInstallExtensionOnStartup();
+  //void PreInstallExtensionOnStartup();
 
  private:
   void AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage);
   void ContinueMiseswalletMigration(const base::Value key_store);
-  void AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage);
+  //void AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage);
   void ReinstallAsNonComponent(std::string extension_id);
     // ExtensionRegistryObserver:
   void OnExtensionLoaded(content::BrowserContext* browser_context,
@@ -66,30 +66,30 @@ class MisesComponentLoader : public ComponentLoader, public ExtensionRegistryObs
   void OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
                                       UninstallReason reason) override;
-  void PreInstallExtensionFromWebStore(const std::string& extension_id);
-  void OnWebstoreInstallResult(
-    const std::string& pref_name,
-    bool success,
-    const std::string& error,
-    extensions::webstore_install::Result result);
+  //void PreInstallExtensionFromWebStore(const std::string& extension_id);
+  // void OnWebstoreInstallResult(
+  //   const std::string& pref_name,
+  //   bool success,
+  //   const std::string& error,
+  //   extensions::webstore_install::Result result);
   
-  void ShowPreInstallMessage(bool is_fail);
-  void OnMessageOpened(GURL url, std::string guid);
-#if BUILDFLAG(IS_ANDROID)
-  void OnMessageDismissed(std::string guid,
-                          messages::DismissReason dismiss_reason);
-  void DismissMessageInternal(messages::DismissReason dismiss_reason);
-#endif
+  //void ShowPreInstallMessage(bool is_fail);
+  //void OnMessageOpened(GURL url, std::string guid);
+// #if BUILDFLAG(IS_ANDROID)
+//   void OnMessageDismissed(std::string guid,
+//                           messages::DismissReason dismiss_reason);
+//   void DismissMessageInternal(messages::DismissReason dismiss_reason);
+// #endif
 
- bool IsPreinstallExtension(const std::string& extension_id);
- bool IsIgnoredPreinstallExtension(const std::string& extension_id);
- void AddIgnoredPreinstallExtension(const std::string& extension_id);
+ //bool IsPreinstallExtension(const std::string& extension_id);
+ //bool IsIgnoredPreinstallExtension(const std::string& extension_id);
+ //void AddIgnoredPreinstallExtension(const std::string& extension_id);
 
- void OnNotificationHandled(int action);
+ //void OnNotificationHandled(int action);
 
- void StartPreInstall(const std::vector<std::string>&  ids);
+ //void StartPreInstall(const std::vector<std::string>&  ids);
 
- void OnPreInstallFinished();
+ //void OnPreInstallFinished();
 
   raw_ptr<Profile> profile_ = nullptr;
   raw_ptr<PrefService> profile_prefs_ = nullptr;

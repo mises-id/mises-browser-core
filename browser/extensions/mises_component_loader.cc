@@ -228,15 +228,15 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
 
 }
 
-void MisesComponentLoader::AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithTempleWalletStorage";
+// void MisesComponentLoader::AsyncRunWithTempleWalletStorage(value_store::ValueStore* storage) {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithTempleWalletStorage";
   
-  if (storage->GetBytesInUse("MISES_ACCEPT_TOS") == 0){
-    storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "MISES_ACCEPT_TOS", base::Value(true));
-  }
+//   if (storage->GetBytesInUse("MISES_ACCEPT_TOS") == 0){
+//     storage->Set(value_store::ValueStore::WriteOptionsValues::DEFAULTS, "MISES_ACCEPT_TOS", base::Value(true));
+//   }
   
 
-}
+// }
 
 void MisesComponentLoader::AsyncRunWithMiseswalletStorage(value_store::ValueStore* storage) {
   LOG(INFO) << "[Mises] MisesComponentLoader::AsyncRunWithMiseswalletStorage";
@@ -280,13 +280,13 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionInstalled";
 
-    if (extension->id() == temple_extension_id) {
-      StorageFrontend* frontend = StorageFrontend::Get(profile_);
-      frontend->RunWithStorage(
-        extension, settings_namespace::LOCAL,
-        base::BindOnce(&MisesComponentLoader::AsyncRunWithTempleWalletStorage, base::Unretained(this))
-      );
-    }
+    // if (extension->id() == temple_extension_id) {
+    //   StorageFrontend* frontend = StorageFrontend::Get(profile_);
+    //   frontend->RunWithStorage(
+    //     extension, settings_namespace::LOCAL,
+    //     base::BindOnce(&MisesComponentLoader::AsyncRunWithTempleWalletStorage, base::Unretained(this))
+    //   );
+    // }
   }
 
   if(extension && extension->location() == ManifestLocation::kComponent) {
@@ -308,39 +308,39 @@ void MisesComponentLoader::OnExtensionInstalled(content::BrowserContext* browser
 
 }
 
-bool MisesComponentLoader::IsPreinstallExtension(const std::string& extension_id) {
-#if BUILDFLAG(IS_ANDROID)
-  std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
-  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
-  return base::Contains(preinstalls, extension_id) ||  base::Contains(tos_preinstalls, extension_id);
-#else
-  return false;
-#endif
-}
+// bool MisesComponentLoader::IsPreinstallExtension(const std::string& extension_id) {
+// #if BUILDFLAG(IS_ANDROID)
+//   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
+//   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+//   return base::Contains(preinstalls, extension_id) ||  base::Contains(tos_preinstalls, extension_id);
+// #else
+//   return false;
+// #endif
+// }
 
-bool  MisesComponentLoader::IsIgnoredPreinstallExtension(const std::string& extension_id) {
-  if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
-    std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
-    std::vector<std::string> ignored = base::SplitString(
-      ignored_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
-    return base::Contains(ignored, extension_id);
-  }
-  return false;
-}
-void  MisesComponentLoader::AddIgnoredPreinstallExtension(const std::string& extension_id) {
-  if (IsIgnoredPreinstallExtension(extension_id)) {
-    return;
-  }
-  //disable preinstall it
-  if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
-    std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
-    profile_prefs_->SetString(kIgnoredPreinstallExtensionIds, ignored_str + "," + extension_id);
-#if BUILDFLAG(IS_ANDROID)
-    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "ignor", "id", extension_id);
-#endif
-  }
-  return ;
-}
+// bool  MisesComponentLoader::IsIgnoredPreinstallExtension(const std::string& extension_id) {
+//   if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
+//     std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
+//     std::vector<std::string> ignored = base::SplitString(
+//       ignored_str, ",", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
+//     return base::Contains(ignored, extension_id);
+//   }
+//   return false;
+// }
+// void  MisesComponentLoader::AddIgnoredPreinstallExtension(const std::string& extension_id) {
+//   if (IsIgnoredPreinstallExtension(extension_id)) {
+//     return;
+//   }
+//   //disable preinstall it
+//   if (profile_prefs_->FindPreference(kIgnoredPreinstallExtensionIds)) {
+//     std::string ignored_str = profile_prefs_->GetString(kIgnoredPreinstallExtensionIds);
+//     profile_prefs_->SetString(kIgnoredPreinstallExtensionIds, ignored_str + "," + extension_id);
+// #if BUILDFLAG(IS_ANDROID)
+//     base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "ignor", "id", extension_id);
+// #endif
+//   }
+//   return ;
+// }
 
 void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* browser_context,
                                       const Extension* extension,
@@ -353,279 +353,279 @@ void MisesComponentLoader::OnExtensionUninstalled(content::BrowserContext* brows
 #endif
     LOG(INFO) << "[Mises] MisesComponentLoader::OnExtensionUninstalled";
   }
-  if(extension && IsPreinstallExtension(extension->id())) {
-    AddIgnoredPreinstallExtension(extension->id());
-  }
-
-
-}
-
-
-void MisesComponentLoader::OnWebstoreInstallResult(
-    const std::string& extension_id,
-    bool success,
-    const std::string& error,
-    extensions::webstore_install::Result result) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
-  pending_preinstall.erase(extension_id);
-
-  if (result != extensions::webstore_install::Result::SUCCESS &&
-      result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
-    preinstall_error_counter_ ++;
-    if (preinstall_error_counter_ < kPreinstallMaxError) {
-#if BUILDFLAG(IS_ANDROID)
-        base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "retry", "id", extension_id);
-#endif
-        base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-          FROM_HERE,
-          base::BindOnce(
-            &MisesComponentLoader::PreInstallExtensionFromWebStore,
-            weak_ptr_factory_.GetWeakPtr(), extension_id),
-          base::Seconds(2 * preinstall_error_counter_ + 1 ));
-
-    } else {
-#if BUILDFLAG(IS_ANDROID)
-      base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "fail", "id", extension_id);
-      //DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
-#endif
-      
-    // base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-    //     FROM_HERE,
-    //     base::BindOnce(
-    //       &MisesComponentLoader::ShowPreInstallMessage,
-    //       weak_ptr_factory_.GetWeakPtr(), true), 
-    //     base::Seconds(1));
-    }
-  }
-
- if (result == extensions::webstore_install::Result::SUCCESS) {
-#if BUILDFLAG(IS_ANDROID)
-    AppMenuBridge::Factory::GetForProfile(profile_)->CloseExtensionTabs(extension_id);
-    AppMenuBridge::Factory::GetForProfile(profile_)->ReloadTabs();
-    base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "finish", "id", extension_id);
-#endif
- }
-
- if (pending_preinstall.empty()) {
-    OnPreInstallFinished();
- }
-}
-
-
-void MisesComponentLoader::ShowPreInstallMessage(bool is_fail) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::ShowPreInstallMessage " << is_fail;
-  std::u16string title = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_TITLE);
-  std::u16string description;
-  if (!is_fail) {
-    description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL);
-  } else {
-    description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL_FAIL);
-  }
-  GURL link =  GURL(base::StrCat(
-        {"https://chrome.google.com/webstore/detail/", metamask_extension_id}));
-  std::string guid = base::Uuid::GenerateRandomV4().AsLowercaseString();
-#if !BUILDFLAG(IS_ANDROID)
-  auto notification = CreateMessageCenterNotification(
-    title, description, guid,link
-  );
-  NotificationDisplayServiceFactory::GetForProfile(profile_)->Display(
-      NotificationHandler::Type::SEND_TAB_TO_SELF, *notification, nullptr);
-#else
-  base::WeakPtr<content::WebContents> web_contents;
-  if (profile_ != nullptr &&
-          GetWebContentsForProfile(profile_) != nullptr) {
-    web_contents = GetWebContentsForProfile(profile_)->GetWeakPtr();
-  } else {
-    web_contents = nullptr;
-  }
-  std::unique_ptr<messages::MessageWrapper> message = std::make_unique<messages::MessageWrapper>(
-      messages::MessageIdentifier::SEND_TAB_TO_SELF);
-  message->SetTitle(title);
-  message->SetDescription(description);
-  message->SetPrimaryButtonText(
-      l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_OPEN));
-  message->SetIconResourceId(ResourceMapper::MapToJavaDrawableId(IDR_EXTENSIONS));
-  message->SetActionClick(base::BindOnce(
-      &MisesComponentLoader::OnMessageOpened,
-      weak_ptr_factory_.GetWeakPtr(), link, guid));
-  message->SetDismissCallback(base::BindOnce(
-      &MisesComponentLoader::OnMessageDismissed,
-      weak_ptr_factory_.GetWeakPtr(), guid));
-
-  if (web_contents) {
-    messages::MessageDispatcherBridge::Get()->EnqueueWindowScopedMessage(
-        message.get(), web_contents->GetTopLevelNativeWindow(),
-        messages::MessagePriority::kNormal);
-  }
-  message_ = std::move(message);
-#endif
-  
-}
-
-void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageOpened";
-#if BUILDFLAG(IS_ANDROID)
-  content::OpenURLParams params(url, content::Referrer(),
-                                WindowOpenDisposition::NEW_FOREGROUND_TAB,
-                                ui::PAGE_TRANSITION_AUTO_TOPLEVEL, false);
-  params.should_replace_current_entry = false;
-  content::WebContents* web_contents = GetWebContentsForProfile(profile_);
-  if (web_contents) {
-      web_contents->OpenURL(params, /*navigation_handle_callback=*/{});
-  }
-
-  DismissMessageInternal(messages::DismissReason::PRIMARY_ACTION);
-#endif
-}
-
-#if BUILDFLAG(IS_ANDROID)  
-void MisesComponentLoader::OnMessageDismissed(
-  std::string guid, messages::DismissReason dismiss_reason) {    
-  LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageDismissed";
-                                
-  message_.reset();
-}
-
-void MisesComponentLoader::DismissMessageInternal(
-    messages::DismissReason dismiss_reason) {
-  if (!message_)
-    return;
-  messages::MessageDispatcherBridge::Get()->DismissMessage(message_.get(),
-                                                           dismiss_reason);
-
-}
-#endif
-
-void MisesComponentLoader::PreInstallExtensionFromWebStore(const std::string& extension_id) {
-  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionFromWebStore:" + extension_id;
-#if BUILDFLAG(IS_ANDROID)
-  // if (!message_) {
-  //   ShowPreInstallMessage(false);
+  // if(extension && IsPreinstallExtension(extension->id())) {
+  //   AddIgnoredPreinstallExtension(extension->id());
   // }
-#endif
-  
-  
-  pending_preinstall.insert(extension_id);
 
-  scoped_refptr<WebstoreInstallerForImporting> installer =
-      new WebstoreInstallerForImporting(
-          extension_id, profile_,
-          base::BindOnce(
-              &MisesComponentLoader::OnWebstoreInstallResult,
-              weak_ptr_factory_.GetWeakPtr(), extension_id));
-  installer->StartInstaller();
-}
-
-void MisesComponentLoader::PreInstallExtensionOnStartup() {
-  LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup";
-
-  ExtensionRegistry::Get(profile_)->AddObserver(this);
-
-  #if BUILDFLAG(IS_ANDROID)
-  
-  extensions::ExtensionRegistry* registry =
-      extensions::ExtensionRegistry::Get(profile_);
-  
-
-  std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
-  StartPreInstall(preinstalls);
-
-  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
-  std::string tos = preferences::features::GetMisesPreinstallExtensionTOS();
-  bool need_display_tos = false;
-  for (size_t i = 0; i < tos_preinstalls.size(); i++) {
-    std::string extension_id = tos_preinstalls[i];
-    if (!IsIgnoredPreinstallExtension(extension_id)) {
-      const Extension* extension = registry->GetInstalledExtension(extension_id);
-      if (!extension) {
-        need_display_tos = !tos.empty();
-      }
-    }
-  }
-  if (need_display_tos) {
-      LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup show TOS";
-      chrome::android::MisesController::GetInstance()->showNotifyDialog(
-        chrome::android::MisesControllerDialogType::kTOS,
-        tos, base::BindOnce(
-          &MisesComponentLoader::OnNotificationHandled, weak_ptr_factory_.GetWeakPtr()
-        )
-      );
-  }
-
-
-  const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
-  if (!mises_extension) {
-    base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
-    mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_safe"));
-    Add(IDR_MISES_SAFE_MANIFEST_JSON, mises_extension_path);
-  }
-#endif
 
 }
 
-void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids) {
-   extensions::ExtensionRegistry* registry =
-      extensions::ExtensionRegistry::Get(profile_);
-  for (size_t i = 0; i < ids.size(); i++) {
-    std::string extension_id = ids[i];
-    LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall:" + extension_id;
-    if (!IsIgnoredPreinstallExtension(extension_id)) {
 
-      const Extension* extension = registry->GetInstalledExtension(extension_id);
-      if (!extension) {
-    #if BUILDFLAG(IS_ANDROID)
-            base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", extension_id);
-    #endif
-            base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
-              FROM_HERE,
-              base::BindOnce(
-                &MisesComponentLoader::PreInstallExtensionFromWebStore,
-                weak_ptr_factory_.GetWeakPtr(), extension_id),
-            base::Seconds(1));
-      }
-    } else {
-      LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall, ignor:" + extension_id;
-    }
-  }
-}
+// void MisesComponentLoader::OnWebstoreInstallResult(
+//     const std::string& extension_id,
+//     bool success,
+//     const std::string& error,
+//     extensions::webstore_install::Result result) {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::OnWebstoreInstallResult " << result;
+//   pending_preinstall.erase(extension_id);
+
+//   if (result != extensions::webstore_install::Result::SUCCESS &&
+//       result != extensions::webstore_install::Result::LAUNCH_IN_PROGRESS) {
+//     preinstall_error_counter_ ++;
+//     if (preinstall_error_counter_ < kPreinstallMaxError) {
+// #if BUILDFLAG(IS_ANDROID)
+//         base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "retry", "id", extension_id);
+// #endif
+//         base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+//           FROM_HERE,
+//           base::BindOnce(
+//             &MisesComponentLoader::PreInstallExtensionFromWebStore,
+//             weak_ptr_factory_.GetWeakPtr(), extension_id),
+//           base::Seconds(2 * preinstall_error_counter_ + 1 ));
+
+//     } else {
+// #if BUILDFLAG(IS_ANDROID)
+//       base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "fail", "id", extension_id);
+//       //DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+// #endif
+      
+//     // base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+//     //     FROM_HERE,
+//     //     base::BindOnce(
+//     //       &MisesComponentLoader::ShowPreInstallMessage,
+//     //       weak_ptr_factory_.GetWeakPtr(), true), 
+//     //     base::Seconds(1));
+//     }
+//   }
+
+//  if (result == extensions::webstore_install::Result::SUCCESS) {
+// #if BUILDFLAG(IS_ANDROID)
+//     AppMenuBridge::Factory::GetForProfile(profile_)->CloseExtensionTabs(extension_id);
+//     AppMenuBridge::Factory::GetForProfile(profile_)->ReloadTabs();
+//     base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "finish", "id", extension_id);
+// #endif
+//  }
+
+//  if (pending_preinstall.empty()) {
+//     OnPreInstallFinished();
+//  }
+// }
+
+
+// void MisesComponentLoader::ShowPreInstallMessage(bool is_fail) {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::ShowPreInstallMessage " << is_fail;
+//   std::u16string title = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_TITLE);
+//   std::u16string description;
+//   if (!is_fail) {
+//     description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL);
+//   } else {
+//     description = l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_DESC_PREINSTALL_FAIL);
+//   }
+//   GURL link =  GURL(base::StrCat(
+//         {"https://chrome.google.com/webstore/detail/", metamask_extension_id}));
+//   std::string guid = base::Uuid::GenerateRandomV4().AsLowercaseString();
+// #if !BUILDFLAG(IS_ANDROID)
+//   auto notification = CreateMessageCenterNotification(
+//     title, description, guid,link
+//   );
+//   NotificationDisplayServiceFactory::GetForProfile(profile_)->Display(
+//       NotificationHandler::Type::SEND_TAB_TO_SELF, *notification, nullptr);
+// #else
+//   base::WeakPtr<content::WebContents> web_contents;
+//   if (profile_ != nullptr &&
+//           GetWebContentsForProfile(profile_) != nullptr) {
+//     web_contents = GetWebContentsForProfile(profile_)->GetWeakPtr();
+//   } else {
+//     web_contents = nullptr;
+//   }
+//   std::unique_ptr<messages::MessageWrapper> message = std::make_unique<messages::MessageWrapper>(
+//       messages::MessageIdentifier::SEND_TAB_TO_SELF);
+//   message->SetTitle(title);
+//   message->SetDescription(description);
+//   message->SetPrimaryButtonText(
+//       l10n_util::GetStringUTF16(IDS_EXTENSIONS_MESSAGE_OPEN));
+//   message->SetIconResourceId(ResourceMapper::MapToJavaDrawableId(IDR_EXTENSIONS));
+//   message->SetActionClick(base::BindOnce(
+//       &MisesComponentLoader::OnMessageOpened,
+//       weak_ptr_factory_.GetWeakPtr(), link, guid));
+//   message->SetDismissCallback(base::BindOnce(
+//       &MisesComponentLoader::OnMessageDismissed,
+//       weak_ptr_factory_.GetWeakPtr(), guid));
+
+//   if (web_contents) {
+//     messages::MessageDispatcherBridge::Get()->EnqueueWindowScopedMessage(
+//         message.get(), web_contents->GetTopLevelNativeWindow(),
+//         messages::MessagePriority::kNormal);
+//   }
+//   message_ = std::move(message);
+// #endif
+  
+// }
+
+// void MisesComponentLoader::OnMessageOpened(GURL url, std::string guid) {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageOpened";
+// #if BUILDFLAG(IS_ANDROID)
+//   content::OpenURLParams params(url, content::Referrer(),
+//                                 WindowOpenDisposition::NEW_FOREGROUND_TAB,
+//                                 ui::PAGE_TRANSITION_AUTO_TOPLEVEL, false);
+//   params.should_replace_current_entry = false;
+//   content::WebContents* web_contents = GetWebContentsForProfile(profile_);
+//   if (web_contents) {
+//       web_contents->OpenURL(params, /*navigation_handle_callback=*/{});
+//   }
+
+//   DismissMessageInternal(messages::DismissReason::PRIMARY_ACTION);
+// #endif
+// }
+
+// #if BUILDFLAG(IS_ANDROID)  
+// void MisesComponentLoader::OnMessageDismissed(
+//   std::string guid, messages::DismissReason dismiss_reason) {    
+//   LOG(INFO) << "[Mises] MisesComponentLoader::OnMessageDismissed";
+                                
+//   message_.reset();
+// }
+
+// void MisesComponentLoader::DismissMessageInternal(
+//     messages::DismissReason dismiss_reason) {
+//   if (!message_)
+//     return;
+//   messages::MessageDispatcherBridge::Get()->DismissMessage(message_.get(),
+//                                                            dismiss_reason);
+
+// }
+// #endif
+
+// void MisesComponentLoader::PreInstallExtensionFromWebStore(const std::string& extension_id) {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionFromWebStore:" + extension_id;
+// #if BUILDFLAG(IS_ANDROID)
+//   // if (!message_) {
+//   //   ShowPreInstallMessage(false);
+//   // }
+// #endif
+  
+  
+//   pending_preinstall.insert(extension_id);
+
+//   scoped_refptr<WebstoreInstallerForImporting> installer =
+//       new WebstoreInstallerForImporting(
+//           extension_id, profile_,
+//           base::BindOnce(
+//               &MisesComponentLoader::OnWebstoreInstallResult,
+//               weak_ptr_factory_.GetWeakPtr(), extension_id));
+//   installer->StartInstaller();
+// }
+
+// void MisesComponentLoader::PreInstallExtensionOnStartup() {
+//   LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup";
+
+//   ExtensionRegistry::Get(profile_)->AddObserver(this);
+
+//   #if BUILDFLAG(IS_ANDROID)
+  
+//   extensions::ExtensionRegistry* registry =
+//       extensions::ExtensionRegistry::Get(profile_);
+  
+
+//   std::vector<std::string> preinstalls = preferences::features::GetMisesPreinstallExtensionIds();
+//   StartPreInstall(preinstalls);
+
+//   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+//   std::string tos = preferences::features::GetMisesPreinstallExtensionTOS();
+//   bool need_display_tos = false;
+//   for (size_t i = 0; i < tos_preinstalls.size(); i++) {
+//     std::string extension_id = tos_preinstalls[i];
+//     if (!IsIgnoredPreinstallExtension(extension_id)) {
+//       const Extension* extension = registry->GetInstalledExtension(extension_id);
+//       if (!extension) {
+//         need_display_tos = !tos.empty();
+//       }
+//     }
+//   }
+//   if (need_display_tos) {
+//       LOG(INFO) << "[Mises] MisesComponentLoader::PreInstallExtensionOnStartup show TOS";
+//       chrome::android::MisesController::GetInstance()->showNotifyDialog(
+//         chrome::android::MisesControllerDialogType::kTOS,
+//         tos, base::BindOnce(
+//           &MisesComponentLoader::OnNotificationHandled, weak_ptr_factory_.GetWeakPtr()
+//         )
+//       );
+//   }
+
+
+//   const Extension* mises_extension = registry->GetInstalledExtension(mises_extension_id);
+//   if (!mises_extension) {
+//     base::FilePath mises_extension_path(FILE_PATH_LITERAL(""));
+//     mises_extension_path = mises_extension_path.Append(FILE_PATH_LITERAL("mises_safe"));
+//     Add(IDR_MISES_SAFE_MANIFEST_JSON, mises_extension_path);
+//   }
+// #endif
+
+// }
+
+// void MisesComponentLoader::StartPreInstall(const std::vector<std::string>&  ids) {
+//    extensions::ExtensionRegistry* registry =
+//       extensions::ExtensionRegistry::Get(profile_);
+//   for (size_t i = 0; i < ids.size(); i++) {
+//     std::string extension_id = ids[i];
+//     LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall:" + extension_id;
+//     if (!IsIgnoredPreinstallExtension(extension_id)) {
+
+//       const Extension* extension = registry->GetInstalledExtension(extension_id);
+//       if (!extension) {
+//     #if BUILDFLAG(IS_ANDROID)
+//             base::android::MisesSysUtils::LogEventFromJni("preinstall_extension", "step", "start", "id", extension_id);
+//     #endif
+//             base::SequencedTaskRunner::GetCurrentDefault()->PostDelayedTask(
+//               FROM_HERE,
+//               base::BindOnce(
+//                 &MisesComponentLoader::PreInstallExtensionFromWebStore,
+//                 weak_ptr_factory_.GetWeakPtr(), extension_id),
+//             base::Seconds(1));
+//       }
+//     } else {
+//       LOG(INFO) << "[Mises] MisesComponentLoader::StartPreInstall, ignor:" + extension_id;
+//     }
+//   }
+// }
  
-void MisesComponentLoader::OnNotificationHandled(int action) {
-#if BUILDFLAG(IS_ANDROID)
-  std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
-  if (action == 0) {
-    StartPreInstall(tos_preinstalls);
-  } else {
-      for (size_t i = 0; i < tos_preinstalls.size(); i++) {
-        std::string extension_id = tos_preinstalls[i];
-        AddIgnoredPreinstallExtension(extension_id);
-      }
-  }
-#endif
+// void MisesComponentLoader::OnNotificationHandled(int action) {
+// #if BUILDFLAG(IS_ANDROID)
+//   std::vector<std::string> tos_preinstalls = preferences::features::GetMisesPreinstallExtensionWithTOSIds();
+//   if (action == 0) {
+//     StartPreInstall(tos_preinstalls);
+//   } else {
+//       for (size_t i = 0; i < tos_preinstalls.size(); i++) {
+//         std::string extension_id = tos_preinstalls[i];
+//         AddIgnoredPreinstallExtension(extension_id);
+//       }
+//   }
+// #endif
 
-}
+// }
 
-void MisesComponentLoader::OnPreInstallFinished() {
-  //no more pending_preinstall, do a update check now to report extension installed
-  extensions::ExtensionService* service =
-    extensions::ExtensionSystem::Get(profile_)->extension_service();
-  if (service) {
-    ExtensionUpdater* updater = service->updater();
-    if (updater) {
-      ExtensionUpdater::CheckParams params;
-      params.fetch_priority = DownloadFetchPriority::kBackground;
-      params.install_immediately = false;
-      updater->CheckNow(std::move(params));
-    }
-  }
-#if BUILDFLAG(IS_ANDROID)
-  std::string defaultEVMExtensionID = preferences::features::GetMisesPreinstallDefaultEVMExtension();
-  std::string defaultEVMExtensionKeyProperty = preferences::features::GetMisesPreinstallDefaultEVMExtensionKeyProperty();
-  if (GetDefaultEVMWalletForBrowserContext(profile_).size() == 0) {
-    SetDefaultEVMWalletForBrowserContext(profile_,
-      defaultEVMExtensionID, defaultEVMExtensionKeyProperty);
-  }
-#endif
+// void MisesComponentLoader::OnPreInstallFinished() {
+//   //no more pending_preinstall, do a update check now to report extension installed
+//   extensions::ExtensionService* service =
+//     extensions::ExtensionSystem::Get(profile_)->extension_service();
+//   if (service) {
+//     ExtensionUpdater* updater = service->updater();
+//     if (updater) {
+//       ExtensionUpdater::CheckParams params;
+//       params.fetch_priority = DownloadFetchPriority::kBackground;
+//       params.install_immediately = false;
+//       updater->CheckNow(std::move(params));
+//     }
+//   }
+// #if BUILDFLAG(IS_ANDROID)
+//   std::string defaultEVMExtensionID = preferences::features::GetMisesPreinstallDefaultEVMExtension();
+//   std::string defaultEVMExtensionKeyProperty = preferences::features::GetMisesPreinstallDefaultEVMExtensionKeyProperty();
+//   if (GetDefaultEVMWalletForBrowserContext(profile_).size() == 0) {
+//     SetDefaultEVMWalletForBrowserContext(profile_,
+//       defaultEVMExtensionID, defaultEVMExtensionKeyProperty);
+//   }
+// #endif
   
-}
+// }
 
 }  // namespace extensions

@@ -53,7 +53,7 @@ class NativeMessageMisesHost : public NativeMessageHost {
 // static
 // Must match ScopedTestNativeMessagingHost::kHostName.
 const char* const NativeMessageMisesHost::kHostName =
-    "site.mises.browser";
+    "site.mises.browser_stable";
 
 // static
 // Must match ScopedTestNativeMessagingHost::kExtensionId.

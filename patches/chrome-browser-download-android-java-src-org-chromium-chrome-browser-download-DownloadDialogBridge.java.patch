@@ -50,7 +50,7 @@ index 3f677bcd8041ada5525f81bbc7b894a5a363dc2d..43ff5c191ca12b61b5cce50a7f761395
 +        if (useAdmIfPossible && 
 +            !TextUtils.isEmpty(activeDownloadManagerPackageName) && 
 +            !TextUtils.isEmpty(activeDownloadManagerActivityName) && 
-+            activeDownloadManagerPackageName.equals("site.mises.browser") != true && 
++            activeDownloadManagerPackageName.equals("site.mises.browser_stable") != true && 
 +            !TextUtils.isEmpty(urlToDownload) && 
 +            (urlToDownload.toLowerCase(Locale.ROOT).startsWith("http:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("https:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("magnet:") || urlToDownload.toLowerCase(Locale.ROOT).startsWith("ftp:"))) {
 +            if (urlToDownload.toLowerCase(Locale.ROOT).contains(".googleusercontent.com/crx"))

@@ -499,7 +499,7 @@ void MaybeMigrateLegacyMisesWalletKeyring() {
                                                                  NSUserDomainMask, YES);
         NSString *cacheDirectory = [paths objectAtIndex:0];
         if (cacheDirectory) {
-            NSString* firSettingDir = [cacheDirectory stringByAppendingPathComponent:@"com.crashlytics.data/site.mises.browser/v5/settings/"];
+            NSString* firSettingDir = [cacheDirectory stringByAppendingPathComponent:@"com.crashlytics.data/site.mises.browser_stable/v5/settings/"];
             NSString* firSettingPath = [firSettingDir stringByAppendingPathComponent:@"settings.json"];
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if (![fileManager fileExistsAtPath:firSettingPath]) {
