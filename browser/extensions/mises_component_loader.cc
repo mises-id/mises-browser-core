@@ -197,12 +197,12 @@ void MisesComponentLoader::OnExtensionReady(content::BrowserContext* browser_con
                                      const Extension* extension) {
   if (extension->id() == metamask_extension_id && !metamask_ready_) {
     metamask_ready_ = true;
-#if BUILDFLAG(IS_ANDROID)
-    if (extension->location() != ManifestLocation::kComponent) {
-      DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
-    }
+// #if BUILDFLAG(IS_ANDROID)
+//     if (extension->location() != ManifestLocation::kComponent) {
+//       DismissMessageInternal(messages::DismissReason::DISMISSED_BY_FEATURE);
+//     }
     
-#endif
+// #endif
   }
   if (extension->id() == mises_extension_id) {
     mises_ready_ = true;
