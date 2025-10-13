@@ -136,7 +136,7 @@ mises_java_base_module_exception_deps = [
   "//third_party/android_deps:google_firebase_firebase_messaging_java",
 ]
 mises_java_base_module_deps = [
-  "//mises/third_party/android_deps:com_wireguard_android_java",
+  #"//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/open_mediation/admob:google_user_messaging_platform_java",
   "//mises/third_party/open_mediation:open_mediation_sdk_java",
   "//mises/third_party/open_mediation:open_mediation_cardslider_java",

@@ -1,4 +1,3 @@
-import("//mises/android/mises_android_wireguard_sources.gni")
 import("//mises/android/mises_java_resources.gni")
 import("//mises/android/mises_java_sources.gni")
 import("//mises/build/android/bytecode/bytecode_rewriter.gni")
@@ -29,8 +28,8 @@ mises_chrome_java_deps = [
   #"//mises/third_party/android_deps:com_android_billingclient_java",
   "//mises/third_party/android_deps:com_android_installreferrer_java",
   "//mises/third_party/android_deps:com_github_bumptech_glide_java",
-  "//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
-  "//mises/third_party/android_deps:com_wireguard_android_java",
+  #"//mises/third_party/android_deps:com_wireguard_android_J__unpack_aar",
+  #"//mises/third_party/android_deps:com_wireguard_android_java",
   "//mises/third_party/android_deps:google_play_services_safetynet_java",
   "//mises/third_party/android_deps:com_google_android_play_core_app_update_java",
   #"//mises/third_party/zxing:zxing_java",
